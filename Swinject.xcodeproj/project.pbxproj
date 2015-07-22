@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9802C9AB1B5FD7740088018E /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AA1B5FD7740088018E /* Nimble.framework */; };
+		9802C9AD1B5FD7800088018E /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AC1B5FD7800088018E /* Quick.framework */; };
+		9802C9B51B5FDBEA0088018E /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AC1B5FD7800088018E /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9802C9B61B5FDBEA0088018E /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AA1B5FD7740088018E /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		981ABE851B5FC9DF00294975 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 981ABE841B5FC9DF00294975 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981ABE811B5FC9DF00294975 /* Swinject.framework */; };
 		981ABE911B5FC9DF00294975 /* SwinjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981ABE901B5FC9DF00294975 /* SwinjectTests.swift */; };
@@ -22,7 +26,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9802C9B41B5FDBD80088018E /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9802C9B51B5FDBEA0088018E /* Quick.framework in Copy Frameworks */,
+				9802C9B61B5FDBEA0088018E /* Nimble.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		9802C9AA1B5FD7740088018E /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		9802C9AC1B5FD7800088018E /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		981ABE811B5FC9DF00294975 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		981ABE841B5FC9DF00294975 /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		981ABE861B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,18 +65,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */,
+				9802C9AB1B5FD7740088018E /* Nimble.framework in Frameworks */,
+				9802C9AD1B5FD7800088018E /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9802C9B11B5FD7E80088018E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9802C9AC1B5FD7800088018E /* Quick.framework */,
+				9802C9AA1B5FD7740088018E /* Nimble.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		981ABE771B5FC9DF00294975 = {
 			isa = PBXGroup;
 			children = (
 				981ABE831B5FC9DF00294975 /* Swinject */,
 				981ABE8F1B5FC9DF00294975 /* SwinjectTests */,
 				981ABE821B5FC9DF00294975 /* Products */,
+				9802C9B11B5FD7E80088018E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +158,7 @@
 				981ABE871B5FC9DF00294975 /* Sources */,
 				981ABE881B5FC9DF00294975 /* Frameworks */,
 				981ABE891B5FC9DF00294975 /* Resources */,
+				9802C9B41B5FDBD80088018E /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -339,6 +373,10 @@
 		981ABE991B5FC9DF00294975 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SwinjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
@@ -349,6 +387,10 @@
 		981ABE9A1B5FC9DF00294975 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SwinjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
@@ -375,6 +417,7 @@
 				981ABE971B5FC9DF00294975 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		981ABE981B5FC9DF00294975 /* Build configuration list for PBXNativeTarget "SwinjectTests" */ = {
 			isa = XCConfigurationList;
@@ -383,6 +426,7 @@
 				981ABE9A1B5FC9DF00294975 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
