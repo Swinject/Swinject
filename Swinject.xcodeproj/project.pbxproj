@@ -11,12 +11,26 @@
 		9802C9AD1B5FD7800088018E /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AC1B5FD7800088018E /* Quick.framework */; };
 		9802C9B51B5FDBEA0088018E /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AC1B5FD7800088018E /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9802C9B61B5FDBEA0088018E /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AA1B5FD7740088018E /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		981899C61B5FE63F00C702D0 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899BC1B5FE63F00C702D0 /* Swinject.framework */; };
+		981899D31B5FE6FC00C702D0 /* SwinjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981ABE901B5FC9DF00294975 /* SwinjectTests.swift */; };
+		981899D61B5FE71400C702D0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D41B5FE71400C702D0 /* Nimble.framework */; };
+		981899D71B5FE71400C702D0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D51B5FE71400C702D0 /* Quick.framework */; };
+		981899DD1B5FE78100C702D0 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D41B5FE71400C702D0 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		981899DE1B5FE78100C702D0 /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D51B5FE71400C702D0 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		981899DF1B5FE7E100C702D0 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 981ABE841B5FC9DF00294975 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		981ABE851B5FC9DF00294975 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 981ABE841B5FC9DF00294975 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981ABE811B5FC9DF00294975 /* Swinject.framework */; };
 		981ABE911B5FC9DF00294975 /* SwinjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981ABE901B5FC9DF00294975 /* SwinjectTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		981899C71B5FE63F00C702D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 981ABE781B5FC9DF00294975 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 981899BB1B5FE63F00C702D0;
+			remoteInfo = "Swinject-OSX";
+		};
 		981ABE8D1B5FC9DF00294975 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 981ABE781B5FC9DF00294975 /* Project object */;
@@ -39,11 +53,27 @@
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		981899D81B5FE71800C702D0 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				981899DD1B5FE78100C702D0 /* Nimble.framework in Copy Frameworks */,
+				981899DE1B5FE78100C702D0 /* Quick.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9802C9AA1B5FD7740088018E /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		9802C9AC1B5FD7800088018E /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		981899BC1B5FE63F00C702D0 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		981899C51B5FE63F00C702D0 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		981899D41B5FE71400C702D0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
+		981899D51B5FE71400C702D0 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		981ABE811B5FC9DF00294975 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		981ABE841B5FC9DF00294975 /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		981ABE861B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +83,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		981899B81B5FE63F00C702D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		981899C21B5FE63F00C702D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				981899C61B5FE63F00C702D0 /* Swinject.framework in Frameworks */,
+				981899D61B5FE71400C702D0 /* Nimble.framework in Frameworks */,
+				981899D71B5FE71400C702D0 /* Quick.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		981ABE7D1B5FC9DF00294975 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -76,8 +123,10 @@
 		9802C9B11B5FD7E80088018E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9802C9AC1B5FD7800088018E /* Quick.framework */,
 				9802C9AA1B5FD7740088018E /* Nimble.framework */,
+				9802C9AC1B5FD7800088018E /* Quick.framework */,
+				981899D41B5FE71400C702D0 /* Nimble.framework */,
+				981899D51B5FE71400C702D0 /* Quick.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -97,6 +146,8 @@
 			children = (
 				981ABE811B5FC9DF00294975 /* Swinject.framework */,
 				981ABE8B1B5FC9DF00294975 /* SwinjectTests.xctest */,
+				981899BC1B5FE63F00C702D0 /* Swinject.framework */,
+				981899C51B5FE63F00C702D0 /* SwinjectTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,6 +173,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		981899B91B5FE63F00C702D0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				981899DF1B5FE7E100C702D0 /* Swinject.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		981ABE7E1B5FC9DF00294975 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -133,6 +192,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		981899BB1B5FE63F00C702D0 /* Swinject-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 981899D11B5FE64000C702D0 /* Build configuration list for PBXNativeTarget "Swinject-OSX" */;
+			buildPhases = (
+				981899B71B5FE63F00C702D0 /* Sources */,
+				981899B81B5FE63F00C702D0 /* Frameworks */,
+				981899B91B5FE63F00C702D0 /* Headers */,
+				981899BA1B5FE63F00C702D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Swinject-OSX";
+			productName = "Swinject-OSX";
+			productReference = 981899BC1B5FE63F00C702D0 /* Swinject.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		981899C41B5FE63F00C702D0 /* Swinject-OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 981899D21B5FE64000C702D0 /* Build configuration list for PBXNativeTarget "Swinject-OSXTests" */;
+			buildPhases = (
+				981899C11B5FE63F00C702D0 /* Sources */,
+				981899C21B5FE63F00C702D0 /* Frameworks */,
+				981899C31B5FE63F00C702D0 /* Resources */,
+				981899D81B5FE71800C702D0 /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				981899C81B5FE63F00C702D0 /* PBXTargetDependency */,
+			);
+			name = "Swinject-OSXTests";
+			productName = "Swinject-OSXTests";
+			productReference = 981899C51B5FE63F00C702D0 /* SwinjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		981ABE801B5FC9DF00294975 /* Swinject */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 981ABE951B5FC9DF00294975 /* Build configuration list for PBXNativeTarget "Swinject" */;
@@ -179,6 +275,12 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = DevSwinject;
 				TargetAttributes = {
+					981899BB1B5FE63F00C702D0 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					981899C41B5FE63F00C702D0 = {
+						CreatedOnToolsVersion = 7.0;
+					};
 					981ABE801B5FC9DF00294975 = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -201,11 +303,27 @@
 			targets = (
 				981ABE801B5FC9DF00294975 /* Swinject */,
 				981ABE8A1B5FC9DF00294975 /* SwinjectTests */,
+				981899BB1B5FE63F00C702D0 /* Swinject-OSX */,
+				981899C41B5FE63F00C702D0 /* Swinject-OSXTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		981899BA1B5FE63F00C702D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		981899C31B5FE63F00C702D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		981ABE7F1B5FC9DF00294975 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +341,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		981899B71B5FE63F00C702D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		981899C11B5FE63F00C702D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				981899D31B5FE6FC00C702D0 /* SwinjectTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		981ABE7C1B5FC9DF00294975 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +374,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		981899C81B5FE63F00C702D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 981899BB1B5FE63F00C702D0 /* Swinject-OSX */;
+			targetProxy = 981899C71B5FE63F00C702D0 /* PBXContainerItemProxy */;
+		};
 		981ABE8E1B5FC9DF00294975 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 981ABE801B5FC9DF00294975 /* Swinject */;
@@ -249,6 +387,80 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		981899CD1B5FE64000C702D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Swinject/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
+				PRODUCT_NAME = Swinject;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		981899CE1B5FE64000C702D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Swinject/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
+				PRODUCT_NAME = Swinject;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		981899CF1B5FE64000C702D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
+				PRODUCT_NAME = SwinjectTests;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		981899D01B5FE64000C702D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
+				PRODUCT_NAME = SwinjectTests;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		981ABE931B5FC9DF00294975 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -401,6 +613,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		981899D11B5FE64000C702D0 /* Build configuration list for PBXNativeTarget "Swinject-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				981899CD1B5FE64000C702D0 /* Debug */,
+				981899CE1B5FE64000C702D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		981899D21B5FE64000C702D0 /* Build configuration list for PBXNativeTarget "Swinject-OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				981899CF1B5FE64000C702D0 /* Debug */,
+				981899D01B5FE64000C702D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		981ABE7B1B5FC9DF00294975 /* Build configuration list for PBXProject "Swinject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

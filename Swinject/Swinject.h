@@ -6,7 +6,7 @@
 //  Copyright © 2015 DevSwinject. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Swinject.
 FOUNDATION_EXPORT double SwinjectVersionNumber;
