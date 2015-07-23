@@ -13,14 +13,14 @@ public final class Container {
     
     // The first argument is for a workaround to the problem that cannot explicitly specialize a generic function in Swift.
     // http://stackoverflow.com/questions/28726937/how-do-i-call-a-generic-swift-function-when-none-of-the-arguments-provides-the-g
-    public func register<Service>(_: Service.Type, factory: () -> Service) {
+    public func register<Service>(_: Service.Type, factory: Container -> Service) {
         factories += [factory as Any]
     }
     
     public func resolve<Service>(_: Service.Type) -> Service? {
         for factory in factories {
-            if let factory = factory as? () -> Service {
-                return factory()
+            if let factory = factory as? Container -> Service {
+                return factory(self)
             }
         }
         return nil

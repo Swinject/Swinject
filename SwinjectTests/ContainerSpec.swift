@@ -12,15 +12,20 @@ import Nimble
 
 class ContainerSpec: QuickSpec {
     override func spec() {
-        it("resolves a registreed instance.") {
+        it("resolves a registreed instance") {
             let container = Container()
-            container.register(BarType.self) { Bar() }
-            container.register(FooType.self) { Foo() }
+            container.register(BarType.self) { _ in Bar() }
             
             let bar = container.resolve(BarType.self)
-            let foo = container.resolve(FooType.self)
             expect(bar).notTo(beNil())
-            expect(foo).notTo(beNil())
+        }
+        it("injects a resolved argument") {
+            let container = Container()
+            container.register(BarType.self) { _ in Bar() }
+            container.register(FooType.self) { c in Foo(bar: c.resolve(BarType.self)!) }
+                
+            let foo = container.resolve(FooType.self) as? Foo
+            expect(foo?.bar).notTo(beNil())
         }
     }
 }
