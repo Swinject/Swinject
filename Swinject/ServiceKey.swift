@@ -10,22 +10,22 @@ import Foundation
 
 internal struct ServiceKey {
     private let factoryType: Any.Type
-    private let hash: Int
+    private let name: String?
     
-    internal init(factoryType: Any.Type) {
+    internal init(factoryType: Any.Type, name: String? = nil) {
         self.factoryType = factoryType
-        self.hash = String(factoryType).hashValue
+        self.name = name
     }
 }
 
 // MARK: Hashable
 extension ServiceKey: Hashable {
     var hashValue: Int {
-        return hash
+        return String(factoryType).hashValue ^ (name?.hashValue ?? 0)
     }
 }
 
 // MARK: Equatable
 func ==(lhs: ServiceKey, rhs: ServiceKey) -> Bool {
-    return lhs.factoryType == rhs.factoryType
+    return lhs.factoryType == rhs.factoryType && lhs.name == rhs.name
 }

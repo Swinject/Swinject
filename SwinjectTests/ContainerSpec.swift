@@ -41,6 +41,19 @@ class ContainerSpec: QuickSpec {
             expect(bar2.arg1) == "swinject"
             expect(bar2.arg2) == true
         }
+        it("resolves named services.") {
+            let container = Container()
+            container.register(BarType.self, name: "regA") { _ in Bar(arg1: "a") }
+            container.register(BarType.self, name: "regB") { _ in Bar(arg1: "b") }
+            container.register(BarType.self) { _ in Bar(arg1: "no name") }
+            
+            let a = container.resolve(BarType.self, name: "regA") as! Bar
+            let b = container.resolve(BarType.self, name: "regB") as! Bar
+            let noname = container.resolve(BarType.self) as! Bar
+            expect(a.arg1) == "a"
+            expect(b.arg1) == "b"
+            expect(noname.arg1) == "no name"
+        }
     }
 }
 
