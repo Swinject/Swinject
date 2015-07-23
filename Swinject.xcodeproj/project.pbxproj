@@ -12,7 +12,6 @@
 		9802C9B51B5FDBEA0088018E /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AC1B5FD7800088018E /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9802C9B61B5FDBEA0088018E /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AA1B5FD7740088018E /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		981899C61B5FE63F00C702D0 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899BC1B5FE63F00C702D0 /* Swinject.framework */; };
-		981899D31B5FE6FC00C702D0 /* SwinjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981ABE901B5FC9DF00294975 /* SwinjectTests.swift */; };
 		981899D61B5FE71400C702D0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D41B5FE71400C702D0 /* Nimble.framework */; };
 		981899D71B5FE71400C702D0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D51B5FE71400C702D0 /* Quick.framework */; };
 		981899DD1B5FE78100C702D0 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D41B5FE71400C702D0 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -24,7 +23,6 @@
 		981899E51B5FFE5800C702D0 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E31B5FFE5800C702D0 /* Container.swift */; };
 		981ABE851B5FC9DF00294975 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 981ABE841B5FC9DF00294975 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981ABE811B5FC9DF00294975 /* Swinject.framework */; };
-		981ABE911B5FC9DF00294975 /* SwinjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981ABE901B5FC9DF00294975 /* SwinjectTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +82,6 @@
 		981ABE841B5FC9DF00294975 /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		981ABE861B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		981ABE8B1B5FC9DF00294975 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		981ABE901B5FC9DF00294975 /* SwinjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTests.swift; sourceTree = "<group>"; };
 		981ABE921B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,7 +168,6 @@
 		981ABE8F1B5FC9DF00294975 /* SwinjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				981ABE901B5FC9DF00294975 /* SwinjectTests.swift */,
 				981899E01B5FF88800C702D0 /* ContainerSpec.swift */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 			);
@@ -363,7 +359,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				981899E21B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
-				981899D31B5FE6FC00C702D0 /* SwinjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,7 +375,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
-				981ABE911B5FC9DF00294975 /* SwinjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
