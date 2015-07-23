@@ -9,19 +9,15 @@
 import Foundation
 
 public final class Container {
-    private var factories = [Any]()
+    private var factories = [String: Any]()
     
-    // The first argument is for a workaround to the problem that cannot explicitly specialize a generic function in Swift.
-    // http://stackoverflow.com/questions/28726937/how-do-i-call-a-generic-swift-function-when-none-of-the-arguments-provides-the-g
-    public func register<Service>(_: Service.Type, factory: Container -> Service) {
-        factories += [factory as Any]
+    public func register<Service>(serviceType: Service.Type, factory: Container -> Service) {
+        factories[String(serviceType)] = factory as Any
     }
     
-    public func resolve<Service>(_: Service.Type) -> Service? {
-        for factory in factories {
-            if let factory = factory as? Container -> Service {
-                return factory(self)
-            }
+    public func resolve<Service>(serviceType: Service.Type) -> Service? {
+        if let factory = factories[String(serviceType)] as? Container -> Service {
+            return factory(self)
         }
         return nil
     }
