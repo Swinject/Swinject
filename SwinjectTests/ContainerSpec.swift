@@ -12,14 +12,14 @@ import Nimble
 
 class ContainerSpec: QuickSpec {
     override func spec() {
-        it("resolves a registreed instance") {
+        it("resolves a registreed instance.") {
             let container = Container()
             container.register(BarType.self) { _ in Bar() }
             
             let bar = container.resolve(BarType.self)
             expect(bar).notTo(beNil())
         }
-        it("injects a resolved argument") {
+        it("injects a resolved argument.") {
             let container = Container()
             container.register(BarType.self) { _ in Bar() }
             container.register(FooType.self) { c in Foo(bar: c.resolve(BarType.self)!) }
@@ -27,14 +27,45 @@ class ContainerSpec: QuickSpec {
             let foo = container.resolve(FooType.self) as? Foo
             expect(foo?.bar).notTo(beNil())
         }
+        it("resolves multiple initializers with arguments passed.") {
+            let container = Container()
+            container.register(BarType.self) { _ in Bar() }
+            container.register(BarType.self) { container, arg in Bar(arg1: arg) }
+            container.register(BarType.self) { container, arg1, arg2 in Bar(arg1: arg1, arg2: arg2) }
+            
+            let bar0 = container.resolve(BarType.self) as! Bar
+            let bar1 = container.resolve(BarType.self, arg1: "swift") as! Bar
+            let bar2 = container.resolve(BarType.self, arg1: "swinject", arg2: true) as! Bar
+            expect(bar0.arg1).to(beEmpty())
+            expect(bar1.arg1) == "swift"
+            expect(bar2.arg1) == "swinject"
+            expect(bar2.arg2) == true
+        }
     }
 }
 
-private protocol BarType { }
-private protocol FooType { }
+internal protocol BarType { }
+internal protocol FooType { }
 
-private class Bar : BarType { }
-private class Foo : FooType {
+internal class Bar : BarType {
+    var arg1: String = ""
+    var arg2: Bool?
+    
+    init() {
+        self.arg1 = ""
+    }
+    
+    init(arg1: String) {
+        self.arg1 = arg1
+    }
+    
+    init(arg1: String, arg2: Bool) {
+        self.arg1 = arg1
+        self.arg2 = arg2
+    }
+}
+
+internal class Foo : FooType {
     var bar: BarType?
     
     init() {
