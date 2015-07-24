@@ -29,7 +29,7 @@ public final class Container {
     public func resolve<Service>(serviceType: Service.Type, name: String? = nil) -> Service? {
         typealias FactoryType = Container -> Service
         let key = ServiceKey(factoryType: FactoryType.self, name: name)
-        if let factory = factories[key] as? Container -> Service {
+        if let factory = factories[key] as? FactoryType {
             return factory(self)
         }
         return nil
@@ -38,7 +38,7 @@ public final class Container {
     public func resolve<Service, Arg>(serviceType: Service.Type, arg1: Arg, name: String? = nil) -> Service? {
         typealias FactoryType = (Container, Arg) -> Service
         let key = ServiceKey(factoryType: FactoryType.self, name: name)
-        if let factory = factories[key] as? (Container, Arg) -> Service {
+        if let factory = factories[key] as? FactoryType {
             return factory(self, arg1)
         }
         return nil
@@ -47,7 +47,7 @@ public final class Container {
     public func resolve<Service, Arg1, Arg2>(serviceType: Service.Type, arg1: Arg1, arg2: Arg2, name: String? = nil) -> Service? {
         typealias FactoryType = (Container, Arg1, Arg2) -> Service
         let key = ServiceKey(factoryType: FactoryType.self, name: name)
-        if let factory = factories[key] as? (Container, Arg1, Arg2) -> Service {
+        if let factory = factories[key] as? FactoryType {
             return factory(self, arg1, arg2)
         }
         return nil
