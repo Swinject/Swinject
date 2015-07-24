@@ -54,6 +54,24 @@ class ContainerSpec: QuickSpec {
             expect(b.arg1) == "b"
             expect(noname.arg1) == "no name"
         }
+        describe("Container hierarchy") {
+            it("resolves a service registered on the parent container.") {
+                let parent = Container()
+                parent.register(BarType.self) { _ in Bar() }
+                let child = Container(parent: parent)
+                
+                let bar = child.resolve(BarType.self)
+                expect(bar).notTo(beNil())
+            }
+            it("does not resolve a service registred on the child container.") {
+                let parent = Container()
+                let child = Container(parent: parent)
+                child.register(BarType.self) { _ in Bar() }
+                
+                let bar = parent.resolve(BarType.self)
+                expect(bar).to(beNil())
+            }
+        }
         describe("Scope") {
             it("shares an object in a container.") {
                 let container = Container()

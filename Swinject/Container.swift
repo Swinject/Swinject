@@ -10,6 +10,15 @@ import Foundation
 
 public final class Container {
     private var services = [ServiceKey: ServiceEntry]()
+    private let parent: Container?
+    
+    public init() {
+        self.parent = nil
+    }
+    
+    public init(parent: Container) {
+        self.parent = parent
+    }
     
     public func register<Service>(_: Service.Type, name: String? = nil, factory: Container -> Service) -> RegistrationType {
         return registerImpl(factory, name: name)
@@ -48,7 +57,7 @@ public final class Container {
     private func resolveImpl<Service, Factory>(name: String?, invoke: Factory -> Service) -> Service? {
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name)
-        if let entry = services[key] {
+        if let entry = getEntry(key) {
             switch (entry.scope) {
             case .None:
                 resolvedInstance = invoke(entry.factory as! Factory)
@@ -60,5 +69,13 @@ public final class Container {
             }
         }
         return resolvedInstance
+    }
+    
+    private func getEntry(key: ServiceKey) -> ServiceEntry? {
+        var entry = services[key]
+        if entry == nil, let parent = self.parent {
+            entry = parent.getEntry(key)
+        }
+        return entry
     }
 }
