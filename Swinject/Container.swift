@@ -9,47 +9,56 @@
 import Foundation
 
 public final class Container {
-    private var factories = [ServiceKey: Any]()
+    private var services = [ServiceKey: ServiceEntry]()
     
-    public func register<Service>(serviceType: Service.Type, name: String? = nil, factory: Container -> Service) {
-        let key = ServiceKey(factoryType: factory.dynamicType, name: name)
-        factories[key] = factory as Any
+    public func register<Service>(_: Service.Type, name: String? = nil, factory: Container -> Service) -> RegistrationType {
+        return registerImpl(factory, name: name)
     }
 
-    public func register<Service, Arg>(serviceType: Service.Type, name: String? = nil, factory: (Container, Arg) -> Service) {
-        let key = ServiceKey(factoryType: factory.dynamicType, name: name)
-        factories[key] = factory as Any
+    public func register<Service, Arg1>(_: Service.Type, name: String? = nil, factory: (Container, Arg1) -> Service) -> RegistrationType {
+        return registerImpl(factory, name: name)
     }
     
-    public func register<Service, Arg1, Arg2>(serviceType: Service.Type, name: String? = nil, factory: (Container, Arg1, Arg2) -> Service) {
-        let key = ServiceKey(factoryType: factory.dynamicType, name: name)
-        factories[key] = factory as Any
+    public func register<Service, Arg1, Arg2>(_: Service.Type, name: String? = nil, factory: (Container, Arg1, Arg2) -> Service) -> RegistrationType {
+        return registerImpl(factory, name: name)
     }
 
-    public func resolve<Service>(serviceType: Service.Type, name: String? = nil) -> Service? {
+    public func resolve<Service>(_: Service.Type, name: String? = nil) -> Service? {
         typealias FactoryType = Container -> Service
-        let key = ServiceKey(factoryType: FactoryType.self, name: name)
-        if let factory = factories[key] as? FactoryType {
-            return factory(self)
-        }
-        return nil
+        return resolveImpl(name) { (factory: FactoryType) in factory(self) }
     }
     
-    public func resolve<Service, Arg>(serviceType: Service.Type, arg1: Arg, name: String? = nil) -> Service? {
-        typealias FactoryType = (Container, Arg) -> Service
-        let key = ServiceKey(factoryType: FactoryType.self, name: name)
-        if let factory = factories[key] as? FactoryType {
-            return factory(self, arg1)
-        }
-        return nil
+    public func resolve<Service, Arg1>(_: Service.Type, arg1: Arg1, name: String? = nil) -> Service? {
+        typealias FactoryType = (Container, Arg1) -> Service
+        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1) }
     }
     
-    public func resolve<Service, Arg1, Arg2>(serviceType: Service.Type, arg1: Arg1, arg2: Arg2, name: String? = nil) -> Service? {
+    public func resolve<Service, Arg1, Arg2>(_: Service.Type, arg1: Arg1, arg2: Arg2, name: String? = nil) -> Service? {
         typealias FactoryType = (Container, Arg1, Arg2) -> Service
-        let key = ServiceKey(factoryType: FactoryType.self, name: name)
-        if let factory = factories[key] as? FactoryType {
-            return factory(self, arg1, arg2)
+        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2) }
+    }
+    
+    private func registerImpl<Factory>(factory: Factory, name: String?) -> RegistrationType {
+        let key = ServiceKey(factoryType: factory.dynamicType, name: name)
+        let entry = ServiceEntry(factory: factory)
+        services[key] = entry
+        return entry
+    }
+    
+    private func resolveImpl<Service, Factory>(name: String?, invoke: Factory -> Service) -> Service? {
+        var resolvedInstance: Service?
+        let key = ServiceKey(factoryType: Factory.self, name: name)
+        if let entry = services[key] {
+            switch (entry.scope) {
+            case .None:
+                resolvedInstance = invoke(entry.factory as! Factory)
+            case .Container:
+                if entry.instance == nil {
+                    entry.instance = invoke(entry.factory as! Factory) as? AnyObject
+                }
+                resolvedInstance = entry.instance as? Service
+            }
         }
-        return nil
+        return resolvedInstance
     }
 }

@@ -54,6 +54,25 @@ class ContainerSpec: QuickSpec {
             expect(b.arg1) == "b"
             expect(noname.arg1) == "no name"
         }
+        describe("Scope") {
+            it("shares an object in a container.") {
+                let container = Container()
+                container.register(BarType.self) { _ in Bar() }
+                    .inObjectScope(.Container)
+                
+                let bar1 = container.resolve(BarType.self) as! Bar
+                let bar2 = container.resolve(BarType.self) as! Bar
+                expect(bar1) === bar2
+            }
+            it("does not have a shared object in a container without scope.") {
+                let container = Container()
+                container.register(BarType.self) { _ in Bar() }
+                
+                let bar1 = container.resolve(BarType.self) as! Bar
+                let bar2 = container.resolve(BarType.self) as! Bar
+                expect(bar1) !== bar2
+            }
+        }
     }
 }
 
