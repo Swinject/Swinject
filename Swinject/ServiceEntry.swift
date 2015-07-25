@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal final class ServiceEntry : RegistrationType {
+internal final class ServiceEntry {
     internal let factory: Any // Must be a function type.
     internal var scope = ObjectScope.None
     internal var instance: AnyObject?
@@ -16,7 +16,9 @@ internal final class ServiceEntry : RegistrationType {
     internal init(factory: Any) {
         self.factory = factory
     }
-    
+}
+
+extension ServiceEntry : RegistrationType {
     internal func inObjectScope(scope: ObjectScope) {
         self.scope = scope
     }
