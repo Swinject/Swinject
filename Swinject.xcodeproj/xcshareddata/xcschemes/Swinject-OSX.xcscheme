@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "981899BB1B5FE63F00C702D0"
-               BuildableName = "Swinject-OSX.framework"
+               BuildableName = "Swinject.framework"
                BlueprintName = "Swinject-OSX"
                ReferencedContainer = "container:Swinject.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "981899C41B5FE63F00C702D0"
-               BuildableName = "Swinject-OSXTests.xctest"
+               BuildableName = "SwinjectTests.xctest"
                BlueprintName = "Swinject-OSXTests"
                ReferencedContainer = "container:Swinject.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "981899BB1B5FE63F00C702D0"
-            BuildableName = "Swinject-OSX.framework"
+            BuildableName = "Swinject.framework"
             BlueprintName = "Swinject-OSX"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "981899BB1B5FE63F00C702D0"
-            BuildableName = "Swinject-OSX.framework"
+            BuildableName = "Swinject.framework"
             BlueprintName = "Swinject-OSX"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "981899BB1B5FE63F00C702D0"
-            BuildableName = "Swinject-OSX.framework"
+            BuildableName = "Swinject.framework"
             BlueprintName = "Swinject-OSX"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>

@@ -12,15 +12,27 @@
 		9802C9B51B5FDBEA0088018E /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AC1B5FD7800088018E /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9802C9B61B5FDBEA0088018E /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AA1B5FD7740088018E /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		981899C61B5FE63F00C702D0 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899BC1B5FE63F00C702D0 /* Swinject.framework */; };
-		981899D31B5FE6FC00C702D0 /* SwinjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981ABE901B5FC9DF00294975 /* SwinjectTests.swift */; };
 		981899D61B5FE71400C702D0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D41B5FE71400C702D0 /* Nimble.framework */; };
 		981899D71B5FE71400C702D0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D51B5FE71400C702D0 /* Quick.framework */; };
 		981899DD1B5FE78100C702D0 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D41B5FE71400C702D0 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		981899DE1B5FE78100C702D0 /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D51B5FE71400C702D0 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		981899DF1B5FE7E100C702D0 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 981ABE841B5FC9DF00294975 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E01B5FF88800C702D0 /* ContainerSpec.swift */; };
+		981899E21B5FF88800C702D0 /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E01B5FF88800C702D0 /* ContainerSpec.swift */; };
+		981899E41B5FFE5800C702D0 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E31B5FFE5800C702D0 /* Container.swift */; };
+		981899E51B5FFE5800C702D0 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E31B5FFE5800C702D0 /* Container.swift */; };
+		9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
+		981970201B6145D600EEB942 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		981ABE851B5FC9DF00294975 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 981ABE841B5FC9DF00294975 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981ABE811B5FC9DF00294975 /* Swinject.framework */; };
-		981ABE911B5FC9DF00294975 /* SwinjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981ABE901B5FC9DF00294975 /* SwinjectTests.swift */; };
+		985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
+		985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
+		9884E2A71B60B77400120259 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; };
+		9884E2A81B60B77400120259 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; };
+		9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */; };
+		9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */; };
+		98C642A61B62752D006123A6 /* Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C642A51B62752D006123A6 /* Syntax.swift */; };
+		98C642A71B62752D006123A6 /* Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C642A51B62752D006123A6 /* Syntax.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,12 +86,18 @@
 		981899C51B5FE63F00C702D0 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		981899D41B5FE71400C702D0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		981899D51B5FE71400C702D0 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
+		981899E01B5FF88800C702D0 /* ContainerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.swift; sourceTree = "<group>"; };
+		981899E31B5FFE5800C702D0 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		9819701E1B6145D600EEB942 /* ObjectScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectScope.swift; sourceTree = "<group>"; };
 		981ABE811B5FC9DF00294975 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		981ABE841B5FC9DF00294975 /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		981ABE861B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		981ABE8B1B5FC9DF00294975 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		981ABE901B5FC9DF00294975 /* SwinjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTests.swift; sourceTree = "<group>"; };
 		981ABE921B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		985BAFA81B625E0F0055F998 /* ServiceEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntry.swift; sourceTree = "<group>"; };
+		9884E2A61B60B77400120259 /* ServiceKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceKey.swift; sourceTree = "<group>"; };
+		9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceKeySpec.swift; sourceTree = "<group>"; };
+		98C642A51B62752D006123A6 /* Syntax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Syntax.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +173,11 @@
 		981ABE831B5FC9DF00294975 /* Swinject */ = {
 			isa = PBXGroup;
 			children = (
+				981899E31B5FFE5800C702D0 /* Container.swift */,
+				9884E2A61B60B77400120259 /* ServiceKey.swift */,
+				985BAFA81B625E0F0055F998 /* ServiceEntry.swift */,
+				9819701E1B6145D600EEB942 /* ObjectScope.swift */,
+				98C642A51B62752D006123A6 /* Syntax.swift */,
 				981ABE841B5FC9DF00294975 /* Swinject.h */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
 			);
@@ -164,7 +187,8 @@
 		981ABE8F1B5FC9DF00294975 /* SwinjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				981ABE901B5FC9DF00294975 /* SwinjectTests.swift */,
+				981899E01B5FF88800C702D0 /* ContainerSpec.swift */,
+				9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 			);
 			path = SwinjectTests;
@@ -272,6 +296,7 @@
 		981ABE781B5FC9DF00294975 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = DevSwinject;
 				TargetAttributes = {
@@ -345,6 +370,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
+				98C642A71B62752D006123A6 /* Syntax.swift in Sources */,
+				981899E51B5FFE5800C702D0 /* Container.swift in Sources */,
+				9884E2A81B60B77400120259 /* ServiceKey.swift in Sources */,
+				981970201B6145D600EEB942 /* ObjectScope.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +382,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				981899D31B5FE6FC00C702D0 /* SwinjectTests.swift in Sources */,
+				9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
+				981899E21B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +391,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
+				98C642A61B62752D006123A6 /* Syntax.swift in Sources */,
+				981899E41B5FFE5800C702D0 /* Container.swift in Sources */,
+				9884E2A71B60B77400120259 /* ServiceKey.swift in Sources */,
+				9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +403,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				981ABE911B5FC9DF00294975 /* SwinjectTests.swift in Sources */,
+				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
+				981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +427,7 @@
 		981899CD1B5FE64000C702D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -404,12 +442,14 @@
 				PRODUCT_NAME = Swinject;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		981899CE1B5FE64000C702D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -553,6 +593,7 @@
 		981ABE961B5FC9DF00294975 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -563,12 +604,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
 				PRODUCT_NAME = Swinject;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		981ABE971B5FC9DF00294975 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -620,6 +663,7 @@
 				981899CE1B5FE64000C702D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		981899D21B5FE64000C702D0 /* Build configuration list for PBXNativeTarget "Swinject-OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -628,6 +672,7 @@
 				981899D01B5FE64000C702D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		981ABE7B1B5FC9DF00294975 /* Build configuration list for PBXProject "Swinject" */ = {
 			isa = XCConfigurationList;
