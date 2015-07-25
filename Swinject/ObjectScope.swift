@@ -9,6 +9,7 @@
 public enum ObjectScope {
     case None
     case Container
+    case Hierarchy
 
     // TODO: Add more scope cases.
     // case WeakContainer

@@ -57,11 +57,26 @@ public final class Container {
     private func resolveImpl<Service, Factory>(name: String?, invoke: Factory -> Service) -> Service? {
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name)
-        if let entry = getEntry(key) {
+        if let (entry, fromParent) = getEntry(key) {
             switch (entry.scope) {
             case .None:
                 resolvedInstance = invoke(entry.factory as! Factory)
             case .Container:
+                let ownEntry: ServiceEntry
+                if fromParent {
+                    ownEntry = ServiceEntry(factory: entry.factory)
+                    ownEntry.scope = entry.scope
+                    services[key] = ownEntry
+                }
+                else {
+                    ownEntry = entry
+                }
+                
+                if ownEntry.instance == nil {
+                    ownEntry.instance = invoke(ownEntry.factory as! Factory) as? AnyObject
+                }
+                resolvedInstance = ownEntry.instance as? Service
+            case .Hierarchy:
                 if entry.instance == nil {
                     entry.instance = invoke(entry.factory as! Factory) as? AnyObject
                 }
@@ -71,11 +86,15 @@ public final class Container {
         return resolvedInstance
     }
     
-    private func getEntry(key: ServiceKey) -> ServiceEntry? {
+    private func getEntry(key: ServiceKey) -> (ServiceEntry, Bool)? {
+        var fromParent = false
         var entry = services[key]
         if entry == nil, let parent = self.parent {
-            entry = parent.getEntry(key)
+            if let (parentEntry, _) = parent.getEntry(key) {
+                entry = parentEntry
+                fromParent = true
+            }
         }
-        return entry
+        return entry.map { ($0, fromParent) }
     }
 }

@@ -73,22 +73,73 @@ class ContainerSpec: QuickSpec {
             }
         }
         describe("Scope") {
-            it("shares an object in a container.") {
-                let container = Container()
-                container.register(BarType.self) { _ in Bar() }
-                    .inObjectScope(.Container)
-                
-                let bar1 = container.resolve(BarType.self) as! Bar
-                let bar2 = container.resolve(BarType.self) as! Bar
-                expect(bar1) === bar2
+            context("in no scope") {
+                it("does not have a shared object in a container.") {
+                    let container = Container()
+                    container.register(BarType.self) { _ in Bar() }
+                    
+                    let bar1 = container.resolve(BarType.self) as! Bar
+                    let bar2 = container.resolve(BarType.self) as! Bar
+                    expect(bar1) !== bar2
+                }
             }
-            it("does not have a shared object in a container without scope.") {
-                let container = Container()
-                container.register(BarType.self) { _ in Bar() }
-                
-                let bar1 = container.resolve(BarType.self) as! Bar
-                let bar2 = container.resolve(BarType.self) as! Bar
-                expect(bar1) !== bar2
+            context("in container scope") {
+                it("shares an object in the own container.") {
+                    let container = Container()
+                    container.register(BarType.self) { _ in Bar() }
+                        .inObjectScope(.Container)
+                    
+                    let bar1 = container.resolve(BarType.self) as! Bar
+                    let bar2 = container.resolve(BarType.self) as! Bar
+                    expect(bar1) === bar2
+                }
+                it("does not share an object from a parent container to its child.") {
+                    let parent = Container()
+                    parent.register(BarType.self) { _ in Bar() }
+                        .inObjectScope(.Container)
+                    parent.register(FooType.self) { _ in Foo() }
+                        .inObjectScope(.Container)
+                    let child = Container(parent: parent)
+                    
+                    // Case resolving on the parent first.
+                    let bar1 = parent.resolve(BarType.self) as! Bar
+                    let bar2 = child.resolve(BarType.self) as! Bar
+                    expect(bar1) !== bar2
+                    
+                    // Case resolving on the child first.
+                    let foo1 = child.resolve(FooType.self) as! Foo
+                    let foo2 = parent.resolve(FooType.self) as! Foo
+                    expect(foo1) !== foo2
+                }
+            }
+            context("in hierarchy scope") {
+                it("shares an object in the own container.") {
+                    let container = Container()
+                    container.register(BarType.self) { _ in Bar() }
+                        .inObjectScope(.Hierarchy)
+                    
+                    let bar1 = container.resolve(BarType.self) as! Bar
+                    let bar2 = container.resolve(BarType.self) as! Bar
+                    expect(bar1) === bar2
+                }
+                it("shares an object from a parent container to its child.") {
+                    let parent = Container()
+                    parent.register(BarType.self) { _ in Bar() }
+                        .inObjectScope(.Hierarchy)
+                    parent.register(FooType.self) { _ in Foo() }
+                        .inObjectScope(.Hierarchy)
+                    let child = Container(parent: parent)
+                    
+                    // Case resolving on the parent first.
+                    let bar1 = parent.resolve(BarType.self) as! Bar
+                    let bar2 = child.resolve(BarType.self) as! Bar
+                    expect(bar1) === bar2
+                    
+                    // Case resolving on the child first.
+                    let foo1 = child.resolve(FooType.self) as! Foo
+                    let foo2 = parent.resolve(FooType.self) as! Foo
+                    expect(foo1) === foo2
+                }
             }
         }
     }
