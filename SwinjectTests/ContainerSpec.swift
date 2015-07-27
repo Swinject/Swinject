@@ -15,166 +15,134 @@ class ContainerSpec: QuickSpec {
         describe("Basic resolution") {
             it("resolves a registreed instance.") {
                 let container = Container()
-                container.register(BarType.self) { _ in Bar() }
+                container.register(AnimalType.self) { _ in Cat() }
                 
-                let bar = container.resolve(BarType.self)
-                expect(bar).notTo(beNil())
+                let cat = container.resolve(AnimalType.self)
+                expect(cat).notTo(beNil())
             }
             it("injects a resolved argument.") {
                 let container = Container()
-                container.register(BarType.self) { _ in Bar() }
-                container.register(FooType.self) { c in Foo(bar: c.resolve(BarType.self)!) }
+                container.register(AnimalType.self) { _ in Cat() }
+                container.register(PersonType.self) { c in PetOwner(favoriteAnimal: c.resolve(AnimalType.self)!) }
                     
-                let foo = container.resolve(FooType.self) as? Foo
-                expect(foo?.bar).notTo(beNil())
+                let owner = container.resolve(PersonType.self) as! PetOwner
+                expect(owner.favoriteAnimal).notTo(beNil())
             }
             it("resolves multiple initializers with arguments passed.") {
                 let container = Container()
-                container.register(BarType.self) { _ in Bar() }
-                container.register(BarType.self) { container, arg in Bar(arg1: arg) }
-                container.register(BarType.self) { container, arg1, arg2 in Bar(arg1: arg1, arg2: arg2) }
+                container.register(AnimalType.self) { _ in Cat() }
+                container.register(AnimalType.self) { container, arg in Cat(name: arg) }
+                container.register(AnimalType.self) { container, arg1, arg2 in Cat(name: arg1, mature: arg2) }
                 
-                let bar0 = container.resolve(BarType.self) as! Bar
-                let bar1 = container.resolve(BarType.self, arg1: "swift") as! Bar
-                let bar2 = container.resolve(BarType.self, arg1: "swinject", arg2: true) as! Bar
-                expect(bar0.arg1).to(beEmpty())
-                expect(bar1.arg1) == "swift"
-                expect(bar2.arg1) == "swinject"
-                expect(bar2.arg2) == true
+                let noname = container.resolve(AnimalType.self) as! Cat
+                let mimi = container.resolve(AnimalType.self, arg1: "Mimi") as! Cat
+                let mew = container.resolve(AnimalType.self, arg1: "Mew", arg2: true) as! Cat
+                expect(noname.name).to(beNil())
+                expect(mimi.name) == "Mimi"
+                expect(mew.name) == "Mew"
+                expect(mew.mature) == true
             }
             it("resolves named services.") {
                 let container = Container()
-                container.register(BarType.self, name: "regA") { _ in Bar(arg1: "a") }
-                container.register(BarType.self, name: "regB") { _ in Bar(arg1: "b") }
-                container.register(BarType.self) { _ in Bar(arg1: "no name") }
+                container.register(AnimalType.self, name: "RegMimi") { _ in Cat(name: "Mimi") }
+                container.register(AnimalType.self, name: "RegMew") { _ in Cat(name: "Mew") }
+                container.register(AnimalType.self) { _ in Cat() }
                 
-                let a = container.resolve(BarType.self, name: "regA") as! Bar
-                let b = container.resolve(BarType.self, name: "regB") as! Bar
-                let noname = container.resolve(BarType.self) as! Bar
-                expect(a.arg1) == "a"
-                expect(b.arg1) == "b"
-                expect(noname.arg1) == "no name"
+                let mimi = container.resolve(AnimalType.self, name: "RegMimi") as! Cat
+                let mew = container.resolve(AnimalType.self, name: "RegMew") as! Cat
+                let noname = container.resolve(AnimalType.self) as! Cat
+                expect(mimi.name) == "Mimi"
+                expect(mew.name) == "Mew"
+                expect(noname.name).to(beNil())
             }
         }
         describe("Container hierarchy") {
             it("resolves a service registered on the parent container.") {
                 let parent = Container()
-                parent.register(BarType.self) { _ in Bar() }
+                parent.register(AnimalType.self) { _ in Cat() }
                 let child = Container(parent: parent)
                 
-                let bar = child.resolve(BarType.self)
-                expect(bar).notTo(beNil())
+                let cat = child.resolve(AnimalType.self)
+                expect(cat).notTo(beNil())
             }
             it("does not resolve a service registred on the child container.") {
                 let parent = Container()
                 let child = Container(parent: parent)
-                child.register(BarType.self) { _ in Bar() }
+                child.register(AnimalType.self) { _ in Cat() }
                 
-                let bar = parent.resolve(BarType.self)
-                expect(bar).to(beNil())
+                let cat = parent.resolve(AnimalType.self)
+                expect(cat).to(beNil())
             }
         }
         describe("Scope") {
             context("in no scope") {
                 it("does not have a shared object in a container.") {
                     let container = Container()
-                    container.register(BarType.self) { _ in Bar() }
+                    container.register(AnimalType.self) { _ in Cat() }
                     
-                    let bar1 = container.resolve(BarType.self) as! Bar
-                    let bar2 = container.resolve(BarType.self) as! Bar
-                    expect(bar1) !== bar2
+                    let cat1 = container.resolve(AnimalType.self) as! Cat
+                    let cat2 = container.resolve(AnimalType.self) as! Cat
+                    expect(cat1) !== cat2
                 }
             }
             context("in container scope") {
                 it("shares an object in the own container.") {
                     let container = Container()
-                    container.register(BarType.self) { _ in Bar() }
+                    container.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Container)
                     
-                    let bar1 = container.resolve(BarType.self) as! Bar
-                    let bar2 = container.resolve(BarType.self) as! Bar
-                    expect(bar1) === bar2
+                    let cat1 = container.resolve(AnimalType.self) as! Cat
+                    let cat2 = container.resolve(AnimalType.self) as! Cat
+                    expect(cat1) === cat2
                 }
                 it("does not share an object from a parent container to its child.") {
                     let parent = Container()
-                    parent.register(BarType.self) { _ in Bar() }
+                    parent.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Container)
-                    parent.register(FooType.self) { _ in Foo() }
+                    parent.register(PersonType.self) { _ in PetOwner() }
                         .inObjectScope(.Container)
                     let child = Container(parent: parent)
                     
                     // Case resolving on the parent first.
-                    let bar1 = parent.resolve(BarType.self) as! Bar
-                    let bar2 = child.resolve(BarType.self) as! Bar
-                    expect(bar1) !== bar2
+                    let cat1 = parent.resolve(AnimalType.self) as! Cat
+                    let cat2 = child.resolve(AnimalType.self) as! Cat
+                    expect(cat1) !== cat2
                     
                     // Case resolving on the child first.
-                    let foo1 = child.resolve(FooType.self) as! Foo
-                    let foo2 = parent.resolve(FooType.self) as! Foo
-                    expect(foo1) !== foo2
+                    let owner1 = child.resolve(PersonType.self) as! PetOwner
+                    let owner2 = parent.resolve(PersonType.self) as! PetOwner
+                    expect(owner1) !== owner2
                 }
             }
             context("in hierarchy scope") {
                 it("shares an object in the own container.") {
                     let container = Container()
-                    container.register(BarType.self) { _ in Bar() }
+                    container.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Hierarchy)
                     
-                    let bar1 = container.resolve(BarType.self) as! Bar
-                    let bar2 = container.resolve(BarType.self) as! Bar
-                    expect(bar1) === bar2
+                    let cat1 = container.resolve(AnimalType.self) as! Cat
+                    let cat2 = container.resolve(AnimalType.self) as! Cat
+                    expect(cat1) === cat2
                 }
                 it("shares an object from a parent container to its child.") {
                     let parent = Container()
-                    parent.register(BarType.self) { _ in Bar() }
+                    parent.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Hierarchy)
-                    parent.register(FooType.self) { _ in Foo() }
+                    parent.register(PersonType.self) { _ in PetOwner() }
                         .inObjectScope(.Hierarchy)
                     let child = Container(parent: parent)
                     
                     // Case resolving on the parent first.
-                    let bar1 = parent.resolve(BarType.self) as! Bar
-                    let bar2 = child.resolve(BarType.self) as! Bar
-                    expect(bar1) === bar2
+                    let cat1 = parent.resolve(AnimalType.self) as! Cat
+                    let cat2 = child.resolve(AnimalType.self) as! Cat
+                    expect(cat1) === cat2
                     
                     // Case resolving on the child first.
-                    let foo1 = child.resolve(FooType.self) as! Foo
-                    let foo2 = parent.resolve(FooType.self) as! Foo
-                    expect(foo1) === foo2
+                    let owner1 = child.resolve(PersonType.self) as! PetOwner
+                    let owner2 = parent.resolve(PersonType.self) as! PetOwner
+                    expect(owner1) === owner2
                 }
             }
         }
-    }
-}
-
-internal protocol BarType { }
-internal protocol FooType { }
-
-internal class Bar : BarType {
-    var arg1: String = ""
-    var arg2: Bool?
-    
-    init() {
-        self.arg1 = ""
-    }
-    
-    init(arg1: String) {
-        self.arg1 = arg1
-    }
-    
-    init(arg1: String, arg2: Bool) {
-        self.arg1 = arg1
-        self.arg2 = arg2
-    }
-}
-
-internal class Foo : FooType {
-    var bar: BarType?
-    
-    init() {
-    }
-    
-    init(bar: BarType) {
-        self.bar = bar
     }
 }
