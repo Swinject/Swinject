@@ -200,10 +200,42 @@ class ContainerSpec: QuickSpec {
                     .initCompleted { (c, p) in
                         let owner = p as! PetOwner
                         owner.setFavoriteAnimal(c.resolve(AnimalType.self)!)
-                }
+                    }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
                 expect(owner.favoriteAnimal).notTo(beNil())
+            }
+        }
+        describe("Circualr dependency") {
+            it("resolves circular dependency by properties.") {
+                let container = Container()
+                container.register(ParentType.self) { _ in Mother() }
+                    .initCompleted { (c, i) in
+                        let mother = i as! Mother
+                        mother.child = c.resolve(ChildType.self)
+                    }
+                container.register(ChildType.self) { _ in Daughter() }
+                    .initCompleted { (c, i) in
+                        let daughter = i as! Daughter
+                        daughter.parent = c.resolve(ParentType.self)!
+                    }
+                
+                let daughter = container.resolve(ChildType.self) as! Daughter
+                let mother = daughter.parent as! Mother
+                expect(mother.child as? Daughter) === daughter
+            }
+            it("resolves circular dependency by an initializer and property.") {
+                let container = Container()
+                container.register(ParentType.self) { c in Mother() }
+                    .initCompleted { (c, i) in
+                        let mother = i as! Mother
+                        mother.child = c.resolve(ChildType.self)
+                    }
+                container.register(ChildType.self) { c in Daughter(parent: c.resolve(ParentType.self)!) }
+                
+                let daughter = container.resolve(ChildType.self) as! Daughter
+                let mother = daughter.parent as! Mother
+                expect(mother.child as? Daughter) === daughter
             }
         }
     }
