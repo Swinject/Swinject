@@ -20,15 +20,7 @@ class ContainerSpec: QuickSpec {
                 let cat = container.resolve(AnimalType.self)
                 expect(cat).notTo(beNil())
             }
-            it("injects a resolved argument.") {
-                let container = Container()
-                container.register(AnimalType.self) { _ in Cat() }
-                container.register(PersonType.self) { c in PetOwner(favoriteAnimal: c.resolve(AnimalType.self)!) }
-                    
-                let owner = container.resolve(PersonType.self) as! PetOwner
-                expect(owner.favoriteAnimal).notTo(beNil())
-            }
-            it("resolves multiple initializers with arguments passed.") {
+            it("resolves multiple initializers with some arguments passed.") {
                 let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(AnimalType.self) { container, arg in Cat(name: arg) }
@@ -154,6 +146,64 @@ class ContainerSpec: QuickSpec {
                 let cat = container.resolve(AnimalType.self)
                 expect(cat).notTo(beNil())
                 expect(eventRaised) == true
+            }
+        }
+        describe("Injection types") {
+            it("accepts initializer injection.") {
+                let container = Container()
+                container.register(AnimalType.self) { _ in Cat() }
+                container.register(PersonType.self) { c in PetOwner(favoriteAnimal: c.resolve(AnimalType.self)!) }
+                
+                let owner = container.resolve(PersonType.self) as! PetOwner
+                expect(owner.favoriteAnimal).notTo(beNil())
+            }
+            it("accepts property injection in registration.") {
+                let container = Container()
+                container.register(AnimalType.self) { _ in Cat() }
+                container.register(PersonType.self) { c in
+                    let owner = PetOwner()
+                    owner.favoriteAnimal = c.resolve(AnimalType.self)!
+                    return owner
+                }
+                
+                let owner = container.resolve(PersonType.self) as! PetOwner
+                expect(owner.favoriteAnimal).notTo(beNil())
+            }
+            it("accepts property injection in initCompleted event.") {
+                let container = Container()
+                container.register(AnimalType.self) { _ in Cat() }
+                container.register(PersonType.self) { c in PetOwner() }
+                    .initCompleted { (c, p) in
+                        let owner = p as! PetOwner
+                        owner.favoriteAnimal = c.resolve(AnimalType.self)!
+                    }
+                
+                let owner = container.resolve(PersonType.self) as! PetOwner
+                expect(owner.favoriteAnimal).notTo(beNil())
+            }
+            it("accepts method injection in registration.") {
+                let container = Container()
+                container.register(AnimalType.self) { _ in Cat() }
+                container.register(PersonType.self) { c in
+                    let owner = PetOwner()
+                    owner.setFavoriteAnimal(c.resolve(AnimalType.self)!)
+                    return owner
+                }
+                
+                let owner = container.resolve(PersonType.self) as! PetOwner
+                expect(owner.favoriteAnimal).notTo(beNil())
+            }
+            it("accepts method injection in initCompleted event.") {
+                let container = Container()
+                container.register(AnimalType.self) { _ in Cat() }
+                container.register(PersonType.self) { c in PetOwner() }
+                    .initCompleted { (c, p) in
+                        let owner = p as! PetOwner
+                        owner.setFavoriteAnimal(c.resolve(AnimalType.self)!)
+                }
+                
+                let owner = container.resolve(PersonType.self) as! PetOwner
+                expect(owner.favoriteAnimal).notTo(beNil())
             }
         }
     }
