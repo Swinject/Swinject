@@ -8,18 +8,39 @@
 
 import Foundation
 
-internal final class ServiceEntry {
+public class ServiceEntryBase {
     internal let factory: Any // Must be a function type.
     internal var scope = ObjectScope.None
     internal var instance: AnyObject?
+    internal var initCompleted: Any? // Must be a function type.
     
     internal init(factory: Any) {
         self.factory = factory
     }
+    
+    public func inObjectScope(scope: ObjectScope) -> Self {
+        self.scope = scope
+        return self
+    }
 }
 
-extension ServiceEntry : RegistrationType {
-    internal func inObjectScope(scope: ObjectScope) {
-        self.scope = scope
+public final class ServiceEntry<Service>: ServiceEntryBase {
+    private let serviceType: Service.Type
+    
+    internal init(serviceType: Service.Type, factory: Any) {
+        self.serviceType = serviceType
+        super.init(factory: factory)
+    }
+    
+    internal func copyExceptInstance() -> ServiceEntry<Service> {
+        let copy = ServiceEntry(serviceType: serviceType, factory: factory)
+        copy.scope = scope
+        copy.initCompleted = initCompleted
+        return copy
+    }
+    
+    public func initCompleted(completed: (Container, Service) -> ()) -> Self {
+        initCompleted = completed
+        return self
     }
 }

@@ -144,5 +144,17 @@ class ContainerSpec: QuickSpec {
                 }
             }
         }
+        describe("Init completed event") {
+            it("raises the event when a new instance is created.") {
+                var eventRaised = false
+                let container = Container()
+                container.register(AnimalType.self) { _ in Cat() }
+                    .initCompleted { (_, _) in eventRaised = true }
+                
+                let cat = container.resolve(AnimalType.self)
+                expect(cat).notTo(beNil())
+                expect(eventRaised) == true
+            }
+        }
     }
 }
