@@ -19,4 +19,8 @@ internal class PetOwner : PersonType {
     init(favoriteAnimal: AnimalType) {
         self.favoriteAnimal = favoriteAnimal
     }
+    
+    func setFavoriteAnimal(animal: AnimalType) {
+        self.favoriteAnimal = animal
+    }
 }
