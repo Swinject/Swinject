@@ -23,12 +23,12 @@ class ContainerSpec_Circularity: QuickSpec {
                     .initCompleted { (c, i) in
                         let mother = i as! Mother
                         mother.child = c.resolve(ChildType.self)
-                }
+                    }
                 container.register(ChildType.self) { _ in Daughter() }
                     .initCompleted { (c, i) in
                         let daughter = i as! Daughter
                         daughter.parent = c.resolve(ParentType.self)!
-                }
+                    }
                 
                 let mother = container.resolve(ParentType.self) as! Mother
                 let daughter = mother.child as! Daughter
@@ -40,7 +40,7 @@ class ContainerSpec_Circularity: QuickSpec {
                     .initCompleted { (c, i) in
                         let daughter = i as! Daughter
                         daughter.parent = c.resolve(ParentType.self)
-                }
+                    }
                 
                 let mother = container.resolve(ParentType.self) as! Mother
                 let daughter = mother.child as! Daughter
@@ -53,24 +53,24 @@ class ContainerSpec_Circularity: QuickSpec {
                     .initCompleted {
                         let a = $1 as! ADependingOnB
                         a.b = $0.resolve(BType.self)
-                }
+                    }
                 container.register(BType.self) { _ in BDependingOnC() }
                     .initCompleted {
                         let b = $1 as! BDependingOnC
                         b.c = $0.resolve(CType.self)
-                }
+                    }
                 container.register(CType.self) { _ in CDependingOnAD() }
                     .initCompleted {
                         let c = $1 as! CDependingOnAD
                         c.a = $0.resolve(AType.self)
                         c.d = $0.resolve(DType.self)
-                }
+                    }
                 container.register(DType.self) { _ in DDependingOnBC() }
                     .initCompleted {
                         let d = $1 as! DDependingOnBC
                         d.b = $0.resolve(BType.self)
                         d.c = $0.resolve(CType.self)
-                }
+                    }
                 
                 let a = container.resolve(AType.self) as! ADependingOnB
                 let b = a.b as! BDependingOnC
@@ -87,13 +87,13 @@ class ContainerSpec_Circularity: QuickSpec {
                     .initCompleted {
                         let c = $1 as! CDependingOnAD
                         c.a = $0.resolve(AType.self)
-                }
+                    }
                 container.register(DType.self) { _ in DDependingOnBC() }
                     .initCompleted {
                         let d = $1 as! DDependingOnBC
                         d.b = $0.resolve(BType.self)
                         d.c = $0.resolve(CType.self)
-                }
+                    }
                 
                 let a = container.resolve(AType.self) as! ADependingOnB
                 let b = a.b as! BDependingOnC
