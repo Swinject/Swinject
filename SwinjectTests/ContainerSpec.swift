@@ -129,7 +129,7 @@ class ContainerSpec: QuickSpec {
                     let parent = Container()
                     parent.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Container)
-                    parent.register(PersonType.self) { _ in PetOwner() }
+                    parent.register(AnimalType.self, name: "dog") { _ in Dog() }
                         .inObjectScope(.Container)
                     let child = Container(parent: parent)
                     
@@ -139,9 +139,9 @@ class ContainerSpec: QuickSpec {
                     expect(cat1) !== cat2
                     
                     // Case resolving on the child first.
-                    let owner1 = child.resolve(PersonType.self) as! PetOwner
-                    let owner2 = parent.resolve(PersonType.self) as! PetOwner
-                    expect(owner1) !== owner2
+                    let dog1 = child.resolve(AnimalType.self, name: "dog") as! Dog
+                    let dog2 = parent.resolve(AnimalType.self, name: "dog") as! Dog
+                    expect(dog1) !== dog2
                 }
             }
             context("in hierarchy scope") {
@@ -157,7 +157,7 @@ class ContainerSpec: QuickSpec {
                     let parent = Container()
                     parent.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Hierarchy)
-                    parent.register(PersonType.self) { _ in PetOwner() }
+                    parent.register(AnimalType.self, name: "dog") { _ in Dog() }
                         .inObjectScope(.Hierarchy)
                     let child = Container(parent: parent)
                     
@@ -167,9 +167,9 @@ class ContainerSpec: QuickSpec {
                     expect(cat1) === cat2
                     
                     // Case resolving on the child first.
-                    let owner1 = child.resolve(PersonType.self) as! PetOwner
-                    let owner2 = parent.resolve(PersonType.self) as! PetOwner
-                    expect(owner1) === owner2
+                    let dog1 = child.resolve(AnimalType.self, name: "dog") as! Dog
+                    let dog2 = parent.resolve(AnimalType.self, name: "dog") as! Dog
+                    expect(dog1) === dog2
                 }
             }
         }

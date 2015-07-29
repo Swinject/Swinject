@@ -27,3 +27,6 @@ internal class Cat: AnimalType {
         self.mature = mature
     }
 }
+
+internal class Dog: AnimalType {
+}
