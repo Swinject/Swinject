@@ -143,6 +143,16 @@ class ContainerSpec: QuickSpec {
                     let dog2 = parent.resolve(AnimalType.self, name: "dog") as! Dog
                     expect(dog1) !== dog2
                 }
+                it("resolves a service to the same object in a graph") {
+                    registerCatAndPetOwnerDependingOnHouse(container)
+                    container.register(HouseType.self) { _ in Apartment() }
+                        .inObjectScope(.Container)
+                    
+                    let owner = container.resolve(PersonType.self) as! PetOwner
+                    let ownerApartment = owner.house as! Apartment
+                    let catApartment = (owner.pet as! Cat).house as! Apartment
+                    expect(ownerApartment) === catApartment
+                }
             }
             context("in hierarchy scope") {
                 it("shares an object in the own container.") {
@@ -170,6 +180,18 @@ class ContainerSpec: QuickSpec {
                     let dog1 = child.resolve(AnimalType.self, name: "dog") as! Dog
                     let dog2 = parent.resolve(AnimalType.self, name: "dog") as! Dog
                     expect(dog1) === dog2
+                }
+                it("resolves a service in the parent container to the same object in a graph") {
+                    let parent = Container()
+                    parent.register(HouseType.self) { _ in Apartment() }
+                        .inObjectScope(.Hierarchy)
+                    let child = Container(parent: parent)
+                    registerCatAndPetOwnerDependingOnHouse(child)
+                    
+                    let owner = child.resolve(PersonType.self) as! PetOwner
+                    let ownerApartment = owner.house as! Apartment
+                    let catApartment = (owner.pet as! Cat).house as! Apartment
+                    expect(ownerApartment) === catApartment
                 }
             }
         }
