@@ -13,13 +13,6 @@ import Nimble
 class ContainerSpec: QuickSpec {
     override func spec() {
         describe("Basic resolution") {
-            it("resolves a registreed instance.") {
-                let container = Container()
-                container.register(AnimalType.self) { _ in Cat() }
-                
-                let cat = container.resolve(AnimalType.self)
-                expect(cat).notTo(beNil())
-            }
             it("resolves multiple initializers with some arguments passed.") {
                 let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
