@@ -12,9 +12,13 @@ import Nimble
 
 class ContainerSpec: QuickSpec {
     override func spec() {
+        var container: Container!
+        beforeEach {
+            container = Container()
+        }
+        
         describe("Basic resolution") {
             it("resolves multiple initializers with some arguments passed.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(AnimalType.self) { container, arg in Cat(name: arg) }
                 container.register(AnimalType.self) { container, arg1, arg2 in Cat(name: arg1, mature: arg2) }
@@ -28,7 +32,6 @@ class ContainerSpec: QuickSpec {
                 expect(mew.mature) == true
             }
             it("resolves named services.") {
-                let container = Container()
                 container.register(AnimalType.self, name: "RegMimi") { _ in Cat(name: "Mimi") }
                 container.register(AnimalType.self, name: "RegMew") { _ in Cat(name: "Mew") }
                 container.register(AnimalType.self) { _ in Cat() }
@@ -60,9 +63,21 @@ class ContainerSpec: QuickSpec {
             }
         }
         describe("Scope") {
+            let registerCatAndPetOwnerDependingOnHouse: Container -> Void = {
+                $0.register(AnimalType.self) {
+                    let cat = Cat()
+                    cat.house = $0.resolve(HouseType.self)
+                    return cat
+                }
+                $0.register(PersonType.self) {
+                    let owner = PetOwner(pet: $0.resolve(AnimalType.self)!)
+                    owner.house = $0.resolve(HouseType.self)
+                    return owner
+                }
+            }
+            
             context("in no scope") {
                 it("does not have a shared object in a container.") {
-                    let container = Container()
                     container.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.None)
                     
@@ -71,30 +86,18 @@ class ContainerSpec: QuickSpec {
                     expect(cat1) !== cat2
                 }
                 it("resolves a service to new objects in a graph") {
-                    let container = Container()
-                    container.register(AnimalType.self) {
-                        let cat = Cat()
-                        cat.house = $0.resolve(HouseType.self)
-                        return cat
-                    }
-                    container.register(PersonType.self) {
-                        let owner = PetOwner(pet: $0.resolve(AnimalType.self)!)
-                        owner.house = $0.resolve(HouseType.self)
-                        return owner
-                    }
+                    registerCatAndPetOwnerDependingOnHouse(container)
                     container.register(HouseType.self) { _ in Apartment() }
                         .inObjectScope(.None)
                     
                     let owner = container.resolve(PersonType.self) as! PetOwner
-                    let cat = owner.pet as! Cat
                     let ownerApartment = owner.house as! Apartment
-                    let catApartment = cat.house as! Apartment
+                    let catApartment = (owner.pet as! Cat).house as! Apartment
                     expect(ownerApartment) !== catApartment
                 }
             }
             context("in graph scope") {
                 it("does not have a shared object in a container.") {
-                    let container = Container()
                     container.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Graph)
                     
@@ -103,30 +106,18 @@ class ContainerSpec: QuickSpec {
                     expect(cat1) !== cat2
                 }
                 it("resolves a service to the same object in a graph") {
-                    let container = Container()
-                    container.register(AnimalType.self) {
-                        let cat = Cat()
-                        cat.house = $0.resolve(HouseType.self)
-                        return cat
-                    }
-                    container.register(PersonType.self) {
-                        let owner = PetOwner(pet: $0.resolve(AnimalType.self)!)
-                        owner.house = $0.resolve(HouseType.self)
-                        return owner
-                    }
+                    registerCatAndPetOwnerDependingOnHouse(container)
                     container.register(HouseType.self) { _ in Apartment() }
                         .inObjectScope(.Graph)
                     
                     let owner = container.resolve(PersonType.self) as! PetOwner
-                    let cat = owner.pet as! Cat
                     let ownerApartment = owner.house as! Apartment
-                    let catApartment = cat.house as! Apartment
+                    let catApartment = (owner.pet as! Cat).house as! Apartment
                     expect(ownerApartment) === catApartment
                 }
             }
             context("in container scope") {
                 it("shares an object in the own container.") {
-                    let container = Container()
                     container.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Container)
                     
@@ -155,7 +146,6 @@ class ContainerSpec: QuickSpec {
             }
             context("in hierarchy scope") {
                 it("shares an object in the own container.") {
-                    let container = Container()
                     container.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Hierarchy)
                     
@@ -186,7 +176,6 @@ class ContainerSpec: QuickSpec {
         describe("Init completed event") {
             it("raises the event when a new instance is created.") {
                 var eventRaised = false
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                     .initCompleted { (_, _) in eventRaised = true }
                 
@@ -197,7 +186,6 @@ class ContainerSpec: QuickSpec {
         }
         describe("Injection types") {
             it("accepts initializer injection.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(PersonType.self) { c in PetOwner(pet: c.resolve(AnimalType.self)!) }
                 
@@ -205,7 +193,6 @@ class ContainerSpec: QuickSpec {
                 expect(owner.pet).notTo(beNil())
             }
             it("accepts property injection in registration.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(PersonType.self) { c in
                     let owner = PetOwner()
@@ -217,7 +204,6 @@ class ContainerSpec: QuickSpec {
                 expect(owner.pet).notTo(beNil())
             }
             it("accepts property injection in initCompleted event.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(PersonType.self) { c in PetOwner() }
                     .initCompleted { (c, p) in
@@ -229,7 +215,6 @@ class ContainerSpec: QuickSpec {
                 expect(owner.pet).notTo(beNil())
             }
             it("accepts method injection in registration.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(PersonType.self) { c in
                     let owner = PetOwner()
@@ -241,7 +226,6 @@ class ContainerSpec: QuickSpec {
                 expect(owner.pet).notTo(beNil())
             }
             it("accepts method injection in initCompleted event.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(PersonType.self) { c in PetOwner() }
                     .initCompleted { (c, p) in
