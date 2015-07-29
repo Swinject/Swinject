@@ -39,7 +39,7 @@ public final class ServiceEntry<Service>: ServiceEntryBase {
         return copy
     }
     
-    public func initCompleted(completed: (Container, Service) -> ()) -> Self {
+    public func initCompleted(completed: (Resolvable, Service) -> ()) -> Self {
         initCompleted = completed
         return self
     }

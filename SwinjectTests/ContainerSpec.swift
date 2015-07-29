@@ -20,8 +20,8 @@ class ContainerSpec: QuickSpec {
         describe("Resolution of the same service") {
             it("resolves by arguments.") {
                 container.register(AnimalType.self) { _ in Cat() }
-                container.register(AnimalType.self) { container, arg in Cat(name: arg) }
-                container.register(AnimalType.self) { container, arg1, arg2 in Cat(name: arg1, mature: arg2) }
+                container.register(AnimalType.self) { _, arg in Cat(name: arg) }
+                container.register(AnimalType.self) { _, arg1, arg2 in Cat(name: arg1, mature: arg2) }
                 
                 let noname = container.resolve(AnimalType.self) as! Cat
                 let mimi = container.resolve(AnimalType.self, arg1: "Mimi") as! Cat
@@ -199,7 +199,7 @@ class ContainerSpec: QuickSpec {
             it("raises the event when a new instance is created.") {
                 var eventRaised = false
                 container.register(AnimalType.self) { _ in Cat() }
-                    .initCompleted { (_, _) in eventRaised = true }
+                    .initCompleted { _, _ in eventRaised = true }
                 
                 let cat = container.resolve(AnimalType.self)
                 expect(cat).notTo(beNil())
@@ -209,16 +209,16 @@ class ContainerSpec: QuickSpec {
         describe("Injection types") {
             it("accepts initializer injection.") {
                 container.register(AnimalType.self) { _ in Cat() }
-                container.register(PersonType.self) { c in PetOwner(pet: c.resolve(AnimalType.self)!) }
+                container.register(PersonType.self) { r in PetOwner(pet: r.resolve(AnimalType.self)!) }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
                 expect(owner.pet).notTo(beNil())
             }
             it("accepts property injection in registration.") {
                 container.register(AnimalType.self) { _ in Cat() }
-                container.register(PersonType.self) { c in
+                container.register(PersonType.self) { r in
                     let owner = PetOwner()
-                    owner.pet = c.resolve(AnimalType.self)!
+                    owner.pet = r.resolve(AnimalType.self)!
                     return owner
                 }
                 
@@ -227,10 +227,10 @@ class ContainerSpec: QuickSpec {
             }
             it("accepts property injection in initCompleted event.") {
                 container.register(AnimalType.self) { _ in Cat() }
-                container.register(PersonType.self) { c in PetOwner() }
-                    .initCompleted { (c, p) in
-                        let owner = p as! PetOwner
-                        owner.pet = c.resolve(AnimalType.self)!
+                container.register(PersonType.self) { _ in PetOwner() }
+                    .initCompleted { r, s in
+                        let owner = s as! PetOwner
+                        owner.pet = r.resolve(AnimalType.self)!
                     }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
@@ -238,9 +238,9 @@ class ContainerSpec: QuickSpec {
             }
             it("accepts method injection in registration.") {
                 container.register(AnimalType.self) { _ in Cat() }
-                container.register(PersonType.self) { c in
+                container.register(PersonType.self) { r in
                     let owner = PetOwner()
-                    owner.injectAnimal(c.resolve(AnimalType.self)!)
+                    owner.injectAnimal(r.resolve(AnimalType.self)!)
                     return owner
                 }
                 
@@ -249,10 +249,10 @@ class ContainerSpec: QuickSpec {
             }
             it("accepts method injection in initCompleted event.") {
                 container.register(AnimalType.self) { _ in Cat() }
-                container.register(PersonType.self) { c in PetOwner() }
-                    .initCompleted { (c, p) in
-                        let owner = p as! PetOwner
-                        owner.injectAnimal(c.resolve(AnimalType.self)!)
+                container.register(PersonType.self) { _ in PetOwner() }
+                    .initCompleted { r, s in
+                        let owner = s as! PetOwner
+                        owner.injectAnimal(r.resolve(AnimalType.self)!)
                     }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
