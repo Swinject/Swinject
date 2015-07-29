@@ -64,10 +64,64 @@ class ContainerSpec: QuickSpec {
                 it("does not have a shared object in a container.") {
                     let container = Container()
                     container.register(AnimalType.self) { _ in Cat() }
+                        .inObjectScope(.None)
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
                     expect(cat1) !== cat2
+                }
+                it("resolves a service to new objects in a graph") {
+                    let container = Container()
+                    container.register(AnimalType.self) {
+                        let cat = Cat()
+                        cat.house = $0.resolve(HouseType.self)
+                        return cat
+                    }
+                    container.register(PersonType.self) {
+                        let owner = PetOwner(pet: $0.resolve(AnimalType.self)!)
+                        owner.house = $0.resolve(HouseType.self)
+                        return owner
+                    }
+                    container.register(HouseType.self) { _ in Apartment() }
+                        .inObjectScope(.None)
+                    
+                    let owner = container.resolve(PersonType.self) as! PetOwner
+                    let cat = owner.pet as! Cat
+                    let ownerApartment = owner.house as! Apartment
+                    let catApartment = cat.house as! Apartment
+                    expect(ownerApartment) !== catApartment
+                }
+            }
+            context("in graph scope") {
+                it("does not have a shared object in a container.") {
+                    let container = Container()
+                    container.register(AnimalType.self) { _ in Cat() }
+                        .inObjectScope(.Graph)
+                    
+                    let cat1 = container.resolve(AnimalType.self) as! Cat
+                    let cat2 = container.resolve(AnimalType.self) as! Cat
+                    expect(cat1) !== cat2
+                }
+                it("resolves a service to the same object in a graph") {
+                    let container = Container()
+                    container.register(AnimalType.self) {
+                        let cat = Cat()
+                        cat.house = $0.resolve(HouseType.self)
+                        return cat
+                    }
+                    container.register(PersonType.self) {
+                        let owner = PetOwner(pet: $0.resolve(AnimalType.self)!)
+                        owner.house = $0.resolve(HouseType.self)
+                        return owner
+                    }
+                    container.register(HouseType.self) { _ in Apartment() }
+                        .inObjectScope(.Graph)
+                    
+                    let owner = container.resolve(PersonType.self) as! PetOwner
+                    let cat = owner.pet as! Cat
+                    let ownerApartment = owner.house as! Apartment
+                    let catApartment = cat.house as! Apartment
+                    expect(ownerApartment) === catApartment
                 }
             }
             context("in container scope") {

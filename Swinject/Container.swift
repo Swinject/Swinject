@@ -63,7 +63,7 @@ public final class Container {
         let key = ServiceKey(factoryType: Factory.self, name: name)
         if let (entry, fromParent) = getEntry(key) as (ServiceEntry<Service>, Bool)? {
             switch (entry.scope) {
-            case .None:
+            case .None, .Graph:
                 resolvedInstance = resolveEntry(entry, key: key, invoker: invoker)
             case .Container:
                 let ownEntry: ServiceEntry<Service>
@@ -102,17 +102,20 @@ public final class Container {
     }
     
     private func resolveEntry<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: Factory -> Service) -> Service {
-        if let pooledInstance = resolutionPool[key] as? Service {
+        let usesPool = entry.scope != .None
+        if usesPool, let pooledInstance = resolutionPool[key] as? Service {
             return pooledInstance
         }
         
         let resolvedInstance = invoker(entry.factory as! Factory)
-        if let pooledInstance = resolutionPool[key] as? Service {
-            // An instance for the key might be added by the factory invocation.
-            return pooledInstance
+        if usesPool {
+            if let pooledInstance = resolutionPool[key] as? Service {
+                // An instance for the key might be added by the factory invocation.
+                return pooledInstance
+            }
+            resolutionPool[key] = resolvedInstance as? AnyObject
         }
         
-        resolutionPool[key] = resolvedInstance as? AnyObject
         if let completed = entry.initCompleted as? (Container, Service) -> () {
             completed(self, resolvedInstance)
         }
