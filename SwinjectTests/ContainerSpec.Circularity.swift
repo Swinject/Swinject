@@ -18,33 +18,49 @@ class ContainerSpec_Circularity: QuickSpec {
         }
         
         describe("Two objects") {
-            it("resolves circular dependency by properties.") {
-                container.register(ParentType.self) { _ in Mother() }
-                    .initCompleted { (c, i) in
-                        let mother = i as! Mother
-                        mother.child = c.resolve(ChildType.self)
-                    }
-                container.register(ChildType.self) { _ in Daughter() }
-                    .initCompleted { (c, i) in
-                        let daughter = i as! Daughter
-                        daughter.parent = c.resolve(ParentType.self)!
-                    }
+            it("resolves circular dependency on each property.") {
+                let runInObjectScope: ObjectScope -> Void = { scope in
+                    container.register(ParentType.self) { _ in Mother() }
+                        .initCompleted { (c, i) in
+                            let mother = i as! Mother
+                            mother.child = c.resolve(ChildType.self)
+                        }
+                        .inObjectScope(scope)
+                    container.register(ChildType.self) { _ in Daughter() }
+                        .initCompleted { (c, i) in
+                            let daughter = i as! Daughter
+                            daughter.parent = c.resolve(ParentType.self)!
+                        }
+                        .inObjectScope(scope)
+                    
+                    let mother = container.resolve(ParentType.self) as! Mother
+                    let daughter = mother.child as! Daughter
+                    expect(daughter.parent as? Mother) === mother
+                }
                 
-                let mother = container.resolve(ParentType.self) as! Mother
-                let daughter = mother.child as! Daughter
-                expect(daughter.parent as? Mother) === mother
+                runInObjectScope(.Graph)
+                runInObjectScope(.Container)
+                runInObjectScope(.Hierarchy)
             }
-            it("resolves circular dependency by an initializer and property.") {
-                container.register(ParentType.self) { c in Mother(child: c.resolve(ChildType.self)!) }
-                container.register(ChildType.self) { _ in Daughter() }
-                    .initCompleted { (c, i) in
-                        let daughter = i as! Daughter
-                        daughter.parent = c.resolve(ParentType.self)
-                    }
+            it("resolves circular dependency on the initializer and property.") {
+                let runInObjectScope: ObjectScope -> Void = { scope in
+                    container.register(ParentType.self) { c in Mother(child: c.resolve(ChildType.self)!) }
+                        .inObjectScope(scope)
+                    container.register(ChildType.self) { _ in Daughter() }
+                        .initCompleted { (c, i) in
+                            let daughter = i as! Daughter
+                            daughter.parent = c.resolve(ParentType.self)
+                        }
+                        .inObjectScope(scope)
+                    
+                    let mother = container.resolve(ParentType.self) as! Mother
+                    let daughter = mother.child as! Daughter
+                    expect(daughter.parent as? Mother) === mother
+                }
                 
-                let mother = container.resolve(ParentType.self) as! Mother
-                let daughter = mother.child as! Daughter
-                expect(daughter.parent as? Mother) === mother
+                runInObjectScope(.Graph)
+                runInObjectScope(.Container)
+                runInObjectScope(.Hierarchy)
             }
         }
         describe("More than two objects") {
