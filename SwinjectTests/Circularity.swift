@@ -13,18 +13,18 @@ internal protocol ParentType: AnyObject { }
 internal protocol ChildType: AnyObject { }
 
 internal class Mother: ParentType {
-    weak var child: ChildType?
-}
-
-internal class Daughter: ChildType {
-    var parent: ParentType?
+    var child: ChildType?
     
     init() {
     }
     
-    init(parent: ParentType) {
-        self.parent = parent
+    init(child: ChildType) {
+        self.child = child
     }
+}
+
+internal class Daughter: ChildType {
+    weak var parent: ParentType?
 }
 
 // MARK: - Circular dependency of more than two objects

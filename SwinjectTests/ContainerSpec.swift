@@ -221,22 +221,22 @@ class ContainerSpec: QuickSpec {
                             daughter.parent = c.resolve(ParentType.self)!
                         }
                     
-                    let daughter = container.resolve(ChildType.self) as! Daughter
-                    let mother = daughter.parent as! Mother
-                    expect(mother.child as? Daughter) === daughter
+                    let mother = container.resolve(ParentType.self) as! Mother
+                    let daughter = mother.child as! Daughter
+                    expect(daughter.parent as? Mother) === mother
                 }
                 it("resolves circular dependency by an initializer and property.") {
                     let container = Container()
-                    container.register(ParentType.self) { _ in Mother() }
+                    container.register(ParentType.self) { c in Mother(child: c.resolve(ChildType.self)!) }
+                    container.register(ChildType.self) { _ in Daughter() }
                         .initCompleted { (c, i) in
-                            let mother = i as! Mother
-                            mother.child = c.resolve(ChildType.self)
+                            let daughter = i as! Daughter
+                            daughter.parent = c.resolve(ParentType.self)
                         }
-                    container.register(ChildType.self) { c in Daughter(parent: c.resolve(ParentType.self)!) }
                     
-                    let daughter = container.resolve(ChildType.self) as! Daughter
-                    let mother = daughter.parent as! Mother
-                    expect(mother.child as? Daughter) === daughter
+                    let mother = container.resolve(ParentType.self) as! Mother
+                    let daughter = mother.child as! Daughter
+                    expect(daughter.parent as? Mother) === mother
                 }
             }
             describe("of more than two objects") {
