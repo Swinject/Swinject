@@ -17,8 +17,8 @@ class ContainerSpec: QuickSpec {
             container = Container()
         }
         
-        describe("Basic resolution") {
-            it("resolves multiple initializers with some arguments passed.") {
+        describe("Resolution of the same service") {
+            it("resolves by arguments.") {
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(AnimalType.self) { container, arg in Cat(name: arg) }
                 container.register(AnimalType.self) { container, arg1, arg2 in Cat(name: arg1, mature: arg2) }
@@ -31,7 +31,7 @@ class ContainerSpec: QuickSpec {
                 expect(mew.name) == "Mew"
                 expect(mew.mature) == true
             }
-            it("resolves named services.") {
+            it("resolves by the registered name.") {
                 container.register(AnimalType.self, name: "RegMimi") { _ in Cat(name: "Mimi") }
                 container.register(AnimalType.self, name: "RegMew") { _ in Cat(name: "Mew") }
                 container.register(AnimalType.self) { _ in Cat() }
