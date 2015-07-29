@@ -33,8 +33,8 @@
 		9855C5C01B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
 		9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */; };
 		9855C5C31B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */; };
-		9855C5C51B689B7B00DADB0B /* HouseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* HouseType.swift */; };
-		9855C5C61B689B7B00DADB0B /* HouseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* HouseType.swift */; };
+		9855C5C51B689B7B00DADB0B /* FoodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* FoodType.swift */; };
+		9855C5C61B689B7B00DADB0B /* FoodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* FoodType.swift */; };
 		9855C5C81B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */; };
 		9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */; };
 		985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
@@ -114,7 +114,7 @@
 		981ABE921B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Circularity.swift; sourceTree = "<group>"; };
 		9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolutionPoolSpec.swift; sourceTree = "<group>"; };
-		9855C5C41B689B7B00DADB0B /* HouseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseType.swift; sourceTree = "<group>"; };
+		9855C5C41B689B7B00DADB0B /* FoodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodType.swift; sourceTree = "<group>"; };
 		9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntrySpec.swift; sourceTree = "<group>"; };
 		985BAFA81B625E0F0055F998 /* ServiceEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntry.swift; sourceTree = "<group>"; };
 		9878C6371B65C9E000CBEFEF /* AnimalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalType.swift; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 			children = (
 				9878C63B1B65CA8700CBEFEF /* PersonType.swift */,
 				9878C6371B65C9E000CBEFEF /* AnimalType.swift */,
-				9855C5C41B689B7B00DADB0B /* HouseType.swift */,
+				9855C5C41B689B7B00DADB0B /* FoodType.swift */,
 				981577F01B675B7F00BF686B /* Circularity.swift */,
 			);
 			name = Fakes;
@@ -423,7 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9855C5C61B689B7B00DADB0B /* HouseType.swift in Sources */,
+				9855C5C61B689B7B00DADB0B /* FoodType.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				9878C63D1B65CA8700CBEFEF /* PersonType.swift in Sources */,
 				9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
@@ -452,7 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9855C5C51B689B7B00DADB0B /* HouseType.swift in Sources */,
+				9855C5C51B689B7B00DADB0B /* FoodType.swift in Sources */,
 				9855C5C81B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				9878C63C1B65CA8700CBEFEF /* PersonType.swift in Sources */,
 				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,

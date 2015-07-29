@@ -12,7 +12,7 @@ internal protocol PersonType { }
 
 internal class PetOwner: PersonType {
     var pet: AnimalType?
-    var house: HouseType?
+    var favoriteFood: FoodType?
     
     init() {
     }

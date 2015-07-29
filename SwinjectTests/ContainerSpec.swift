@@ -63,15 +63,15 @@ class ContainerSpec: QuickSpec {
             }
         }
         describe("Scope") {
-            let registerCatAndPetOwnerDependingOnHouse: Container -> Void = {
+            let registerCatAndPetOwnerDependingOnFood: Container -> Void = {
                 $0.register(AnimalType.self) {
                     let cat = Cat()
-                    cat.house = $0.resolve(HouseType.self)
+                    cat.favoriteFood = $0.resolve(FoodType.self)
                     return cat
                 }
                 $0.register(PersonType.self) {
                     let owner = PetOwner(pet: $0.resolve(AnimalType.self)!)
-                    owner.house = $0.resolve(HouseType.self)
+                    owner.favoriteFood = $0.resolve(FoodType.self)
                     return owner
                 }
             }
@@ -86,14 +86,14 @@ class ContainerSpec: QuickSpec {
                     expect(cat1) !== cat2
                 }
                 it("resolves a service to new objects in a graph") {
-                    registerCatAndPetOwnerDependingOnHouse(container)
-                    container.register(HouseType.self) { _ in Apartment() }
+                    registerCatAndPetOwnerDependingOnFood(container)
+                    container.register(FoodType.self) { _ in Sushi() }
                         .inObjectScope(.None)
                     
                     let owner = container.resolve(PersonType.self) as! PetOwner
-                    let ownerApartment = owner.house as! Apartment
-                    let catApartment = (owner.pet as! Cat).house as! Apartment
-                    expect(ownerApartment) !== catApartment
+                    let ownersSushi = owner.favoriteFood as! Sushi
+                    let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
+                    expect(ownersSushi) !== catsSushi
                 }
             }
             context("in graph scope") {
@@ -106,14 +106,14 @@ class ContainerSpec: QuickSpec {
                     expect(cat1) !== cat2
                 }
                 it("resolves a service to the same object in a graph") {
-                    registerCatAndPetOwnerDependingOnHouse(container)
-                    container.register(HouseType.self) { _ in Apartment() }
+                    registerCatAndPetOwnerDependingOnFood(container)
+                    container.register(FoodType.self) { _ in Sushi() }
                         .inObjectScope(.Graph)
                     
                     let owner = container.resolve(PersonType.self) as! PetOwner
-                    let ownerApartment = owner.house as! Apartment
-                    let catApartment = (owner.pet as! Cat).house as! Apartment
-                    expect(ownerApartment) === catApartment
+                    let ownersSushi = owner.favoriteFood as! Sushi
+                    let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
+                    expect(ownersSushi) === catsSushi
                 }
             }
             context("in container scope") {
@@ -144,14 +144,14 @@ class ContainerSpec: QuickSpec {
                     expect(dog1) !== dog2
                 }
                 it("resolves a service to the same object in a graph") {
-                    registerCatAndPetOwnerDependingOnHouse(container)
-                    container.register(HouseType.self) { _ in Apartment() }
+                    registerCatAndPetOwnerDependingOnFood(container)
+                    container.register(FoodType.self) { _ in Sushi() }
                         .inObjectScope(.Container)
                     
                     let owner = container.resolve(PersonType.self) as! PetOwner
-                    let ownerApartment = owner.house as! Apartment
-                    let catApartment = (owner.pet as! Cat).house as! Apartment
-                    expect(ownerApartment) === catApartment
+                    let ownersSushi = owner.favoriteFood as! Sushi
+                    let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
+                    expect(ownersSushi) === catsSushi
                 }
             }
             context("in hierarchy scope") {
@@ -183,15 +183,15 @@ class ContainerSpec: QuickSpec {
                 }
                 it("resolves a service in the parent container to the same object in a graph") {
                     let parent = Container()
-                    parent.register(HouseType.self) { _ in Apartment() }
+                    parent.register(FoodType.self) { _ in Sushi() }
                         .inObjectScope(.Hierarchy)
                     let child = Container(parent: parent)
-                    registerCatAndPetOwnerDependingOnHouse(child)
+                    registerCatAndPetOwnerDependingOnFood(child)
                     
                     let owner = child.resolve(PersonType.self) as! PetOwner
-                    let ownerApartment = owner.house as! Apartment
-                    let catApartment = (owner.pet as! Cat).house as! Apartment
-                    expect(ownerApartment) === catApartment
+                    let ownersSushi = owner.favoriteFood as! Sushi
+                    let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
+                    expect(ownersSushi) === catsSushi
                 }
             }
         }

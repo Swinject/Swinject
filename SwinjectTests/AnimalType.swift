@@ -13,7 +13,7 @@ internal protocol AnimalType { }
 internal class Cat: AnimalType {
     var name: String?
     var mature = false
-    var house: HouseType?
+    var favoriteFood: FoodType?
     
     init() {
     }

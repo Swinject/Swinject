@@ -1,5 +1,5 @@
 //
-//  HouseType.swift
+//  FoodType.swift
 //  Swinject
 //
 //  Created by Yoichi Tagaya on 7/29/15.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-internal protocol HouseType { }
+internal protocol FoodType { }
 
-internal class Apartment: HouseType { }
+internal class Sushi: FoodType { }
