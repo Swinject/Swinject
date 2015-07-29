@@ -64,7 +64,7 @@ class ContainerSpec_Circularity: QuickSpec {
             }
         }
         describe("More than two objects") {
-            it("resolves circular dependency by properties.") {
+            it("resolves circular dependency on properties.") {
                 container.register(AType.self) { _ in ADependingOnB() }
                     .initCompleted {
                         let a = $1 as! ADependingOnB
@@ -96,7 +96,7 @@ class ContainerSpec_Circularity: QuickSpec {
                 expect(d.b as? BDependingOnC) === b
                 expect(d.c as? CDependingOnAD) === c
             }
-            it("resolves circular dependency by initializers and properties.") {
+            it("resolves circular dependency on initializers and properties.") {
                 container.register(AType.self) { cnt in ADependingOnB(b: cnt.resolve(BType.self)!) }
                 container.register(BType.self) { cnt in BDependingOnC(c: cnt.resolve(CType.self)!) }
                 container.register(CType.self) { cnt in CDependingOnAD(d: cnt.resolve(DType.self)!) }
