@@ -10,4 +10,4 @@ import Foundation
 
 internal protocol HouseType { }
 
-internal class Apartment : HouseType { }
+internal class Apartment: HouseType { }

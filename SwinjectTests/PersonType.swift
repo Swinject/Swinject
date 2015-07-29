@@ -10,7 +10,7 @@ import Foundation
 
 internal protocol PersonType { }
 
-internal class PetOwner : PersonType {
+internal class PetOwner: PersonType {
     var pet: AnimalType?
     var house: HouseType?
     
