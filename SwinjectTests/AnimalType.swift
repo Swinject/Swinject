@@ -10,9 +10,10 @@ import Foundation
 
 internal protocol AnimalType { }
 
-internal class Cat : AnimalType {
+internal class Cat: AnimalType {
     var name: String?
     var mature = false
+    var favoriteFood: FoodType?
     
     init() {
     }
@@ -25,4 +26,7 @@ internal class Cat : AnimalType {
         self.name = name
         self.mature = mature
     }
+}
+
+internal class Dog: AnimalType {
 }

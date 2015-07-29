@@ -10,17 +10,18 @@ import Foundation
 
 internal protocol PersonType { }
 
-internal class PetOwner : PersonType {
-    var favoriteAnimal: AnimalType?
+internal class PetOwner: PersonType {
+    var pet: AnimalType?
+    var favoriteFood: FoodType?
     
     init() {
     }
     
-    init(favoriteAnimal: AnimalType) {
-        self.favoriteAnimal = favoriteAnimal
+    init(pet: AnimalType) {
+        self.pet = pet
     }
     
-    func setFavoriteAnimal(animal: AnimalType) {
-        self.favoriteAnimal = animal
+    func injectAnimal(animal: AnimalType) {
+        self.pet = animal
     }
 }

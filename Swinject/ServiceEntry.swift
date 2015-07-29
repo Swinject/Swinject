@@ -10,7 +10,7 @@ import Foundation
 
 public class ServiceEntryBase {
     internal let factory: Any // Must be a function type.
-    internal var scope = ObjectScope.None
+    internal var scope = ObjectScope.Graph
     internal var instance: AnyObject?
     internal var initCompleted: Any? // Must be a function type.
     

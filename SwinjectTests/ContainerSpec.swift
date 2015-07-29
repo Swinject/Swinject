@@ -12,16 +12,13 @@ import Nimble
 
 class ContainerSpec: QuickSpec {
     override func spec() {
-        describe("Basic resolution") {
-            it("resolves a registreed instance.") {
-                let container = Container()
-                container.register(AnimalType.self) { _ in Cat() }
-                
-                let cat = container.resolve(AnimalType.self)
-                expect(cat).notTo(beNil())
-            }
-            it("resolves multiple initializers with some arguments passed.") {
-                let container = Container()
+        var container: Container!
+        beforeEach {
+            container = Container()
+        }
+        
+        describe("Resolution of the same service") {
+            it("resolves by arguments.") {
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(AnimalType.self) { container, arg in Cat(name: arg) }
                 container.register(AnimalType.self) { container, arg1, arg2 in Cat(name: arg1, mature: arg2) }
@@ -34,8 +31,7 @@ class ContainerSpec: QuickSpec {
                 expect(mew.name) == "Mew"
                 expect(mew.mature) == true
             }
-            it("resolves named services.") {
-                let container = Container()
+            it("resolves by the registered name.") {
                 container.register(AnimalType.self, name: "RegMimi") { _ in Cat(name: "Mimi") }
                 container.register(AnimalType.self, name: "RegMew") { _ in Cat(name: "Mew") }
                 container.register(AnimalType.self) { _ in Cat() }
@@ -67,19 +63,61 @@ class ContainerSpec: QuickSpec {
             }
         }
         describe("Scope") {
+            let registerCatAndPetOwnerDependingOnFood: Container -> Void = {
+                $0.register(AnimalType.self) {
+                    let cat = Cat()
+                    cat.favoriteFood = $0.resolve(FoodType.self)
+                    return cat
+                }
+                $0.register(PersonType.self) {
+                    let owner = PetOwner(pet: $0.resolve(AnimalType.self)!)
+                    owner.favoriteFood = $0.resolve(FoodType.self)
+                    return owner
+                }
+            }
+            
             context("in no scope") {
                 it("does not have a shared object in a container.") {
-                    let container = Container()
                     container.register(AnimalType.self) { _ in Cat() }
+                        .inObjectScope(.None)
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
                     expect(cat1) !== cat2
                 }
+                it("resolves a service to new objects in a graph") {
+                    registerCatAndPetOwnerDependingOnFood(container)
+                    container.register(FoodType.self) { _ in Sushi() }
+                        .inObjectScope(.None)
+                    
+                    let owner = container.resolve(PersonType.self) as! PetOwner
+                    let ownersSushi = owner.favoriteFood as! Sushi
+                    let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
+                    expect(ownersSushi) !== catsSushi
+                }
+            }
+            context("in graph scope") {
+                it("does not have a shared object in a container.") {
+                    container.register(AnimalType.self) { _ in Cat() }
+                        .inObjectScope(.Graph)
+                    
+                    let cat1 = container.resolve(AnimalType.self) as! Cat
+                    let cat2 = container.resolve(AnimalType.self) as! Cat
+                    expect(cat1) !== cat2
+                }
+                it("resolves a service to the same object in a graph") {
+                    registerCatAndPetOwnerDependingOnFood(container)
+                    container.register(FoodType.self) { _ in Sushi() }
+                        .inObjectScope(.Graph)
+                    
+                    let owner = container.resolve(PersonType.self) as! PetOwner
+                    let ownersSushi = owner.favoriteFood as! Sushi
+                    let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
+                    expect(ownersSushi) === catsSushi
+                }
             }
             context("in container scope") {
                 it("shares an object in the own container.") {
-                    let container = Container()
                     container.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Container)
                     
@@ -91,7 +129,7 @@ class ContainerSpec: QuickSpec {
                     let parent = Container()
                     parent.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Container)
-                    parent.register(PersonType.self) { _ in PetOwner() }
+                    parent.register(AnimalType.self, name: "dog") { _ in Dog() }
                         .inObjectScope(.Container)
                     let child = Container(parent: parent)
                     
@@ -101,14 +139,23 @@ class ContainerSpec: QuickSpec {
                     expect(cat1) !== cat2
                     
                     // Case resolving on the child first.
-                    let owner1 = child.resolve(PersonType.self) as! PetOwner
-                    let owner2 = parent.resolve(PersonType.self) as! PetOwner
-                    expect(owner1) !== owner2
+                    let dog1 = child.resolve(AnimalType.self, name: "dog") as! Dog
+                    let dog2 = parent.resolve(AnimalType.self, name: "dog") as! Dog
+                    expect(dog1) !== dog2
+                }
+                it("resolves a service to the same object in a graph") {
+                    registerCatAndPetOwnerDependingOnFood(container)
+                    container.register(FoodType.self) { _ in Sushi() }
+                        .inObjectScope(.Container)
+                    
+                    let owner = container.resolve(PersonType.self) as! PetOwner
+                    let ownersSushi = owner.favoriteFood as! Sushi
+                    let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
+                    expect(ownersSushi) === catsSushi
                 }
             }
             context("in hierarchy scope") {
                 it("shares an object in the own container.") {
-                    let container = Container()
                     container.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Hierarchy)
                     
@@ -120,7 +167,7 @@ class ContainerSpec: QuickSpec {
                     let parent = Container()
                     parent.register(AnimalType.self) { _ in Cat() }
                         .inObjectScope(.Hierarchy)
-                    parent.register(PersonType.self) { _ in PetOwner() }
+                    parent.register(AnimalType.self, name: "dog") { _ in Dog() }
                         .inObjectScope(.Hierarchy)
                     let child = Container(parent: parent)
                     
@@ -130,16 +177,27 @@ class ContainerSpec: QuickSpec {
                     expect(cat1) === cat2
                     
                     // Case resolving on the child first.
-                    let owner1 = child.resolve(PersonType.self) as! PetOwner
-                    let owner2 = parent.resolve(PersonType.self) as! PetOwner
-                    expect(owner1) === owner2
+                    let dog1 = child.resolve(AnimalType.self, name: "dog") as! Dog
+                    let dog2 = parent.resolve(AnimalType.self, name: "dog") as! Dog
+                    expect(dog1) === dog2
+                }
+                it("resolves a service in the parent container to the same object in a graph") {
+                    let parent = Container()
+                    parent.register(FoodType.self) { _ in Sushi() }
+                        .inObjectScope(.Hierarchy)
+                    let child = Container(parent: parent)
+                    registerCatAndPetOwnerDependingOnFood(child)
+                    
+                    let owner = child.resolve(PersonType.self) as! PetOwner
+                    let ownersSushi = owner.favoriteFood as! Sushi
+                    let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
+                    expect(ownersSushi) === catsSushi
                 }
             }
         }
         describe("Init completed event") {
             it("raises the event when a new instance is created.") {
                 var eventRaised = false
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                     .initCompleted { (_, _) in eventRaised = true }
                 
@@ -150,60 +208,55 @@ class ContainerSpec: QuickSpec {
         }
         describe("Injection types") {
             it("accepts initializer injection.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
-                container.register(PersonType.self) { c in PetOwner(favoriteAnimal: c.resolve(AnimalType.self)!) }
+                container.register(PersonType.self) { c in PetOwner(pet: c.resolve(AnimalType.self)!) }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
-                expect(owner.favoriteAnimal).notTo(beNil())
+                expect(owner.pet).notTo(beNil())
             }
             it("accepts property injection in registration.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(PersonType.self) { c in
                     let owner = PetOwner()
-                    owner.favoriteAnimal = c.resolve(AnimalType.self)!
+                    owner.pet = c.resolve(AnimalType.self)!
                     return owner
                 }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
-                expect(owner.favoriteAnimal).notTo(beNil())
+                expect(owner.pet).notTo(beNil())
             }
             it("accepts property injection in initCompleted event.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(PersonType.self) { c in PetOwner() }
                     .initCompleted { (c, p) in
                         let owner = p as! PetOwner
-                        owner.favoriteAnimal = c.resolve(AnimalType.self)!
+                        owner.pet = c.resolve(AnimalType.self)!
                     }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
-                expect(owner.favoriteAnimal).notTo(beNil())
+                expect(owner.pet).notTo(beNil())
             }
             it("accepts method injection in registration.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(PersonType.self) { c in
                     let owner = PetOwner()
-                    owner.setFavoriteAnimal(c.resolve(AnimalType.self)!)
+                    owner.injectAnimal(c.resolve(AnimalType.self)!)
                     return owner
                 }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
-                expect(owner.favoriteAnimal).notTo(beNil())
+                expect(owner.pet).notTo(beNil())
             }
             it("accepts method injection in initCompleted event.") {
-                let container = Container()
                 container.register(AnimalType.self) { _ in Cat() }
                 container.register(PersonType.self) { c in PetOwner() }
                     .initCompleted { (c, p) in
                         let owner = p as! PetOwner
-                        owner.setFavoriteAnimal(c.resolve(AnimalType.self)!)
-                }
+                        owner.injectAnimal(c.resolve(AnimalType.self)!)
+                    }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
-                expect(owner.favoriteAnimal).notTo(beNil())
+                expect(owner.pet).notTo(beNil())
             }
         }
     }

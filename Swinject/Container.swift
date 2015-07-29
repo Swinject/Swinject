@@ -11,6 +11,7 @@ import Foundation
 public final class Container {
     private var services = [ServiceKey: ServiceEntryBase]()
     private let parent: Container?
+    private var resolutionPool = ResolutionPool()
     
     public init() {
         self.parent = nil
@@ -55,12 +56,15 @@ public final class Container {
     }
     
     private func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
+        resolutionPool.incrementDepth()
+        defer { resolutionPool.decrementDepth() }
+        
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name)
         if let (entry, fromParent) = getEntry(key) as (ServiceEntry<Service>, Bool)? {
             switch (entry.scope) {
-            case .None:
-                resolvedInstance = resolveEntry(entry, invoker: invoker)
+            case .None, .Graph:
+                resolvedInstance = resolveEntry(entry, key: key, invoker: invoker)
             case .Container:
                 let ownEntry: ServiceEntry<Service>
                 if fromParent {
@@ -72,12 +76,12 @@ public final class Container {
                 }
                 
                 if ownEntry.instance == nil {
-                    ownEntry.instance = resolveEntry(entry, invoker: invoker) as? AnyObject
+                    ownEntry.instance = resolveEntry(entry, key: key, invoker: invoker) as? AnyObject
                 }
                 resolvedInstance = ownEntry.instance as? Service
             case .Hierarchy:
                 if entry.instance == nil {
-                    entry.instance = resolveEntry(entry, invoker: invoker) as? AnyObject
+                    entry.instance = resolveEntry(entry, key: key, invoker: invoker) as? AnyObject
                 }
                 resolvedInstance = entry.instance as? Service
             }
@@ -97,8 +101,21 @@ public final class Container {
         return entry.map { ($0, fromParent) }
     }
     
-    private func resolveEntry<Service, Factory>(entry: ServiceEntry<Service>, invoker: Factory -> Service) -> Service {
+    private func resolveEntry<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: Factory -> Service) -> Service {
+        let usesPool = entry.scope != .None
+        if usesPool, let pooledInstance = resolutionPool[key] as? Service {
+            return pooledInstance
+        }
+        
         let resolvedInstance = invoker(entry.factory as! Factory)
+        if usesPool {
+            if let pooledInstance = resolutionPool[key] as? Service {
+                // An instance for the key might be added by the factory invocation.
+                return pooledInstance
+            }
+            resolutionPool[key] = resolvedInstance as? AnyObject
+        }
+        
         if let completed = entry.initCompleted as? (Container, Service) -> () {
             completed(self, resolvedInstance)
         }

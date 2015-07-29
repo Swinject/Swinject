@@ -8,11 +8,11 @@
 
 public enum ObjectScope {
     case None
+    case Graph
     case Container
     case Hierarchy
 
     // TODO: Add more scope cases.
     // case WeakContainer
     // case Thread
-    // case Graph
 }
