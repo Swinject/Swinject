@@ -21,31 +21,16 @@ public final class Container {
         self.parent = parent
     }
     
-    public func register<Service>(serviceType: Service.Type, name: String? = nil, factory: Container -> Service) -> ServiceEntry<Service> {
+    public func register<Service>(serviceType: Service.Type, name: String? = nil, factory: Resolvable -> Service) -> ServiceEntry<Service> {
         return registerImpl(serviceType, factory: factory, name: name)
     }
 
-    public func register<Service, Arg1>(serviceType: Service.Type, name: String? = nil, factory: (Container, Arg1) -> Service) -> ServiceEntry<Service> {
+    public func register<Service, Arg1>(serviceType: Service.Type, name: String? = nil, factory: (Resolvable, Arg1) -> Service) -> ServiceEntry<Service> {
         return registerImpl(serviceType, factory: factory, name: name)
     }
     
-    public func register<Service, Arg1, Arg2>(serviceType: Service.Type, name: String? = nil, factory: (Container, Arg1, Arg2) -> Service) -> ServiceEntry<Service> {
+    public func register<Service, Arg1, Arg2>(serviceType: Service.Type, name: String? = nil, factory: (Resolvable, Arg1, Arg2) -> Service) -> ServiceEntry<Service> {
         return registerImpl(serviceType, factory: factory, name: name)
-    }
-
-    public func resolve<Service>(_: Service.Type, name: String? = nil) -> Service? {
-        typealias FactoryType = Container -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self) }
-    }
-    
-    public func resolve<Service, Arg1>(_: Service.Type, arg1: Arg1, name: String? = nil) -> Service? {
-        typealias FactoryType = (Container, Arg1) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2>(_: Service.Type, arg1: Arg1, arg2: Arg2, name: String? = nil) -> Service? {
-        typealias FactoryType = (Container, Arg1, Arg2) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2) }
     }
     
     private func registerImpl<Service, Factory>(serviceType: Service.Type, factory: Factory, name: String?) -> ServiceEntry<Service> {
@@ -53,6 +38,35 @@ public final class Container {
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
         services[key] = entry
         return entry
+    }
+}
+
+extension Container: Resolvable {
+    public func resolve<Service>(serviceType: Service.Type) -> Service? {
+        return resolve(serviceType, name: nil)
+    }
+    
+    public func resolve<Service, Arg1>(serviceType: Service.Type, arg1: Arg1) -> Service? {
+        return resolve(serviceType, arg1: arg1, name: nil)
+    }
+    
+    public func resolve<Service, Arg1, Arg2>(serviceType: Service.Type, arg1: Arg1, arg2: Arg2) -> Service? {
+        return resolve(serviceType, arg1: arg1, arg2: arg2, name: nil)
+    }
+    
+    public func resolve<Service>(serviceType: Service.Type, name: String?) -> Service? {
+        typealias FactoryType = Resolvable -> Service
+        return resolveImpl(name) { (factory: FactoryType) in factory(self) }
+    }
+    
+    public func resolve<Service, Arg1>(serviceType: Service.Type, arg1: Arg1, name: String?) -> Service? {
+        typealias FactoryType = (Resolvable, Arg1) -> Service
+        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1) }
+    }
+    
+    public func resolve<Service, Arg1, Arg2>(serviceType: Service.Type, arg1: Arg1, arg2: Arg2, name: String?) -> Service? {
+        typealias FactoryType = (Resolvable, Arg1, Arg2) -> Service
+        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2) }
     }
     
     private func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
@@ -116,7 +130,7 @@ public final class Container {
             resolutionPool[key] = resolvedInstance as? AnyObject
         }
         
-        if let completed = entry.initCompleted as? (Container, Service) -> () {
+        if let completed = entry.initCompleted as? (Resolvable, Service) -> () {
             completed(self, resolvedInstance)
         }
         return resolvedInstance

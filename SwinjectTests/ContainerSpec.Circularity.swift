@@ -21,15 +21,15 @@ class ContainerSpec_Circularity: QuickSpec {
             it("resolves circular dependency on each property.") {
                 let runInObjectScope: ObjectScope -> Void = { scope in
                     container.register(ParentType.self) { _ in Mother() }
-                        .initCompleted { (c, i) in
-                            let mother = i as! Mother
-                            mother.child = c.resolve(ChildType.self)
+                        .initCompleted { r, s in
+                            let mother = s as! Mother
+                            mother.child = r.resolve(ChildType.self)
                         }
                         .inObjectScope(scope)
                     container.register(ChildType.self) { _ in Daughter() }
-                        .initCompleted { (c, i) in
-                            let daughter = i as! Daughter
-                            daughter.parent = c.resolve(ParentType.self)!
+                        .initCompleted { r, s in
+                            let daughter = s as! Daughter
+                            daughter.parent = r.resolve(ParentType.self)!
                         }
                         .inObjectScope(scope)
                     
@@ -44,12 +44,12 @@ class ContainerSpec_Circularity: QuickSpec {
             }
             it("resolves circular dependency on the initializer and property.") {
                 let runInObjectScope: ObjectScope -> Void = { scope in
-                    container.register(ParentType.self) { c in Mother(child: c.resolve(ChildType.self)!) }
+                    container.register(ParentType.self) { r in Mother(child: r.resolve(ChildType.self)!) }
                         .inObjectScope(scope)
                     container.register(ChildType.self) { _ in Daughter() }
-                        .initCompleted { (c, i) in
-                            let daughter = i as! Daughter
-                            daughter.parent = c.resolve(ParentType.self)
+                        .initCompleted { r, s in
+                            let daughter = s as! Daughter
+                            daughter.parent = r.resolve(ParentType.self)
                         }
                         .inObjectScope(scope)
                     
@@ -97,9 +97,9 @@ class ContainerSpec_Circularity: QuickSpec {
                 expect(d.c as? CDependingOnAD) === c
             }
             it("resolves circular dependency on initializers and properties.") {
-                container.register(AType.self) { cnt in ADependingOnB(b: cnt.resolve(BType.self)!) }
-                container.register(BType.self) { cnt in BDependingOnC(c: cnt.resolve(CType.self)!) }
-                container.register(CType.self) { cnt in CDependingOnAD(d: cnt.resolve(DType.self)!) }
+                container.register(AType.self) { r in ADependingOnB(b: r.resolve(BType.self)!) }
+                container.register(BType.self) { r in BDependingOnC(c: r.resolve(CType.self)!) }
+                container.register(CType.self) { r in CDependingOnAD(d: r.resolve(DType.self)!) }
                     .initCompleted {
                         let c = $1 as! CDependingOnAD
                         c.a = $0.resolve(AType.self)

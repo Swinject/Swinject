@@ -16,3 +16,13 @@ public protocol RegistrationType {
     func inObjectScope<R: RegistrationType>(scope: ObjectScope) -> R
 }
 */
+
+public protocol Resolvable {
+    func resolve<Service>(serviceType: Service.Type) -> Service?
+    func resolve<Service, Arg1>(serviceType: Service.Type, arg1: Arg1) -> Service?
+    func resolve<Service, Arg1, Arg2>(serviceType: Service.Type, arg1: Arg1, arg2: Arg2) -> Service?
+
+    func resolve<Service>(serviceType: Service.Type, name: String?) -> Service?
+    func resolve<Service, Arg1>(serviceType: Service.Type, arg1: Arg1, name: String?) -> Service?
+    func resolve<Service, Arg1, Arg2>(serviceType: Service.Type, arg1: Arg1, arg2: Arg2, name: String?) -> Service?
+}
