@@ -94,12 +94,12 @@ extension Container: Resolvable {
                 }
                 
                 if ownEntry.instance == nil {
-                    ownEntry.instance = resolveEntry(entry, key: key, invoker: invoker) as? AnyObject
+                    ownEntry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
                 }
                 resolvedInstance = ownEntry.instance as? Service
             case .Hierarchy:
                 if entry.instance == nil {
-                    entry.instance = resolveEntry(entry, key: key, invoker: invoker) as? AnyObject
+                    entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
                 }
                 resolvedInstance = entry.instance as? Service
             }
@@ -131,7 +131,7 @@ extension Container: Resolvable {
                 // An instance for the key might be added by the factory invocation.
                 return pooledInstance
             }
-            resolutionPool[key] = resolvedInstance as? AnyObject
+            resolutionPool[key] = resolvedInstance as Any
         }
         
         if let completed = entry.initCompleted as? (Resolvable, Service) -> () {

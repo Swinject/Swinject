@@ -271,5 +271,43 @@ class ContainerSpec: QuickSpec {
                 expect(owner.pet).notTo(beNil())
             }
         }
+        describe("Value type resolution") {
+            it("resolves struct instances ignoring object scopes.") {
+                let runInObjectScope: ObjectScope -> Void = { scope in
+                    container.removeAll()
+                    container.register(AnimalType.self) { _ in Turtle(name: "Ninja") }
+                        .inObjectScope(scope)
+                    var turtle1 = container.resolve(AnimalType.self)!
+                    var turtle2 = container.resolve(AnimalType.self)!
+                    turtle1.name = "Samurai"
+                    expect(turtle1.name) == "Samurai"
+                    expect(turtle2.name) == "Ninja"
+                }
+                
+                runInObjectScope(.None)
+                runInObjectScope(.Graph)
+                runInObjectScope(.Container)
+                runInObjectScope(.Hierarchy)
+            }
+            it("resolves struct instances defined in the parent container ignoring object scopes.") {
+                let runInObjectScope: ObjectScope -> Void = { scope in
+                    container.removeAll()
+                    container.register(AnimalType.self) { _ in Turtle(name: "Ninja") }
+                        .inObjectScope(scope)
+                    let childContainer = Container(parent: container)
+                    
+                    var turtle1 = childContainer.resolve(AnimalType.self)!
+                    var turtle2 = childContainer.resolve(AnimalType.self)!
+                    turtle1.name = "Samurai"
+                    expect(turtle1.name) == "Samurai"
+                    expect(turtle2.name) == "Ninja"
+                }
+                
+                runInObjectScope(.None)
+                runInObjectScope(.Graph)
+                runInObjectScope(.Container)
+                runInObjectScope(.Hierarchy)
+            }
+        }
     }
 }

@@ -8,7 +8,9 @@
 
 import Foundation
 
-internal protocol AnimalType { }
+internal protocol AnimalType {
+    var name: String? { get set }
+}
 
 internal class Cat: AnimalType {
     var name: String?
@@ -29,4 +31,9 @@ internal class Cat: AnimalType {
 }
 
 internal class Dog: AnimalType {
+    var name: String?
+}
+
+internal struct Turtle: AnimalType {
+    var name: String?
 }
