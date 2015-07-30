@@ -30,6 +30,9 @@ internal class Cat: AnimalType {
     }
 }
 
+internal class Siamese: Cat {
+}
+
 internal class Dog: AnimalType {
     var name: String?
 }

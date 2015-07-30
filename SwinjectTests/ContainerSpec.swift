@@ -309,5 +309,21 @@ class ContainerSpec: QuickSpec {
                 runInObjectScope(.Hierarchy)
             }
         }
+        describe("Class as a service type") {
+            it("resolves a registred subclass of a service type class.") {
+                container.register(Cat.self) { _ in Siamese(name: "Siam") }
+                
+                let siam = container.resolve(Cat.self) as! Siamese
+                expect(siam.name) == "Siam"
+            }
+            it("resolves a self-binding with dependency injected.") {
+                container.register(PetOwner.self) { r in PetOwner(pet: r.resolve(AnimalType.self)!) }
+                container.register(AnimalType.self) { _ in Siamese(name: "Siam") }
+                
+                let owner = container.resolve(PetOwner.self)!
+                let siam = owner.pet as! Siamese
+                expect(siam.name) == "Siam"
+            }
+        }
     }
 }
