@@ -21,6 +21,10 @@ public final class Container {
         self.parent = parent
     }
     
+    public func removeAll() {
+        services.removeAll()
+    }
+    
     public func register<Service>(serviceType: Service.Type, name: String? = nil, factory: Resolvable -> Service) -> ServiceEntry<Service> {
         return registerImpl(serviceType, factory: factory, name: name)
     }
