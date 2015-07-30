@@ -44,6 +44,18 @@ class ContainerSpec: QuickSpec {
                 expect(noname.name).to(beNil())
             }
         }
+        describe("Removal of registered services") {
+            it("can remove all registered services.") {
+                container.register(AnimalType.self, name: "RegMimi") { _ in Cat(name: "Mimi") }
+                container.register(AnimalType.self, name: "RegMew") { _ in Cat(name: "Mew") }
+                container.removeAll()
+                
+                let mimi = container.resolve(AnimalType.self, name: "RegMimi")
+                let mew = container.resolve(AnimalType.self, name: "RegMew")
+                expect(mimi).to(beNil())
+                expect(mew).to(beNil())
+            }
+        }
         describe("Container hierarchy") {
             it("resolves a service registered on the parent container.") {
                 let parent = Container()
