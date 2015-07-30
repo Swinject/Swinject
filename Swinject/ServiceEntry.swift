@@ -11,7 +11,7 @@ import Foundation
 public class ServiceEntryBase {
     internal let factory: Any // Must be a function type.
     internal var scope = ObjectScope.Graph
-    internal var instance: AnyObject?
+    internal var instance: Any?
     internal var initCompleted: Any? // Must be a function type.
     
     internal init(factory: Any) {

@@ -9,10 +9,10 @@
 import Foundation
 
 internal struct ResolutionPool {
-    private var pool = [ServiceKey: AnyObject]()
+    private var pool = [ServiceKey: Any]()
     private var depth: Int = 0
     
-    internal subscript(key: ServiceKey) -> AnyObject? {
+    internal subscript(key: ServiceKey) -> Any? {
         get { return pool[key] }
         set { pool[key] = newValue }
     }
