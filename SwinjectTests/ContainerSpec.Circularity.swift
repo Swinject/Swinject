@@ -122,5 +122,18 @@ class ContainerSpec_Circularity: QuickSpec {
                 expect(d.c as? CDependingOnAD) === c
             }
         }
+        describe("Infinite recursive call") {
+            it("raises an exception to inform the problem to programmers.") {
+                container.register(ParentType.self) { r in Mother(child: r.resolve(ChildType.self)!) }
+                    .inObjectScope(.Graph)
+                container.register(ChildType.self) { r in
+                    let daughter = Daughter()
+                    daughter.parent = r.resolve(ParentType.self)
+                    return daughter
+                }.inObjectScope(.Graph)
+                
+                expect(container.resolve(ParentType.self)).to(raiseException())
+            }
+        }
     }
 }
