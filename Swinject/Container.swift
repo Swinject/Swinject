@@ -9,6 +9,7 @@
 import Foundation
 
 public final class Container {
+    public static let defaultContainer = Container()
     private var services = [ServiceKey: ServiceEntryBase]()
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
