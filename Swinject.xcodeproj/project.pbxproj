@@ -338,7 +338,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = DevSwinject;
+				ORGANIZATIONNAME = "Swinject Contributors";
 				TargetAttributes = {
 					981899BB1B5FE63F00C702D0 = {
 						CreatedOnToolsVersion = 7.0;

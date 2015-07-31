@@ -3,7 +3,7 @@
 //  Swinject
 //
 //  Created by Yoichi Tagaya on 7/24/15.
-//  Copyright © 2015 DevSwinject. All rights reserved.
+//  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
 public enum ObjectScope {
