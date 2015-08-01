@@ -187,23 +187,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9809A75A1B6B47E6005E037E /* ios */ = {
+		9809A75A1B6B47E6005E037E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				9809A75B1B6B47E6005E037E /* SwinjectStoryboard.swift */,
 				98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */,
 			);
-			path = ios;
+			path = iOS;
 			sourceTree = "<group>";
 		};
-		9809A75D1B6B5288005E037E /* ios */ = {
+		9809A75D1B6B5288005E037E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				98D06D391B6B80630081AFE0 /* Fakes */,
 				9809A75E1B6B5288005E037E /* SwinjectStoryboardSpec.swift */,
 				98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */,
 			);
-			path = ios;
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		981ABE771B5FC9DF00294975 = {
@@ -237,7 +237,7 @@
 				9819701E1B6145D600EEB942 /* ObjectScope.swift */,
 				98C642A51B62752D006123A6 /* Syntax.swift */,
 				981ABE841B5FC9DF00294975 /* Swinject.h */,
-				9809A75A1B6B47E6005E037E /* ios */,
+				9809A75A1B6B47E6005E037E /* iOS */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
 			);
 			path = Swinject;
@@ -252,7 +252,7 @@
 				9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */,
 				9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */,
 				9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */,
-				9809A75D1B6B5288005E037E /* ios */,
+				9809A75D1B6B5288005E037E /* iOS */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 			);
 			path = SwinjectTests;
