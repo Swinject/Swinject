@@ -6,7 +6,7 @@
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public final class Container {
     public static let defaultContainer = Container()
@@ -46,6 +46,34 @@ public final class Container {
     }
 }
 
+// MARK: - Extension for Storyboard
+extension Container {
+    public func registerForStoryboard<VC: UIViewController>(viewControllerType: VC.Type, name: String? = nil, initCompleted: (Resolvable, VC) -> ()) {
+        let key = ServiceKey(factoryType: viewControllerType, name: name)
+        let entry = ServiceEntry(serviceType: viewControllerType)
+        entry.initCompleted(initCompleted)
+        services[key] = entry
+    }
+    
+    internal func runInitCompleted<VC: UIViewController>(viewControllerType: VC.Type, viewController: VC, name: String? = nil) {
+        resolutionPool.incrementDepth()
+        defer { resolutionPool.decrementDepth() }
+        
+        let key = ServiceKey(factoryType: viewControllerType, name: name)
+        if let entry = services[key] {
+            resolutionPool[key] = viewController as Any
+            if let completed = entry.initCompleted as? (Resolvable, VC) -> () {
+                completed(self, viewController)
+            }
+        }
+    }
+    
+    private func getEntry(key: ServiceKey) -> ServiceEntryBase? {
+        return services[key] ?? self.parent?.getEntry(key)
+    }
+}
+
+// MARK: - Resolvable
 extension Container: Resolvable {
     public func resolve<Service>(serviceType: Service.Type) -> Service? {
         return resolve(serviceType, name: nil)

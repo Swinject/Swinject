@@ -12,11 +12,24 @@ import Nimble
 
 class SwinjectStoryboardSpec: QuickSpec {
     override func spec() {
-        it("instantiates a view controller with an identifier.") {
+        var container: Container!
+        var storyboard: SwinjectStoryboard!
+        beforeEach {
+            container = Container()
             let bundle = NSBundle(forClass: SwinjectStoryboardSpec.self)
-            let storyboard = SwinjectStoryboard.create(name: "TestStoryboard", bundle: bundle)
-            let viewController = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
-            expect(viewController).to(beAnInstanceOf(UITabBarController.self))
+            storyboard = SwinjectStoryboard.create(name: "TestStoryboard", bundle: bundle, container: container)
+        }
+        
+        describe("Instantiation from storyboard") {
+            it("injects dependency definded by initCompleted handler.") {
+                container.registerForStoryboard(AnimalViewController.self) { r, vc in
+                    vc.animal = r.resolve(AnimalType.self)
+                }
+                container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+                
+                let animalViewController = storyboard.instantiateViewControllerWithIdentifier("AnimalAsCat") as! AnimalViewController
+                expect(animalViewController.hasAnimal(named: "Mimi")) == true
+            }
         }
     }
 }

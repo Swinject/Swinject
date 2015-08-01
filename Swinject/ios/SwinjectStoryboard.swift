@@ -34,7 +34,8 @@ public class SwinjectStoryboard: UIStoryboard {
     }
     
     private func injectDependency(viewController: UIViewController) {
-        // TODO: Inject depnendency by the container.
+        let registrationName = viewController.swinjectRegistrationName
+        container.runInitCompleted(viewController.dynamicType, viewController: viewController, name: registrationName)
         
         for child in viewController.childViewControllers {
             self.injectDependency(child)
