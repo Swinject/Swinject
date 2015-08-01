@@ -35,6 +35,13 @@ internal class Siamese: Cat {
 
 internal class Dog: AnimalType {
     var name: String?
+    
+    init() {
+    }
+    
+    init(name: String) {
+        self.name = name
+    }
 }
 
 internal struct Turtle: AnimalType {
