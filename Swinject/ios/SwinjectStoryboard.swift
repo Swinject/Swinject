@@ -31,7 +31,7 @@ public class SwinjectStoryboard: UIStoryboard {
     public override func instantiateViewControllerWithIdentifier(identifier: String) -> UIViewController {
         let viewController = super.instantiateViewControllerWithIdentifier(identifier)
         self.injectDependency(viewController)
-        return viewController;
+        return viewController
     }
     
     private func injectDependency(viewController: UIViewController) {
