@@ -48,22 +48,22 @@ public final class Container {
 
 // MARK: - Extension for Storyboard
 extension Container {
-    public func registerForStoryboard<VC: Controller>(viewControllerType: VC.Type, name: String? = nil, initCompleted: (Resolvable, VC) -> ()) {
-        let key = ServiceKey(factoryType: viewControllerType, name: name)
-        let entry = ServiceEntry(serviceType: viewControllerType)
+    public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
+        let key = ServiceKey(factoryType: controllerType, name: name)
+        let entry = ServiceEntry(serviceType: controllerType)
         entry.initCompleted(initCompleted)
         services[key] = entry
     }
     
-    internal func runInitCompleted<VC: Controller>(viewControllerType: VC.Type, viewController: VC, name: String? = nil) {
+    internal func runInitCompleted<C: Controller>(controllerType: C.Type, controller: C, name: String? = nil) {
         resolutionPool.incrementDepth()
         defer { resolutionPool.decrementDepth() }
         
-        let key = ServiceKey(factoryType: viewControllerType, name: name)
+        let key = ServiceKey(factoryType: controllerType, name: name)
         if let entry = services[key] {
-            resolutionPool[key] = viewController as Any
-            if let completed = entry.initCompleted as? (Resolvable, VC) -> () {
-                completed(self, viewController)
+            resolutionPool[key] = controller as Any
+            if let completed = entry.initCompleted as? (Resolvable, C) -> () {
+                completed(self, controller)
             }
         }
     }

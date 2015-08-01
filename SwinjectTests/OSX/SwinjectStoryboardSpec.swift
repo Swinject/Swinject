@@ -20,8 +20,8 @@ class SwinjectStoryboardSpec: QuickSpec {
         
         describe("Instantiation from storyboard") {
             it("injects view controller dependency definded by initCompleted handler.") {
-                container.registerForStoryboard(AnimalViewController.self) { r, vc in
-                    vc.animal = r.resolve(AnimalType.self)
+                container.registerForStoryboard(AnimalViewController.self) { r, c in
+                    c.animal = r.resolve(AnimalType.self)
                 }
                 container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
                 
@@ -30,8 +30,8 @@ class SwinjectStoryboardSpec: QuickSpec {
                 expect(animalViewController.hasAnimal(named: "Mimi")) == true
             }
             it("injects window controller dependency definded by initCompleted handler.") {
-                container.registerForStoryboard(AnimalWindowController.self) { r, vc in
-                    vc.animal = r.resolve(AnimalType.self)
+                container.registerForStoryboard(AnimalWindowController.self) { r, c in
+                    c.animal = r.resolve(AnimalType.self)
                 }
                 container.register(AnimalType.self) { _ in Cat(name: "Mew") }
                 

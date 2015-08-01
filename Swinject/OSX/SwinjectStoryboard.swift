@@ -33,14 +33,14 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase {
     private func injectDependency(controller: AnyObject) {
         let registrationName = (controller as! RegistrationNameAssociatable).swinjectRegistrationName
         if let viewController = controller as? NSViewController {
-            container.runInitCompleted(viewController.dynamicType, viewController: viewController, name: registrationName)
+            container.runInitCompleted(viewController.dynamicType, controller: viewController, name: registrationName)
         
             for child in viewController.childViewControllers {
                 self.injectDependency(child)
             }
         }
         else if let windowController = controller as? NSWindowController {
-            container.runInitCompleted(windowController.dynamicType, viewController: windowController, name: registrationName)
+            container.runInitCompleted(windowController.dynamicType, controller: windowController, name: registrationName)
         }
     }
 }
