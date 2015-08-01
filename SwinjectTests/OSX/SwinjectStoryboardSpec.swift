@@ -54,6 +54,40 @@ class SwinjectStoryboardSpec: QuickSpec {
                 let cat2 = animalViewController2.animal as! Cat
                 expect(cat1) === cat2
             }
+            context("with a registration name set as a user defined runtime attribute on Interface Builder") {
+                it("injects view controller dependency definded by initCompleted handler with the registration name.") {
+                    // The registration name "hachi" is set in the storyboard.
+                    container.registerForStoryboard(AnimalViewController.self, name: "hachi") { r, c in
+                        c.animal = r.resolve(AnimalType.self)
+                    }
+                    container.register(AnimalType.self) { _ in Dog(name: "Hachi") }
+                    
+                    // This registration should not be resolved.
+                    container.registerForStoryboard(AnimalViewController.self) { _, c in
+                        c.animal = Cat(name: "Mimi")
+                    }
+                    
+                    let storyboard = SwinjectStoryboard.create(name: "Animals", bundle: bundle, container: container)
+                    let animalViewController = storyboard.instantiateControllerWithIdentifier("HachiView") as! AnimalViewController
+                    expect(animalViewController.hasAnimal(named: "Hachi")) == true
+                }
+                it("injects window controller dependency definded by initCompleted handler with the registration name.") {
+                    // The registration name "hachi" is set in the storyboard.
+                    container.registerForStoryboard(AnimalWindowController.self, name: "pochi") { r, c in
+                        c.animal = r.resolve(AnimalType.self)
+                    }
+                    container.register(AnimalType.self) { _ in Dog(name: "Pochi") }
+                    
+                    // This registration should not be resolved.
+                    container.registerForStoryboard(AnimalWindowController.self) { _, c in
+                        c.animal = Cat(name: "Mimi")
+                    }
+                    
+                    let storyboard = SwinjectStoryboard.create(name: "Animals", bundle: bundle, container: container)
+                    let animalViewController = storyboard.instantiateControllerWithIdentifier("PochiWindow") as! AnimalWindowController
+                    expect(animalViewController.hasAnimal(named: "Pochi")) == true
+                }
+            }
         }
     }
 }
