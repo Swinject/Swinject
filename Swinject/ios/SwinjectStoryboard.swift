@@ -20,6 +20,7 @@ public class SwinjectStoryboard: UIStoryboard {
     }
     
     public class func create(name name: String, bundle storyboardBundleOrNil: NSBundle?, container: Container) -> SwinjectStoryboard {
+        // Swizzle to create a SwinjectStoryboard instance because the initializer of UIStoryboard is "not inherited".
         let storyboard = UIStoryboard(name: name, bundle: storyboardBundleOrNil)
         object_setClass(storyboard, SwinjectStoryboard.self)
         let swinjectStoryboard = storyboard as! SwinjectStoryboard
