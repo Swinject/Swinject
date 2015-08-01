@@ -25,7 +25,7 @@ class SwinjectStoryboardSpec: QuickSpec {
                 }
                 container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
                 
-                let storyboard = SwinjectStoryboard.create(name: "TestStoryboard", bundle: bundle, container: container)
+                let storyboard = SwinjectStoryboard.create(name: "Animals", bundle: bundle, container: container)
                 let animalViewController = storyboard.instantiateViewControllerWithIdentifier("AnimalAsCat") as! AnimalViewController
                 expect(animalViewController.hasAnimal(named: "Mimi")) == true
             }
@@ -57,7 +57,7 @@ class SwinjectStoryboardSpec: QuickSpec {
                         vc.animal = Cat(name: "Mimi")
                     }
                     
-                    let storyboard = SwinjectStoryboard.create(name: "TestStoryboard", bundle: bundle, container: container)
+                    let storyboard = SwinjectStoryboard.create(name: "Animals", bundle: bundle, container: container)
                     let animalViewController = storyboard.instantiateViewControllerWithIdentifier("AnimalAsDog") as! AnimalViewController
                     expect(animalViewController.hasAnimal(named: "Hachi")) == true
                 }
