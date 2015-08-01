@@ -12,7 +12,7 @@ import Nimble
 
 class NSViewController_SwinjectSpec: QuickSpec {
     override func spec() {
-        it("adds a property to UIViewController to store Swinject container registration name.") {
+        it("adds a property to NSViewController to store Swinject container registration name.") {
             let controller1 = NSViewController(nibName: nil, bundle: nil)!
             let controller2 = NSViewController(nibName: nil, bundle: nil)!
             controller1.swinjectRegistrationName = "1"
