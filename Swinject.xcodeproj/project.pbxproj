@@ -24,6 +24,7 @@
 		981650351B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 981650331B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m */; };
 		981650361B6D19F000BC4222 /* Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C642A51B62752D006123A6 /* Syntax.swift */; };
 		981650381B6D1A1600BC4222 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 981650371B6D1A1600BC4222 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9816503A1B6D270E00BC4222 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981650391B6D270E00BC4222 /* Tabs.storyboard */; };
 		981899C61B5FE63F00C702D0 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899BC1B5FE63F00C702D0 /* Swinject.framework */; };
 		981899D61B5FE71400C702D0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D41B5FE71400C702D0 /* Nimble.framework */; };
 		981899D71B5FE71400C702D0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899D51B5FE71400C702D0 /* Quick.framework */; };
@@ -130,6 +131,7 @@
 		981650321B6D0C0E00BC4222 /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SwinjectStoryboardBase.h; sourceTree = "<group>"; };
 		981650331B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SwinjectStoryboardBase.m; sourceTree = "<group>"; };
 		981650371B6D1A1600BC4222 /* Swinject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
+		981650391B6D270E00BC4222 /* Tabs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		981899BC1B5FE63F00C702D0 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		981899C51B5FE63F00C702D0 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		981899D41B5FE71400C702D0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				981650301B6D085900BC4222 /* AnimalViewController.swift */,
 				9816502E1B6D041300BC4222 /* AnimalWindowController.swift */,
 				986A58391B6D031700FE710F /* Animals.storyboard */,
+				981650391B6D270E00BC4222 /* Tabs.storyboard */,
 			);
 			name = Fakes;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9816503A1B6D270E00BC4222 /* Tabs.storyboard in Resources */,
 				986A583A1B6D031700FE710F /* Animals.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

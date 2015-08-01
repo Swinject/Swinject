@@ -39,6 +39,21 @@ class SwinjectStoryboardSpec: QuickSpec {
                 let animalViewController = storyboard.instantiateControllerWithIdentifier("AnimalWindow") as! AnimalWindowController
                 expect(animalViewController.hasAnimal(named: "Mew")) == true
             }
+            it("injects dependency to child view controllers.") {
+                container.registerForStoryboard(AnimalViewController.self) { r, c in
+                    c.animal = r.resolve(AnimalType.self)
+                }
+                container.register(AnimalType.self) { _ in Cat() }
+                    .inObjectScope(.Container)
+                
+                let storyboard = SwinjectStoryboard.create(name: "Tabs", bundle: bundle, container: container)
+                let tabBarController = storyboard.instantiateControllerWithIdentifier("TabBarController")
+                let animalViewController1 = tabBarController.childViewControllers[0] as! AnimalViewController
+                let animalViewController2 = tabBarController.childViewControllers[1] as! AnimalViewController
+                let cat1 = animalViewController1.animal as! Cat
+                let cat2 = animalViewController2.animal as! Cat
+                expect(cat1) === cat2
+            }
         }
     }
 }
