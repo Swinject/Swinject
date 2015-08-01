@@ -55,6 +55,7 @@
 		98D06D3D1B6B816C0081AFE0 /* AnimalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */; };
 		98D06D3F1B6BA7B60081AFE0 /* UIViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */; };
 		98D06D411B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */; };
+		98D06D491B6CB79B0081AFE0 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalViewController.swift; sourceTree = "<group>"; };
 		98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Swinject.swift"; sourceTree = "<group>"; };
 		98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+SwinjectSpec.swift"; sourceTree = "<group>"; };
+		98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +274,7 @@
 			children = (
 				98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */,
 				98D06D361B6B579F0081AFE0 /* TestStoryboard.storyboard */,
+				98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */,
 			);
 			name = Fakes;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98D06D491B6CB79B0081AFE0 /* Tabs.storyboard in Resources */,
 				98D06D371B6B579F0081AFE0 /* TestStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

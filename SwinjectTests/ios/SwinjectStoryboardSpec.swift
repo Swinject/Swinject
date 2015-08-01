@@ -12,12 +12,10 @@ import Nimble
 
 class SwinjectStoryboardSpec: QuickSpec {
     override func spec() {
+        let bundle = NSBundle(forClass: SwinjectStoryboardSpec.self)
         var container: Container!
-        var storyboard: SwinjectStoryboard!
         beforeEach {
             container = Container()
-            let bundle = NSBundle(forClass: SwinjectStoryboardSpec.self)
-            storyboard = SwinjectStoryboard.create(name: "TestStoryboard", bundle: bundle, container: container)
         }
         
         describe("Instantiation from storyboard") {
@@ -27,8 +25,24 @@ class SwinjectStoryboardSpec: QuickSpec {
                 }
                 container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
                 
+                let storyboard = SwinjectStoryboard.create(name: "TestStoryboard", bundle: bundle, container: container)
                 let animalViewController = storyboard.instantiateViewControllerWithIdentifier("AnimalAsCat") as! AnimalViewController
                 expect(animalViewController.hasAnimal(named: "Mimi")) == true
+            }
+            it("injects dependency to child view controllers.") {
+                container.registerForStoryboard(AnimalViewController.self) { r, vc in
+                    vc.animal = r.resolve(AnimalType.self)
+                }
+                container.register(AnimalType.self) { _ in Cat() }
+                    .inObjectScope(.Container)
+
+                let storyboard = SwinjectStoryboard.create(name: "Tabs", bundle: bundle, container: container)
+                let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController")
+                let animalViewController1 = tabBarController.childViewControllers[0] as! AnimalViewController
+                let animalViewController2 = tabBarController.childViewControllers[1] as! AnimalViewController
+                let cat1 = animalViewController1.animal as! Cat
+                let cat2 = animalViewController2.animal as! Cat
+                expect(cat1) === cat2
             }
             context("with a registration name set as a user defined runtime attribute on Interface Builder") {
                 it("injects dependency definded by initCompleted handler with the registration name.") {
@@ -43,6 +57,7 @@ class SwinjectStoryboardSpec: QuickSpec {
                         vc.animal = Cat(name: "Mimi")
                     }
                     
+                    let storyboard = SwinjectStoryboard.create(name: "TestStoryboard", bundle: bundle, container: container)
                     let animalViewController = storyboard.instantiateViewControllerWithIdentifier("AnimalAsDog") as! AnimalViewController
                     expect(animalViewController.hasAnimal(named: "Hachi")) == true
                 }
