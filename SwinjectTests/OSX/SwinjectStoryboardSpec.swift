@@ -89,5 +89,17 @@ class SwinjectStoryboardSpec: QuickSpec {
                 }
             }
         }
+        describe("Initial controller") {
+            it("injects dependency definded by initCompleted handler.") {
+                container.registerForStoryboard(AnimalWindowController.self) { r, c in
+                    c.animal = r.resolve(AnimalType.self)
+                }
+                container.register(AnimalType.self) { _ in Cat(name: "Mew") }
+                
+                let storyboard = SwinjectStoryboard.create(name: "Animals", bundle: bundle, container: container)
+                let animalViewController = storyboard.instantiateInitialController() as! AnimalWindowController
+                expect(animalViewController.hasAnimal(named: "Mew")) == true
+            }
+        }
     }
 }
