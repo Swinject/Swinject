@@ -26,7 +26,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase {
     
     public override func instantiateControllerWithIdentifier(identifier: String) -> AnyObject {
         let controller = super.instantiateControllerWithIdentifier(identifier)
-        self.injectDependency(controller)
+        injectDependency(controller)
         return controller
     }
     
@@ -36,7 +36,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase {
             container.runInitCompleted(viewController.dynamicType, controller: viewController, name: registrationName)
         
             for child in viewController.childViewControllers {
-                self.injectDependency(child)
+                injectDependency(child)
             }
         }
         else if let windowController = controller as? NSWindowController {

@@ -30,7 +30,7 @@ public class SwinjectStoryboard: UIStoryboard {
     
     public override func instantiateViewControllerWithIdentifier(identifier: String) -> UIViewController {
         let viewController = super.instantiateViewControllerWithIdentifier(identifier)
-        self.injectDependency(viewController)
+        injectDependency(viewController)
         return viewController
     }
     
@@ -39,7 +39,7 @@ public class SwinjectStoryboard: UIStoryboard {
         container.runInitCompleted(viewController.dynamicType, controller: viewController, name: registrationName)
         
         for child in viewController.childViewControllers {
-            self.injectDependency(child)
+            injectDependency(child)
         }
     }
 }
