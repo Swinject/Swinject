@@ -47,6 +47,8 @@
 		9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */; };
 		985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
 		985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
+		986458C91B6E593800AFA2D7 /* _SwinjectStoryboardBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		986458CA1B6E593800AFA2D7 /* _SwinjectStoryboardBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */; };
 		986A58261B6CCB2800FE710F /* Container+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58251B6CCB2800FE710F /* Container+Typealias.swift */; };
 		986A58281B6CCC9600FE710F /* Container+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58271B6CCC9600FE710F /* Container+Typealias.swift */; };
 		986A582D1B6CF96700FE710F /* NSWindowController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582C1B6CF96700FE710F /* NSWindowController+Swinject.swift */; };
@@ -148,6 +150,8 @@
 		9855C5C41B689B7B00DADB0B /* FoodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodType.swift; sourceTree = "<group>"; };
 		9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntrySpec.swift; sourceTree = "<group>"; };
 		985BAFA81B625E0F0055F998 /* ServiceEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntry.swift; sourceTree = "<group>"; };
+		986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _SwinjectStoryboardBase.h; path = Swinject/ios/_SwinjectStoryboardBase.h; sourceTree = SOURCE_ROOT; };
+		986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _SwinjectStoryboardBase.m; path = Swinject/ios/_SwinjectStoryboardBase.m; sourceTree = SOURCE_ROOT; };
 		986A58251B6CCB2800FE710F /* Container+Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+Typealias.swift"; sourceTree = "<group>"; };
 		986A58271B6CCC9600FE710F /* Container+Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+Typealias.swift"; sourceTree = "<group>"; };
 		986A582C1B6CF96700FE710F /* NSWindowController+Swinject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindowController+Swinject.swift"; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				986A58251B6CCB2800FE710F /* Container+Typealias.swift */,
+				986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */,
+				986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */,
 				9809A75B1B6B47E6005E037E /* SwinjectStoryboard.swift */,
 				98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */,
 				981650371B6D1A1600BC4222 /* Swinject.h */,
@@ -368,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				981650381B6D1A1600BC4222 /* Swinject.h in Headers */,
+				986458C91B6E593800AFA2D7 /* _SwinjectStoryboardBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +585,7 @@
 				986A58261B6CCB2800FE710F /* Container+Typealias.swift in Sources */,
 				981577F41B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				9809A75C1B6B47E6005E037E /* SwinjectStoryboard.swift in Sources */,
+				986458CA1B6E593800AFA2D7 /* _SwinjectStoryboardBase.m in Sources */,
 				98C642A61B62752D006123A6 /* Syntax.swift in Sources */,
 				981899E41B5FFE5800C702D0 /* Container.swift in Sources */,
 				9884E2A71B60B77400120259 /* ServiceKey.swift in Sources */,
@@ -734,7 +742,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -776,7 +784,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

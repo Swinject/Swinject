@@ -7,7 +7,6 @@
 //
 
 import AppKit
-import ObjectiveC
 
 private var associationKey: String = "NSWindowController.swinjectRegistrationName"
 
