@@ -11,6 +11,10 @@ import AppKit
 public class SwinjectStoryboard: _SwinjectStoryboardBase {
     private var container: Container!
     
+    private override init() {
+        super.init()
+    }
+    
     public class func create(name name: String, bundle storyboardBundleOrNil: NSBundle?) -> SwinjectStoryboard {
         return SwinjectStoryboard.create(name: name, bundle: storyboardBundleOrNil, container: Container.defaultContainer)
     }
