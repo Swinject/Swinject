@@ -101,5 +101,18 @@ class SwinjectStoryboardSpec: QuickSpec {
                 expect(animalViewController.hasAnimal(named: "Mew")) == true
             }
         }
+        describe("Factory method") {
+            it("uses the default shared container if no container is passed.") {
+                Container.defaultContainer.registerForStoryboard(AnimalViewController.self) { _, _ in }
+                
+                let storyboard = SwinjectStoryboard.create(name: "Animals", bundle: bundle)
+                let animalViewController = storyboard.instantiateControllerWithIdentifier("AnimalView")
+                expect(animalViewController).notTo(beNil())
+            }
+            
+            afterEach {
+                Container.defaultContainer.removeAll()
+            }
+        }
     }
 }
