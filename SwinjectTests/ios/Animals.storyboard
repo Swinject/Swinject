@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="s90-DT-MzP">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+    </dependencies>
+    <scenes>
+        <!--Animal View Controller (Cat)-->
+        <scene sceneID="uw0-Ke-KXA">
+            <objects>
+                <viewController storyboardIdentifier="AnimalAsCat" id="s90-DT-MzP" userLabel="Animal View Controller (Cat)" customClass="AnimalViewController" customModule="SwinjectTests" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pap-N0-uXv"/>
+                        <viewControllerLayoutGuide type="bottom" id="Otv-FS-3MP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BFz-Hf-blS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KQn-DA-0RR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="738" y="764"/>
+        </scene>
+        <!--Animal View Controller (Dog)-->
+        <scene sceneID="NUu-GL-8Ip">
+            <objects>
+                <viewController storyboardIdentifier="AnimalAsDog" id="wH0-6z-vtW" userLabel="Animal View Controller (Dog)" customClass="AnimalViewController" customModule="SwinjectTests" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h9L-dR-KU8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wez-8z-lU7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zrP-Yj-pEt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="swinjectRegistrationName" value="hachi"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z3M-4k-Q1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1378" y="764"/>
+        </scene>
+    </scenes>
+</document>

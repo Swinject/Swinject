@@ -9,6 +9,7 @@
 import Foundation
 
 public final class Container {
+    public static let defaultContainer = Container()
     private var services = [ServiceKey: ServiceEntryBase]()
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
@@ -45,6 +46,34 @@ public final class Container {
     }
 }
 
+// MARK: - Extension for Storyboard
+extension Container {
+    public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
+        let key = ServiceKey(factoryType: controllerType, name: name)
+        let entry = ServiceEntry(serviceType: controllerType)
+        entry.initCompleted(initCompleted)
+        services[key] = entry
+    }
+    
+    internal func runInitCompleted<C: Controller>(controllerType: C.Type, controller: C, name: String? = nil) {
+        resolutionPool.incrementDepth()
+        defer { resolutionPool.decrementDepth() }
+        
+        let key = ServiceKey(factoryType: controllerType, name: name)
+        if let entry = services[key] {
+            resolutionPool[key] = controller as Any
+            if let completed = entry.initCompleted as? (Resolvable, C) -> () {
+                completed(self, controller)
+            }
+        }
+    }
+    
+    private func getEntry(key: ServiceKey) -> ServiceEntryBase? {
+        return services[key] ?? self.parent?.getEntry(key)
+    }
+}
+
+// MARK: - Resolvable
 extension Container: Resolvable {
     public func resolve<Service>(serviceType: Service.Type) -> Service? {
         return resolve(serviceType, name: nil)
