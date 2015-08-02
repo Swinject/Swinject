@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class SwinjectStoryboard: UIStoryboard {
+public class SwinjectStoryboard: _SwinjectStoryboardBase {
     private var container: Container!
     
     private override init() {
@@ -20,12 +20,10 @@ public class SwinjectStoryboard: UIStoryboard {
     }
     
     public class func create(name name: String, bundle storyboardBundleOrNil: NSBundle?, container: Container) -> SwinjectStoryboard {
-        // Swizzle to create a SwinjectStoryboard instance because the initializer of UIStoryboard is "not inherited".
-        let storyboard = UIStoryboard(name: name, bundle: storyboardBundleOrNil)
-        object_setClass(storyboard, SwinjectStoryboard.self)
-        let swinjectStoryboard = storyboard as! SwinjectStoryboard
-        swinjectStoryboard.container = container
-        return swinjectStoryboard
+        // Use this factory method to create an instance because the initializer of UIStoryboard is "not inherited".
+        let storyboard = SwinjectStoryboard._create(name, bundle: storyboardBundleOrNil)
+        storyboard.container = container
+        return storyboard
     }
     
     public override func instantiateViewControllerWithIdentifier(identifier: String) -> UIViewController {

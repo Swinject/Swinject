@@ -16,9 +16,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase {
     }
     
     public class func create(name name: String, bundle storyboardBundleOrNil: NSBundle?, container: Container) -> SwinjectStoryboard {
-        // Create a SwinjectStoryboard instance inheriting a base class written in Objective-C.
-        // For iOS, isa pointer swizzle works perfectly, but for OSX, it causes EXC_BAD_ACCESS randomly.
-        // To workaround the problem, an intermediate base class written in Objective-C is used.
+        // Use this factory method to create an instance because the initializer of NSStoryboard is "not inherited".
         let storyboard = SwinjectStoryboard._create(name, bundle: storyboardBundleOrNil)
         storyboard.container = container
         return storyboard
