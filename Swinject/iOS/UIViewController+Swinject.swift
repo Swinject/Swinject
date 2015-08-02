@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ObjectiveC
 
 private var associationKey: String = "UIViewController.swinjectRegistrationName"
 
