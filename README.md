@@ -9,9 +9,9 @@ Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_in
 - [x] Circular Dependency Injection
 - [x] Injection with Arguments
 - [x] Self-binding
-- [x] Hierarchy of Dependency Injection Containers
+- [x] Container Hierarchy
 - [x] Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy
-- [x] Injection to Classes and Value Types
+- [x] Injection of both Reference and Value Types
 - [x] Storyboard
 
 ## Requirements

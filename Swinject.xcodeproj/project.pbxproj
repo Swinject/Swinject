@@ -145,6 +145,7 @@
 		981ABE861B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		981ABE8B1B5FC9DF00294975 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		981ABE921B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9848611A1B6F21EC00C07072 /* Sample-iOS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sample-iOS.playground"; sourceTree = "<group>"; };
 		9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Circularity.swift; sourceTree = "<group>"; };
 		9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolutionPoolSpec.swift; sourceTree = "<group>"; };
 		9855C5C41B689B7B00DADB0B /* FoodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodType.swift; sourceTree = "<group>"; };
@@ -249,6 +250,7 @@
 		981ABE771B5FC9DF00294975 = {
 			isa = PBXGroup;
 			children = (
+				9848611A1B6F21EC00C07072 /* Sample-iOS.playground */,
 				981ABE831B5FC9DF00294975 /* Swinject */,
 				981ABE8F1B5FC9DF00294975 /* SwinjectTests */,
 				981ABE821B5FC9DF00294975 /* Products */,
