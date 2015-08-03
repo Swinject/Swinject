@@ -37,6 +37,8 @@
 		9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		981970201B6145D600EEB942 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981ABE811B5FC9DF00294975 /* Swinject.framework */; };
+		9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
+		9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		9855C5BF1B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
 		9855C5C01B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
 		9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */; };
@@ -146,6 +148,7 @@
 		981ABE8B1B5FC9DF00294975 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		981ABE921B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9848611A1B6F21EC00C07072 /* Sample-iOS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sample-iOS.playground"; sourceTree = "<group>"; };
+		9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
 		9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Circularity.swift; sourceTree = "<group>"; };
 		9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolutionPoolSpec.swift; sourceTree = "<group>"; };
 		9855C5C41B689B7B00DADB0B /* FoodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodType.swift; sourceTree = "<group>"; };
@@ -291,6 +294,7 @@
 			children = (
 				9878C63A1B65CA0600CBEFEF /* Fakes */,
 				981899E01B5FF88800C702D0 /* ContainerSpec.swift */,
+				9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */,
 				9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */,
 				9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */,
 				9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */,
@@ -563,6 +567,7 @@
 				9855C5C61B689B7B00DADB0B /* FoodType.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				986A58371B6D02A500FE710F /* SwinjectStoryboardSpec.swift in Sources */,
+				9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
 				9878C63D1B65CA8700CBEFEF /* PersonType.swift in Sources */,
 				9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				9855C5C31B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
@@ -604,6 +609,7 @@
 				9809A75F1B6B5288005E037E /* SwinjectStoryboardSpec.swift in Sources */,
 				9878C63C1B65CA8700CBEFEF /* PersonType.swift in Sources */,
 				98D06D411B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift in Sources */,
+				9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
 				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
 				98D06D3D1B6B816C0081AFE0 /* AnimalViewController.swift in Sources */,
