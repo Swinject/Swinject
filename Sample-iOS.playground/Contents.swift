@@ -151,3 +151,36 @@ container.register(PersonType.self, name: "method2") { _ in InjectablePerson() }
 
 let methodInjection2 = container.resolve(PersonType.self, name:"method2")!
 print(methodInjection2.play())
+
+/*:
+## Circular Dependency
+*/
+
+internal protocol ParentType: AnyObject { }
+internal protocol ChildType: AnyObject { }
+
+internal class Mother: ParentType {
+    let child: ChildType?
+    
+    init(child: ChildType?) {
+        self.child = child
+    }
+}
+
+internal class Daughter: ChildType {
+    weak var parent: ParentType?
+}
+
+// Use initCompleted callback to set the circular dependency to avoid infinite recursion.
+container.register(ParentType.self) { r in Mother(child: r.resolve(ChildType.self)!) }
+container.register(ChildType.self) { _ in Daughter() }
+    .initCompleted { r, c in
+        let daughter = c as! Daughter
+        daughter.parent = r.resolve(ParentType.self)
+    }
+
+let mother = container.resolve(ParentType.self) as! Mother
+let daughter = mother.child as! Daughter
+
+// The mother and daughter are referencing each other.
+print(mother === daughter.parent)
