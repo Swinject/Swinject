@@ -186,6 +186,34 @@ let daughter = mother.child as! Daughter
 print(mother === daughter.parent)
 
 /*:
+## Injection with Arguments
+*/
+
+class Horse: AnimalType {
+    let name: String?
+    var running = false
+    
+    init(name: String, running: Bool) {
+        self.name = name
+        self.running = running
+    }
+    
+    func sound() -> String {
+        return "Whinny!"
+    }
+}
+
+// The factory closure can take arguments.
+// Note that the container already has an AnimalType without a registration name,
+// but the factory with the arguments is recognized as a different registration to resolve.
+container.register(AnimalType.self) { _, arg1, arg2 in Horse(name: arg1, running: arg2) }
+
+// The arguments to the factory are specified on the resolution.
+let horse = container.resolve(AnimalType.self, arg1: "Lucky", arg2: true) as! Horse
+print(horse.name!)
+print(horse.running)
+
+/*:
 ## Self-binding
 */
 
