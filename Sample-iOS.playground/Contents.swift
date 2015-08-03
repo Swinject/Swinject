@@ -184,3 +184,19 @@ let daughter = mother.child as! Daughter
 
 // The mother and daughter are referencing each other.
 print(mother === daughter.parent)
+
+/*:
+## Self-binding
+*/
+
+class SelfieBoy {
+    func takePhoto() -> String {
+        return "Selfie!"
+    }
+}
+
+// Register SelfieBoy as both service and component types.
+container.register(SelfieBoy.self) { r in SelfieBoy() }
+
+let selfieBoy = container.resolve(SelfieBoy.self)!
+print(selfieBoy.takePhoto())
