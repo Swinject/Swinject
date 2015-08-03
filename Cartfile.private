@@ -1,2 +1,2 @@
-github "Quick/Quick" == 0.5.1
-github "Quick/Nimble" == 2.0.0
+github "Quick/Quick" ~> 0.3.1
+github "Quick/Nimble" ~> 0.4.2
