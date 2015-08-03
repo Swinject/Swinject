@@ -62,6 +62,19 @@ class SwinjectStoryboardSpec: QuickSpec {
                     expect(animalViewController.hasAnimal(named: "Hachi")) == true
                 }
             }
+            context("with container hierarchy") {
+                it("injects view controller dependency definded in the parent container.") {
+                    container.registerForStoryboard(AnimalViewController.self) { r, c in
+                        c.animal = r.resolve(AnimalType.self)
+                    }
+                    container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+                    let childContainer = Container(parent: container)
+                    
+                    let storyboard = SwinjectStoryboard.create(name: "Animals", bundle: bundle, container: childContainer)
+                    let animalViewController = storyboard.instantiateViewControllerWithIdentifier("AnimalAsCat") as! AnimalViewController
+                    expect(animalViewController.hasAnimal(named: "Mimi")) == true
+                }
+            }
         }
         describe("Initial view controller") {
             it("injects dependency definded by initCompleted handler.") {
