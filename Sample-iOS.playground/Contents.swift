@@ -76,6 +76,20 @@ let doggyPerson = container.resolve(PersonType.self, name:"doggy")!
 print(doggyPerson.play())
 
 /*:
+## Initialization Callback
+*/
+
+// A closure can be registered as an initCompleted callback.
+var called = false
+container.register(AnimalType.self, name: "cb") { _ in Cat(name: "Mew") }
+    .initCompleted { _, _ in called = true }
+print(called)
+
+// The closure is executed when the instance is created.
+let catWithCallback = container.resolve(AnimalType.self, name: "cb")
+print(called)
+
+/*:
 ## Injection Patterns
 */
 
