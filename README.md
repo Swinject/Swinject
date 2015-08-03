@@ -2,10 +2,24 @@
 
 Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org), and highly inspired by [Funq](http://funq.codeplex.com).
 
+## Features
+
+- [x] Initializer/Property/Method Injections
+- [x] Initialization Callback
+- [x] Circular Dependency Injection
+- [x] Injection with Arguments
+- [x] Self-binding
+- [x] Hierarchy of Dependency Injection Containers
+- [x] Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy
+- [x] Injection to Classes and Value Types
+- [x] Storyboard
+
 ## Requirements
 
 - iOS 8.0+ / Mac OS X 10.10+
 - Xcode 7.0 beta 4
+
+## Dependency Injection (DI)
 
 ## Example of Use
 
