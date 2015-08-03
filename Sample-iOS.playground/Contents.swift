@@ -230,6 +230,24 @@ let selfieBoy = container.resolve(SelfieBoy.self)!
 print(selfieBoy.takePhoto())
 
 /*:
+## Container Hierarchy
+*/
+
+let parentContainer = Container()
+parentContainer.register(AnimalType.self, name: "cat") { _ in Cat(name: "Mimi") }
+
+let childContainer = Container(parent: parentContainer)
+childContainer.register(AnimalType.self, name: "dog") { _ in Dog(name: "Hachi") }
+
+// The registration on the parent container is resolved on the child container.
+let cat = childContainer.resolve(AnimalType.self, name: "cat")
+print(cat != nil)
+
+// The registration on the child container is not resolved on the parent container.
+let dog = parentContainer.resolve(AnimalType.self, name: "dog")
+print(dog == nil)
+
+/*:
 ## Shared Singleton Container
 */
 
