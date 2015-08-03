@@ -200,3 +200,14 @@ container.register(SelfieBoy.self) { r in SelfieBoy() }
 
 let selfieBoy = container.resolve(SelfieBoy.self)!
 print(selfieBoy.takePhoto())
+
+/*:
+## Shared Singleton Container
+*/
+
+// The shared container can be used if it is ok to depend on the singleton container.
+Container.defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mew") }
+
+let mew = Container.defaultContainer.resolve(AnimalType.self)!
+print(mew.name!)
+
