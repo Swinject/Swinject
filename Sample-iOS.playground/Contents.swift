@@ -9,12 +9,12 @@ import Swinject
 */
 
 protocol AnimalType {
-    var name: String? { get }
+    var name: String? { get set }
     func sound() -> String
 }
 
 class Cat: AnimalType {
-    let name: String?
+    var name: String?
     
     init(name: String?) {
         self.name = name
@@ -56,7 +56,7 @@ print(person.play())
 */
 
 class Dog: AnimalType {
-    let name: String?
+    var name: String?
     
     init(name: String?) {
         self.name = name
@@ -190,7 +190,7 @@ print(mother === daughter.parent)
 */
 
 class Horse: AnimalType {
-    let name: String?
+    var name: String?
     var running = false
     
     init(name: String, running: Bool) {
@@ -338,6 +338,37 @@ print(c8 === c9)
 let childOfContainer4 = Container(parent: container4)
 let c10 = childOfContainer4.resolve(C.self)
 print(c8 === c10)
+
+/*:
+## Injection of Value Types
+*/
+
+struct Turtle: AnimalType {
+    var name: String?
+    
+    init(name: String?) {
+        self.name = name
+    }
+    
+    func sound() -> String {
+        return "Ninja!"
+    }
+}
+
+// A value type can be registered as a component.
+// The object scope is ignored because a value type always creates a new instance.
+let container5 = Container()
+container5.register(AnimalType.self) { _ in Turtle(name: "Reo") }
+    .inObjectScope(.Container)
+
+var turtle1 = container5.resolve(AnimalType.self)!
+var turtle2 = container5.resolve(AnimalType.self)!
+
+// Still the type of turtle1 and turtle2 is AnimalType protocol, they work as value types.
+// (Try editing 'var turtle1' to 'let turtle1', then you see a compilation error!)
+turtle1.name = "Laph"
+print(turtle1.name!)
+print(turtle2.name!)
 
 /*:
 ## Shared Singleton Container
