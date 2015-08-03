@@ -17,6 +17,12 @@ class ContainerSpec: QuickSpec {
             container = Container()
         }
         
+        describe("Resolution of a non-registered service") {
+            it("returns nil.") {
+                let animal = container.resolve(AnimalType.self)
+                expect(animal).to(beNil())
+            }
+        }
         describe("Resolution of the same service") {
             it("resolves by arguments.") {
                 container.register(AnimalType.self) { _ in Cat() }
