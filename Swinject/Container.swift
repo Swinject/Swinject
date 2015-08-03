@@ -152,7 +152,7 @@ extension Container {
         defer { resolutionPool.decrementDepth() }
         
         let key = ServiceKey(factoryType: controllerType, name: name)
-        if let entry = services[key] {
+        if let entry = getEntry(key) {
             resolutionPool[key] = controller as Any
             if let completed = entry.initCompleted as? (Resolvable, C) -> () {
                 completed(self, controller)
