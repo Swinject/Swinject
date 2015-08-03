@@ -75,3 +75,79 @@ container.register(PersonType.self, name: "doggy") { r in PetOwner(pet: r.resolv
 let doggyPerson = container.resolve(PersonType.self, name:"doggy")!
 print(doggyPerson.play())
 
+/*:
+## Injection Patterns
+*/
+
+class InjectablePerson: PersonType {
+    var pet: AnimalType? {
+        didSet {
+            log = "Injected by property."
+        }
+    }
+    var log = ""
+    
+    init() { }
+    
+    init(pet: AnimalType) {
+        self.pet = pet
+        log = "Injected by initializer."
+    }
+    
+    func setPet(pet: AnimalType) {
+        self.pet = pet
+        log = "Injected by method."
+    }
+    
+    func play() -> String {
+        return log
+    }
+}
+
+// Initializer injection
+container.register(PersonType.self, name: "initializer") { r in
+    InjectablePerson(pet: r.resolve(AnimalType.self)!)
+}
+
+let initializerInjection = container.resolve(PersonType.self, name:"initializer")!
+print(initializerInjection.play())
+
+// Property injection 1 (in the component factory)
+container.register(PersonType.self, name: "property1") { r in
+    let person = InjectablePerson()
+    person.pet = r.resolve(AnimalType.self)
+    return person
+}
+
+let propertyInjection1 = container.resolve(PersonType.self, name:"property1")!
+print(propertyInjection1.play())
+
+// Property injection 2 (in the initCompleted callback)
+container.register(PersonType.self, name: "property2") { _ in InjectablePerson() }
+    .initCompleted { r, p in
+        let injectablePerson = p as! InjectablePerson
+        injectablePerson.pet = r.resolve(AnimalType.self)
+    }
+
+let propertyInjection2 = container.resolve(PersonType.self, name:"property2")!
+print(propertyInjection2.play())
+
+// Method injection 1 (in the component factory)
+container.register(PersonType.self, name: "method1") { r in
+    let person = InjectablePerson()
+    person.setPet(r.resolve(AnimalType.self)!)
+    return person
+}
+
+let methodInjection1 = container.resolve(PersonType.self, name:"method1")!
+print(methodInjection1.play())
+
+// Method injection 2 (in the initCompleted callback)
+container.register(PersonType.self, name: "method2") { _ in InjectablePerson() }
+    .initCompleted { r, p in
+        let injectablePerson = p as! InjectablePerson
+        injectablePerson.setPet(r.resolve(AnimalType.self)!)
+    }
+
+let methodInjection2 = container.resolve(PersonType.self, name:"method2")!
+print(methodInjection2.play())
