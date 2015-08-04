@@ -1,6 +1,9 @@
 # Swinject
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods Version](https://img.shields.io/cocoapods/v/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
+[![License](https://img.shields.io/cocoapods/l/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
+[![Platform](https://img.shields.io/cocoapods/p/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 
 Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org), and highly inspired by [Funq](http://funq.codeplex.com).
 
@@ -23,9 +26,11 @@ Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_in
 
 ## Installation
 
+Swinject is available through [Carthage](https://github.com/Carthage/Carthage) or  [CocoaPods](https://cocoapods.org).
+
 ### Carthage
 
-To install Swinject with [Carthage](https://github.com/Carthage/Carthage), add the following line to your `Cartfile`.
+To install Swinject with Carthage, add the following line to your `Cartfile`.
 
     github "Swinject/Swinject" ~> 0.2
 
@@ -35,8 +40,15 @@ Then run `carthage update` command. For details of the installation and usage of
 
 ### CocoaPods
 
-Will be supported.
+To install Swinject with CocoaPods, add the following lines to your `Podfile`.
 
+    source 'https://github.com/CocoaPods/Specs.git'
+    platform :ios, '8.0'
+    use_frameworks!
+
+    pod 'Swinject', '~> 0.1'
+
+Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
 
 ## Dependency Injection
 
