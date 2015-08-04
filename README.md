@@ -104,6 +104,12 @@ and
 
 Notice that the `pet` of `PetOwner` is automatically set as the instance of `Cat` when `PersonType` is resolved to the instance of `PetOwner`. If a container already set up is given, you do not have to care what are the actual types of the services and how they are created with their dependency.
 
+## Play in Playground!
+
+The project contains `Sample-iOS.playground` to demonstrate the features of Swinject. Download or clone the project, run the playground, and modify and play with it to learn more about Swinject.
+
+To run the playground in the project, first build the project, then select `Editor > Execute Playground` menu in Xcode.
+
 ## License
 
 MIT license. See the `LICENSE` file for details.
