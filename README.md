@@ -1,5 +1,7 @@
 # Swinject
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org), and highly inspired by [Funq](http://funq.codeplex.com).
 
 ## Features
@@ -18,6 +20,23 @@ Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_in
 
 - iOS 8.0+ / Mac OS X 10.10+
 - Xcode 6.4
+
+## Installation
+
+### Carthage
+
+To install Swinject with [Carthage](https://github.com/Carthage/Carthage), add the following line to your `Cartfile`.
+
+    github "Swinject/Swinject" ~> 0.1
+
+
+Then run `carthage update` command. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
+
+
+### CocoaPods
+
+Will be supported.
+
 
 ## Dependency Injection (DI)
 
