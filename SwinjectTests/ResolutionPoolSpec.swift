@@ -8,9 +8,8 @@
 
 import Quick
 import Nimble
-import Swinject
+@testable import Swinject
 
-/*
 class ResolutionPoolSpec: QuickSpec {
     override func spec() {
         it("clears the pool when its depth gets zero.") {
@@ -28,4 +27,3 @@ class ResolutionPoolSpec: QuickSpec {
         }
     }
 }
-*/

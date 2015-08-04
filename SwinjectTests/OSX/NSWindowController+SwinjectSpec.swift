@@ -8,9 +8,8 @@
 
 import Quick
 import Nimble
-import Swinject
+@testable import Swinject
 
-/*
 class NSWindowController_SwinjectSpec: QuickSpec {
     override func spec() {
         it("adds a property to NSWindowController to store Swinject container registration name.") {
@@ -24,4 +23,3 @@ class NSWindowController_SwinjectSpec: QuickSpec {
         }
     }
 }
-*/
