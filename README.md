@@ -27,7 +27,7 @@ Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_in
 
 To install Swinject with [Carthage](https://github.com/Carthage/Carthage), add the following line to your `Cartfile`.
 
-    github "Swinject/Swinject" ~> 0.1
+    github "Swinject/Swinject" ~> 0.2
 
 
 Then run `carthage update` command. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
