@@ -110,6 +110,8 @@ The project contains `Sample-iOS.playground` to demonstrate the features of Swin
 
 To run the playground in the project, first build the project, then select `Editor > Execute Playground` menu in Xcode.
 
+*Note: Xcod 7 beta 4 looks having a problem with rendering of markup. Please do not turn on rendered markup.*
+
 ## License
 
 MIT license. See the `LICENSE` file for details.
