@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-@testable import Swinject
+import Swinject
 
 class SwinjectStoryboardSpec: QuickSpec {
     override func spec() {
@@ -47,7 +47,7 @@ class SwinjectStoryboardSpec: QuickSpec {
                     .inObjectScope(.Container)
                 
                 let storyboard = SwinjectStoryboard.create(name: "Tabs", bundle: bundle, container: container)
-                let tabBarController = storyboard.instantiateControllerWithIdentifier("TabBarController")
+                let tabBarController = storyboard.instantiateControllerWithIdentifier("TabBarController") as! NSTabViewController
                 let animalViewController1 = tabBarController.childViewControllers[0] as! AnimalViewController
                 let animalViewController2 = tabBarController.childViewControllers[1] as! AnimalViewController
                 let cat1 = animalViewController1.animal as! Cat
@@ -119,7 +119,7 @@ class SwinjectStoryboardSpec: QuickSpec {
                 Container.defaultContainer.registerForStoryboard(AnimalViewController.self) { _, _ in }
                 
                 let storyboard = SwinjectStoryboard.create(name: "Animals", bundle: bundle)
-                let animalViewController = storyboard.instantiateControllerWithIdentifier("AnimalView")
+                let animalViewController: AnyObject? = storyboard.instantiateControllerWithIdentifier("AnimalView")
                 expect(animalViewController).notTo(beNil())
             }
             

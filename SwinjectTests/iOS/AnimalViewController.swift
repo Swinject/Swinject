@@ -11,7 +11,7 @@ import UIKit
 internal class AnimalViewController: UIViewController {
     internal var animal: AnimalType?
     
-    internal required init?(coder aDecoder: NSCoder) {
+    internal required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

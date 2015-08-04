@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-@testable import Swinject
+import Swinject
 
 class ContainerSpec_Arguments: QuickSpec {
     override func spec() {
