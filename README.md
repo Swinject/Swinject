@@ -23,9 +23,11 @@ Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_in
 
 ## Installation
 
+Swinject is available through [Carthage](https://github.com/Carthage/Carthage) or  [CocoaPods](https://cocoapods.org).
+
 ### Carthage
 
-To install Swinject with [Carthage](https://github.com/Carthage/Carthage), add the following line to your `Cartfile`.
+To install Swinject with Carthage, add the following line to your `Cartfile`.
 
     github "Swinject/Swinject" ~> 0.1
 
@@ -35,8 +37,15 @@ Then run `carthage update` command. For details of the installation and usage of
 
 ### CocoaPods
 
-Will be supported.
+To install Swinject with CocoaPods, add the following lines to your `Podfile`.
 
+    source 'https://github.com/CocoaPods/Specs.git'
+    platform :ios, '8.0'
+    use_frameworks!
+
+    pod 'Swinject', '~> 0.1'
+
+Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
 
 ## Dependency Injection
 
