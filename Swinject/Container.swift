@@ -149,6 +149,7 @@ extension Container {
     
     internal func runInitCompleted<C: Controller>(controllerType: C.Type, controller: C, name: String? = nil) {
         resolutionPool.incrementDepth()
+        defer { resolutionPool.decrementDepth() }
         
         let key = ServiceKey(factoryType: controllerType, name: name)
         if let entry = getEntry(key) {
@@ -157,8 +158,6 @@ extension Container {
                 completed(self, controller)
             }
         }
-        
-        resolutionPool.decrementDepth()
     }
     
     private func getEntry(key: ServiceKey) -> ServiceEntryBase? {
@@ -376,6 +375,7 @@ extension Container: Resolvable {
     
     private func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
         resolutionPool.incrementDepth()
+        defer { resolutionPool.decrementDepth() }
         
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name)
@@ -404,8 +404,6 @@ extension Container: Resolvable {
                 resolvedInstance = entry.instance as? Service
             }
         }
-        
-        resolutionPool.decrementDepth()
         return resolvedInstance
     }
     
