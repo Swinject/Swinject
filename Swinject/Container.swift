@@ -143,7 +143,7 @@ extension Container {
     public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
         let key = ServiceKey(factoryType: controllerType, name: name)
         let entry = ServiceEntry(serviceType: controllerType)
-        entry.initCompleted(initCompleted)
+        entry.initCompleted = initCompleted
         services[key] = entry
     }
     
