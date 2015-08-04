@@ -38,7 +38,9 @@ Then run `carthage update` command. For details of the installation and usage of
 Will be supported.
 
 
-## Dependency Injection (DI)
+## Dependency Injection
+
+Dependency Injection (DI) is a software design pattern that implements Inversion of Control (IoC) for resolving dependencies.
 
 ## Example of Use
 
