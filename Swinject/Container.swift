@@ -143,7 +143,11 @@ extension Container {
     public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
         let key = ServiceKey(factoryType: controllerType, name: name)
         let entry = ServiceEntry(serviceType: controllerType)
-        entry.initCompleted(initCompleted)
+        
+        // Swift 1.2 workaround. Not needed on Swift 2.
+        let castedClosure: (Resolvable, Controller) -> () = { r, c in initCompleted(r, c as! C) }
+        
+        entry.initCompleted = castedClosure
         services[key] = entry
     }
     
@@ -153,7 +157,9 @@ extension Container {
         let key = ServiceKey(factoryType: controllerType, name: name)
         if let entry = getEntry(key) {
             resolutionPool[key] = controller as Any
-            if let completed = entry.initCompleted as? (Resolvable, C) -> () {
+            
+            // Swift 1.2 workaround casting initCompleted to (Resolvable, Controller) -> (), not (Resolvable, C) -> ()
+            if let completed = entry.initCompleted as? (Resolvable, Controller) -> () {
                 completed(self, controller)
             }
         }
