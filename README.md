@@ -17,7 +17,7 @@ Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_in
 ## Requirements
 
 - iOS 8.0+ / Mac OS X 10.10+
-- Xcode 7.0 beta 4
+- Xcode 6.4
 
 ## Dependency Injection (DI)
 

@@ -143,21 +143,28 @@ extension Container {
     public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
         let key = ServiceKey(factoryType: controllerType, name: name)
         let entry = ServiceEntry(serviceType: controllerType)
-        entry.initCompleted(initCompleted)
+        
+        // Swift 1.2 workaround. Not needed on Swift 2.
+        let castedClosure: (Resolvable, Controller) -> () = { r, c in initCompleted(r, c as! C) }
+        
+        entry.initCompleted = castedClosure
         services[key] = entry
     }
     
     internal func runInitCompleted<C: Controller>(controllerType: C.Type, controller: C, name: String? = nil) {
         resolutionPool.incrementDepth()
-        defer { resolutionPool.decrementDepth() }
         
         let key = ServiceKey(factoryType: controllerType, name: name)
         if let entry = getEntry(key) {
             resolutionPool[key] = controller as Any
-            if let completed = entry.initCompleted as? (Resolvable, C) -> () {
+            
+            // Swift 1.2 workaround casting initCompleted to (Resolvable, Controller) -> (), not (Resolvable, C) -> ()
+            if let completed = entry.initCompleted as? (Resolvable, Controller) -> () {
                 completed(self, controller)
             }
         }
+        
+        resolutionPool.decrementDepth()
     }
     
     private func getEntry(key: ServiceKey) -> ServiceEntryBase? {
@@ -375,7 +382,6 @@ extension Container: Resolvable {
     
     private func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
         resolutionPool.incrementDepth()
-        defer { resolutionPool.decrementDepth() }
         
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name)
@@ -404,6 +410,8 @@ extension Container: Resolvable {
                 resolvedInstance = entry.instance as? Service
             }
         }
+        
+        resolutionPool.decrementDepth()
         return resolvedInstance
     }
     
