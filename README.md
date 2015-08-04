@@ -46,7 +46,7 @@ To install Swinject with CocoaPods, add the following lines to your `Podfile`.
     platform :ios, '8.0'
     use_frameworks!
 
-    pod 'Swinject', '~> 0.1'
+    pod 'Swinject', '~> 0.2'
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
 
