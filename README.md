@@ -6,7 +6,9 @@
 [![License](https://img.shields.io/cocoapods/l/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 [![Platform](https://img.shields.io/cocoapods/p/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 
-Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org), and highly inspired by [Funq](http://funq.codeplex.com).
+Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org), and highly inspired by [Funq](http://funq.codeplex.com).
+
+It helps your app split into loosely-coupled components, which can be maintained and tested more easily. Swinject is powered by the Swift generic type system and first class functions to simply define your app's dependencies.
 
 ## Features
 
@@ -107,9 +109,13 @@ Notice that the `pet` of `PetOwner` is automatically set as the instance of `Cat
 
 ## Play in Playground!
 
-The project contains `Sample-iOS.playground` to demonstrate the features of Swinject. Download or clone the project, run the playground, and modify and play with it to learn more about Swinject.
+The project contains `Sample-iOS.playground` to demonstrate the features of Swinject. Download or clone the project, run the playground, modify it, and play with it to learn Swinject.
 
 To run the playground in the project, first build the project, then select `Editor > Execute Playground` menu in Xcode.
+
+## More about Swinject
+
+[The project wiki](https://github.com/Swinject/Swinject/wiki) has more information and examples.
 
 ## License
 
