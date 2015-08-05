@@ -57,7 +57,7 @@ Then run `pod install` command. For details of the installation and usage of Coc
 
 Dependency Injection (DI) is a software design pattern that implements Inversion of Control (IoC) for resolving dependencies.
 
-## Example of Use
+## Basic Usage
 
 First, register a service and component pair to a `Container`, where the component is created by the registered closure as a factory. In this example, `Cat` and `PetOwner` are component classes implementing `AnimalType` and `PersonType` service protocols, respectively.
 
