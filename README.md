@@ -8,7 +8,7 @@
 
 Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org), and highly inspired by [Funq](http://funq.codeplex.com).
 
-It helps your app split into loosely-coupled components, which can be maintained and tested more easily. Swinject is powered by the Swift generic type system and first class functions to define dependencies of your app simply and fluently.
+It helps your app split into loosely-coupled components, which can be developed, tested and maintained more easily. Swinject is powered by the Swift generic type system and first class functions to define dependencies of your app simply and fluently.
 
 ## Features
 
