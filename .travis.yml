@@ -17,7 +17,7 @@ env:
     - DESTINATION="arch=x86_64" SCHEME="Swinject-OSX" SDK=macosx10.10
 before_install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-  - brew update
+  - brew update; brew update # Workaround for https://github.com/Homebrew/homebrew/issues/42553
   - brew outdated xctool || brew upgrade xctool
   - brew install carthage
   - carthage bootstrap --verbose
