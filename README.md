@@ -16,7 +16,7 @@ It helps your app split into loosely-coupled components, which can be developed,
 - [x] Initialization Callback
 - [x] Circular Dependency Injection
 - [x] Injection with Arguments
-- [x] Self-binding
+- [x] Self-registration (Self-binding)
 - [x] Container Hierarchy
 - [x] Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy
 - [x] Injection of both Reference and Value Types
