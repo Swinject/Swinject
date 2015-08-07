@@ -8,7 +8,7 @@
 
 Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org), and highly inspired by [Funq](http://funq.codeplex.com).
 
-It helps your app split into loosely-coupled components, which can be maintained and tested more easily. Swinject is powered by the Swift generic type system and first class functions to simply define your app's dependencies.
+It helps your app split into loosely-coupled components, which can be developed, tested and maintained more easily. Swinject is powered by the Swift generic type system and first class functions to define dependencies of your app simply and fluently.
 
 ## Features
 
@@ -16,7 +16,7 @@ It helps your app split into loosely-coupled components, which can be maintained
 - [x] Initialization Callback
 - [x] Circular Dependency Injection
 - [x] Injection with Arguments
-- [x] Self-binding
+- [x] Self-registration (Self-binding)
 - [x] Container Hierarchy
 - [x] Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy
 - [x] Injection of both Reference and Value Types
@@ -57,7 +57,7 @@ Then run `pod install` command. For details of the installation and usage of Coc
 
 Dependency Injection (DI) is a software design pattern that implements Inversion of Control (IoC) for resolving dependencies.
 
-## Example of Use
+## Basic Usage
 
 First, register a service and component pair to a `Container`, where the component is created by the registered closure as a factory. In this example, `Cat` and `PetOwner` are component classes implementing `AnimalType` and `PersonType` service protocols, respectively.
 
