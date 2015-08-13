@@ -113,9 +113,19 @@ The project contains `Sample-iOS.playground` to demonstrate the features of Swin
 
 To run the playground in the project, first build the project, then select `Editor > Execute Playground` menu in Xcode.
 
+## Example App
+
+- [SwinjectSimpleExample](https://github.com/Swinject/SwinjectSimpleExample) demonstrates dependency injection and Swinject in a simple weather app that lists current weather information at some locations.
+
 ## More about Swinject
 
+### Wiki
+
 [The project wiki](https://github.com/Swinject/Swinject/wiki) has more information and examples.
+
+### Blog Post
+
+[This blog post](http://yoichitgy.github.io/post/dependency-injection-framework-for-swift-introduction-to-swinject/) introduces basics of dependency injection and Swinject.
 
 ## License
 
