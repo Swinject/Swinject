@@ -112,6 +112,20 @@ To run the playground in the project, first build the project, then select `Edit
 
 *Note: Xcode 7 beta 4 looks having a problem with rendering of markup. Please do not turn on rendered markup.*
 
+## Example App
+
+- [SwinjectSimpleExample](https://github.com/Swinject/SwinjectSimpleExample) demonstrates dependency injection and Swinject in a simple weather app that lists current weather information at some locations.
+
+## More about Swinject
+
+### Wiki
+
+[The project wiki](https://github.com/Swinject/Swinject/wiki) has more information and examples.
+
+### Blog Post
+
+[This blog post](http://yoichitgy.github.io/post/dependency-injection-framework-for-swift-introduction-to-swinject/) introduces basics of dependency injection and Swinject.
+
 ## License
 
 MIT license. See the `LICENSE` file for details.
