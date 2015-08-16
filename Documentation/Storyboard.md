@@ -45,7 +45,7 @@ Where the classes and protocol are:
 
 and the storyboard named `Animals.storyboard` has `AnimalViewController` with storyboard ID `Animal`.
 
-![AnimalViewController in Animals.storyboard](https://raw.githubusercontent.com/wiki/Swinject/Swinject/images/AnimalViewControllerScreenshot1.png)
+![AnimalViewController in Animals.storyboard](./Assets/AnimalViewControllerScreenshot1.png)
 
 ## Registration with Name
 
@@ -88,6 +88,6 @@ Where `Dog` class is:
 
 and the storyboard named `Animals.storyboard` has `AnimalViewController`s with storyboard IDs `Cat` and `Dog`. In addition to the storyboard IDs, user defined runtime attributes are specified as `cat` and `dog` for the key `swinjectRegistrationName`, respectively.
 
-![AnimalViewControllers with user defined runtime attribute in Animals.storyboard](https://raw.githubusercontent.com/wiki/Swinject/Swinject/images/AnimalViewControllerScreenshot2.png)
+![AnimalViewControllers with user defined runtime attribute in Animals.storyboard](./Assets/AnimalViewControllerScreenshot2.png)
 
 _[Table of Contents](README.md)_
