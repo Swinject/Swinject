@@ -8,7 +8,7 @@
 
 Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org), and highly inspired by [Funq](http://funq.codeplex.com).
 
-It helps your app split into loosely-coupled components, which can be developed, tested and maintained more easily. Swinject is powered by the Swift generic type system and first class functions to define dependencies of your app simply and fluently.
+Dependency injection (DI) is a software design pattern that implements Inversion of Control (IoC) for resolving dependencies. In the pattern, Swinject helps your app split into loosely-coupled components, which can be developed, tested and maintained more easily. Swinject is powered by the Swift generic type system and first class functions to define dependencies of your app simply and fluently.
 
 ## Features
 
@@ -54,9 +54,9 @@ To install Swinject with CocoaPods, add the following lines to your `Podfile`.
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
 
-## Dependency Injection
+## Documentation
 
-Dependency Injection (DI) is a software design pattern that implements Inversion of Control (IoC) for resolving dependencies.
+All documentation can be found in the [Documentation folder](./Documentation), including patterns of dependency injection and examples.
 
 ## Basic Usage
 
@@ -118,16 +118,14 @@ To run the playground in the project, first build the project, then select `Edit
 
 - [SwinjectSimpleExample](https://github.com/Swinject/SwinjectSimpleExample) demonstrates dependency injection and Swinject in a simple weather app that lists current weather information at some locations.
 
-## More about Swinject
+## Blog Posts
 
-### Wiki
+The following blog posts introduce Swinject and the concept of dependency injection.
 
-[The project wiki](https://github.com/Swinject/Swinject/wiki) has more information and examples.
-
-### Blog Post
-
-[This blog post](http://yoichitgy.github.io/post/dependency-injection-framework-for-swift-introduction-to-swinject/) introduces basics of dependency injection and Swinject.
+- [Dependency Injection Framework for Swift - Introduction to Swinject](https://yoichitgy.github.io/post/dependency-injection-framework-for-swift-introduction-to-swinject/)
+- [Dependency Injection Framework for Swift - Simple Weather App Example with Swinject Part 1/2](https://yoichitgy.github.io/post/dependency-injection-framework-for-swift-simple-weather-app-example-with-swinject-part-1/)
+- [Dependency Injection Framework for Swift - Simple Weather App Example with Swinject Part 2/2](https://yoichitgy.github.io/post/dependency-injection-framework-for-swift-simple-weather-app-example-with-swinject-part-2/)
 
 ## License
 
-MIT license. See the `LICENSE` file for details.
+MIT license. See the [LICENSE file](LICENSE.txt) for details.
