@@ -12,6 +12,7 @@ It helps your app split into loosely-coupled components, which can be developed,
 
 ## Features
 
+- [x] Pure Swift Type Injection
 - [x] Initializer/Property/Method Injections
 - [x] Initialization Callback
 - [x] Circular Dependency Injection
