@@ -9,6 +9,7 @@ Swinject is a [dependency injection](https://en.wikipedia.org/wiki/Dependency_in
 
 ## Features
 
+- [x] Pure Swift Type Injection
 - [x] Initializer/Property/Method Injections
 - [x] Initialization Callback
 - [x] Circular Dependency Injection
