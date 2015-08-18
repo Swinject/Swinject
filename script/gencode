@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "Generating code to Swinject/Container.Arguments.swift"
+erb -v -T 1 Swinject/Container.Arguments.erb > Swinject/Container.Arguments.swift

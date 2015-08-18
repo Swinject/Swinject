@@ -1,0 +1,60 @@
+//
+//  Container.Arguments.swift
+//  Swinject
+//
+//  Created by Yoichi Tagaya on 8/18/15.
+//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//
+
+//
+// NOTICE:
+//
+// Container.Arguments.swift is generated from Container.Arguments.erb by ERB.
+// Do NOT modify Container.Arguments.swift directly.
+// Instead, modify Container.Arguments.erb and run `script/gencode` at the project root directory to generate the code.
+//
+
+<% arg_count = 12 %>
+
+import Foundation
+
+// MARK: - Registeration with Arguments
+extension Container {
+<% (1..arg_count).each do |i| %>
+<%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+    public func register<Service, <%= arg_types %>>(
+        serviceType: Service.Type,
+        name: String? = nil,
+        factory: (Resolvable, <%= arg_types %>) -> Service) -> ServiceEntry<Service>
+    {
+        return registerImpl(serviceType, factory: factory, name: name)
+    }
+
+<% end %>
+}
+
+// MARK: - Resolvable with Arguments
+extension Container {
+<% (1..arg_count).each do |i| %>
+<%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+<%   arg_params = (1..i).map { |n| "arg#{n}: Arg#{n}" }.join(", ") %>
+<%   args_passed = (1..i).map { |n| "arg#{n}: arg#{n}" }.join(", ") %>
+<%   args_factory = (1..i).map { |n| "arg#{n}" }.join(", ") %>
+    public func resolve<Service, <%= arg_types %>>(
+        serviceType: Service.Type,
+        <%= arg_params %>) -> Service?
+    {
+        return resolve(serviceType, <%= args_passed %>, name: nil)
+    }
+
+    public func resolve<Service, <%= arg_types %>>(
+        serviceType: Service.Type,
+        <%= arg_params %>,
+        name: String?) -> Service?
+    {
+        typealias FactoryType = (Resolvable, <%= arg_types %>) -> Service
+        return resolveImpl(name) { (factory: FactoryType) in factory(self, <%= args_factory %>) }
+    }
+
+<% end %>
+}
