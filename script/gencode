@@ -1,0 +1,8 @@
+#!/bin/sh
+
+files="Swinject/Container.Arguments Swinject/Resolvable"
+
+for file in $files; do
+  echo "Generating code to $file.swift"
+  erb -v -T 1 $file.erb > $file.swift
+done

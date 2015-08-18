@@ -1,0 +1,37 @@
+//
+//  Resolvable.swift
+//  Swinject
+//
+//  Created by Yoichi Tagaya on 8/18/15.
+//  Copyright (c) 2015 Swinject Contributors. All rights reserved.
+//
+
+//
+// NOTICE:
+//
+// Resolvable.swift is generated from Resolvable.erb by ERB.
+// Do NOT modify Container.Arguments.swift directly.
+// Instead, modify Resolvable.erb and run `script/gencode` at the project root directory to generate the code.
+//
+
+<% arg_count = 12 %>
+
+public protocol Resolvable {
+    func resolve<Service>(serviceType: Service.Type) -> Service?
+
+    func resolve<Service>(serviceType: Service.Type, name: String?) -> Service?
+
+<% (1..arg_count).each do |i| %>
+<%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+<%   arg_params = (1..i).map { |n| "arg#{n}: Arg#{n}" }.join(", ") %>
+    func resolve<Service, <%= arg_types %>>(
+        serviceType: Service.Type,
+        <%= arg_params %>) -> Service?
+
+    func resolve<Service, <%= arg_types %>>(
+        serviceType: Service.Type,
+        <%= arg_params %>,
+        name: String?) -> Service?
+
+<% end %>
+}
