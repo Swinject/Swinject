@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// The `ServiceEntryBase` class represents an entry of a registered service type.
+/// It is free from generics to store in a strongly typed collection.
+/// `ServiceEntry<Service>` should be actually used.
 public class ServiceEntryBase {
     internal let factory: Any // Must be a function type.
     internal var scope = ObjectScope.Graph
@@ -18,12 +21,19 @@ public class ServiceEntryBase {
         self.factory = factory
     }
     
+    /// Specifies the object scope to resolve the service.
+    ///
+    /// :param: scope The `ObjectScope` value.
+    ///
+    /// :returns: `self` to add another configuration fluently.
     public func inObjectScope(scope: ObjectScope) -> Self {
         self.scope = scope
         return self
     }
 }
 
+/// The `ServiceEntry<Service>` class represents an entry of a registered service type.
+/// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public final class ServiceEntry<Service>: ServiceEntryBase {
     private let serviceType: Service.Type
     
@@ -45,6 +55,13 @@ public final class ServiceEntry<Service>: ServiceEntryBase {
         return copy
     }
     
+    /// Adds the callback to setup the instance after its `init` completes.
+    /// *Property or method injections* can be performed in the callback.
+    /// To resolve *circular dependencies*, `initCompleted` must be used.
+    ///
+    /// :param: completed The closure to be called after the instantiation of the registered service.
+    ///
+    /// :returns: `self` to add another configuration fluently.
     public func initCompleted(completed: (Resolvable, Service) -> ()) -> Self {
         initCompleted = completed
         return self

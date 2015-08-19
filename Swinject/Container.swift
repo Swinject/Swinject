@@ -8,24 +8,56 @@
 
 import Foundation
 
+/// The `Container` class represents a dependency injection container, which stores registrations of services
+/// and retrieves registered services with dependencies injected.
+///
+/// **Example to register:**
+///
+///     let container = Container()
+///     container.register(A.self) { _ in B() }
+///     container.register(X.self) { r in Y(a: r.resolve(A.self)!) }
+///
+/// **Example to retrieve:**
+///
+///     let x = container.resolve(X.self)!
+///
+/// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
 public final class Container {
+    /// The shared singleton instance of `Container`. It can be used in *the service locator pattern*.
     public static let defaultContainer = Container()
+    
     private var services = [ServiceKey: ServiceEntryBase]()
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
     
+    /// Instantiates a `Container`.
     public init() {
         self.parent = nil
     }
     
+    /// Instantiates a `Container` that is a child container of the `Container` specified with `parent`.
+    ///
+    /// :param: parent The parent `Container`.
     public init(parent: Container) {
         self.parent = parent
     }
     
+    /// Removes all registrations in the container.
     public func removeAll() {
         services.removeAll()
     }
     
+    /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
+    ///
+    /// :param: serviceType The service type to register.
+    /// :param: name        A registration name, which is used to differenciate from other registrations
+    ///                     that have the same service and factory types.
+    /// :param: factory     The closure to specify how the service type is resolved with the dependencies of the type.
+    ///                     It is invoked when the `Container` needs to instantiate the instance.
+    ///                     It takes a `Resolvable` to inject dependencies to the instance,
+    ///                     and returns the instance of the component type for the service.
+    ///
+    /// :returns: A registered `ServiceEntry` to configure some settings fluently.
     public func register<Service>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -34,103 +66,7 @@ public final class Container {
         return registerImpl(serviceType, factory: factory, name: name)
     }
 
-    public func register<Service, Arg1>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-    
-    public func register<Service, Arg1, Arg2>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-
-    public func register<Service, Arg1, Arg2, Arg3>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-    
-    public func register<Service, Arg1, Arg2, Arg3, Arg4>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-
-    public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-
-    public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-    
-    public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-    
-    public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-    
-    public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-    
-    public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-    
-    public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-    
-    public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11, Arg12>(
-        serviceType: Service.Type,
-        name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11, Arg12) -> Service) -> ServiceEntry<Service>
-    {
-        return registerImpl(serviceType, factory: factory, name: name)
-    }
-
-    private func registerImpl<Service, Factory>(serviceType: Service.Type, factory: Factory, name: String?) -> ServiceEntry<Service> {
+    internal func registerImpl<Service, Factory>(serviceType: Service.Type, factory: Factory, name: String?) -> ServiceEntry<Service> {
         let key = ServiceKey(factoryType: factory.dynamicType, name: name)
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
         services[key] = entry
@@ -140,6 +76,14 @@ public final class Container {
 
 // MARK: - Extension for Storyboard
 extension Container {
+    /// Adds a registration of the specified view or window controller that is configured in a storyboard.
+    ///
+    /// :param: controllerType The controller type to register as a service type.
+    ///                        The type is `UIViewController` in iOS, `NSViewController` or `NSWindowController` in OS X.
+    /// :param: name           A registration name, which is used to differenciate from other registrations
+    ///                        that have the same view or window controller type.
+    /// :param: initCompleted  A closure to specifiy how the dependencies of the view or window controller are injected.
+    ///                        It is invoked by the `Container` when the view or window controller is instantiated by `SwinjectStoryboard`.
     public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
         let key = ServiceKey(factoryType: controllerType, name: name)
         let entry = ServiceEntry(serviceType: controllerType)
@@ -167,96 +111,23 @@ extension Container {
 
 // MARK: - Resolvable
 extension Container: Resolvable {
+    /// Retrieves the instance with the specified service type.
+    ///
+    /// :param: serviceType The service type to resolve.
+    ///
+    /// :returns: The resolved service type instance, or nil if no registration for the service type is found in the `Container`.
     public func resolve<Service>(
         serviceType: Service.Type) -> Service?
     {
         return resolve(serviceType, name: nil)
     }
     
-    public func resolve<Service, Arg1>(
-        serviceType: Service.Type,
-        arg1: Arg1) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, arg3: arg3, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6, arg7: arg7, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7, arg8: Arg8) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6, arg7: arg7, arg8: arg8, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7, arg8: Arg8, arg9: Arg9) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6, arg7: arg7, arg8: arg8, arg9: arg9, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7, arg8: Arg8, arg9: Arg9, arg10: Arg10) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6, arg7: arg7, arg8: arg8, arg9: arg9, arg10: arg10, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7, arg8: Arg8, arg9: Arg9, arg10: Arg10, arg11: Arg11) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6, arg7: arg7, arg8: arg8, arg9: arg9, arg10: arg10, arg11: arg11, name: nil)
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11, Arg12>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7, arg8: Arg8, arg9: Arg9, arg10: Arg10, arg11: Arg11, arg12: Arg12) -> Service?
-    {
-        return resolve(serviceType, arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5, arg6: arg6, arg7: arg7, arg8: arg8, arg9: arg9, arg10: arg10, arg11: arg11, arg12: arg12, name: nil)
-    }
-    
+    /// Retrieves the instance with the specified service type and registration name.
+    ///
+    /// :param: serviceType The service type to resolve.
+    /// :param: name        The registration name.
+    ///
+    /// :returns: The resolved service type instance, or nil if no registration for the service type and name is found in the `Container`.
     public func resolve<Service>(
         serviceType: Service.Type,
         name: String?) -> Service?
@@ -265,115 +136,7 @@ extension Container: Resolvable {
         return resolveImpl(name) { (factory: FactoryType) in factory(self) }
     }
     
-    public func resolve<Service, Arg1>(
-        serviceType: Service.Type,
-        arg1: Arg1,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7) }
-    }
-
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7, arg8: Arg8,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7, arg8: Arg8, arg9: Arg9,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7, arg8: Arg8, arg9: Arg9, arg10: Arg10,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7, arg8: Arg8, arg9: Arg9, arg10: Arg10, arg11: Arg11,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11) }
-    }
-    
-    public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11, Arg12>(
-        serviceType: Service.Type,
-        arg1: Arg1, arg2: Arg2, arg3: Arg3, arg4: Arg4, arg5: Arg5, arg6: Arg6, arg7: Arg7, arg8: Arg8, arg9: Arg9, arg10: Arg10, arg11: Arg11, arg12: Arg12,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11, Arg12) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12) }
-    }
-    
-    private func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
+    internal func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
         resolutionPool.incrementDepth()
         defer { resolutionPool.decrementDepth() }
         

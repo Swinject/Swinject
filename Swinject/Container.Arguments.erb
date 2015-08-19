@@ -1,0 +1,91 @@
+//
+//  Container.Arguments.swift
+//  Swinject
+//
+//  Created by Yoichi Tagaya on 8/18/15.
+//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//
+
+//
+// NOTICE:
+//
+// Container.Arguments.swift is generated from Container.Arguments.erb by ERB.
+// Do NOT modify Container.Arguments.swift directly.
+// Instead, modify Container.Arguments.erb and run `script/gencode` at the project root directory to generate the code.
+//
+
+<% arg_count = 12 %>
+<% argument_text = lambda { |n| n == 1 ? "#{n} argument" : "#{n} arguments" } %>
+
+import Foundation
+
+// MARK: - Registeration with Arguments
+extension Container {
+<% (1..arg_count).each do |i| %>
+<%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+    /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
+    ///
+    /// :param: serviceType The service type to register.
+    /// :param: name        A registration name, which is used to differenciate from other registrations
+    ///                     that have the same service and factory types.
+    /// :param: factory     The closure to specify how the service type is resolved with the dependencies of the type.
+    ///                     It is invoked when the `Container` needs to instantiate the instance.
+    ///                     It takes a `Resolvable` and <%= argument_text.call(i) %> to inject dependencies to the instance,
+    ///                     and returns the instance of the component type for the service.
+    ///
+    /// :returns: A registered `ServiceEntry` to configure some settings fluently.
+    public func register<Service, <%= arg_types %>>(
+        serviceType: Service.Type,
+        name: String? = nil,
+        factory: (Resolvable, <%= arg_types %>) -> Service) -> ServiceEntry<Service>
+    {
+        return registerImpl(serviceType, factory: factory, name: name)
+    }
+
+<% end %>
+}
+
+// MARK: - Resolvable with Arguments
+extension Container {
+<% (1..arg_count).each do |i| %>
+<%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+<%   arg_params = (1..i).map { |n| "arg#{n}: Arg#{n}" }.join(", ") %>
+<%   args_passed = (1..i).map { |n| "arg#{n}: arg#{n}" }.join(", ") %>
+<%   args_factory = (1..i).map { |n| "arg#{n}" }.join(", ") %>
+    /// Retrieves the instance with the specified service type and <%= argument_text.call(i) %> to the factory closure.
+    ///
+    /// :param: serviceType The service type to resolve.
+<%   (1..i).each do |n| %>
+    /// :param: arg<%= n %>        An argument to the factory closure as Arg<%= n %> type.
+<%   end %>
+    ///
+    /// :returns: The resolved service type instance, or nil if no registration for the service type
+    ///           and <%= argument_text.call(i) %> is found in the `Container`.
+    public func resolve<Service, <%= arg_types %>>(
+        serviceType: Service.Type,
+        <%= arg_params %>) -> Service?
+    {
+        return resolve(serviceType, <%= args_passed %>, name: nil)
+    }
+
+    /// Retrieves the instance with the specified service type, <%= argument_text.call(i) %> to the factory closure and registration name.
+    ///
+    /// :param: serviceType The service type to resolve.
+<%   (1..i).each do |n| %>
+    /// :param: arg<%= n %>        An argument to the factory closure as Arg<%= n %> type.
+<%   end %>
+    /// :param: name        The registration name.
+    ///
+    /// :returns: The resolved service type instance, or nil if no registration for the service type,
+    ///           <%= argument_text.call(i) %> and name is found in the `Container`.
+    public func resolve<Service, <%= arg_types %>>(
+        serviceType: Service.Type,
+        <%= arg_params %>,
+        name: String?) -> Service?
+    {
+        typealias FactoryType = (Resolvable, <%= arg_types %>) -> Service
+        return resolveImpl(name) { (factory: FactoryType) in factory(self, <%= args_factory %>) }
+    }
+
+<% end %>
+}

@@ -9,7 +9,8 @@
 import AppKit
 
 extension Container {
-    // Actually it should be NSViewController or NSWindowController
-    // See the reference of NSStoryboard.instantiateInitialController method.
+    /// The typealias to AnyObject, which should be actually NSViewController or NSWindowController.
+    /// See the reference of NSStoryboard.instantiateInitialController method.
     public typealias Controller = AnyObject
+
 }
