@@ -8,24 +8,56 @@
 
 import Foundation
 
+/// The `Container` class represents a dependency injection container, which stores registrations of services
+/// and retrieves registered services with dependencies injected.
+///
+/// **Example to register:**
+///
+///     let container = Container()
+///     container.register(A.self) { _ in B() }
+///     container.register(X.self) { r in Y(a: r.resolve(A.self)!) }
+///
+/// **Example to retrieve:**
+///
+///     let x = container.resolve(X.self)!
+///
+/// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
 public final class Container {
+    /// The shared singleton instance of `Container`. It can be used in *the service locator pattern*.
     public static let defaultContainer = Container()
+    
     private var services = [ServiceKey: ServiceEntryBase]()
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
     
+    /// Instantiates a `Container`.
     public init() {
         self.parent = nil
     }
     
+    /// Instantiates a `Container` that is a child container of the `Container` specified with `parent`.
+    ///
+    /// :param: parent The parent `Container`.
     public init(parent: Container) {
         self.parent = parent
     }
     
+    /// Removes all registrations in the container.
     public func removeAll() {
         services.removeAll()
     }
     
+    /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
+    ///
+    /// :param: serviceType The service type to register.
+    /// :param: name        A registration name, which is used to differenciate from other registrations
+    ///                     that have the same service and factory types.
+    /// :param: factory     The closure to specify how the service type is resolved with the dependencies of the type.
+    ///                     It is invoked when the `Container` needs to instantiate the instance.
+    ///                     It takes a `Resolvable` to inject dependencies to the instance,
+    ///                     and returns the instance of the component type for the service.
+    ///
+    /// :returns: A registered `ServiceEntry` to configure some settings fluently.
     public func register<Service>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -44,6 +76,14 @@ public final class Container {
 
 // MARK: - Extension for Storyboard
 extension Container {
+    /// Adds a registration of the specified view or window controller that is configured in a storyboard.
+    ///
+    /// :param: controllerType The controller type to register as a service type.
+    ///                        The type is `UIViewController` in iOS, `NSViewController` or `NSWindowController` in OS X.
+    /// :param: name           A registration name, which is used to differenciate from other registrations
+    ///                        that have the same view or window controller type.
+    /// :param: initCompleted  A closure to specifiy how the dependencies of the view or window controller are injected.
+    ///                        It is invoked by the `Container` when the view or window controller is instantiated by `SwinjectStoryboard`.
     public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
         let key = ServiceKey(factoryType: controllerType, name: name)
         let entry = ServiceEntry(serviceType: controllerType)
@@ -78,12 +118,23 @@ extension Container {
 
 // MARK: - Resolvable
 extension Container: Resolvable {
+    /// Retrieves the instance with the specified service type.
+    ///
+    /// :param: serviceType The service type to resolve.
+    ///
+    /// :returns: The resolved service type instance, or nil if no registration for the service type is found in the `Container`.
     public func resolve<Service>(
         serviceType: Service.Type) -> Service?
     {
         return resolve(serviceType, name: nil)
     }
     
+    /// Retrieves the instance with the specified service type and registration name.
+    ///
+    /// :param: serviceType The service type to resolve.
+    /// :param: name        The registration name.
+    ///
+    /// :returns: The resolved service type instance, or nil if no registration for the service type and name is found in the `Container`.
     public func resolve<Service>(
         serviceType: Service.Type,
         name: String?) -> Service?
