@@ -9,5 +9,6 @@
 import UIKit
 
 extension Container {
+    /// The typealias to UIViewController.
     public typealias Controller = UIViewController
 }
