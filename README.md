@@ -27,7 +27,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 ## Requirements
 
 - iOS 8.0+ / Mac OS X 10.10+
-- Xcode 7.0 beta 4
+- Xcode 7.0
 
 ## Installation
 
@@ -114,8 +114,6 @@ Notice that the `pet` of `PetOwner` is automatically set as the instance of `Cat
 The project contains `Sample-iOS.playground` to demonstrate the features of Swinject. Download or clone the project, run the playground, modify it, and play with it to learn Swinject.
 
 To run the playground in the project, first build the project, then select `Editor > Execute Playground` menu in Xcode.
-
-*Note: Xcode 7 beta 4 looks having a problem with rendering of markup. Please do not turn on rendered markup.*
 
 ## Example App
 
