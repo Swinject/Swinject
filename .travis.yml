@@ -21,6 +21,7 @@ before_install:
   - carthage bootstrap --verbose
 script:
   - set -o pipefail
+  - xcodebuild -version
   - xcodebuild -project Swinject.xcodeproj -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" 
     -configuration Debug ONLY_ACTIVE_ARCH=NO test | xcpretty -c
   - xcodebuild -project Swinject.xcodeproj -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" 
