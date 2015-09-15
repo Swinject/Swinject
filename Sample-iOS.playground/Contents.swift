@@ -262,10 +262,9 @@ let dog = parentContainer.resolve(AnimalType.self, name: "dog")
 print(dog == nil)
 
 /*:
-## Object Scopes (Commented out for a problem of/in the playground)
+## Object Scopes
 */
 
-/*
 class A {
     let b: B
     let c: C
@@ -353,7 +352,6 @@ print(c8 === c9)
 let childOfContainer4 = Container(parent: container4)
 let c10 = childOfContainer4.resolve(C.self)
 print(c8 === c10)
-*/
 
 /*:
 ## Injection of Value Types

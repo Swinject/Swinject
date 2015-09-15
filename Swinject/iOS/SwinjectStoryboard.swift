@@ -35,7 +35,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase {
     ///                   The shared singleton container `Container.defaultContainer` is used if no container is passed.
     ///
     /// :returns: The new instance of `SwinjectStoryboard`.
-    public class func create(#name: String, bundle storyboardBundleOrNil: NSBundle?, container: Container = Container.defaultContainer) -> SwinjectStoryboard {
+    public class func create(name name: String, bundle storyboardBundleOrNil: NSBundle?, container: Container = Container.defaultContainer) -> SwinjectStoryboard {
         // Use this factory method to create an instance because the initializer of UIStoryboard is "not inherited".
         let storyboard = SwinjectStoryboard._create(name, bundle: storyboardBundleOrNil)
         storyboard.container = container
@@ -49,8 +49,8 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase {
     /// :param: identifier The identifier set in the storyboard file.
     ///
     /// :returns: The instantiated view controller with its dependencies injected.
-    public override func instantiateViewControllerWithIdentifier(identifier: String) -> AnyObject! {
-        let viewController = super.instantiateViewControllerWithIdentifier(identifier) as! UIViewController
+    public override func instantiateViewControllerWithIdentifier(identifier: String) -> UIViewController {
+        let viewController = super.instantiateViewControllerWithIdentifier(identifier)
         injectDependency(viewController)
         return viewController
     }
@@ -59,7 +59,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase {
         let registrationName = viewController.swinjectRegistrationName
         container.runInitCompleted(viewController.dynamicType, controller: viewController, name: registrationName)
         
-        for child in viewController.childViewControllers as! [UIViewController] {
+        for child in viewController.childViewControllers {
             injectDependency(child)
         }
     }

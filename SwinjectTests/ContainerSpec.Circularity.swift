@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-import Swinject
+@testable import Swinject
 
 class ContainerSpec_Circularity: QuickSpec {
     override func spec() {

@@ -670,12 +670,12 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/Swinject/Info.plist";
+				INFOPLIST_FILE = Swinject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-				PRODUCT_NAME = Swinject;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -692,12 +692,12 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/Swinject/Info.plist";
+				INFOPLIST_FILE = Swinject/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-				PRODUCT_NAME = Swinject;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -715,7 +715,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
-				PRODUCT_NAME = SwinjectTests;
+				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -732,7 +732,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
-				PRODUCT_NAME = SwinjectTests;
+				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -838,7 +838,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-				PRODUCT_NAME = Swinject;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -856,7 +856,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-				PRODUCT_NAME = Swinject;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -871,7 +871,7 @@
 				INFOPLIST_FILE = SwinjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
-				PRODUCT_NAME = SwinjectTests;
+				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
 			name = Debug;
 		};
@@ -885,7 +885,7 @@
 				INFOPLIST_FILE = SwinjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
-				PRODUCT_NAME = SwinjectTests;
+				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
 			name = Release;
 		};
