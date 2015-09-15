@@ -18,7 +18,8 @@ before_install:
   - brew update; brew update # Workaround for https://github.com/Homebrew/homebrew/issues/42553
   - brew outdated xctool || brew upgrade xctool
   - brew install carthage
-  - carthage bootstrap --verbose
+  - carthage version
+  - carthage bootstrap --verbose --no-use-binaries --use-submodules
 script:
   - set -o pipefail
   - xcodebuild -version
