@@ -20,17 +20,18 @@
 public protocol Resolvable {
     /// Retrieves the instance with the specified service type.
     ///
-    /// :param: serviceType The service type to resolve.
+    /// - Parameter serviceType: The service type to resolve.
     ///
-    /// :returns: The resolved service type instance, or nil if no service is found.
+    /// - Returns: The resolved service type instance, or nil if no service is found.
     func resolve<Service>(serviceType: Service.Type) -> Service?
 
     /// Retrieves the instance with the specified service type and registration name.
     ///
-    /// :param: serviceType The service type to resolve.
-    /// :param: name        The registration name.
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
+    ///   - name:        The registration name.
     ///
-    /// :returns: The resolved service type instance, or nil if no service with the name is found.
+    /// - Returns: The resolved service type instance, or nil if no service with the name is found.
     func resolve<Service>(serviceType: Service.Type, name: String?) -> Service?
 
 <% (1..arg_count).each do |i| %>
@@ -38,27 +39,29 @@ public protocol Resolvable {
 <%   arg_params = (1..i).map { |n| "arg#{n}: Arg#{n}" }.join(", ") %>
     /// Retrieves the instance with the specified service type and <%= argument_text.call(i) %> to the factory closure.
     ///
-    /// :param: serviceType The service type to resolve.
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
 <%   (1..i).each do |n| %>
-    /// :param: arg<%= n %>        An argument to the factory closure as Arg<%= n %> type.
+    ///   - arg<%= n %>:        An argument to the factory closure as Arg<%= n %> type.
 <%   end %>
     ///
-    /// :returns: The resolved service type instance, or nil if no registration for the service type
-    ///           and <%= argument_text.call(i) %> is found.
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type
+    ///            and <%= argument_text.call(i) %> is found.
     func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
         <%= arg_params %>) -> Service?
 
     /// Retrieves the instance with the specified service type, <%= argument_text.call(i) %> to the factory closure and registration name.
     ///
-    /// :param: serviceType The service type to resolve.
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
 <%   (1..i).each do |n| %>
-    /// :param: arg<%= n %>        An argument to the factory closure as Arg<%= n %> type.
+    ///   - arg<%= n %>:        An argument to the factory closure as Arg<%= n %> type.
 <%   end %>
-    /// :param: name        The registration name.
+    ///   - name:        The registration name.
     ///
-    /// :returns: The resolved service type instance, or nil if no registration for the service type,
-    ///           <%= argument_text.call(i) %> and name is found.
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type,
+    ///            <%= argument_text.call(i) %> and name is found.
     func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
         <%= arg_params %>,

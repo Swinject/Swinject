@@ -25,15 +25,16 @@ extension Container {
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
     ///
-    /// :param: serviceType The service type to register.
-    /// :param: name        A registration name, which is used to differenciate from other registrations
-    ///                     that have the same service and factory types.
-    /// :param: factory     The closure to specify how the service type is resolved with the dependencies of the type.
-    ///                     It is invoked when the `Container` needs to instantiate the instance.
-    ///                     It takes a `Resolvable` and <%= argument_text.call(i) %> to inject dependencies to the instance,
-    ///                     and returns the instance of the component type for the service.
+    /// - Parameters:
+    ///   - serviceType: The service type to register.
+    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///                  that have the same service and factory types.
+    ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
+    ///                  It is invoked when the `Container` needs to instantiate the instance.
+    ///                  It takes a `Resolvable` and <%= argument_text.call(i) %> to inject dependencies to the instance,
+    ///                  and returns the instance of the component type for the service.
     ///
-    /// :returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
     public func register<Service, <%= arg_types %>>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -54,13 +55,14 @@ extension Container {
 <%   args_factory = (1..i).map { |n| "arg#{n}" }.join(", ") %>
     /// Retrieves the instance with the specified service type and <%= argument_text.call(i) %> to the factory closure.
     ///
-    /// :param: serviceType The service type to resolve.
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
 <%   (1..i).each do |n| %>
-    /// :param: arg<%= n %>        An argument to the factory closure as Arg<%= n %> type.
+    ///   - arg<%= n %>:        An argument to the factory closure as Arg<%= n %> type.
 <%   end %>
     ///
-    /// :returns: The resolved service type instance, or nil if no registration for the service type
-    ///           and <%= argument_text.call(i) %> is found in the `Container`.
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type
+    ///            and <%= argument_text.call(i) %> is found in the `Container`.
     public func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
         <%= arg_params %>) -> Service?
@@ -70,14 +72,15 @@ extension Container {
 
     /// Retrieves the instance with the specified service type, <%= argument_text.call(i) %> to the factory closure and registration name.
     ///
-    /// :param: serviceType The service type to resolve.
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
 <%   (1..i).each do |n| %>
-    /// :param: arg<%= n %>        An argument to the factory closure as Arg<%= n %> type.
+    ///   - arg<%= n %>:        An argument to the factory closure as Arg<%= n %> type.
 <%   end %>
-    /// :param: name        The registration name.
+    ///   - name:        The registration name.
     ///
-    /// :returns: The resolved service type instance, or nil if no registration for the service type,
-    ///           <%= argument_text.call(i) %> and name is found in the `Container`.
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type,
+    ///            <%= argument_text.call(i) %> and name is found in the `Container`.
     public func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
         <%= arg_params %>,

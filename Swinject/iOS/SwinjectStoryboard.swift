@@ -29,12 +29,13 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase {
     
     /// Creates the new instance of `SwinjectStoryboard`. This method is used instead of an initializer.
     ///
-    /// :param: name      The name of the storyboard resource file without the filename extension.
-    /// :param: bundle    The bundle containing the storyboard file and its resources. Specify nil to use the main bundle.
-    /// :param: container The container with registrations of the view controllers in the storyboard and their dependencies.
-    ///                   The shared singleton container `Container.defaultContainer` is used if no container is passed.
+    /// - Parameters:
+    ///   - name:      The name of the storyboard resource file without the filename extension.
+    ///   - bundle:    The bundle containing the storyboard file and its resources. Specify nil to use the main bundle.
+    ///   - container: The container with registrations of the view controllers in the storyboard and their dependencies.
+    ///                The shared singleton container `Container.defaultContainer` is used if no container is passed.
     ///
-    /// :returns: The new instance of `SwinjectStoryboard`.
+    /// - Returns: The new instance of `SwinjectStoryboard`.
     public class func create(name name: String, bundle storyboardBundleOrNil: NSBundle?, container: Container = Container.defaultContainer) -> SwinjectStoryboard {
         // Use this factory method to create an instance because the initializer of UIStoryboard is "not inherited".
         let storyboard = SwinjectStoryboard._create(name, bundle: storyboardBundleOrNil)
@@ -46,9 +47,9 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase {
     /// The view controller and its child controllers have their dependencies injected
     /// as specified in the `Container` passed to the initializer of the `SwinjectStoryboard`.
     ///
-    /// :param: identifier The identifier set in the storyboard file.
+    /// - Parameter identifier: The identifier set in the storyboard file.
     ///
-    /// :returns: The instantiated view controller with its dependencies injected.
+    /// - Returns: The instantiated view controller with its dependencies injected.
     public override func instantiateViewControllerWithIdentifier(identifier: String) -> UIViewController {
         let viewController = super.instantiateViewControllerWithIdentifier(identifier)
         injectDependency(viewController)
