@@ -23,9 +23,9 @@ public class ServiceEntryBase {
     
     /// Specifies the object scope to resolve the service.
     ///
-    /// :param: scope The `ObjectScope` value.
+    /// - Parameter scope: The `ObjectScope` value.
     ///
-    /// :returns: `self` to add another configuration fluently.
+    /// - Returns: `self` to add another configuration fluently.
     public func inObjectScope(scope: ObjectScope) -> Self {
         self.scope = scope
         return self
@@ -59,9 +59,9 @@ public final class ServiceEntry<Service>: ServiceEntryBase {
     /// *Property or method injections* can be performed in the callback.
     /// To resolve *circular dependencies*, `initCompleted` must be used.
     ///
-    /// :param: completed The closure to be called after the instantiation of the registered service.
+    /// - Parameter completed: The closure to be called after the instantiation of the registered service.
     ///
-    /// :returns: `self` to add another configuration fluently.
+    /// - Returns: `self` to add another configuration fluently.
     public func initCompleted(completed: (Resolvable, Service) -> ()) -> Self {
         initCompleted = completed
         return self
