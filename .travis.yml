@@ -14,7 +14,6 @@ env:
     - DESTINATION="OS=9.0,name=iPhone 6 Plus" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0
     - DESTINATION="arch=x86_64" SCHEME="Swinject-OSX" SDK=macosx10.11
 before_install:
-  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.9.2/Carthage.pkg
   - sudo installer -pkg Carthage.pkg -target /
   - carthage version
