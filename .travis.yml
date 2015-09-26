@@ -7,17 +7,15 @@ env:
     - LC_CTYPE=en_US.UTF-8
     - LANG=en_US.UTF-8
   matrix:
-    - DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0
-#    - DESTINATION="OS=8.2,name=iPhone 5" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0
-#    - DESTINATION="OS=8.3,name=iPhone 5S" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0
-#    - DESTINATION="OS=8.4,name=iPhone 6" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0
-    - DESTINATION="OS=9.0,name=iPhone 6 Plus" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0
-    - DESTINATION="arch=x86_64" SCHEME="Swinject-OSX" SDK=macosx10.11
+    - DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0 POD_LINT="NO"
+#    - DESTINATION="OS=8.2,name=iPhone 5" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0 POD_LINT="NO"
+#    - DESTINATION="OS=8.3,name=iPhone 5S" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0 POD_LINT="NO"
+#    - DESTINATION="OS=8.4,name=iPhone 6" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0 POD_LINT="NO"
+    - DESTINATION="OS=9.0,name=iPhone 6 Plus" SCHEME="Swinject-iOS" SDK=iphonesimulator9.0 POD_LINT="YES"
+    - DESTINATION="arch=x86_64" SCHEME="Swinject-OSX" SDK=macosx10.11 POD_LINT="NO"
 before_install:
-  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-  - brew update; brew update # Workaround for https://github.com/Homebrew/homebrew/issues/42553
-  - brew outdated xctool || brew upgrade xctool
-  - brew install carthage
+  - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.9.2/Carthage.pkg
+  - sudo installer -pkg Carthage.pkg -target /
   - carthage version
   - carthage bootstrap --verbose --no-use-binaries --use-submodules
 script:
@@ -26,4 +24,7 @@ script:
   - xcodebuild -project Swinject.xcodeproj -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" 
     -configuration Debug ONLY_ACTIVE_ARCH=NO test | xcpretty -c
   - xcodebuild -project Swinject.xcodeproj -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" 
-    -configuration Release ONLY_ACTIVE_ARCH=NO test | xcpretty -c
+    -configuration TestableRelease ONLY_ACTIVE_ARCH=NO test | xcpretty -c
+  - if [ $POD_LINT == "YES" ]; then
+      pod lib lint --quick;
+    fi
