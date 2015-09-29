@@ -40,7 +40,7 @@ To install Swinject with Carthage, add the following line to your `Cartfile`.
     github "Swinject/Swinject" ~> 0.2
 
 
-Then run `carthage update` command. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
+Then run `carthage update --no-use-binaries` command or just `carthage update`. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
 
 
 ### CocoaPods
