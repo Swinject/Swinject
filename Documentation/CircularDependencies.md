@@ -4,12 +4,12 @@ Circular Dependencies are dependencies of instances that depend on each other. T
 
 ## Initializer/Property Dependencies
 
-Assume that you have `Mother` and `Daughter` classes depending on each other. `Mother` depends on `ChildType` through its initializer, and `Daughter` on `ParentType` through its property. The back-reference from `Daughter` to `ParentType` is a weak property to avoid memory leak.
+Assume that you have `Parent` and `Child` classes depending on each other. `Parent` depends on `ChildType` through its initializer, and `Child` on `ParentType` through its property. The back-reference from `Child` to `ParentType` is a weak property to avoid memory leak.
 
     protocol ParentType: AnyObject { }
     protocol ChildType: AnyObject { }
 
-    class Mother: ParentType {
+    class Parent: ParentType {
         let child: ChildType?
 
         init(child: ChildType?) {
@@ -17,7 +17,7 @@ Assume that you have `Mother` and `Daughter` classes depending on each other. `M
         }
     }
 
-    class Daughter: ChildType {
+    class Child: ChildType {
         weak var parent: ParentType?
     }
 
@@ -25,15 +25,15 @@ The Circular Dependencies are defined as below.
 
     let container = Container()
     container.register(ParentType.self) { r in
-        Mother(child: r.resolve(ChildType.self)!)
+        Parent(child: r.resolve(ChildType.self)!)
     }
-    container.register(ChildType.self) { _ in Daughter() }
+    container.register(ChildType.self) { _ in Child() }
         .initCompleted { r, c in
-            let daughter = c as! Daughter
-            daughter.parent = r.resolve(ParentType.self)
+            let child = c as! Child
+            child.parent = r.resolve(ParentType.self)
         }
 
-Here the injection to the `parent` property of `Daughter` must be specified in the `initCompleted` callback to get rid of infinite recursive calls.
+Here the injection to the `parent` property of `Child` must be specified in the `initCompleted` callback to get rid of infinite recursive calls.
 
 ## Property/Property Dependencies
 
@@ -42,11 +42,11 @@ Similarly, assume that you have the following classes depending through each pro
     protocol ParentType: AnyObject { }
     protocol ChildType: AnyObject { }
 
-    class Mother: ParentType {
+    class Parent: ParentType {
         var child: ChildType?
     }
 
-    class Daughter: ChildType {
+    class Child: ChildType {
         weak var parent: ParentType?
     }
 
@@ -54,14 +54,14 @@ The Circular Dependencies are defined as below.
 
         let container = Container()
         container.register(ParentType.self) { r in
-            let mother = Mother()
-            mother.child = r.resolve(ChildType.self)!
-            return mother
+            let parent = Parent()
+            parent.child = r.resolve(ChildType.self)!
+            return parent
         }
-        container.register(ChildType.self) { _ in Daughter() }
+        container.register(ChildType.self) { _ in Child() }
             .initCompleted { r, c in
-                let daughter = c as! Daughter
-                daughter.parent = r.resolve(ParentType.self)
+                let child = c as! Child
+                child.parent = r.resolve(ParentType.self)
             }
 
 Here the both or either of the depending properties must be specified in the `initCompleted` callback to get rid of infinite recursive calls.

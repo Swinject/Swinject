@@ -21,22 +21,22 @@ class ContainerSpec_Circularity: QuickSpec {
             it("resolves circular dependency on each property.") {
                 let runInObjectScope: ObjectScope -> Void = { scope in
                     container.removeAll()
-                    container.register(ParentType.self) { _ in Mother() }
+                    container.register(ParentType.self) { _ in Parent() }
                         .initCompleted { r, s in
-                            let mother = s as! Mother
-                            mother.child = r.resolve(ChildType.self)
+                            let parent = s as! Parent
+                            parent.child = r.resolve(ChildType.self)
                         }
                         .inObjectScope(scope)
-                    container.register(ChildType.self) { _ in Daughter() }
+                    container.register(ChildType.self) { _ in Child() }
                         .initCompleted { r, s in
-                            let daughter = s as! Daughter
-                            daughter.parent = r.resolve(ParentType.self)!
+                            let child = s as! Child
+                            child.parent = r.resolve(ParentType.self)!
                         }
                         .inObjectScope(scope)
                     
-                    let mother = container.resolve(ParentType.self) as! Mother
-                    let daughter = mother.child as! Daughter
-                    expect(daughter.parent as? Mother) === mother
+                    let parent = container.resolve(ParentType.self) as! Parent
+                    let child = parent.child as! Child
+                    expect(child.parent as? Parent) === parent
                 }
                 
                 runInObjectScope(.Graph)
@@ -46,18 +46,18 @@ class ContainerSpec_Circularity: QuickSpec {
             it("resolves circular dependency on the initializer and property.") {
                 let runInObjectScope: ObjectScope -> Void = { scope in
                     container.removeAll()
-                    container.register(ParentType.self) { r in Mother(child: r.resolve(ChildType.self)!) }
+                    container.register(ParentType.self) { r in Parent(child: r.resolve(ChildType.self)!) }
                         .inObjectScope(scope)
-                    container.register(ChildType.self) { _ in Daughter() }
+                    container.register(ChildType.self) { _ in Child() }
                         .initCompleted { r, s in
-                            let daughter = s as! Daughter
-                            daughter.parent = r.resolve(ParentType.self)
+                            let child = s as! Child
+                            child.parent = r.resolve(ParentType.self)
                         }
                         .inObjectScope(scope)
                     
-                    let mother = container.resolve(ParentType.self) as! Mother
-                    let daughter = mother.child as! Daughter
-                    expect(daughter.parent as? Mother) === mother
+                    let parent = container.resolve(ParentType.self) as! Parent
+                    let child = parent.child as! Child
+                    expect(child.parent as? Parent) === parent
                 }
                 
                 runInObjectScope(.Graph)
@@ -124,12 +124,12 @@ class ContainerSpec_Circularity: QuickSpec {
         }
         describe("Infinite recursive call") {
             it("raises an exception to inform the problem to programmers.") {
-                container.register(ParentType.self) { r in Mother(child: r.resolve(ChildType.self)!) }
+                container.register(ParentType.self) { r in Parent(child: r.resolve(ChildType.self)!) }
                     .inObjectScope(.Graph)
                 container.register(ChildType.self) { r in
-                    let daughter = Daughter()
-                    daughter.parent = r.resolve(ParentType.self)
-                    return daughter
+                    let child = Child()
+                    child.parent = r.resolve(ParentType.self)
+                    return child
                 }.inObjectScope(.Graph)
                 
                 expect(container.resolve(ParentType.self)).to(raiseException())
