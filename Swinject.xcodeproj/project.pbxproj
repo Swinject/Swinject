@@ -38,6 +38,15 @@
 		981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981ABE811B5FC9DF00294975 /* Swinject.framework */; };
 		9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
+		985010D21BBE776F00A2CCFC /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 985010D11BBE773000A2CCFC /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E31B5FFE5800C702D0 /* Container.swift */; settings = {ASSET_TAGS = (); }; };
+		9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; settings = {ASSET_TAGS = (); }; };
+		985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; settings = {ASSET_TAGS = (); }; };
+		985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F31B676BF700BF686B /* ResolutionPool.swift */; settings = {ASSET_TAGS = (); }; };
+		985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; settings = {ASSET_TAGS = (); }; };
+		985011231BBE7E8900A2CCFC /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; settings = {ASSET_TAGS = (); }; };
+		985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; settings = {ASSET_TAGS = (); }; };
+		985011251BBE7E8900A2CCFC /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; settings = {ASSET_TAGS = (); }; };
 		9855C5BF1B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
 		9855C5C01B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
 		9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */; };
@@ -151,6 +160,12 @@
 		981ABE921B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9848611A1B6F21EC00C07072 /* Sample-iOS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sample-iOS.playground"; sourceTree = "<group>"; };
 		9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
+		985010BD1BBE76AB00A2CCFC /* watchOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Application.xcconfig"; sourceTree = "<group>"; };
+		985010BE1BBE76AB00A2CCFC /* watchOS-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Base.xcconfig"; sourceTree = "<group>"; };
+		985010BF1BBE76AB00A2CCFC /* watchOS-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Framework.xcconfig"; sourceTree = "<group>"; };
+		985010C01BBE76AB00A2CCFC /* watchOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
+		985010C61BBE76D400A2CCFC /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		985010D11BBE773000A2CCFC /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Circularity.swift; sourceTree = "<group>"; };
 		9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolutionPoolSpec.swift; sourceTree = "<group>"; };
 		9855C5C41B689B7B00DADB0B /* FoodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodType.swift; sourceTree = "<group>"; };
@@ -235,6 +250,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		985010C21BBE76D400A2CCFC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -291,6 +313,7 @@
 				981ABE8B1B5FC9DF00294975 /* SwinjectTests.xctest */,
 				981899BC1B5FE63F00C702D0 /* Swinject.framework */,
 				981899C51B5FE63F00C702D0 /* SwinjectTests.xctest */,
+				985010C61BBE76D400A2CCFC /* Swinject.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -309,6 +332,7 @@
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
 				9809A75A1B6B47E6005E037E /* iOS */,
 				98D06D4A1B6CC7C00081AFE0 /* OSX */,
+				985010D01BBE773000A2CCFC /* watchOS */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
 			);
 			path = Swinject;
@@ -329,6 +353,26 @@
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 			);
 			path = SwinjectTests;
+			sourceTree = "<group>";
+		};
+		985010BC1BBE76AB00A2CCFC /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				985010BD1BBE76AB00A2CCFC /* watchOS-Application.xcconfig */,
+				985010BE1BBE76AB00A2CCFC /* watchOS-Base.xcconfig */,
+				985010BF1BBE76AB00A2CCFC /* watchOS-Framework.xcconfig */,
+				985010C01BBE76AB00A2CCFC /* watchOS-StaticLibrary.xcconfig */,
+			);
+			name = watchOS;
+			path = Carthage/Checkouts/xcconfigs/watchOS;
+			sourceTree = "<group>";
+		};
+		985010D01BBE773000A2CCFC /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				985010D11BBE773000A2CCFC /* Swinject.h */,
+			);
+			path = watchOS;
 			sourceTree = "<group>";
 		};
 		986A58311B6D002D00FE710F /* OSX */ = {
@@ -370,6 +414,7 @@
 				98AA74451BB70CBB00E2F48A /* Base */,
 				98AA74501BB70CBB00E2F48A /* iOS */,
 				98AA74551BB70CBB00E2F48A /* Mac OS X */,
+				985010BC1BBE76AB00A2CCFC /* watchOS */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -485,6 +530,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		985010C31BBE76D400A2CCFC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				985010D21BBE776F00A2CCFC /* Swinject.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -562,6 +615,24 @@
 			productReference = 981ABE8B1B5FC9DF00294975 /* SwinjectTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		985010C51BBE76D400A2CCFC /* Swinject-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 985010CB1BBE76D400A2CCFC /* Build configuration list for PBXNativeTarget "Swinject-watchOS" */;
+			buildPhases = (
+				985010C11BBE76D400A2CCFC /* Sources */,
+				985010C21BBE76D400A2CCFC /* Frameworks */,
+				985010C31BBE76D400A2CCFC /* Headers */,
+				985010C41BBE76D400A2CCFC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Swinject-watchOS";
+			productName = "Swinject-watchOS";
+			productReference = 985010C61BBE76D400A2CCFC /* Swinject.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -584,6 +655,9 @@
 					981ABE8A1B5FC9DF00294975 = {
 						CreatedOnToolsVersion = 7.0;
 					};
+					985010C51BBE76D400A2CCFC = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
 				};
 			};
 			buildConfigurationList = 981ABE7B1B5FC9DF00294975 /* Build configuration list for PBXProject "Swinject" */;
@@ -602,6 +676,7 @@
 				981ABE8A1B5FC9DF00294975 /* Swinject-iOSTests */,
 				981899BB1B5FE63F00C702D0 /* Swinject-OSX */,
 				981899C41B5FE63F00C702D0 /* Swinject-OSXTests */,
+				985010C51BBE76D400A2CCFC /* Swinject-watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -636,6 +711,13 @@
 			files = (
 				98D06D491B6CB79B0081AFE0 /* Tabs.storyboard in Resources */,
 				98D06D371B6B579F0081AFE0 /* Animals.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		985010C41BBE76D400A2CCFC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +802,21 @@
 				981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 				981577F11B675B7F00BF686B /* Circularity.swift in Sources */,
 				9855C5BF1B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		985010C11BBE76D400A2CCFC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				985011231BBE7E8900A2CCFC /* RegistrationNameAssociatable.swift in Sources */,
+				985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */,
+				985011251BBE7E8900A2CCFC /* Resolvable.swift in Sources */,
+				9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */,
+				985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */,
+				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
+				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
+				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -874,6 +971,42 @@
 			};
 			name = Release;
 		};
+		985010CC1BBE76D400A2CCFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 985010BF1BBE76AB00A2CCFC /* watchOS-Framework.xcconfig */;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				INFOPLIST_FILE = Swinject/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		985010CD1BBE76D400A2CCFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 985010BF1BBE76AB00A2CCFC /* watchOS-Framework.xcconfig */;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				INFOPLIST_FILE = Swinject/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		985010CE1BBE76D400A2CCFC /* TestableRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 985010BF1BBE76AB00A2CCFC /* watchOS-Framework.xcconfig */;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				INFOPLIST_FILE = Swinject/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = TestableRelease;
+		};
 		98AA745B1BB71A3600E2F48A /* TestableRelease */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98AA744A1BB70CBB00E2F48A /* Release.xcconfig */;
@@ -991,6 +1124,16 @@
 				981ABE991B5FC9DF00294975 /* Debug */,
 				981ABE9A1B5FC9DF00294975 /* Release */,
 				98AA745D1BB71A3600E2F48A /* TestableRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		985010CB1BBE76D400A2CCFC /* Build configuration list for PBXNativeTarget "Swinject-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				985010CC1BBE76D400A2CCFC /* Debug */,
+				985010CD1BBE76D400A2CCFC /* Release */,
+				985010CE1BBE76D400A2CCFC /* TestableRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
