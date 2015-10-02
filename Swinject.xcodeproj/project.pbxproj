@@ -39,14 +39,14 @@
 		9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		985010D21BBE776F00A2CCFC /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 985010D11BBE773000A2CCFC /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E31B5FFE5800C702D0 /* Container.swift */; settings = {ASSET_TAGS = (); }; };
-		9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; settings = {ASSET_TAGS = (); }; };
-		985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; settings = {ASSET_TAGS = (); }; };
-		985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F31B676BF700BF686B /* ResolutionPool.swift */; settings = {ASSET_TAGS = (); }; };
-		985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; settings = {ASSET_TAGS = (); }; };
-		985011231BBE7E8900A2CCFC /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; settings = {ASSET_TAGS = (); }; };
-		985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; settings = {ASSET_TAGS = (); }; };
-		985011251BBE7E8900A2CCFC /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; settings = {ASSET_TAGS = (); }; };
+		9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E31B5FFE5800C702D0 /* Container.swift */; };
+		9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; };
+		985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
+		985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F31B676BF700BF686B /* ResolutionPool.swift */; };
+		985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
+		985011231BBE7E8900A2CCFC /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; };
+		985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
+		985011251BBE7E8900A2CCFC /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; };
 		9855C5BF1B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
 		9855C5C01B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
 		9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */; };
@@ -640,7 +640,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Swinject Contributors";
 				TargetAttributes = {
 					981899BB1B5FE63F00C702D0 = {
