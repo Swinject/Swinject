@@ -12,7 +12,7 @@ import Foundation
 internal protocol ParentType: AnyObject { }
 internal protocol ChildType: AnyObject { }
 
-internal class Mother: ParentType {
+internal class Parent: ParentType {
     var child: ChildType?
     
     init() {
@@ -23,7 +23,7 @@ internal class Mother: ParentType {
     }
 }
 
-internal class Daughter: ChildType {
+internal class Child: ChildType {
     weak var parent: ParentType?
 }
 

@@ -173,7 +173,7 @@ print(methodInjection2.play())
 internal protocol ParentType: AnyObject { }
 internal protocol ChildType: AnyObject { }
 
-internal class Mother: ParentType {
+internal class Parent: ParentType {
     let child: ChildType?
     
     init(child: ChildType?) {
@@ -181,23 +181,23 @@ internal class Mother: ParentType {
     }
 }
 
-internal class Daughter: ChildType {
+internal class Child: ChildType {
     weak var parent: ParentType?
 }
 
 // Use initCompleted callback to set the circular dependency to avoid infinite recursion.
-container.register(ParentType.self) { r in Mother(child: r.resolve(ChildType.self)!) }
-container.register(ChildType.self) { _ in Daughter() }
+container.register(ParentType.self) { r in Parent(child: r.resolve(ChildType.self)!) }
+container.register(ChildType.self) { _ in Child() }
     .initCompleted { r, c in
-        let daughter = c as! Daughter
-        daughter.parent = r.resolve(ParentType.self)
+        let child = c as! Child
+        child.parent = r.resolve(ParentType.self)
     }
 
-let mother = container.resolve(ParentType.self) as! Mother
-let daughter = mother.child as! Daughter
+let parent = container.resolve(ParentType.self) as! Parent
+let child = parent.child as! Child
 
-// The mother and daughter are referencing each other.
-print(mother === daughter.parent)
+// The parent and child are referencing each other.
+print(parent === child.parent)
 
 /*:
 ## Injection with Arguments
