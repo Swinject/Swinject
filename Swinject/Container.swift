@@ -76,6 +76,7 @@ public final class Container {
 }
 
 // MARK: - Extension for Storyboard
+#if os(iOS) || os(OSX)
 extension Container {
     /// Adds a registration of the specified view or window controller that is configured in a storyboard.
     ///
@@ -110,6 +111,7 @@ extension Container {
         return services[key] ?? self.parent?.getEntry(key)
     }
 }
+#endif
 
 // MARK: - Resolvable
 extension Container: Resolvable {
