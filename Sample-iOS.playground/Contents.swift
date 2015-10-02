@@ -231,17 +231,29 @@ print(horse.running)
 ## Self-binding
 */
 
-class SelfieBoy {
-    func takePhoto() -> String {
-        return "Selfie!"
+protocol MyDataType {
+    var data: String { get }
+}
+
+class MyImportantData: MyDataType {
+    let data = "Important data"
+}
+
+class MyController {
+    var myData: MyDataType?
+    
+    func showData() -> String {
+        return myData.map { $0.data } ?? ""
     }
 }
 
-// Register SelfieBoy as both service and component types.
-container.register(SelfieBoy.self) { r in SelfieBoy() }
+// Register MyController as both service and component types to inject dependency to its property.
+container.register(MyController.self) { r in MyController() }
+    .initCompleted { r, c in c.myData = r.resolve(MyDataType.self)! }
+container.register(MyDataType.self) { _ in MyImportantData() }
 
-let selfieBoy = container.resolve(SelfieBoy.self)!
-print(selfieBoy.takePhoto())
+let myController = container.resolve(MyController.self)!
+print(myController.showData())
 
 /*:
 ## Container Hierarchy
