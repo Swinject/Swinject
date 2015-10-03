@@ -224,8 +224,8 @@
 		9855C5C41B689B7B00DADB0B /* FoodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodType.swift; sourceTree = "<group>"; };
 		9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntrySpec.swift; sourceTree = "<group>"; };
 		985BAFA81B625E0F0055F998 /* ServiceEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntry.swift; sourceTree = "<group>"; };
-		986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _SwinjectStoryboardBase.h; path = Swinject/ios/_SwinjectStoryboardBase.h; sourceTree = SOURCE_ROOT; };
-		986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _SwinjectStoryboardBase.m; path = Swinject/ios/_SwinjectStoryboardBase.m; sourceTree = SOURCE_ROOT; };
+		986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SwinjectStoryboardBase.h; sourceTree = "<group>"; };
+		986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SwinjectStoryboardBase.m; sourceTree = "<group>"; };
 		98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-Application.xcconfig"; sourceTree = "<group>"; };
 		98689C771BBFC77F0005C6D3 /* tvOS-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-Base.xcconfig"; sourceTree = "<group>"; };
 		98689C781BBFC77F0005C6D3 /* tvOS-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-Framework.xcconfig"; sourceTree = "<group>"; };
@@ -351,7 +351,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9809A75A1B6B47E6005E037E /* iOS */ = {
+		9809A75A1B6B47E6005E037E /* iOS-tvOS */ = {
 			isa = PBXGroup;
 			children = (
 				986A58251B6CCB2800FE710F /* Container+Typealias.swift */,
@@ -361,17 +361,17 @@
 				98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */,
 				981650371B6D1A1600BC4222 /* Swinject.h */,
 			);
-			path = iOS;
+			path = "iOS-tvOS";
 			sourceTree = "<group>";
 		};
-		9809A75D1B6B5288005E037E /* iOS */ = {
+		9809A75D1B6B5288005E037E /* iOS-tvOS */ = {
 			isa = PBXGroup;
 			children = (
 				98D06D391B6B80630081AFE0 /* Fakes */,
 				9809A75E1B6B5288005E037E /* SwinjectStoryboardSpec.swift */,
 				98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */,
 			);
-			path = iOS;
+			path = "iOS-tvOS";
 			sourceTree = "<group>";
 		};
 		981ABE771B5FC9DF00294975 = {
@@ -412,7 +412,7 @@
 				986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */,
 				98B012C11B82F70A00053A32 /* Resolvable.erb */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
-				9809A75A1B6B47E6005E037E /* iOS */,
+				9809A75A1B6B47E6005E037E /* iOS-tvOS */,
 				98D06D4A1B6CC7C00081AFE0 /* OSX */,
 				985010D01BBE773000A2CCFC /* watchOS */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
@@ -430,7 +430,7 @@
 				9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */,
 				9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */,
 				9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */,
-				9809A75D1B6B5288005E037E /* iOS */,
+				9809A75D1B6B5288005E037E /* iOS-tvOS */,
 				986A58311B6D002D00FE710F /* OSX */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 			);
