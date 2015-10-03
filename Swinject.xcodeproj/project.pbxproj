@@ -59,6 +59,36 @@
 		985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
 		986458C91B6E593800AFA2D7 /* _SwinjectStoryboardBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		986458CA1B6E593800AFA2D7 /* _SwinjectStoryboardBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */; };
+		98689C981BBFC7C90005C6D3 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 981650371B6D1A1600BC4222 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E31B5FFE5800C702D0 /* Container.swift */; };
+		98689C9A1BBFC7EB0005C6D3 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; };
+		98689C9B1BBFC7EB0005C6D3 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
+		98689C9C1BBFC7EB0005C6D3 /* ResolutionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F31B676BF700BF686B /* ResolutionPool.swift */; };
+		98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
+		98689C9E1BBFC7EB0005C6D3 /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; };
+		98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
+		98689CA01BBFC7EB0005C6D3 /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; };
+		98689CA11BBFC7F20005C6D3 /* Container+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58251B6CCB2800FE710F /* Container+Typealias.swift */; };
+		98689CA21BBFC7F20005C6D3 /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A75B1B6B47E6005E037E /* SwinjectStoryboard.swift */; };
+		98689CA31BBFC7F20005C6D3 /* UIViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */; };
+		98689CA41BBFC8000005C6D3 /* _SwinjectStoryboardBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98689CA51BBFC8080005C6D3 /* _SwinjectStoryboardBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */; };
+		98689CB61BBFD5110005C6D3 /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
+		98689CB71BBFD5110005C6D3 /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
+		98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* FoodType.swift */; };
+		98689CB91BBFD5110005C6D3 /* Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F01B675B7F00BF686B /* Circularity.swift */; };
+		98689CBA1BBFD5110005C6D3 /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E01B5FF88800C702D0 /* ContainerSpec.swift */; };
+		98689CBB1BBFD5110005C6D3 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
+		98689CBC1BBFD5110005C6D3 /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
+		98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */; };
+		98689CBE1BBFD5110005C6D3 /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */; };
+		98689CBF1BBFD5110005C6D3 /* ResolutionPoolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */; };
+		98689CC31BBFD5410005C6D3 /* Animals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D361B6B579F0081AFE0 /* Animals.storyboard */; };
+		98689CC41BBFD5410005C6D3 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */; };
+		98689CC81BBFD5B30005C6D3 /* AnimalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */; };
+		98689CC91BBFD5B90005C6D3 /* SwinjectStoryboardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A75E1B6B5288005E037E /* SwinjectStoryboardSpec.swift */; };
+		98689CCA1BBFD5B90005C6D3 /* UIViewController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */; };
+		98689CD51BBFDEBC0005C6D3 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98689C7F1BBFC7A50005C6D3 /* Swinject.framework */; };
 		986A58261B6CCB2800FE710F /* Container+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58251B6CCB2800FE710F /* Container+Typealias.swift */; };
 		986A58281B6CCC9600FE710F /* Container+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58271B6CCC9600FE710F /* Container+Typealias.swift */; };
 		986A582D1B6CF96700FE710F /* NSWindowController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582C1B6CF96700FE710F /* NSWindowController+Swinject.swift */; };
@@ -72,6 +102,10 @@
 		9878C6391B65C9E000CBEFEF /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
 		9878C63C1B65CA8700CBEFEF /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
 		9878C63D1B65CA8700CBEFEF /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
+		987DD0EA1BBFE6DA006572A2 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98689CCD1BBFDCCD0005C6D3 /* Nimble.framework */; };
+		987DD0EB1BBFE6DA006572A2 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98689CCE1BBFDCCD0005C6D3 /* Quick.framework */; };
+		987DD0EC1BBFE6E2006572A2 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 98689CCD1BBFDCCD0005C6D3 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		987DD0ED1BBFE6E2006572A2 /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 98689CCE1BBFDCCD0005C6D3 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9884E2A71B60B77400120259 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; };
 		9884E2A81B60B77400120259 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; };
 		9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */; };
@@ -104,6 +138,13 @@
 			remoteGlobalIDString = 981ABE801B5FC9DF00294975;
 			remoteInfo = Swinject;
 		};
+		98689C8A1BBFC7A60005C6D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 981ABE781B5FC9DF00294975 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 98689C7E1BBFC7A50005C6D3;
+			remoteInfo = "Swinject-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,6 +168,18 @@
 			files = (
 				981899DD1B5FE78100C702D0 /* Nimble.framework in Copy Frameworks */,
 				981899DE1B5FE78100C702D0 /* Quick.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98689CC51BBFD5820005C6D3 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				987DD0EC1BBFE6E2006572A2 /* Nimble.framework in Copy Frameworks */,
+				987DD0ED1BBFE6E2006572A2 /* Quick.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,8 +224,16 @@
 		9855C5C41B689B7B00DADB0B /* FoodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodType.swift; sourceTree = "<group>"; };
 		9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntrySpec.swift; sourceTree = "<group>"; };
 		985BAFA81B625E0F0055F998 /* ServiceEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntry.swift; sourceTree = "<group>"; };
-		986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _SwinjectStoryboardBase.h; path = Swinject/ios/_SwinjectStoryboardBase.h; sourceTree = SOURCE_ROOT; };
-		986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _SwinjectStoryboardBase.m; path = Swinject/ios/_SwinjectStoryboardBase.m; sourceTree = SOURCE_ROOT; };
+		986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SwinjectStoryboardBase.h; sourceTree = "<group>"; };
+		986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SwinjectStoryboardBase.m; sourceTree = "<group>"; };
+		98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-Application.xcconfig"; sourceTree = "<group>"; };
+		98689C771BBFC77F0005C6D3 /* tvOS-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-Base.xcconfig"; sourceTree = "<group>"; };
+		98689C781BBFC77F0005C6D3 /* tvOS-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-Framework.xcconfig"; sourceTree = "<group>"; };
+		98689C791BBFC77F0005C6D3 /* tvOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
+		98689C7F1BBFC7A50005C6D3 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98689C881BBFC7A60005C6D3 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		98689CCD1BBFDCCD0005C6D3 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/tvOS/Nimble.framework; sourceTree = "<group>"; };
+		98689CCE1BBFDCCD0005C6D3 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/tvOS/Quick.framework; sourceTree = "<group>"; };
 		986A58251B6CCB2800FE710F /* Container+Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+Typealias.swift"; sourceTree = "<group>"; };
 		986A58271B6CCC9600FE710F /* Container+Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+Typealias.swift"; sourceTree = "<group>"; };
 		986A582C1B6CF96700FE710F /* NSWindowController+Swinject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindowController+Swinject.swift"; sourceTree = "<group>"; };
@@ -257,6 +318,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		98689C7B1BBFC7A50005C6D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98689C851BBFC7A60005C6D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98689CD51BBFDEBC0005C6D3 /* Swinject.framework in Frameworks */,
+				987DD0EA1BBFE6DA006572A2 /* Nimble.framework in Frameworks */,
+				987DD0EB1BBFE6DA006572A2 /* Quick.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -267,11 +345,13 @@
 				9802C9AC1B5FD7800088018E /* Quick.framework */,
 				981899D41B5FE71400C702D0 /* Nimble.framework */,
 				981899D51B5FE71400C702D0 /* Quick.framework */,
+				98689CCD1BBFDCCD0005C6D3 /* Nimble.framework */,
+				98689CCE1BBFDCCD0005C6D3 /* Quick.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9809A75A1B6B47E6005E037E /* iOS */ = {
+		9809A75A1B6B47E6005E037E /* iOS-tvOS */ = {
 			isa = PBXGroup;
 			children = (
 				986A58251B6CCB2800FE710F /* Container+Typealias.swift */,
@@ -281,17 +361,17 @@
 				98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */,
 				981650371B6D1A1600BC4222 /* Swinject.h */,
 			);
-			path = iOS;
+			path = "iOS-tvOS";
 			sourceTree = "<group>";
 		};
-		9809A75D1B6B5288005E037E /* iOS */ = {
+		9809A75D1B6B5288005E037E /* iOS-tvOS */ = {
 			isa = PBXGroup;
 			children = (
 				98D06D391B6B80630081AFE0 /* Fakes */,
 				9809A75E1B6B5288005E037E /* SwinjectStoryboardSpec.swift */,
 				98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */,
 			);
-			path = iOS;
+			path = "iOS-tvOS";
 			sourceTree = "<group>";
 		};
 		981ABE771B5FC9DF00294975 = {
@@ -314,6 +394,8 @@
 				981899BC1B5FE63F00C702D0 /* Swinject.framework */,
 				981899C51B5FE63F00C702D0 /* SwinjectTests.xctest */,
 				985010C61BBE76D400A2CCFC /* Swinject.framework */,
+				98689C7F1BBFC7A50005C6D3 /* Swinject.framework */,
+				98689C881BBFC7A60005C6D3 /* SwinjectTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -330,7 +412,7 @@
 				986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */,
 				98B012C11B82F70A00053A32 /* Resolvable.erb */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
-				9809A75A1B6B47E6005E037E /* iOS */,
+				9809A75A1B6B47E6005E037E /* iOS-tvOS */,
 				98D06D4A1B6CC7C00081AFE0 /* OSX */,
 				985010D01BBE773000A2CCFC /* watchOS */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
@@ -348,7 +430,7 @@
 				9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */,
 				9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */,
 				9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */,
-				9809A75D1B6B5288005E037E /* iOS */,
+				9809A75D1B6B5288005E037E /* iOS-tvOS */,
 				986A58311B6D002D00FE710F /* OSX */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 			);
@@ -374,6 +456,18 @@
 			);
 			path = watchOS;
 			sourceTree = "<group>";
+		};
+		98689C751BBFC77F0005C6D3 /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */,
+				98689C771BBFC77F0005C6D3 /* tvOS-Base.xcconfig */,
+				98689C781BBFC77F0005C6D3 /* tvOS-Framework.xcconfig */,
+				98689C791BBFC77F0005C6D3 /* tvOS-StaticLibrary.xcconfig */,
+			);
+			name = tvOS;
+			path = Carthage/Checkouts/xcconfigs/tvOS;
+			sourceTree = SOURCE_ROOT;
 		};
 		986A58311B6D002D00FE710F /* OSX */ = {
 			isa = PBXGroup;
@@ -415,6 +509,7 @@
 				98AA74501BB70CBB00E2F48A /* iOS */,
 				98AA74551BB70CBB00E2F48A /* Mac OS X */,
 				985010BC1BBE76AB00A2CCFC /* watchOS */,
+				98689C751BBFC77F0005C6D3 /* tvOS */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -538,6 +633,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		98689C7C1BBFC7A50005C6D3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98689C981BBFC7C90005C6D3 /* Swinject.h in Headers */,
+				98689CA41BBFC8000005C6D3 /* _SwinjectStoryboardBase.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -633,6 +737,43 @@
 			productReference = 985010C61BBE76D400A2CCFC /* Swinject.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		98689C7E1BBFC7A50005C6D3 /* Swinject-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98689C901BBFC7A60005C6D3 /* Build configuration list for PBXNativeTarget "Swinject-tvOS" */;
+			buildPhases = (
+				98689C7A1BBFC7A50005C6D3 /* Sources */,
+				98689C7B1BBFC7A50005C6D3 /* Frameworks */,
+				98689C7C1BBFC7A50005C6D3 /* Headers */,
+				98689C7D1BBFC7A50005C6D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Swinject-tvOS";
+			productName = "Swinject-tvOS";
+			productReference = 98689C7F1BBFC7A50005C6D3 /* Swinject.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		98689C871BBFC7A60005C6D3 /* Swinject-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98689C941BBFC7A60005C6D3 /* Build configuration list for PBXNativeTarget "Swinject-tvOSTests" */;
+			buildPhases = (
+				98689C841BBFC7A60005C6D3 /* Sources */,
+				98689C851BBFC7A60005C6D3 /* Frameworks */,
+				98689C861BBFC7A60005C6D3 /* Resources */,
+				98689CC51BBFD5820005C6D3 /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				98689C8B1BBFC7A60005C6D3 /* PBXTargetDependency */,
+			);
+			name = "Swinject-tvOSTests";
+			productName = "Swinject-tvOSTests";
+			productReference = 98689C881BBFC7A60005C6D3 /* SwinjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -658,6 +799,12 @@
 					985010C51BBE76D400A2CCFC = {
 						CreatedOnToolsVersion = 7.0.1;
 					};
+					98689C7E1BBFC7A50005C6D3 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					98689C871BBFC7A60005C6D3 = {
+						CreatedOnToolsVersion = 7.1;
+					};
 				};
 			};
 			buildConfigurationList = 981ABE7B1B5FC9DF00294975 /* Build configuration list for PBXProject "Swinject" */;
@@ -677,6 +824,8 @@
 				981899BB1B5FE63F00C702D0 /* Swinject-OSX */,
 				981899C41B5FE63F00C702D0 /* Swinject-OSXTests */,
 				985010C51BBE76D400A2CCFC /* Swinject-watchOS */,
+				98689C7E1BBFC7A50005C6D3 /* Swinject-tvOS */,
+				98689C871BBFC7A60005C6D3 /* Swinject-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -718,6 +867,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98689C7D1BBFC7A50005C6D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98689C861BBFC7A60005C6D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98689CC41BBFD5410005C6D3 /* Tabs.storyboard in Resources */,
+				98689CC31BBFD5410005C6D3 /* Animals.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +985,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		98689C7A1BBFC7A50005C6D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98689C9E1BBFC7EB0005C6D3 /* RegistrationNameAssociatable.swift in Sources */,
+				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
+				98689CA11BBFC7F20005C6D3 /* Container+Typealias.swift in Sources */,
+				98689CA21BBFC7F20005C6D3 /* SwinjectStoryboard.swift in Sources */,
+				98689CA01BBFC7EB0005C6D3 /* Resolvable.swift in Sources */,
+				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
+				98689C9C1BBFC7EB0005C6D3 /* ResolutionPool.swift in Sources */,
+				98689CA31BBFC7F20005C6D3 /* UIViewController+Swinject.swift in Sources */,
+				98689C9A1BBFC7EB0005C6D3 /* ServiceKey.swift in Sources */,
+				98689C9B1BBFC7EB0005C6D3 /* ServiceEntry.swift in Sources */,
+				98689CA51BBFC8080005C6D3 /* _SwinjectStoryboardBase.m in Sources */,
+				98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98689C841BBFC7A60005C6D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98689CBB1BBFD5110005C6D3 /* ContainerSpec.Arguments.swift in Sources */,
+				98689CBE1BBFD5110005C6D3 /* ServiceEntrySpec.swift in Sources */,
+				98689CC91BBFD5B90005C6D3 /* SwinjectStoryboardSpec.swift in Sources */,
+				98689CBC1BBFD5110005C6D3 /* ContainerSpec.Circularity.swift in Sources */,
+				98689CB61BBFD5110005C6D3 /* PersonType.swift in Sources */,
+				98689CBA1BBFD5110005C6D3 /* ContainerSpec.swift in Sources */,
+				98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */,
+				98689CCA1BBFD5B90005C6D3 /* UIViewController+SwinjectSpec.swift in Sources */,
+				98689CC81BBFD5B30005C6D3 /* AnimalViewController.swift in Sources */,
+				98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */,
+				98689CB71BBFD5110005C6D3 /* AnimalType.swift in Sources */,
+				98689CBF1BBFD5110005C6D3 /* ResolutionPoolSpec.swift in Sources */,
+				98689CB91BBFD5110005C6D3 /* Circularity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -832,6 +1036,11 @@
 			isa = PBXTargetDependency;
 			target = 981ABE801B5FC9DF00294975 /* Swinject-iOS */;
 			targetProxy = 981ABE8D1B5FC9DF00294975 /* PBXContainerItemProxy */;
+		};
+		98689C8B1BBFC7A60005C6D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 98689C7E1BBFC7A50005C6D3 /* Swinject-tvOS */;
+			targetProxy = 98689C8A1BBFC7A60005C6D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -899,6 +1108,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -916,6 +1126,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1007,6 +1218,84 @@
 			};
 			name = TestableRelease;
 		};
+		98689C911BBFC7A60005C6D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98689C781BBFC77F0005C6D3 /* tvOS-Framework.xcconfig */;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				INFOPLIST_FILE = Swinject/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		98689C921BBFC7A60005C6D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98689C781BBFC77F0005C6D3 /* tvOS-Framework.xcconfig */;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				INFOPLIST_FILE = Swinject/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+		98689C931BBFC7A60005C6D3 /* TestableRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98689C781BBFC77F0005C6D3 /* tvOS-Framework.xcconfig */;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				INFOPLIST_FILE = Swinject/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = TestableRelease;
+		};
+		98689C951BBFC7A60005C6D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
+				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
+			};
+			name = Debug;
+		};
+		98689C961BBFC7A60005C6D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
+				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
+			};
+			name = Release;
+		};
+		98689C971BBFC7A60005C6D3 /* TestableRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
+				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
+			};
+			name = TestableRelease;
+		};
 		98AA745B1BB71A3600E2F48A /* TestableRelease */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98AA744A1BB70CBB00E2F48A /* Release.xcconfig */;
@@ -1020,6 +1309,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1134,6 +1424,26 @@
 				985010CC1BBE76D400A2CCFC /* Debug */,
 				985010CD1BBE76D400A2CCFC /* Release */,
 				985010CE1BBE76D400A2CCFC /* TestableRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98689C901BBFC7A60005C6D3 /* Build configuration list for PBXNativeTarget "Swinject-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98689C911BBFC7A60005C6D3 /* Debug */,
+				98689C921BBFC7A60005C6D3 /* Release */,
+				98689C931BBFC7A60005C6D3 /* TestableRelease */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98689C941BBFC7A60005C6D3 /* Build configuration list for PBXNativeTarget "Swinject-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98689C951BBFC7A60005C6D3 /* Debug */,
+				98689C961BBFC7A60005C6D3 /* Release */,
+				98689C971BBFC7A60005C6D3 /* TestableRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

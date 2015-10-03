@@ -11,11 +11,13 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/Swinject/Swinject.git", :tag => s.version.to_s }
 
   shared_files = 'Swinject/*.swift'
-  s.ios.source_files = shared_files, 'Swinject/iOS/*.{swift,h,m}'
+  s.ios.source_files = shared_files, 'Swinject/iOS-tvOS/*.{swift,h,m}'
   s.osx.source_files = shared_files, 'Swinject/OSX/*.{swift,h,m}'
   s.watchos.source_files = shared_files, 'Swinject/watchOS/*.{swift,h,m}'
+  s.tvos.source_files = shared_files, 'Swinject/iOS-tvOS/*.{swift,h,m}'
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
   s.watchos.deployment_target = '2.0'
+  s.tvos.deployment_target = '9.0'
   s.requires_arc = true
 end

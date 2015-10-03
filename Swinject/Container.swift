@@ -76,7 +76,7 @@ public final class Container {
 }
 
 // MARK: - Extension for Storyboard
-#if os(iOS) || os(OSX)
+#if os(iOS) || os(OSX) || os(tvOS)
 extension Container {
     /// Adds a registration of the specified view or window controller that is configured in a storyboard.
     ///
