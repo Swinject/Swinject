@@ -26,7 +26,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 
 ## Requirements
 
-- iOS 8.0+ / Mac OS X 10.10+ / watchOS 2
+- iOS 8.0+ / Mac OS X 10.10+ / watchOS 2 / tvOS 9.0+
 - Xcode 7.0
 
 ## Installation
