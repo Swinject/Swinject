@@ -26,7 +26,7 @@ Where the classes and protocol are:
     class AnimalViewController: UIViewController {
         var animal: AnimalType?
 
-        required init(coder aDecoder: NSCoder) {
+        required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
         }
     }
