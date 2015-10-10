@@ -331,10 +331,5 @@ class ContainerSpec: QuickSpec {
                 expect(siam.name) == "Siam"
             }
         }
-        describe("Static property") {
-            it("returns a shared container instance.") {
-                expect(Container.defaultContainer) === Container.defaultContainer
-            }
-        }
     }
 }
