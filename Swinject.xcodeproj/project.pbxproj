@@ -36,6 +36,7 @@
 		9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		981970201B6145D600EEB942 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981ABE811B5FC9DF00294975 /* Swinject.framework */; };
+		9847BF861BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847BF851BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift */; settings = {ASSET_TAGS = (); }; };
 		9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		985010D21BBE776F00A2CCFC /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 985010D11BBE773000A2CCFC /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -87,6 +88,9 @@
 		98D06D491B6CB79B0081AFE0 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */; };
 		98D06D4D1B6CC7C00081AFE0 /* NSViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D4B1B6CC7C00081AFE0 /* NSViewController+Swinject.swift */; };
 		98D06D4E1B6CC7C00081AFE0 /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D4C1B6CC7C00081AFE0 /* SwinjectStoryboard.swift */; };
+		98E946981BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */; settings = {ASSET_TAGS = (); }; };
+		98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */; settings = {ASSET_TAGS = (); }; };
+		98E9469C1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +162,7 @@
 		981ABE861B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		981ABE8B1B5FC9DF00294975 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		981ABE921B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9847BF851BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+SwizzlingSpec.swift"; sourceTree = "<group>"; };
 		9848611A1B6F21EC00C07072 /* Sample-iOS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sample-iOS.playground"; sourceTree = "<group>"; };
 		9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
 		985010BD1BBE76AB00A2CCFC /* watchOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Application.xcconfig"; sourceTree = "<group>"; };
@@ -213,6 +218,9 @@
 		98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		98D06D4B1B6CC7C00081AFE0 /* NSViewController+Swinject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSViewController+Swinject.swift"; sourceTree = "<group>"; };
 		98D06D4C1B6CC7C00081AFE0 /* SwinjectStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboard.swift; sourceTree = "<group>"; };
+		98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Swizzling.swift"; sourceTree = "<group>"; };
+		98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Swizzling.swift"; sourceTree = "<group>"; };
+		98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+SwizzlingSpec.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +286,7 @@
 				986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */,
 				986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */,
 				9809A75B1B6B47E6005E037E /* SwinjectStoryboard.swift */,
+				98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */,
 				98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */,
 				981650371B6D1A1600BC4222 /* Swinject.h */,
 			);
@@ -289,6 +298,7 @@
 			children = (
 				98D06D391B6B80630081AFE0 /* Fakes */,
 				9809A75E1B6B5288005E037E /* SwinjectStoryboardSpec.swift */,
+				98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */,
 				98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */,
 			);
 			path = iOS;
@@ -380,6 +390,7 @@
 			children = (
 				986A58381B6D02FB00FE710F /* Fakes */,
 				986A58361B6D02A500FE710F /* SwinjectStoryboardSpec.swift */,
+				9847BF851BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift */,
 				986A58321B6D002D00FE710F /* NSViewController+SwinjectSpec.swift */,
 				986A58341B6D00D500FE710F /* NSWindowController+SwinjectSpec.swift */,
 			);
@@ -502,6 +513,7 @@
 				981650321B6D0C0E00BC4222 /* _SwinjectStoryboardBase.h */,
 				981650331B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m */,
 				98D06D4C1B6CC7C00081AFE0 /* SwinjectStoryboard.swift */,
+				98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */,
 				98D06D4B1B6CC7C00081AFE0 /* NSViewController+Swinject.swift */,
 				986A582C1B6CF96700FE710F /* NSWindowController+Swinject.swift */,
 				98057EAF1B6D108D00A99D9A /* Swinject.h */,
@@ -731,6 +743,7 @@
 				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				986A582D1B6CF96700FE710F /* NSWindowController+Swinject.swift in Sources */,
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
+				98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */,
 				981650351B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m in Sources */,
 				98B012C01B82F68E00053A32 /* Resolvable.swift in Sources */,
 				986A58281B6CCC9600FE710F /* Container+Typealias.swift in Sources */,
@@ -756,6 +769,7 @@
 				9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				9855C5C31B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
 				986A58331B6D002D00FE710F /* NSViewController+SwinjectSpec.swift in Sources */,
+				9847BF861BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift in Sources */,
 				9878C6391B65C9E000CBEFEF /* AnimalType.swift in Sources */,
 				981650311B6D085900BC4222 /* AnimalViewController.swift in Sources */,
 				9816502F1B6D041300BC4222 /* AnimalWindowController.swift in Sources */,
@@ -774,6 +788,7 @@
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				98D06D3F1B6BA7B60081AFE0 /* UIViewController+Swinject.swift in Sources */,
 				986A58261B6CCB2800FE710F /* Container+Typealias.swift in Sources */,
+				98E946981BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift in Sources */,
 				981577F41B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */,
 				9809A75C1B6B47E6005E037E /* SwinjectStoryboard.swift in Sources */,
@@ -799,6 +814,7 @@
 				9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
 				98D06D3D1B6B816C0081AFE0 /* AnimalViewController.swift in Sources */,
 				9878C6381B65C9E000CBEFEF /* AnimalType.swift in Sources */,
+				98E9469C1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift in Sources */,
 				981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 				981577F11B675B7F00BF686B /* Circularity.swift in Sources */,
 				9855C5BF1B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */,
