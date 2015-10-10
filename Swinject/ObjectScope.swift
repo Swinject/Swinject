@@ -29,8 +29,4 @@ public enum ObjectScope {
 
     /// An instance provided by the `Container` is not only shared within the `Container` but also shared within its child `Containers`.
     case Hierarchy
-
-    // TODO: Add more scope cases.
-    // case WeakContainer
-    // case Thread
 }
