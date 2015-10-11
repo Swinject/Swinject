@@ -101,5 +101,25 @@ class SwinjectStoryboardSpec: QuickSpec {
                 SwinjectStoryboard.defaultContainer.removeAll()
             }
         }
+        describe("Storyboard reference") {
+            if #available(iOS 9, *) {
+                it("inject dependency to the view controller in the referenced storyboard.") {
+                    SwinjectStoryboard.defaultContainer.registerForStoryboard(AnimalViewController.self) { r, c in
+                        c.animal = r.resolve(AnimalType.self)
+                    }
+                    SwinjectStoryboard.defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+                    
+                    let storyboard1 = SwinjectStoryboard.create(name: "Storyboard1", bundle: bundle)
+                    let navigationController = storyboard1.instantiateInitialViewController() as! UINavigationController
+                    navigationController.performSegueWithIdentifier("ToStoryboard2", sender: navigationController)
+                    let animalViewController = navigationController.topViewController as! AnimalViewController
+                    expect(animalViewController.hasAnimal(named: "Mimi")) == true
+                }
+            }
+            
+            afterEach {
+                SwinjectStoryboard.defaultContainer.removeAll()
+            }
+        }
     }
 }
