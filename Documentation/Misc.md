@@ -69,28 +69,6 @@ Where the protocols and classes are:
         }
     }
 
-## Shared Singleton Container
-
-`Container` class has its singleton instance to use everywhere. The shared singleton is provided by `defaultContainer` class property. For example, if `PetOwner` depends on `AnimalType`, first register the `AnimalType` to the singleton container.
-
-    Container.defaultContainer.register(AnimalType.self) { _ in
-        Cat(name: "Mew")
-    }
-
-Then `PetOwner` class can get the dependency from the shared container.
-
-    class PetOwner {
-        let name: String
-        let pet: AnimalType
-
-        init(name: String) {
-            self.name = name
-            self.pet = Container.defaultContainer.resolve(AnimalType.self)!
-        }
-    }
-
-This pattern is more like [Service Locator Pattern](https://en.wikipedia.org/wiki/Service_locator_pattern) although some people think [it is an anti pattern](http://stackoverflow.com/questions/22795459/is-servicelocator-anti-pattern).
-
 _[Next page: Storyboard](Storyboard.md)_
 
 _[Table of Contents](README.md)_

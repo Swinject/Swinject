@@ -395,14 +395,3 @@ var turtle2 = container5.resolve(AnimalType.self)!
 turtle1.name = "Laph"
 print(turtle1.name!)
 print(turtle2.name!)
-
-/*:
-## Shared Singleton Container
-*/
-
-// The shared container can be used if it is ok to depend on the singleton container.
-Container.defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mew") }
-
-let mew = Container.defaultContainer.resolve(AnimalType.self)!
-print(mew.name!)
-
