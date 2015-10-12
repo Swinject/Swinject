@@ -10,6 +10,13 @@ import Quick
 import Nimble
 @testable import Swinject
 
+private var swinjectStoryboardSetupCount = 0
+extension SwinjectStoryboard {
+    static func setup() {
+        swinjectStoryboardSetupCount++
+    }
+}
+
 class SwinjectStoryboardSpec: QuickSpec {
     override func spec() {
         let bundle = NSBundle(forClass: SwinjectStoryboardSpec.self)
@@ -144,6 +151,13 @@ class SwinjectStoryboardSpec: QuickSpec {
             
             afterEach {
                 SwinjectStoryboard.defaultContainer.removeAll()
+            }
+        }
+        describe("Setup") {
+            it("calls setup function only once.") {
+                _ = SwinjectStoryboard.create(name: "Animals", bundle: bundle)
+                _ = SwinjectStoryboard.create(name: "Animals", bundle: bundle)
+                expect(swinjectStoryboardSetupCount) == 1
             }
         }
     }

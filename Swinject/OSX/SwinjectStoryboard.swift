@@ -20,7 +20,7 @@ import AppKit
 ///
 /// in User Defined Runtime Attributes section on Indentity Inspector pane.
 /// If no name is supplied to the registration, no runtime attribute should be specified.
-public class SwinjectStoryboard: _SwinjectStoryboardBase {
+public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType {
     /// A shared container used by SwinjectStoryboard instances that are instantiated without specific containers.
     ///
     /// Typical usecases of this property are:
@@ -29,6 +29,18 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase {
     public static var defaultContainer = Container()
     
     private var container: Container!
+    
+    /// Do NOT call this method explicitly. It is designed to be called by the runtime.
+    public override class func initialize() {
+        struct Static {
+            static var token: dispatch_once_t = 0
+        }
+        dispatch_once(&Static.token) {
+            if SwinjectStoryboard.respondsToSelector("setup") {
+                SwinjectStoryboard.performSelector("setup")
+            }
+        }
+    }
     
     private override init() {
         super.init()
