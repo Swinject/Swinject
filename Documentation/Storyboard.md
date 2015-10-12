@@ -139,6 +139,8 @@ If you prefer explicit instantiation of UIWindow and its root view controller, i
         }
     }
 
+Notice that you should delete `Main storyboard file base name` item (or `UIMainStoryboardFile` item if you are displaying raw keys/values) in `Info.plist` of your app.
+
 ## Storyboard References
 
 Storyboard Reference introduced with Xcode 7 is supported by `SwinjectStoryboard`. To enable dependency injection when an instance is created from a referenced storyboard, register dependencies to `defaultContainer` static property of `SwinjectStoryboard`.
