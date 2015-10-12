@@ -14,15 +14,15 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 ## Features
 
 - [x] Pure Swift Type Injection
-- [x] Initializer/Property/Method Injections
-- [x] Initialization Callback
-- [x] Circular Dependency Injection
-- [x] Injection with Arguments
-- [x] Self-registration (Self-binding)
-- [x] Container Hierarchy
-- [x] Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy
-- [x] Injection of both Reference and Value Types
-- [x] Storyboard
+- [x] [Initializer/Property/Method Injections](./Documentation/InjectionPatterns.md)
+- [x] [Initialization Callback](./Documentation/InjectionPatterns.md)
+- [x] [Circular Dependency Injection](./Documentation/CircularDependencies.md)
+- [x] [Injection with Arguments](./Documentation/DIContainer.md)
+- [x] [Self-registration (Self-binding)](./Documentation/Misc.md)
+- [x] [Container Hierarchy](./Documentation/ContainerHierarchy.md)
+- [x] [Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy](./Documentation/ObjectScopes.md)
+- [x] Injection of both Reference and [Value Types](./Documentation/Misc.md)
+- [x] [Storyboard](./Documentation/Storyboard.md)
 
 ## Requirements
 
