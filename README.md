@@ -14,15 +14,15 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 ## Features
 
 - [x] Pure Swift Type Injection
-- [x] Initializer/Property/Method Injections
-- [x] Initialization Callback
-- [x] Circular Dependency Injection
-- [x] Injection with Arguments
-- [x] Self-registration (Self-binding)
-- [x] Container Hierarchy
-- [x] Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy
-- [x] Injection of both Reference and Value Types
-- [x] Storyboard
+- [x] [Initializer/Property/Method Injections](./Documentation/InjectionPatterns.md)
+- [x] [Initialization Callback](./Documentation/InjectionPatterns.md)
+- [x] [Circular Dependency Injection](./Documentation/CircularDependencies.md)
+- [x] [Injection with Arguments](./Documentation/DIContainer.md)
+- [x] [Self-registration (Self-binding)](./Documentation/Misc.md)
+- [x] [Container Hierarchy](./Documentation/ContainerHierarchy.md)
+- [x] [Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy](./Documentation/ObjectScopes.md)
+- [x] Injection of both Reference and [Value Types](./Documentation/Misc.md)
+- [x] [Storyboard](./Documentation/Storyboard.md)
 
 ## Requirements
 
@@ -31,13 +31,13 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 
 ## Installation
 
-Swinject is available through [Carthage](https://github.com/Carthage/Carthage) or  [CocoaPods](https://cocoapods.org).
+Swinject is available through [Carthage](https://github.com/Carthage/Carthage) or [CocoaPods](https://cocoapods.org).
 
 ### Carthage
 
 To install Swinject with Carthage, add the following line to your `Cartfile`.
 
-    github "Swinject/Swinject" ~> 0.2
+    github "Swinject/Swinject" ~> 0.3
 
 
 Then run `carthage update --no-use-binaries` command or just `carthage update`. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
@@ -51,7 +51,7 @@ To install Swinject with CocoaPods, add the following lines to your `Podfile`.
     platform :ios, '8.0'
     use_frameworks!
 
-    pod 'Swinject', '~> 0.2'
+    pod 'Swinject', '~> 0.3'
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
 

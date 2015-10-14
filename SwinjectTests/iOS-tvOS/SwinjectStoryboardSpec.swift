@@ -10,6 +10,13 @@ import Quick
 import Nimble
 @testable import Swinject
 
+private var swinjectStoryboardSetupCount = 0
+extension SwinjectStoryboard {
+    static func setup() {
+        swinjectStoryboardSetupCount++
+    }
+}
+
 class SwinjectStoryboardSpec: QuickSpec {
     override func spec() {
         let bundle = NSBundle(forClass: SwinjectStoryboardSpec.self)
@@ -90,7 +97,7 @@ class SwinjectStoryboardSpec: QuickSpec {
         }
         describe("Factory method") {
             it("uses the default shared container if no container is passed.") {
-                Container.defaultContainer.registerForStoryboard(AnimalViewController.self) { _, _ in }
+                SwinjectStoryboard.defaultContainer.registerForStoryboard(AnimalViewController.self) { _, _ in }
                 
                 let storyboard = SwinjectStoryboard.create(name: "Animals", bundle: bundle)
                 let animalViewController = storyboard.instantiateViewControllerWithIdentifier("AnimalAsCat")
@@ -98,7 +105,34 @@ class SwinjectStoryboardSpec: QuickSpec {
             }
             
             afterEach {
-                Container.defaultContainer.removeAll()
+                SwinjectStoryboard.defaultContainer.removeAll()
+            }
+        }
+        describe("Storyboard reference") {
+            if #available(iOS 9, *) {
+                it("inject dependency to the view controller in the referenced storyboard.") {
+                    SwinjectStoryboard.defaultContainer.registerForStoryboard(AnimalViewController.self) { r, c in
+                        c.animal = r.resolve(AnimalType.self)
+                    }
+                    SwinjectStoryboard.defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+                    
+                    let storyboard1 = SwinjectStoryboard.create(name: "Storyboard1", bundle: bundle)
+                    let navigationController = storyboard1.instantiateInitialViewController() as! UINavigationController
+                    navigationController.performSegueWithIdentifier("ToStoryboard2", sender: navigationController)
+                    let animalViewController = navigationController.topViewController as! AnimalViewController
+                    expect(animalViewController.hasAnimal(named: "Mimi")) == true
+                }
+            }
+            
+            afterEach {
+                SwinjectStoryboard.defaultContainer.removeAll()
+            }
+        }
+        describe("Setup") {
+            it("calls setup function only once.") {
+                _ = SwinjectStoryboard.create(name: "Animals", bundle: bundle)
+                _ = SwinjectStoryboard.create(name: "Animals", bundle: bundle)
+                expect(swinjectStoryboardSetupCount) == 1
             }
         }
     }

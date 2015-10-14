@@ -32,3 +32,6 @@ script:
   - if [ $POD_LINT == "YES" ]; then
       pod lib lint --quick;
     fi
+notifications:
+  email:
+    on_success: never

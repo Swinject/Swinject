@@ -33,3 +33,6 @@ Pods/
 #Carthage/Checkouts
 
 Carthage/Build
+
+# Swinject
+Swinject.framework.zip
