@@ -36,7 +36,7 @@
 		9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		981970201B6145D600EEB942 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981ABE811B5FC9DF00294975 /* Swinject.framework */; };
-		9847BF861BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847BF851BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift */; settings = {ASSET_TAGS = (); }; };
+		9847BF861BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847BF851BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift */; };
 		9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		985010D21BBE776F00A2CCFC /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 985010D11BBE773000A2CCFC /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -111,12 +111,17 @@
 		9884E2A81B60B77400120259 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; };
 		9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */; };
 		9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */; };
-		988EEDAF1BCA082900E935F7 /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988EEDAE1BCA082900E935F7 /* Storyboard2.storyboard */; settings = {ASSET_TAGS = (); }; };
-		9892E7B41BCA3CA200EC0D04 /* Storyboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9892E7B31BCA3CA200EC0D04 /* Storyboard1.storyboard */; settings = {ASSET_TAGS = (); }; };
-		9892E7B61BCA3CB100EC0D04 /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9892E7B51BCA3CB100EC0D04 /* Storyboard2.storyboard */; settings = {ASSET_TAGS = (); }; };
-		989377C61BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; settings = {ASSET_TAGS = (); }; };
-		989377C71BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; settings = {ASSET_TAGS = (); }; };
-		989377C81BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; settings = {ASSET_TAGS = (); }; };
+		988EEDAF1BCA082900E935F7 /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988EEDAE1BCA082900E935F7 /* Storyboard2.storyboard */; };
+		9892E7B41BCA3CA200EC0D04 /* Storyboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9892E7B31BCA3CA200EC0D04 /* Storyboard1.storyboard */; };
+		9892E7B61BCA3CB100EC0D04 /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9892E7B51BCA3CB100EC0D04 /* Storyboard2.storyboard */; };
+		989377C61BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; };
+		989377C71BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; };
+		989377C81BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; };
+		98A4306C1BCE2D9E00B6B588 /* UIStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */; };
+		98A430701BCE2E5800B6B588 /* Storyboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */; };
+		98A430711BCE2E5800B6B588 /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988EEDAE1BCA082900E935F7 /* Storyboard2.storyboard */; };
+		98A430721BCE2E5800B6B588 /* UIStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */; };
+		98A430751BCE2F8F00B6B588 /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; };
 		98B012B81B82D67300053A32 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; };
@@ -128,10 +133,10 @@
 		98D06D491B6CB79B0081AFE0 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */; };
 		98D06D4D1B6CC7C00081AFE0 /* NSViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D4B1B6CC7C00081AFE0 /* NSViewController+Swinject.swift */; };
 		98D06D4E1B6CC7C00081AFE0 /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D4C1B6CC7C00081AFE0 /* SwinjectStoryboard.swift */; };
-		98E946981BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */; settings = {ASSET_TAGS = (); }; };
-		98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */; settings = {ASSET_TAGS = (); }; };
-		98E9469C1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */; settings = {ASSET_TAGS = (); }; };
-		98EA93BD1BCA48D000E9121D /* Storyboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */; settings = {ASSET_TAGS = (); }; };
+		98E946981BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */; };
+		98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */; };
+		98E9469C1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */; };
+		98EA93BD1BCA48D000E9121D /* Storyboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -914,8 +919,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98A430711BCE2E5800B6B588 /* Storyboard2.storyboard in Resources */,
 				98689CC41BBFD5410005C6D3 /* Tabs.storyboard in Resources */,
 				98689CC31BBFD5410005C6D3 /* Animals.storyboard in Resources */,
+				98A430701BCE2E5800B6B588 /* Storyboard1.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,6 +1040,7 @@
 				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
 				98689CA11BBFC7F20005C6D3 /* Container+Typealias.swift in Sources */,
 				98689CA21BBFC7F20005C6D3 /* SwinjectStoryboard.swift in Sources */,
+				98A4306C1BCE2D9E00B6B588 /* UIStoryboard+Swizzling.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolvable.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
 				98689C9C1BBFC7EB0005C6D3 /* ResolutionPool.swift in Sources */,
@@ -1041,6 +1049,7 @@
 				98689C9B1BBFC7EB0005C6D3 /* ServiceEntry.swift in Sources */,
 				98689CA51BBFC8080005C6D3 /* _SwinjectStoryboardBase.m in Sources */,
 				98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */,
+				98A430751BCE2F8F00B6B588 /* SwinjectStoryboardType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,6 +1067,7 @@
 				98689CCA1BBFD5B90005C6D3 /* UIViewController+SwinjectSpec.swift in Sources */,
 				98689CC81BBFD5B30005C6D3 /* AnimalViewController.swift in Sources */,
 				98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */,
+				98A430721BCE2E5800B6B588 /* UIStoryboard+SwizzlingSpec.swift in Sources */,
 				98689CB71BBFD5110005C6D3 /* AnimalType.swift in Sources */,
 				98689CBF1BBFD5110005C6D3 /* ResolutionPoolSpec.swift in Sources */,
 				98689CB91BBFD5110005C6D3 /* Circularity.swift in Sources */,
