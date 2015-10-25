@@ -109,6 +109,83 @@ and
 
 Notice that the `pet` of `PetOwner` is automatically set as the instance of `Cat` when `PersonType` is resolved to the instance of `PetOwner`. If a container already set up is given, you do not have to care what are the actual types of the services and how they are created with their dependency.
 
+## Where to Register Services
+
+Services must be registered to a container before they are used. Typical ways of the registrations are different between the cases with/without `SwinjectStoryboard`.
+
+The following view controller class is used in addition to the protocols and classes above in the examples below.
+
+```
+class PersonViewController: UIViewController {
+    var person: PersonType?
+}
+
+```
+
+### With SwinjectStoryboard
+
+Services should be registered in an extension of `SwinjectStoryboard` if you use `SwinjectStoryboard`. Refer to [the document of SwinjectStoryboard](./Documentation/Storyboard.md) for its details.
+
+```
+extension SwinjectStoryboard {
+    class func setup() {
+        let container = defaultContainer
+
+        container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+        container.register(PersonType.self) { r in
+            PetOwner(pet: r.resolve(AnimalType.self)!)
+        }
+        container.register(PersonViewController.self) { r in
+            let controller = PersonViewController()
+            controller.person = r.resolve(PersonType.self)
+            return controller
+        }
+    }
+}
+```
+
+### Without SwinjectStoryboard
+
+Typically services are registered to a container in `AppDelegate` if you do not use `SwinjectStoryboard` to instantiate view controllers. If you register the services in `AppDelegate` especially before exiting the call of `application:didFinishLaunchingWithOptions:`, it is ensured that the services are registered before they are used.
+
+```
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    let container: Container = {
+        let container = Container()
+
+        container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+        container.register(PersonType.self) { r in
+            PetOwner(pet: r.resolve(AnimalType.self)!)
+        }
+        container.register(PersonViewController.self) { r in
+            let controller = PersonViewController()
+            controller.person = r.resolve(PersonType.self)
+            return controller
+        }
+
+        return container
+    }()
+
+    func application(
+        application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?)
+        -> Bool {
+
+        // Instantiate a window.
+        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window.backgroundColor = UIColor.whiteColor()
+        window.makeKeyAndVisible()
+        self.window = window
+
+        // Instantiate the root view controller with dependencies injected by the container.
+        window.rootViewController = container.resolve(PersonViewController.self)
+
+        return true
+    }
+}
+```
+
 ## Play in Playground!
 
 The project contains `Sample-iOS.playground` to demonstrate the features of Swinject. Download or clone the project, run the playground, modify it, and play with it to learn Swinject.
