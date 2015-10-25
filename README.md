@@ -7,7 +7,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 [![Language Swift](https://img.shields.io/badge/language-Swift-F16D39.svg?style=flat)](https://developer.apple.com/swift)
 
-Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org) [BlindsidedStoryboard](https://github.com/briancroom/BlindsidedStoryboard), and highly inspired by [Funq](http://funq.codeplex.com).
+Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org), [BlindsidedStoryboard](https://github.com/briancroom/BlindsidedStoryboard), and highly inspired by [Funq](http://funq.codeplex.com).
 
 Dependency injection (DI) is a software design pattern that implements Inversion of Control (IoC) for resolving dependencies. In the pattern, Swinject helps your app split into loosely-coupled components, which can be developed, tested and maintained more easily. Swinject is powered by the Swift generic type system and first class functions to define dependencies of your app simply and fluently.
 
