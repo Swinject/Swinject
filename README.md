@@ -119,7 +119,6 @@ The following view controller class is used in addition to the protocols and cla
 class PersonViewController: UIViewController {
     var person: PersonType?
 }
-
 ```
 
 ### With SwinjectStoryboard
