@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "981899BB1B5FE63F00C702D0"
+               BlueprintIdentifier = "98689C7E1BBFC7A50005C6D3"
                BuildableName = "Swinject.framework"
-               BlueprintName = "Swinject-OSX"
+               BlueprintName = "Swinject-tvOS"
                ReferencedContainer = "container:Swinject.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,16 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "981899C41B5FE63F00C702D0"
+               BlueprintIdentifier = "98689C871BBFC7A60005C6D3"
                BuildableName = "SwinjectTests.xctest"
-               BlueprintName = "Swinject-OSXTests"
+               BlueprintName = "Swinject-tvOSTests"
                ReferencedContainer = "container:Swinject.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "981899BB1B5FE63F00C702D0"
+            BlueprintIdentifier = "98689C7E1BBFC7A50005C6D3"
             BuildableName = "Swinject.framework"
-            BlueprintName = "Swinject-OSX"
+            BlueprintName = "Swinject-tvOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "981899BB1B5FE63F00C702D0"
+            BlueprintIdentifier = "98689C7E1BBFC7A50005C6D3"
             BuildableName = "Swinject.framework"
-            BlueprintName = "Swinject-OSX"
+            BlueprintName = "Swinject-tvOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "981899BB1B5FE63F00C702D0"
+            BlueprintIdentifier = "98689C7E1BBFC7A50005C6D3"
             BuildableName = "Swinject.framework"
-            BlueprintName = "Swinject-OSX"
+            BlueprintName = "Swinject-tvOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

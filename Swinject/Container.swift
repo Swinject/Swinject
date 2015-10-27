@@ -73,7 +73,7 @@ public final class Container {
 }
 
 // MARK: - Extension for Storyboard
-#if os(iOS) || os(OSX)
+#if os(iOS) || os(OSX) || os(tvOS)
 extension Container {
     /// Adds a registration of the specified view or window controller that is configured in a storyboard.
     ///
@@ -87,7 +87,11 @@ extension Container {
     public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
         let key = ServiceKey(factoryType: controllerType, name: name)
         let entry = ServiceEntry(serviceType: controllerType)
-        entry.initCompleted = initCompleted
+        
+        // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
+        let wrappingClosure: (Resolvable, Controller) -> () = { r, c in initCompleted(r, c as! C) }
+        entry.initCompleted = wrappingClosure
+        
         services[key] = entry
     }
     
@@ -98,7 +102,9 @@ extension Container {
         let key = ServiceKey(factoryType: controllerType, name: name)
         if let entry = getEntry(key) {
             resolutionPool[key] = controller as Any
-            if let completed = entry.initCompleted as? (Resolvable, C) -> () {
+            
+            // Xcode 7.1 workaround for Issue #10, casting initCompleted to (Resolvable, Controller) -> (), not to (Resolvable, C) -> ()
+            if let completed = entry.initCompleted as? ( (Resolvable, Controller) -> () ) {
                 completed(self, controller)
             }
         }
