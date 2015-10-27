@@ -27,16 +27,21 @@ public final class Container {
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
     
-    /// Instantiates a `Container`.
-    public init() {
-        self.parent = nil
+    /// Instantiates a `Container` with its parent `Container`. The parent is optional.
+    ///
+    /// - Parameter parent: The optional parent `Container`.
+    public init(parent: Container? = nil) {
+        self.parent = parent
     }
     
-    /// Instantiates a `Container` that is a child container of the `Container` specified with `parent`.
+    /// Instantiates a `Container` with its parent `Container` and a closure registering services. The parent is optional.
     ///
-    /// - Parameter parent: The parent `Container`.
-    public init(parent: Container) {
-        self.parent = parent
+    /// - Parameters:
+    ///     - parent:             The optional parent `Container`.
+    ///     - registeringClosure: The closure registering services to the new container instance.
+    public convenience init(parent: Container? = nil, @noescape registeringClosure: Container -> Void) {
+        self.init(parent: parent)
+        registeringClosure(self)
     }
     
     /// Removes all registrations in the container.

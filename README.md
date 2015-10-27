@@ -150,21 +150,17 @@ Typically services are registered to a container in `AppDelegate` if you do not 
 ```
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    let container: Container = {
-        let container = Container()
-
-        container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-        container.register(PersonType.self) { r in
+    let container = Container() { c in
+        c.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+        c.register(PersonType.self) { r in
             PetOwner(pet: r.resolve(AnimalType.self)!)
         }
-        container.register(PersonViewController.self) { r in
+        c.register(PersonViewController.self) { r in
             let controller = PersonViewController()
             controller.person = r.resolve(PersonType.self)
             return controller
         }
-
-        return container
-    }()
+    }
 
     func application(
         application: UIApplication,
@@ -184,6 +180,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 ```
+
+Notice that the example uses a convenience initializer taking a closure to register services to the new instance of `Container`.
 
 ## Play in Playground!
 

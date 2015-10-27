@@ -331,5 +331,14 @@ class ContainerSpec: QuickSpec {
                 expect(siam.name) == "Siam"
             }
         }
+        describe("Convenience initializers") {
+            it("takes a closure registering services.") {
+                let container = Container() {
+                    $0.register(AnimalType.self) { _ in Cat() }
+                }
+                
+                expect(container.resolve(AnimalType.self) as? Cat).notTo(beNil())
+            }
+        }
     }
 }
