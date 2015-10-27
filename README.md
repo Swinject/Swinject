@@ -37,7 +37,7 @@ Swinject is available through [Carthage](https://github.com/Carthage/Carthage) o
 
 To install Swinject with Carthage, add the following line to your `Cartfile`.
 
-    github "Swinject/Swinject" ~> 0.3
+    github "Swinject/Swinject" ~> 0.4
 
 
 Then run `carthage update --no-use-binaries` command or just `carthage update`. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
@@ -51,7 +51,7 @@ To install Swinject with CocoaPods, add the following lines to your `Podfile`.
     platform :ios, '8.0'
     use_frameworks!
 
-    pod 'Swinject', '~> 0.3'
+    pod 'Swinject', '~> 0.4'
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
 
