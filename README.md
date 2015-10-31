@@ -202,6 +202,10 @@ The following blog posts introduce Swinject and the concept of dependency inject
 - [Dependency Injection Framework for Swift - Simple Weather App Example with Swinject Part 1/2](https://yoichitgy.github.io/post/dependency-injection-framework-for-swift-simple-weather-app-example-with-swinject-part-1/)
 - [Dependency Injection Framework for Swift - Simple Weather App Example with Swinject Part 2/2](https://yoichitgy.github.io/post/dependency-injection-framework-for-swift-simple-weather-app-example-with-swinject-part-2/)
 
+## Contribution Guide
+
+A guide to submit issues, to ask general questions, or to open pull requests is [here](CONTRIBUTING.md).
+
 ## License
 
 MIT license. See the [LICENSE file](LICENSE.txt) for details.
