@@ -135,18 +135,16 @@ class SwinjectStoryboardSpec: QuickSpec {
             }
         }
         describe("Storyboard reference") {
-            if #available(OSX 10.11, *) {
-                it("inject dependency to the view controller in the referenced storyboard.") {
-                    SwinjectStoryboard.defaultContainer.registerForStoryboard(AnimalViewController.self) { r, c in
-                        c.animal = r.resolve(AnimalType.self)
-                    }
-                    SwinjectStoryboard.defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-                    
-                    let storyboard1 = SwinjectStoryboard.create(name: "Storyboard1", bundle: bundle)
-                    let tabController = storyboard1.instantiateInitialController() as! NSTabViewController
-                    let animalViewController = tabController.childViewControllers[0] as! AnimalViewController
-                    expect(animalViewController.hasAnimal(named: "Mimi")) == true
+            it("inject dependency to the view controller in the referenced storyboard.") {
+                SwinjectStoryboard.defaultContainer.registerForStoryboard(AnimalViewController.self) { r, c in
+                    c.animal = r.resolve(AnimalType.self)
                 }
+                SwinjectStoryboard.defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+                
+                let storyboard1 = SwinjectStoryboard.create(name: "Storyboard1", bundle: bundle)
+                let tabController = storyboard1.instantiateInitialController() as! NSTabViewController
+                let animalViewController = tabController.childViewControllers[0] as! AnimalViewController
+                expect(animalViewController.hasAnimal(named: "Mimi")) == true
             }
             
             afterEach {
