@@ -27,5 +27,22 @@ extension ServiceKey: Hashable {
 
 // MARK: Equatable
 func ==(lhs: ServiceKey, rhs: ServiceKey) -> Bool {
-    return lhs.factoryType == rhs.factoryType && lhs.name == rhs.name
+    let equalFactoryTypes: Bool
+    
+#if os(tvOS)
+    // Workaround for issue #18.
+    //
+    // Only in case of tvOS, an instance of a type inheriting AVPlayerViewController does not
+    // return `dynamicType` that is equal to the type.
+    // To avoid the problem, factory types are compared as strings.
+    //
+    // If a future version of Xcode fixes the issue, the `#if os(tvOS)` part should be removed
+    // because the types should be compared directly.
+
+    equalFactoryTypes = String(reflecting: lhs.factoryType) == String(reflecting: rhs.factoryType)
+#else
+    equalFactoryTypes = lhs.factoryType == rhs.factoryType
+#endif
+    
+    return equalFactoryTypes && lhs.name == rhs.name
 }

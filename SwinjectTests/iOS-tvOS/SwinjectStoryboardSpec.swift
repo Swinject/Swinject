@@ -95,6 +95,18 @@ class SwinjectStoryboardSpec: QuickSpec {
                 expect(animalViewController.hasAnimal(named: "Mimi")) == true
             }
         }
+        describe("AVPlayerViewController") { // Test for Issue #18
+            it("is able to inject a subclass of AVPlayerViewController") {
+                container.registerForStoryboard(AnimalPlayerViewController.self) { r, c in
+                    c.animal = r.resolve(AnimalType.self)
+                }
+                container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+                
+                let storyboard = SwinjectStoryboard.create(name: "AnimalPlayerViewController", bundle: bundle, container: container)
+                let animalPlayerViewController = storyboard.instantiateInitialViewController() as! AnimalPlayerViewController
+                expect(animalPlayerViewController.hasAnimal(named: "Mimi")) == true
+            }
+        }
         describe("Factory method") {
             it("uses the default shared container if no container is passed.") {
                 SwinjectStoryboard.defaultContainer.registerForStoryboard(AnimalViewController.self) { _, _ in }
