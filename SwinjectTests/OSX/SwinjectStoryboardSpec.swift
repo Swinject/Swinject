@@ -142,9 +142,10 @@ class SwinjectStoryboardSpec: QuickSpec {
                 SwinjectStoryboard.defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
                 
                 let storyboard1 = SwinjectStoryboard.create(name: "Storyboard1", bundle: bundle)
-                let tabController = storyboard1.instantiateInitialController() as! NSTabViewController
-                let animalViewController = tabController.childViewControllers[0] as! AnimalViewController
-                expect(animalViewController.hasAnimal(named: "Mimi")) == true
+                let windowController = storyboard1.instantiateInitialController() as! NSWindowController
+                let viewController1 = windowController.contentViewController as! ViewController1
+                viewController1.performSegueWithIdentifier("ToStoryboard2", sender: nil)
+                expect(viewController1.animalViewController?.hasAnimal(named: "Mimi")).toEventually(beTrue())
             }
             
             afterEach {
