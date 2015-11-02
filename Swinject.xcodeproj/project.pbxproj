@@ -139,6 +139,7 @@
 		98D06D491B6CB79B0081AFE0 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */; };
 		98D06D4D1B6CC7C00081AFE0 /* NSViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D4B1B6CC7C00081AFE0 /* NSViewController+Swinject.swift */; };
 		98D06D4E1B6CC7C00081AFE0 /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D4C1B6CC7C00081AFE0 /* SwinjectStoryboard.swift */; };
+		98D462781BE76D500006D45A /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D462771BE76D500006D45A /* ViewController1.swift */; };
 		98E946981BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */; };
 		98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */; };
 		98E9469C1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */; };
@@ -305,6 +306,7 @@
 		98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		98D06D4B1B6CC7C00081AFE0 /* NSViewController+Swinject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSViewController+Swinject.swift"; sourceTree = "<group>"; };
 		98D06D4C1B6CC7C00081AFE0 /* SwinjectStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboard.swift; sourceTree = "<group>"; };
+		98D462771BE76D500006D45A /* ViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
 		98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Swizzling.swift"; sourceTree = "<group>"; };
 		98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Swizzling.swift"; sourceTree = "<group>"; };
 		98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+SwizzlingSpec.swift"; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				9816502E1B6D041300BC4222 /* AnimalWindowController.swift */,
 				986A58391B6D031700FE710F /* Animals.storyboard */,
 				981650391B6D270E00BC4222 /* Tabs.storyboard */,
+				98D462771BE76D500006D45A /* ViewController1.swift */,
 				9892E7B31BCA3CA200EC0D04 /* Storyboard1.storyboard */,
 				9892E7B51BCA3CB100EC0D04 /* Storyboard2.storyboard */,
 			);
@@ -978,6 +981,7 @@
 				986A58371B6D02A500FE710F /* SwinjectStoryboardSpec.swift in Sources */,
 				9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
 				9878C63D1B65CA8700CBEFEF /* PersonType.swift in Sources */,
+				98D462781BE76D500006D45A /* ViewController1.swift in Sources */,
 				9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				9855C5C31B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
 				986A58331B6D002D00FE710F /* NSViewController+SwinjectSpec.swift in Sources */,
@@ -1146,7 +1150,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = SwinjectTests/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1161,7 +1164,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = SwinjectTests/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1435,7 +1437,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = SwinjectTests/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
