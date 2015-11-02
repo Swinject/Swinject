@@ -40,6 +40,9 @@ Now it is ready to open `Swinject.xcodeproj`. Modify the code, run unit tests, a
 
 Please have a look at [GitHub Swift Style Guide](https://github.com/github/swift-style-guide), which the existing Swinject code tries to follow. If you have a case that is out of scope of the style guide, please try to match the style of the surrounding code.
 
+If you have [SwiftLint](https://github.com/realm/SwiftLint) installed, some parts of coding style are automatically checked when you build the Swinject project.
+The installation of SwiftLint to your environment is optional. [Hound CI](https://houndci.com) triggers SwiftLint to check your pull request.
+
 ### ERB Files
 
 Some Swift source files are generated from ERB files, e.g. `Resolvable.swift` is generated from `Resolvable.erb`, to easily maintain a set of functions that only differ the number of arguments. The generated source files are located under `GeneratedCode` group in the Xcode project. Do not modify the generated code directly, but instead modify the source ERB code. After modifying the ERB code, run `script/gencode` script to generate the Swift code.
