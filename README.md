@@ -206,6 +206,8 @@ The following blog posts introduce Swinject and the concept of dependency inject
 
 A guide to submit issues, to ask general questions, or to open pull requests is [here](CONTRIBUTING.md).
 
+If you have a general question and hesitate to submit an issue at GitHub, you can feel free to ask the question at [Stack Overflow](http://stackoverflow.com). The author of Swinject monitors `swinject` tag there to answer as quickly as possible.
+
 ## License
 
 MIT license. See the [LICENSE file](LICENSE.txt) for details.
