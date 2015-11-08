@@ -205,8 +205,12 @@ print(parent === child.parent)
 
 class Horse: AnimalType {
     var name: String?
-    var running = false
+    var running: Bool
     
+    convenience init(name: String) {
+        self.init(name: name, running: false)
+    }
+
     init(name: String, running: Bool) {
         self.name = name
         self.running = running
@@ -217,15 +221,22 @@ class Horse: AnimalType {
     }
 }
 
-// The factory closure can take arguments.
+// The factory closure can take arguments after the `Resolvable` parameter (in this example, unused as `_`).
 // Note that the container already has an AnimalType without a registration name,
 // but the factory with the arguments is recognized as a different registration to resolve.
-container.register(AnimalType.self) { _, arg1, arg2 in Horse(name: arg1, running: arg2) }
+container.register(AnimalType.self) { _, name in Horse(name: name) }
+container.register(AnimalType.self) { _, name, running in Horse(name: name, running: running) }
 
 // The arguments to the factory are specified on the resolution.
-let horse = container.resolve(AnimalType.self, arg1: "Lucky", arg2: true) as! Horse
-print(horse.name!)
-print(horse.running)
+// If you pass an argument, pass it to `argument` parameter.
+// If you pass more arguments, pass them as a tuple to `arguments` parameter.
+let horse1 = container.resolve(AnimalType.self, argument: "Spirit") as! Horse
+print(horse1.name)
+print(horse1.running)
+
+let horse2 = container.resolve(AnimalType.self, arguments: ("Lucky", true)) as! Horse
+print(horse2.name)
+print(horse2.running)
 
 /*:
 ## Self-binding
