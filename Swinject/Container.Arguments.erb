@@ -15,7 +15,6 @@
 //
 
 <% arg_count = 12 %>
-<% argument_text = lambda { |n| n == 1 ? "#{n} argument" : "#{n} arguments" } %>
 
 import Foundation
 
@@ -23,6 +22,7 @@ import Foundation
 extension Container {
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+<%   arg_description = i == 1 ? "#{i} argument" : "#{i} arguments" %>
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
     ///
     /// - Parameters:
@@ -31,7 +31,7 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` and <%= argument_text.call(i) %> to inject dependencies to the instance,
+    ///                  It takes a `Resolvable` instance and <%= arg_description %> to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
@@ -50,40 +50,37 @@ extension Container {
 extension Container {
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
-<%   arg_params = (1..i).map { |n| "arg#{n}: Arg#{n}" }.join(", ") %>
-<%   args_passed = (1..i).map { |n| "arg#{n}: arg#{n}" }.join(", ") %>
-<%   args_factory = (1..i).map { |n| "arg#{n}" }.join(", ") %>
-    /// Retrieves the instance with the specified service type and <%= argument_text.call(i) %> to the factory closure.
+<%   arg_param_name = i == 1 ? "argument" : "arguments" %>
+<%   arg_param_type = i == 1 ? arg_types : "(" + arg_types + ")" %>
+<%   arg_param_description = i == 1 ? "#{i} argument" : "tuple of #{i} arguments" %>
+<%   args_factory = i == 1 ? "argument" : (1..i).map { |n| "arguments.#{n-1}" }.join(", ") %>
+    /// Retrieves the instance with the specified service type and <%= arg_param_description %> to the factory closure.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-<%   (1..i).each do |n| %>
-    ///   - arg<%= n %>:        An argument to the factory closure as Arg<%= n %> type.
-<%   end %>
+    ///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            and <%= argument_text.call(i) %> is found in the `Container`.
+    ///            and <%= arg_param_description %> is found in the `Container`.
     public func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
-        <%= arg_params %>) -> Service?
+        <%= arg_param_name %>: <%= arg_param_type %>) -> Service?
     {
-        return resolve(serviceType, <%= args_passed %>, name: nil)
+        return resolve(serviceType, <%= arg_param_name %>: <%= arg_param_name %>, name: nil)
     }
 
-    /// Retrieves the instance with the specified service type, <%= argument_text.call(i) %> to the factory closure and registration name.
+    /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-<%   (1..i).each do |n| %>
-    ///   - arg<%= n %>:        An argument to the factory closure as Arg<%= n %> type.
-<%   end %>
+    ///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
     ///   - name:        The registration name.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
-    ///            <%= argument_text.call(i) %> and name is found in the `Container`.
+    ///            <%= arg_param_description %> and name is found in the `Container`.
     public func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
-        <%= arg_params %>,
+        <%= arg_param_name %>: <%= arg_param_type %>,
         name: String?) -> Service?
     {
         typealias FactoryType = (Resolvable, <%= arg_types %>) -> Service
