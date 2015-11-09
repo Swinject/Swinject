@@ -30,8 +30,8 @@ class ContainerSpec: QuickSpec {
                 container.register(AnimalType.self) { _, arg1, arg2 in Cat(name: arg1, sleeping: arg2) }
                 
                 let noname = container.resolve(AnimalType.self) as! Cat
-                let mimi = container.resolve(AnimalType.self, arg1: "Mimi") as! Cat
-                let mew = container.resolve(AnimalType.self, arg1: "Mew", arg2: true) as! Cat
+                let mimi = container.resolve(AnimalType.self, argument: "Mimi") as! Cat
+                let mew = container.resolve(AnimalType.self, arguments: ("Mew", true)) as! Cat
                 expect(noname.name).to(beNil())
                 expect(mimi.name) == "Mimi"
                 expect(mew.name) == "Mew"
