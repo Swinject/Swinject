@@ -92,24 +92,38 @@ Where `Dog` class is:
 
 ## Registration with Arguments to DI Container
 
-Arguments can be passed from a caller of `resolve` method to a factory. The factory can take generic arguments. Here is an example.
+A factory closure to register a service can take arguments that are passed when the service is resolved. When you register the service, the arguments can be specified after the `Resolvable` parameter (in the following example, it is unused as `_`).
 
-    container.register(AnimalType.self) { _, arg1, arg2 in
-        Horse(name: arg1, running: arg2)
+    container.register(AnimalType.self) { _, name in
+        Horse(name: name)
+    }
+    container.register(AnimalType.self) { _, name, running in
+        Horse(name: name, running: running)
     }
 
-Then specify the arguments when you call `resolve` method.
+Then pass runtime arguments when you call `resolve` method. If you pass only 1 argument, use `resolve(_:argument:)`.
 
-    let animal = container.resolve(AnimalType.self, arg1: "Lucky", arg2: true)!
+    let animal1 = container.resolve(AnimalType.self, argument: "Spirit")!
 
-    print(animal.name) // prints "Lucky"
-    print((animal as! Horse).running) // prints "true"
+    print(animal1.name) // prints "Spirit"
+    print((animal1 as! Horse).running) // prints "false"
+
+If you pass 2 arguments or more, use `resolve(_:arguments:)` where the arguments are passed as a tuple.
+
+    let animal2 = container.resolve(AnimalType.self, arguments: ("Lucky", true))!
+
+    print(animal2.name) // prints "Lucky"
+    print((animal2 as! Horse).running) // prints "true"
 
 Where the `Horse` class is:
 
     class Horse: AnimalType {
         let name: String
         let running: Bool
+
+        convenience init(name: String) {
+            self.init(name: name, running: false)
+        }
 
         init(name: String, running: Bool) {
             self.name = name
@@ -141,18 +155,18 @@ The following registrations can co-exist in a container because the registration
     container.register(AnimalType.self, name: "cat") { _ in Cat(name: "Mimi") }
     container.register(AnimalType.self, name: "dog") { _ in Dog(name: "Hachi") }
 
-The following registrations can co-exist in a container because the numbers of arguments are different.
+The following registrations can co-exist in a container because the numbers of arguments are different. The first registration has no arguments, and the second has an argument.
 
     container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-    container.register(AnimalType.self) { _, arg1 in Cat(name: arg1) }
+    container.register(AnimalType.self) { _, name in Cat(name: name) }
 
-The following registrations can co-exist in a container because the types of arguments are different. (The first registration has `String` and `Bool` types. The second registration has `Bool` and `String` types in the order.)
+The following registrations can co-exist in a container because the types of arguments are different. The first registration has `String` and `Bool` types. The second registration has `Bool` and `String` types in the order.
 
-    container.register(AnimalType.self) { _, arg1, arg2 in
-        Horse(name: arg1, running: arg2)
+    container.register(AnimalType.self) { _, name, running in
+        Horse(name: name, running: running)
     }
-    container.register(AnimalType.self) { _, arg1, arg2 in
-        Horse(name: arg2, running: arg1)
+    container.register(AnimalType.self) { _, running, name in
+        Horse(name: name, running: running)
     }
 
 _[Next page: Injection Patterns](InjectionPatterns.md)_
