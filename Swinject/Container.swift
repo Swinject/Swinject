@@ -82,6 +82,9 @@ public final class Container {
 extension Container {
     /// Adds a registration of the specified view or window controller that is configured in a storyboard.
     ///
+    /// - Note: Do NOT explicitly resolve the controller registered by this method.
+    ///         The controller is intended to be resolved by `SwinjectStoryboard` implicitly.
+    ///
     /// - Parameters:
     ///   - controllerType: The controller type to register as a service type.
     ///                     The type is `UIViewController` in iOS, `NSViewController` or `NSWindowController` in OS X.

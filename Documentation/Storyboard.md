@@ -2,6 +2,8 @@
 
 Swinject supports dependency injection to view controllers instantiated by `SwinjectStoryboard`, which inherits `UIStoryboard` (or `NSStoryboard` in case of OS X). To register dependencies of a view controller, use `registerForStoryboard` method. In the same way as a registration of a service type, a view controller can be registered with or without a name.
 
+**Note**: Do **NOT** explicitly resolve the view controllers registered by `registerForStoryboard` method. The view controllers are intended to be resolved by `SwinjectStoryboard` implicitly.
+
 ## Registration
 
 ### Registration without Name
