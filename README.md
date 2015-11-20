@@ -7,7 +7,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 [![Swift Version](https://img.shields.io/badge/Swift-2.1-F16D39.svg?style=flat)](https://developer.apple.com/swift)
 
-Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift, inspired by [Ninject](http://ninject.org), [Autofac](http://autofac.org), [Typhoon](http://typhoonframework.org), [BlindsidedStoryboard](https://github.com/briancroom/BlindsidedStoryboard), and highly inspired by [Funq](http://funq.codeplex.com).
+Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift.
 
 Dependency injection (DI) is a software design pattern that implements Inversion of Control (IoC) for resolving dependencies. In the pattern, Swinject helps your app split into loosely-coupled components, which can be developed, tested and maintained more easily. Swinject is powered by the Swift generic type system and first class functions to define dependencies of your app simply and fluently.
 
@@ -207,6 +207,22 @@ The following blog posts introduce Swinject and the concept of dependency inject
 A guide to submit issues, to ask general questions, or to open pull requests is [here](CONTRIBUTING.md).
 
 If you have a general question and hesitate to submit an issue at GitHub, you can feel free to ask the question at [Stack Overflow](http://stackoverflow.com). The author of Swinject monitors `swinject` tag there to answer as quickly as possible.
+
+## Credits
+
+The DI container features of Swinject are inspired by:
+
+- [Ninject](http://ninject.org)
+- [Autofac](http://autofac.org)
+
+and highly inspired by:
+
+- [Funq](http://funq.codeplex.com)
+
+SwinjectStoryboard is inspired by:
+
+- [Typhoon](http://typhoonframework.org)
+- [BlindsidedStoryboard](https://github.com/briancroom/BlindsidedStoryboard)
 
 ## License
 
