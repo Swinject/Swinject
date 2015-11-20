@@ -44,6 +44,15 @@ public final class Container {
         registeringClosure(self)
     }
     
+    /// Instantiates a `Container` and register services from assemblies.
+    ///
+    /// - Parameter assemblies: Assemblies from which will be registered services.
+    public convenience init(assemblies: [Assembly.Type])
+    {
+        self.init()
+        assemblies.forEach { registerAssembly($0) }
+    }
+    
     /// Removes all registrations in the container.
     public func removeAll() {
         services.removeAll()
@@ -74,6 +83,32 @@ public final class Container {
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
         services[key] = entry
         return entry
+    }
+    
+    /// Adds a registration for the services from `Assembly` in which specify how the service is resolved with dependencies.
+    ///
+    /// - Parameters:
+    ///   - assembly:    `Assembly` from which will be registered services.
+    public func registerAssembly<A:Assembly>(assembly: A.Type)
+    {
+        assembly.init(container: self)
+    }
+    
+    /// Adds a registration for the services from `Definition`.
+    ///
+    /// - Parameters:
+    ///   - definition:    `Definition` for service.
+    internal func register<Service>(definition: Definition<Service>)
+    {
+        guard let initializer = definition.initializer else {
+            fatalError("You should define initializer for \(definition.serviceType)")
+        }
+        
+        let service = register(definition.serviceType, factory: initializer).inObjectScope(definition.scope)
+        
+        if let complited = definition.complited {
+            service.initCompleted(complited)
+        }
     }
 }
 
