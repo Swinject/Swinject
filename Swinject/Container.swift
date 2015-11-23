@@ -60,7 +60,7 @@ public final class Container {
     ///                  It takes a `Resolvable` to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -159,7 +159,7 @@ extension Container: Resolvable {
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name)
         if let (entry, fromParent) = getEntry(key) as (ServiceEntry<Service>, Bool)? {
-            switch (entry.scope) {
+            switch (entry.objectScope) {
             case .None, .Graph:
                 resolvedInstance = resolveEntry(entry, key: key, invoker: invoker)
             case .Container:
@@ -199,7 +199,7 @@ extension Container: Resolvable {
     }
     
     private func resolveEntry<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: Factory -> Service) -> Service {
-        let usesPool = entry.scope != .None
+        let usesPool = entry.objectScope != .None
         if usesPool, let pooledInstance = resolutionPool[key] as? Service {
             return pooledInstance
         }

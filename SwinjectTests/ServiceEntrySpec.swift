@@ -14,7 +14,7 @@ class ServiceEntrySpec: QuickSpec {
     override func spec() {
         it("has ObjectScope.Graph as a default value of scope property.") {
             let entry = ServiceEntryBase(factory: 0)
-            expect(entry.scope) == ObjectScope.Graph
+            expect(entry.objectScope) == ObjectScope.Graph
         }
     }
 }
