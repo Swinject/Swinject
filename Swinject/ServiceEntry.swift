@@ -13,7 +13,7 @@ import Foundation
 /// `ServiceEntry<Service>` should be actually used.
 public class ServiceEntryBase {
     internal let factory: Any // Must be a function type.
-    internal var scope = ObjectScope.Graph
+    internal var objectScope = ObjectScope.Graph
     internal var instance: Any?
     internal var initCompleted: Any? // Must be a function type.
     
@@ -26,8 +26,8 @@ public class ServiceEntryBase {
     /// - Parameter scope: The `ObjectScope` value.
     ///
     /// - Returns: `self` to add another configuration fluently.
-    public func inObjectScope(scope: ObjectScope) -> Self {
-        self.scope = scope
+    public func inObjectScope(objectScope: ObjectScope) -> Self {
+        self.objectScope = objectScope
         return self
     }
 }
@@ -50,7 +50,7 @@ public final class ServiceEntry<Service>: ServiceEntryBase {
 
     internal func copyExceptInstance() -> ServiceEntry<Service> {
         let copy = ServiceEntry(serviceType: serviceType, factory: factory)
-        copy.scope = scope
+        copy.objectScope = objectScope
         copy.initCompleted = initCompleted
         return copy
     }
