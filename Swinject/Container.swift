@@ -60,7 +60,7 @@ public final class Container {
     ///                  It takes a `Resolvable` to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service>(
         serviceType: Service.Type,
         name: String? = nil,

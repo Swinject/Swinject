@@ -30,7 +30,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 1 argument to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -50,7 +50,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 2 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -70,7 +70,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 3 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -90,7 +90,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 4 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -110,7 +110,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 5 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -130,7 +130,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 6 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -150,7 +150,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 7 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -170,7 +170,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 8 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -190,7 +190,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 9 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -210,7 +210,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 10 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -230,7 +230,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 11 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11>(
         serviceType: Service.Type,
         name: String? = nil,
@@ -250,7 +250,7 @@ extension Container {
     ///                  It takes a `Resolvable` instance and 12 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
-    /// - Returns: A registered `ServiceEntry` to configure some settings fluently.
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11, Arg12>(
         serviceType: Service.Type,
         name: String? = nil,
