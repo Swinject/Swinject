@@ -42,6 +42,21 @@
 		981A0D131BE5B9A80030DD85 /* AnimalPlayerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981A0D121BE5B9A80030DD85 /* AnimalPlayerViewController.storyboard */; };
 		981A0D141BE5B9A80030DD85 /* AnimalPlayerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981A0D121BE5B9A80030DD85 /* AnimalPlayerViewController.storyboard */; };
 		981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981ABE811B5FC9DF00294975 /* Swinject.framework */; };
+		983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983B98301C06ECB2006A23D4 /* SpinLock.swift */; };
+		983B98321C06ECB2006A23D4 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983B98301C06ECB2006A23D4 /* SpinLock.swift */; };
+		983B98331C06ECB2006A23D4 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983B98301C06ECB2006A23D4 /* SpinLock.swift */; };
+		983B98341C06ECB2006A23D4 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983B98301C06ECB2006A23D4 /* SpinLock.swift */; };
+		984774F01C02F25D0092A757 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774EF1C02F25D0092A757 /* SynchronizedResolver.swift */; };
+		984774F11C02F25D0092A757 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774EF1C02F25D0092A757 /* SynchronizedResolver.swift */; };
+		984774F21C02F25D0092A757 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774EF1C02F25D0092A757 /* SynchronizedResolver.swift */; };
+		984774F31C02F25D0092A757 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774EF1C02F25D0092A757 /* SynchronizedResolver.swift */; };
+		984774FA1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */; };
+		984774FB1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */; };
+		984774FC1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */; };
+		984774FD1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */; };
+		984774FF1C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */; };
+		984775001C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */; };
+		984775011C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */; };
 		9847BF861BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847BF851BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift */; };
 		9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
@@ -238,6 +253,11 @@
 		981ABE861B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		981ABE8B1B5FC9DF00294975 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		981ABE921B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		983B98301C06ECB2006A23D4 /* SpinLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinLock.swift; sourceTree = "<group>"; };
+		984774EF1C02F25D0092A757 /* SynchronizedResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedResolver.swift; sourceTree = "<group>"; };
+		984774F41C02F4EA0092A757 /* SynchronizedResolver.Arguments.erb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SynchronizedResolver.Arguments.erb; sourceTree = "<group>"; };
+		984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedResolver.Arguments.swift; sourceTree = "<group>"; };
+		984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedContainerSpec.swift; sourceTree = "<group>"; };
 		9847BF851BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+SwizzlingSpec.swift"; sourceTree = "<group>"; };
 		9848611A1B6F21EC00C07072 /* Sample-iOS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sample-iOS.playground"; sourceTree = "<group>"; };
 		9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
@@ -448,6 +468,8 @@
 			children = (
 				981899E31B5FFE5800C702D0 /* Container.swift */,
 				98B012BA1B82D6A400053A32 /* Container.Arguments.erb */,
+				984774EF1C02F25D0092A757 /* SynchronizedResolver.swift */,
+				984774F41C02F4EA0092A757 /* SynchronizedResolver.Arguments.erb */,
 				9884E2A61B60B77400120259 /* ServiceKey.swift */,
 				985BAFA81B625E0F0055F998 /* ServiceEntry.swift */,
 				981577F31B676BF700BF686B /* ResolutionPool.swift */,
@@ -455,6 +477,7 @@
 				986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */,
 				98B012C11B82F70A00053A32 /* Resolvable.erb */,
 				989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */,
+				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
 				9809A75A1B6B47E6005E037E /* iOS-tvOS */,
 				98D06D4A1B6CC7C00081AFE0 /* OSX */,
@@ -471,6 +494,7 @@
 				981899E01B5FF88800C702D0 /* ContainerSpec.swift */,
 				9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */,
 				9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */,
+				984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */,
 				9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */,
 				9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */,
 				9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */,
@@ -623,6 +647,7 @@
 			isa = PBXGroup;
 			children = (
 				98B012B71B82D67300053A32 /* Container.Arguments.swift */,
+				984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */,
 				98B012BE1B82F68E00053A32 /* Resolvable.swift */,
 			);
 			name = GeneratedCode;
@@ -954,6 +979,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983B98321C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				986A582D1B6CF96700FE710F /* NSWindowController+Swinject.swift in Sources */,
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
@@ -963,12 +989,14 @@
 				98B012C01B82F68E00053A32 /* Resolvable.swift in Sources */,
 				986A58281B6CCC9600FE710F /* Container+Typealias.swift in Sources */,
 				98D06D4E1B6CC7C00081AFE0 /* SwinjectStoryboard.swift in Sources */,
+				984774F11C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				981899E51B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */,
 				98D06D4D1B6CC7C00081AFE0 /* NSViewController+Swinject.swift in Sources */,
 				9884E2A81B60B77400120259 /* ServiceKey.swift in Sources */,
 				986A58301B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */,
 				981970201B6145D600EEB942 /* ObjectScope.swift in Sources */,
+				984774FB1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,6 +1006,7 @@
 			files = (
 				9855C5C61B689B7B00DADB0B /* FoodType.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
+				984775001C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */,
 				986A58371B6D02A500FE710F /* SwinjectStoryboardSpec.swift in Sources */,
 				9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
 				9878C63D1B65CA8700CBEFEF /* PersonType.swift in Sources */,
@@ -1001,9 +1030,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				986A582F1B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */,
+				983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				98D06D3F1B6BA7B60081AFE0 /* UIViewController+Swinject.swift in Sources */,
 				986A58261B6CCB2800FE710F /* Container+Typealias.swift in Sources */,
+				984774F01C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				98E946981BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift in Sources */,
 				981577F41B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */,
@@ -1014,6 +1045,7 @@
 				9884E2A71B60B77400120259 /* ServiceKey.swift in Sources */,
 				9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */,
 				989377C61BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */,
+				984774FA1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,6 +1061,7 @@
 				9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
 				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
+				984774FF1C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */,
 				98D06D3D1B6B816C0081AFE0 /* AnimalViewController.swift in Sources */,
 				9878C6381B65C9E000CBEFEF /* AnimalType.swift in Sources */,
 				98E9469C1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift in Sources */,
@@ -1043,6 +1076,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983B98331C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				985011231BBE7E8900A2CCFC /* RegistrationNameAssociatable.swift in Sources */,
 				985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */,
 				985011251BBE7E8900A2CCFC /* Resolvable.swift in Sources */,
@@ -1052,6 +1086,8 @@
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
 				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
+				984774F21C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
+				984774FC1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1060,9 +1096,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				98689C9E1BBFC7EB0005C6D3 /* RegistrationNameAssociatable.swift in Sources */,
+				983B98341C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
 				98689CA11BBFC7F20005C6D3 /* Container+Typealias.swift in Sources */,
 				98689CA21BBFC7F20005C6D3 /* SwinjectStoryboard.swift in Sources */,
+				984774F31C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				98A4306C1BCE2D9E00B6B588 /* UIStoryboard+Swizzling.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolvable.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
@@ -1073,6 +1111,7 @@
 				98689CA51BBFC8080005C6D3 /* _SwinjectStoryboardBase.m in Sources */,
 				98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */,
 				98A430751BCE2F8F00B6B588 /* SwinjectStoryboardType.swift in Sources */,
+				984774FD1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,6 +1127,7 @@
 				98689CBA1BBFD5110005C6D3 /* ContainerSpec.swift in Sources */,
 				98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */,
 				98689CCA1BBFD5B90005C6D3 /* UIViewController+SwinjectSpec.swift in Sources */,
+				984775011C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */,
 				98689CC81BBFD5B30005C6D3 /* AnimalViewController.swift in Sources */,
 				98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */,
 				98A430721BCE2E5800B6B588 /* UIStoryboard+SwizzlingSpec.swift in Sources */,

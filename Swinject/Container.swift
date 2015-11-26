@@ -26,12 +26,14 @@ public final class Container {
     private var services = [ServiceKey: ServiceEntryBase]()
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
+    internal let lock: SpinLock // Used by SynchronizedResolver.
     
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
     ///
     /// - Parameter parent: The optional parent `Container`.
     public init(parent: Container? = nil) {
         self.parent = parent
+        self.lock = parent.map { $0.lock } ?? SpinLock()
     }
     
     /// Instantiates a `Container` with its parent `Container` and a closure registering services. The parent is optional.
@@ -74,6 +76,14 @@ public final class Container {
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
         services[key] = entry
         return entry
+    }
+    
+    /// Returns a synchronized view of the container for thread safety.
+    /// The returned container is `Resolvable` type. Call this method after you finish all service registrations to the original container.
+    ///
+    /// - Returns: A synchronized container as `Resolvable`.
+    public func synchronize() -> Resolvable {
+        return SynchronizedResolver(container: self)
     }
 }
 
