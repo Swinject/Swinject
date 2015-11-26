@@ -81,7 +81,14 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
     
     private func injectDependency(viewController: UIViewController) {
         let registrationName = viewController.swinjectRegistrationName
-        container.runInitCompleted(viewController.dynamicType, controller: viewController, name: registrationName)
+        
+        // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
+        // The actual controller type is distinguished by the dynamic type name in `nameWithActualType`.
+        //
+        // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too:
+        //    container.resolve(viewController.dynamicType, argument: viewController as Container.Controller, name: registrationName)
+        let nameWithActualType = String(reflecting: viewController.dynamicType) + ":" + (registrationName ?? "")
+        container.resolve(Container.Controller.self, argument: viewController as Container.Controller, name: nameWithActualType)
         
         for child in viewController.childViewControllers {
             injectDependency(child)

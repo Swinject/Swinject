@@ -103,33 +103,12 @@ extension Container {
     ///   - initCompleted:  A closure to specifiy how the dependencies of the view or window controller are injected.
     ///                     It is invoked by the `Container` when the view or window controller is instantiated by `SwinjectStoryboard`.
     public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
-        let key = ServiceKey(factoryType: controllerType, name: name)
-        let entry = ServiceEntry(serviceType: controllerType)
-        
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
+        // The actual controller type is distinguished by the dynamic type name in `nameWithActualType`.
+        let nameWithActualType = String(reflecting: controllerType) + ":" + (name ?? "")
         let wrappingClosure: (Resolvable, Controller) -> () = { r, c in initCompleted(r, c as! C) }
-        entry.initCompleted = wrappingClosure
-        
-        services[key] = entry
-    }
-    
-    internal func runInitCompleted<C: Controller>(controllerType: C.Type, controller: C, name: String? = nil) {
-        resolutionPool.incrementDepth()
-        defer { resolutionPool.decrementDepth() }
-        
-        let key = ServiceKey(factoryType: controllerType, name: name)
-        if let entry = getEntry(key) {
-            resolutionPool[key] = controller as Any
-            
-            // Xcode 7.1 workaround for Issue #10, casting initCompleted to (Resolvable, Controller) -> (), not to (Resolvable, C) -> ()
-            if let completed = entry.initCompleted as? ( (Resolvable, Controller) -> () ) {
-                completed(self, controller)
-            }
-        }
-    }
-    
-    private func getEntry(key: ServiceKey) -> ServiceEntryBase? {
-        return services[key] ?? self.parent?.getEntry(key)
+        self.register(Controller.self, name: nameWithActualType) { (_: Resolvable, controller: Controller) in controller }
+            .initCompleted(wrappingClosure)
     }
 }
 #endif
