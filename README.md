@@ -213,17 +213,17 @@ If you have a general question and hesitate to submit an issue at GitHub, you ca
 
 The DI container features of Swinject are inspired by:
 
-- [Ninject](http://ninject.org)
-- [Autofac](http://autofac.org)
+- [Ninject](http://ninject.org) - [Enkari, Ltd](https://github.com/enkari) and the [Ninject project contributors](https://github.com/ninject/Ninject/graphs/contributors).
+- [Autofac](http://autofac.org) - [Autofac Project](https://github.com/autofac/Autofac).
 
 and highly inspired by:
 
-- [Funq](http://funq.codeplex.com)
+- [Funq](http://funq.codeplex.com) - [Daniel Cazzulino](http://www.codeplex.com/site/users/view/dcazzulino) and [the project team](http://funq.codeplex.com/team/view).
 
 SwinjectStoryboard is inspired by:
 
-- [Typhoon](http://typhoonframework.org)
-- [BlindsidedStoryboard](https://github.com/briancroom/BlindsidedStoryboard)
+- [Typhoon](http://typhoonframework.org) - [Jasper Blues](https://github.com/jasperblues), [Aleksey Garbarev](https://github.com/alexgarbarev) and [contributors](https://github.com/appsquickly/Typhoon/graphs/contributors).
+- [BlindsidedStoryboard](https://github.com/briancroom/BlindsidedStoryboard) - [Brian Croom](https://github.com/briancroom).
 
 ## License
 
