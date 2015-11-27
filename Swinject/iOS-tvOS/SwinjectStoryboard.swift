@@ -28,7 +28,10 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
     /// - Storyboard references to transit from a storyboard to another.
     public static var defaultContainer = Container()
     
-    private var container: Container!
+    // Boxing to workaround a runtime error [Xcode 7.1.1 and Xcode 7.2 beta 4]
+    // If container property is Resolvable type and a Resolvable instance is assigned to the property,
+    // the program crashes by EXC_BAD_ACCESS, which looks a bug of Swift.
+    private var container: Box<Resolvable>!
     
     /// Do NOT call this method explicitly. It is designed to be called by the runtime.
     public override class func initialize() {
@@ -58,11 +61,11 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
     public class func create(
         name name: String,
         bundle storyboardBundleOrNil: NSBundle?,
-        container: Container = SwinjectStoryboard.defaultContainer) -> SwinjectStoryboard
+        container: Resolvable = SwinjectStoryboard.defaultContainer) -> SwinjectStoryboard
     {
         // Use this factory method to create an instance because the initializer of UIStoryboard is "not inherited".
         let storyboard = SwinjectStoryboard._create(name, bundle: storyboardBundleOrNil)
-        storyboard.container = container
+        storyboard.container = Box(container)
         return storyboard
     }
     
@@ -88,7 +91,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too:
         //    container.resolve(viewController.dynamicType, argument: viewController as Container.Controller, name: registrationName)
         let nameWithActualType = String(reflecting: viewController.dynamicType) + ":" + (registrationName ?? "")
-        container.resolve(Container.Controller.self, argument: viewController as Container.Controller, name: nameWithActualType)
+        container.value.resolve(Container.Controller.self, argument: viewController as Container.Controller, name: nameWithActualType)
         
         for child in viewController.childViewControllers {
             injectDependency(child)

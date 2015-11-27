@@ -159,6 +159,10 @@
 		98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */; };
 		98E9469C1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */; };
 		98EA93BD1BCA48D000E9121D /* Storyboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */; };
+		98F2F7731C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
+		98F2F7741C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
+		98F2F7751C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
+		98F2F7761C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +335,7 @@
 		98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Swizzling.swift"; sourceTree = "<group>"; };
 		98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+SwizzlingSpec.swift"; sourceTree = "<group>"; };
 		98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard1.storyboard; sourceTree = "<group>"; };
+		98F2F7721C07E788009571E6 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,6 +483,7 @@
 				98B012C11B82F70A00053A32 /* Resolvable.erb */,
 				989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */,
 				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
+				98F2F7721C07E788009571E6 /* Box.swift */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
 				9809A75A1B6B47E6005E037E /* iOS-tvOS */,
 				98D06D4A1B6CC7C00081AFE0 /* OSX */,
@@ -981,6 +987,7 @@
 			files = (
 				983B98321C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
+				98F2F7741C07E789009571E6 /* Box.swift in Sources */,
 				986A582D1B6CF96700FE710F /* NSWindowController+Swinject.swift in Sources */,
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */,
@@ -1038,6 +1045,7 @@
 				98E946981BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift in Sources */,
 				981577F41B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */,
+				98F2F7731C07E789009571E6 /* Box.swift in Sources */,
 				9809A75C1B6B47E6005E037E /* SwinjectStoryboard.swift in Sources */,
 				986458CA1B6E593800AFA2D7 /* _SwinjectStoryboardBase.m in Sources */,
 				981899E41B5FFE5800C702D0 /* Container.swift in Sources */,
@@ -1082,6 +1090,7 @@
 				985011251BBE7E8900A2CCFC /* Resolvable.swift in Sources */,
 				9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */,
 				989377C81BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */,
+				98F2F7751C07E789009571E6 /* Box.swift in Sources */,
 				985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
@@ -1104,6 +1113,7 @@
 				98A4306C1BCE2D9E00B6B588 /* UIStoryboard+Swizzling.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolvable.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
+				98F2F7761C07E789009571E6 /* Box.swift in Sources */,
 				98689C9C1BBFC7EB0005C6D3 /* ResolutionPool.swift in Sources */,
 				98689CA31BBFC7F20005C6D3 /* UIViewController+Swinject.swift in Sources */,
 				98689C9A1BBFC7EB0005C6D3 /* ServiceKey.swift in Sources */,
