@@ -205,7 +205,9 @@ The following blog posts introduce Swinject and the concept of dependency inject
 
 ## Contribution Guide
 
-A guide to submit issues, to ask general questions, or to open pull requests is [here](CONTRIBUTING.md).
+A guide to [submit issues](https://github.com/Swinject/Swinject/issues), to ask general questions, or to [open pull requests](https://github.com/Swinject/Swinject/pulls) is [here](CONTRIBUTING.md).
+
+## Question?
 
 If you have a general question and hesitate to submit an issue at GitHub, you can feel free to ask the question at [Stack Overflow](http://stackoverflow.com). The author of Swinject monitors `swinject` tag there to answer as quickly as possible.
 
