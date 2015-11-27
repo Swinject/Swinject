@@ -26,12 +26,14 @@ public final class Container {
     private var services = [ServiceKey: ServiceEntryBase]()
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
+    internal let lock: SpinLock // Used by SynchronizedResolver.
     
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
     ///
     /// - Parameter parent: The optional parent `Container`.
     public init(parent: Container? = nil) {
         self.parent = parent
+        self.lock = parent.map { $0.lock } ?? SpinLock()
     }
     
     /// Instantiates a `Container` with its parent `Container` and a closure registering services. The parent is optional.
@@ -75,6 +77,14 @@ public final class Container {
         services[key] = entry
         return entry
     }
+    
+    /// Returns a synchronized view of the container for thread safety.
+    /// The returned container is `Resolvable` type. Call this method after you finish all service registrations to the original container.
+    ///
+    /// - Returns: A synchronized container as `Resolvable`.
+    public func synchronize() -> Resolvable {
+        return SynchronizedResolver(container: self)
+    }
 }
 
 // MARK: - Extension for Storyboard
@@ -93,33 +103,12 @@ extension Container {
     ///   - initCompleted:  A closure to specifiy how the dependencies of the view or window controller are injected.
     ///                     It is invoked by the `Container` when the view or window controller is instantiated by `SwinjectStoryboard`.
     public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
-        let key = ServiceKey(factoryType: controllerType, name: name)
-        let entry = ServiceEntry(serviceType: controllerType)
-        
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
+        // The actual controller type is distinguished by the dynamic type name in `nameWithActualType`.
+        let nameWithActualType = String(reflecting: controllerType) + ":" + (name ?? "")
         let wrappingClosure: (Resolvable, Controller) -> () = { r, c in initCompleted(r, c as! C) }
-        entry.initCompleted = wrappingClosure
-        
-        services[key] = entry
-    }
-    
-    internal func runInitCompleted<C: Controller>(controllerType: C.Type, controller: C, name: String? = nil) {
-        resolutionPool.incrementDepth()
-        defer { resolutionPool.decrementDepth() }
-        
-        let key = ServiceKey(factoryType: controllerType, name: name)
-        if let entry = getEntry(key) {
-            resolutionPool[key] = controller as Any
-            
-            // Xcode 7.1 workaround for Issue #10, casting initCompleted to (Resolvable, Controller) -> (), not to (Resolvable, C) -> ()
-            if let completed = entry.initCompleted as? ( (Resolvable, Controller) -> () ) {
-                completed(self, controller)
-            }
-        }
-    }
-    
-    private func getEntry(key: ServiceKey) -> ServiceEntryBase? {
-        return services[key] ?? self.parent?.getEntry(key)
+        self.register(Controller.self, name: nameWithActualType) { (_: Resolvable, controller: Controller) in controller }
+            .initCompleted(wrappingClosure)
     }
 }
 #endif

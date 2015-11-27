@@ -1,6 +1,6 @@
 #!/bin/sh
 
-files="Swinject/Container.Arguments Swinject/Resolvable"
+files="Swinject/Container.Arguments Swinject/SynchronizedResolver.Arguments Swinject/Resolvable"
 
 for file in $files; do
   echo "Generating code to $file.swift"
