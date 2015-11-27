@@ -215,7 +215,7 @@ If you have a general question and hesitate to submit an issue at GitHub, you ca
 
 The DI container features of Swinject are inspired by:
 
-- [Ninject](http://ninject.org) - [Enkari, Ltd](https://github.com/enkari) and the [Ninject project contributors](https://github.com/ninject/Ninject/graphs/contributors).
+- [Ninject](http://ninject.org) - [Enkari, Ltd](https://github.com/enkari) and [the Ninject project contributors](https://github.com/ninject/Ninject/graphs/contributors).
 - [Autofac](http://autofac.org) - [Autofac Project](https://github.com/autofac/Autofac).
 
 and highly inspired by:
