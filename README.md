@@ -21,6 +21,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 - [x] [Self-registration (Self-binding)](./Documentation/Misc.md)
 - [x] [Container Hierarchy](./Documentation/ContainerHierarchy.md)
 - [x] [Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy](./Documentation/ObjectScopes.md)
+- [x] [Thread Safety](./Documentation/ThreadSafety.md)
 - [x] Injection of both Reference and [Value Types](./Documentation/Misc.md)
 - [x] [Storyboard](./Documentation/Storyboard.md)
 
