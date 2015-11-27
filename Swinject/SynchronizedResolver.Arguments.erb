@@ -33,11 +33,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
-        <%= arg_param_name %>: <%= arg_param_type %>,
-        name: String?) -> Service?
+        name: String?,
+        <%= arg_param_name %>: <%= arg_param_type %>) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, <%= arg_param_name %>: <%= arg_param_name %>, name: name)
+            return self.container.resolve(serviceType, name: name, <%= arg_param_name %>: <%= arg_param_name %>)
         }
     }
 
