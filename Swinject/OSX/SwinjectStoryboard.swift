@@ -91,7 +91,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too:
         //    container.resolve(controller.dynamicType, argument: viewController as Container.Controller, name: registrationName)
         let nameWithActualType = String(reflecting: controller.dynamicType) + ":" + (registrationName ?? "")
-        container.value.resolve(Container.Controller.self, argument: controller as Container.Controller, name: nameWithActualType)
+        container.value.resolve(Container.Controller.self, name: nameWithActualType, argument: controller as Container.Controller)
         
         if let viewController = controller as? NSViewController {
             for child in viewController.childViewControllers {

@@ -28,11 +28,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1>(
         serviceType: Service.Type,
-        argument: Arg1,
-        name: String?) -> Service?
+        name: String?,
+        argument: Arg1) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, argument: argument, name: name)
+            return self.container.resolve(serviceType, name: name, argument: argument)
         }
     }
 
@@ -47,11 +47,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 
@@ -66,11 +66,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2, Arg3>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2, Arg3)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 
@@ -85,11 +85,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2, Arg3, Arg4)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 
@@ -104,11 +104,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 
@@ -123,11 +123,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 
@@ -142,11 +142,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 
@@ -161,11 +161,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 
@@ -180,11 +180,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 
@@ -199,11 +199,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 
@@ -218,11 +218,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 
@@ -237,11 +237,11 @@ extension SynchronizedResolver {
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11, Arg12>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11, Arg12),
-        name: String?) -> Service?
+        name: String?,
+        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11, Arg12)) -> Service?
     {
         return container.lock.sync {
-            return self.container.resolve(serviceType, arguments: arguments, name: name)
+            return self.container.resolve(serviceType, name: name, arguments: arguments)
         }
     }
 

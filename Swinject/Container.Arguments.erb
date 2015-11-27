@@ -66,22 +66,22 @@ extension Container {
         serviceType: Service.Type,
         <%= arg_param_name %>: <%= arg_param_type %>) -> Service?
     {
-        return resolve(serviceType, <%= arg_param_name %>: <%= arg_param_name %>, name: nil)
+        return resolve(serviceType, name: nil, <%= arg_param_name %>: <%= arg_param_name %>)
     }
 
     /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-    ///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
     ///   - name:        The registration name.
+    ///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            <%= arg_param_description %> and name is found in the `Container`.
     public func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
-        <%= arg_param_name %>: <%= arg_param_type %>,
-        name: String?) -> Service?
+        name: String?,
+        <%= arg_param_name %>: <%= arg_param_type %>) -> Service?
     {
         typealias FactoryType = (Resolvable, <%= arg_types %>) -> Service
         return resolveImpl(name) { (factory: FactoryType) in factory(self, <%= args_factory %>) }
