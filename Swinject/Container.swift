@@ -87,32 +87,6 @@ public final class Container {
     }
 }
 
-// MARK: - Extension for Storyboard
-#if os(iOS) || os(OSX) || os(tvOS)
-extension Container {
-    /// Adds a registration of the specified view or window controller that is configured in a storyboard.
-    ///
-    /// - Note: Do NOT explicitly resolve the controller registered by this method.
-    ///         The controller is intended to be resolved by `SwinjectStoryboard` implicitly.
-    ///
-    /// - Parameters:
-    ///   - controllerType: The controller type to register as a service type.
-    ///                     The type is `UIViewController` in iOS, `NSViewController` or `NSWindowController` in OS X.
-    ///   - name:           A registration name, which is used to differenciate from other registrations
-    ///                     that have the same view or window controller type.
-    ///   - initCompleted:  A closure to specifiy how the dependencies of the view or window controller are injected.
-    ///                     It is invoked by the `Container` when the view or window controller is instantiated by `SwinjectStoryboard`.
-    public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
-        // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
-        // The actual controller type is distinguished by the dynamic type name in `nameWithActualType`.
-        let nameWithActualType = String(reflecting: controllerType) + ":" + (name ?? "")
-        let wrappingClosure: (Resolvable, Controller) -> () = { r, c in initCompleted(r, c as! C) }
-        self.register(Controller.self, name: nameWithActualType) { (_: Resolvable, controller: Controller) in controller }
-            .initCompleted(wrappingClosure)
-    }
-}
-#endif
-
 // MARK: - Resolvable
 extension Container: Resolvable {
     /// Retrieves the instance with the specified service type.

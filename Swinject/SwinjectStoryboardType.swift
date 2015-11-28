@@ -6,6 +6,8 @@
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
+#if os(iOS) || os(OSX) || os(tvOS)
+
 // Objective-C optional protocol method is used instead of protocol extension to workaround the issue that
 // default implementation of a protocol method is always called if a class method conforming the protocol
 // is defined as an extention in a different framework.
@@ -34,3 +36,5 @@ public protocol SwinjectStoryboardType {
     /// ```
     optional static func setup()
 }
+
+#endif
