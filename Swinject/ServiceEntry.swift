@@ -15,13 +15,13 @@ internal typealias ServiceEntryType = Any
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public final class ServiceEntry<Service>: ServiceEntryType {
     private let serviceType: Service.Type
-    internal let factory: Any // Must be a function type.
+    internal let factory: FunctionType
     
     internal var objectScope = ObjectScope.Graph
+    internal var initCompleted: FunctionType?
     internal var instance: Any?
-    internal var initCompleted: Any? // Must be a function type.
     
-    internal init(serviceType: Service.Type, factory: Any) {
+    internal init(serviceType: Service.Type, factory: FunctionType) {
         self.serviceType = serviceType
         self.factory = factory
     }
