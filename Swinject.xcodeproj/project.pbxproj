@@ -737,6 +737,7 @@
 				981899B81B5FE63F00C702D0 /* Frameworks */,
 				981899B91B5FE63F00C702D0 /* Headers */,
 				981899BA1B5FE63F00C702D0 /* Resources */,
+				98AEB3B51BE7848C0009F188 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -774,6 +775,7 @@
 				981ABE7D1B5FC9DF00294975 /* Frameworks */,
 				981ABE7E1B5FC9DF00294975 /* Headers */,
 				981ABE7F1B5FC9DF00294975 /* Resources */,
+				98AEB3B11BE783DC0009F188 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -979,6 +981,37 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		98AEB3B11BE783DC0009F188 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nfi\n";
+		};
+		98AEB3B51BE7848C0009F188 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		981899B71B5FE63F00C702D0 /* Sources */ = {

@@ -31,8 +31,7 @@ extension UIStoryboard {
         if self === UIStoryboard.self {
             // Instantiate SwinjectStoryboard if UIStoryboard is tried to be instantiated.
             return SwinjectStoryboard.create(name: name, bundle: storyboardBundleOrNil)
-        }
-        else {
+        } else {
             // Call original `storyboardWithName:bundle:` method swizzled with `swinject_storyboardWithName:bundle:`
             // if SwinjectStoryboard is tried to be instantiated.
             return self.swinject_storyboardWithName(name, bundle: storyboardBundleOrNil)

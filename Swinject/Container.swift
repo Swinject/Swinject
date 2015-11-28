@@ -148,7 +148,7 @@ extension Container: Resolvable {
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name)
         if let (entry, fromParent) = getEntry(key) as (ServiceEntry<Service>, Bool)? {
-            switch (entry.objectScope) {
+            switch entry.objectScope {
             case .None, .Graph:
                 resolvedInstance = resolveEntry(entry, key: key, invoker: invoker)
             case .Container:
@@ -156,8 +156,7 @@ extension Container: Resolvable {
                 if fromParent {
                     ownEntry = entry.copyExceptInstance()
                     services[key] = ownEntry
-                }
-                else {
+                } else {
                     ownEntry = entry
                 }
                 
