@@ -9,10 +9,10 @@
 import Foundation
 
 internal struct ServiceKey {
-    private let factoryType: Any.Type
+    private let factoryType: FunctionType.Type
     private let name: String?
     
-    internal init(factoryType: Any.Type, name: String? = nil) {
+    internal init(factoryType: FunctionType.Type, name: String? = nil) {
         self.factoryType = factoryType
         self.name = name
     }

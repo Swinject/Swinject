@@ -23,7 +23,7 @@ import Foundation
 ///
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
 public final class Container {
-    private var services = [ServiceKey: ServiceEntryBase]()
+    private var services = [ServiceKey: ServiceEntryType]()
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
     internal let lock: SpinLock // Used by SynchronizedResolver.
