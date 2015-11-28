@@ -165,8 +165,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(
         application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?)
-        -> Bool {
+        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         // Instantiate a window.
         let window = UIWindow(frame: UIScreen.mainScreen().bounds)
