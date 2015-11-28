@@ -8,10 +8,10 @@
 
 import Foundation
 
-public final class Box<T> {
-    public let value: T
+internal final class Box<T> {
+    internal let value: T
 
-    public init(_ value: T) {
+    internal init(_ value: T) {
         self.value = value
     }
 }
