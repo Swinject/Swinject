@@ -9,7 +9,7 @@
 import Foundation
 
 internal struct ResolutionPool {
-    private static let MaxDepth = 200
+    private static let maxDepth = 200
     
     private var pool = [ServiceKey: Any]()
     private var depth: Int = 0
@@ -20,7 +20,7 @@ internal struct ResolutionPool {
     }
     
     internal mutating func incrementDepth() {
-        guard depth < ResolutionPool.MaxDepth else {
+        guard depth < ResolutionPool.maxDepth else {
             fatalError("Infinite recursive call for circular dependency has been detected. " +
                        "To avoid the infinite call, 'initCompleted' handler should be used to inject circular dependency.")
         }
