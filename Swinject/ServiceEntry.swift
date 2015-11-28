@@ -16,11 +16,11 @@ internal typealias ServiceEntryType = Any
 public final class ServiceEntry<Service>: ServiceEntryType {
     private let serviceType: Service.Type
     internal let factory: FunctionType
-    
+
     internal var objectScope = ObjectScope.Graph
     internal var initCompleted: FunctionType?
     internal var instance: Any?
-    
+
     internal init(serviceType: Service.Type, factory: FunctionType) {
         self.serviceType = serviceType
         self.factory = factory
@@ -42,7 +42,7 @@ public final class ServiceEntry<Service>: ServiceEntryType {
         self.objectScope = objectScope
         return self
     }
-    
+
     /// Adds the callback to setup the instance after its `init` completes.
     /// *Property or method injections* can be performed in the callback.
     /// To resolve *circular dependencies*, `initCompleted` must be used.
