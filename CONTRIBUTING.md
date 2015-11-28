@@ -1,6 +1,6 @@
 # Welcome to Swinject
 
-Thank you for your interest to contribute to Swinject!
+Thank you for your interest to Swinject!
 
 ## Reporting Issues
 
@@ -16,7 +16,7 @@ If you would like to ask general questions about Swinject, it is preferable to a
 
 ## Pull Requests
 
-Pull requests are more appreciated to improve Swinject or to fix problems.
+Pull requests are more appreciated to improve Swinject or to fix problems. Any kind of pull requests are welcome.
 
 ### Getting Started
 
