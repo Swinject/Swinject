@@ -147,6 +147,10 @@
 		98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; };
 		98B012C01B82F68E00053A32 /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; };
+		98C7D25A1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */; };
+		98C7D25B1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */; };
+		98C7D25C1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */; };
+		98C7D25D1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */; };
 		98D06D371B6B579F0081AFE0 /* Animals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D361B6B579F0081AFE0 /* Animals.storyboard */; };
 		98D06D3D1B6B816C0081AFE0 /* AnimalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */; };
 		98D06D3F1B6BA7B60081AFE0 /* UIViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */; };
@@ -323,6 +327,7 @@
 		98B012BA1B82D6A400053A32 /* Container.Arguments.erb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Container.Arguments.erb; sourceTree = "<group>"; };
 		98B012BE1B82F68E00053A32 /* Resolvable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolvable.swift; sourceTree = "<group>"; };
 		98B012C11B82F70A00053A32 /* Resolvable.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resolvable.erb; sourceTree = "<group>"; };
+		98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+SwinjectStoryboard.swift"; sourceTree = "<group>"; };
 		98D06D361B6B579F0081AFE0 /* Animals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Animals.storyboard; sourceTree = "<group>"; };
 		98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalViewController.swift; sourceTree = "<group>"; };
 		98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Swinject.swift"; sourceTree = "<group>"; };
@@ -482,6 +487,7 @@
 				986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */,
 				98B012C11B82F70A00053A32 /* Resolvable.erb */,
 				989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */,
+				98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */,
 				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
 				98F2F7721C07E788009571E6 /* Box.swift */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
@@ -1021,6 +1027,7 @@
 				983B98321C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				98F2F7741C07E789009571E6 /* Box.swift in Sources */,
+				98C7D25B1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
 				986A582D1B6CF96700FE710F /* NSWindowController+Swinject.swift in Sources */,
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */,
@@ -1087,6 +1094,7 @@
 				9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */,
 				989377C61BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */,
 				984774FA1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
+				98C7D25A1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1126,6 +1134,7 @@
 				98F2F7751C07E789009571E6 /* Box.swift in Sources */,
 				985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
+				98C7D25C1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
 				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
 				984774F21C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
@@ -1155,6 +1164,7 @@
 				98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */,
 				98A430751BCE2F8F00B6B588 /* SwinjectStoryboardType.swift in Sources */,
 				984774FD1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
+				98C7D25D1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
