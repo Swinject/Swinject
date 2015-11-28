@@ -42,12 +42,6 @@ public final class ServiceEntry<Service>: ServiceEntryBase {
         super.init(factory: factory)
     }
 
-    // Initializer for Container.registerForStoryboard.
-    internal convenience init(serviceType: Service.Type) {
-        let emptyFactory: () -> () = { }
-        self.init(serviceType: serviceType, factory: emptyFactory)
-    }
-
     internal func copyExceptInstance() -> ServiceEntry<Service> {
         let copy = ServiceEntry(serviceType: serviceType, factory: factory)
         copy.objectScope = objectScope
