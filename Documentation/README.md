@@ -12,3 +12,4 @@ Swinject is a lightweight dependency injection framework for Swift apps. It help
 6. [Thread Safety](ThreadSafety.md)
 7. [Misc](Misc.md)
 8. [Storyboard](Storyboard.md)
+9. [Properties](Properties.md)

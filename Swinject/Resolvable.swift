@@ -344,4 +344,23 @@ public protocol Resolvable {
         name: String?,
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9, Arg10, Arg11, Arg12)) -> Service?
 
+
+    /// Retrieves a property for the given name. This can be used for non-optional properties or force unwrapped
+    /// properties. If your property is optional, then you use specific the type (see property:type)
+    ///
+    /// - Parameter key: The name for the property
+    ///
+    /// - Returns: The value for the property name
+    func property<Property>(name: String) -> Property
+
+    /// Retrieves a property for the given name where the receiving property is optional. This is a limitation of
+    /// how you can reflect a Optional<Foo> class type where you cannot determine the inner type is Foo without parsing
+    /// the string description (yuck). So in order to inject into an optioanl property, you need to specify the type
+    /// so we can properly cast the object
+    ///
+    /// - Parameter key: The name for the property
+    /// - Parameter type: The type of the property
+    ///
+    /// - Returns: The value for the property name
+    func property<Property>(name: String, _ type: Property.Type) -> Property?
 }

@@ -26,6 +26,7 @@ public final class Container {
     private var services = [ServiceKey: ServiceEntryType]()
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
+    private var properties = [String:AnyObject]()
     internal let lock: SpinLock // Used by SynchronizedResolver.
     
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
@@ -85,6 +86,23 @@ public final class Container {
     public func synchronize() -> Resolvable {
         return SynchronizedResolver(container: self)
     }
+    
+    ///
+    /// Will apply the property loaded to the container. The loader will be invoked and the properties will be merged
+    /// with the existing properties owned by this container. The order in which loaders are applied matters as you can
+    /// apply multi property loaders to a single container so properties loaded from each loader will be merged. Therefore
+    /// if loader A contains property "test.key" and loader B contains property "test.key" then if A is loaded, then B
+    /// is loaded the value for "test.key" will come from loader B.
+    ///
+    /// - parameter loader: the loader to load properties into the container
+    ///
+    public func applyPropertyLoader<T: PropertyLoadable>(loader: T) {
+        if let props = loader.load() {
+            for (key, value) in props {
+                properties[key] = value
+            }
+        }
+    }
 }
 
 // MARK: - Resolvable
@@ -113,6 +131,29 @@ extension Container: Resolvable {
     {
         typealias FactoryType = Resolvable -> Service
         return resolveImpl(name) { (factory: FactoryType) in factory(self) }
+    }
+    
+    /// Retrieves a property for the given name. This can be used for non-optional properties or force unwrapped
+    /// properties. If your property is optional, then you use specific the type (see property:type)
+    ///
+    /// - Parameter key: The name for the property
+    ///
+    /// - Returns: The value for the property name
+    public func property<Property>(name: String) -> Property {
+        return properties[name] as! Property
+    }
+    
+    /// Retrieves a property for the given name where the receiving property is optional. This is a limitation of
+    /// how you can reflect a Optional<Foo> class type where you cannot determine the inner type is Foo without parsing
+    /// the string description (yuck). So in order to inject into an optioanl property, you need to specify the type
+    /// so we can properly cast the object
+    ///
+    /// - Parameter key: The name for the property
+    /// - Parameter type: The type of the property
+    ///
+    /// - Returns: The value for the property name
+    public func property<Property>(name: String, _ type: Property.Type) -> Property? {
+        return properties[name] as? Property
     }
     
     internal func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {

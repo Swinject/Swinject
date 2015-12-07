@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>test.bool</key>
+	<true/>
+	<key>test.string</key>
+	<string>first</string>
+	<key>test.int</key>
+	<integer>100</integer>
+	<key>test.double</key>
+	<real>30.5</real>
+	<key>test.array</key>
+	<array>
+		<string>item1</string>
+		<string>item2</string>
+	</array>
+	<key>test.dict</key>
+	<dict>
+		<key>key1</key>
+		<string>item1</string>
+		<key>key2</key>
+		<string>item2</string>
+	</dict>
+</dict>
+</plist>

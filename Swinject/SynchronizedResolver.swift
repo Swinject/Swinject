@@ -26,4 +26,16 @@ extension SynchronizedResolver: Resolvable {
             return self.container.resolve(serviceType, name: name)
         }
     }
+    
+    internal func property<Property>(name: String) -> Property {
+        return container.lock.sync {
+            return self.container.property(name)
+        }
+    }
+    
+    internal func property<Property>(name: String, _ type: Property.Type) -> Property? {
+        return container.lock.sync {
+            return self.container.property(name, type)
+        }
+    }
 }
