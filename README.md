@@ -24,6 +24,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 - [x] [Thread Safety](./Documentation/ThreadSafety.md)
 - [x] Injection of both Reference and [Value Types](./Documentation/Misc.md)
 - [x] [Storyboard](./Documentation/Storyboard.md)
+- [x] [Property Injection from Resource files](./Documentation/Properties.md)
 
 ## Requirements
 
