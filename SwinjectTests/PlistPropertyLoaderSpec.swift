@@ -15,8 +15,10 @@ class PlistPropertyLoaderSpec: QuickSpec {
     override func spec() {
         it("can handle missing resource") {
             let loader = PlistPropertyLoader(bundle: NSBundle(forClass: self.dynamicType.self), name: "noexist")
-            let props = loader.load()
-            expect(props).to(beNil())
+            expect {
+                try loader.load()
+            }.to(throwError(errorType: PropertyLoaderError.self))
         }
+        // No test for invalid since Xcode won't allow invalid plist files to be added to the bundle
     }
 }

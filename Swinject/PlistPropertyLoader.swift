@@ -33,18 +33,12 @@ final public class PlistPropertyLoader {
 
 // MARK: - PropertyLoadable
 extension PlistPropertyLoader: PropertyLoaderType {
-    public func load() -> [String:AnyObject]? {
-        if let data: NSData = loadDataFromBundle(bundle, withName: name, ofType: "plist") {
-            do {
-                let plist = try NSPropertyListSerialization.propertyListWithData(data, options: .Immutable, format: nil)
-                guard let props = plist as? [String:AnyObject] else {
-                    fatalError("Plist must be a top level dictionary")
-                }
-                return props
-            } catch {
-                // noop
-            }
+    public func load() throws -> [String:AnyObject] {
+        let data = try loadDataFromBundle(bundle, withName: name, ofType: "plist")
+        let plist = try NSPropertyListSerialization.propertyListWithData(data, options: .Immutable, format: nil)
+        guard let props = plist as? [String:AnyObject] else {
+            throw PropertyLoaderError.InvalidPlistFormat(bundle: bundle, name: name)
         }
-        return nil
+        return props
     }
 }

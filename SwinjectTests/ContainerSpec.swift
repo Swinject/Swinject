@@ -344,7 +344,7 @@ class ContainerSpec: QuickSpec {
         describe("JSON properties") {
             it("can load properties from a single loader") {
                 let loader = JsonPropertyLoader(bundle: NSBundle(forClass: self.dynamicType.self), name: "first")
-                container.applyPropertyLoader(loader)
+                try! container.applyPropertyLoader(loader)
                 
                 container.register(Properties.self) { r in
                     let properties = Properties()
@@ -417,8 +417,8 @@ class ContainerSpec: QuickSpec {
             it("can load properties from multiple loader") {
                 let loader = JsonPropertyLoader(bundle: NSBundle(forClass: self.dynamicType.self), name: "first")
                 let loader2 = JsonPropertyLoader(bundle: NSBundle(forClass: self.dynamicType.self), name: "second")
-                container.applyPropertyLoader(loader)
-                container.applyPropertyLoader(loader2)
+                try! container.applyPropertyLoader(loader)
+                try! container.applyPropertyLoader(loader2)
                 
                 container.register(Properties.self) { r in
                     let properties = Properties()
@@ -438,7 +438,7 @@ class ContainerSpec: QuickSpec {
         describe("Plist properties") {
             it("can load properties from a single loader") {
                 let loader = PlistPropertyLoader(bundle: NSBundle(forClass: self.dynamicType.self), name: "first")
-                container.applyPropertyLoader(loader)
+                try! container.applyPropertyLoader(loader)
                 
                 container.register(Properties.self) { r in
                     let properties = Properties()
@@ -511,8 +511,8 @@ class ContainerSpec: QuickSpec {
             it("can load properties from multiple loader") {
                 let loader = PlistPropertyLoader(bundle: NSBundle(forClass: self.dynamicType.self), name: "first")
                 let loader2 = PlistPropertyLoader(bundle: NSBundle(forClass: self.dynamicType.self), name: "second")
-                container.applyPropertyLoader(loader)
-                container.applyPropertyLoader(loader2)
+                try! container.applyPropertyLoader(loader)
+                try! container.applyPropertyLoader(loader2)
                 
                 container.register(Properties.self) { r in
                     let properties = Properties()

@@ -17,7 +17,7 @@ public protocol PropertyLoaderType {
     /// the key-value pairs of the properties
     ///
     /// - returns: the key-value pair properties
-    func load() -> [String:AnyObject]?
+    func load() throws -> [String:AnyObject]
 }
 
 /// Helper function to load the contents of a bundle resource into a string. If the contents do not exist we will
@@ -29,15 +29,11 @@ public protocol PropertyLoaderType {
 /// - Parameter ofType: the type of resource to load (e.g. json)
 ///
 /// - Returns: the contents of the resource as a string or nil if it does not exist
-func loadStringFromBundle(bundle: NSBundle, withName name: String, ofType type: String) -> String? {
+func loadStringFromBundle(bundle: NSBundle, withName name: String, ofType type: String) throws -> String {
     if let resourcePath = bundle.pathForResource(name, ofType: type) {
-        do {
-            return try String(contentsOfFile: resourcePath)
-        } catch {
-            // no-op
-        }
+        return try String(contentsOfFile: resourcePath)
     }
-    return nil
+    throw PropertyLoaderError.MissingResource(bundle: bundle, name: name)
 }
 
 /// Helper function to load the contes of a bundle resource into data. If the contents do not exist
@@ -49,9 +45,12 @@ func loadStringFromBundle(bundle: NSBundle, withName name: String, ofType type: 
 /// - Parameter ofType: the type of resource to load (e.g. json)
 ///
 /// - Returns: the contents of the resource as a data or nil if it does not exist
-func loadDataFromBundle(bundle: NSBundle, withName name: String, ofType type: String) -> NSData? {
+func loadDataFromBundle(bundle: NSBundle, withName name: String, ofType type: String) throws -> NSData {
     if let resourcePath = bundle.pathForResource(name, ofType: type) {
-        return NSData(contentsOfFile: resourcePath)
+        if let data = NSData(contentsOfFile: resourcePath) {
+            return data
+        }
+        throw PropertyLoaderError.InvalidResourceDataFormat(bundle: bundle, name: name)
     }
-    return nil
+    throw PropertyLoaderError.MissingResource(bundle: bundle, name: name)
 }

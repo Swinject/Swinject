@@ -15,8 +15,15 @@ class JsonPropertyLoaderSpec: QuickSpec {
     override func spec() {
         it("can handle missing resource") {
             let loader = JsonPropertyLoader(bundle: NSBundle(forClass: self.dynamicType.self), name: "noexist")
-            let props = loader.load()
-            expect(props).to(beNil())
+            expect {
+                try loader.load()
+            }.to(throwError(errorType: PropertyLoaderError.self))
+        }
+        it("can handle invalid resource") {
+            let loader = JsonPropertyLoader(bundle: NSBundle(forClass: self.dynamicType.self), name: "invalid")
+            expect {
+                try loader.load()
+            }.to(throwError(errorType: PropertyLoaderError.self))
         }
     }
 }

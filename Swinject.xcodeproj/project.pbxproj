@@ -44,6 +44,13 @@
 		90E70A561C16884D00F12C2A /* PropertyRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A541C16837300F12C2A /* PropertyRetrievable.swift */; };
 		90E70A571C16885200F12C2A /* PropertyRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A541C16837300F12C2A /* PropertyRetrievable.swift */; };
 		90E70A581C16885800F12C2A /* PropertyRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A541C16837300F12C2A /* PropertyRetrievable.swift */; };
+		90E70A5A1C17279300F12C2A /* PropertyLoaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A591C17279300F12C2A /* PropertyLoaderError.swift */; };
+		90E70A5B1C17279300F12C2A /* PropertyLoaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A591C17279300F12C2A /* PropertyLoaderError.swift */; };
+		90E70A5C1C17279300F12C2A /* PropertyLoaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A591C17279300F12C2A /* PropertyLoaderError.swift */; };
+		90E70A5D1C17279300F12C2A /* PropertyLoaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A591C17279300F12C2A /* PropertyLoaderError.swift */; };
+		90E70A681C172DB200F12C2A /* invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 90E70A671C172DB200F12C2A /* invalid.json */; };
+		90E70A691C172DB200F12C2A /* invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 90E70A671C172DB200F12C2A /* invalid.json */; };
+		90E70A6A1C172DB200F12C2A /* invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 90E70A671C172DB200F12C2A /* invalid.json */; };
 		9802C9AB1B5FD7740088018E /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AA1B5FD7740088018E /* Nimble.framework */; };
 		9802C9AD1B5FD7800088018E /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AC1B5FD7800088018E /* Quick.framework */; };
 		9802C9B51B5FDBEA0088018E /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9802C9AC1B5FD7800088018E /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -285,6 +292,8 @@
 		90E70A441C1549A000F12C2A /* JsonPropertyLoaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonPropertyLoaderSpec.swift; sourceTree = "<group>"; };
 		90E70A481C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistPropertyLoaderSpec.swift; sourceTree = "<group>"; };
 		90E70A541C16837300F12C2A /* PropertyRetrievable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyRetrievable.swift; sourceTree = "<group>"; };
+		90E70A591C17279300F12C2A /* PropertyLoaderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyLoaderError.swift; sourceTree = "<group>"; };
+		90E70A671C172DB200F12C2A /* invalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid.json; sourceTree = "<group>"; };
 		9802C9AA1B5FD7740088018E /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		9802C9AC1B5FD7800088018E /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		98057EAF1B6D108D00A99D9A /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
@@ -463,6 +472,7 @@
 		90E70A1D1C14F78600F12C2A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				90E70A671C172DB200F12C2A /* invalid.json */,
 				90E70A1B1C14F77D00F12C2A /* first.json */,
 				90E70A231C15398100F12C2A /* second.json */,
 				90E70A391C15434100F12C2A /* first.plist */,
@@ -555,6 +565,7 @@
 				98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */,
 				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
 				98F2F7721C07E788009571E6 /* Box.swift */,
+				90E70A591C17279300F12C2A /* PropertyLoaderError.swift */,
 				90D409F31C14E5F9009DF1B1 /* PropertyLoaderType.swift */,
 				90E70A541C16837300F12C2A /* PropertyRetrievable.swift */,
 				90D409F51C14E69F009DF1B1 /* JsonPropertyLoader.swift */,
@@ -1010,6 +1021,7 @@
 				90E70A211C14FAEF00F12C2A /* first.json in Resources */,
 				9892E7B61BCA3CB100EC0D04 /* Storyboard2.storyboard in Resources */,
 				90E70A421C15461600F12C2A /* second.plist in Resources */,
+				90E70A691C172DB200F12C2A /* invalid.json in Resources */,
 				9816503A1B6D270E00BC4222 /* Tabs.storyboard in Resources */,
 				90E70A251C15398100F12C2A /* second.json in Resources */,
 				986A583A1B6D031700FE710F /* Animals.storyboard in Resources */,
@@ -1031,6 +1043,7 @@
 			files = (
 				90E70A201C14FADE00F12C2A /* first.json in Resources */,
 				90E70A411C15461600F12C2A /* second.plist in Resources */,
+				90E70A681C172DB200F12C2A /* invalid.json in Resources */,
 				988EEDAF1BCA082900E935F7 /* Storyboard2.storyboard in Resources */,
 				98D06D491B6CB79B0081AFE0 /* Tabs.storyboard in Resources */,
 				98D06D371B6B579F0081AFE0 /* Animals.storyboard in Resources */,
@@ -1061,6 +1074,7 @@
 			files = (
 				90E70A221C14FB0000F12C2A /* first.json in Resources */,
 				90E70A431C15461600F12C2A /* second.plist in Resources */,
+				90E70A6A1C172DB200F12C2A /* invalid.json in Resources */,
 				98A430711BCE2E5800B6B588 /* Storyboard2.storyboard in Resources */,
 				98689CC41BBFD5410005C6D3 /* Tabs.storyboard in Resources */,
 				98689CC31BBFD5410005C6D3 /* Animals.storyboard in Resources */,
@@ -1117,6 +1131,7 @@
 				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				98F2F7741C07E789009571E6 /* Box.swift in Sources */,
 				98C7D25B1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
+				90E70A5B1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 				986A582D1B6CF96700FE710F /* NSWindowController+Swinject.swift in Sources */,
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */,
@@ -1193,6 +1208,7 @@
 				989377C61BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */,
 				984774FA1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 				98C7D25A1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
+				90E70A5A1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1240,6 +1256,7 @@
 				98F2F7751C07E789009571E6 /* Box.swift in Sources */,
 				985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
+				90E70A5C1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 				98C7D25C1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
 				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
@@ -1276,6 +1293,7 @@
 				98A430751BCE2F8F00B6B588 /* SwinjectStoryboardType.swift in Sources */,
 				984774FD1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 				98C7D25D1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
+				90E70A5D1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

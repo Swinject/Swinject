@@ -34,7 +34,7 @@ Loading properties into the container is as simple as:
     // will load "properties.json" from the main app bundle
     let loader = JsonPropertyLoader(bundle: .mainBundle(), name: "properties")
 
-    container.applyPropertyLoader(loader)
+    try! container.applyPropertyLoader(loader)
 
 Now you can inject properties into definitions registered into the container. 
 Consider the following definition:

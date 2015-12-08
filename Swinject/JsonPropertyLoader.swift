@@ -65,20 +65,16 @@ final public class JsonPropertyLoader {
 
 // MARK: - PropertyLoadable
 extension JsonPropertyLoader: PropertyLoaderType {
-    public func load() -> [String : AnyObject]? {
-        if let contents: String = loadStringFromBundle(bundle, withName: name, ofType: "json") {
-            let jsonWithoutComments = stringWithoutComments(contents)
-            let data = jsonWithoutComments.dataUsingEncoding(NSUTF8StringEncoding)
-            do {
-                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? [String:AnyObject] {
-                    return json
-                } else {
-                    fatalError("Unable to cast JSON properties from bundle: \(bundle) for name: \(name)")
-                }
-            } catch {
-                fatalError("Unable to read JSON properties from bundle: \(bundle) for name: \(name)")
-            }
+    public func load() throws -> [String : AnyObject] {
+        let contents = try loadStringFromBundle(bundle, withName: name, ofType: "json")
+        let jsonWithoutComments = stringWithoutComments(contents)
+        let data = jsonWithoutComments.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
+        guard let props = json as? [String:AnyObject] else {
+            throw PropertyLoaderError.InvalidJSONFormat(bundle: bundle, name: name)
         }
-        return nil
+        return props
+        
     }
 }
