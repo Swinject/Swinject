@@ -64,7 +64,7 @@ public final class Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
@@ -199,7 +199,7 @@ extension Container: Resolvable {
             resolutionPool[key] = resolvedInstance as Any
         }
         
-        if let completed = entry.initCompleted as? (Resolvable, Service) -> () {
+        if let completed = entry.initCompleted as? (ResolverType, Service) -> () {
             completed(self, resolvedInstance)
         }
         return resolvedInstance

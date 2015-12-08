@@ -20,12 +20,12 @@ extension Container {
     ///                     that have the same view or window controller type.
     ///   - initCompleted:  A closure to specifiy how the dependencies of the view or window controller are injected.
     ///                     It is invoked by the `Container` when the view or window controller is instantiated by `SwinjectStoryboard`.
-    public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
+    public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (ResolverType, C) -> ()) {
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
         // The actual controller type is distinguished by the dynamic type name in `nameWithActualType`.
         let nameWithActualType = String(reflecting: controllerType) + ":" + (name ?? "")
-        let wrappingClosure: (Resolvable, Controller) -> () = { r, c in initCompleted(r, c as! C) }
-        self.register(Controller.self, name: nameWithActualType) { (_: Resolvable, controller: Controller) in controller }
+        let wrappingClosure: (ResolverType, Controller) -> () = { r, c in initCompleted(r, c as! C) }
+        self.register(Controller.self, name: nameWithActualType) { (_: ResolverType, controller: Controller) in controller }
             .initCompleted(wrappingClosure)
     }
 }
