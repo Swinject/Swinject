@@ -3,8 +3,8 @@ Properties can be loaded from resources that are bundled with your application/f
 These properties can be used when assembling definitions in your container. There
 are 2 types of support property formats:
 
- - JSON
- - Plist
+ - JSON (`JsonPropertyLoader`)
+ - Plist (`PlistPropertyLoader`)
 
 Each format supports the types specified by the format itself. If JSON format is used
 then your basic types: `Bool`, `Int`, `Double`, `String`, `Array` and `Dictionary` are
@@ -42,13 +42,15 @@ Consider the following definition:
     class Person {
         var name: String!
         var count: Int?
+        var team: String = ""
     }
 
 And let's say our `properties.json` file contains:
 
     {
         "name": "Mike",
-        "count": 100
+        "count": 100,
+        "team": "Giants"
     }
 
 Then we can register this Service type with properties like so:
@@ -56,7 +58,8 @@ Then we can register this Service type with properties like so:
      container.register(Person.self) { r in
          let person = Person()
          person.name = r.property("name")
-         person.count = r.property("count", Int.self)
+         person.count = r.property("count")
+         person.team = r.property("team")!
      }
 
 This will resolve the person as:
@@ -64,15 +67,7 @@ This will resolve the person as:
      let person = container.resolve(Person.self)!
      person.name // "Mike"
      person.count // 100
-
-Notice the different between loading an implicit wrapped type vs. an optional type.
-For optional types you must supply the type of the property you are injecting.
-This is required due to a limitation of reflection of Optional types. The non-type
-`property` function only works for implicitly unwrapped types and required types:
-
-    var foo: String = ""  // works
-    var bar: String!      // works
-    var boo: String?      // doesn't work. requires type
+     person.team // "Giants"
    
 Properties are available on a per-container basis. Multiple property loaders can be
 applied to a single container. Properties are merged in the order in which they

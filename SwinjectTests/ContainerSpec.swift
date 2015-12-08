@@ -348,28 +348,28 @@ class ContainerSpec: QuickSpec {
                 
                 container.register(Properties.self) { r in
                     let properties = Properties()
-                    properties.stringValue = r.property("test.string")
-                    properties.optionalStringValue = r.property("test.string", String.self)
+                    properties.stringValue = r.property("test.string")!
+                    properties.optionalStringValue = r.property("test.string")
                     properties.implicitStringValue = r.property("test.string")
                     
-                    properties.intValue = r.property("test.int")
-                    properties.optionalIntValue = r.property("test.int", Int.self)
+                    properties.intValue = r.property("test.int")!
+                    properties.optionalIntValue = r.property("test.int")
                     properties.implicitIntValue = r.property("test.int")
                     
-                    properties.doubleValue = r.property("test.double")
-                    properties.optionalDoubleValue = r.property("test.double", Double.self)
+                    properties.doubleValue = r.property("test.double")!
+                    properties.optionalDoubleValue = r.property("test.double")
                     properties.implicitDoubleValue = r.property("test.double")
                     
-                    properties.arrayValue = r.property("test.array")
-                    properties.optionalArrayValue = r.property("test.array", [String].self)
+                    properties.arrayValue = r.property("test.array")!
+                    properties.optionalArrayValue = r.property("test.array")
                     properties.implicitArrayValue = r.property("test.array")
                     
-                    properties.dictValue = r.property("test.dict")
-                    properties.optionalDictValue = r.property("test.dict", [String:String].self)
+                    properties.dictValue = r.property("test.dict")!
+                    properties.optionalDictValue = r.property("test.dict")
                     properties.implicitDictValue = r.property("test.dict")
                     
-                    properties.boolValue = r.property("test.bool")
-                    properties.optionalBoolValue = r.property("test.bool", Bool.self)
+                    properties.boolValue = r.property("test.bool")!
+                    properties.optionalBoolValue = r.property("test.bool")
                     properties.implicitBoolValue = r.property("test.bool")
                     
                     return properties
@@ -422,8 +422,8 @@ class ContainerSpec: QuickSpec {
                 
                 container.register(Properties.self) { r in
                     let properties = Properties()
-                    properties.stringValue = r.property("test.string") // from loader2
-                    properties.intValue = r.property("test.int") // from loader
+                    properties.stringValue = r.property("test.string")! // from loader2
+                    properties.intValue = r.property("test.int")! // from loader
                     
                     return properties
                 }
@@ -442,28 +442,28 @@ class ContainerSpec: QuickSpec {
                 
                 container.register(Properties.self) { r in
                     let properties = Properties()
-                    properties.stringValue = r.property("test.string")
-                    properties.optionalStringValue = r.property("test.string", String.self)
+                    properties.stringValue = r.property("test.string")!
+                    properties.optionalStringValue = r.property("test.string")
                     properties.implicitStringValue = r.property("test.string")
                     
-                    properties.intValue = r.property("test.int")
-                    properties.optionalIntValue = r.property("test.int", Int.self)
+                    properties.intValue = r.property("test.int")!
+                    properties.optionalIntValue = r.property("test.int")
                     properties.implicitIntValue = r.property("test.int")
                     
-                    properties.doubleValue = r.property("test.double")
-                    properties.optionalDoubleValue = r.property("test.double", Double.self)
+                    properties.doubleValue = r.property("test.double")!
+                    properties.optionalDoubleValue = r.property("test.double")
                     properties.implicitDoubleValue = r.property("test.double")
                     
-                    properties.arrayValue = r.property("test.array")
-                    properties.optionalArrayValue = r.property("test.array", [String].self)
+                    properties.arrayValue = r.property("test.array")!
+                    properties.optionalArrayValue = r.property("test.array")
                     properties.implicitArrayValue = r.property("test.array")
                     
-                    properties.dictValue = r.property("test.dict")
-                    properties.optionalDictValue = r.property("test.dict", [String:String].self)
+                    properties.dictValue = r.property("test.dict")!
+                    properties.optionalDictValue = r.property("test.dict")
                     properties.implicitDictValue = r.property("test.dict")
                     
-                    properties.boolValue = r.property("test.bool")
-                    properties.optionalBoolValue = r.property("test.bool", Bool.self)
+                    properties.boolValue = r.property("test.bool")!
+                    properties.optionalBoolValue = r.property("test.bool")
                     properties.implicitBoolValue = r.property("test.bool")
                     
                     return properties
@@ -516,8 +516,8 @@ class ContainerSpec: QuickSpec {
                 
                 container.register(Properties.self) { r in
                     let properties = Properties()
-                    properties.stringValue = r.property("test.string") // from loader2
-                    properties.intValue = r.property("test.int") // from loader
+                    properties.stringValue = r.property("test.string")! // from loader2
+                    properties.intValue = r.property("test.int")! // from loader
                     
                     return properties
                 }

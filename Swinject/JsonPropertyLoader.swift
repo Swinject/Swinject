@@ -64,7 +64,7 @@ final public class JsonPropertyLoader {
 }
 
 // MARK: - PropertyLoadable
-extension JsonPropertyLoader: PropertyLoadable {
+extension JsonPropertyLoader: PropertyLoaderType {
     public func load() -> [String : AnyObject]? {
         if let contents: String = loadStringFromBundle(bundle, withName: name, ofType: "json") {
             let jsonWithoutComments = stringWithoutComments(contents)

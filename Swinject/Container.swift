@@ -8,6 +8,10 @@
 
 import Foundation
 
+
+/// represents the type that allows definition resolution and property retrieval
+public typealias ResolverType = protocol<Resolvable, PropertyRetrievable>
+
 /// The `Container` class represents a dependency injection container, which stores registrations of services
 /// and retrieves registered services with dependencies injected.
 ///
@@ -67,7 +71,7 @@ public final class Container {
     public func register<Service>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: Resolvable -> Service) -> ServiceEntry<Service>
+        factory: ResolverType -> Service) -> ServiceEntry<Service>
     {
         return registerImpl(serviceType, factory: factory, name: name)
     }
@@ -96,7 +100,7 @@ public final class Container {
     ///
     /// - parameter loader: the loader to load properties into the container
     ///
-    public func applyPropertyLoader<T: PropertyLoadable>(loader: T) {
+    public func applyPropertyLoader<T: PropertyLoaderType>(loader: T) {
         if let props = loader.load() {
             for (key, value) in props {
                 properties[key] = value
@@ -118,6 +122,8 @@ extension Container: Resolvable {
         return resolve(serviceType, name: nil)
     }
     
+    
+    
     /// Retrieves the instance with the specified service type and registration name.
     ///
     /// - Parameters:
@@ -129,31 +135,8 @@ extension Container: Resolvable {
         serviceType: Service.Type,
         name: String?) -> Service?
     {
-        typealias FactoryType = Resolvable -> Service
+        typealias FactoryType = ResolverType -> Service
         return resolveImpl(name) { (factory: FactoryType) in factory(self) }
-    }
-    
-    /// Retrieves a property for the given name. This can be used for non-optional properties or force unwrapped
-    /// properties. If your property is optional, then you use specific the type (see property:type)
-    ///
-    /// - Parameter key: The name for the property
-    ///
-    /// - Returns: The value for the property name
-    public func property<Property>(name: String) -> Property {
-        return properties[name] as! Property
-    }
-    
-    /// Retrieves a property for the given name where the receiving property is optional. This is a limitation of
-    /// how you can reflect a Optional<Foo> class type where you cannot determine the inner type is Foo without parsing
-    /// the string description (yuck). So in order to inject into an optioanl property, you need to specify the type
-    /// so we can properly cast the object
-    ///
-    /// - Parameter key: The name for the property
-    /// - Parameter type: The type of the property
-    ///
-    /// - Returns: The value for the property name
-    public func property<Property>(name: String, _ type: Property.Type) -> Property? {
-        return properties[name] as? Property
     }
     
     internal func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
@@ -220,5 +203,22 @@ extension Container: Resolvable {
             completed(self, resolvedInstance)
         }
         return resolvedInstance
+    }
+}
+
+// MARK: - PropertyRetrievable
+extension Container: PropertyRetrievable {
+    
+    /// Retrieves a property for the given name where the receiving property is optional. This is a limitation of
+    /// how you can reflect a Optional<Foo> class type where you cannot determine the inner type is Foo without parsing
+    /// the string description (yuck). So in order to inject into an optioanl property, you need to specify the type
+    /// so we can properly cast the object
+    ///
+    /// - Parameter key: The name for the property
+    /// - Parameter type: The type of the property
+    ///
+    /// - Returns: The value for the property name
+    public func property<Property>(name: String) -> Property? {
+        return properties[name] as? Property
     }
 }

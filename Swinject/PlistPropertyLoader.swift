@@ -32,7 +32,7 @@ final public class PlistPropertyLoader {
 }
 
 // MARK: - PropertyLoadable
-extension PlistPropertyLoader: PropertyLoadable {
+extension PlistPropertyLoader: PropertyLoaderType {
     public func load() -> [String:AnyObject]? {
         if let data: NSData = loadDataFromBundle(bundle, withName: name, ofType: "plist") {
             do {
