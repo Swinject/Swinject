@@ -18,6 +18,6 @@ In contrast, service types registered to a child container are not resolved in i
     let cat = parentContainer.resolve(AnimalType.self)
     print(cat == nil) // prints "true"
 
-_[Next page: Object Scopes](ObjectScopes.md)_
+_[Next page: Properties](Properties.md)_
 
 _[Table of Contents](README.md)_

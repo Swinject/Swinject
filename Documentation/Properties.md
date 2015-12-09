@@ -111,4 +111,6 @@ And:
 
 The resulting value for `items` would be: `[ "hello from B" ]`
 
+_[Next page: Thread Safety](ThreadSafety.md)_
+
 _[Table of Contents](README.md)_

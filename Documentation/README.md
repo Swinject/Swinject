@@ -4,12 +4,20 @@ Swinject is a lightweight dependency injection framework for Swift apps. It help
 
 ## Table of Contents
 
+### Basics
+
 1. [DI Container](DIContainer.md)
 2. [Injection Patterns](InjectionPatterns.md)
 3. [Circular Dependencies](CircularDependencies.md)
-4. [Container Hierarchy](ContainerHierarchy.md)
-5. [Object Scopes](ObjectScopes.md)
-6. [Thread Safety](ThreadSafety.md)
-7. [Misc](Misc.md)
-8. [Storyboard](Storyboard.md)
-9. [Properties](Properties.md)
+4. [Object Scopes](ObjectScopes.md)
+5. [Misc](Misc.md)
+
+### Advanced Features
+
+1. [Container Hierarchy](ContainerHierarchy.md)
+2. [Properties](Properties.md)
+3. [Thread Safety](ThreadSafety.md)
+
+### UI Features
+
+1. [Storyboard](Storyboard.md)
