@@ -29,8 +29,8 @@ This scope is also known as Singleton in other DI frameworks.
 
 ## Hierarchy
 
-In `ObjectScope.Hierarchy`, an instance provided by a container is not only shared within the container but also shared within its child containers.
+In `ObjectScope.Hierarchy`, an instance provided by a container is not only shared within the container but also shared within its child containers. Refer to [Container Hierarchy](ContainerHierarchy.md) for parent-child relationship of containers.
 
-_[Next page: Thread Safety](ThreadSafety.md)_
+_[Next page: Misc](Misc.md)_
 
 _[Table of Contents](README.md)_

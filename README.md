@@ -13,18 +13,18 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 
 ## Features
 
-- [x] Pure Swift Types
+- [x] [Pure Swift Type Support](./Documentation/README.md#user-content-pure-swift-type-support)
+- [x] [Injection with Arguments](./Documentation/DIContainer.md#registration-with-arguments-to-di-container)
 - [x] [Initializer/Property/Method Injections](./Documentation/InjectionPatterns.md)
-- [x] [Initialization Callback](./Documentation/InjectionPatterns.md)
+- [x] [Initialization Callback](./Documentation/InjectionPatterns.md#user-content-initialization-callback)
 - [x] [Circular Dependency Injection](./Documentation/CircularDependencies.md)
-- [x] [Injection with Arguments](./Documentation/DIContainer.md)
-- [x] [Self-registration (Self-binding)](./Documentation/Misc.md)
-- [x] [Container Hierarchy](./Documentation/ContainerHierarchy.md)
 - [x] [Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy](./Documentation/ObjectScopes.md)
-- [x] [Thread Safety](./Documentation/ThreadSafety.md)
-- [x] Injection of both Reference and [Value Types](./Documentation/Misc.md)
-- [x] [Storyboard](./Documentation/Storyboard.md)
+- [x] Support of both Reference and [Value Types](./Documentation/Misc.md#value-types)
+- [x] [Self-registration (Self-binding)](./Documentation/Misc.md#self-registration-self-binding)
+- [x] [Container Hierarchy](./Documentation/ContainerHierarchy.md)
 - [x] [Property Injection from Resource files](./Documentation/Properties.md)
+- [x] [Thread Safety](./Documentation/ThreadSafety.md)
+- [x] [Storyboard](./Documentation/Storyboard.md)
 
 ## Requirements
 

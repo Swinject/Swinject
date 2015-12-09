@@ -70,6 +70,6 @@ Here the both or either of the depending properties must be specified in the `in
 
 Not supported. This type of dependencies causes infinite recursive calls.
 
-_[Next page: Container Hierarchy](ContainerHierarchy.md)_
+_[Next page: Object Scopes](ObjectScopes.md)_
 
 _[Table of Contents](README.md)_

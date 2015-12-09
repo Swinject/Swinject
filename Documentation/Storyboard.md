@@ -155,6 +155,4 @@ Storyboard Reference introduced with Xcode 7 is supported by `SwinjectStoryboard
 
 If you implicitly instantiate `UIWindow` and its root view controller, the registrations setup for "Main" storyboard can be shared with the referenced storyboard since `defaultContainer` is configured in `setup` method.
 
-_[Next page: Properties](Properties.md)_
-
 _[Table of Contents](README.md)_

@@ -60,7 +60,7 @@ Where
         init() { }
     }
 
-Or you can use `initCompleted` callback instead of defining the injection in the registration closure.
+Or you can use <a name="initialization-callback">`initCompleted` callback</a> instead of defining the injection in the registration closure.
 
     let container = Container()
     container.register(AnimalType.self) { _ in Cat() }
