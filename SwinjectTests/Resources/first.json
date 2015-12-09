@@ -1,0 +1,22 @@
+{
+    // comment 1
+    "test.string": "first",
+    
+    /* comment 2 */
+    "test.int": 100,
+    
+    /**
+     comment 3
+     */
+    "test.double": 30.50,
+    "test.array": [
+        "item1",
+        "item2"
+    ],
+    "test.dict": {
+        "key1": "item1",
+        "key2": "item2"
+    },
+    
+    "test.bool":  true
+}

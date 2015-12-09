@@ -8,6 +8,10 @@
 
 import Foundation
 
+
+/// represents the type that allows definition resolution and property retrieval
+public typealias ResolverType = protocol<Resolvable, PropertyRetrievable>
+
 /// The `Container` class represents a dependency injection container, which stores registrations of services
 /// and retrieves registered services with dependencies injected.
 ///
@@ -26,6 +30,7 @@ public final class Container {
     private var services = [ServiceKey: ServiceEntryType]()
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
+    private var properties = [String:AnyObject]()
     internal let lock: SpinLock // Used by SynchronizedResolver.
     
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
@@ -59,14 +64,14 @@ public final class Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: Resolvable -> Service) -> ServiceEntry<Service>
+        factory: ResolverType -> Service) -> ServiceEntry<Service>
     {
         return registerImpl(serviceType, factory: factory, name: name)
     }
@@ -85,6 +90,22 @@ public final class Container {
     public func synchronize() -> Resolvable {
         return SynchronizedResolver(container: self)
     }
+    
+    ///
+    /// Will apply the property loaded to the container. The loader will be invoked and the properties will be merged
+    /// with the existing properties owned by this container. The order in which loaders are applied matters as you can
+    /// apply multi property loaders to a single container so properties loaded from each loader will be merged. Therefore
+    /// if loader A contains property "test.key" and loader B contains property "test.key" then if A is loaded, then B
+    /// is loaded the value for "test.key" will come from loader B.
+    ///
+    /// - parameter loader: the loader to load properties into the container
+    ///
+    public func applyPropertyLoader<T: PropertyLoaderType>(loader: T) throws {
+        let props = try loader.load()
+        for (key, value) in props {
+            properties[key] = value
+        }
+    }
 }
 
 // MARK: - Resolvable
@@ -100,6 +121,8 @@ extension Container: Resolvable {
         return resolve(serviceType, name: nil)
     }
     
+    
+    
     /// Retrieves the instance with the specified service type and registration name.
     ///
     /// - Parameters:
@@ -111,7 +134,7 @@ extension Container: Resolvable {
         serviceType: Service.Type,
         name: String?) -> Service?
     {
-        typealias FactoryType = Resolvable -> Service
+        typealias FactoryType = ResolverType -> Service
         return resolveImpl(name) { (factory: FactoryType) in factory(self) }
     }
     
@@ -175,9 +198,26 @@ extension Container: Resolvable {
             resolutionPool[key] = resolvedInstance as Any
         }
         
-        if let completed = entry.initCompleted as? (Resolvable, Service) -> () {
+        if let completed = entry.initCompleted as? (ResolverType, Service) -> () {
             completed(self, resolvedInstance)
         }
         return resolvedInstance
+    }
+}
+
+// MARK: - PropertyRetrievable
+extension Container: PropertyRetrievable {
+    
+    /// Retrieves a property for the given name where the receiving property is optional. This is a limitation of
+    /// how you can reflect a Optional<Foo> class type where you cannot determine the inner type is Foo without parsing
+    /// the string description (yuck). So in order to inject into an optioanl property, you need to specify the type
+    /// so we can properly cast the object
+    ///
+    /// - Parameter key: The name for the property
+    /// - Parameter type: The type of the property
+    ///
+    /// - Returns: The value for the property name
+    public func property<Property>(name: String) -> Property? {
+        return properties[name] as? Property
     }
 }
