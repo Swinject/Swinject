@@ -28,5 +28,3 @@ class LoadAwareAssembly: AssemblyLoadAwareType {
         loaded = true
     }
 }
-
-
