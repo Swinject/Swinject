@@ -19,7 +19,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 - [x] [Initialization Callback](./Documentation/InjectionPatterns.md#user-content-initialization-callback)
 - [x] [Circular Dependency Injection](./Documentation/CircularDependencies.md)
 - [x] [Object Scopes as None (Transient), Graph, Container (Singleton) and Hierarchy](./Documentation/ObjectScopes.md)
-- [x] Injection of both Reference and [Value Types](./Documentation/Misc.md#value-types)
+- [x] Support of both Reference and [Value Types](./Documentation/Misc.md#value-types)
 - [x] [Self-registration (Self-binding)](./Documentation/Misc.md#self-registration-self-binding)
 - [x] [Container Hierarchy](./Documentation/ContainerHierarchy.md)
 - [x] [Property Injection from Resource files](./Documentation/Properties.md)
