@@ -7,20 +7,20 @@ env:
     - LC_CTYPE=en_US.UTF-8
     - LANG=en_US.UTF-8
   matrix:
-    - DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 POD_LINT="NO" ACTION="test"
-#    - DESTINATION="OS=8.2,name=iPhone 5" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 POD_LINT="NO" ACTION="test"
-#    - DESTINATION="OS=8.3,name=iPhone 5S" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 POD_LINT="NO" ACTION="test"
-#    - DESTINATION="OS=8.4,name=iPhone 6" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 POD_LINT="NO" ACTION="test"
-    - DESTINATION="OS=9.0,name=iPhone 6 Plus" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 POD_LINT="YES" ACTION="test"
-    - DESTINATION="OS=9.1,name=iPhone 6S" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 POD_LINT="YES" ACTION="test"
-    - DESTINATION="arch=x86_64" SCHEME="Swinject-OSX" SDK=macosx10.11 POD_LINT="NO" ACTION="test"
-    - DESTINATION="OS=9.0,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK=appletvsimulator9.0 POD_LINT="NO" ACTION="test"
-    - DESTINATION="OS=2.0,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK=watchsimulator2.0 POD_LINT="NO" ACTION="build"
+    - DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 PLATFORM="iOS" POD_LINT="NO" ACTION="test"
+#    - DESTINATION="OS=8.2,name=iPhone 5" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 PLATFORM="iOS" POD_LINT="NO" ACTION="test"
+#    - DESTINATION="OS=8.3,name=iPhone 5S" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 PLATFORM="iOS" POD_LINT="NO" ACTION="test"
+#    - DESTINATION="OS=8.4,name=iPhone 6" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 PLATFORM="iOS" POD_LINT="NO" ACTION="test"
+    - DESTINATION="OS=9.0,name=iPhone 6 Plus" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 PLATFORM="iOS" POD_LINT="YES" ACTION="test"
+    - DESTINATION="OS=9.1,name=iPhone 6S" SCHEME="Swinject-iOS" SDK=iphonesimulator9.1 PLATFORM="iOS" POD_LINT="YES" ACTION="test"
+    - DESTINATION="arch=x86_64" SCHEME="Swinject-OSX" SDK=macosx10.11 PLATFORM="Mac" POD_LINT="NO" ACTION="test"
+    - DESTINATION="OS=9.0,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK=appletvsimulator9.0 PLATFORM="tvOS" POD_LINT="NO" ACTION="test"
+    - DESTINATION="OS=2.0,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK=watchsimulator2.0 PLATFORM="watchOS" POD_LINT="NO" ACTION="build"
 before_install:
   - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.9.2/Carthage.pkg
   - sudo installer -pkg Carthage.pkg -target /
 before_script:
-  - carthage bootstrap --verbose --no-use-binaries --use-submodules
+  - carthage bootstrap --verbose --no-use-binaries --use-submodules --platform "$PLATFORM"
 script:
   - set -o pipefail
   - xcodebuild -version
