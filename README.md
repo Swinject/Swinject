@@ -13,7 +13,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 
 ## Features
 
-- [x] Pure Swift Types
+- [x] Pure Swift Type Support
 - [x] [Initializer/Property/Method Injections](./Documentation/InjectionPatterns.md)
 - [x] [Initialization Callback](./Documentation/InjectionPatterns.md#user-content-initialization-callback)
 - [x] [Circular Dependency Injection](./Documentation/CircularDependencies.md)
