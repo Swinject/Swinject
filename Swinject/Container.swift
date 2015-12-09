@@ -100,7 +100,7 @@ public final class Container {
     ///
     /// - parameter loader: the loader to load properties into the container
     ///
-    public func applyPropertyLoader<T: PropertyLoaderType>(loader: T) throws {
+    public func applyPropertyLoader(loader: PropertyLoaderType) throws {
         let props = try loader.load()
         for (key, value) in props {
             properties[key] = value

@@ -111,6 +111,6 @@ And:
 
 The resulting value for `items` would be: `[ "hello from B" ]`
 
-_[Next page: Thread Safety](ThreadSafety.md)_
+_[Next page: Modularizing Service Registration](Assembler.md)_
 
 _[Table of Contents](README.md)_
