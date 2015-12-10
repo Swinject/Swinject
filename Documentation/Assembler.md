@@ -42,8 +42,8 @@ leverages service definitions registered in the `ServiceAssembly`. Using this pa
 doesn't care where the `FooServiceType` and `BarServiceType` are registered, it just requires them to
 be registered else where.
 
-### AssemblyLoadAwareType
-The `AssemblyLoadAwareType` supports the assembly to be aware when the container has been fully loaded
+### Load aware
+The `AssemblyType` allows the assembly to be aware when the container has been fully loaded
 by the `Assembler`. 
 
 Let's imagine you have an simple Logger class that can be configured with different log handlers:
@@ -77,10 +77,10 @@ without having to deal with injects:
      } 
 
 In order to configure the `Logger` shared instance in the container we will need to resolve the
-`Logger` after the `Container` has been built. Using a `AssemblyLoadAwareType` you can keep this
+`Logger` after the `Container` has been built. Using a `AssemblyType` you can keep this
 bootstrapping in the assembly:
 
-     class LoggerAssembly: AssemblyLoadAwareType {
+     class LoggerAssembly: AssemblyType {
          func assemble(container: Container) {
             container.register(LogHandlerType.self, name: "console") { r in 
                return ConsoleLogHandler()
@@ -144,5 +144,7 @@ The assembler also supports managing your property files as well via constructio
  - If you are lazy loading assemblies and you want your load aware assemblies to be invoked after
    all assemblies have been loaded then you must use `addAssemblies` and pass all lazy loaded assemblies
    at once
+
+_[Next page: Thread Safety](ThreadSafety.md)_
 
 _[Table of Contents](README.md)_

@@ -52,10 +52,7 @@ public class Assembler {
     /// - parameter assembly: the assembly to apply to the container
     ///
     public func applyAssembly(assembly: AssemblyType) {
-        assembly.assemble(container)
-        if let assemblyLoadAware = assembly as? AssemblyLoadAwareType {
-            assemblyLoadAware.loaded(resolver)
-        }
+        runAssemblies([assembly])
     }
     
     /// Will apply the assemblies to the container. This is useful if you want to lazy load several assemblies into the assembler's
@@ -91,9 +88,7 @@ public class Assembler {
         
         // inform all of the assemblies that the container is loaded
         for assembly in assemblies {
-            if let assemblyLoadAware = assembly as? AssemblyLoadAwareType {
-                assemblyLoadAware.loaded(self.resolver)
-            }
+            assembly.loaded(self.resolver)
         }
     }
 }

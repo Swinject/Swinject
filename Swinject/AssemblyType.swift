@@ -17,18 +17,17 @@ public protocol AssemblyType {
     /// - parameter container: the container provided by the `Assembler`
     ///
     func assemble(container: Container)
-}
-
-/// The `AssemblyLoadAwareType` provies a means for the `Assembler` to inform the `AssemblyType` that the container
-/// has been loaded. This hook is useful for when an `AssemblyType` needs to run some code after the
-/// container has registered all `Services` from all `AssemblyType` instances passed to the `Assembler`. For
-/// example, one might want to setup some 3rd party services or load some `Services` into a singleton
-public protocol AssemblyLoadAwareType: AssemblyType {
     
-    /// Provides a hook to the `AssemblyLoadAwareType` that will be called once the `Assembler` has loaded all `AssemblyType`
+    /// Provides a hook to the `AssemblyType` that will be called once the `Assembler` has loaded all `AssemblyType`
     /// instances into the container.
     ///
     /// - parameter resolver: the resolver that can resolve instances from the built container
     ///
     func loaded(resolver: ResolverType)
+}
+
+public extension AssemblyType {
+    func loaded(resolver: ResolverType) {
+        // no-op
+    }
 }

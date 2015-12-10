@@ -91,6 +91,26 @@ class AssemblerSpec: QuickSpec {
                 expect(cat!.name) == "Whiskers"
             }
             
+            it("can assembly a single load aware container") {
+                let assembler = try! Assembler(assemblies: [])
+                var cat = assembler.resolver.resolve(AnimalType.self)
+                expect(cat).to(beNil())
+                
+                let loadAwareAssembly = LoadAwareAssembly() { resolver in
+                    let cat = resolver.resolve(AnimalType.self)
+                    expect(cat).toNot(beNil())
+                    expect(cat!.name) == "Bojangles"
+                }
+                
+                expect(loadAwareAssembly.loaded) == false
+                assembler.applyAssembly(loadAwareAssembly)
+                expect(loadAwareAssembly.loaded) == true
+                
+                cat = assembler.resolver.resolve(AnimalType.self)
+                expect(cat).toNot(beNil())
+                expect(cat!.name) == "Bojangles"
+            }
+            
             it("can assembly a multiple containers 1 by 1") {
                 let assembler = try! Assembler(assemblies: [])
                 var cat = assembler.resolver.resolve(AnimalType.self)
