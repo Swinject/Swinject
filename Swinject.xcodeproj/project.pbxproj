@@ -1825,18 +1825,6 @@
 			};
 			name = Release;
 		};
-		985010CE1BBE76D400A2CCFC /* TestableRelease */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 985010BF1BBE76AB00A2CCFC /* watchOS-Framework.xcconfig */;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-				TARGETED_DEVICE_FAMILY = 4;
-			};
-			name = TestableRelease;
-		};
 		98689C911BBFC7A60005C6D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98689C781BBFC77F0005C6D3 /* tvOS-Framework.xcconfig */;
@@ -1860,18 +1848,6 @@
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
-		};
-		98689C931BBFC7A60005C6D3 /* TestableRelease */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98689C781BBFC77F0005C6D3 /* tvOS-Framework.xcconfig */;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-				TARGETED_DEVICE_FAMILY = 3;
-			};
-			name = TestableRelease;
 		};
 		98689C951BBFC7A60005C6D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1901,90 +1877,6 @@
 			};
 			name = Release;
 		};
-		98689C971BBFC7A60005C6D3 /* TestableRelease */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/tvOS",
-				);
-				INFOPLIST_FILE = SwinjectTests/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
-				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
-			};
-			name = TestableRelease;
-		};
-		98AA745B1BB71A3600E2F48A /* TestableRelease */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98AA744A1BB70CBB00E2F48A /* Release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = TestableRelease;
-		};
-		98AA745C1BB71A3600E2F48A /* TestableRelease */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98AA74531BB70CBB00E2F48A /* iOS-Framework.xcconfig */;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-			};
-			name = TestableRelease;
-		};
-		98AA745D1BB71A3600E2F48A /* TestableRelease */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98AA74511BB70CBB00E2F48A /* iOS-Application.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = SwinjectTests/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
-				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
-			};
-			name = TestableRelease;
-		};
-		98AA745E1BB71A3600E2F48A /* TestableRelease */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98AA74591BB70CBB00E2F48A /* Mac-Framework.xcconfig */;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-			};
-			name = TestableRelease;
-		};
-		98AA745F1BB71A3600E2F48A /* TestableRelease */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98AA74561BB70CBB00E2F48A /* Mac-Application.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
-				INFOPLIST_FILE = SwinjectTests/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
-				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
-			};
-			name = TestableRelease;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1993,7 +1885,6 @@
 			buildConfigurations = (
 				981899CD1B5FE64000C702D0 /* Debug */,
 				981899CE1B5FE64000C702D0 /* Release */,
-				98AA745E1BB71A3600E2F48A /* TestableRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2003,7 +1894,6 @@
 			buildConfigurations = (
 				981899CF1B5FE64000C702D0 /* Debug */,
 				981899D01B5FE64000C702D0 /* Release */,
-				98AA745F1BB71A3600E2F48A /* TestableRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2013,7 +1903,6 @@
 			buildConfigurations = (
 				981ABE931B5FC9DF00294975 /* Debug */,
 				981ABE941B5FC9DF00294975 /* Release */,
-				98AA745B1BB71A3600E2F48A /* TestableRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2023,7 +1912,6 @@
 			buildConfigurations = (
 				981ABE961B5FC9DF00294975 /* Debug */,
 				981ABE971B5FC9DF00294975 /* Release */,
-				98AA745C1BB71A3600E2F48A /* TestableRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2033,7 +1921,6 @@
 			buildConfigurations = (
 				981ABE991B5FC9DF00294975 /* Debug */,
 				981ABE9A1B5FC9DF00294975 /* Release */,
-				98AA745D1BB71A3600E2F48A /* TestableRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2043,7 +1930,6 @@
 			buildConfigurations = (
 				985010CC1BBE76D400A2CCFC /* Debug */,
 				985010CD1BBE76D400A2CCFC /* Release */,
-				985010CE1BBE76D400A2CCFC /* TestableRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2053,7 +1939,6 @@
 			buildConfigurations = (
 				98689C911BBFC7A60005C6D3 /* Debug */,
 				98689C921BBFC7A60005C6D3 /* Release */,
-				98689C931BBFC7A60005C6D3 /* TestableRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2063,7 +1948,6 @@
 			buildConfigurations = (
 				98689C951BBFC7A60005C6D3 /* Debug */,
 				98689C961BBFC7A60005C6D3 /* Release */,
-				98689C971BBFC7A60005C6D3 /* TestableRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
