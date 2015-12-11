@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90B029751C18599200A6A521 /* AssemblyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* AssemblyType.swift */; };
+		90B029761C18599200A6A521 /* AssemblyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* AssemblyType.swift */; };
+		90B029771C18599200A6A521 /* AssemblyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* AssemblyType.swift */; };
+		90B029791C185B1600A6A521 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029781C185B1600A6A521 /* Assembler.swift */; };
+		90B0297A1C185B1600A6A521 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029781C185B1600A6A521 /* Assembler.swift */; };
+		90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029781C185B1600A6A521 /* Assembler.swift */; };
+		90B0297C1C185B1600A6A521 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029781C185B1600A6A521 /* Assembler.swift */; };
+		90B0297D1C185B2200A6A521 /* AssemblyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* AssemblyType.swift */; };
+		90B0297F1C18666200A6A521 /* AssemblerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0297E1C18666200A6A521 /* AssemblerSpec.swift */; };
+		90B029801C18666200A6A521 /* AssemblerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0297E1C18666200A6A521 /* AssemblerSpec.swift */; };
+		90B029811C18666200A6A521 /* AssemblerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0297E1C18666200A6A521 /* AssemblerSpec.swift */; };
+		90B029831C18670000A6A521 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029821C18670000A6A521 /* BasicAssembly.swift */; };
+		90B029841C18670000A6A521 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029821C18670000A6A521 /* BasicAssembly.swift */; };
+		90B029851C18670000A6A521 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029821C18670000A6A521 /* BasicAssembly.swift */; };
+		90B0298B1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */; };
+		90B0298C1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */; };
+		90B0298D1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */; };
 		90D409F41C14E5F9009DF1B1 /* PropertyLoaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D409F31C14E5F9009DF1B1 /* PropertyLoaderType.swift */; };
 		90D409F61C14E69F009DF1B1 /* JsonPropertyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D409F51C14E69F009DF1B1 /* JsonPropertyLoader.swift */; };
 		90E70A201C14FADE00F12C2A /* first.json in Resources */ = {isa = PBXBuildFile; fileRef = 90E70A1B1C14F77D00F12C2A /* first.json */; };
@@ -281,6 +298,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		90B029741C18599200A6A521 /* AssemblyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblyType.swift; sourceTree = "<group>"; };
+		90B029781C185B1600A6A521 /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
+		90B0297E1C18666200A6A521 /* AssemblerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblerSpec.swift; sourceTree = "<group>"; };
+		90B029821C18670000A6A521 /* BasicAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAssembly.swift; sourceTree = "<group>"; };
+		90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadAwareAssembly.swift; sourceTree = "<group>"; };
 		90D409F31C14E5F9009DF1B1 /* PropertyLoaderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyLoaderType.swift; sourceTree = "<group>"; };
 		90D409F51C14E69F009DF1B1 /* JsonPropertyLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonPropertyLoader.swift; sourceTree = "<group>"; };
 		90E70A1B1C14F77D00F12C2A /* first.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = first.json; sourceTree = "<group>"; };
@@ -550,6 +572,8 @@
 		981ABE831B5FC9DF00294975 /* Swinject */ = {
 			isa = PBXGroup;
 			children = (
+				90B029781C185B1600A6A521 /* Assembler.swift */,
+				90B029741C18599200A6A521 /* AssemblyType.swift */,
 				981899E31B5FFE5800C702D0 /* Container.swift */,
 				98B012BA1B82D6A400053A32 /* Container.Arguments.erb */,
 				984774EF1C02F25D0092A757 /* SynchronizedResolver.swift */,
@@ -584,6 +608,7 @@
 			children = (
 				90E70A1D1C14F78600F12C2A /* Resources */,
 				9878C63A1B65CA0600CBEFEF /* Fakes */,
+				90B0297E1C18666200A6A521 /* AssemblerSpec.swift */,
 				981899E01B5FF88800C702D0 /* ContainerSpec.swift */,
 				9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */,
 				9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */,
@@ -666,6 +691,8 @@
 				9855C5C41B689B7B00DADB0B /* FoodType.swift */,
 				981577F01B675B7F00BF686B /* Circularity.swift */,
 				90E70A1E1C14F95700F12C2A /* Properties.swift */,
+				90B029821C18670000A6A521 /* BasicAssembly.swift */,
+				90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */,
 			);
 			name = Fakes;
 			sourceTree = "<group>";
@@ -1139,6 +1166,8 @@
 				9880E70F1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				981650351B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m in Sources */,
 				98B012C01B82F68E00053A32 /* Resolvable.swift in Sources */,
+				90B0297A1C185B1600A6A521 /* Assembler.swift in Sources */,
+				90B029761C18599200A6A521 /* AssemblyType.swift in Sources */,
 				986A58281B6CCC9600FE710F /* Container+Typealias.swift in Sources */,
 				98D06D4E1B6CC7C00081AFE0 /* SwinjectStoryboard.swift in Sources */,
 				984774F11C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
@@ -1156,6 +1185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90B029841C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				90E70A3E1C15458B00F12C2A /* Properties.swift in Sources */,
 				9855C5C61B689B7B00DADB0B /* FoodType.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
@@ -1165,8 +1195,10 @@
 				9878C63D1B65CA8700CBEFEF /* PersonType.swift in Sources */,
 				98D462781BE76D500006D45A /* ViewController1.swift in Sources */,
 				9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
+				90B0298C1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				9855C5C31B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
 				986A58331B6D002D00FE710F /* NSViewController+SwinjectSpec.swift in Sources */,
+				90B029801C18666200A6A521 /* AssemblerSpec.swift in Sources */,
 				9847BF861BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift in Sources */,
 				90E70A4A1C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */,
 				90E70A461C1549A000F12C2A /* JsonPropertyLoaderSpec.swift in Sources */,
@@ -1188,6 +1220,7 @@
 				90D409F41C14E5F9009DF1B1 /* PropertyLoaderType.swift in Sources */,
 				986A582F1B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */,
 				983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */,
+				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
 				9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				98D06D3F1B6BA7B60081AFE0 /* UIViewController+Swinject.swift in Sources */,
@@ -1207,6 +1240,7 @@
 				9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */,
 				989377C61BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */,
 				984774FA1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
+				90B029751C18599200A6A521 /* AssemblyType.swift in Sources */,
 				98C7D25A1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
 				90E70A5A1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 			);
@@ -1222,13 +1256,16 @@
 				9809A75F1B6B5288005E037E /* SwinjectStoryboardSpec.swift in Sources */,
 				9878C63C1B65CA8700CBEFEF /* PersonType.swift in Sources */,
 				98D06D411B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift in Sources */,
+				90B0298B1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
+				90B0297F1C18666200A6A521 /* AssemblerSpec.swift in Sources */,
 				90E70A491C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */,
 				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
 				984774FF1C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */,
 				98D06D3D1B6B816C0081AFE0 /* AnimalViewController.swift in Sources */,
 				9878C6381B65C9E000CBEFEF /* AnimalType.swift in Sources */,
+				90B029831C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				90E70A451C1549A000F12C2A /* JsonPropertyLoaderSpec.swift in Sources */,
 				98E9469C1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift in Sources */,
 				981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
@@ -1258,9 +1295,11 @@
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				90E70A5C1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 				98C7D25C1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
+				90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
 				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
 				984774F21C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
+				90B029771C18599200A6A521 /* AssemblyType.swift in Sources */,
 				984774FC1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1269,6 +1308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90B0297D1C185B2200A6A521 /* AssemblyType.swift in Sources */,
 				90E70A581C16885800F12C2A /* PropertyRetrievable.swift in Sources */,
 				90E70A331C15429600F12C2A /* PropertyLoaderType.swift in Sources */,
 				90E70A341C15429600F12C2A /* JsonPropertyLoader.swift in Sources */,
@@ -1287,6 +1327,7 @@
 				98689C9C1BBFC7EB0005C6D3 /* ResolutionPool.swift in Sources */,
 				98689CA31BBFC7F20005C6D3 /* UIViewController+Swinject.swift in Sources */,
 				98689C9A1BBFC7EB0005C6D3 /* ServiceKey.swift in Sources */,
+				90B0297C1C185B1600A6A521 /* Assembler.swift in Sources */,
 				98689C9B1BBFC7EB0005C6D3 /* ServiceEntry.swift in Sources */,
 				98689CA51BBFC8080005C6D3 /* _SwinjectStoryboardBase.m in Sources */,
 				98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */,
@@ -1307,13 +1348,16 @@
 				98689CC91BBFD5B90005C6D3 /* SwinjectStoryboardSpec.swift in Sources */,
 				98689CBC1BBFD5110005C6D3 /* ContainerSpec.Circularity.swift in Sources */,
 				98689CB61BBFD5110005C6D3 /* PersonType.swift in Sources */,
+				90B0298D1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				98689CBA1BBFD5110005C6D3 /* ContainerSpec.swift in Sources */,
+				90B029811C18666200A6A521 /* AssemblerSpec.swift in Sources */,
 				90E70A4B1C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */,
 				98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */,
 				98689CCA1BBFD5B90005C6D3 /* UIViewController+SwinjectSpec.swift in Sources */,
 				984775011C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */,
 				98689CC81BBFD5B30005C6D3 /* AnimalViewController.swift in Sources */,
 				98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */,
+				90B029851C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				90E70A471C1549A000F12C2A /* JsonPropertyLoaderSpec.swift in Sources */,
 				98A430721BCE2E5800B6B588 /* UIStoryboard+SwizzlingSpec.swift in Sources */,
 				98689CB71BBFD5110005C6D3 /* AnimalType.swift in Sources */,
