@@ -6,7 +6,7 @@ Thank you for your interest to Swinject!
 
 Nothing is off-limits to submit as an issue. Feel free to submit an issue for a bug, strange behavior, build failure, new feature request or anything you would like to report.
 
-It is helpful if you include the followings when you submit an issue:
+It is helpful if you include the followings when you submit an issue for a bug:
 
 - Your Xcode version
 - Your Swinject version (or git SHA)
