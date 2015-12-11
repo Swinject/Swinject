@@ -98,32 +98,5 @@ class ContainerSpec_Arguments: QuickSpec {
                 arguments: ("1", "2", "3", "4", "5", "6", "7", "8", "9"))!
             expect(animal.name) == "123456789"
         }
-        it("accepts 10 arguments.") {
-            container.register(AnimalType.self) { _, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10 in
-                Cat(name: arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10)
-            }
-            let animal = container.resolve(
-                AnimalType.self,
-                arguments: ("1", "2", "3", "4", "5", "6", "7", "8", "9", "A"))!
-            expect(animal.name) == "123456789A"
-        }
-        it("accepts 11 arguments.") {
-            container.register(AnimalType.self) { _, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11 in
-                Cat(name: arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11)
-            }
-            let animal = container.resolve(
-                AnimalType.self,
-                arguments: ("1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B"))!
-            expect(animal.name) == "123456789AB"
-        }
-        it("accepts 12 arguments.") {
-            container.register(AnimalType.self) { _, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12 in
-                Cat(name: arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12)
-            }
-            let animal = container.resolve(
-                AnimalType.self,
-                arguments: ("1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C"))!
-            expect(animal.name) == "123456789ABC"
-        }
     }
 }
