@@ -20,7 +20,7 @@ before_install:
   - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.9.2/Carthage.pkg
   - sudo installer -pkg Carthage.pkg -target /
 before_script:
-  - carthage bootstrap --verbose --no-use-binaries --use-submodules --platform "$PLATFORM"
+  - carthage bootstrap --verbose --no-build --use-submodules
 script:
   - set -o pipefail
   - xcodebuild -version
