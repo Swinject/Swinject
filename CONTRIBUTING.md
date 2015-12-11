@@ -6,7 +6,7 @@ Thank you for your interest to Swinject!
 
 Nothing is off-limits to submit as an issue. Feel free to submit an issue for a bug, strange behavior, build failure, new feature request or anything you would like to report.
 
-It is helpful if you include the followings when you submit an issue:
+It is helpful if you include the followings when you submit an issue for a bug:
 
 - Your Xcode version
 - Your Swinject version (or git SHA)
@@ -30,9 +30,9 @@ Move to the Swinject directory.
 
 `cd Swinject`
 
-Then run `carthage bootstrap` command to download and build the frameworks that Swinject uses.
+Then run `carthage` command to download the frameworks that Swinject uses.
 
-`carthage bootstrap --use-submodules --no-use-binaries`
+`carthage bootstrap --use-submodules --no-build`
 
 Now it is ready to open `Swinject.xcodeproj`. Modify the code, run unit tests, and submit your pull request.
 
