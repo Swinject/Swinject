@@ -131,13 +131,11 @@ Services should be registered in an extension of `SwinjectStoryboard` if you use
 ```
 extension SwinjectStoryboard {
     class func setup() {
-        let container = defaultContainer
-
-        container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-        container.register(PersonType.self) { r in
+        defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+        defaultContainer.register(PersonType.self) { r in
             PetOwner(pet: r.resolve(AnimalType.self)!)
         }
-        container.register(PersonViewController.self) { r in
+        defaultContainer.register(PersonViewController.self) { r in
             let controller = PersonViewController()
             controller.person = r.resolve(PersonType.self)
             return controller

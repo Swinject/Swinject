@@ -102,11 +102,10 @@ If you implicitly instantiate `UIWindow` and its root view controller from "Main
 
     extension SwinjectStoryboard {
         class func setup() {
-            let container = defaultContainer
-            container.registerForStoryboard(AnimalViewController.self) { r, c in
+            defaultContainer.registerForStoryboard(AnimalViewController.self) { r, c in
                 c.animal = r.resolve(AnimalType.self)
             }
-            container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+            defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
         }
     }
 
