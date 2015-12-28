@@ -663,9 +663,9 @@
 				90E70A541C16837300F12C2A /* PropertyRetrievable.swift */,
 				90D409F51C14E69F009DF1B1 /* JsonPropertyLoader.swift */,
 				90E70A271C153A7400F12C2A /* PlistPropertyLoader.swift */,
-				984E8A511C317AC90039943D /* Swinject.h */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
 				984E8A781C319F090039943D /* SwinjectStoryboard */,
+				984E8A511C317AC90039943D /* Swinject.h */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
 			);
 			path = Sources;
