@@ -616,8 +616,8 @@
 			isa = PBXGroup;
 			children = (
 				9848611A1B6F21EC00C07072 /* Sample-iOS.playground */,
-				981ABE831B5FC9DF00294975 /* Swinject */,
-				981ABE8F1B5FC9DF00294975 /* SwinjectTests */,
+				981ABE831B5FC9DF00294975 /* Sources */,
+				981ABE8F1B5FC9DF00294975 /* Tests */,
 				981ABE821B5FC9DF00294975 /* Products */,
 				98AA74441BB70C8C00E2F48A /* Configuration */,
 				9802C9B11B5FD7E80088018E /* Frameworks */,
@@ -640,7 +640,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		981ABE831B5FC9DF00294975 /* Swinject */ = {
+		981ABE831B5FC9DF00294975 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				90B029781C185B1600A6A521 /* Assembler.swift */,
@@ -668,10 +668,10 @@
 				984E8A781C319F090039943D /* SwinjectStoryboard */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
 			);
-			path = Swinject;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		981ABE8F1B5FC9DF00294975 /* SwinjectTests */ = {
+		981ABE8F1B5FC9DF00294975 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				90E70A1D1C14F78600F12C2A /* Resources */,
@@ -690,7 +690,7 @@
 				986A58311B6D002D00FE710F /* OSX */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 			);
-			path = SwinjectTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		98383A1B1C1AF75A00733248 /* Products */ = {
