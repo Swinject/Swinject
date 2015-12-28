@@ -689,7 +689,6 @@
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
 				9809A75A1B6B47E6005E037E /* iOS-tvOS */,
 				98D06D4A1B6CC7C00081AFE0 /* OSX */,
-				985010D01BBE773000A2CCFC /* watchOS */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
 			);
 			path = Swinject;
@@ -756,13 +755,6 @@
 			);
 			name = watchOS;
 			path = Carthage/Checkouts/xcconfigs/watchOS;
-			sourceTree = "<group>";
-		};
-		985010D01BBE773000A2CCFC /* watchOS */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = watchOS;
 			sourceTree = "<group>";
 		};
 		98689C751BBFC77F0005C6D3 /* tvOS */ = {
