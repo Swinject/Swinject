@@ -26,6 +26,14 @@ public class Assembler {
         self.container = container!
     }
     
+    /// Will create an empty `Assembler`
+    ///
+    /// - parameter parentAssembler: the baseline assembler
+    ///
+    public init(parentAssembler: Assembler) {
+        container = Container(parent: parentAssembler.container)
+    }
+    
     /// Will create a new `Assembler` with the given `AssemblyType` instances to build a `Container`
     ///
     /// - parameter assemblies:         the list of assemblies to build the container from
@@ -34,6 +42,22 @@ public class Assembler {
     ///
     public init(assemblies: [AssemblyType], propertyLoaders: [PropertyLoaderType]? = nil, container: Container? = Container()) throws {
         self.container = container!
+        if let propertyLoaders = propertyLoaders {
+            for propertyLoader in propertyLoaders {
+                try self.container.applyPropertyLoader(propertyLoader)
+            }
+        }
+        runAssemblies(assemblies)
+    }
+    
+    /// Will create a new `Assembler` with the given `AssemblyType` instances to build a `Container`
+    ///
+    /// - parameter assemblies:         the list of assemblies to build the container from
+    /// - parameter parentAssembler:    the baseline assembler
+    /// - parameter propertyLoaders:    a list of property loaders to apply to the container
+    ///
+    public init(assemblies: [AssemblyType], parentAssembler: Assembler, propertyLoaders: [PropertyLoaderType]? = nil) throws {
+        container = Container(parent: parentAssembler.container)
         if let propertyLoaders = propertyLoaders {
             for propertyLoader in propertyLoaders {
                 try self.container.applyPropertyLoader(propertyLoader)
