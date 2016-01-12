@@ -248,5 +248,40 @@ class AssemblerSpec: QuickSpec {
                 expect(cat!.name) == "first"
             }
         }
+        
+        describe("Child Assembler") {
+            it("can be empty") {
+                let assembler = try! Assembler(assemblies: [
+                    AnimalAssembly()
+                ])
+                
+                let childAssembler = Assembler(parentAssembler: assembler)
+                
+                let cat = assembler.resolver.resolve(AnimalType.self)
+                expect(cat).toNot(beNil())
+                
+                let sushi = assembler.resolver.resolve(FoodType.self)
+                expect(sushi).to(beNil())
+                
+                let childCat = childAssembler.resolver.resolve(AnimalType.self)
+                expect(childCat).toNot(beNil())
+                
+                let childSushi = childAssembler.resolver.resolve(FoodType.self)
+                expect(childSushi).to(beNil())
+            }
+            
+            it("can't give entities to parent") {
+                let assembler = Assembler()
+                let childAssembler = try! Assembler(assemblies: [
+                    AnimalAssembly()
+                ], parentAssembler: assembler)
+                
+                let cat = assembler.resolver.resolve(AnimalType.self)
+                expect(cat).to(beNil())
+                
+                let childCat = childAssembler.resolver.resolve(AnimalType.self)
+                expect(childCat).toNot(beNil())
+            }
+        }
     }
 }
