@@ -686,8 +686,7 @@
 				9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */,
 				90E70A441C1549A000F12C2A /* JsonPropertyLoaderSpec.swift */,
 				90E70A481C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift */,
-				9809A75D1B6B5288005E037E /* iOS-tvOS */,
-				986A58311B6D002D00FE710F /* OSX */,
+				989AE5AC1C4614E100BDCE65 /* SwinjectStoryboard */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 			);
 			path = Tests;
@@ -816,6 +815,15 @@
 				90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */,
 			);
 			name = Fakes;
+			sourceTree = "<group>";
+		};
+		989AE5AC1C4614E100BDCE65 /* SwinjectStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				9809A75D1B6B5288005E037E /* iOS-tvOS */,
+				986A58311B6D002D00FE710F /* OSX */,
+			);
+			path = SwinjectStoryboard;
 			sourceTree = "<group>";
 		};
 		98AA74441BB70C8C00E2F48A /* Configuration */ = {
