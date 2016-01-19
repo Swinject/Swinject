@@ -66,49 +66,57 @@ All documentation can be found in the [Documentation folder](./Documentation), i
 
 First, register a service and component pair to a `Container`, where the component is created by the registered closure as a factory. In this example, `Cat` and `PetOwner` are component classes implementing `AnimalType` and `PersonType` service protocols, respectively.
 
-    let container = Container()
-    container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-    container.register(PersonType.self) { r in
-         PetOwner(pet: r.resolve(AnimalType.self)!)
-    }
+```swift
+let container = Container()
+container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+container.register(PersonType.self) { r in
+    PetOwner(pet: r.resolve(AnimalType.self)!)
+}
+```
 
 Then get an instance of a service from the container. The person is resolved to a pet owner, and playing with the cat named Mimi!
 
-    let person = container.resolve(PersonType.self)!
-    person.play() // prints "I'm playing with Mimi."
+```swift
+let person = container.resolve(PersonType.self)!
+person.play() // prints "I'm playing with Mimi."
+```
 
 Where definitions of the protocols and classes are
 
-    protocol AnimalType {
-        var name: String? { get }
-    }
+```swift
+protocol AnimalType {
+    var name: String? { get }
+}
 
-    class Cat: AnimalType {
-        let name: String?
+class Cat: AnimalType {
+    let name: String?
 
-        init(name: String?) {
-            self.name = name
-        }
+    init(name: String?) {
+        self.name = name
     }
+}
+```
 
 and
 
-    protocol PersonType {
-        func play()
+```swift
+protocol PersonType {
+    func play()
+}
+
+class PetOwner: PersonType {
+    let pet: AnimalType
+
+    init(pet: AnimalType) {
+        self.pet = pet
     }
 
-    class PetOwner: PersonType {
-        let pet: AnimalType
-
-        init(pet: AnimalType) {
-            self.pet = pet
-        }
-
-        func play() {
-            let name = pet.name ?? "someone"
-            print("I'm playing with \(name).")
-        }
+    func play() {
+        let name = pet.name ?? "someone"
+        print("I'm playing with \(name).")
     }
+}
+```
 
 Notice that the `pet` of `PetOwner` is automatically set as the instance of `Cat` when `PersonType` is resolved to the instance of `PetOwner`. If a container already set up is given, you do not have to care what are the actual types of the services and how they are created with their dependency.
 
@@ -118,7 +126,7 @@ Services must be registered to a container before they are used. Typical ways of
 
 The following view controller class is used in addition to the protocols and classes above in the examples below.
 
-```
+```swift
 class PersonViewController: UIViewController {
     var person: PersonType?
 }
@@ -128,7 +136,7 @@ class PersonViewController: UIViewController {
 
 Services should be registered in an extension of `SwinjectStoryboard` if you use `SwinjectStoryboard`. Refer to [the document of SwinjectStoryboard](./Documentation/Storyboard.md) for its details.
 
-```
+```swift
 extension SwinjectStoryboard {
     class func setup() {
         defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
@@ -148,7 +156,7 @@ extension SwinjectStoryboard {
 
 Typically services are registered to a container in `AppDelegate` if you do not use `SwinjectStoryboard` to instantiate view controllers. If you register the services in `AppDelegate` especially before exiting the call of `application:didFinishLaunchingWithOptions:`, it is ensured that the services are registered before they are used.
 
-```
+```swift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let container = Container() { c in
