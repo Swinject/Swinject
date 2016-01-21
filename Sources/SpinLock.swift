@@ -6,6 +6,8 @@
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
+import Foundation
+
 internal final class SpinLock {
     private var lock = OS_SPINLOCK_INIT
     
