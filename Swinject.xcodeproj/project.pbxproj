@@ -68,8 +68,6 @@
 		90E70A681C172DB200F12C2A /* invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 90E70A671C172DB200F12C2A /* invalid.json */; };
 		90E70A691C172DB200F12C2A /* invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 90E70A671C172DB200F12C2A /* invalid.json */; };
 		90E70A6A1C172DB200F12C2A /* invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 90E70A671C172DB200F12C2A /* invalid.json */; };
-		98057EB01B6D10B100A99D9A /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 98057EAF1B6D108D00A99D9A /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9809A75C1B6B47E6005E037E /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A75B1B6B47E6005E037E /* SwinjectStoryboard.swift */; };
 		9809A75F1B6B5288005E037E /* SwinjectStoryboardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A75E1B6B5288005E037E /* SwinjectStoryboardSpec.swift */; };
 		981577F11B675B7F00BF686B /* Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F01B675B7F00BF686B /* Circularity.swift */; };
 		981577F21B675B7F00BF686B /* Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F01B675B7F00BF686B /* Circularity.swift */; };
@@ -77,9 +75,6 @@
 		981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F31B676BF700BF686B /* ResolutionPool.swift */; };
 		9816502F1B6D041300BC4222 /* AnimalWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9816502E1B6D041300BC4222 /* AnimalWindowController.swift */; };
 		981650311B6D085900BC4222 /* AnimalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981650301B6D085900BC4222 /* AnimalViewController.swift */; };
-		981650341B6D0C0E00BC4222 /* _SwinjectStoryboardBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 981650321B6D0C0E00BC4222 /* _SwinjectStoryboardBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		981650351B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 981650331B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m */; };
-		981650381B6D1A1600BC4222 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 981650371B6D1A1600BC4222 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9816503A1B6D270E00BC4222 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 981650391B6D270E00BC4222 /* Tabs.storyboard */; };
 		981899C61B5FE63F00C702D0 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981899BC1B5FE63F00C702D0 /* Swinject.framework */; };
 		981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E01B5FF88800C702D0 /* ContainerSpec.swift */; };
@@ -116,10 +111,38 @@
 		984774FF1C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */; };
 		984775001C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */; };
 		984775011C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */; };
-		9847BF861BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847BF851BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift */; };
 		9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
-		985010D21BBE776F00A2CCFC /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 985010D11BBE773000A2CCFC /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		984E8A521C317AC90039943D /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A511C317AC90039943D /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		984E8A531C317AC90039943D /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A511C317AC90039943D /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		984E8A541C317AC90039943D /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A511C317AC90039943D /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		984E8A551C317AC90039943D /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A511C317AC90039943D /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		984E8A7D1C319F090039943D /* Storyboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A791C319F090039943D /* Storyboard+Swizzling.swift */; };
+		984E8A7E1C319F090039943D /* Storyboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A791C319F090039943D /* Storyboard+Swizzling.swift */; };
+		984E8A7F1C319F090039943D /* Storyboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A791C319F090039943D /* Storyboard+Swizzling.swift */; };
+		984E8A801C319F090039943D /* Storyboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A791C319F090039943D /* Storyboard+Swizzling.swift */; };
+		984E8A811C319F090039943D /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7A1C319F090039943D /* SwinjectStoryboard.swift */; };
+		984E8A821C319F090039943D /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7A1C319F090039943D /* SwinjectStoryboard.swift */; };
+		984E8A831C319F090039943D /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7A1C319F090039943D /* SwinjectStoryboard.swift */; };
+		984E8A841C319F090039943D /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7A1C319F090039943D /* SwinjectStoryboard.swift */; };
+		984E8A851C319F090039943D /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7B1C319F090039943D /* SwinjectStoryboardType.swift */; };
+		984E8A861C319F090039943D /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7B1C319F090039943D /* SwinjectStoryboardType.swift */; };
+		984E8A871C319F090039943D /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7B1C319F090039943D /* SwinjectStoryboardType.swift */; };
+		984E8A881C319F090039943D /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7B1C319F090039943D /* SwinjectStoryboardType.swift */; };
+		984E8A891C319F090039943D /* ViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7C1C319F090039943D /* ViewController+Swinject.swift */; };
+		984E8A8A1C319F090039943D /* ViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7C1C319F090039943D /* ViewController+Swinject.swift */; };
+		984E8A8B1C319F090039943D /* ViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7C1C319F090039943D /* ViewController+Swinject.swift */; };
+		984E8A8C1C319F090039943D /* ViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A7C1C319F090039943D /* ViewController+Swinject.swift */; };
+		984E8A8E1C319F4A0039943D /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A8D1C319F4A0039943D /* Container+SwinjectStoryboard.swift */; };
+		984E8A8F1C319F4A0039943D /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A8D1C319F4A0039943D /* Container+SwinjectStoryboard.swift */; };
+		984E8A901C319F4A0039943D /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A8D1C319F4A0039943D /* Container+SwinjectStoryboard.swift */; };
+		984E8A911C319F4A0039943D /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A8D1C319F4A0039943D /* Container+SwinjectStoryboard.swift */; };
+		984E8A951C31A0400039943D /* _SwinjectStoryboardBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A931C31A0400039943D /* _SwinjectStoryboardBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		984E8A961C31A0400039943D /* _SwinjectStoryboardBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A931C31A0400039943D /* _SwinjectStoryboardBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		984E8A971C31A0400039943D /* _SwinjectStoryboardBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A941C31A0400039943D /* _SwinjectStoryboardBase.m */; };
+		984E8A981C31A0400039943D /* _SwinjectStoryboardBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A941C31A0400039943D /* _SwinjectStoryboardBase.m */; };
+		984E8A9C1C31A0510039943D /* _SwinjectStoryboardBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A9A1C31A0510039943D /* _SwinjectStoryboardBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		984E8A9D1C31A0510039943D /* _SwinjectStoryboardBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 984E8A9B1C31A0510039943D /* _SwinjectStoryboardBase.m */; };
 		9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E31B5FFE5800C702D0 /* Container.swift */; };
 		9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; };
 		985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
@@ -138,9 +161,6 @@
 		9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */; };
 		985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
 		985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
-		986458C91B6E593800AFA2D7 /* _SwinjectStoryboardBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		986458CA1B6E593800AFA2D7 /* _SwinjectStoryboardBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */; };
-		98689C981BBFC7C90005C6D3 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 981650371B6D1A1600BC4222 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E31B5FFE5800C702D0 /* Container.swift */; };
 		98689C9A1BBFC7EB0005C6D3 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A61B60B77400120259 /* ServiceKey.swift */; };
 		98689C9B1BBFC7EB0005C6D3 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
@@ -149,11 +169,6 @@
 		98689C9E1BBFC7EB0005C6D3 /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; };
 		98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98689CA01BBFC7EB0005C6D3 /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; };
-		98689CA11BBFC7F20005C6D3 /* Container+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58251B6CCB2800FE710F /* Container+Typealias.swift */; };
-		98689CA21BBFC7F20005C6D3 /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A75B1B6B47E6005E037E /* SwinjectStoryboard.swift */; };
-		98689CA31BBFC7F20005C6D3 /* UIViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */; };
-		98689CA41BBFC8000005C6D3 /* _SwinjectStoryboardBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		98689CA51BBFC8080005C6D3 /* _SwinjectStoryboardBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */; };
 		98689CB61BBFD5110005C6D3 /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
 		98689CB71BBFD5110005C6D3 /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
 		98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* FoodType.swift */; };
@@ -168,15 +183,9 @@
 		98689CC41BBFD5410005C6D3 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */; };
 		98689CC81BBFD5B30005C6D3 /* AnimalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */; };
 		98689CC91BBFD5B90005C6D3 /* SwinjectStoryboardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809A75E1B6B5288005E037E /* SwinjectStoryboardSpec.swift */; };
-		98689CCA1BBFD5B90005C6D3 /* UIViewController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */; };
 		98689CD51BBFDEBC0005C6D3 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98689C7F1BBFC7A50005C6D3 /* Swinject.framework */; };
-		986A58261B6CCB2800FE710F /* Container+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58251B6CCB2800FE710F /* Container+Typealias.swift */; };
-		986A58281B6CCC9600FE710F /* Container+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58271B6CCC9600FE710F /* Container+Typealias.swift */; };
-		986A582D1B6CF96700FE710F /* NSWindowController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582C1B6CF96700FE710F /* NSWindowController+Swinject.swift */; };
 		986A582F1B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; };
 		986A58301B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; };
-		986A58331B6D002D00FE710F /* NSViewController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58321B6D002D00FE710F /* NSViewController+SwinjectSpec.swift */; };
-		986A58351B6D00D500FE710F /* NSWindowController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58341B6D00D500FE710F /* NSWindowController+SwinjectSpec.swift */; };
 		986A58371B6D02A500FE710F /* SwinjectStoryboardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58361B6D02A500FE710F /* SwinjectStoryboardSpec.swift */; };
 		986A583A1B6D031700FE710F /* Animals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 986A58391B6D031700FE710F /* Animals.storyboard */; };
 		9878C6381B65C9E000CBEFEF /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
@@ -194,33 +203,25 @@
 		988EEDAF1BCA082900E935F7 /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988EEDAE1BCA082900E935F7 /* Storyboard2.storyboard */; };
 		9892E7B41BCA3CA200EC0D04 /* Storyboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9892E7B31BCA3CA200EC0D04 /* Storyboard1.storyboard */; };
 		9892E7B61BCA3CB100EC0D04 /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9892E7B51BCA3CB100EC0D04 /* Storyboard2.storyboard */; };
-		989377C61BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; };
-		989377C71BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; };
-		989377C81BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; };
-		98A4306C1BCE2D9E00B6B588 /* UIStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */; };
+		989AE5B81C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AE5B71C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift */; };
+		989AE5B91C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AE5B71C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift */; };
+		989AE5BA1C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AE5B71C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift */; };
+		989AE5BD1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AE5BC1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift */; };
+		989AE5BE1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AE5BC1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift */; };
+		989AE5BF1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AE5BC1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift */; };
+		989AE5C11C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AE5C01C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift */; };
+		989AE5C21C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AE5C01C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift */; };
+		989AE5C31C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989AE5C01C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift */; };
 		98A430701BCE2E5800B6B588 /* Storyboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */; };
 		98A430711BCE2E5800B6B588 /* Storyboard2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988EEDAE1BCA082900E935F7 /* Storyboard2.storyboard */; };
-		98A430721BCE2E5800B6B588 /* UIStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */; };
-		98A430751BCE2F8F00B6B588 /* SwinjectStoryboardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */; };
 		98B012B81B82D67300053A32 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; };
 		98B012C01B82F68E00053A32 /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; };
-		98C7D25A1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */; };
-		98C7D25B1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */; };
-		98C7D25C1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */; };
-		98C7D25D1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */; };
 		98D06D371B6B579F0081AFE0 /* Animals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D361B6B579F0081AFE0 /* Animals.storyboard */; };
 		98D06D3D1B6B816C0081AFE0 /* AnimalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */; };
-		98D06D3F1B6BA7B60081AFE0 /* UIViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */; };
-		98D06D411B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */; };
 		98D06D491B6CB79B0081AFE0 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */; };
-		98D06D4D1B6CC7C00081AFE0 /* NSViewController+Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D4B1B6CC7C00081AFE0 /* NSViewController+Swinject.swift */; };
-		98D06D4E1B6CC7C00081AFE0 /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D4C1B6CC7C00081AFE0 /* SwinjectStoryboard.swift */; };
 		98D462781BE76D500006D45A /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D462771BE76D500006D45A /* ViewController1.swift */; };
-		98E946981BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */; };
-		98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */; };
-		98E9469C1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */; };
 		98EA93BD1BCA48D000E9121D /* Storyboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */; };
 		98F2F7731C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
 		98F2F7741C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
@@ -418,16 +419,11 @@
 		90E70A541C16837300F12C2A /* PropertyRetrievable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyRetrievable.swift; sourceTree = "<group>"; };
 		90E70A591C17279300F12C2A /* PropertyLoaderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyLoaderError.swift; sourceTree = "<group>"; };
 		90E70A671C172DB200F12C2A /* invalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid.json; sourceTree = "<group>"; };
-		98057EAF1B6D108D00A99D9A /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
-		9809A75B1B6B47E6005E037E /* SwinjectStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboard.swift; sourceTree = "<group>"; };
 		9809A75E1B6B5288005E037E /* SwinjectStoryboardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboardSpec.swift; sourceTree = "<group>"; };
 		981577F01B675B7F00BF686B /* Circularity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circularity.swift; sourceTree = "<group>"; };
 		981577F31B676BF700BF686B /* ResolutionPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolutionPool.swift; sourceTree = "<group>"; };
 		9816502E1B6D041300BC4222 /* AnimalWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalWindowController.swift; sourceTree = "<group>"; };
 		981650301B6D085900BC4222 /* AnimalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalViewController.swift; sourceTree = "<group>"; };
-		981650321B6D0C0E00BC4222 /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SwinjectStoryboardBase.h; sourceTree = "<group>"; };
-		981650331B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SwinjectStoryboardBase.m; sourceTree = "<group>"; };
-		981650371B6D1A1600BC4222 /* Swinject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		981650391B6D270E00BC4222 /* Tabs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		981899BC1B5FE63F00C702D0 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		981899C51B5FE63F00C702D0 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -449,34 +445,35 @@
 		984774F41C02F4EA0092A757 /* SynchronizedResolver.Arguments.erb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SynchronizedResolver.Arguments.erb; sourceTree = "<group>"; };
 		984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedResolver.Arguments.swift; sourceTree = "<group>"; };
 		984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedContainerSpec.swift; sourceTree = "<group>"; };
-		9847BF851BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+SwizzlingSpec.swift"; sourceTree = "<group>"; };
 		9848611A1B6F21EC00C07072 /* Sample-iOS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sample-iOS.playground"; sourceTree = "<group>"; };
 		9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
+		984E8A511C317AC90039943D /* Swinject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
+		984E8A791C319F090039943D /* Storyboard+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Swizzling.swift"; sourceTree = "<group>"; };
+		984E8A7A1C319F090039943D /* SwinjectStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboard.swift; sourceTree = "<group>"; };
+		984E8A7B1C319F090039943D /* SwinjectStoryboardType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboardType.swift; sourceTree = "<group>"; };
+		984E8A7C1C319F090039943D /* ViewController+Swinject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Swinject.swift"; sourceTree = "<group>"; };
+		984E8A8D1C319F4A0039943D /* Container+SwinjectStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+SwinjectStoryboard.swift"; sourceTree = "<group>"; };
+		984E8A931C31A0400039943D /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SwinjectStoryboardBase.h; sourceTree = "<group>"; };
+		984E8A941C31A0400039943D /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SwinjectStoryboardBase.m; sourceTree = "<group>"; };
+		984E8A9A1C31A0510039943D /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SwinjectStoryboardBase.h; sourceTree = "<group>"; };
+		984E8A9B1C31A0510039943D /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SwinjectStoryboardBase.m; sourceTree = "<group>"; };
 		985010BD1BBE76AB00A2CCFC /* watchOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Application.xcconfig"; sourceTree = "<group>"; };
 		985010BE1BBE76AB00A2CCFC /* watchOS-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Base.xcconfig"; sourceTree = "<group>"; };
 		985010BF1BBE76AB00A2CCFC /* watchOS-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Framework.xcconfig"; sourceTree = "<group>"; };
 		985010C01BBE76AB00A2CCFC /* watchOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		985010C61BBE76D400A2CCFC /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		985010D11BBE773000A2CCFC /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Circularity.swift; sourceTree = "<group>"; };
 		9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolutionPoolSpec.swift; sourceTree = "<group>"; };
 		9855C5C41B689B7B00DADB0B /* FoodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodType.swift; sourceTree = "<group>"; };
 		9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntrySpec.swift; sourceTree = "<group>"; };
 		985BAFA81B625E0F0055F998 /* ServiceEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntry.swift; sourceTree = "<group>"; };
-		986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SwinjectStoryboardBase.h; sourceTree = "<group>"; };
-		986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SwinjectStoryboardBase.m; sourceTree = "<group>"; };
 		98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-Application.xcconfig"; sourceTree = "<group>"; };
 		98689C771BBFC77F0005C6D3 /* tvOS-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-Base.xcconfig"; sourceTree = "<group>"; };
 		98689C781BBFC77F0005C6D3 /* tvOS-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-Framework.xcconfig"; sourceTree = "<group>"; };
 		98689C791BBFC77F0005C6D3 /* tvOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		98689C7F1BBFC7A50005C6D3 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98689C881BBFC7A60005C6D3 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		986A58251B6CCB2800FE710F /* Container+Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+Typealias.swift"; sourceTree = "<group>"; };
-		986A58271B6CCC9600FE710F /* Container+Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+Typealias.swift"; sourceTree = "<group>"; };
-		986A582C1B6CF96700FE710F /* NSWindowController+Swinject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindowController+Swinject.swift"; sourceTree = "<group>"; };
 		986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationNameAssociatable.swift; sourceTree = "<group>"; };
-		986A58321B6D002D00FE710F /* NSViewController+SwinjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSViewController+SwinjectSpec.swift"; sourceTree = "<group>"; };
-		986A58341B6D00D500FE710F /* NSWindowController+SwinjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindowController+SwinjectSpec.swift"; sourceTree = "<group>"; };
 		986A58361B6D02A500FE710F /* SwinjectStoryboardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboardSpec.swift; sourceTree = "<group>"; };
 		986A58391B6D031700FE710F /* Animals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Animals.storyboard; sourceTree = "<group>"; };
 		9878C6371B65C9E000CBEFEF /* AnimalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalType.swift; sourceTree = "<group>"; };
@@ -487,7 +484,9 @@
 		988EEDAE1BCA082900E935F7 /* Storyboard2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard2.storyboard; sourceTree = "<group>"; };
 		9892E7B31BCA3CA200EC0D04 /* Storyboard1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard1.storyboard; sourceTree = "<group>"; };
 		9892E7B51BCA3CB100EC0D04 /* Storyboard2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard2.storyboard; sourceTree = "<group>"; };
-		989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboardType.swift; sourceTree = "<group>"; };
+		989AE5B71C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+SwizzlingSpec.swift"; sourceTree = "<group>"; };
+		989AE5BC1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+SwinjectSpec.swift"; sourceTree = "<group>"; };
+		989AE5C01C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindowController+SwinjectSpec.swift"; sourceTree = "<group>"; };
 		98AA74461BB70CBB00E2F48A /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		98AA74481BB70CBB00E2F48A /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		98AA74491BB70CBB00E2F48A /* Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Profile.xcconfig; sourceTree = "<group>"; };
@@ -509,18 +508,10 @@
 		98B012BA1B82D6A400053A32 /* Container.Arguments.erb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Container.Arguments.erb; sourceTree = "<group>"; };
 		98B012BE1B82F68E00053A32 /* Resolvable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolvable.swift; sourceTree = "<group>"; };
 		98B012C11B82F70A00053A32 /* Resolvable.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resolvable.erb; sourceTree = "<group>"; };
-		98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+SwinjectStoryboard.swift"; sourceTree = "<group>"; };
 		98D06D361B6B579F0081AFE0 /* Animals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Animals.storyboard; sourceTree = "<group>"; };
 		98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalViewController.swift; sourceTree = "<group>"; };
-		98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Swinject.swift"; sourceTree = "<group>"; };
-		98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+SwinjectSpec.swift"; sourceTree = "<group>"; };
 		98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
-		98D06D4B1B6CC7C00081AFE0 /* NSViewController+Swinject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSViewController+Swinject.swift"; sourceTree = "<group>"; };
-		98D06D4C1B6CC7C00081AFE0 /* SwinjectStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboard.swift; sourceTree = "<group>"; };
 		98D462771BE76D500006D45A /* ViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
-		98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Swizzling.swift"; sourceTree = "<group>"; };
-		98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Swizzling.swift"; sourceTree = "<group>"; };
-		98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+SwizzlingSpec.swift"; sourceTree = "<group>"; };
 		98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard1.storyboard; sourceTree = "<group>"; };
 		98F2F7721C07E788009571E6 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -610,27 +601,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9809A75A1B6B47E6005E037E /* iOS-tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				986A58251B6CCB2800FE710F /* Container+Typealias.swift */,
-				986458C71B6E593800AFA2D7 /* _SwinjectStoryboardBase.h */,
-				986458C81B6E593800AFA2D7 /* _SwinjectStoryboardBase.m */,
-				9809A75B1B6B47E6005E037E /* SwinjectStoryboard.swift */,
-				98E946971BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift */,
-				98D06D3E1B6BA7B60081AFE0 /* UIViewController+Swinject.swift */,
-				981650371B6D1A1600BC4222 /* Swinject.h */,
-			);
-			path = "iOS-tvOS";
-			sourceTree = "<group>";
-		};
 		9809A75D1B6B5288005E037E /* iOS-tvOS */ = {
 			isa = PBXGroup;
 			children = (
 				98D06D391B6B80630081AFE0 /* Fakes */,
 				9809A75E1B6B5288005E037E /* SwinjectStoryboardSpec.swift */,
-				98E9469B1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift */,
-				98D06D401B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift */,
 			);
 			path = "iOS-tvOS";
 			sourceTree = "<group>";
@@ -639,8 +614,8 @@
 			isa = PBXGroup;
 			children = (
 				9848611A1B6F21EC00C07072 /* Sample-iOS.playground */,
-				981ABE831B5FC9DF00294975 /* Swinject */,
-				981ABE8F1B5FC9DF00294975 /* SwinjectTests */,
+				981ABE831B5FC9DF00294975 /* Sources */,
+				981ABE8F1B5FC9DF00294975 /* Tests */,
 				981ABE821B5FC9DF00294975 /* Products */,
 				98AA74441BB70C8C00E2F48A /* Configuration */,
 				9802C9B11B5FD7E80088018E /* Frameworks */,
@@ -663,7 +638,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		981ABE831B5FC9DF00294975 /* Swinject */ = {
+		981ABE831B5FC9DF00294975 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				90B029781C185B1600A6A521 /* Assembler.swift */,
@@ -679,8 +654,6 @@
 				9819701E1B6145D600EEB942 /* ObjectScope.swift */,
 				986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */,
 				98B012C11B82F70A00053A32 /* Resolvable.erb */,
-				989377C51BCBA125008F4B0F /* SwinjectStoryboardType.swift */,
-				98C7D2591C09B5A1005C7184 /* Container+SwinjectStoryboard.swift */,
 				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
 				98F2F7721C07E788009571E6 /* Box.swift */,
 				90E70A591C17279300F12C2A /* PropertyLoaderError.swift */,
@@ -689,15 +662,14 @@
 				90D409F51C14E69F009DF1B1 /* JsonPropertyLoader.swift */,
 				90E70A271C153A7400F12C2A /* PlistPropertyLoader.swift */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
-				9809A75A1B6B47E6005E037E /* iOS-tvOS */,
-				98D06D4A1B6CC7C00081AFE0 /* OSX */,
-				985010D01BBE773000A2CCFC /* watchOS */,
+				984E8A781C319F090039943D /* SwinjectStoryboard */,
+				984E8A511C317AC90039943D /* Swinject.h */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
 			);
-			path = Swinject;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		981ABE8F1B5FC9DF00294975 /* SwinjectTests */ = {
+		981ABE8F1B5FC9DF00294975 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				90E70A1D1C14F78600F12C2A /* Resources */,
@@ -712,11 +684,10 @@
 				9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */,
 				90E70A441C1549A000F12C2A /* JsonPropertyLoaderSpec.swift */,
 				90E70A481C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift */,
-				9809A75D1B6B5288005E037E /* iOS-tvOS */,
-				986A58311B6D002D00FE710F /* OSX */,
+				989AE5AC1C4614E100BDCE65 /* SwinjectStoryboard */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 			);
-			path = SwinjectTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		98383A1B1C1AF75A00733248 /* Products */ = {
@@ -748,6 +719,38 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		984E8A781C319F090039943D /* SwinjectStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				984E8A921C31A0400039943D /* iOS-tvOS */,
+				984E8A991C31A0510039943D /* OSX */,
+				984E8A8D1C319F4A0039943D /* Container+SwinjectStoryboard.swift */,
+				984E8A7B1C319F090039943D /* SwinjectStoryboardType.swift */,
+				984E8A7A1C319F090039943D /* SwinjectStoryboard.swift */,
+				984E8A791C319F090039943D /* Storyboard+Swizzling.swift */,
+				984E8A7C1C319F090039943D /* ViewController+Swinject.swift */,
+			);
+			path = SwinjectStoryboard;
+			sourceTree = "<group>";
+		};
+		984E8A921C31A0400039943D /* iOS-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				984E8A931C31A0400039943D /* _SwinjectStoryboardBase.h */,
+				984E8A941C31A0400039943D /* _SwinjectStoryboardBase.m */,
+			);
+			path = "iOS-tvOS";
+			sourceTree = "<group>";
+		};
+		984E8A991C31A0510039943D /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				984E8A9A1C31A0510039943D /* _SwinjectStoryboardBase.h */,
+				984E8A9B1C31A0510039943D /* _SwinjectStoryboardBase.m */,
+			);
+			path = OSX;
+			sourceTree = "<group>";
+		};
 		985010BC1BBE76AB00A2CCFC /* watchOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,14 +761,6 @@
 			);
 			name = watchOS;
 			path = Carthage/Checkouts/xcconfigs/watchOS;
-			sourceTree = "<group>";
-		};
-		985010D01BBE773000A2CCFC /* watchOS */ = {
-			isa = PBXGroup;
-			children = (
-				985010D11BBE773000A2CCFC /* Swinject.h */,
-			);
-			path = watchOS;
 			sourceTree = "<group>";
 		};
 		98689C751BBFC77F0005C6D3 /* tvOS */ = {
@@ -785,9 +780,6 @@
 			children = (
 				986A58381B6D02FB00FE710F /* Fakes */,
 				986A58361B6D02A500FE710F /* SwinjectStoryboardSpec.swift */,
-				9847BF851BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift */,
-				986A58321B6D002D00FE710F /* NSViewController+SwinjectSpec.swift */,
-				986A58341B6D00D500FE710F /* NSWindowController+SwinjectSpec.swift */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -818,6 +810,18 @@
 				90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */,
 			);
 			name = Fakes;
+			sourceTree = "<group>";
+		};
+		989AE5AC1C4614E100BDCE65 /* SwinjectStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				989AE5B71C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift */,
+				989AE5BC1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift */,
+				989AE5C01C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift */,
+				9809A75D1B6B5288005E037E /* iOS-tvOS */,
+				986A58311B6D002D00FE710F /* OSX */,
+			);
+			path = SwinjectStoryboard;
 			sourceTree = "<group>";
 		};
 		98AA74441BB70C8C00E2F48A /* Configuration */ = {
@@ -913,21 +917,6 @@
 			name = Fakes;
 			sourceTree = "<group>";
 		};
-		98D06D4A1B6CC7C00081AFE0 /* OSX */ = {
-			isa = PBXGroup;
-			children = (
-				986A58271B6CCC9600FE710F /* Container+Typealias.swift */,
-				981650321B6D0C0E00BC4222 /* _SwinjectStoryboardBase.h */,
-				981650331B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m */,
-				98D06D4C1B6CC7C00081AFE0 /* SwinjectStoryboard.swift */,
-				98E946991BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift */,
-				98D06D4B1B6CC7C00081AFE0 /* NSViewController+Swinject.swift */,
-				986A582C1B6CF96700FE710F /* NSWindowController+Swinject.swift */,
-				98057EAF1B6D108D00A99D9A /* Swinject.h */,
-			);
-			path = OSX;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -935,8 +924,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98057EB01B6D10B100A99D9A /* Swinject.h in Headers */,
-				981650341B6D0C0E00BC4222 /* _SwinjectStoryboardBase.h in Headers */,
+				984E8A531C317AC90039943D /* Swinject.h in Headers */,
+				984E8A9C1C31A0510039943D /* _SwinjectStoryboardBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,8 +933,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				981650381B6D1A1600BC4222 /* Swinject.h in Headers */,
-				986458C91B6E593800AFA2D7 /* _SwinjectStoryboardBase.h in Headers */,
+				984E8A521C317AC90039943D /* Swinject.h in Headers */,
+				984E8A951C31A0400039943D /* _SwinjectStoryboardBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -953,7 +942,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				985010D21BBE776F00A2CCFC /* Swinject.h in Headers */,
+				984E8A541C317AC90039943D /* Swinject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -961,8 +950,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98689C981BBFC7C90005C6D3 /* Swinject.h in Headers */,
-				98689CA41BBFC8000005C6D3 /* _SwinjectStoryboardBase.h in Headers */,
+				984E8A551C317AC90039943D /* Swinject.h in Headers */,
+				984E8A961C31A0400039943D /* _SwinjectStoryboardBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1401,26 +1390,24 @@
 				983B98321C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				98F2F7741C07E789009571E6 /* Box.swift in Sources */,
-				98C7D25B1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
+				984E8A8A1C319F090039943D /* ViewController+Swinject.swift in Sources */,
 				90E70A5B1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
-				986A582D1B6CF96700FE710F /* NSWindowController+Swinject.swift in Sources */,
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
-				98E9469A1BC92CD600FA6B37 /* NSStoryboard+Swizzling.swift in Sources */,
-				989377C71BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */,
 				9880E70F1C09EE2900ED5293 /* FunctionType.swift in Sources */,
-				981650351B6D0C0E00BC4222 /* _SwinjectStoryboardBase.m in Sources */,
+				984E8A821C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				98B012C01B82F68E00053A32 /* Resolvable.swift in Sources */,
 				90B0297A1C185B1600A6A521 /* Assembler.swift in Sources */,
 				90B029761C18599200A6A521 /* AssemblyType.swift in Sources */,
-				986A58281B6CCC9600FE710F /* Container+Typealias.swift in Sources */,
-				98D06D4E1B6CC7C00081AFE0 /* SwinjectStoryboard.swift in Sources */,
 				984774F11C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				981899E51B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */,
-				98D06D4D1B6CC7C00081AFE0 /* NSViewController+Swinject.swift in Sources */,
+				984E8A9D1C31A0510039943D /* _SwinjectStoryboardBase.m in Sources */,
 				9884E2A81B60B77400120259 /* ServiceKey.swift in Sources */,
+				984E8A8F1C319F4A0039943D /* Container+SwinjectStoryboard.swift in Sources */,
+				984E8A861C319F090039943D /* SwinjectStoryboardType.swift in Sources */,
 				986A58301B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */,
 				981970201B6145D600EEB942 /* ObjectScope.swift in Sources */,
+				984E8A7E1C319F090039943D /* Storyboard+Swizzling.swift in Sources */,
 				984774FB1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1437,20 +1424,20 @@
 				986A58371B6D02A500FE710F /* SwinjectStoryboardSpec.swift in Sources */,
 				9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
 				9878C63D1B65CA8700CBEFEF /* PersonType.swift in Sources */,
+				989AE5BE1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift in Sources */,
 				98D462781BE76D500006D45A /* ViewController1.swift in Sources */,
+				989AE5C21C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift in Sources */,
 				9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				90B0298C1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				9855C5C31B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
-				986A58331B6D002D00FE710F /* NSViewController+SwinjectSpec.swift in Sources */,
 				90B029801C18666200A6A521 /* AssemblerSpec.swift in Sources */,
-				9847BF861BC93D36004FE09D /* NSStoryboard+SwizzlingSpec.swift in Sources */,
 				90E70A4A1C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */,
 				90E70A461C1549A000F12C2A /* JsonPropertyLoaderSpec.swift in Sources */,
 				9878C6391B65C9E000CBEFEF /* AnimalType.swift in Sources */,
+				989AE5B91C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift in Sources */,
 				981650311B6D085900BC4222 /* AnimalViewController.swift in Sources */,
 				9816502F1B6D041300BC4222 /* AnimalWindowController.swift in Sources */,
 				981899E21B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
-				986A58351B6D00D500FE710F /* NSWindowController+SwinjectSpec.swift in Sources */,
 				981577F21B675B7F00BF686B /* Circularity.swift in Sources */,
 				9855C5C01B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */,
 			);
@@ -1467,25 +1454,24 @@
 				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
 				9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
-				98D06D3F1B6BA7B60081AFE0 /* UIViewController+Swinject.swift in Sources */,
-				986A58261B6CCB2800FE710F /* Container+Typealias.swift in Sources */,
+				984E8A891C319F090039943D /* ViewController+Swinject.swift in Sources */,
 				984774F01C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
-				98E946981BC92C8600FA6B37 /* UIStoryboard+Swizzling.swift in Sources */,
 				981577F41B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */,
 				98F2F7731C07E789009571E6 /* Box.swift in Sources */,
-				9809A75C1B6B47E6005E037E /* SwinjectStoryboard.swift in Sources */,
+				984E8A811C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				90E70A551C16837300F12C2A /* PropertyRetrievable.swift in Sources */,
 				90D409F61C14E69F009DF1B1 /* JsonPropertyLoader.swift in Sources */,
-				986458CA1B6E593800AFA2D7 /* _SwinjectStoryboardBase.m in Sources */,
 				981899E41B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B81B82D67300053A32 /* Container.Arguments.swift in Sources */,
 				9884E2A71B60B77400120259 /* ServiceKey.swift in Sources */,
+				984E8A971C31A0400039943D /* _SwinjectStoryboardBase.m in Sources */,
+				984E8A8E1C319F4A0039943D /* Container+SwinjectStoryboard.swift in Sources */,
 				9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */,
-				989377C61BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */,
+				984E8A851C319F090039943D /* SwinjectStoryboardType.swift in Sources */,
 				984774FA1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 				90B029751C18599200A6A521 /* AssemblyType.swift in Sources */,
-				98C7D25A1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
+				984E8A7D1C319F090039943D /* Storyboard+Swizzling.swift in Sources */,
 				90E70A5A1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1496,14 +1482,15 @@
 			files = (
 				90E70A3D1C15457300F12C2A /* Properties.swift in Sources */,
 				9855C5C51B689B7B00DADB0B /* FoodType.swift in Sources */,
+				989AE5BD1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift in Sources */,
 				9855C5C81B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				9809A75F1B6B5288005E037E /* SwinjectStoryboardSpec.swift in Sources */,
 				9878C63C1B65CA8700CBEFEF /* PersonType.swift in Sources */,
-				98D06D411B6BCDA20081AFE0 /* UIViewController+SwinjectSpec.swift in Sources */,
 				90B0298B1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
 				90B0297F1C18666200A6A521 /* AssemblerSpec.swift in Sources */,
 				90E70A491C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */,
+				989AE5C11C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift in Sources */,
 				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
 				984774FF1C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */,
@@ -1511,9 +1498,9 @@
 				9878C6381B65C9E000CBEFEF /* AnimalType.swift in Sources */,
 				90B029831C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				90E70A451C1549A000F12C2A /* JsonPropertyLoaderSpec.swift in Sources */,
-				98E9469C1BC930A100FA6B37 /* UIStoryboard+SwizzlingSpec.swift in Sources */,
 				981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 				981577F11B675B7F00BF686B /* Circularity.swift in Sources */,
+				989AE5B81C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift in Sources */,
 				981A0D0C1BE5B91E0030DD85 /* AnimalPlayerViewController.swift in Sources */,
 				9855C5BF1B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */,
 			);
@@ -1523,6 +1510,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				984E8A7F1C319F090039943D /* Storyboard+Swizzling.swift in Sources */,
+				984E8A871C319F090039943D /* SwinjectStoryboardType.swift in Sources */,
 				90E70A571C16885200F12C2A /* PropertyRetrievable.swift in Sources */,
 				90E70A311C15429000F12C2A /* PropertyLoaderType.swift in Sources */,
 				90E70A321C15429000F12C2A /* JsonPropertyLoader.swift in Sources */,
@@ -1533,17 +1522,18 @@
 				985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */,
 				985011251BBE7E8900A2CCFC /* Resolvable.swift in Sources */,
 				9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */,
-				989377C81BCBA125008F4B0F /* SwinjectStoryboardType.swift in Sources */,
 				98F2F7751C07E789009571E6 /* Box.swift in Sources */,
+				984E8A8B1C319F090039943D /* ViewController+Swinject.swift in Sources */,
 				985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				90E70A5C1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
-				98C7D25C1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
 				90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */,
+				984E8A831C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
 				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
 				984774F21C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				90B029771C18599200A6A521 /* AssemblyType.swift in Sources */,
+				984E8A901C319F4A0039943D /* Container+SwinjectStoryboard.swift in Sources */,
 				984774FC1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1559,25 +1549,24 @@
 				90E70A2E1C15428200F12C2A /* PlistPropertyLoader.swift in Sources */,
 				98689C9E1BBFC7EB0005C6D3 /* RegistrationNameAssociatable.swift in Sources */,
 				983B98341C06ECB2006A23D4 /* SpinLock.swift in Sources */,
+				984E8A8C1C319F090039943D /* ViewController+Swinject.swift in Sources */,
 				9880E7111C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
-				98689CA11BBFC7F20005C6D3 /* Container+Typealias.swift in Sources */,
-				98689CA21BBFC7F20005C6D3 /* SwinjectStoryboard.swift in Sources */,
 				984774F31C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
-				98A4306C1BCE2D9E00B6B588 /* UIStoryboard+Swizzling.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolvable.swift in Sources */,
+				984E8A841C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
 				98F2F7761C07E789009571E6 /* Box.swift in Sources */,
 				98689C9C1BBFC7EB0005C6D3 /* ResolutionPool.swift in Sources */,
-				98689CA31BBFC7F20005C6D3 /* UIViewController+Swinject.swift in Sources */,
 				98689C9A1BBFC7EB0005C6D3 /* ServiceKey.swift in Sources */,
 				90B0297C1C185B1600A6A521 /* Assembler.swift in Sources */,
+				984E8A981C31A0400039943D /* _SwinjectStoryboardBase.m in Sources */,
 				98689C9B1BBFC7EB0005C6D3 /* ServiceEntry.swift in Sources */,
-				98689CA51BBFC8080005C6D3 /* _SwinjectStoryboardBase.m in Sources */,
+				984E8A911C319F4A0039943D /* Container+SwinjectStoryboard.swift in Sources */,
+				984E8A881C319F090039943D /* SwinjectStoryboardType.swift in Sources */,
 				98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */,
-				98A430751BCE2F8F00B6B588 /* SwinjectStoryboardType.swift in Sources */,
 				984774FD1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
-				98C7D25D1C09B5A1005C7184 /* Container+SwinjectStoryboard.swift in Sources */,
+				984E8A801C319F090039943D /* Storyboard+Swizzling.swift in Sources */,
 				90E70A5D1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1588,6 +1577,7 @@
 			files = (
 				90E70A3F1C15459B00F12C2A /* Properties.swift in Sources */,
 				98689CBB1BBFD5110005C6D3 /* ContainerSpec.Arguments.swift in Sources */,
+				989AE5BF1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift in Sources */,
 				98689CBE1BBFD5110005C6D3 /* ServiceEntrySpec.swift in Sources */,
 				98689CC91BBFD5B90005C6D3 /* SwinjectStoryboardSpec.swift in Sources */,
 				98689CBC1BBFD5110005C6D3 /* ContainerSpec.Circularity.swift in Sources */,
@@ -1595,17 +1585,17 @@
 				90B0298D1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				98689CBA1BBFD5110005C6D3 /* ContainerSpec.swift in Sources */,
 				90B029811C18666200A6A521 /* AssemblerSpec.swift in Sources */,
+				989AE5C31C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift in Sources */,
 				90E70A4B1C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */,
 				98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */,
-				98689CCA1BBFD5B90005C6D3 /* UIViewController+SwinjectSpec.swift in Sources */,
 				984775011C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */,
 				98689CC81BBFD5B30005C6D3 /* AnimalViewController.swift in Sources */,
 				98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */,
 				90B029851C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				90E70A471C1549A000F12C2A /* JsonPropertyLoaderSpec.swift in Sources */,
-				98A430721BCE2E5800B6B588 /* UIStoryboard+SwizzlingSpec.swift in Sources */,
 				98689CB71BBFD5110005C6D3 /* AnimalType.swift in Sources */,
 				98689CBF1BBFD5110005C6D3 /* ResolutionPoolSpec.swift in Sources */,
+				989AE5BA1C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift in Sources */,
 				981A0D0D1BE5B91E0030DD85 /* AnimalPlayerViewController.swift in Sources */,
 				98689CB91BBFD5110005C6D3 /* Circularity.swift in Sources */,
 			);
@@ -1668,7 +1658,7 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
 			};
 			name = Debug;
@@ -1679,7 +1669,7 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
 			};
 			name = Release;
@@ -1692,7 +1682,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1706,7 +1696,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1757,7 +1747,7 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
 			};
 			name = Debug;
@@ -1768,7 +1758,7 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
 			};
 			name = Release;
@@ -1781,7 +1771,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1795,7 +1785,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1807,7 +1797,7 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
 				TARGETED_DEVICE_FAMILY = 4;
 			};
@@ -1819,7 +1809,7 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
 				TARGETED_DEVICE_FAMILY = 4;
 			};
@@ -1831,7 +1821,7 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -1843,7 +1833,7 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				INFOPLIST_FILE = Swinject/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -1857,7 +1847,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1871,7 +1861,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				INFOPLIST_FILE = SwinjectTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};

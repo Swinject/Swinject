@@ -2,16 +2,15 @@
 //  SwinjectStoryboard.swift
 //  Swinject
 //
-//  Created by Yoichi Tagaya on 8/1/15.
+//  Created by Yoichi Tagaya on 7/31/15.
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
-import AppKit
+#if os(iOS) || os(tvOS) || os(OSX)
 
-/// The `SwinjectStoryboard` provides the features defined by its super class `NSStoryboard`,
-/// with dependencies of view or window controllers injected.
+/// The `SwinjectStoryboard` provides the features to inject dependencies of view/window controllers in a storyboard.
 ///
-/// To specify a registration name of a view or window controller registered to the `Container` as a service type,
+/// To specify a registration name of a view/window controller registered to the `Container` as a service type,
 /// add a user defined runtime attribute with the following settings:
 ///
 /// - Key Path: `swinjectRegistrationName`
@@ -29,7 +28,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
     public static var defaultContainer = Container()
     
     // Boxing to workaround a runtime error [Xcode 7.1.1 and Xcode 7.2 beta 4]
-    // If container property is Resolvable type and a ResolverType instance is assigned to the property,
+    // If container property is ResolverType type and a ResolverType instance is assigned to the property,
     // the program crashes by EXC_BAD_ACCESS, which looks a bug of Swift.
     private var container: Box<ResolverType>!
     
@@ -44,17 +43,17 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
             }
         }
     }
-    
+
     private override init() {
         super.init()
     }
-    
+
     /// Creates the new instance of `SwinjectStoryboard`. This method is used instead of an initializer.
     ///
     /// - Parameters:
     ///   - name:      The name of the storyboard resource file without the filename extension.
     ///   - bundle:    The bundle containing the storyboard file and its resources. Specify nil to use the main bundle.
-    ///   - container: The container with registrations of the view or window controllers in the storyboard and their dependencies.
+    ///   - container: The container with registrations of the view/window controllers in the storyboard and their dependencies.
     ///                The shared singleton container `SwinjectStoryboard.defaultContainer` is used if no container is passed.
     ///
     /// - Returns: The new instance of `SwinjectStoryboard`.
@@ -63,33 +62,65 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         bundle storyboardBundleOrNil: NSBundle?,
         container: ResolverType = SwinjectStoryboard.defaultContainer) -> SwinjectStoryboard
     {
-        // Use this factory method to create an instance because the initializer of NSStoryboard is "not inherited".
+        // Use this factory method to create an instance because the initializer of UI/NSStoryboard is "not inherited".
         let storyboard = SwinjectStoryboard._create(name, bundle: storyboardBundleOrNil)
         storyboard.container = Box(container)
         return storyboard
     }
-    
-    /// Instantiates the view or window controller with the specified identifier.
-    /// The view or window controller and its child controllers have their dependencies injected
+
+
+#if os(iOS) || os(tvOS)
+    /// Instantiates the view controller with the specified identifier.
+    /// The view controller and its child controllers have their dependencies injected
     /// as specified in the `Container` passed to the initializer of the `SwinjectStoryboard`.
     ///
     /// - Parameter identifier: The identifier set in the storyboard file.
     ///
-    /// - Returns: The instantiated view or window controller with its dependencies injected.
+    /// - Returns: The instantiated view controller with its dependencies injected.
+    public override func instantiateViewControllerWithIdentifier(identifier: String) -> UIViewController {
+        let viewController = super.instantiateViewControllerWithIdentifier(identifier)
+        injectDependency(viewController)
+        return viewController
+    }
+    
+    private func injectDependency(viewController: UIViewController) {
+        let registrationName = viewController.swinjectRegistrationName
+
+        // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
+        // The actual controller type is distinguished by the dynamic type name in `nameWithActualType`.
+        //
+        // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too:
+        //    container.resolve(controller.dynamicType, argument: controller as Container.Controller, name: registrationName)
+        let nameWithActualType = String(reflecting: viewController.dynamicType) + ":" + (registrationName ?? "")
+        container.value.resolve(Container.Controller.self, name: nameWithActualType, argument: viewController as Container.Controller)
+
+        for child in viewController.childViewControllers {
+            injectDependency(child)
+        }
+    }
+    
+#elseif os(OSX)
+    /// Instantiates the view/Window controller with the specified identifier.
+    /// The view/window controller and its child controllers have their dependencies injected
+    /// as specified in the `Container` passed to the initializer of the `SwinjectStoryboard`.
+    ///
+    /// - Parameter identifier: The identifier set in the storyboard file.
+    ///
+    /// - Returns: The instantiated view/window controller with its dependencies injected.
     public override func instantiateControllerWithIdentifier(identifier: String) -> AnyObject {
         let controller = super.instantiateControllerWithIdentifier(identifier)
         injectDependency(controller)
         return controller
     }
     
-    private func injectDependency(controller: AnyObject) {
-        let registrationName = (controller as! RegistrationNameAssociatable).swinjectRegistrationName
-
+    private func injectDependency(controller: Container.Controller) {
+        let registrationName = (controller as? RegistrationNameAssociatable)?.swinjectRegistrationName
+        
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
         // The actual controller type is distinguished by the dynamic type name in `nameWithActualType`.
         //
         // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too:
-        //    container.resolve(controller.dynamicType, argument: viewController as Container.Controller, name: registrationName)
+        //    container.resolve(controller.dynamicType, argument: controller as Container.Controller, name: registrationName)
         let nameWithActualType = String(reflecting: controller.dynamicType) + ":" + (registrationName ?? "")
         container.value.resolve(Container.Controller.self, name: nameWithActualType, argument: controller as Container.Controller)
         
@@ -99,4 +130,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
             }
         }
     }
+#endif
 }
+
+#endif

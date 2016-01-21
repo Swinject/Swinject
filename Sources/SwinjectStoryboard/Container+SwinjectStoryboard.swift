@@ -30,3 +30,17 @@ extension Container {
     }
 }
 #endif
+
+
+extension Container {
+#if os(iOS) || os(tvOS)
+    /// The typealias to UIViewController.
+    public typealias Controller = UIViewController
+    
+#elseif os(OSX)
+    /// The typealias to AnyObject, which should be actually NSViewController or NSWindowController.
+    /// See the reference of NSStoryboard.instantiateInitialController method.
+    public typealias Controller = AnyObject
+    
+#endif
+}

@@ -24,13 +24,13 @@ internal struct ResolutionPool {
             fatalError("Infinite recursive call for circular dependency has been detected. " +
                        "To avoid the infinite call, 'initCompleted' handler should be used to inject circular dependency.")
         }
-        depth++
+        depth += 1
     }
     
     internal mutating func decrementDepth() {
         assert(depth > 0, "The depth cannot be negative.")
         
-        depth--
+        depth -= 1
         if depth == 0 {
             pool = [:]
         }

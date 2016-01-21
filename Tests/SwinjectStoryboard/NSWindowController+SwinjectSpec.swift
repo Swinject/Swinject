@@ -1,20 +1,22 @@
 //
-//  NSViewController+SwinjectSpec.swift
+//  NSWindowController+SwinjectSpec.swift
 //  Swinject
 //
 //  Created by Yoichi Tagaya on 8/1/15.
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
+#if os(OSX)
+
 import Quick
 import Nimble
 @testable import Swinject
 
-class NSViewController_SwinjectSpec: QuickSpec {
+class NSWindowController_SwinjectSpec: QuickSpec {
     override func spec() {
-        it("adds a property to NSViewController to store Swinject container registration name.") {
-            let controller1 = NSViewController(nibName: nil, bundle: nil)!
-            let controller2 = NSViewController(nibName: nil, bundle: nil)!
+        it("adds a property to NSWindowController to store Swinject container registration name.") {
+            let controller1 = NSWindowController(window: nil)
+            let controller2 = NSWindowController(window: nil)
             controller1.swinjectRegistrationName = "1"
             controller2.swinjectRegistrationName = "2"
             
@@ -23,3 +25,5 @@ class NSViewController_SwinjectSpec: QuickSpec {
         }
     }
 }
+
+#endif
