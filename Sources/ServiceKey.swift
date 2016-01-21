@@ -26,6 +26,6 @@ extension ServiceKey: Hashable {
 }
 
 // MARK: Equatable
-func ==(lhs: ServiceKey, rhs: ServiceKey) -> Bool {
+func == (lhs: ServiceKey, rhs: ServiceKey) -> Bool {
     return lhs.factoryType == rhs.factoryType && lhs.name == rhs.name
 }
