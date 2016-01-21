@@ -45,7 +45,7 @@ final public class JsonPropertyLoader {
         let expression = try? NSRegularExpression(pattern: pattern, options: .AnchorsMatchLines)
         
         let matches = expression!.matchesInString(str, options: NSMatchingOptions(rawValue: 0),
-            range: NSMakeRange(0, str.characters.count))
+            range: NSRange(location: 0, length: str.characters.count))
         
         guard !matches.isEmpty else {
             return str
