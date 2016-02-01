@@ -27,6 +27,25 @@ class AssemblerSpec: QuickSpec {
                 expect(sushi).to(beNil())
             }
             
+            it("can assembly a container with nil parent") {
+                let assembler = Assembler(parentAssembler: nil)
+                
+                let sushi = assembler.resolver.resolve(FoodType.self)
+                expect(sushi).to(beNil())
+            }
+            
+            it("can assembly a container with nil parent and assemblies") {
+                let assembler = try! Assembler(assemblies: [
+                    AnimalAssembly()
+                    ], parentAssembler : nil)
+                let cat = assembler.resolver.resolve(AnimalType.self)
+                expect(cat).toNot(beNil())
+                expect(cat!.name) == "Whiskers"
+                
+                let sushi = assembler.resolver.resolve(FoodType.self)
+                expect(sushi).to(beNil())
+            }
+            
             it("can assembly a multiple container") {
                 let assembler = try! Assembler(assemblies: [
                     AnimalAssembly(),
