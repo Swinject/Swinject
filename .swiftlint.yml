@@ -1,7 +1,6 @@
 disabled_rules:
   - force_cast
   - line_length
-  - variable_name_min_length
   - trailing_whitespace
   - nesting
   - opening_brace
@@ -13,3 +12,8 @@ excluded:
   - Tests
   - Sample-iOS.playground
   - Carthage
+
+variable_name:
+  min_length:
+    warning: 1
+    error: 1
