@@ -30,8 +30,8 @@ public class Assembler {
     ///
     /// - parameter parentAssembler: the baseline assembler
     ///
-    public init(parentAssembler: Assembler) {
-        container = Container(parent: parentAssembler.container)
+    public init(parentAssembler: Assembler?) {
+        container = Container(parent: parentAssembler?.container)
     }
     
     /// Will create a new `Assembler` with the given `AssemblyType` instances to build a `Container`
@@ -56,8 +56,8 @@ public class Assembler {
     /// - parameter parentAssembler:    the baseline assembler
     /// - parameter propertyLoaders:    a list of property loaders to apply to the container
     ///
-    public init(assemblies: [AssemblyType], parentAssembler: Assembler, propertyLoaders: [PropertyLoaderType]? = nil) throws {
-        container = Container(parent: parentAssembler.container)
+    public init(assemblies: [AssemblyType], parentAssembler: Assembler?, propertyLoaders: [PropertyLoaderType]? = nil) throws {
+        container = Container(parent: parentAssembler?.container)
         if let propertyLoaders = propertyLoaders {
             for propertyLoader in propertyLoaders {
                 try self.container.applyPropertyLoader(propertyLoader)
