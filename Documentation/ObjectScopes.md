@@ -4,8 +4,10 @@ Object scope is a configuration how an instance provided by a DI container is sh
 
 The object scope is specified with `inObjectScope` method when you register a pair of a service type and component factory. For example:
 
-    container.register(AnimalType.self) { _ in Cat() }
-        .inObjectScope(.Container)
+```swift
+container.register(AnimalType.self) { _ in Cat() }
+    .inObjectScope(.Container)
+```
 
 The object scope is ignored if the factory closure returns a value type because its instance is never shared as the specification of Swift.
 

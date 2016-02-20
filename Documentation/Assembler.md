@@ -15,27 +15,29 @@ The `AssemblyType` is a protocol that is provided a shared `Container` where ser
 can be registered. The shared `Container` will contain **all** service definitions from every
 `AssemblyType` registered to the `Assembler`. Let's look at an example:
 
-    class ServiceAssembly: AssemblyType {
-        func assemble(container: Container) {
-            container.register(FooServiceType.self) { r in
-               return FooService()
-            }
-            container.register(BarServiceType.self) { r in
-               return BarService()
-            }
+```swift
+class ServiceAssembly: AssemblyType {
+    func assemble(container: Container) {
+        container.register(FooServiceType.self) { r in
+           return FooService()
+        }
+        container.register(BarServiceType.self) { r in
+           return BarService()
         }
     }
+}
 
-    class ManagerAssembly: AssemblyType {
-        func assemble(container: Container) {
-            container.register(FooManagerType.self) { r in
-               return FooManager(service: r.resolve(FooServiceType.self)!)
-            }
-            container.register(BarManagerType.self) { r in
-               return BarManager(service: r.resolve(BarServiceType.self)!)
-            }
+class ManagerAssembly: AssemblyType {
+    func assemble(container: Container) {
+        container.register(FooManagerType.self) { r in
+           return FooManager(service: r.resolve(FooServiceType.self)!)
+        }
+        container.register(BarManagerType.self) { r in
+           return BarManager(service: r.resolve(BarServiceType.self)!)
         }
     }
+}
+```
 
 Here we have created 2 assemblies: 1 for services and 1 for managers. As you can see the `ManagerAssembly`
 leverages service definitions registered in the `ServiceAssembly`. Using this pattern the `ManagerAssembly`
@@ -48,55 +50,61 @@ by the `Assembler`.
 
 Let's imagine you have an simple Logger class that can be configured with different log handlers:
 
-    protocol LogHandlerType {
-        func log(message: String)
+```swift
+protocol LogHandlerType {
+    func log(message: String)
+}
+
+class Logger {
+
+    class var sharedInstance: Logger!
+
+    var logHandlers = [LogHandlerType]()
+
+    func addHandler(logHandler: LogHandlerType) {
+        logHandlers.append(logHandler)
     }
 
-    class Logger {
-
-         class var sharedInstance: Logger!
-
-         var logHandlers = [LogHandlerType]()
-
-         func addHandler(logHandler: LogHandlerType) {
-            logHandlers.append(logHandler)
-         }
-
-         func log(message: String) {
-            for logHandler in logHandlers {
-               logHandler.log(message)
-            }
-         }
+    func log(message: String) {
+        for logHandler in logHandlers {
+            logHandler.log(message)
+        }
     }
+}
+```
 
 This singleton is accessed in global logging functions to make it easy to add logging anywhere
 without having to deal with injects:
 
-     func logDebug(message: String) {
-         Logger.sharedInstance.log("DEBUG: \(message")
-     }
+```swift
+func logDebug(message: String) {
+    Logger.sharedInstance.log("DEBUG: \(message)")
+}
+```
 
 In order to configure the `Logger` shared instance in the container we will need to resolve the
 `Logger` after the `Container` has been built. Using a `AssemblyType` you can keep this
 bootstrapping in the assembly:
 
-     class LoggerAssembly: AssemblyType {
-         func assemble(container: Container) {
-            container.register(LogHandlerType.self, name: "console") { r in
-               return ConsoleLogHandler()
-            }
-            container.register(LogHandlerType.self, name: "file") { r in
-               return FileLogHandler()
-            }
+```swift
+class LoggerAssembly: AssemblyType {
+    func assemble(container: Container) {
+        container.register(LogHandlerType.self, name: "console") { r in
+            return ConsoleLogHandler()
         }
+        container.register(LogHandlerType.self, name: "file") { r in
+            return FileLogHandler()
+        }
+    }
 
-        func loaded(resolver: ResolverType) {
-            Logger.sharedInstance.addHandler(
-               resolver.resolve(LogHandlerType.self, name: "console")!)
-            Logger.sharedInstance.addHandler(
-               resolver.resolve(LogHandlerType.self, name: "file")!)
-        }
-     }
+    func loaded(resolver: ResolverType) {
+        Logger.sharedInstance.addHandler(
+            resolver.resolve(LogHandlerType.self, name: "console")!)
+        Logger.sharedInstance.addHandler(
+            resolver.resolve(LogHandlerType.self, name: "file")!)
+    }
+}
+```
 
 ## Assembler
 The `Assembler` is responsible for managing the `AssemblyType` instances and the `Container`. Using
@@ -106,33 +114,39 @@ access strictly to the assemblies.
 
 Using the `ServiceAssembly` and `ManagerAssembly` above we can create our assembler:
 
-    let assembler = try! Assembler(assemblies: [
-        ServiceAssembly(),
-        ManagerAssembly()
-    ])
+```swift
+let assembler = try! Assembler(assemblies: [
+    ServiceAssembly(),
+    ManagerAssembly()
+])
+```
 
 Now you can resolve any components from either assembly:
 
-    let fooManager = assembler.resolver.resolve(FooManagerType.self)!
+```swift
+let fooManager = assembler.resolver.resolve(FooManagerType.self)!
+```
 
 You can also lazy load assemblies:
 
-     assembler.applyAssembly(LoggerAssembly())
+```swift
+assembler.applyAssembly(LoggerAssembly())
+```
 
 The assembler also supports managing your property files as well via construction or lazy loading:
 
-     let assembler = try! Assembler(assemblies: [
-          ServiceAssembly(),
-          ManagerAssembly()
-      ], propertyLoaders: [
-          JsonPropertyLoader(bundle: .mainBundle(), name: "properties")
-      ])
+```swift
+let assembler = try! Assembler(assemblies: [
+        ServiceAssembly(),
+        ManagerAssembly()
+    ], propertyLoaders: [
+        JsonPropertyLoader(bundle: .mainBundle(), name: "properties")
+    ])
 
-      // or lazy load them
-      assembler.applyPropertyLoader(
-         JsonPropertyLoader(bundle: .mainBundle(), name: "properties"))
-
-
+  // or lazy load them
+assembler.applyPropertyLoader(
+    JsonPropertyLoader(bundle: .mainBundle(), name: "properties"))
+```
 
 ## IMPORTANT:
  - You **MUST** hold a strong reference to the `Assembler` otherwise the `Container`

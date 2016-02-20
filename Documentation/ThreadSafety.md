@@ -2,7 +2,7 @@
 
 Swinject is designed to be used in concurrent applications. `Container` is not thread safe, but its `synchronize` method returns a thread safe view to the container as `Resolvable` type.
 
-```
+```swift
 let container = Container()
 container.register(SomeType.self) { _ in SomeImplementation() }
 
@@ -27,7 +27,7 @@ Only resolutions through the `Resolvable` instance returned by `synchronize` met
 
 If you have a container hierarchy (parent-child relationship of containers), all the containers must be accessed through the thread safe views when you resolve services.
 
-```
+```swift
 let parentContainer = Container()
 parentContainer.register(SomeType.self) { _ in SomeImplementation() }
 
@@ -51,7 +51,7 @@ for _ in 0..<4 {
 
 `SwinjectStoryboard` does not require the thread safe view of a container in most of the cases because instantiation of a view controller is normally performed on the main thread. Only if you use the same container in another thread, the synchronized view should be passed to `SwinjectStoryboard` when you create its instance and be used in the other thread too.
 
-```
+```swift
 let threadSafeContainer: Resolvable = Container() { container in
     container.registerForStoryboard(SomeViewController.self) { r, c in
         c.something = r.resolve(SomeType.self)
