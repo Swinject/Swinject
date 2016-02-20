@@ -36,7 +36,7 @@ Loading properties into the container is as simple as:
 
     try! container.applyPropertyLoader(loader)
 
-Now you can inject properties into definitions registered into the container. 
+Now you can inject properties into definitions registered into the container.
 Consider the following definition:
 
     class Person {
@@ -68,7 +68,7 @@ This will resolve the person as:
      person.name // "Mike"
      person.count // 100
      person.team // "Giants"
-   
+
 Properties are available on a per-container basis. Multiple property loaders can be
 applied to a single container. Properties are merged in the order in which they
 are applied to a container. For example, let's say you have 2 property files:
@@ -85,7 +85,7 @@ And:
         "timeout": 4
     }
 
-If we apply property file A, then property file B to the container, the resulting 
+If we apply property file A, then property file B to the container, the resulting
 property key-value pairs would be:
 
     message = "hello from B"

@@ -11,16 +11,16 @@ This feature is an opinionated way to how your can register services in your `Co
 parts to this feature:
 
 ## AssemblyType
-The `AssemblyType` is a protocol that is provided a shared `Container` where service definitions 
+The `AssemblyType` is a protocol that is provided a shared `Container` where service definitions
 can be registered. The shared `Container` will contain **all** service definitions from every
 `AssemblyType` registered to the `Assembler`. Let's look at an example:
 
     class ServiceAssembly: AssemblyType {
         func assemble(container: Container) {
-            container.register(FooServiceType.self) { r in 
+            container.register(FooServiceType.self) { r in
                return FooService()
             }
-            container.register(BarServiceType.self) { r in 
+            container.register(BarServiceType.self) { r in
                return BarService()
             }
         }
@@ -28,10 +28,10 @@ can be registered. The shared `Container` will contain **all** service definitio
 
     class ManagerAssembly: AssemblyType {
         func assemble(container: Container) {
-            container.register(FooManagerType.self) { r in 
+            container.register(FooManagerType.self) { r in
                return FooManager(service: r.resolve(FooServiceType.self)!)
             }
-            container.register(BarManagerType.self) { r in 
+            container.register(BarManagerType.self) { r in
                return BarManager(service: r.resolve(BarServiceType.self)!)
             }
         }
@@ -44,20 +44,20 @@ be registered else where.
 
 ### Load aware
 The `AssemblyType` allows the assembly to be aware when the container has been fully loaded
-by the `Assembler`. 
+by the `Assembler`.
 
 Let's imagine you have an simple Logger class that can be configured with different log handlers:
-    
+
     protocol LogHandlerType {
         func log(message: String)
     }
 
     class Logger {
-         
+
          class var sharedInstance: Logger!
 
          var logHandlers = [LogHandlerType]()
-        
+
          func addHandler(logHandler: LogHandlerType) {
             logHandlers.append(logHandler)
          }
@@ -74,7 +74,7 @@ without having to deal with injects:
 
      func logDebug(message: String) {
          Logger.sharedInstance.log("DEBUG: \(message")
-     } 
+     }
 
 In order to configure the `Logger` shared instance in the container we will need to resolve the
 `Logger` after the `Container` has been built. Using a `AssemblyType` you can keep this
@@ -82,10 +82,10 @@ bootstrapping in the assembly:
 
      class LoggerAssembly: AssemblyType {
          func assemble(container: Container) {
-            container.register(LogHandlerType.self, name: "console") { r in 
+            container.register(LogHandlerType.self, name: "console") { r in
                return ConsoleLogHandler()
             }
-            container.register(LogHandlerType.self, name: "file") { r in 
+            container.register(LogHandlerType.self, name: "file") { r in
                return FileLogHandler()
             }
         }
@@ -108,7 +108,7 @@ Using the `ServiceAssembly` and `ManagerAssembly` above we can create our assemb
 
     let assembler = try! Assembler(assemblies: [
         ServiceAssembly(),
-        ManagerAssembly()  
+        ManagerAssembly()
     ])
 
 Now you can resolve any components from either assembly:
@@ -123,7 +123,7 @@ The assembler also supports managing your property files as well via constructio
 
      let assembler = try! Assembler(assemblies: [
           ServiceAssembly(),
-          ManagerAssembly()  
+          ManagerAssembly()
       ], propertyLoaders: [
           JsonPropertyLoader(bundle: .mainBundle(), name: "properties")
       ])
@@ -139,7 +139,7 @@ The assembler also supports managing your property files as well via constructio
    will be deallocated along with your assembler
 
  - If you are lazy loading your properties and assemblies you must load your properties **first** if
-   you want your properties to be available to load aware assemblies when `loaded` is called 
+   you want your properties to be available to load aware assemblies when `loaded` is called
 
  - If you are lazy loading assemblies and you want your load aware assemblies to be invoked after
    all assemblies have been loaded then you must use `addAssemblies` and pass all lazy loaded assemblies
