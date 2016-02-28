@@ -120,10 +120,10 @@ extension Container: Resolvable {
         name: String?) -> Service?
     {
         typealias FactoryType = Resolvable -> Service
-        return _resolve(name) { (factory: FactoryType) in factory(self) }
+        return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }
     
-    public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOptionType? = nil, invoker: Factory -> Service) -> Service? {
+    public func _resolve<Service, Factory>(name name: String?, option: ServiceKeyOptionType? = nil, invoker: Factory -> Service) -> Service? {
         resolutionPool.incrementDepth()
         defer { resolutionPool.decrementDepth() }
         

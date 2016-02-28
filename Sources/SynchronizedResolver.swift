@@ -27,9 +27,9 @@ extension SynchronizedResolver: Resolvable {
         }
     }
     
-    internal func _resolve<Service, Factory>(name: String?, option: ServiceKeyOptionType?, invoker: Factory -> Service) -> Service? {
+    internal func _resolve<Service, Factory>(name name: String?, option: ServiceKeyOptionType?, invoker: Factory -> Service) -> Service? {
         return container.lock.sync {
-            return self.container._resolve(name, option: option, invoker: invoker)
+            return self.container._resolve(name: name, option: option, invoker: invoker)
         }
     }
 }
