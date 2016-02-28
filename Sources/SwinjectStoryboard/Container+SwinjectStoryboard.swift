@@ -25,7 +25,7 @@ extension Container {
         let factory = { (_: Resolvable, controller: Controller) in controller }
         let wrappingClosure: (Resolvable, Controller) -> () = { r, c in initCompleted(r, c as! C) }
         let option = SwinjectStoryboardOption(controllerType: controllerType)
-        registerImpl(Controller.self, factory: factory, name: name, option: option)
+        _register(Controller.self, factory: factory, name: name, option: option)
             .initCompleted(wrappingClosure)
     }
 }

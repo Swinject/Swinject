@@ -91,7 +91,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too.
         let option = SwinjectStoryboardOption(controllerType: viewController.dynamicType)
         typealias FactoryType = (Resolvable, Container.Controller) -> Container.Controller
-        container.value.resolveImpl(registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, viewController) }
+        container.value._resolve(registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, viewController) }
 
         for child in viewController.childViewControllers {
             injectDependency(child)
@@ -119,7 +119,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too:
         let option = SwinjectStoryboardOption(controllerType: controller.dynamicType)
         typealias FactoryType = (Resolvable, Container.Controller) -> Container.Controller
-        container.value.resolveImpl(registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, controller) }
+        container.value._resolve(registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, controller) }
         
         if let viewController = controller as? NSViewController {
             for child in viewController.childViewControllers {

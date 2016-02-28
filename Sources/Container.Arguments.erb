@@ -40,7 +40,7 @@ extension Container {
         name: String? = nil,
         factory: (Resolvable, <%= arg_types %>) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
 <% end %>
@@ -84,7 +84,7 @@ extension Container {
         <%= arg_param_name %>: <%= arg_param_type %>) -> Service?
     {
         typealias FactoryType = (Resolvable, <%= arg_types %>) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, <%= args_factory %>) }
+        return _resolve(name) { (factory: FactoryType) in factory(self, <%= args_factory %>) }
     }
 
 <% end %>

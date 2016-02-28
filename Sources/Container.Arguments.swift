@@ -36,7 +36,7 @@ extension Container {
         name: String? = nil,
         factory: (Resolvable, Arg1) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -56,7 +56,7 @@ extension Container {
         name: String? = nil,
         factory: (Resolvable, Arg1, Arg2) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -76,7 +76,7 @@ extension Container {
         name: String? = nil,
         factory: (Resolvable, Arg1, Arg2, Arg3) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -96,7 +96,7 @@ extension Container {
         name: String? = nil,
         factory: (Resolvable, Arg1, Arg2, Arg3, Arg4) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -116,7 +116,7 @@ extension Container {
         name: String? = nil,
         factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -136,7 +136,7 @@ extension Container {
         name: String? = nil,
         factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -156,7 +156,7 @@ extension Container {
         name: String? = nil,
         factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -176,7 +176,7 @@ extension Container {
         name: String? = nil,
         factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -196,7 +196,7 @@ extension Container {
         name: String? = nil,
         factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
 }
@@ -233,7 +233,7 @@ extension Container {
         argument: Arg1) -> Service?
     {
         typealias FactoryType = (Resolvable, Arg1) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, argument) }
+        return _resolve(name) { (factory: FactoryType) in factory(self, argument) }
     }
 
     /// Retrieves the instance with the specified service type and tuple of 2 arguments to the factory closure.
@@ -266,7 +266,7 @@ extension Container {
         arguments: (Arg1, Arg2)) -> Service?
     {
         typealias FactoryType = (Resolvable, Arg1, Arg2) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1) }
+        return _resolve(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1) }
     }
 
     /// Retrieves the instance with the specified service type and tuple of 3 arguments to the factory closure.
@@ -299,7 +299,7 @@ extension Container {
         arguments: (Arg1, Arg2, Arg3)) -> Service?
     {
         typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2) }
+        return _resolve(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2) }
     }
 
     /// Retrieves the instance with the specified service type and tuple of 4 arguments to the factory closure.
@@ -332,7 +332,7 @@ extension Container {
         arguments: (Arg1, Arg2, Arg3, Arg4)) -> Service?
     {
         typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3) }
+        return _resolve(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3) }
     }
 
     /// Retrieves the instance with the specified service type and tuple of 5 arguments to the factory closure.
@@ -365,7 +365,7 @@ extension Container {
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5)) -> Service?
     {
         typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4) }
+        return _resolve(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4) }
     }
 
     /// Retrieves the instance with the specified service type and tuple of 6 arguments to the factory closure.
@@ -398,7 +398,7 @@ extension Container {
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6)) -> Service?
     {
         typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5) }
+        return _resolve(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5) }
     }
 
     /// Retrieves the instance with the specified service type and tuple of 7 arguments to the factory closure.
@@ -431,7 +431,7 @@ extension Container {
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7)) -> Service?
     {
         typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6) }
+        return _resolve(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6) }
     }
 
     /// Retrieves the instance with the specified service type and tuple of 8 arguments to the factory closure.
@@ -464,7 +464,7 @@ extension Container {
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8)) -> Service?
     {
         typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7) }
+        return _resolve(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7) }
     }
 
     /// Retrieves the instance with the specified service type and tuple of 9 arguments to the factory closure.
@@ -497,7 +497,7 @@ extension Container {
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9)) -> Service?
     {
         typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8) }
+        return _resolve(name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8) }
     }
 
 }
