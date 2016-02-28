@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: ServiceKeyOptionType
-public protocol ServiceKeyOptionType {
+public protocol ServiceKeyOptionType: CustomStringConvertible {
     func isEqualTo(another: ServiceKeyOptionType) -> Bool
     var hashValue: Int { get }
 }

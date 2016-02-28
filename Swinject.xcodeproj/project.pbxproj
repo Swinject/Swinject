@@ -188,6 +188,9 @@
 		986A58301B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; };
 		986A58371B6D02A500FE710F /* SwinjectStoryboardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A58361B6D02A500FE710F /* SwinjectStoryboardSpec.swift */; };
 		986A583A1B6D031700FE710F /* Animals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 986A58391B6D031700FE710F /* Animals.storyboard */; };
+		9874B0311C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874B0301C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift */; };
+		9874B0321C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874B0301C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift */; };
+		9874B0331C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9874B0301C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift */; };
 		9878C6381B65C9E000CBEFEF /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
 		9878C6391B65C9E000CBEFEF /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
 		9878C63C1B65CA8700CBEFEF /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
@@ -480,6 +483,7 @@
 		986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationNameAssociatable.swift; sourceTree = "<group>"; };
 		986A58361B6D02A500FE710F /* SwinjectStoryboardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboardSpec.swift; sourceTree = "<group>"; };
 		986A58391B6D031700FE710F /* Animals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Animals.storyboard; sourceTree = "<group>"; };
+		9874B0301C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+SwinjectStoryboardSpec.swift"; sourceTree = "<group>"; };
 		9878C6371B65C9E000CBEFEF /* AnimalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalType.swift; sourceTree = "<group>"; };
 		9878C63B1B65CA8700CBEFEF /* PersonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonType.swift; sourceTree = "<group>"; };
 		9880E70D1C09EE2800ED5293 /* FunctionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionType.swift; sourceTree = "<group>"; };
@@ -821,6 +825,7 @@
 		989AE5AC1C4614E100BDCE65 /* SwinjectStoryboard */ = {
 			isa = PBXGroup;
 			children = (
+				9874B0301C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift */,
 				989AE5B71C462AD200BDCE65 /* Storyboard+SwizzlingSpec.swift */,
 				989AE5BC1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift */,
 				989AE5C01C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift */,
@@ -1425,6 +1430,7 @@
 			files = (
 				90B029841C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				90E70A3E1C15458B00F12C2A /* Properties.swift in Sources */,
+				9874B0321C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift in Sources */,
 				9855C5C61B689B7B00DADB0B /* FoodType.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				984775001C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
@@ -1498,6 +1504,7 @@
 				9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
 				90B0297F1C18666200A6A521 /* AssemblerSpec.swift in Sources */,
 				90E70A491C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */,
+				9874B0311C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift in Sources */,
 				989AE5C11C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift in Sources */,
 				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
@@ -1595,6 +1602,7 @@
 				90B0298D1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				98689CBA1BBFD5110005C6D3 /* ContainerSpec.swift in Sources */,
 				90B029811C18666200A6A521 /* AssemblerSpec.swift in Sources */,
+				9874B0331C83230C00F5D92C /* Container+SwinjectStoryboardSpec.swift in Sources */,
 				989AE5C31C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift in Sources */,
 				90E70A4B1C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */,
 				98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */,

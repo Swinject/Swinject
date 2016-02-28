@@ -25,5 +25,9 @@ internal struct SwinjectStoryboardOption: ServiceKeyOptionType {
     internal var hashValue: Int {
         return controllerType.hashValue
     }
+    
+    internal var description: String {
+        return "Storyboard: \(controllerType)"
+    }
 }
 #endif

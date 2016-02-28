@@ -194,7 +194,7 @@ extension Container: Resolvable {
 extension Container: CustomStringConvertible {
     public var description: String {
         return "["
-            + services.map { "\n    { \($1.describe(name: $0.name)) }" }.joinWithSeparator(",")
-            + "\n]"
+            + services.map { "\n    { \($1.describeWithKey($0)) }" }.joinWithSeparator(",")
+        + "\n]"
     }
 }

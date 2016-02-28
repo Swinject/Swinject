@@ -25,6 +25,10 @@ private struct Option: ServiceKeyOptionType {
     var hashValue: Int {
         return option.hashValue
     }
+    
+    var description: String {
+        return ""
+    }
 }
 
 // MARK: ServiceKeySpec
