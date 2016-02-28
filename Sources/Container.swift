@@ -72,8 +72,13 @@ public final class Container {
         return registerImpl(serviceType, factory: factory, name: name)
     }
 
-    internal func registerImpl<Service, Factory>(serviceType: Service.Type, factory: Factory, name: String?) -> ServiceEntry<Service> {
-        let key = ServiceKey(factoryType: factory.dynamicType, name: name)
+    internal func registerImpl<Service, Factory>(
+        serviceType: Service.Type,
+        factory: Factory,
+        name: String? = nil,
+        option: ServiceKeyOptionType? = nil) -> ServiceEntry<Service>
+    {
+        let key = ServiceKey(factoryType: factory.dynamicType, name: name, option: option)
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
         services[key] = entry
         return entry
@@ -118,12 +123,12 @@ extension Container: Resolvable {
         return resolveImpl(name) { (factory: FactoryType) in factory(self) }
     }
     
-    internal func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
+    public func resolveImpl<Service, Factory>(name: String?, option: ServiceKeyOptionType? = nil, invoker: Factory -> Service) -> Service? {
         resolutionPool.incrementDepth()
         defer { resolutionPool.decrementDepth() }
         
         var resolvedInstance: Service?
-        let key = ServiceKey(factoryType: Factory.self, name: name)
+        let key = ServiceKey(factoryType: Factory.self, name: name, option: option)
         if let (entry, fromParent) = getEntry(key) as (ServiceEntry<Service>, Bool)? {
             switch entry.objectScope {
             case .None, .Graph:

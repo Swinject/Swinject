@@ -267,4 +267,13 @@ public protocol Resolvable {
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9)) -> Service?
 
 
+    /// This method is designed for the use to extend Swinject functionality.
+    /// Do NOT use this method unless you intend to write an extension or plugin to Swinject framework.
+    ///
+    /// - Parameter name: The registration name.
+    /// - Parameter option: A service key option for an extension/plugin.
+    /// - Parameter invoker: A closure to execute service resolution.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no service is found.
+    func resolveImpl<Service, Factory>(name: String?, option: ServiceKeyOptionType?, invoker: Factory -> Service) -> Service?
 }

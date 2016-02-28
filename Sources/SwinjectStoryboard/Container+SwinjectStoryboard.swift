@@ -22,10 +22,10 @@ extension Container {
     ///                     It is invoked by the `Container` when the view or window controller is instantiated by `SwinjectStoryboard`.
     public func registerForStoryboard<C: Controller>(controllerType: C.Type, name: String? = nil, initCompleted: (Resolvable, C) -> ()) {
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
-        // The actual controller type is distinguished by the dynamic type name in `nameWithActualType`.
-        let nameWithActualType = String(reflecting: controllerType) + ":" + (name ?? "")
+        let factory = { (_: Resolvable, controller: Controller) in controller }
         let wrappingClosure: (Resolvable, Controller) -> () = { r, c in initCompleted(r, c as! C) }
-        self.register(Controller.self, name: nameWithActualType) { (_: Resolvable, controller: Controller) in controller }
+        let option = SwinjectStoryboardOption(controllerType: controllerType)
+        registerImpl(Controller.self, factory: factory, name: name, option: option)
             .initCompleted(wrappingClosure)
     }
 }
