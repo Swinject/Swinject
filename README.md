@@ -50,11 +50,13 @@ Then run `carthage update --no-use-binaries` command or just `carthage update`. 
 
 To install Swinject with CocoaPods, add the following lines to your `Podfile`.
 
-    source 'https://github.com/CocoaPods/Specs.git'
-    platform :ios, '8.0'
-    use_frameworks!
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
+use_frameworks!
 
-    pod 'Swinject', '~> 1.1.0'
+pod 'Swinject', '~> 1.1.0'
+```
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
 
