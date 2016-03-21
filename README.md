@@ -1,4 +1,5 @@
-# Swinject
+<img src="https://avatars0.githubusercontent.com/u/13637225?v=3&s=100" width="50" height="50"> Swinject
+========
 
 [![Travis CI](https://travis-ci.org/Swinject/Swinject.svg?branch=master)](https://travis-ci.org/Swinject/Swinject)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
