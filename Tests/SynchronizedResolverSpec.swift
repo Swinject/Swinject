@@ -1,5 +1,5 @@
 //
-//  SynchronizedContainerSpec.swift
+//  SynchronizedResolverSpec.swift
 //  Swinject
 //
 //  Created by Yoichi Tagaya on 11/23/15.

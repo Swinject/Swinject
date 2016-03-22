@@ -108,9 +108,9 @@
 		984774FB1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */; };
 		984774FC1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */; };
 		984774FD1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */; };
-		984774FF1C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */; };
-		984775001C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */; };
-		984775011C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */; };
+		984774FF1C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedResolverSpec.swift */; };
+		984775001C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedResolverSpec.swift */; };
+		984775011C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedResolverSpec.swift */; };
 		9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		984E8A521C317AC90039943D /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A511C317AC90039943D /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -444,7 +444,7 @@
 		984774EF1C02F25D0092A757 /* SynchronizedResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedResolver.swift; sourceTree = "<group>"; };
 		984774F41C02F4EA0092A757 /* SynchronizedResolver.Arguments.erb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SynchronizedResolver.Arguments.erb; sourceTree = "<group>"; };
 		984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedResolver.Arguments.swift; sourceTree = "<group>"; };
-		984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedContainerSpec.swift; sourceTree = "<group>"; };
+		984774FE1C034C5C0092A757 /* SynchronizedResolverSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedResolverSpec.swift; sourceTree = "<group>"; };
 		9848611A1B6F21EC00C07072 /* Sample-iOS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sample-iOS.playground"; sourceTree = "<group>"; };
 		9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
 		984E8A511C317AC90039943D /* Swinject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
@@ -678,7 +678,7 @@
 				981899E01B5FF88800C702D0 /* ContainerSpec.swift */,
 				9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */,
 				9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */,
-				984774FE1C034C5C0092A757 /* SynchronizedContainerSpec.swift */,
+				984774FE1C034C5C0092A757 /* SynchronizedResolverSpec.swift */,
 				9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */,
 				9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */,
 				9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */,
@@ -1420,7 +1420,7 @@
 				90E70A3E1C15458B00F12C2A /* Properties.swift in Sources */,
 				9855C5C61B689B7B00DADB0B /* FoodType.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
-				984775001C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */,
+				984775001C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
 				986A58371B6D02A500FE710F /* SwinjectStoryboardSpec.swift in Sources */,
 				9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
 				9878C63D1B65CA8700CBEFEF /* PersonType.swift in Sources */,
@@ -1493,7 +1493,7 @@
 				989AE5C11C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift in Sources */,
 				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */,
-				984774FF1C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */,
+				984774FF1C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
 				98D06D3D1B6B816C0081AFE0 /* AnimalViewController.swift in Sources */,
 				9878C6381B65C9E000CBEFEF /* AnimalType.swift in Sources */,
 				90B029831C18670000A6A521 /* BasicAssembly.swift in Sources */,
@@ -1588,7 +1588,7 @@
 				989AE5C31C4630AC00BDCE65 /* NSWindowController+SwinjectSpec.swift in Sources */,
 				90E70A4B1C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */,
 				98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */,
-				984775011C034C5C0092A757 /* SynchronizedContainerSpec.swift in Sources */,
+				984775011C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
 				98689CC81BBFD5B30005C6D3 /* AnimalViewController.swift in Sources */,
 				98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */,
 				90B029851C18670000A6A521 /* BasicAssembly.swift in Sources */,
