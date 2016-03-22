@@ -32,7 +32,7 @@ class SynchronizedResolverSpec: QuickSpec {
                 waitUntil(timeout: 2.0) { done in
                     let queue = dispatch_queue_create("SwinjectTests.SynchronizedContainerSpec.Queue", DISPATCH_QUEUE_CONCURRENT)
                     let totalThreads = 500 // 500 threads are enough to get fail unless the container is thread safe.
-                    let counter = Counter()
+                    let counter = Counter(max: 2 * totalThreads)
                     for _ in 0..<totalThreads {
                         dispatch_async(queue) {
                             let parent = container.resolve(ParentType.self) as! Parent
@@ -59,23 +59,20 @@ class SynchronizedResolverSpec: QuickSpec {
                     waitUntil(timeout: 2.0) { done in
                         let queue = dispatch_queue_create("SwinjectTests.SynchronizedContainerSpec.Queue", DISPATCH_QUEUE_CONCURRENT)
                         let totalThreads = 500
-                        let counter = Counter()
-                        let doneIfCompleted = {
-                            if counter.count >= 2 * totalThreads {
-                                done()
-                            }
-                        }
+                        let counter = Counter(max: 2 * totalThreads)
                         
                         for _ in 0..<totalThreads {
                             dispatch_async(queue) {
                                 _ = parentResolver.resolve(AnimalType.self) as! Cat
-                                counter.increment()
-                                doneIfCompleted()
+                                if counter.increment() == .ReachedMax {
+                                    done()
+                                }
                             }
                             dispatch_async(queue) {
                                 _ = childResolver.resolve(AnimalType.self) as! Cat
-                                counter.increment()
-                                doneIfCompleted()
+                                if counter.increment() == .ReachedMax {
+                                    done()
+                                }
                             }
                         }
                     }
@@ -90,21 +87,27 @@ class SynchronizedResolverSpec: QuickSpec {
     }
     
     final class Counter {
-        private let lock = dispatch_queue_create("SwinjectTests.SynchronizedContainerSpec.Counter.Lock", nil)
-        private var _count = 0
-        
-        var count: Int {
-            var ret = 0
-            dispatch_sync(lock) {
-                ret = self._count
-            }
-            return ret
+        enum Status {
+            case UnderMax, ReachedMax
         }
         
-        func increment() {
+        private var max: Int
+        private let lock = dispatch_queue_create("SwinjectTests.SynchronizedContainerSpec.Counter.Lock", nil)
+        private var count = 0
+
+        init(max: Int) {
+            self.max = max
+        }
+        
+        func increment() -> Status {
+            var status = Status.UnderMax
             dispatch_sync(lock) {
-                self._count++
+                self.count += 1
+                if self.count >= self.max {
+                    status = .ReachedMax
+                }
             }
+            return status
         }
     }
 }
