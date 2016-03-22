@@ -13,7 +13,7 @@ import Nimble
 private var swinjectStoryboardSetupCount = 0
 extension SwinjectStoryboard {
     static func setup() {
-        swinjectStoryboardSetupCount++
+        swinjectStoryboardSetupCount += 1
     }
 }
 
