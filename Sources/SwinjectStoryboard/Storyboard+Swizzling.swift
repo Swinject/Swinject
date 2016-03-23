@@ -31,8 +31,8 @@ extension Storyboard {
             static var token: dispatch_once_t = 0
         }
         dispatch_once(&Static.token) {
-            let original = class_getClassMethod(Storyboard.self, "storyboardWithName:bundle:")
-            let swizzled = class_getClassMethod(Storyboard.self, "swinject_storyboardWithName:bundle:")
+            let original = class_getClassMethod(Storyboard.self, #selector(Storyboard.init(name:bundle:)))
+            let swizzled = class_getClassMethod(Storyboard.self, #selector(Storyboard.swinject_storyboardWithName(_:bundle:)))
             method_exchangeImplementations(original, swizzled)
         }
     }

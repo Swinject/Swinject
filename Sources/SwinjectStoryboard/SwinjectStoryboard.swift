@@ -38,8 +38,8 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
             static var token: dispatch_once_t = 0
         }
         dispatch_once(&Static.token) {
-            if SwinjectStoryboard.respondsToSelector("setup") {
-                SwinjectStoryboard.performSelector("setup")
+            if SwinjectStoryboard.respondsToSelector(Selector("setup")) {
+                SwinjectStoryboard.performSelector(Selector("setup"))
             }
         }
     }
