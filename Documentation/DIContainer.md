@@ -197,6 +197,25 @@ container.register(AnimalType.self) { _, running, name in
 }
 ```
 
+### Remark
+
+Be careful with the types of arguments when you resolve an instance from a container. To resolve it as you expect, the types must be inferred as the same types as those you register to the container.
+
+```swift
+// Registers with name argument as String.
+// The argument is inferred as String because Cat initializer takes an argument as String.
+// The Registration Key is (AnimalType, (String) -> AnimalType)
+container.register(AnimalType.self) { _, name in Cat(name: name) }
+
+// Cannot resolve since the container has no Registration Key matching (AnimalType, (NSString) -> AnimalType)
+let name1: NSString = "Mimi"
+let mimi1 = container.resolve(AnimalType.self, argument: name1) // Returns nil.
+
+// This is the correct Registration Key (AnimalType, (String) -> AnimalType)
+let name2: String = "Mimi"
+let mimi2 = container.resolve(AnimalType.self, argument: name2) // Returns a Cat instance.
+```
+
 _[Next page: Injection Patterns](InjectionPatterns.md)_
 
 _[Table of Contents](README.md)_
