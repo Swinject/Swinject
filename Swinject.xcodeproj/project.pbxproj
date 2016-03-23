@@ -1360,7 +1360,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint\n  fi\nfi\n";
 		};
 		98AEB3B51BE7848C0009F188 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1374,7 +1374,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint\n  fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
