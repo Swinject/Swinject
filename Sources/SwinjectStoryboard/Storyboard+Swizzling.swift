@@ -31,8 +31,9 @@ extension Storyboard {
             static var token: dispatch_once_t = 0
         }
         dispatch_once(&Static.token) {
-            let original = class_getClassMethod(Storyboard.self, #selector(Storyboard.init(name:bundle:)))
-            let swizzled = class_getClassMethod(Storyboard.self, #selector(Storyboard.swinject_storyboardWithName(_:bundle:)))
+            // Do not use #selector for now to support Xcode 7.2 (Swift 2.1)
+            let original = class_getClassMethod(Storyboard.self, Selector("storyboardWithName:bundle:"))
+            let swizzled = class_getClassMethod(Storyboard.self, Selector("swinject_storyboardWithName:bundle:"))
             method_exchangeImplementations(original, swizzled)
         }
     }
