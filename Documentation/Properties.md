@@ -1,7 +1,9 @@
 # Properties
-Properties can be loaded from resources that are bundled with your application/framework.
-These properties can be used when assembling definitions in your container. There
-are 2 types of support property formats:
+
+Properties are values that can be loaded from resources that are bundled with your application/framework.
+Properties can then be used when assembling definitions in your container.
+
+There are 2 types of support property formats:
 
  - JSON (`JsonPropertyLoader`)
  - Plist (`PlistPropertyLoader`)
@@ -41,6 +43,7 @@ try! container.applyPropertyLoader(loader)
 ```
 
 Now you can inject properties into definitions registered into the container.
+
 Consider the following definition:
 
 ```swift

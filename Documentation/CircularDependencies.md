@@ -1,10 +1,10 @@
 # Circular Dependencies
 
-Circular Dependencies are dependencies of instances that depend on each other. To define Circular Dependencies by Swinject, either of the dependencies must be injected through the property.
+_Circular dependencies_ are dependencies of instances that depend on each other. To define circular dependencies in Swinject, one or other of the dependencies must be injected through a property.
 
 ## Initializer/Property Dependencies
 
-Assume that you have `Parent` and `Child` classes depending on each other. `Parent` depends on `ChildType` through its initializer, and `Child` on `ParentType` through its property. The back-reference from `Child` to `ParentType` is a weak property to avoid memory leak.
+Assume that you have `Parent` and `Child` classes depending on each other. `Parent` depends on `ChildType` through its initializer, and `Child` on `ParentType` through a property. The back-reference from `Child` to `ParentType` is a weak property to avoid a memory leak.
 
 ```swift
 protocol ParentType: AnyObject { }
@@ -37,11 +37,11 @@ container.register(ChildType.self) { _ in Child() }
     }
 ```
 
-Here the injection to the `parent` property of `Child` must be specified in the `initCompleted` callback to get rid of infinite recursive calls.
+Here the injection to the `parent` property of `Child` must be specified in the `initCompleted` callback to get avoid infinite recursion.
 
 ## Property/Property Dependencies
 
-Similarly, assume that you have the following classes depending through each property.
+Similarly, assume that you have the following classes depending on each other, each via a property.
 
 ```swift
 protocol ParentType: AnyObject { }
@@ -56,7 +56,7 @@ class Child: ChildType {
 }
 ```
 
-The Circular Dependencies are defined as below.
+The circular dependencies are defined as below:
 
 ```swift
 let container = Container()
@@ -72,11 +72,11 @@ container.register(ChildType.self) { _ in Child() }
     }
 ```
 
-Here the both or either of the depending properties must be specified in the `initCompleted` callback to get rid of infinite recursive calls.
+Here both or either of the depending properties must be specified in the `initCompleted` callback to avoid infinite recursivion.
 
 ## Initializer/Initializer Dependencies
 
-Not supported. This type of dependencies causes infinite recursive calls.
+_Not supported._ This type of dependency causes infinite recursion.
 
 _[Next page: Object Scopes](ObjectScopes.md)_
 

@@ -2,9 +2,9 @@
 
 ## Initializer Injection
 
-Initializer Injection is a pattern to pass dependencies to a dependent instance by its initializer. Initializer Injection is appropriate if the dependent instance cannot work without the dependencies.
+_Initializer injection_ is a pattern for passing  dependencies to a dependent instance by its initializers. Initializer injection is appropriate if the dependent instance cannot work without the dependencies.
 
-The following code defines Initializer Injection to `PetOwner`, which depends on `AnimalType`.
+The following code defines initializer injection to `PetOwner`, which depends on `AnimalType`:
 
 ```swift
 let container = Container()
@@ -40,13 +40,13 @@ class PetOwner: PersonType {
 }
 ```
 
-Note that the actual type of `AnimalType` passed to the initializer of `PetOwner` is automatically resolved by Swinject when `PetOwner` instance is created.
+Note that the actual type of `AnimalType` passed to the initializer of `PetOwner` is automatically resolved by Swinject when the `PetOwner` instance is created:
 
 ## Property Injection
 
-Property Injection is a pattern to pass a dependency to a dependent instance by its setter property. Property Injection is appropriate if the dependency is optional to the dependent instance.
+_Property injection_ is a pattern to pass a dependency to a dependent instance via a setter property. Property injection is appropriate if the dependency is optional to the dependent instance.
 
-The following code defines Property Injection to `PetOwner2`.
+The following code defines property injection to `PetOwner2`:
 
 ```swift
 let container = Container()
@@ -68,7 +68,7 @@ class PetOwner2: PersonType {
 }
 ```
 
-Or you can use <a name="initialization-callback">`initCompleted` callback</a> instead of defining the injection in the registration closure.
+Or, you can use <a name="initialization-callback">`initCompleted` callback</a> instead of defining the injection in the registration closure:
 
 ```swift
 let container = Container()
@@ -82,9 +82,9 @@ container.register(PersonType.self) { _ in PetOwner2() }
 
 ## Method Injection
 
-Method Injection is a similar pattern to Property Injection, but it uses a method to pass dependencies to a dependent instance.
+_Method injection_ is a similar pattern to _property injection_, but it uses a method to pass dependencies to a dependent instance.
 
-The following code defines Property Injection to `PetOwner3`.
+The following code defines Property Injection to `PetOwner3`:
 
 ```swift
 let container = Container()
@@ -110,7 +110,7 @@ class PetOwner3: PersonType {
 }
 ```
 
-Or you can use `initCompleted` callback instead of defining the injection in the registration closure.
+Or, you can use `initCompleted` callback instead of defining the injection in the registration closure:
 
 ```swift
 let container = Container()
