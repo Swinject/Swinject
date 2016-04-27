@@ -1,22 +1,24 @@
 # Storyboard
 
-Swinject supports dependency injection to view controllers instantiated by `SwinjectStoryboard`, which inherits `UIStoryboard` (or `NSStoryboard` in case of OS X). To register dependencies of a view controller, use `registerForStoryboard` method. In the same way as a registration of a service type, a view controller can be registered with or without a name.
+Swinject supports automatic dependency injection to view controllers instantiated by `SwinjectStoryboard`. This class inherits `UIStoryboard` (or `NSStoryboard` in case of OS X). To register dependencies of a view controller, use `registerForStoryboard` method. In the same way as a registration of a service type, a view controller can be registered with or without a name.
 
-**Note**: Do **NOT** explicitly resolve the view controllers registered by `registerForStoryboard` method. The view controllers are intended to be resolved by `SwinjectStoryboard` implicitly.
+**NOTE**: Do NOT explicitly resolve the view controllers registered by `registerForStoryboard` method. The view controllers are intended to be resolved by `SwinjectStoryboard` implicitly.
 
 ## Registration
 
 ### Registration without Name
 
-Here is an example to simply register a dependency of a view controller without a registration name.
+Here is a simple example to register a dependency of a view controller without a registration name:
 
-    let container = Container()
-    container.registerForStoryboard(AnimalViewController.self) { r, c in
-        c.animal = r.resolve(AnimalType.self)
-    }
-    container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+```swift
+let container = Container()
+container.registerForStoryboard(AnimalViewController.self) { r, c in
+    c.animal = r.resolve(AnimalType.self)
+}
+container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+```
 
-Then create an instance of `SwinjectStoryboard` with the container specified. If the container is not specified, `SwinjectStoryboard.defaultContainer` is used instead. `instantiateViewControllerWithIdentifier` method creates an instance of the view controller with its dependencies injected:
+Next, we create an instance of `SwinjectStoryboard` with the container specified. If the container is not specified, `SwinjectStoryboard.defaultContainer` is used instead. `instantiateViewControllerWithIdentifier` method creates an instance of the view controller with its dependencies injected:
 
 ```swift
 let sb = SwinjectStoryboard.create(
@@ -57,7 +59,7 @@ and the storyboard named `Animals.storyboard` has `AnimalViewController` with st
 
 ### Registration with Name
 
-If a storyboard has more than a view controller with the same type, dependencies should be registered with registration names.
+If a storyboard has more than one view controller with the same type, dependencies should be registered with registration names.
 
 ```swift
 let container = Container()
@@ -75,7 +77,7 @@ container.register(AnimalType.self, name: "hachi") {
 }
 ```
 
-Then view controllers are instantiated with storyboard IDs similarly to the case without registration names.
+Then view controllers are instantiated with storyboard IDs similarly to the case without registration names:
 
 ```swift
 let sb = SwinjectStoryboard.create(
@@ -154,7 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-Notice that you should delete `Main storyboard file base name` item (or `UIMainStoryboardFile` item if you are displaying raw keys/values) in `Info.plist` of your app.
+Notice that you should delete the `Main storyboard file base name` item (or `UIMainStoryboardFile` item if you are displaying raw keys/values) in `Info.plist` of your app.
 
 ## Storyboard References
 

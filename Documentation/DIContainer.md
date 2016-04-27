@@ -1,18 +1,21 @@
 # DI Container
 
-Dependency Injection (DI) Container manages dependencies of your system. First you register the way how the dependencies or actual types should be resolved. Then you use the DI container to get instances whose dependencies or actual types are resolved by the DI container. In Swinject, `Container` class represents the DI container.
+[Dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) (DI) is a software design pattern that uses [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control) (IoC) for resolving dependencies. A DI _container_ manages the type dependencies of your system. First, you register the  types that should be resolved, with their dependencies. Then you use the DI container to get instances of those types whose dependencies are then automatically resolved by the DI container. In Swinject, the `Container` class represents the DI container.
 
-In the field of Dependency Injection or Inversion of Control, different terms are used or terms are used differently. Swinject uses the following terms.
+Unfortunately, implementations of dependency injection often use slightly different terminology, which if not explained clearly in advance can cause confusion. In Swinject we define the following terms:
 
-* **Service**: Protocol defining an interface for a dependent type.
-* **Component**: Actual type implementing a service.
-* **Factory**: Function or closure instantiating a component type.
+* **Service**: A protocol defining an interface for a dependent type.
+* **Component**: An actual type implementing a service.
+* **Factory**: A function or closure instantiating a component.
+* **Container**: A collection of component instances.
 
-## Registration to DI Container
+Note the terms _service instance_ and _component instance_ mean the same thing, and are used interchangeably.
 
-A service resolved to a component is registered with `register` method of a component that takes the service type and a factory of the component. If the component depends on another service, `resolve` method can be used in the factory to inject the dependency. The actual type of the dependency will be resolved later when the component instance is created.
+## Registration in a DI Container
 
-Here is an example of the registration.
+A service and its corresponding component are registered with the `register` method of the container.  The method takes the service type for the component and a factory method. If the component depends on another service, the factory method can call `resolve` on the passed in resolver objection to "inject" the dependency. The actual underlying type of the dependency will determined later when the component instance is created.
+
+Here is an example of service registration.
 
 ```swift
 let container = Container()
@@ -51,7 +54,7 @@ class PetOwner: PersonType {
 }
 ```
 
-After you register the dependencies, you can get service instances from the container by calling `resolve` method. It returns resolved components as the specified service (protocol) types.
+After you register the components, you can get service instances from the container by calling the `resolve` method. It returns resolved components with the specified service (protocol) types.
 
 ```swift
 let animal = container.resolve(AnimalType.self)!
@@ -66,9 +69,9 @@ print(pet.name) // prints "Mimi"
 print(pet is Cat) // prints "true"
 ```
 
-Here the instances resolved by `resolve` method are unwrapped with `!` because it returns nil if no registration for the specified service type is found.
+Here the instances resolved by the `resolve` method are unwrapped with `!` because it returns `nil` if no registration for the specified service type is found.
 
-## Named Registration to DI Container
+## Named Registration in a DI Container
 
 If you would like to register two or more components for a service type, you can name the registrations to differentiate.
 
@@ -102,9 +105,9 @@ class Dog: AnimalType {
 }
 ```
 
-## Registration with Arguments to DI Container
+## Registration with Arguments in a DI Container
 
-A factory closure to register a service can take arguments that are passed when the service is resolved. When you register the service, the arguments can be specified after the `Resolvable` parameter (in the following example, it is unused as `_`).
+The factory closure passed to the `register` method can take arguments that are passed when the service is resolved. When you register the service, the arguments can be specified after the `Resolvable` parameter. Note that if the resolver is not use it can be given as `_` as in the following example (this is practice in  Swift):
 
 ```swift
 container.register(AnimalType.self) { _, name in
@@ -153,17 +156,17 @@ class Horse: AnimalType {
 
 ## Registration Keys
 
-A registration is stored in a container with an internally created key. The container tries to resolve a service that is registered with the key.
+A registration of the component for a given service is stored in a container with an internally created key. The container uses the key when trying to resolve a service dependency.
 
 The key consists of:
 
-* Type of the service
-* Name of the registration
-* Number and types of the arguments
+* The type of the service
+* The name of the registration
+* The number and types of the arguments
 
-If a registration matches an existing registration with all the parts of the key, the existing registration is overwritten with the new registration.
+If a registration matches an existing registration with all the parts of the key, the existing registration is _overwritten_ with the new registration.
 
-For example the following registrations can co-exist in a container because the service types are different.
+For example, the following registrations can co-exist in a container because the service _types_ are different:
 
 ```swift
 container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
@@ -172,21 +175,21 @@ container.register(PersonType.self) { r in
 }
 ```
 
-The following registrations can co-exist in a container because the registration names are different.
+The following registrations can co-exist in a container because the registration _names_ are different:
 
 ```swift
 container.register(AnimalType.self, name: "cat") { _ in Cat(name: "Mimi") }
 container.register(AnimalType.self, name: "dog") { _ in Dog(name: "Hachi") }
 ```
 
-The following registrations can co-exist in a container because the numbers of arguments are different. The first registration has no arguments, and the second has an argument.
+The following registrations can co-exist in a container because the _numbers of arguments_ are different. The first registration has no arguments, and the second has an argument:
 
 ```swift
 container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
 container.register(AnimalType.self) { _, name in Cat(name: name) }
 ```
 
-The following registrations can co-exist in a container because the types of arguments are different. The first registration has `String` and `Bool` types. The second registration has `Bool` and `String` types in the order.
+The following registrations can co-exist in a container because the _types of the arguments_ are different. The first registration has `String` and `Bool` types. The second registration has `Bool` and `String` types in the order:
 
 ```swift
 container.register(AnimalType.self) { _, name, running in

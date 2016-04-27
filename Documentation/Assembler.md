@@ -1,16 +1,19 @@
 # Modularizing Service Registration
+
 This feature provides your implementation the ability to group related service definitions together
 in an `AssemblyType`. This allows your application to:
 
-   - keep things organized by keeping like services in 1 place
-   - provided a shared `Container`
-   - allows registering different assembly configurations which is useful for swapping out mock implementations
-   - can be "load aware" when the container is fully configured
+   - Keep things organized by keeping like services in one place.
+   - Provide a shared `Container`.
+   - Allow registering different assembly configurations, which is useful for swapping in mock implementations.
+   - To be notified when the container is fully configured.
 
-This feature is an opinionated way to how your can register services in your `Container`. There are
-parts to this feature:
+This feature is an opinionated way to how your can register services in your `Container` and using it is not required.
+
+There are several parts to this feature.
 
 ## AssemblyType
+
 The `AssemblyType` is a protocol that is provided a shared `Container` where service definitions
 can be registered. The shared `Container` will contain **all** service definitions from every
 `AssemblyType` registered to the `Assembler`. Let's look at an example:
@@ -45,6 +48,7 @@ doesn't care where the `FooServiceType` and `BarServiceType` are registered, it 
 be registered else where.
 
 ### Load aware
+
 The `AssemblyType` allows the assembly to be aware when the container has been fully loaded
 by the `Assembler`.
 
@@ -107,8 +111,9 @@ class LoggerAssembly: AssemblyType {
 ```
 
 ## Assembler
+
 The `Assembler` is responsible for managing the `AssemblyType` instances and the `Container`. Using
-the `Assembler` the `Container` is only exposed to assemblies registered with the assembler and
+the `Assembler`, the `Container` is only exposed to assemblies registered with the assembler and
 only provides your application access via the `ResolverType` protocol which limits registration
 access strictly to the assemblies.
 
@@ -149,6 +154,7 @@ assembler.applyPropertyLoader(
 ```
 
 ## IMPORTANT:
+
  - You **MUST** hold a strong reference to the `Assembler` otherwise the `Container`
    will be deallocated along with your assembler
 

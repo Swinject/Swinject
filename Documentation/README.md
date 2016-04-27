@@ -1,6 +1,6 @@
 # Documentation
 
-Swinject is a lightweight dependency injection framework for Swift apps. It helps your app split into loosely-coupled components, which can be maintained and tested more easily. Swinject <a name="pure-swift-type-support">supports pure Swift types</a>, and is powered by the Swift generic type system and first class functions to simply define dependencies of types in your app.
+Swinject is a lightweight dependency injection framework for Swift apps. It allows you to split your app into loosely-coupled components, which can then be maintained and tested more easily. Swinject <a name="pure-swift-type-support">supports pure Swift types</a>, and is powered by the Swift generic type system and [first class functions](https://en.wikipedia.org/wiki/First-class_function).  This makes it syntactically elegant and simple to define the object dependencies for your app.
 
 ## Table of Contents
 

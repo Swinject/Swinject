@@ -1,6 +1,6 @@
 # Thread Safety
 
-Swinject is designed to be used in concurrent applications. `Container` is not thread safe, but its `synchronize` method returns a thread safe view to the container as `Resolvable` type.
+Swinject is designed to be used in concurrent applications. `Container` itself is not thread safe, but its `synchronize` method returns a thread safe view to the container as `Resolvable` type.
 
 ```swift
 let container = Container()
