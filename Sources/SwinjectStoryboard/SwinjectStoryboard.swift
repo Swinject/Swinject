@@ -88,12 +88,14 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         let registrationName = viewController.swinjectRegistrationName
 
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
-        // The actual controller type is distinguished by the dynamic type name in `nameWithActualType`.
-        //
-        // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too:
-        //    container.resolve(controller.dynamicType, argument: controller as Container.Controller, name: registrationName)
-        let nameWithActualType = String(reflecting: viewController.dynamicType) + ":" + (registrationName ?? "")
-        container.value.resolve(Container.Controller.self, name: nameWithActualType, argument: viewController as Container.Controller)
+        // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too.
+        if let container = container.value as? _Resolvable {
+            let option = SwinjectStoryboardOption(controllerType: viewController.dynamicType)
+            typealias FactoryType = (Resolvable, Container.Controller) -> Container.Controller
+            container._resolve(name: registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, viewController) }
+        } else {
+            fatalError("A type conforming Resolvable protocol must conform _Resolvable protocol too.")
+        }
 
         for child in viewController.childViewControllers {
             injectDependency(child)
@@ -118,12 +120,14 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         let registrationName = (controller as? RegistrationNameAssociatable)?.swinjectRegistrationName
         
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
-        // The actual controller type is distinguished by the dynamic type name in `nameWithActualType`.
-        //
         // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too:
-        //    container.resolve(controller.dynamicType, argument: controller as Container.Controller, name: registrationName)
-        let nameWithActualType = String(reflecting: controller.dynamicType) + ":" + (registrationName ?? "")
-        container.value.resolve(Container.Controller.self, name: nameWithActualType, argument: controller as Container.Controller)
+        if let container = container.value as? _Resolvable {
+            let option = SwinjectStoryboardOption(controllerType: controller.dynamicType)
+            typealias FactoryType = (Resolvable, Container.Controller) -> Container.Controller
+            container._resolve(name: registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, controller) }
+        } else {
+            fatalError("A type conforming Resolvable protocol must conform _Resolvable protocol too.")
+        }
         
         if let viewController = controller as? NSViewController {
             for child in viewController.childViewControllers {

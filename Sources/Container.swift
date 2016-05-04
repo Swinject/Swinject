@@ -69,11 +69,16 @@ public final class Container {
         name: String? = nil,
         factory: Resolvable -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
-    internal func registerImpl<Service, Factory>(serviceType: Service.Type, factory: Factory, name: String?) -> ServiceEntry<Service> {
-        let key = ServiceKey(factoryType: factory.dynamicType, name: name)
+    internal func _register<Service, Factory>(
+        serviceType: Service.Type,
+        factory: Factory,
+        name: String? = nil,
+        option: ServiceKeyOptionType? = nil) -> ServiceEntry<Service>
+    {
+        let key = ServiceKey(factoryType: factory.dynamicType, name: name, option: option)
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
         services[key] = entry
         return entry
@@ -85,6 +90,42 @@ public final class Container {
     /// - Returns: A synchronized container as `Resolvable`.
     public func synchronize() -> Resolvable {
         return SynchronizedResolver(container: self)
+    }
+}
+
+// MARK: - _Resolvable
+extension Container: _Resolvable {
+    public func _resolve<Service, Factory>(name name: String?, option: ServiceKeyOptionType? = nil, invoker: Factory -> Service) -> Service? {
+        resolutionPool.incrementDepth()
+        defer { resolutionPool.decrementDepth() }
+        
+        var resolvedInstance: Service?
+        let key = ServiceKey(factoryType: Factory.self, name: name, option: option)
+        if let (entry, fromParent) = getEntry(key) as (ServiceEntry<Service>, Bool)? {
+            switch entry.objectScope {
+            case .None, .Graph:
+                resolvedInstance = resolveEntry(entry, key: key, invoker: invoker)
+            case .Container:
+                let ownEntry: ServiceEntry<Service>
+                if fromParent {
+                    ownEntry = entry.copyExceptInstance()
+                    services[key] = ownEntry
+                } else {
+                    ownEntry = entry
+                }
+                
+                if ownEntry.instance == nil {
+                    ownEntry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
+                }
+                resolvedInstance = ownEntry.instance as? Service
+            case .Hierarchy:
+                if entry.instance == nil {
+                    entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
+                }
+                resolvedInstance = entry.instance as? Service
+            }
+        }
+        return resolvedInstance
     }
 }
 
@@ -115,40 +156,7 @@ extension Container: Resolvable {
         name: String?) -> Service?
     {
         typealias FactoryType = Resolvable -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self) }
-    }
-    
-    internal func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
-        resolutionPool.incrementDepth()
-        defer { resolutionPool.decrementDepth() }
-        
-        var resolvedInstance: Service?
-        let key = ServiceKey(factoryType: Factory.self, name: name)
-        if let (entry, fromParent) = getEntry(key) as (ServiceEntry<Service>, Bool)? {
-            switch entry.objectScope {
-            case .None, .Graph:
-                resolvedInstance = resolveEntry(entry, key: key, invoker: invoker)
-            case .Container:
-                let ownEntry: ServiceEntry<Service>
-                if fromParent {
-                    ownEntry = entry.copyExceptInstance()
-                    services[key] = ownEntry
-                } else {
-                    ownEntry = entry
-                }
-                
-                if ownEntry.instance == nil {
-                    ownEntry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
-                }
-                resolvedInstance = ownEntry.instance as? Service
-            case .Hierarchy:
-                if entry.instance == nil {
-                    entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
-                }
-                resolvedInstance = entry.instance as? Service
-            }
-        }
-        return resolvedInstance
+        return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }
     
     private func getEntry<Service>(key: ServiceKey) -> (ServiceEntry<Service>, Bool)? {
@@ -182,5 +190,14 @@ extension Container: Resolvable {
             completed(self, resolvedInstance)
         }
         return resolvedInstance
+    }
+}
+
+// MARK: CustomStringConvertible
+extension Container: CustomStringConvertible {
+    public var description: String {
+        return "["
+            + services.map { "\n    { \($1.describeWithKey($0)) }" }.joinWithSeparator(",")
+        + "\n]"
     }
 }
