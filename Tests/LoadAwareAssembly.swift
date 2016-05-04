@@ -10,10 +10,10 @@ import Swinject
 
 
 class LoadAwareAssembly: AssemblyType {
-    var onLoad: (ResolverType) -> Void
+    var onLoad: (Resolvable) -> Void
     var loaded = false
     
-    init(onLoad: (ResolverType) -> Void) {
+    init(onLoad: (Resolvable) -> Void) {
         self.onLoad = onLoad
     }
     
@@ -23,7 +23,7 @@ class LoadAwareAssembly: AssemblyType {
         }
     }
     
-    func loaded(resolver: ResolverType) {
+    func loaded(resolver: Resolvable) {
         onLoad(resolver)
         loaded = true
     }

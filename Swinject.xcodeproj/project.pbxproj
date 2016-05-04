@@ -57,10 +57,6 @@
 		90E70A491C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A481C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift */; };
 		90E70A4A1C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A481C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift */; };
 		90E70A4B1C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A481C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift */; };
-		90E70A551C16837300F12C2A /* PropertyRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A541C16837300F12C2A /* PropertyRetrievable.swift */; };
-		90E70A561C16884D00F12C2A /* PropertyRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A541C16837300F12C2A /* PropertyRetrievable.swift */; };
-		90E70A571C16885200F12C2A /* PropertyRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A541C16837300F12C2A /* PropertyRetrievable.swift */; };
-		90E70A581C16885800F12C2A /* PropertyRetrievable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A541C16837300F12C2A /* PropertyRetrievable.swift */; };
 		90E70A5A1C17279300F12C2A /* PropertyLoaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A591C17279300F12C2A /* PropertyLoaderError.swift */; };
 		90E70A5B1C17279300F12C2A /* PropertyLoaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A591C17279300F12C2A /* PropertyLoaderError.swift */; };
 		90E70A5C1C17279300F12C2A /* PropertyLoaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E70A591C17279300F12C2A /* PropertyLoaderError.swift */; };
@@ -218,6 +214,10 @@
 		98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; };
 		98B012C01B82F68E00053A32 /* Resolvable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolvable.swift */; };
+		98C363361CD9EEE3005E7071 /* Container+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C363351CD9EEE3005E7071 /* Container+Properties.swift */; };
+		98C363371CD9EEE3005E7071 /* Container+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C363351CD9EEE3005E7071 /* Container+Properties.swift */; };
+		98C363381CD9EEE3005E7071 /* Container+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C363351CD9EEE3005E7071 /* Container+Properties.swift */; };
+		98C363391CD9EEE3005E7071 /* Container+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C363351CD9EEE3005E7071 /* Container+Properties.swift */; };
 		98D06D371B6B579F0081AFE0 /* Animals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D361B6B579F0081AFE0 /* Animals.storyboard */; };
 		98D06D3D1B6B816C0081AFE0 /* AnimalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */; };
 		98D06D491B6CB79B0081AFE0 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */; };
@@ -405,7 +405,7 @@
 		90B029781C185B1600A6A521 /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		90B0297E1C18666200A6A521 /* AssemblerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblerSpec.swift; sourceTree = "<group>"; };
 		90B029821C18670000A6A521 /* BasicAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAssembly.swift; sourceTree = "<group>"; };
-		90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadAwareAssembly.swift; sourceTree = "<group>"; };
+		90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LoadAwareAssembly.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		90D409F31C14E5F9009DF1B1 /* PropertyLoaderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyLoaderType.swift; sourceTree = "<group>"; };
 		90D409F51C14E69F009DF1B1 /* JsonPropertyLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonPropertyLoader.swift; sourceTree = "<group>"; };
 		90E70A1B1C14F77D00F12C2A /* first.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = first.json; sourceTree = "<group>"; };
@@ -416,7 +416,6 @@
 		90E70A401C15461600F12C2A /* second.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = second.plist; sourceTree = "<group>"; };
 		90E70A441C1549A000F12C2A /* JsonPropertyLoaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonPropertyLoaderSpec.swift; sourceTree = "<group>"; };
 		90E70A481C154A7D00F12C2A /* PlistPropertyLoaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistPropertyLoaderSpec.swift; sourceTree = "<group>"; };
-		90E70A541C16837300F12C2A /* PropertyRetrievable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyRetrievable.swift; sourceTree = "<group>"; };
 		90E70A591C17279300F12C2A /* PropertyLoaderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyLoaderError.swift; sourceTree = "<group>"; };
 		90E70A671C172DB200F12C2A /* invalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid.json; sourceTree = "<group>"; };
 		9809A75E1B6B5288005E037E /* SwinjectStoryboardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboardSpec.swift; sourceTree = "<group>"; };
@@ -508,6 +507,7 @@
 		98B012BA1B82D6A400053A32 /* Container.Arguments.erb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Container.Arguments.erb; sourceTree = "<group>"; };
 		98B012BE1B82F68E00053A32 /* Resolvable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolvable.swift; sourceTree = "<group>"; };
 		98B012C11B82F70A00053A32 /* Resolvable.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resolvable.erb; sourceTree = "<group>"; };
+		98C363351CD9EEE3005E7071 /* Container+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+Properties.swift"; sourceTree = "<group>"; };
 		98D06D361B6B579F0081AFE0 /* Animals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Animals.storyboard; sourceTree = "<group>"; };
 		98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalViewController.swift; sourceTree = "<group>"; };
 		98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
@@ -656,9 +656,9 @@
 				98B012C11B82F70A00053A32 /* Resolvable.erb */,
 				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
 				98F2F7721C07E788009571E6 /* Box.swift */,
+				98C363351CD9EEE3005E7071 /* Container+Properties.swift */,
 				90E70A591C17279300F12C2A /* PropertyLoaderError.swift */,
 				90D409F31C14E5F9009DF1B1 /* PropertyLoaderType.swift */,
-				90E70A541C16837300F12C2A /* PropertyRetrievable.swift */,
 				90D409F51C14E69F009DF1B1 /* JsonPropertyLoader.swift */,
 				90E70A271C153A7400F12C2A /* PlistPropertyLoader.swift */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
@@ -1383,7 +1383,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90E70A561C16884D00F12C2A /* PropertyRetrievable.swift in Sources */,
 				90E70A2F1C15428B00F12C2A /* PropertyLoaderType.swift in Sources */,
 				90E70A301C15428B00F12C2A /* JsonPropertyLoader.swift in Sources */,
 				90E70A2C1C15427300F12C2A /* PlistPropertyLoader.swift in Sources */,
@@ -1394,6 +1393,7 @@
 				90E70A5B1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				9880E70F1C09EE2900ED5293 /* FunctionType.swift in Sources */,
+				98C363371CD9EEE3005E7071 /* Container+Properties.swift in Sources */,
 				984E8A821C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				98B012C01B82F68E00053A32 /* Resolvable.swift in Sources */,
 				90B0297A1C185B1600A6A521 /* Assembler.swift in Sources */,
@@ -1458,9 +1458,9 @@
 				984774F01C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				981577F41B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */,
+				98C363361CD9EEE3005E7071 /* Container+Properties.swift in Sources */,
 				98F2F7731C07E789009571E6 /* Box.swift in Sources */,
 				984E8A811C319F090039943D /* SwinjectStoryboard.swift in Sources */,
-				90E70A551C16837300F12C2A /* PropertyRetrievable.swift in Sources */,
 				90D409F61C14E69F009DF1B1 /* JsonPropertyLoader.swift in Sources */,
 				981899E41B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B81B82D67300053A32 /* Container.Arguments.swift in Sources */,
@@ -1512,7 +1512,6 @@
 			files = (
 				984E8A7F1C319F090039943D /* Storyboard+Swizzling.swift in Sources */,
 				984E8A871C319F090039943D /* SwinjectStoryboardType.swift in Sources */,
-				90E70A571C16885200F12C2A /* PropertyRetrievable.swift in Sources */,
 				90E70A311C15429000F12C2A /* PropertyLoaderType.swift in Sources */,
 				90E70A321C15429000F12C2A /* JsonPropertyLoader.swift in Sources */,
 				90E70A2D1C15427900F12C2A /* PlistPropertyLoader.swift in Sources */,
@@ -1525,6 +1524,7 @@
 				98F2F7751C07E789009571E6 /* Box.swift in Sources */,
 				984E8A8B1C319F090039943D /* ViewController+Swinject.swift in Sources */,
 				985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */,
+				98C363381CD9EEE3005E7071 /* Container+Properties.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				90E70A5C1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 				90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */,
@@ -1543,7 +1543,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				90B0297D1C185B2200A6A521 /* AssemblyType.swift in Sources */,
-				90E70A581C16885800F12C2A /* PropertyRetrievable.swift in Sources */,
 				90E70A331C15429600F12C2A /* PropertyLoaderType.swift in Sources */,
 				90E70A341C15429600F12C2A /* JsonPropertyLoader.swift in Sources */,
 				90E70A2E1C15428200F12C2A /* PlistPropertyLoader.swift in Sources */,
@@ -1553,6 +1552,7 @@
 				9880E7111C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
 				984774F31C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
+				98C363391CD9EEE3005E7071 /* Container+Properties.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolvable.swift in Sources */,
 				984E8A841C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
