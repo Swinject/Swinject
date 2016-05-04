@@ -14,7 +14,7 @@ public class Assembler {
     private let container: Container
     
     /// expose the container as a resolver so `Service` registration only happens within an assembly
-    public var resolver: ResolverType {
+    public var resolver: Resolvable {
         return container
     }
     
