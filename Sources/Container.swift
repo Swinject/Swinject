@@ -93,36 +93,8 @@ public final class Container {
     }
 }
 
-// MARK: - Resolvable
-extension Container: Resolvable {
-    /// Retrieves the instance with the specified service type.
-    ///
-    /// - Parameter serviceType: The service type to resolve.
-    ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type is found in the `Container`.
-    public func resolve<Service>(
-        serviceType: Service.Type) -> Service?
-    {
-        return resolve(serviceType, name: nil)
-    }
-    
-    
-    
-    /// Retrieves the instance with the specified service type and registration name.
-    ///
-    /// - Parameters:
-    ///   - serviceType: The service type to resolve.
-    ///   - name:        The registration name.
-    ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name is found in the `Container`.
-    public func resolve<Service>(
-        serviceType: Service.Type,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = Resolvable -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self) }
-    }
-    
+// MARK: - _Resolvable
+extension Container: _Resolvable {
     public func _resolve<Service, Factory>(name name: String?, option: ServiceKeyOptionType? = nil, invoker: Factory -> Service) -> Service? {
         resolutionPool.incrementDepth()
         defer { resolutionPool.decrementDepth() }
@@ -154,6 +126,37 @@ extension Container: Resolvable {
             }
         }
         return resolvedInstance
+    }
+}
+
+// MARK: - Resolvable
+extension Container: Resolvable {
+    /// Retrieves the instance with the specified service type.
+    ///
+    /// - Parameter serviceType: The service type to resolve.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type is found in the `Container`.
+    public func resolve<Service>(
+        serviceType: Service.Type) -> Service?
+    {
+        return resolve(serviceType, name: nil)
+    }
+    
+    
+    
+    /// Retrieves the instance with the specified service type and registration name.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
+    ///   - name:        The registration name.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name is found in the `Container`.
+    public func resolve<Service>(
+        serviceType: Service.Type,
+        name: String?) -> Service?
+    {
+        typealias FactoryType = Resolvable -> Service
+        return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }
     
     private func getEntry<Service>(key: ServiceKey) -> (ServiceEntry<Service>, Bool)? {

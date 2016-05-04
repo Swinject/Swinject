@@ -89,9 +89,13 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
 
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
         // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too.
-        let option = SwinjectStoryboardOption(controllerType: viewController.dynamicType)
-        typealias FactoryType = (Resolvable, Container.Controller) -> Container.Controller
-        container.value._resolve(name: registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, viewController) }
+        if let container = container.value as? _Resolvable {
+            let option = SwinjectStoryboardOption(controllerType: viewController.dynamicType)
+            typealias FactoryType = (Resolvable, Container.Controller) -> Container.Controller
+            container._resolve(name: registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, viewController) }
+        } else {
+            fatalError("A type conforming Resolvable protocol must conform _Resolvable protocol too.")
+        }
 
         for child in viewController.childViewControllers {
             injectDependency(child)
@@ -117,9 +121,13 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
         // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too:
-        let option = SwinjectStoryboardOption(controllerType: controller.dynamicType)
-        typealias FactoryType = (Resolvable, Container.Controller) -> Container.Controller
-        container.value._resolve(name: registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, controller) }
+        if let container = container.value as? _Resolvable {
+            let option = SwinjectStoryboardOption(controllerType: controller.dynamicType)
+            typealias FactoryType = (Resolvable, Container.Controller) -> Container.Controller
+            container._resolve(name: registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, controller) }
+        } else {
+            fatalError("A type conforming Resolvable protocol must conform _Resolvable protocol too.")
+        }
         
         if let viewController = controller as? NSViewController {
             for child in viewController.childViewControllers {
