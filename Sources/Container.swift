@@ -184,3 +184,12 @@ extension Container: Resolvable {
         return resolvedInstance
     }
 }
+
+// MARK: CustomStringConvertible
+extension Container: CustomStringConvertible {
+    public var description: String {
+        return "["
+            + services.map { "\n    { \($1.describe(name: $0.name)) }" }.joinWithSeparator(",")
+            + "\n]"
+    }
+}

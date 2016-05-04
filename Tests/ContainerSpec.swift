@@ -530,5 +530,62 @@ class ContainerSpec: QuickSpec {
             
         }
 
+        describe("CustomStringConvertible") {
+            it("describes empty description without service registrations.") {
+                expect(container.description) == "[\n]"
+            }
+            it("describes a registration.") {
+                container.register(AnimalType.self) { _ in Cat() }
+                
+                expect(container.description) ==
+                    "[\n"
+                    + "    { Service: AnimalType, Factory: Resolvable -> AnimalType, ObjectScope: Graph }\n"
+                    + "]"
+            }
+            it("describes a registration with name.") {
+                container.register(AnimalType.self, name: "My Cat") { _ in Cat() }
+                
+                expect(container.description) ==
+                    "[\n"
+                    + "    { Service: AnimalType, Name: \"My Cat\", Factory: Resolvable -> AnimalType, ObjectScope: Graph }\n"
+                    + "]"
+            }
+            it("describes a registration with arguments.") {
+                container.register(AnimalType.self) { _, arg1, arg2 in Cat(name: arg1, sleeping: arg2) }
+                
+                expect(container.description) ==
+                    "[\n"
+                    + "    { Service: AnimalType, Factory: (Resolvable, String, Bool) -> AnimalType, ObjectScope: Graph }\n"
+                    + "]"
+            }
+            it("describes a registration with a specified object scope.") {
+                container.register(AnimalType.self) { _ in Cat() }
+                    .inObjectScope(.Container)
+                
+                expect(container.description) ==
+                    "[\n"
+                    + "    { Service: AnimalType, Factory: Resolvable -> AnimalType, ObjectScope: Container }\n"
+                    + "]"
+            }
+            it("describes a registration with initCompleted.") {
+                container.register(AnimalType.self) { _ in Cat() }
+                    .initCompleted { _, _ in }
+                
+                expect(container.description) ==
+                    "[\n"
+                    + "    { Service: AnimalType, Factory: Resolvable -> AnimalType, ObjectScope: Graph, InitCompleted: Specified }\n"
+                    + "]"
+            }
+            it("describes multiple registrations.") {
+                container.register(AnimalType.self, name: "1") { _ in Cat() }
+                container.register(AnimalType.self, name: "2") { _ in Cat() }
+                
+                expect(container.description) ==
+                    "[\n"
+                    + "    { Service: AnimalType, Name: \"1\", Factory: Resolvable -> AnimalType, ObjectScope: Graph },\n"
+                    + "    { Service: AnimalType, Name: \"2\", Factory: Resolvable -> AnimalType, ObjectScope: Graph }\n"
+                    + "]"
+            }
+        }
     }
 }
