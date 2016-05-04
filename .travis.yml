@@ -35,6 +35,7 @@ before_install:
 script:
   - set -o pipefail
   - xcodebuild -version
+  - open -b com.apple.iphonesimulator # Workaround https://github.com/travis-ci/travis-ci/issues/3040
   - xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" 
     -configuration Debug ONLY_ACTIVE_ARCH=NO $ACTION | xcpretty -c
   - xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" 
