@@ -114,7 +114,6 @@
 		985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
 		985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F31B676BF700BF686B /* ResolutionPool.swift */; };
 		985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
-		985011231BBE7E8900A2CCFC /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; };
 		985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		985011251BBE7E8900A2CCFC /* ResolverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* ResolverType.swift */; };
 		9855C5BF1B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
@@ -132,7 +131,6 @@
 		98689C9B1BBFC7EB0005C6D3 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
 		98689C9C1BBFC7EB0005C6D3 /* ResolutionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F31B676BF700BF686B /* ResolutionPool.swift */; };
 		98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
-		98689C9E1BBFC7EB0005C6D3 /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; };
 		98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98689CA01BBFC7EB0005C6D3 /* ResolverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* ResolverType.swift */; };
 		98689CB61BBFD5110005C6D3 /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
@@ -146,8 +144,6 @@
 		98689CBE1BBFD5110005C6D3 /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */; };
 		98689CBF1BBFD5110005C6D3 /* ResolutionPoolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */; };
 		98689CD51BBFDEBC0005C6D3 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98689C7F1BBFC7A50005C6D3 /* Swinject.framework */; };
-		986A582F1B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; };
-		986A58301B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */; };
 		9878C6381B65C9E000CBEFEF /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
 		9878C6391B65C9E000CBEFEF /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
 		9878C63C1B65CA8700CBEFEF /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
@@ -168,10 +164,6 @@
 		98C363371CD9EEE3005E7071 /* Container+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C363351CD9EEE3005E7071 /* Container+Properties.swift */; };
 		98C363381CD9EEE3005E7071 /* Container+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C363351CD9EEE3005E7071 /* Container+Properties.swift */; };
 		98C363391CD9EEE3005E7071 /* Container+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C363351CD9EEE3005E7071 /* Container+Properties.swift */; };
-		98F2F7731C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
-		98F2F7741C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
-		98F2F7751C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
-		98F2F7761C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -403,7 +395,6 @@
 		98689C791BBFC77F0005C6D3 /* tvOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		98689C7F1BBFC7A50005C6D3 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98689C881BBFC7A60005C6D3 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationNameAssociatable.swift; sourceTree = "<group>"; };
 		9878C6371B65C9E000CBEFEF /* AnimalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalType.swift; sourceTree = "<group>"; };
 		9878C63B1B65CA8700CBEFEF /* PersonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonType.swift; sourceTree = "<group>"; };
 		9880E70D1C09EE2800ED5293 /* FunctionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionType.swift; sourceTree = "<group>"; };
@@ -431,7 +422,6 @@
 		98B012BE1B82F68E00053A32 /* ResolverType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolverType.swift; sourceTree = "<group>"; };
 		98B012C11B82F70A00053A32 /* ResolverType.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = ResolverType.erb; sourceTree = "<group>"; };
 		98C363351CD9EEE3005E7071 /* Container+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+Properties.swift"; sourceTree = "<group>"; };
-		98F2F7721C07E788009571E6 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -561,11 +551,9 @@
 				985BAFA81B625E0F0055F998 /* ServiceEntry.swift */,
 				981577F31B676BF700BF686B /* ResolutionPool.swift */,
 				9819701E1B6145D600EEB942 /* ObjectScope.swift */,
-				986A582E1B6CFA3400FE710F /* RegistrationNameAssociatable.swift */,
 				984BE3121CDA3FCF00BCF2AC /* _ResolverType.swift */,
 				98B012C11B82F70A00053A32 /* ResolverType.erb */,
 				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
-				98F2F7721C07E788009571E6 /* Box.swift */,
 				98C363351CD9EEE3005E7071 /* Container+Properties.swift */,
 				90E70A591C17279300F12C2A /* PropertyLoaderError.swift */,
 				90D409F31C14E5F9009DF1B1 /* PropertyLoaderType.swift */,
@@ -1198,7 +1186,6 @@
 				90E70A2C1C15427300F12C2A /* PlistPropertyLoader.swift in Sources */,
 				983B98321C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
-				98F2F7741C07E789009571E6 /* Box.swift in Sources */,
 				90E70A5B1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				9880E70F1C09EE2900ED5293 /* FunctionType.swift in Sources */,
@@ -1211,7 +1198,6 @@
 				98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */,
 				9884E2A81B60B77400120259 /* ServiceKey.swift in Sources */,
 				984BE3141CDA3FCF00BCF2AC /* _ResolverType.swift in Sources */,
-				986A58301B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */,
 				981970201B6145D600EEB942 /* ObjectScope.swift in Sources */,
 				984774FB1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 			);
@@ -1247,7 +1233,6 @@
 			files = (
 				90E70A2B1C15426C00F12C2A /* PlistPropertyLoader.swift in Sources */,
 				90D409F41C14E5F9009DF1B1 /* PropertyLoaderType.swift in Sources */,
-				986A582F1B6CFA3400FE710F /* RegistrationNameAssociatable.swift in Sources */,
 				983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
 				9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */,
@@ -1256,7 +1241,6 @@
 				981577F41B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* ResolverType.swift in Sources */,
 				98C363361CD9EEE3005E7071 /* Container+Properties.swift in Sources */,
-				98F2F7731C07E789009571E6 /* Box.swift in Sources */,
 				90D409F61C14E69F009DF1B1 /* JsonPropertyLoader.swift in Sources */,
 				981899E41B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B81B82D67300053A32 /* Container.Arguments.swift in Sources */,
@@ -1301,12 +1285,10 @@
 				90E70A321C15429000F12C2A /* JsonPropertyLoader.swift in Sources */,
 				90E70A2D1C15427900F12C2A /* PlistPropertyLoader.swift in Sources */,
 				983B98331C06ECB2006A23D4 /* SpinLock.swift in Sources */,
-				985011231BBE7E8900A2CCFC /* RegistrationNameAssociatable.swift in Sources */,
 				9880E7101C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */,
 				985011251BBE7E8900A2CCFC /* ResolverType.swift in Sources */,
 				9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */,
-				98F2F7751C07E789009571E6 /* Box.swift in Sources */,
 				985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */,
 				98C363381CD9EEE3005E7071 /* Container+Properties.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
@@ -1329,7 +1311,6 @@
 				90E70A331C15429600F12C2A /* PropertyLoaderType.swift in Sources */,
 				90E70A341C15429600F12C2A /* JsonPropertyLoader.swift in Sources */,
 				90E70A2E1C15428200F12C2A /* PlistPropertyLoader.swift in Sources */,
-				98689C9E1BBFC7EB0005C6D3 /* RegistrationNameAssociatable.swift in Sources */,
 				983B98341C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				9880E7111C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
@@ -1337,7 +1318,6 @@
 				98C363391CD9EEE3005E7071 /* Container+Properties.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* ResolverType.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
-				98F2F7761C07E789009571E6 /* Box.swift in Sources */,
 				98689C9C1BBFC7EB0005C6D3 /* ResolutionPool.swift in Sources */,
 				98689C9A1BBFC7EB0005C6D3 /* ServiceKey.swift in Sources */,
 				90B0297C1C185B1600A6A521 /* Assembler.swift in Sources */,
