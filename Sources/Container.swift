@@ -72,7 +72,20 @@ public final class Container {
         return _register(serviceType, factory: factory, name: name)
     }
 
-    internal func _register<Service, Factory>(
+    /// This method is designed for the use to extend Swinject functionality.
+    /// Do NOT use this method unless you intend to write an extension or plugin to Swinject framework.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to register.
+    ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
+    ///                  It is invoked when the `Container` needs to instantiate the instance.
+    ///                  It takes a `ResolverType` to inject dependencies to the instance,
+    ///                  and returns the instance of the component type for the service.
+    ///   - name:        A registration name.
+    ///   - option:      A service key option for an extension/plugin.
+    ///
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    public func _register<Service, Factory>(
         serviceType: Service.Type,
         factory: Factory,
         name: String? = nil,
