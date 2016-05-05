@@ -52,7 +52,7 @@ public final class ServiceEntry<Service> {
     /// - Parameter completed: The closure to be called after the instantiation of the registered service.
     ///
     /// - Returns: `self` to add another configuration fluently.
-    public func initCompleted(completed: (Resolvable, Service) -> ()) -> Self {
+    public func initCompleted(completed: (ResolverType, Service) -> ()) -> Self {
         initCompleted = completed
         return self
     }
