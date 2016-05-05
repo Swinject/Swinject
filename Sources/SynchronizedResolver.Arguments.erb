@@ -16,7 +16,7 @@
 
 <% arg_count = 9 %>
 
-// MARK: - Resolvable with Arguments
+// MARK: - ResolverType with Arguments
 extension SynchronizedResolver {
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>

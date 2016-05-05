@@ -60,14 +60,14 @@ public final class Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: Resolvable -> Service) -> ServiceEntry<Service>
+        factory: ResolverType -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -85,16 +85,16 @@ public final class Container {
     }
     
     /// Returns a synchronized view of the container for thread safety.
-    /// The returned container is `Resolvable` type. Call this method after you finish all service registrations to the original container.
+    /// The returned container is `ResolverType` type. Call this method after you finish all service registrations to the original container.
     ///
-    /// - Returns: A synchronized container as `Resolvable`.
-    public func synchronize() -> Resolvable {
+    /// - Returns: A synchronized container as `ResolverType`.
+    public func synchronize() -> ResolverType {
         return SynchronizedResolver(container: self)
     }
 }
 
-// MARK: - _Resolvable
-extension Container: _Resolvable {
+// MARK: - _ResolverType
+extension Container: _ResolverType {
     public func _resolve<Service, Factory>(name name: String?, option: ServiceKeyOptionType? = nil, invoker: Factory -> Service) -> Service? {
         resolutionPool.incrementDepth()
         defer { resolutionPool.decrementDepth() }
@@ -129,8 +129,8 @@ extension Container: _Resolvable {
     }
 }
 
-// MARK: - Resolvable
-extension Container: Resolvable {
+// MARK: - ResolverType
+extension Container: ResolverType {
     /// Retrieves the instance with the specified service type.
     ///
     /// - Parameter serviceType: The service type to resolve.
@@ -155,7 +155,7 @@ extension Container: Resolvable {
         serviceType: Service.Type,
         name: String?) -> Service?
     {
-        typealias FactoryType = Resolvable -> Service
+        typealias FactoryType = ResolverType -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }
     
@@ -186,7 +186,7 @@ extension Container: Resolvable {
             resolutionPool[key] = resolvedInstance as Any
         }
         
-        if let completed = entry.initCompleted as? (Resolvable, Service) -> () {
+        if let completed = entry.initCompleted as? (ResolverType, Service) -> () {
             completed(self, resolvedInstance)
         }
         return resolvedInstance

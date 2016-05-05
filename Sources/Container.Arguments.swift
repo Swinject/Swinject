@@ -27,14 +27,14 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` instance and 1 argument to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` instance and 1 argument to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolvable, Arg1) -> Service) -> ServiceEntry<Service>
+        factory: (ResolverType, Arg1) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -47,14 +47,14 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` instance and 2 arguments to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` instance and 2 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2) -> Service) -> ServiceEntry<Service>
+        factory: (ResolverType, Arg1, Arg2) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -67,14 +67,14 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` instance and 3 arguments to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` instance and 3 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3) -> Service) -> ServiceEntry<Service>
+        factory: (ResolverType, Arg1, Arg2, Arg3) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -87,14 +87,14 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` instance and 4 arguments to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` instance and 4 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4) -> Service) -> ServiceEntry<Service>
+        factory: (ResolverType, Arg1, Arg2, Arg3, Arg4) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -107,14 +107,14 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` instance and 5 arguments to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` instance and 5 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service) -> ServiceEntry<Service>
+        factory: (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -127,14 +127,14 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` instance and 6 arguments to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` instance and 6 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service) -> ServiceEntry<Service>
+        factory: (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -147,14 +147,14 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` instance and 7 arguments to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` instance and 7 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service) -> ServiceEntry<Service>
+        factory: (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -167,14 +167,14 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` instance and 8 arguments to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` instance and 8 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service) -> ServiceEntry<Service>
+        factory: (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -187,21 +187,21 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolvable` instance and 9 arguments to inject dependencies to the instance,
+    ///                  It takes a `ResolverType` instance and 9 arguments to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
         serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service) -> ServiceEntry<Service>
+        factory: (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
 
 }
 
-// MARK: - Resolvable with Arguments
+// MARK: - ResolverType with Arguments
 extension Container {
     /// Retrieves the instance with the specified service type and 1 argument to the factory closure.
     ///
@@ -232,7 +232,7 @@ extension Container {
         name: String?,
         argument: Arg1) -> Service?
     {
-        typealias FactoryType = (Resolvable, Arg1) -> Service
+        typealias FactoryType = (ResolverType, Arg1) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self, argument) }
     }
 
@@ -265,7 +265,7 @@ extension Container {
         name: String?,
         arguments: (Arg1, Arg2)) -> Service?
     {
-        typealias FactoryType = (Resolvable, Arg1, Arg2) -> Service
+        typealias FactoryType = (ResolverType, Arg1, Arg2) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1) }
     }
 
@@ -298,7 +298,7 @@ extension Container {
         name: String?,
         arguments: (Arg1, Arg2, Arg3)) -> Service?
     {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3) -> Service
+        typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2) }
     }
 
@@ -331,7 +331,7 @@ extension Container {
         name: String?,
         arguments: (Arg1, Arg2, Arg3, Arg4)) -> Service?
     {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4) -> Service
+        typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3) }
     }
 
@@ -364,7 +364,7 @@ extension Container {
         name: String?,
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5)) -> Service?
     {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service
+        typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4) }
     }
 
@@ -397,7 +397,7 @@ extension Container {
         name: String?,
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6)) -> Service?
     {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service
+        typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5) }
     }
 
@@ -430,7 +430,7 @@ extension Container {
         name: String?,
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7)) -> Service?
     {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service
+        typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6) }
     }
 
@@ -463,7 +463,7 @@ extension Container {
         name: String?,
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8)) -> Service?
     {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service
+        typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7) }
     }
 
@@ -496,7 +496,7 @@ extension Container {
         name: String?,
         arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9)) -> Service?
     {
-        typealias FactoryType = (Resolvable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service
+        typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8) }
     }
 

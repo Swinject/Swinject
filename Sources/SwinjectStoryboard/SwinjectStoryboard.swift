@@ -28,9 +28,9 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
     public static var defaultContainer = Container()
     
     // Boxing to workaround a runtime error [Xcode 7.1.1 and Xcode 7.2 beta 4]
-    // If container property is Resolvable type and a Resolvable instance is assigned to the property,
+    // If container property is ResolverType type and a ResolverType instance is assigned to the property,
     // the program crashes by EXC_BAD_ACCESS, which looks a bug of Swift.
-    private var container: Box<Resolvable>!
+    private var container: Box<ResolverType>!
     
     /// Do NOT call this method explicitly. It is designed to be called by the runtime.
     public override class func initialize() {
@@ -62,7 +62,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
     public class func create(
         name name: String,
         bundle storyboardBundleOrNil: NSBundle?,
-        container: Resolvable = SwinjectStoryboard.defaultContainer) -> SwinjectStoryboard
+        container: ResolverType = SwinjectStoryboard.defaultContainer) -> SwinjectStoryboard
     {
         // Use this factory method to create an instance because the initializer of UI/NSStoryboard is "not inherited".
         let storyboard = SwinjectStoryboard._create(name, bundle: storyboardBundleOrNil)
@@ -90,12 +90,12 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
 
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
         // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too.
-        if let container = container.value as? _Resolvable {
+        if let container = container.value as? _ResolverType {
             let option = SwinjectStoryboardOption(controllerType: viewController.dynamicType)
-            typealias FactoryType = (Resolvable, Container.Controller) -> Container.Controller
+            typealias FactoryType = (ResolverType, Container.Controller) -> Container.Controller
             container._resolve(name: registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, viewController) }
         } else {
-            fatalError("A type conforming Resolvable protocol must conform _Resolvable protocol too.")
+            fatalError("A type conforming ResolverType protocol must conform _ResolverType protocol too.")
         }
 
         for child in viewController.childViewControllers {
@@ -122,12 +122,12 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
         // If a future update of Xcode fixes the problem, replace the resolution with the following code and fix registerForStoryboard too:
-        if let container = container.value as? _Resolvable {
+        if let container = container.value as? _ResolverType {
             let option = SwinjectStoryboardOption(controllerType: controller.dynamicType)
-            typealias FactoryType = (Resolvable, Container.Controller) -> Container.Controller
+            typealias FactoryType = (ResolverType, Container.Controller) -> Container.Controller
             container._resolve(name: registrationName, option: option) { (factory: FactoryType) in factory(self.container.value, controller) }
         } else {
-            fatalError("A type conforming Resolvable protocol must conform _Resolvable protocol too.")
+            fatalError("A type conforming ResolverType protocol must conform _ResolverType protocol too.")
         }
         
         if let viewController = controller as? NSViewController {

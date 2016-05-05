@@ -23,11 +23,11 @@ public protocol AssemblyType {
     ///
     /// - parameter resolver: the resolver that can resolve instances from the built container
     ///
-    func loaded(resolver: Resolvable)
+    func loaded(resolver: ResolverType)
 }
 
 public extension AssemblyType {
-    func loaded(resolver: Resolvable) {
+    func loaded(resolver: ResolverType) {
         // no-op
     }
 }

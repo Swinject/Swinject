@@ -30,7 +30,7 @@ private struct AssociatedKeys {
     private static var properties: UInt8 = 0
 }
 
-extension Resolvable {
+extension ResolverType {
     private var properties: [String: AnyObject] {
         get {
             guard let obj = self as? AnyObject else {
