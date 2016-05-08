@@ -37,16 +37,10 @@ public class Assembler {
     /// Will create a new `Assembler` with the given `AssemblyType` instances to build a `Container`
     ///
     /// - parameter assemblies:         the list of assemblies to build the container from
-    /// - parameter propertyLoaders:    a list of property loaders to apply to the container
     /// - parameter container:          the baseline container
     ///
-    public init(assemblies: [AssemblyType], propertyLoaders: [PropertyLoaderType]? = nil, container: Container? = Container()) throws {
+    public init(assemblies: [AssemblyType], container: Container? = Container()) throws {
         self.container = container!
-        if let propertyLoaders = propertyLoaders {
-            for propertyLoader in propertyLoaders {
-                try self.container.applyPropertyLoader(propertyLoader)
-            }
-        }
         runAssemblies(assemblies)
     }
     
@@ -54,15 +48,9 @@ public class Assembler {
     ///
     /// - parameter assemblies:         the list of assemblies to build the container from
     /// - parameter parentAssembler:    the baseline assembler
-    /// - parameter propertyLoaders:    a list of property loaders to apply to the container
     ///
-    public init(assemblies: [AssemblyType], parentAssembler: Assembler?, propertyLoaders: [PropertyLoaderType]? = nil) throws {
+    public init(assemblies: [AssemblyType], parentAssembler: Assembler?) throws {
         container = Container(parent: parentAssembler?.container)
-        if let propertyLoaders = propertyLoaders {
-            for propertyLoader in propertyLoaders {
-                try self.container.applyPropertyLoader(propertyLoader)
-            }
-        }
         runAssemblies(assemblies)
     }
     
@@ -89,17 +77,6 @@ public class Assembler {
     ///
     public func applyAssemblies(assemblies: [AssemblyType]) {
         runAssemblies(assemblies)
-    }
-    
-    /// Will apply a property loader to the container. This is useful if you want to lazy load your assemblies or build
-    /// your assembler manually
-    ///
-    /// - parameter propertyLoader: the property loader to apply to the assembler's container
-    ///
-    /// - throws: PropertyLoaderError
-    ///
-    public func applyPropertyLoader(propertyLoader: PropertyLoaderType) throws {
-        try self.container.applyPropertyLoader(propertyLoader)
     }
     
     // MARK: Private
