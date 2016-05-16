@@ -194,6 +194,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 Notice that the example uses a convenience initializer taking a closure to register services to the new instance of `Container`.
 
+## Extensions
+
+- **[Swinject-CodeGen](https://github.com/Swinject/Swinject-CodeGen)**: Type-safe code generation of `Container` from a CSV/YAML file defining dependencies.
+
+
 ## Play in Playground!
 
 The project contains `Sample-iOS.playground` to demonstrate the features of Swinject. Download or clone the project, run the playground, modify it, and play with it to learn Swinject.
