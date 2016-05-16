@@ -38,9 +38,9 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
             static var token: dispatch_once_t = 0
         }
         dispatch_once(&Static.token) {
-            // Do not use #selector for now to support Xcode 7.2 (Swift 2.1)
-            if SwinjectStoryboard.respondsToSelector(Selector("setup")) {
-                SwinjectStoryboard.performSelector(Selector("setup"))
+            let setupMethodName = "setup"
+            if SwinjectStoryboard.respondsToSelector(Selector(setupMethodName)) {
+                SwinjectStoryboard.performSelector(Selector(setupMethodName))
             }
         }
     }
