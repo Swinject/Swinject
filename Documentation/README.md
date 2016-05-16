@@ -22,3 +22,7 @@ Swinject is a lightweight dependency injection framework for Swift apps. It allo
 ### UI Features
 
 1. [Storyboard](Storyboard.md)
+
+### Extensions
+
+1. [Swinject-CodeGen](https://github.com/Swinject/Swinject-CodeGen)
