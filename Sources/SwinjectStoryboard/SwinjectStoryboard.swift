@@ -38,10 +38,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
             static var token: dispatch_once_t = 0
         }
         dispatch_once(&Static.token) {
-            let setupMethodName = "setup"
-            if SwinjectStoryboard.respondsToSelector(Selector(setupMethodName)) {
-                SwinjectStoryboard.performSelector(Selector(setupMethodName))
-            }
+            (SwinjectStoryboard.self as SwinjectStoryboardType.Type).setup?()
         }
     }
 
