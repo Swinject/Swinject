@@ -1,4 +1,8 @@
-<img src="https://avatars0.githubusercontent.com/u/13637225?v=3&s=100" width="50" height="50"> Swinject
+<p align="center">
+  <img src="https://avatars0.githubusercontent.com/u/13637225?v=3&s=600" width="33%">
+</p>
+
+Swinject
 ========
 
 [![Travis CI](https://travis-ci.org/Swinject/Swinject.svg?branch=master)](https://travis-ci.org/Swinject/Swinject)
