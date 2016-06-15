@@ -67,7 +67,8 @@ Then run `pod install` command. For details of the installation and usage of Coc
 
 ## Documentation
 
-All documentation can be found in the [Documentation folder](./Documentation), including patterns of dependency injection and examples.
+- [Technical documents](./Documentation) including patterns of dependency injection and examples.
+- [API reference](http://cocoadocs.org/docsets/Swinject/)
 
 ## Basic Usage
 
