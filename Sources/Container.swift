@@ -116,9 +116,9 @@ extension Container: _ResolverType {
         let key = ServiceKey(factoryType: Factory.self, name: name, option: option)
         if let (entry, fromParent) = getEntry(key) as (ServiceEntry<Service>, Bool)? {
             switch entry.objectScope {
-            case .None, .Graph:
-                resolvedInstance = resolveEntry(entry, key: key, invoker: invoker)
-            case .Container:
+            case .none, .graph:
+                resolvedInstance = resolve(entry: entry, key: key, invoker: invoker)
+            case .container:
                 let ownEntry: ServiceEntry<Service>
                 if fromParent {
                     ownEntry = entry.copyExceptInstance()
@@ -128,12 +128,12 @@ extension Container: _ResolverType {
                 }
                 
                 if ownEntry.instance == nil {
-                    ownEntry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
+                    ownEntry.instance = resolve(entry: entry, key: key, invoker: invoker) as Any
                 }
                 resolvedInstance = ownEntry.instance as? Service
-            case .Hierarchy:
+            case .hierarchy:
                 if entry.instance == nil {
-                    entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
+                    entry.instance = resolve(entry: entry, key: key, invoker: invoker) as Any
                 }
                 resolvedInstance = entry.instance as? Service
             }
@@ -184,8 +184,8 @@ extension Container: ResolverType {
         return entry.map { ($0, fromParent) }
     }
     
-    private func resolveEntry<Service, Factory>(_ entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
-        let usesPool = entry.objectScope != .None
+    private func resolve<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
+        let usesPool = entry.objectScope != .none
         if usesPool, let pooledInstance = resolutionPool[key] as? Service {
             return pooledInstance
         }

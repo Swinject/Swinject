@@ -41,7 +41,7 @@ public class Assembler {
     ///
     public init(assemblies: [AssemblyType], container: Container? = Container()) throws {
         self.container = container!
-        runAssemblies(assemblies)
+        run(assemblies: assemblies)
     }
     
     /// Will create a new `Assembler` with the given `AssemblyType` instances to build a `Container`
@@ -51,7 +51,7 @@ public class Assembler {
     ///
     public init(assemblies: [AssemblyType], parentAssembler: Assembler?) throws {
         container = Container(parent: parentAssembler?.container)
-        runAssemblies(assemblies)
+        run(assemblies: assemblies)
     }
     
     /// Will apply the assembly to the container. This is useful if you want to lazy load an assembly into the assembler's
@@ -63,8 +63,8 @@ public class Assembler {
     ///
     /// - parameter assembly: the assembly to apply to the container
     ///
-    public func applyAssembly(_ assembly: AssemblyType) {
-        runAssemblies([assembly])
+    public func apply(assembly: AssemblyType) {
+        run(assemblies: [assembly])
     }
     
     /// Will apply the assemblies to the container. This is useful if you want to lazy load several assemblies into the assembler's
@@ -75,21 +75,21 @@ public class Assembler {
     ///
     /// - parameter assemblies: the assemblies to apply to the container
     ///
-    public func applyAssemblies(_ assemblies: [AssemblyType]) {
-        runAssemblies(assemblies)
+    public func apply(assemblies: [AssemblyType]) {
+        run(assemblies: assemblies)
     }
     
     // MARK: Private
     
-    private func runAssemblies(_ assemblies: [AssemblyType]) {
+    private func run(assemblies: [AssemblyType]) {
         // build the container from each assembly
         for assembly in assemblies {
-            assembly.assemble(self.container)
+            assembly.assemble(container: self.container)
         }
         
         // inform all of the assemblies that the container is loaded
         for assembly in assemblies {
-            assembly.loaded(self.resolver)
+            assembly.loaded(resolver: self.resolver)
         }
     }
 }

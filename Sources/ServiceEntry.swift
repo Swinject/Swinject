@@ -19,7 +19,7 @@ public final class ServiceEntry<Service> {
     private let serviceType: Service.Type
     internal let factory: FunctionType
 
-    internal var objectScope = ObjectScope.Graph
+    internal var objectScope = ObjectScope.graph
     internal var initCompleted: FunctionType?
     internal var instance: Any?
 
