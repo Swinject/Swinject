@@ -63,7 +63,7 @@ public class Assembler {
     ///
     /// - parameter assembly: the assembly to apply to the container
     ///
-    public func applyAssembly(assembly: AssemblyType) {
+    public func applyAssembly(_ assembly: AssemblyType) {
         runAssemblies([assembly])
     }
     
@@ -75,13 +75,13 @@ public class Assembler {
     ///
     /// - parameter assemblies: the assemblies to apply to the container
     ///
-    public func applyAssemblies(assemblies: [AssemblyType]) {
+    public func applyAssemblies(_ assemblies: [AssemblyType]) {
         runAssemblies(assemblies)
     }
     
     // MARK: Private
     
-    private func runAssemblies(assemblies: [AssemblyType]) {
+    private func runAssemblies(_ assemblies: [AssemblyType]) {
         // build the container from each assembly
         for assembly in assemblies {
             assembly.assemble(self.container)

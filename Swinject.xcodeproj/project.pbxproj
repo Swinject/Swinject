@@ -844,9 +844,11 @@
 					};
 					981ABE801B5FC9DF00294975 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 					981ABE8A1B5FC9DF00294975 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 					985010C51BBE76D400A2CCFC = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -1379,6 +1381,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				INFOPLIST_FILE = Sources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1390,6 +1393,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				INFOPLIST_FILE = Sources/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1404,6 +1408,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1418,6 +1423,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

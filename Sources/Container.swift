@@ -42,7 +42,7 @@ public final class Container {
     /// - Parameters:
     ///     - parent:             The optional parent `Container`.
     ///     - registeringClosure: The closure registering services to the new container instance.
-    public convenience init(parent: Container? = nil, @noescape registeringClosure: Container -> Void) {
+    public convenience init(parent: Container? = nil, registeringClosure: @noescape (Container) -> Void) {
         self.init(parent: parent)
         registeringClosure(self)
     }
@@ -56,7 +56,7 @@ public final class Container {
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///   - name:        A registration name, which is used to differentiate from other registrations
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
@@ -65,9 +65,9 @@ public final class Container {
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func register<Service>(
-        serviceType: Service.Type,
+        _ serviceType: Service.Type,
         name: String? = nil,
-        factory: ResolverType -> Service) -> ServiceEntry<Service>
+        factory: (ResolverType) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -86,7 +86,7 @@ public final class Container {
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     public func _register<Service, Factory>(
-        serviceType: Service.Type,
+        _ serviceType: Service.Type,
         factory: Factory,
         name: String? = nil,
         option: ServiceKeyOptionType? = nil) -> ServiceEntry<Service>
@@ -108,7 +108,7 @@ public final class Container {
 
 // MARK: - _ResolverType
 extension Container: _ResolverType {
-    public func _resolve<Service, Factory>(name name: String?, option: ServiceKeyOptionType? = nil, invoker: Factory -> Service) -> Service? {
+    public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOptionType? = nil, invoker: (Factory) -> Service) -> Service? {
         resolutionPool.incrementDepth()
         defer { resolutionPool.decrementDepth() }
         
@@ -150,7 +150,7 @@ extension Container: ResolverType {
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type is found in the `Container`.
     public func resolve<Service>(
-        serviceType: Service.Type) -> Service?
+        _ serviceType: Service.Type) -> Service?
     {
         return resolve(serviceType, name: nil)
     }
@@ -165,14 +165,14 @@ extension Container: ResolverType {
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type and name is found in the `Container`.
     public func resolve<Service>(
-        serviceType: Service.Type,
+        _ serviceType: Service.Type,
         name: String?) -> Service?
     {
-        typealias FactoryType = ResolverType -> Service
+        typealias FactoryType = (ResolverType) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }
     
-    private func getEntry<Service>(key: ServiceKey) -> (ServiceEntry<Service>, Bool)? {
+    private func getEntry<Service>(_ key: ServiceKey) -> (ServiceEntry<Service>, Bool)? {
         var fromParent = false
         var entry = services[key] as? ServiceEntry<Service>
         if entry == nil, let parent = self.parent {
@@ -184,7 +184,7 @@ extension Container: ResolverType {
         return entry.map { ($0, fromParent) }
     }
     
-    private func resolveEntry<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: Factory -> Service) -> Service {
+    private func resolveEntry<Service, Factory>(_ entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
         let usesPool = entry.objectScope != .None
         if usesPool, let pooledInstance = resolutionPool[key] as? Service {
             return pooledInstance
@@ -210,7 +210,7 @@ extension Container: ResolverType {
 extension Container: CustomStringConvertible {
     public var description: String {
         return "["
-            + services.map { "\n    { \($1.describeWithKey($0)) }" }.sort().joinWithSeparator(",")
+            + services.map { "\n    { \($1.describeWithKey($0)) }" }.sorted().joined(separator: ",")
         + "\n]"
     }
 }

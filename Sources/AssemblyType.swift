@@ -16,18 +16,18 @@ public protocol AssemblyType {
     ///
     /// - parameter container: the container provided by the `Assembler`
     ///
-    func assemble(container: Container)
+    func assemble(_ container: Container)
     
     /// Provides a hook to the `AssemblyType` that will be called once the `Assembler` has loaded all `AssemblyType`
     /// instances into the container.
     ///
     /// - parameter resolver: the resolver that can resolve instances from the built container
     ///
-    func loaded(resolver: ResolverType)
+    func loaded(_ resolver: ResolverType)
 }
 
 public extension AssemblyType {
-    func loaded(resolver: ResolverType) {
+    func loaded(_ resolver: ResolverType) {
         // no-op
     }
 }

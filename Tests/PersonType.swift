@@ -21,7 +21,7 @@ internal class PetOwner: PersonType {
         self.pet = pet
     }
     
-    func injectAnimal(animal: AnimalType) {
+    func injectAnimal(_ animal: AnimalType) {
         self.pet = animal
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: ServiceKeyOptionType
 public protocol ServiceKeyOptionType: CustomStringConvertible {
-    func isEqualTo(another: ServiceKeyOptionType) -> Bool
+    func isEqualTo(_ another: ServiceKeyOptionType) -> Bool
     var hashValue: Int { get }
 }
 
@@ -39,7 +39,7 @@ func == (lhs: ServiceKey, rhs: ServiceKey) -> Bool {
     return lhs.factoryType == rhs.factoryType && lhs.name == rhs.name && equalOptions(opt1: lhs.option, opt2: rhs.option)
 }
 
-private func equalOptions(opt1 opt1: ServiceKeyOptionType?, opt2: ServiceKeyOptionType?) -> Bool {
+private func equalOptions(opt1: ServiceKeyOptionType?, opt2: ServiceKeyOptionType?) -> Bool {
     switch (opt1, opt2) {
     case let (opt1?, opt2?): return opt1.isEqualTo(opt2)
     case (nil, nil): return true

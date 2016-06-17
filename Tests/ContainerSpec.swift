@@ -81,7 +81,7 @@ class ContainerSpec: QuickSpec {
             }
         }
         describe("Scope") {
-            let registerCatAndPetOwnerDependingOnFood: Container -> Void = {
+            let registerCatAndPetOwnerDependingOnFood: (Container) -> Void = {
                 $0.register(AnimalType.self) {
                     let cat = Cat()
                     cat.favoriteFood = $0.resolve(FoodType.self)
@@ -279,7 +279,7 @@ class ContainerSpec: QuickSpec {
         }
         describe("Value type resolution") {
             it("resolves struct instances ignoring object scopes.") {
-                let runInObjectScope: ObjectScope -> Void = { scope in
+                let runInObjectScope: (ObjectScope) -> Void = { scope in
                     container.removeAll()
                     container.register(AnimalType.self) { _ in Turtle(name: "Ninja") }
                         .inObjectScope(scope)
@@ -296,7 +296,7 @@ class ContainerSpec: QuickSpec {
                 runInObjectScope(.Hierarchy)
             }
             it("resolves struct instances defined in the parent container ignoring object scopes.") {
-                let runInObjectScope: ObjectScope -> Void = { scope in
+                let runInObjectScope: (ObjectScope) -> Void = { scope in
                     container.removeAll()
                     container.register(AnimalType.self) { _ in Turtle(name: "Ninja") }
                         .inObjectScope(scope)

@@ -88,11 +88,11 @@ class SynchronizedResolverSpec: QuickSpec {
     
     final class Counter {
         enum Status {
-            case UnderMax, ReachedMax
+            case underMax, reachedMax
         }
         
         private var max: Int
-        private let lock = dispatch_queue_create("SwinjectTests.SynchronizedContainerSpec.Counter.Lock", nil)
+        private let lock = DispatchQueue(label: "SwinjectTests.SynchronizedContainerSpec.Counter.Lock", attributes: [])
         private var count = 0
 
         init(max: Int) {
@@ -100,11 +100,11 @@ class SynchronizedResolverSpec: QuickSpec {
         }
         
         func increment() -> Status {
-            var status = Status.UnderMax
-            dispatch_sync(lock) {
+            var status = Status.underMax
+            lock.sync {
                 self.count += 1
                 if self.count >= self.max {
-                    status = .ReachedMax
+                    status = .reachedMax
                 }
             }
             return status

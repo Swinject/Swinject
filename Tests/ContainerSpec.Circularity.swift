@@ -19,7 +19,7 @@ class ContainerSpec_Circularity: QuickSpec {
         
         describe("Two objects") {
             it("resolves circular dependency on each property.") {
-                let runInObjectScope: ObjectScope -> Void = { scope in
+                let runInObjectScope: (ObjectScope) -> Void = { scope in
                     container.removeAll()
                     container.register(ParentType.self) { _ in Parent() }
                         .initCompleted { r, s in
@@ -44,7 +44,7 @@ class ContainerSpec_Circularity: QuickSpec {
                 runInObjectScope(.Hierarchy)
             }
             it("resolves circular dependency on the initializer and property.") {
-                let runInObjectScope: ObjectScope -> Void = { scope in
+                let runInObjectScope: (ObjectScope) -> Void = { scope in
                     container.removeAll()
                     container.register(ParentType.self) { r in Parent(child: r.resolve(ChildType.self)!) }
                         .inObjectScope(scope)
