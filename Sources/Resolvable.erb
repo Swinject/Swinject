@@ -10,7 +10,7 @@
 // NOTICE:
 //
 // Resolvable.swift is generated from Resolvable.erb by ERB.
-// Do NOT modify Container.Arguments.swift directly.
+// Do NOT modify Resolvable.swift directly.
 // Instead, modify Resolvable.erb and run `script/gencode` at the project root directory to generate the code.
 //
 
