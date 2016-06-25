@@ -236,268 +236,268 @@ extension Container {
         return _resolve(name: name) { (factory: FactoryType) in factory(self, argument) }
     }
 
-    /// Retrieves the instance with the specified service type and tuple of 2 arguments to the factory closure.
+    /// Retrieves the instance with the specified service type and list of 2 arguments to the factory closure.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-    ///   - arguments:   Tuple of 2 arguments to pass to the factory closure.
+    ///   - arguments:   List of 2 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            and tuple of 2 arguments is found in the `Container`.
+    ///            and list of 2 arguments is found in the `Container`.
     public func resolve<Service, Arg1, Arg2>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2) -> Service?
     {
-        return resolve(serviceType, name: nil, arguments: arguments)
+        return resolve(serviceType, name: nil, arguments: arg1, arg2)
     }
 
-    /// Retrieves the instance with the specified service type, tuple of 2 arguments to the factory closure and registration name.
+    /// Retrieves the instance with the specified service type, list of 2 arguments to the factory closure and registration name.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
-    ///   - arguments:   Tuple of 2 arguments to pass to the factory closure.
+    ///   - arguments:   List of 2 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
-    ///            tuple of 2 arguments and name is found in the `Container`.
+    ///            list of 2 arguments and name is found in the `Container`.
     public func resolve<Service, Arg1, Arg2>(
         serviceType: Service.Type,
         name: String?,
-        arguments: (Arg1, Arg2)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2) -> Service?
     {
         typealias FactoryType = (ResolverType, Arg1, Arg2) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1) }
+        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2) }
     }
 
-    /// Retrieves the instance with the specified service type and tuple of 3 arguments to the factory closure.
+    /// Retrieves the instance with the specified service type and list of 3 arguments to the factory closure.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-    ///   - arguments:   Tuple of 3 arguments to pass to the factory closure.
+    ///   - arguments:   List of 3 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            and tuple of 3 arguments is found in the `Container`.
+    ///            and list of 3 arguments is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> Service?
     {
-        return resolve(serviceType, name: nil, arguments: arguments)
+        return resolve(serviceType, name: nil, arguments: arg1, arg2, arg3)
     }
 
-    /// Retrieves the instance with the specified service type, tuple of 3 arguments to the factory closure and registration name.
+    /// Retrieves the instance with the specified service type, list of 3 arguments to the factory closure and registration name.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
-    ///   - arguments:   Tuple of 3 arguments to pass to the factory closure.
+    ///   - arguments:   List of 3 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
-    ///            tuple of 3 arguments and name is found in the `Container`.
+    ///            list of 3 arguments and name is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3>(
         serviceType: Service.Type,
         name: String?,
-        arguments: (Arg1, Arg2, Arg3)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> Service?
     {
         typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2) }
+        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3) }
     }
 
-    /// Retrieves the instance with the specified service type and tuple of 4 arguments to the factory closure.
+    /// Retrieves the instance with the specified service type and list of 4 arguments to the factory closure.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-    ///   - arguments:   Tuple of 4 arguments to pass to the factory closure.
+    ///   - arguments:   List of 4 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            and tuple of 4 arguments is found in the `Container`.
+    ///            and list of 4 arguments is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) -> Service?
     {
-        return resolve(serviceType, name: nil, arguments: arguments)
+        return resolve(serviceType, name: nil, arguments: arg1, arg2, arg3, arg4)
     }
 
-    /// Retrieves the instance with the specified service type, tuple of 4 arguments to the factory closure and registration name.
+    /// Retrieves the instance with the specified service type, list of 4 arguments to the factory closure and registration name.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
-    ///   - arguments:   Tuple of 4 arguments to pass to the factory closure.
+    ///   - arguments:   List of 4 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
-    ///            tuple of 4 arguments and name is found in the `Container`.
+    ///            list of 4 arguments and name is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4>(
         serviceType: Service.Type,
         name: String?,
-        arguments: (Arg1, Arg2, Arg3, Arg4)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) -> Service?
     {
         typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3) }
+        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4) }
     }
 
-    /// Retrieves the instance with the specified service type and tuple of 5 arguments to the factory closure.
+    /// Retrieves the instance with the specified service type and list of 5 arguments to the factory closure.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-    ///   - arguments:   Tuple of 5 arguments to pass to the factory closure.
+    ///   - arguments:   List of 5 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            and tuple of 5 arguments is found in the `Container`.
+    ///            and list of 5 arguments is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) -> Service?
     {
-        return resolve(serviceType, name: nil, arguments: arguments)
+        return resolve(serviceType, name: nil, arguments: arg1, arg2, arg3, arg4, arg5)
     }
 
-    /// Retrieves the instance with the specified service type, tuple of 5 arguments to the factory closure and registration name.
+    /// Retrieves the instance with the specified service type, list of 5 arguments to the factory closure and registration name.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
-    ///   - arguments:   Tuple of 5 arguments to pass to the factory closure.
+    ///   - arguments:   List of 5 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
-    ///            tuple of 5 arguments and name is found in the `Container`.
+    ///            list of 5 arguments and name is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
         serviceType: Service.Type,
         name: String?,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) -> Service?
     {
         typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4) }
+        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5) }
     }
 
-    /// Retrieves the instance with the specified service type and tuple of 6 arguments to the factory closure.
+    /// Retrieves the instance with the specified service type and list of 6 arguments to the factory closure.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-    ///   - arguments:   Tuple of 6 arguments to pass to the factory closure.
+    ///   - arguments:   List of 6 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            and tuple of 6 arguments is found in the `Container`.
+    ///            and list of 6 arguments is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6) -> Service?
     {
-        return resolve(serviceType, name: nil, arguments: arguments)
+        return resolve(serviceType, name: nil, arguments: arg1, arg2, arg3, arg4, arg5, arg6)
     }
 
-    /// Retrieves the instance with the specified service type, tuple of 6 arguments to the factory closure and registration name.
+    /// Retrieves the instance with the specified service type, list of 6 arguments to the factory closure and registration name.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
-    ///   - arguments:   Tuple of 6 arguments to pass to the factory closure.
+    ///   - arguments:   List of 6 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
-    ///            tuple of 6 arguments and name is found in the `Container`.
+    ///            list of 6 arguments and name is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
         serviceType: Service.Type,
         name: String?,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6) -> Service?
     {
         typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5) }
+        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6) }
     }
 
-    /// Retrieves the instance with the specified service type and tuple of 7 arguments to the factory closure.
+    /// Retrieves the instance with the specified service type and list of 7 arguments to the factory closure.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-    ///   - arguments:   Tuple of 7 arguments to pass to the factory closure.
+    ///   - arguments:   List of 7 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            and tuple of 7 arguments is found in the `Container`.
+    ///            and list of 7 arguments is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7) -> Service?
     {
-        return resolve(serviceType, name: nil, arguments: arguments)
+        return resolve(serviceType, name: nil, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7)
     }
 
-    /// Retrieves the instance with the specified service type, tuple of 7 arguments to the factory closure and registration name.
+    /// Retrieves the instance with the specified service type, list of 7 arguments to the factory closure and registration name.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
-    ///   - arguments:   Tuple of 7 arguments to pass to the factory closure.
+    ///   - arguments:   List of 7 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
-    ///            tuple of 7 arguments and name is found in the `Container`.
+    ///            list of 7 arguments and name is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
         serviceType: Service.Type,
         name: String?,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7) -> Service?
     {
         typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6) }
+        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7) }
     }
 
-    /// Retrieves the instance with the specified service type and tuple of 8 arguments to the factory closure.
+    /// Retrieves the instance with the specified service type and list of 8 arguments to the factory closure.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-    ///   - arguments:   Tuple of 8 arguments to pass to the factory closure.
+    ///   - arguments:   List of 8 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            and tuple of 8 arguments is found in the `Container`.
+    ///            and list of 8 arguments is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8) -> Service?
     {
-        return resolve(serviceType, name: nil, arguments: arguments)
+        return resolve(serviceType, name: nil, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
     }
 
-    /// Retrieves the instance with the specified service type, tuple of 8 arguments to the factory closure and registration name.
+    /// Retrieves the instance with the specified service type, list of 8 arguments to the factory closure and registration name.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
-    ///   - arguments:   Tuple of 8 arguments to pass to the factory closure.
+    ///   - arguments:   List of 8 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
-    ///            tuple of 8 arguments and name is found in the `Container`.
+    ///            list of 8 arguments and name is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
         serviceType: Service.Type,
         name: String?,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8) -> Service?
     {
         typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7) }
+        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) }
     }
 
-    /// Retrieves the instance with the specified service type and tuple of 9 arguments to the factory closure.
+    /// Retrieves the instance with the specified service type and list of 9 arguments to the factory closure.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
-    ///   - arguments:   Tuple of 9 arguments to pass to the factory closure.
+    ///   - arguments:   List of 9 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            and tuple of 9 arguments is found in the `Container`.
+    ///            and list of 9 arguments is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
         serviceType: Service.Type,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8, _ arg9: Arg9) -> Service?
     {
-        return resolve(serviceType, name: nil, arguments: arguments)
+        return resolve(serviceType, name: nil, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
     }
 
-    /// Retrieves the instance with the specified service type, tuple of 9 arguments to the factory closure and registration name.
+    /// Retrieves the instance with the specified service type, list of 9 arguments to the factory closure and registration name.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
-    ///   - arguments:   Tuple of 9 arguments to pass to the factory closure.
+    ///   - arguments:   List of 9 arguments to pass to the factory closure.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
-    ///            tuple of 9 arguments and name is found in the `Container`.
+    ///            list of 9 arguments and name is found in the `Container`.
     public func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
         serviceType: Service.Type,
         name: String?,
-        arguments: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9)) -> Service?
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8, _ arg9: Arg9) -> Service?
     {
         typealias FactoryType = (ResolverType, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8) }
+        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) }
     }
 
 }
