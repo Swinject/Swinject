@@ -35,9 +35,9 @@ public protocol ResolverType {
 
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+<%   arg_param = i == 1 ? "argument: Arg1" : "arguments arg1: Arg1, " + (2..i).map{ |n| "_ arg#{n}: Arg#{n}" }.join(", ") %>
 <%   arg_param_name = i == 1 ? "argument" : "arguments" %>
-<%   arg_param_type = i == 1 ? arg_types : "(" + arg_types + ")" %>
-<%   arg_param_description = i == 1 ? "#{i} argument" : "tuple of #{i} arguments" %>
+<%   arg_param_description = i == 1 ? "#{i} argument" : "list of #{i} arguments" %>
     /// Retrieves the instance with the specified service type and <%= arg_param_description %> to the factory closure.
     ///
     /// - Parameters:
@@ -48,7 +48,7 @@ public protocol ResolverType {
     ///            and <%= arg_param_description %> is found.
     func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
-        <%= arg_param_name %>: <%= arg_param_type %>) -> Service?
+        <%= arg_param %>) -> Service?
 
     /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
     ///
@@ -62,7 +62,7 @@ public protocol ResolverType {
     func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
         name: String?,
-        <%= arg_param_name %>: <%= arg_param_type %>) -> Service?
+        <%= arg_param %>) -> Service?
 
 <% end %>
 

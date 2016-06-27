@@ -31,7 +31,7 @@ class ContainerSpec: QuickSpec {
                 
                 let noname = container.resolve(AnimalType.self) as! Cat
                 let mimi = container.resolve(AnimalType.self, argument: "Mimi") as! Cat
-                let mew = container.resolve(AnimalType.self, arguments: ("Mew", true)) as! Cat
+                let mew = container.resolve(AnimalType.self, arguments: "Mew", true) as! Cat
                 expect(noname.name).to(beNil())
                 expect(mimi.name) == "Mimi"
                 expect(mew.name) == "Mew"
