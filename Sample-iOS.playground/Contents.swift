@@ -234,7 +234,7 @@ let horse1 = container.resolve(AnimalType.self, argument: "Spirit") as! Horse
 print(horse1.name)
 print(horse1.running)
 
-let horse2 = container.resolve(AnimalType.self, arguments: ("Lucky", true)) as! Horse
+let horse2 = container.resolve(AnimalType.self, arguments: "Lucky", true) as! Horse
 print(horse2.name)
 print(horse2.running)
 

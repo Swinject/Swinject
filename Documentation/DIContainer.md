@@ -13,7 +13,7 @@ Note the terms _service instance_ and _component instance_ mean the same thing, 
 
 ## Registration in a DI Container
 
-A service and its corresponding component are registered with the `register` method of the container.  The method takes the service type for the component and a factory method. If the component depends on another service, the factory method can call `resolve` on the passed in resolver objection to "inject" the dependency. The actual underlying type of the dependency will determined later when the component instance is created.
+A service and its corresponding component are registered with the `register` method of the container. The method takes the service type for the component and a factory method. If the component depends on another service, the factory method can call `resolve` on the passed in resolver objection to "inject" the dependency. The actual underlying type of the dependency will determined later when the component instance is created.
 
 Here is an example of service registration.
 

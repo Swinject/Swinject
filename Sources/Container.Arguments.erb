@@ -40,20 +40,21 @@ extension Container {
         name: String? = nil,
         factory: (ResolverType, <%= arg_types %>) -> Service) -> ServiceEntry<Service>
     {
-        return registerImpl(serviceType, factory: factory, name: name)
+        return _register(serviceType, factory: factory, name: name)
     }
 
 <% end %>
 }
 
-// MARK: - Resolvable with Arguments
+// MARK: - ResolverType with Arguments
 extension Container {
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+<%   arg_param_def = i == 1 ? "argument: Arg1" : "arguments arg1: Arg1, " + (2..i).map{ |n| "_ arg#{n}: Arg#{n}" }.join(", ") %>
+<%   arg_param_call = i == 1 ? "argument" : (1..i).map{ |n| "arg#{n}" }.join(", ") %>
 <%   arg_param_name = i == 1 ? "argument" : "arguments" %>
 <%   arg_param_type = i == 1 ? arg_types : "(" + arg_types + ")" %>
-<%   arg_param_description = i == 1 ? "#{i} argument" : "tuple of #{i} arguments" %>
-<%   args_factory = i == 1 ? "argument" : (1..i).map { |n| "arguments.#{n-1}" }.join(", ") %>
+<%   arg_param_description = i == 1 ? "#{i} argument" : "list of #{i} arguments" %>
     /// Retrieves the instance with the specified service type and <%= arg_param_description %> to the factory closure.
     ///
     /// - Parameters:
@@ -64,9 +65,9 @@ extension Container {
     ///            and <%= arg_param_description %> is found in the `Container`.
     public func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
-        <%= arg_param_name %>: <%= arg_param_type %>) -> Service?
+        <%= arg_param_def %>) -> Service?
     {
-        return resolve(serviceType, name: nil, <%= arg_param_name %>: <%= arg_param_name %>)
+        return resolve(serviceType, name: nil, <%= arg_param_name %>: <%= arg_param_call %>)
     }
 
     /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
@@ -81,10 +82,10 @@ extension Container {
     public func resolve<Service, <%= arg_types %>>(
         serviceType: Service.Type,
         name: String?,
-        <%= arg_param_name %>: <%= arg_param_type %>) -> Service?
+        <%= arg_param_def %>) -> Service?
     {
         typealias FactoryType = (ResolverType, <%= arg_types %>) -> Service
-        return resolveImpl(name) { (factory: FactoryType) in factory(self, <%= args_factory %>) }
+        return _resolve(name: name) { (factory: FactoryType) in factory(self, <%= arg_param_call %>) }
     }
 
 <% end %>
