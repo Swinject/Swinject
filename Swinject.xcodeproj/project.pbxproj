@@ -1338,7 +1338,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98AA74481BB70CBB00E2F48A /* Debug.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1358,7 +1357,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98AA744A1BB70CBB00E2F48A /* Release.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
