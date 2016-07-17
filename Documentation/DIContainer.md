@@ -13,9 +13,9 @@ Note the terms _service instance_ and _component instance_ mean the same thing, 
 
 ## Registration in a DI Container
 
-A service and its corresponding component are registered with the `register` method of the container. The method takes the service type for the component and a factory method. If the component depends on another service, the factory method can call `resolve` on the passed in resolver objection to "inject" the dependency. The actual underlying type of the dependency will determined later when the component instance is created.
+A service and its corresponding component are registered with the `register` method of the container. The method takes the service type for the component and a factory method. If the component depends on another service, the factory method can call `resolve` on the passed in resolver objection to "inject" the dependency. The actual underlying type of the dependency will be determined later when the component instance is created.
 
-Here is an example of service registration.
+Here is an example of service registration:
 
 ```swift
 let container = Container()
@@ -81,7 +81,7 @@ container.register(AnimalType.self, name: "cat") { _ in Cat(name: "Mimi") }
 container.register(AnimalType.self, name: "dog") { _ in Dog(name: "Hachi") }
 ```
 
-Then you can get the service instances with the registered names.
+Then you can get the service instances with the registered names:
 
 ```swift
 let cat = container.resolve(AnimalType.self, name:"cat")!
