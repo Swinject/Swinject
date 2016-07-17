@@ -1,6 +1,6 @@
 # Circular Dependencies
 
-_Circular dependencies_ are dependencies of instances that depend on each other. To define circular dependencies in Swinject, one or other of the dependencies must be injected through a property.
+_Circular dependencies_ are dependencies of instances that depend on each other. To define circular dependencies in Swinject, one of the dependencies must be injected through a property.
 
 ## Initializer/Property Dependencies
 
@@ -23,7 +23,7 @@ class Child: ChildType {
 }
 ```
 
-The Circular Dependencies are defined as below.
+The circular dependencies are defined as below:
 
 ```swift
 let container = Container()
@@ -37,11 +37,11 @@ container.register(ChildType.self) { _ in Child() }
     }
 ```
 
-Here the injection to the `parent` property of `Child` must be specified in the `initCompleted` callback to get avoid infinite recursion.
+Here the injection to the `parent` property of `Child` must be specified in the `initCompleted` callback to avoid infinite recursion.
 
 ## Property/Property Dependencies
 
-Similarly, assume that you have the following classes depending on each other, each via a property.
+Similarly, assume that you have the following classes depending on each other, each via a property:
 
 ```swift
 protocol ParentType: AnyObject { }
@@ -72,7 +72,7 @@ container.register(ChildType.self) { _ in Child() }
     }
 ```
 
-Here both or either of the depending properties must be specified in the `initCompleted` callback to avoid infinite recursivion.
+Here both or either of the depending properties must be specified in the `initCompleted` callback to avoid infinite recursion.
 
 ## Initializer/Initializer Dependencies
 
