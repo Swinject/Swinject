@@ -24,9 +24,9 @@ import Foundation
 ///
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
 public final class Container {
-    private var services = [ServiceKey: ServiceEntryType]()
-    private let parent: Container?
-    private var resolutionPool = ResolutionPool()
+    fileprivate var services = [ServiceKey: ServiceEntryType]()
+    fileprivate let parent: Container?
+    fileprivate var resolutionPool = ResolutionPool()
     internal let lock: SpinLock // Used by SynchronizedResolver.
     
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
@@ -42,7 +42,7 @@ public final class Container {
     /// - Parameters:
     ///     - parent:             The optional parent `Container`.
     ///     - registeringClosure: The closure registering services to the new container instance.
-    public convenience init(parent: Container? = nil, registeringClosure: @noescape (Container) -> Void) {
+    public convenience init(parent: Container? = nil, registeringClosure: (Container) -> Void) {
         self.init(parent: parent)
         registeringClosure(self)
     }
@@ -91,7 +91,7 @@ public final class Container {
         name: String? = nil,
         option: ServiceKeyOptionType? = nil) -> ServiceEntry<Service>
     {
-        let key = ServiceKey(factoryType: factory.dynamicType, name: name, option: option)
+        let key = ServiceKey(factoryType: type(of: factory), name: name, option: option)
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
         services[key] = entry
         return entry
@@ -172,7 +172,7 @@ extension Container: ResolverType {
         return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }
     
-    private func getEntry<Service>(_ key: ServiceKey) -> (ServiceEntry<Service>, Bool)? {
+    fileprivate func getEntry<Service>(_ key: ServiceKey) -> (ServiceEntry<Service>, Bool)? {
         var fromParent = false
         var entry = services[key] as? ServiceEntry<Service>
         if entry == nil, let parent = self.parent {
@@ -184,7 +184,7 @@ extension Container: ResolverType {
         return entry.map { ($0, fromParent) }
     }
     
-    private func resolve<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
+    fileprivate func resolve<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
         let usesPool = entry.objectScope != .none
         if usesPool, let pooledInstance = resolutionPool[key] as? Service {
             return pooledInstance
