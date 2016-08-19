@@ -36,7 +36,7 @@ class ContainerSpec_Circularity: QuickSpec {
                     
                     let parent = container.resolve(ParentType.self) as! Parent
                     let child = parent.child as! Child
-                    expect(child.parent as? Parent) === parent
+                    expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                 }
                 
                 runInObjectScope(.graph)
@@ -57,7 +57,7 @@ class ContainerSpec_Circularity: QuickSpec {
                     
                     let parent = container.resolve(ParentType.self) as! Parent
                     let child = parent.child as! Child
-                    expect(child.parent as? Parent) === parent
+                    expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                 }
                 
                 runInObjectScope(.graph)
@@ -94,9 +94,9 @@ class ContainerSpec_Circularity: QuickSpec {
                 let b = a.b as! BDependingOnC
                 let c = b.c as! CDependingOnAD
                 let d = c.d as! DDependingOnBC
-                expect(c.a as? ADependingOnB) === a
-                expect(d.b as? BDependingOnC) === b
-                expect(d.c as? CDependingOnAD) === c
+                expect(c.a as? ADependingOnB === a).to(beTrue()) // Workaround for crash in Nimble
+                expect(d.b as? BDependingOnC === b).to(beTrue()) // Workaround for crash in Nimble
+                expect(d.c as? CDependingOnAD === c).to(beTrue()) // Workaround for crash in Nimble
             }
             it("resolves circular dependency on initializers and properties.") {
                 container.register(AType.self) { r in ADependingOnB(b: r.resolve(BType.self)!) }
@@ -117,9 +117,9 @@ class ContainerSpec_Circularity: QuickSpec {
                 let b = a.b as! BDependingOnC
                 let c = b.c as! CDependingOnAD
                 let d = c.d as! DDependingOnBC
-                expect(c.a as? ADependingOnB) === a
-                expect(d.b as? BDependingOnC) === b
-                expect(d.c as? CDependingOnAD) === c
+                expect(c.a as? ADependingOnB === a).to(beTrue()) // Workaround for crash in Nimble
+                expect(d.b as? BDependingOnC === b).to(beTrue()) // Workaround for crash in Nimble
+                expect(d.c as? CDependingOnAD === c).to(beTrue()) // Workaround for crash in Nimble
             }
         }
     }

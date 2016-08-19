@@ -101,7 +101,7 @@ class ContainerSpec: QuickSpec {
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
-                    expect(cat1) !== cat2
+                    expect(cat1 !== cat2).to(beTrue()) // Workaround for crash in Nimble.
                 }
                 it("resolves a service to new objects in a graph") {
                     registerCatAndPetOwnerDependingOnFood(container)
@@ -111,7 +111,7 @@ class ContainerSpec: QuickSpec {
                     let owner = container.resolve(PersonType.self) as! PetOwner
                     let ownersSushi = owner.favoriteFood as! Sushi
                     let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
-                    expect(ownersSushi) !== catsSushi
+                    expect(ownersSushi !== catsSushi).to(beTrue()) // Workaround for crash in Nimble.
                 }
             }
             context("in graph scope") {
@@ -121,7 +121,7 @@ class ContainerSpec: QuickSpec {
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
-                    expect(cat1) !== cat2
+                    expect(cat1 !== cat2).to(beTrue()) // Workaround for crash in Nimble.
                 }
                 it("resolves a service to the same object in a graph") {
                     registerCatAndPetOwnerDependingOnFood(container)
@@ -131,7 +131,7 @@ class ContainerSpec: QuickSpec {
                     let owner = container.resolve(PersonType.self) as! PetOwner
                     let ownersSushi = owner.favoriteFood as! Sushi
                     let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
-                    expect(ownersSushi) === catsSushi
+                    expect(ownersSushi === catsSushi).to(beTrue()) // Workaround for crash in Nimble.
                 }
             }
             context("in container scope") {
@@ -141,7 +141,7 @@ class ContainerSpec: QuickSpec {
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
-                    expect(cat1) === cat2
+                    expect(cat1 === cat2).to(beTrue()) // Workaround for crash in Nimble.
                 }
                 it("does not share an object from a parent container to its child.") {
                     let parent = Container()
@@ -154,12 +154,12 @@ class ContainerSpec: QuickSpec {
                     // Case resolving on the parent first.
                     let cat1 = parent.resolve(AnimalType.self) as! Cat
                     let cat2 = child.resolve(AnimalType.self) as! Cat
-                    expect(cat1) !== cat2
+                    expect(cat1 !== cat2).to(beTrue()) // Workaround for crash in Nimble.
                     
                     // Case resolving on the child first.
                     let dog1 = child.resolve(AnimalType.self, name: "dog") as! Dog
                     let dog2 = parent.resolve(AnimalType.self, name: "dog") as! Dog
-                    expect(dog1) !== dog2
+                    expect(dog1 !== dog2).to(beTrue()) // Workaround for crash in Nimble.
                 }
                 it("resolves a service to the same object in a graph") {
                     registerCatAndPetOwnerDependingOnFood(container)
@@ -169,7 +169,7 @@ class ContainerSpec: QuickSpec {
                     let owner = container.resolve(PersonType.self) as! PetOwner
                     let ownersSushi = owner.favoriteFood as! Sushi
                     let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
-                    expect(ownersSushi) === catsSushi
+                    expect(ownersSushi === catsSushi).to(beTrue()) // Workaround for crash in Nimble.
                 }
             }
             context("in hierarchy scope") {
@@ -179,7 +179,7 @@ class ContainerSpec: QuickSpec {
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
-                    expect(cat1) === cat2
+                    expect(cat1 === cat2).to(beTrue()) // Workaround for crash in Nimble.
                 }
                 it("shares an object from a parent container to its child.") {
                     let parent = Container()
@@ -192,12 +192,12 @@ class ContainerSpec: QuickSpec {
                     // Case resolving on the parent first.
                     let cat1 = parent.resolve(AnimalType.self) as! Cat
                     let cat2 = child.resolve(AnimalType.self) as! Cat
-                    expect(cat1) === cat2
+                    expect(cat1 === cat2).to(beTrue()) // Workaround for crash in Nimble.
                     
                     // Case resolving on the child first.
                     let dog1 = child.resolve(AnimalType.self, name: "dog") as! Dog
                     let dog2 = parent.resolve(AnimalType.self, name: "dog") as! Dog
-                    expect(dog1) === dog2
+                    expect(dog1 === dog2).to(beTrue()) // Workaround for crash in Nimble.
                 }
                 it("resolves a service in the parent container to the same object in a graph") {
                     let parent = Container()
@@ -209,7 +209,7 @@ class ContainerSpec: QuickSpec {
                     let owner = child.resolve(PersonType.self) as! PetOwner
                     let ownersSushi = owner.favoriteFood as! Sushi
                     let catsSushi = (owner.pet as! Cat).favoriteFood as! Sushi
-                    expect(ownersSushi) === catsSushi
+                    expect(ownersSushi === catsSushi).to(beTrue()) // Workaround for crash in Nimble.
                 }
             }
         }

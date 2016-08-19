@@ -37,7 +37,7 @@ class SynchronizedResolverSpec: QuickSpec {
                         queue.async() {
                             let parent = container.resolve(ParentType.self) as! Parent
                             let child = parent.child as! Child
-                            expect(child.parent as? Parent) === parent
+                            expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                             
                             counter.increment()
                             if counter.count >= totalThreads {
