@@ -16,7 +16,7 @@ internal protocol ServiceEntryType: Any {
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public final class ServiceEntry<Service> {
-    private let serviceType: Service.Type
+    fileprivate let serviceType: Service.Type
     internal let factory: FunctionType
 
     internal var objectScope = ObjectScope.graph
@@ -40,6 +40,7 @@ public final class ServiceEntry<Service> {
     /// - Parameter scope: The `ObjectScope` value.
     ///
     /// - Returns: `self` to add another configuration fluently.
+    @discardableResult
     public func inObjectScope(_ objectScope: ObjectScope) -> Self {
         self.objectScope = objectScope
         return self
@@ -52,7 +53,8 @@ public final class ServiceEntry<Service> {
     /// - Parameter completed: The closure to be called after the instantiation of the registered service.
     ///
     /// - Returns: `self` to add another configuration fluently.
-    public func initCompleted(_ completed: (ResolverType, Service) -> ()) -> Self {
+    @discardableResult
+    public func initCompleted(_ completed: @escaping (ResolverType, Service) -> ()) -> Self {
         initCompleted = completed
         return self
     }
@@ -67,7 +69,7 @@ extension ServiceEntry: ServiceEntryType {
         return "Service: \(serviceType)"
             + nameDescription
             + optionDescription
-            + ", Factory: \(factory.dynamicType)"
+            + ", Factory: \(type(of: factory))"
             + ", ObjectScope: \(objectScope)"
             + initCompletedDescription
     }
