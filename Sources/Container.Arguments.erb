@@ -35,6 +35,7 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, <%= arg_types %>>(
         _ serviceType: Service.Type,
         name: String? = nil,

@@ -64,6 +64,7 @@ public final class Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service>(
         _ serviceType: Service.Type,
         name: String? = nil,
@@ -85,6 +86,7 @@ public final class Container {
     ///   - option:      A service key option for an extension/plugin.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func _register<Service, Factory>(
         _ serviceType: Service.Type,
         factory: Factory,

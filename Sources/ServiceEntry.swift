@@ -40,6 +40,7 @@ public final class ServiceEntry<Service> {
     /// - Parameter scope: The `ObjectScope` value.
     ///
     /// - Returns: `self` to add another configuration fluently.
+    @discardableResult
     public func inObjectScope(_ objectScope: ObjectScope) -> Self {
         self.objectScope = objectScope
         return self
@@ -52,6 +53,7 @@ public final class ServiceEntry<Service> {
     /// - Parameter completed: The closure to be called after the instantiation of the registered service.
     ///
     /// - Returns: `self` to add another configuration fluently.
+    @discardableResult
     public func initCompleted(_ completed: @escaping (ResolverType, Service) -> ()) -> Self {
         initCompleted = completed
         return self

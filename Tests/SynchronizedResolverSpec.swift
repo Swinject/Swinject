@@ -99,6 +99,7 @@ class SynchronizedResolverSpec: QuickSpec {
             self.max = max
         }
         
+        @discardableResult
         func increment() -> Status {
             var status = Status.underMax
             lock.sync {

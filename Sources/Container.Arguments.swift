@@ -31,6 +31,7 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, Arg1>(
         _ serviceType: Service.Type,
         name: String? = nil,
@@ -51,6 +52,7 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, Arg1, Arg2>(
         _ serviceType: Service.Type,
         name: String? = nil,
@@ -71,6 +73,7 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, Arg1, Arg2, Arg3>(
         _ serviceType: Service.Type,
         name: String? = nil,
@@ -91,6 +94,7 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4>(
         _ serviceType: Service.Type,
         name: String? = nil,
@@ -111,6 +115,7 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
         _ serviceType: Service.Type,
         name: String? = nil,
@@ -131,6 +136,7 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
         _ serviceType: Service.Type,
         name: String? = nil,
@@ -151,6 +157,7 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
         _ serviceType: Service.Type,
         name: String? = nil,
@@ -171,6 +178,7 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
         _ serviceType: Service.Type,
         name: String? = nil,
@@ -191,6 +199,7 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
         _ serviceType: Service.Type,
         name: String? = nil,
