@@ -12,9 +12,9 @@ import Nimble
 
 class ServiceEntrySpec: QuickSpec {
     override func spec() {
-        it("has ObjectScope.Graph as a default value of scope property.") {
+        it("has ObjectScope.graph as a default value of scope property.") {
             let entry = ServiceEntry(serviceType: Int.self, factory: { return 0 })
-            expect(entry.objectScope) == ObjectScope.Graph
+            expect(entry.objectScope) == ObjectScope.graph
         }
     }
 }

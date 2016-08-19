@@ -97,7 +97,7 @@ class ContainerSpec: QuickSpec {
             context("in no scope") {
                 it("does not have a shared object in a container.") {
                     container.register(AnimalType.self) { _ in Cat() }
-                        .inObjectScope(.None)
+                        .inObjectScope(.none)
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
@@ -106,7 +106,7 @@ class ContainerSpec: QuickSpec {
                 it("resolves a service to new objects in a graph") {
                     registerCatAndPetOwnerDependingOnFood(container)
                     container.register(FoodType.self) { _ in Sushi() }
-                        .inObjectScope(.None)
+                        .inObjectScope(.none)
                     
                     let owner = container.resolve(PersonType.self) as! PetOwner
                     let ownersSushi = owner.favoriteFood as! Sushi
@@ -117,7 +117,7 @@ class ContainerSpec: QuickSpec {
             context("in graph scope") {
                 it("does not have a shared object in a container.") {
                     container.register(AnimalType.self) { _ in Cat() }
-                        .inObjectScope(.Graph)
+                        .inObjectScope(.graph)
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
@@ -126,7 +126,7 @@ class ContainerSpec: QuickSpec {
                 it("resolves a service to the same object in a graph") {
                     registerCatAndPetOwnerDependingOnFood(container)
                     container.register(FoodType.self) { _ in Sushi() }
-                        .inObjectScope(.Graph)
+                        .inObjectScope(.graph)
                     
                     let owner = container.resolve(PersonType.self) as! PetOwner
                     let ownersSushi = owner.favoriteFood as! Sushi
@@ -137,7 +137,7 @@ class ContainerSpec: QuickSpec {
             context("in container scope") {
                 it("shares an object in the own container.") {
                     container.register(AnimalType.self) { _ in Cat() }
-                        .inObjectScope(.Container)
+                        .inObjectScope(.container)
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
@@ -146,9 +146,9 @@ class ContainerSpec: QuickSpec {
                 it("does not share an object from a parent container to its child.") {
                     let parent = Container()
                     parent.register(AnimalType.self) { _ in Cat() }
-                        .inObjectScope(.Container)
+                        .inObjectScope(.container)
                     parent.register(AnimalType.self, name: "dog") { _ in Dog() }
-                        .inObjectScope(.Container)
+                        .inObjectScope(.container)
                     let child = Container(parent: parent)
                     
                     // Case resolving on the parent first.
@@ -164,7 +164,7 @@ class ContainerSpec: QuickSpec {
                 it("resolves a service to the same object in a graph") {
                     registerCatAndPetOwnerDependingOnFood(container)
                     container.register(FoodType.self) { _ in Sushi() }
-                        .inObjectScope(.Container)
+                        .inObjectScope(.container)
                     
                     let owner = container.resolve(PersonType.self) as! PetOwner
                     let ownersSushi = owner.favoriteFood as! Sushi
@@ -175,7 +175,7 @@ class ContainerSpec: QuickSpec {
             context("in hierarchy scope") {
                 it("shares an object in the own container.") {
                     container.register(AnimalType.self) { _ in Cat() }
-                        .inObjectScope(.Hierarchy)
+                        .inObjectScope(.hierarchy)
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
@@ -184,9 +184,9 @@ class ContainerSpec: QuickSpec {
                 it("shares an object from a parent container to its child.") {
                     let parent = Container()
                     parent.register(AnimalType.self) { _ in Cat() }
-                        .inObjectScope(.Hierarchy)
+                        .inObjectScope(.hierarchy)
                     parent.register(AnimalType.self, name: "dog") { _ in Dog() }
-                        .inObjectScope(.Hierarchy)
+                        .inObjectScope(.hierarchy)
                     let child = Container(parent: parent)
                     
                     // Case resolving on the parent first.
@@ -202,7 +202,7 @@ class ContainerSpec: QuickSpec {
                 it("resolves a service in the parent container to the same object in a graph") {
                     let parent = Container()
                     parent.register(FoodType.self) { _ in Sushi() }
-                        .inObjectScope(.Hierarchy)
+                        .inObjectScope(.hierarchy)
                     let child = Container(parent: parent)
                     registerCatAndPetOwnerDependingOnFood(child)
                     
@@ -290,10 +290,10 @@ class ContainerSpec: QuickSpec {
                     expect(turtle2.name) == "Ninja"
                 }
                 
-                runInObjectScope(.None)
-                runInObjectScope(.Graph)
-                runInObjectScope(.Container)
-                runInObjectScope(.Hierarchy)
+                runInObjectScope(.none)
+                runInObjectScope(.graph)
+                runInObjectScope(.container)
+                runInObjectScope(.hierarchy)
             }
             it("resolves struct instances defined in the parent container ignoring object scopes.") {
                 let runInObjectScope: (ObjectScope) -> Void = { scope in
@@ -309,10 +309,10 @@ class ContainerSpec: QuickSpec {
                     expect(turtle2.name) == "Ninja"
                 }
                 
-                runInObjectScope(.None)
-                runInObjectScope(.Graph)
-                runInObjectScope(.Container)
-                runInObjectScope(.Hierarchy)
+                runInObjectScope(.none)
+                runInObjectScope(.graph)
+                runInObjectScope(.container)
+                runInObjectScope(.hierarchy)
             }
         }
         describe("Class as a service type") {
@@ -371,7 +371,7 @@ class ContainerSpec: QuickSpec {
             }
             it("describes a registration with a specified object scope.") {
                 container.register(AnimalType.self) { _ in Cat() }
-                    .inObjectScope(.Container)
+                    .inObjectScope(.container)
                 
                 expect(container.description) ==
                     "[\n"

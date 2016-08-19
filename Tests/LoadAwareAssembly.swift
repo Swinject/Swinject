@@ -13,11 +13,11 @@ class LoadAwareAssembly: AssemblyType {
     var onLoad: (ResolverType) -> Void
     var loaded = false
     
-    init(onLoad: (ResolverType) -> Void) {
+    init(onLoad: @escaping (ResolverType) -> Void) {
         self.onLoad = onLoad
     }
     
-    func assemble(_ container: Container) {
+    func assemble(container: Container) {
         container.register(AnimalType.self) { r in
             return Cat(name: "Bojangles")
         }
