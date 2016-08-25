@@ -32,6 +32,10 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 - [x] [Modular Components](./Documentation/Assembler.md)
 - [x] [Storyboard](./Documentation/Storyboard.md)
 
+## Extensions
+
+- **[Swinject-CodeGen](https://github.com/Swinject/Swinject-CodeGen)**: Type-safe code generation of `Container` from a CSV/YAML file defining dependencies.
+
 ## Requirements
 
 - iOS 8.0+ / Mac OS X 10.10+ / watchOS 2.0+ / tvOS 9.0+
@@ -198,11 +202,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ```
 
 Notice that the example uses a convenience initializer taking a closure to register services to the new instance of `Container`.
-
-## Extensions
-
-- **[Swinject-CodeGen](https://github.com/Swinject/Swinject-CodeGen)**: Type-safe code generation of `Container` from a CSV/YAML file defining dependencies.
-
 
 ## Play in Playground!
 
