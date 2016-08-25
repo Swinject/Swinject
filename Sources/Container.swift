@@ -142,7 +142,7 @@ extension Container: Resolvable {
     internal func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
         resolutionPool.incrementDepth()
         defer {
-            if(resolutionPool.currentDepth == 1) {
+            if resolutionPool.currentDepth == 1 {
                 while let pendingComplete = pendingCompletes.popLast() {
                     pendingComplete()
                 }
