@@ -19,6 +19,10 @@ internal struct ResolutionPool {
         set { pool[key] = newValue }
     }
     
+    internal var currentDepth: Int {
+        return depth
+    }
+    
     internal mutating func incrementDepth() {
         guard depth < ResolutionPool.maxDepth else {
             fatalError("Infinite recursive call for circular dependency has been detected. " +
