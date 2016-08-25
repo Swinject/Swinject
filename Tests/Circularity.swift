@@ -9,22 +9,32 @@
 import Foundation
 
 // MARK: Circular dependency of two objects
-internal protocol ParentType: AnyObject { }
-internal protocol ChildType: AnyObject { }
+internal protocol ParentType: AnyObject {}
+internal protocol ChildType: AnyObject {}
 
 internal class Parent: ParentType {
+    internal static var numberOfInstances: Int = 0
+    
     var child: ChildType?
     
     init() {
+        Parent.numberOfInstances += 1
     }
     
     init(child: ChildType) {
         self.child = child
+        Parent.numberOfInstances += 1
     }
 }
 
 internal class Child: ChildType {
+    internal static var numberOfInstances: Int = 0
+    
     weak var parent: ParentType?
+    
+    init() {
+        Child.numberOfInstances += 1
+    }
 }
 
 // MARK: - Circular dependency of more than two objects
