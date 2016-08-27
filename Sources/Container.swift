@@ -31,7 +31,6 @@ public final class Container {
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
     private var properties = [String:AnyObject]()
-    private var pendingCompletes: [()->()] = []
     internal let lock: SpinLock // Used by SynchronizedResolver.
     
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
@@ -142,11 +141,6 @@ extension Container: Resolvable {
     internal func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
         resolutionPool.incrementDepth()
         defer {
-            if resolutionPool.currentDepth == 1 {
-                while let pendingComplete = pendingCompletes.popLast() {
-                    pendingComplete()
-                }
-            }
             resolutionPool.decrementDepth()
         }
         
@@ -207,7 +201,7 @@ extension Container: Resolvable {
         }
         
         if let completed = entry.initCompleted as? (ResolverType, Service) -> () {
-            pendingCompletes.append({completed(self, resolvedInstance)})
+            resolutionPool.appendPendingCompletion({completed(self, resolvedInstance)})
         }
         return resolvedInstance
     }
