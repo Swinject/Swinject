@@ -350,7 +350,7 @@ class ContainerSpec: QuickSpec {
                 
                 expect(container.description) ==
                     "[\n"
-                    + "    { Service: AnimalType, Factory: ResolverType -> AnimalType, ObjectScope: Graph }\n"
+                    + "    { Service: AnimalType, Factory: (ResolverType) -> AnimalType, ObjectScope: graph }\n"
                     + "]"
             }
             it("describes a registration with name.") {
@@ -358,7 +358,7 @@ class ContainerSpec: QuickSpec {
                 
                 expect(container.description) ==
                     "[\n"
-                    + "    { Service: AnimalType, Name: \"My Cat\", Factory: ResolverType -> AnimalType, ObjectScope: Graph }\n"
+                    + "    { Service: AnimalType, Name: \"My Cat\", Factory: (ResolverType) -> AnimalType, ObjectScope: graph }\n"
                     + "]"
             }
             it("describes a registration with arguments.") {
@@ -366,7 +366,7 @@ class ContainerSpec: QuickSpec {
                 
                 expect(container.description) ==
                     "[\n"
-                    + "    { Service: AnimalType, Factory: (ResolverType, String, Bool) -> AnimalType, ObjectScope: Graph }\n"
+                    + "    { Service: AnimalType, Factory: ((ResolverType, String, Bool)) -> AnimalType, ObjectScope: graph }\n"
                     + "]"
             }
             it("describes a registration with a specified object scope.") {
@@ -375,7 +375,7 @@ class ContainerSpec: QuickSpec {
                 
                 expect(container.description) ==
                     "[\n"
-                    + "    { Service: AnimalType, Factory: ResolverType -> AnimalType, ObjectScope: Container }\n"
+                    + "    { Service: AnimalType, Factory: (ResolverType) -> AnimalType, ObjectScope: container }\n"
                     + "]"
             }
             it("describes a registration with initCompleted.") {
@@ -384,7 +384,7 @@ class ContainerSpec: QuickSpec {
                 
                 expect(container.description) ==
                     "[\n"
-                    + "    { Service: AnimalType, Factory: ResolverType -> AnimalType, ObjectScope: Graph, InitCompleted: Specified }\n"
+                    + "    { Service: AnimalType, Factory: (ResolverType) -> AnimalType, ObjectScope: graph, InitCompleted: Specified }\n"
                     + "]"
             }
             it("describes multiple registrations.") {
@@ -393,8 +393,8 @@ class ContainerSpec: QuickSpec {
                 
                 expect(container.description) ==
                     "[\n"
-                    + "    { Service: AnimalType, Name: \"1\", Factory: ResolverType -> AnimalType, ObjectScope: Graph },\n"
-                    + "    { Service: AnimalType, Name: \"2\", Factory: ResolverType -> AnimalType, ObjectScope: Graph }\n"
+                    + "    { Service: AnimalType, Name: \"1\", Factory: (ResolverType) -> AnimalType, ObjectScope: graph },\n"
+                    + "    { Service: AnimalType, Name: \"2\", Factory: (ResolverType) -> AnimalType, ObjectScope: graph }\n"
                     + "]"
             }
         }

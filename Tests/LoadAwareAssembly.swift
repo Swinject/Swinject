@@ -23,7 +23,7 @@ class LoadAwareAssembly: AssemblyType {
         }
     }
     
-    func loaded(_ resolver: ResolverType) {
+    func loaded(resolver: ResolverType) {
         onLoad(resolver)
         loaded = true
     }
