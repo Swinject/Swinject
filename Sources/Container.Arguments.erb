@@ -35,8 +35,9 @@ extension Container {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
     public func register<Service, <%= arg_types %>>(
-        serviceType: Service.Type,
+        _ serviceType: Service.Type,
         name: String? = nil,
         factory: (ResolverType, <%= arg_types %>) -> Service) -> ServiceEntry<Service>
     {
@@ -64,7 +65,7 @@ extension Container {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type
     ///            and <%= arg_param_description %> is found in the `Container`.
     public func resolve<Service, <%= arg_types %>>(
-        serviceType: Service.Type,
+        _ serviceType: Service.Type,
         <%= arg_param_def %>) -> Service?
     {
         return resolve(serviceType, name: nil, <%= arg_param_name %>: <%= arg_param_call %>)
@@ -80,7 +81,7 @@ extension Container {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            <%= arg_param_description %> and name is found in the `Container`.
     public func resolve<Service, <%= arg_types %>>(
-        serviceType: Service.Type,
+        _ serviceType: Service.Type,
         name: String?,
         <%= arg_param_def %>) -> Service?
     {

@@ -19,7 +19,7 @@ class ContainerSpec_Circularity: QuickSpec {
         
         describe("Two objects") {
             it("resolves circular dependency on each property.") {
-                let runInObjectScope: ObjectScope -> Void = { scope in
+                let runInObjectScope: (ObjectScope) -> Void = { scope in
                     container.removeAll()
                     container.register(ParentType.self) { _ in Parent() }
                         .initCompleted { r, s in
@@ -36,15 +36,15 @@ class ContainerSpec_Circularity: QuickSpec {
                     
                     let parent = container.resolve(ParentType.self) as! Parent
                     let child = parent.child as! Child
-                    expect(child.parent as? Parent) === parent
+                    expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                 }
                 
-                runInObjectScope(.Graph)
-                runInObjectScope(.Container)
-                runInObjectScope(.Hierarchy)
+                runInObjectScope(.graph)
+                runInObjectScope(.container)
+                runInObjectScope(.hierarchy)
             }
             it("resolves circular dependency on the initializer and property.") {
-                let runInObjectScope: ObjectScope -> Void = { scope in
+                let runInObjectScope: (ObjectScope) -> Void = { scope in
                     container.removeAll()
                     container.register(ParentType.self) { r in Parent(child: r.resolve(ChildType.self)!) }
                         .inObjectScope(scope)
@@ -57,12 +57,12 @@ class ContainerSpec_Circularity: QuickSpec {
                     
                     let parent = container.resolve(ParentType.self) as! Parent
                     let child = parent.child as! Child
-                    expect(child.parent as? Parent) === parent
+                    expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                 }
                 
-                runInObjectScope(.Graph)
-                runInObjectScope(.Container)
-                runInObjectScope(.Hierarchy)
+                runInObjectScope(.graph)
+                runInObjectScope(.container)
+                runInObjectScope(.hierarchy)
             }
         }
         describe("More than two objects") {
@@ -94,9 +94,9 @@ class ContainerSpec_Circularity: QuickSpec {
                 let b = a.b as! BDependingOnC
                 let c = b.c as! CDependingOnAD
                 let d = c.d as! DDependingOnBC
-                expect(c.a as? ADependingOnB) === a
-                expect(d.b as? BDependingOnC) === b
-                expect(d.c as? CDependingOnAD) === c
+                expect(c.a as? ADependingOnB === a).to(beTrue()) // Workaround for crash in Nimble
+                expect(d.b as? BDependingOnC === b).to(beTrue()) // Workaround for crash in Nimble
+                expect(d.c as? CDependingOnAD === c).to(beTrue()) // Workaround for crash in Nimble
             }
             it("resolves circular dependency on initializers and properties.") {
                 container.register(AType.self) { r in ADependingOnB(b: r.resolve(BType.self)!) }
@@ -117,9 +117,9 @@ class ContainerSpec_Circularity: QuickSpec {
                 let b = a.b as! BDependingOnC
                 let c = b.c as! CDependingOnAD
                 let d = c.d as! DDependingOnBC
-                expect(c.a as? ADependingOnB) === a
-                expect(d.b as? BDependingOnC) === b
-                expect(d.c as? CDependingOnAD) === c
+                expect(c.a as? ADependingOnB === a).to(beTrue()) // Workaround for crash in Nimble
+                expect(d.b as? BDependingOnC === b).to(beTrue()) // Workaround for crash in Nimble
+                expect(d.c as? CDependingOnAD === c).to(beTrue()) // Workaround for crash in Nimble
             }
         }
     }

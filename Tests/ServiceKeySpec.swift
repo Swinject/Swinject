@@ -14,7 +14,7 @@ import Nimble
 private struct Option: ServiceKeyOptionType {
     let option: Int
     
-    func isEqualTo(another: ServiceKeyOptionType) -> Bool {
+    func isEqualTo(_ another: ServiceKeyOptionType) -> Bool {
         guard let another = another as? Option else {
             return false
         }
@@ -36,7 +36,7 @@ class ServiceKeySpec: QuickSpec {
     override func spec() {
         describe("Without name") {
             it("equals with the same factory type.") {
-                typealias FactoryType0Args = ResolverType -> AnimalType
+                typealias FactoryType0Args = (ResolverType) -> AnimalType
                 let key1 = ServiceKey(factoryType: FactoryType0Args.self)
                 let key2 = ServiceKey(factoryType: FactoryType0Args.self)
                 expect(key1) == key2
@@ -49,8 +49,8 @@ class ServiceKeySpec: QuickSpec {
                 expect(key3.hashValue) == key4.hashValue
             }
             it("does not equal with different service types in factory types.") {
-                typealias PersonFactoryType = ResolverType -> PersonType
-                typealias AnimalFactoryType = ResolverType -> AnimalType
+                typealias PersonFactoryType = (ResolverType) -> PersonType
+                typealias AnimalFactoryType = (ResolverType) -> AnimalType
                 let key1 = ServiceKey(factoryType: PersonFactoryType.self)
                 let key2 = ServiceKey(factoryType: AnimalFactoryType.self)
                 expect(key1) != key2
@@ -74,7 +74,7 @@ class ServiceKeySpec: QuickSpec {
         }
         describe("With name") {
             it("equals with the same name.") {
-                typealias FactoryType0Args = ResolverType -> AnimalType
+                typealias FactoryType0Args = (ResolverType) -> AnimalType
                 let key1 = ServiceKey(factoryType: FactoryType0Args.self, name: "my factory")
                 let key2 = ServiceKey(factoryType: FactoryType0Args.self, name: "my factory")
                 expect(key1) == key2
@@ -87,7 +87,7 @@ class ServiceKeySpec: QuickSpec {
                 expect(key3.hashValue) == key4.hashValue
             }
             it("does not equal with different names.") {
-                typealias FactoryType0Args = ResolverType -> AnimalType
+                typealias FactoryType0Args = (ResolverType) -> AnimalType
                 let key1 = ServiceKey(factoryType: FactoryType0Args.self, name: "my factory")
                 let key2 = ServiceKey(factoryType: FactoryType0Args.self, name: "your factory")
                 expect(key1) != key2
@@ -102,7 +102,7 @@ class ServiceKeySpec: QuickSpec {
         }
         describe("With option") {
             it("equals with the same option.") {
-                typealias FactoryType0Args = ResolverType -> AnimalType
+                typealias FactoryType0Args = (ResolverType) -> AnimalType
                 let key1 = ServiceKey(factoryType: FactoryType0Args.self, option: Option(option: 1))
                 let key2 = ServiceKey(factoryType: FactoryType0Args.self, option: Option(option: 1))
                 expect(key1) == key2
@@ -115,7 +115,7 @@ class ServiceKeySpec: QuickSpec {
                 expect(key3.hashValue) == key4.hashValue
             }
             it("does not equal with different options.") {
-                typealias FactoryType0Args = ResolverType -> AnimalType
+                typealias FactoryType0Args = (ResolverType) -> AnimalType
                 let key1 = ServiceKey(factoryType: FactoryType0Args.self, option: Option(option: 1))
                 let key2 = ServiceKey(factoryType: FactoryType0Args.self, option: Option(option: 2))
                 expect(key1) != key2

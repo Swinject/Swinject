@@ -15,7 +15,7 @@ internal final class SynchronizedResolver {
 }
 
 extension SynchronizedResolver: _ResolverType {
-    internal func _resolve<Service, Factory>(name name: String?, option: ServiceKeyOptionType?, invoker: Factory -> Service) -> Service? {
+    internal func _resolve<Service, Factory>(name: String?, option: ServiceKeyOptionType?, invoker: (Factory) -> Service) -> Service? {
         return container.lock.sync {
             return self.container._resolve(name: name, option: option, invoker: invoker)
         }
@@ -23,13 +23,13 @@ extension SynchronizedResolver: _ResolverType {
 }
 
 extension SynchronizedResolver: ResolverType {
-    internal func resolve<Service>(serviceType: Service.Type) -> Service? {
+    internal func resolve<Service>(_ serviceType: Service.Type) -> Service? {
         return container.lock.sync {
             return self.container.resolve(serviceType)
         }
     }
     
-    internal func resolve<Service>(serviceType: Service.Type, name: String?) -> Service? {
+    internal func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
         return container.lock.sync {
             return self.container.resolve(serviceType, name: name)
         }

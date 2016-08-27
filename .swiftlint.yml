@@ -5,6 +5,7 @@ disabled_rules:
   - nesting
   - opening_brace
   - valid_docs
+  - type_name
 excluded:
   - Sources/Container.Arguments.swift
   - Sources/SynchronizedResolver.Arguments.swift

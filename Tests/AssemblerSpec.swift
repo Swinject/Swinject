@@ -103,7 +103,7 @@ class AssemblerSpec: QuickSpec {
                 var cat = assembler.resolver.resolve(AnimalType.self)
                 expect(cat).to(beNil())
                 
-                assembler.applyAssembly(AnimalAssembly())
+                assembler.apply(assembly: AnimalAssembly())
                 
                 cat = assembler.resolver.resolve(AnimalType.self)
                 expect(cat).toNot(beNil())
@@ -122,7 +122,7 @@ class AssemblerSpec: QuickSpec {
                 }
                 
                 expect(loadAwareAssembly.loaded) == false
-                assembler.applyAssembly(loadAwareAssembly)
+                assembler.apply(assembly: loadAwareAssembly)
                 expect(loadAwareAssembly.loaded) == true
                 
                 cat = assembler.resolver.resolve(AnimalType.self)
@@ -138,7 +138,7 @@ class AssemblerSpec: QuickSpec {
                 var sushi = assembler.resolver.resolve(FoodType.self)
                 expect(sushi).to(beNil())
                 
-                assembler.applyAssembly(AnimalAssembly())
+                assembler.apply(assembly: AnimalAssembly())
                 
                 cat = assembler.resolver.resolve(AnimalType.self)
                 expect(cat).toNot(beNil())
@@ -147,7 +147,7 @@ class AssemblerSpec: QuickSpec {
                 sushi = assembler.resolver.resolve(FoodType.self)
                 expect(sushi).to(beNil())
                 
-                assembler.applyAssembly(FoodAssembly())
+                assembler.apply(assembly: FoodAssembly())
                 
                 sushi = assembler.resolver.resolve(FoodType.self)
                 expect(sushi).toNot(beNil())
@@ -161,7 +161,7 @@ class AssemblerSpec: QuickSpec {
                 var sushi = assembler.resolver.resolve(FoodType.self)
                 expect(sushi).to(beNil())
                 
-                assembler.applyAssemblies([
+                assembler.apply(assemblies: [
                     AnimalAssembly(),
                     FoodAssembly()
                 ])
@@ -227,7 +227,7 @@ class AssemblerSpec: QuickSpec {
                 var cat = assembler.resolver.resolve(AnimalType.self)
                 expect(cat).to(beNil())
                 
-                assembler.applyAssembly(AnimalAssembly())
+                assembler.apply(assembly: AnimalAssembly())
                 
                 cat = assembler.resolver.resolve(AnimalType.self)
                 expect(cat).toNot(beNil())

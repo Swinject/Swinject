@@ -24,7 +24,7 @@ extension SynchronizedResolver {
 <%   arg_param_def = i == 1 ? "argument: Arg1" : "arguments arg1: Arg1, " + (2..i).map{ |n| "_ arg#{n}: Arg#{n}" }.join(", ") %>
 <%   arg_param_call = i == 1 ? "argument" : (1..i).map{ |n| "arg#{n}" }.join(", ") %>
     internal func resolve<Service, <%= arg_types %>>(
-        serviceType: Service.Type,
+        _ serviceType: Service.Type,
         <%= arg_param_def %>) -> Service?
     {
         return container.lock.sync {
@@ -33,7 +33,7 @@ extension SynchronizedResolver {
     }
 
     internal func resolve<Service, <%= arg_types %>>(
-        serviceType: Service.Type,
+        _ serviceType: Service.Type,
         name: String?,
         <%= arg_param_def %>) -> Service?
     {
