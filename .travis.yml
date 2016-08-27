@@ -12,13 +12,14 @@ env:
     - TVOS_SDK=appletvsimulator10.0
     - WATCHOS_SDK=watchsimulator3.0
   matrix:
-    - DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="Swinject-iOS" SDK="$IOS_SDK" PLATFORM="iOS" POD_LINT="NO" ACTION="test"
-    - DESTINATION="OS=9.3,name=iPhone 6" SCHEME="Swinject-iOS" SDK="$IOS_SDK" PLATFORM="iOS" POD_LINT="NO" ACTION="test"
+## Simulators for old os versions are commented out because Travis does not support them for Xcode 8 beta.
+#    - DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="Swinject-iOS" SDK="$IOS_SDK" PLATFORM="iOS" POD_LINT="NO" ACTION="test"
+#    - DESTINATION="OS=9.3,name=iPhone 6" SCHEME="Swinject-iOS" SDK="$IOS_SDK" PLATFORM="iOS" POD_LINT="NO" ACTION="test"
     - DESTINATION="OS=10.0,name=iPhone 6S Plus" SCHEME="Swinject-iOS" SDK="$IOS_SDK" PLATFORM="iOS" POD_LINT="YES" ACTION="test"
     - DESTINATION="arch=x86_64" SCHEME="Swinject-OSX" SDK="$OSX_SDK" PLATFORM="Mac" POD_LINT="NO" ACTION="test"
-    - DESTINATION="OS=9.2,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="$TVOS_SDK" PLATFORM="tvOS" POD_LINT="NO" ACTION="test"
+#    - DESTINATION="OS=9.2,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="$TVOS_SDK" PLATFORM="tvOS" POD_LINT="NO" ACTION="test"
     - DESTINATION="OS=10.0,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="$TVOS_SDK" PLATFORM="tvOS" POD_LINT="NO" ACTION="test"
-    - DESTINATION="OS=2.2,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="$WATCHOS_SDK" PLATFORM="watchOS" POD_LINT="NO" ACTION="build"
+#    - DESTINATION="OS=2.2,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="$WATCHOS_SDK" PLATFORM="watchOS" POD_LINT="NO" ACTION="build"
     - DESTINATION="OS=3.0,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="$WATCHOS_SDK" PLATFORM="watchOS" POD_LINT="NO" ACTION="build"
 before_install:
   - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.11/Carthage.pkg
