@@ -31,13 +31,12 @@ before_install:
   - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.11/Carthage.pkg
   - sudo installer -pkg Carthage.pkg -target /
   - carthage bootstrap --verbose --no-build --use-submodules
-  - echo "ENABLE_TESTABILITY = YES" >> Carthage/Checkouts/xcconfigs/Base/Configurations/Release.xcconfig
 script:
   - set -o pipefail
   - xcodebuild -version
   - open -b com.apple.iphonesimulator # Workaround https://github.com/travis-ci/travis-ci/issues/3040
   - xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" 
-    -configuration Release ONLY_ACTIVE_ARCH=NO $ACTION
+    -configuration Release ENABLE_TESTABILITY=YES ONLY_ACTIVE_ARCH=NO $ACTION
   - if [ $POD_LINT == "YES" ]; then
       pod lib lint --quick;
     fi
