@@ -65,7 +65,7 @@ class ContainerSpec_Circularity: QuickSpec {
                 runInObjectScope(.hierarchy)
             }
             it("resolves circular dependency while intantiating each singleton object only once.") {
-                let runInObjectScope: ObjectScope -> Void = { scope in
+                let runInObjectScope: (ObjectScope) -> Void = { scope in
                     container.removeAll()
                     Parent.numberOfInstances = 0
                     Child.numberOfInstances = 0
@@ -78,14 +78,14 @@ class ContainerSpec_Circularity: QuickSpec {
                         }
                         .inObjectScope(scope)
                     
-                    container.resolve(ParentType.self)
-                    container.resolve(ChildType.self)
+                    let _ = container.resolve(ParentType.self)
+                    let _ = container.resolve(ChildType.self)
                     expect(Parent.numberOfInstances) == 1
                     expect(Child.numberOfInstances) == 1
                 }
                 
-                runInObjectScope(.Container)
-                runInObjectScope(.Hierarchy)
+                runInObjectScope(.container)
+                runInObjectScope(.hierarchy)
             }
         }
         describe("More than two objects") {

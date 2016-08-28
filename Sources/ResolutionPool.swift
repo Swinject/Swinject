@@ -40,7 +40,7 @@ internal struct ResolutionPool {
         depth -= 1
     }
     
-    internal mutating func appendPendingCompletion(completion: ()->()) {
+    internal mutating func appendPendingCompletion(_ completion: @escaping ()->()) {
         pendingCompletions.append(completion)
     }
 }
