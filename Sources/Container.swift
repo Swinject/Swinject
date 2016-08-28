@@ -202,7 +202,7 @@ extension Container: ResolverType {
         }
         
         if let completed = entry.initCompleted as? (ResolverType, Service) -> () {
-            completed(self, resolvedInstance)
+            resolutionPool.appendPendingCompletion({completed(self, resolvedInstance)})
         }
         return resolvedInstance
     }
