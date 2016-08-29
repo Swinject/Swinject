@@ -314,6 +314,23 @@ class ContainerSpec: QuickSpec {
                 runInObjectScope(.container)
                 runInObjectScope(.hierarchy)
             }
+            it("resolves only once if object scope is container or hierarchy to simulate singleton (instantiation only once).") {
+                let runInObjectScope: (ObjectScope, Int) -> Void = { scope, expectation in
+                    var invokedCount = 0
+                    container.register(AnimalType.self) { _ in
+                        invokedCount += 1
+                        return Turtle(name: "Ninja")
+                    }.inObjectScope(scope)
+                    _ = container.resolve(AnimalType.self)!
+                    _ = container.resolve(AnimalType.self)!
+                    expect(invokedCount) == expectation
+                }
+                
+                runInObjectScope(.none, 2)
+                runInObjectScope(.graph, 2)
+                runInObjectScope(.container, 1)
+                runInObjectScope(.hierarchy, 1)
+            }
         }
         describe("Class as a service type") {
             it("resolves a registred subclass of a service type class.") {
