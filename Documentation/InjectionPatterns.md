@@ -84,7 +84,7 @@ container.register(PersonType.self) { _ in PetOwner2() }
 
 _Method injection_ is a similar pattern to _property injection_, but it uses a method to pass dependencies to a dependent instance.
 
-The following code defines Property Injection to `PetOwner3`:
+The following code defines Method Injection to `PetOwner3`:
 
 ```swift
 let container = Container()
