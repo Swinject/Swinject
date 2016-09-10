@@ -80,7 +80,9 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         let viewController = super.instantiateViewControllerWithIdentifier(identifier)
         SwinjectStoryboard.popInstantiatingStoryboard()
 
-        injectDependency(viewController)
+        if !SwinjectStoryboard.isCreatingStoryboardReference {
+            injectDependency(viewController)
+        }
 
         return viewController
     }
@@ -114,7 +116,9 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         let controller = super.instantiateControllerWithIdentifier(identifier)
         SwinjectStoryboard.popInstantiatingStoryboard()
 
-        injectDependency(controller)
+        if !SwinjectStoryboard.isCreatingStoryboardReference {
+            injectDependency(controller)
+        }
 
         return controller
     }
@@ -129,7 +133,10 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         //    container.resolve(controller.dynamicType, argument: controller as Container.Controller, name: registrationName)
         let nameWithActualType = String(reflecting: controller.dynamicType) + ":" + (registrationName ?? "")
         container.value.resolve(Container.Controller.self, name: nameWithActualType, argument: controller as Container.Controller)
-        
+
+        if let windowController = controller as? NSWindowController, let viewController = windowController.contentViewController {
+            injectDependency(viewController)
+        }
         if let viewController = controller as? NSViewController {
             for child in viewController.childViewControllers {
                 injectDependency(child)
