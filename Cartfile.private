@@ -1,3 +1,3 @@
 github "jspahrsummers/xcconfigs" "1ef97639ffbe041da0b1392b2114fa19b922a7a1"
-github "ikesyo/Quick" "17aae699bd8b035688fa7e176e383ea9d2a335ea"
-github "ikesyo/Nimble" "4caecb3cef0c9a2973c598b99e1495009faf57b1"
+github "Quick/Quick" "81d2a7bd95ef91e2604ee0431bba6fe59ad662dc"
+github "Quick/Nimble" "220152be528dcc0537764c179c95b8174028c80c"
