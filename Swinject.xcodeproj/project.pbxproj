@@ -233,6 +233,10 @@
 		CD5446E91D84373600B13BB4 /* RelationshipReference2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446E51D84373600B13BB4 /* RelationshipReference2.storyboard */; };
 		CD5446FC1D84385800B13BB4 /* RelationshipReference1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446FA1D84385800B13BB4 /* RelationshipReference1.storyboard */; };
 		CD5446FD1D84385800B13BB4 /* RelationshipReference2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446FB1D84385800B13BB4 /* RelationshipReference2.storyboard */; };
+		CD5446FF1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
+		CD5447001D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
+		CD5447011D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
+		CD5447021D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -524,6 +528,7 @@
 		CD5446E51D84373600B13BB4 /* RelationshipReference2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference2.storyboard; sourceTree = "<group>"; };
 		CD5446FA1D84385800B13BB4 /* RelationshipReference1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference1.storyboard; sourceTree = "<group>"; };
 		CD5446FB1D84385800B13BB4 /* RelationshipReference2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference2.storyboard; sourceTree = "<group>"; };
+		CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SwinjectStoryboard+StoryboardReference.swift"; path = "../../Tests/SwinjectStoryboard/SwinjectStoryboard+StoryboardReference.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -739,6 +744,7 @@
 				984E8A7A1C319F090039943D /* SwinjectStoryboard.swift */,
 				984E8A791C319F090039943D /* Storyboard+Swizzling.swift */,
 				984E8A7C1C319F090039943D /* ViewController+Swinject.swift */,
+				CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */,
 			);
 			path = SwinjectStoryboard;
 			sourceTree = "<group>";
@@ -1415,6 +1421,7 @@
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				9880E70F1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				984E8A821C319F090039943D /* SwinjectStoryboard.swift in Sources */,
+				CD5447001D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */,
 				98B012C01B82F68E00053A32 /* Resolvable.swift in Sources */,
 				90B0297A1C185B1600A6A521 /* Assembler.swift in Sources */,
 				90B029761C18599200A6A521 /* AssemblyType.swift in Sources */,
@@ -1479,6 +1486,7 @@
 				981577F41B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */,
 				98F2F7731C07E789009571E6 /* Box.swift in Sources */,
+				CD5446FF1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */,
 				984E8A811C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				90E70A551C16837300F12C2A /* PropertyRetrievable.swift in Sources */,
 				90D409F61C14E69F009DF1B1 /* JsonPropertyLoader.swift in Sources */,
@@ -1548,6 +1556,7 @@
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				90E70A5C1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 				90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */,
+				CD5447011D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */,
 				984E8A831C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
 				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
@@ -1574,6 +1583,7 @@
 				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
 				984774F31C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolvable.swift in Sources */,
+				CD5447021D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */,
 				984E8A841C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
 				98F2F7761C07E789009571E6 /* Box.swift in Sources */,

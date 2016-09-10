@@ -30,7 +30,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
     // Boxing to workaround a runtime error [Xcode 7.1.1 and Xcode 7.2 beta 4]
     // If container property is ResolverType type and a ResolverType instance is assigned to the property,
     // the program crashes by EXC_BAD_ACCESS, which looks a bug of Swift.
-    private var container: Box<ResolverType>!
+    internal var container: Box<ResolverType>!
     
     /// Do NOT call this method explicitly. It is designed to be called by the runtime.
     public override class func initialize() {
@@ -76,11 +76,15 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
     ///
     /// - Returns: The instantiated view controller with its dependencies injected.
     public override func instantiateViewControllerWithIdentifier(identifier: String) -> UIViewController {
+        SwinjectStoryboard.pushInstantiatingStoryboard(self)
         let viewController = super.instantiateViewControllerWithIdentifier(identifier)
+        SwinjectStoryboard.popInstantiatingStoryboard()
+
         injectDependency(viewController)
+
         return viewController
     }
-    
+
     private func injectDependency(viewController: UIViewController) {
         let registrationName = viewController.swinjectRegistrationName
 
@@ -106,11 +110,15 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
     ///
     /// - Returns: The instantiated view/window controller with its dependencies injected.
     public override func instantiateControllerWithIdentifier(identifier: String) -> AnyObject {
+        SwinjectStoryboard.pushInstantiatingStoryboard(self)
         let controller = super.instantiateControllerWithIdentifier(identifier)
+        SwinjectStoryboard.popInstantiatingStoryboard()
+
         injectDependency(controller)
+
         return controller
     }
-    
+
     private func injectDependency(controller: Container.Controller) {
         let registrationName = (controller as? RegistrationNameAssociatable)?.swinjectRegistrationName
         
