@@ -12,7 +12,9 @@ env:
     - TVOS_SDK=appletvsimulator10.0
     - WATCHOS_SDK=watchsimulator3.0
   matrix:
-    - DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="Swinject-iOS" SDK="$IOS_SDK" PLATFORM="iOS" POD_LINT="NO" ACTION="test"
+## The iOS 8.1 simulator is commented out because it does not start. It looks a problem of the simulator.
+## Uncomment the following line after the simulator problem is fixed.
+#    - DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="Swinject-iOS" SDK="$IOS_SDK" PLATFORM="iOS" POD_LINT="NO" ACTION="test"
     - DESTINATION="OS=9.3,name=iPhone 6" SCHEME="Swinject-iOS" SDK="$IOS_SDK" PLATFORM="iOS" POD_LINT="NO" ACTION="test"
     - DESTINATION="OS=10.0,name=iPhone 6S Plus" SCHEME="Swinject-iOS" SDK="$IOS_SDK" PLATFORM="iOS" POD_LINT="YES" ACTION="test"
     - DESTINATION="arch=x86_64" SCHEME="Swinject-OSX" SDK="$OSX_SDK" PLATFORM="Mac" POD_LINT="NO" ACTION="test"
