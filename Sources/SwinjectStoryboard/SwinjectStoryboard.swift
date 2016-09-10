@@ -134,7 +134,7 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         let nameWithActualType = String(reflecting: controller.dynamicType) + ":" + (registrationName ?? "")
         container.value.resolve(Container.Controller.self, name: nameWithActualType, argument: controller as Container.Controller)
 
-        if let windowController = controller as? NSWindowController, let viewController = windowController.contentViewController {
+        if let windowController = controller as? NSWindowController, viewController = windowController.contentViewController {
             injectDependency(viewController)
         }
         if let viewController = controller as? NSViewController {
