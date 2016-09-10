@@ -227,6 +227,12 @@
 		98F2F7741C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
 		98F2F7751C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
 		98F2F7761C07E789009571E6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F2F7721C07E788009571E6 /* Box.swift */; };
+		CD5446E61D84373600B13BB4 /* RelationshipReference1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446E41D84373600B13BB4 /* RelationshipReference1.storyboard */; };
+		CD5446E71D84373600B13BB4 /* RelationshipReference1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446E41D84373600B13BB4 /* RelationshipReference1.storyboard */; };
+		CD5446E81D84373600B13BB4 /* RelationshipReference2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446E51D84373600B13BB4 /* RelationshipReference2.storyboard */; };
+		CD5446E91D84373600B13BB4 /* RelationshipReference2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446E51D84373600B13BB4 /* RelationshipReference2.storyboard */; };
+		CD5446FC1D84385800B13BB4 /* RelationshipReference1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446FA1D84385800B13BB4 /* RelationshipReference1.storyboard */; };
+		CD5446FD1D84385800B13BB4 /* RelationshipReference2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446FB1D84385800B13BB4 /* RelationshipReference2.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -514,6 +520,10 @@
 		98D462771BE76D500006D45A /* ViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
 		98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard1.storyboard; sourceTree = "<group>"; };
 		98F2F7721C07E788009571E6 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		CD5446E41D84373600B13BB4 /* RelationshipReference1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference1.storyboard; sourceTree = "<group>"; };
+		CD5446E51D84373600B13BB4 /* RelationshipReference2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference2.storyboard; sourceTree = "<group>"; };
+		CD5446FA1D84385800B13BB4 /* RelationshipReference1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference1.storyboard; sourceTree = "<group>"; };
+		CD5446FB1D84385800B13BB4 /* RelationshipReference2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference2.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -794,6 +804,8 @@
 				98D462771BE76D500006D45A /* ViewController1.swift */,
 				9892E7B31BCA3CA200EC0D04 /* Storyboard1.storyboard */,
 				9892E7B51BCA3CB100EC0D04 /* Storyboard2.storyboard */,
+				CD5446FA1D84385800B13BB4 /* RelationshipReference1.storyboard */,
+				CD5446FB1D84385800B13BB4 /* RelationshipReference2.storyboard */,
 			);
 			name = Fakes;
 			sourceTree = "<group>";
@@ -911,6 +923,8 @@
 				98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */,
 				98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */,
 				988EEDAE1BCA082900E935F7 /* Storyboard2.storyboard */,
+				CD5446E41D84373600B13BB4 /* RelationshipReference1.storyboard */,
+				CD5446E51D84373600B13BB4 /* RelationshipReference2.storyboard */,
 				981A0D0B1BE5B91E0030DD85 /* AnimalPlayerViewController.swift */,
 				981A0D121BE5B9A80030DD85 /* AnimalPlayerViewController.storyboard */,
 			);
@@ -1280,6 +1294,8 @@
 			files = (
 				90E70A211C14FAEF00F12C2A /* first.json in Resources */,
 				9892E7B61BCA3CB100EC0D04 /* Storyboard2.storyboard in Resources */,
+				CD5446FD1D84385800B13BB4 /* RelationshipReference2.storyboard in Resources */,
+				CD5446FC1D84385800B13BB4 /* RelationshipReference1.storyboard in Resources */,
 				90E70A421C15461600F12C2A /* second.plist in Resources */,
 				90E70A691C172DB200F12C2A /* invalid.json in Resources */,
 				9816503A1B6D270E00BC4222 /* Tabs.storyboard in Resources */,
@@ -1306,6 +1322,8 @@
 				90E70A681C172DB200F12C2A /* invalid.json in Resources */,
 				988EEDAF1BCA082900E935F7 /* Storyboard2.storyboard in Resources */,
 				98D06D491B6CB79B0081AFE0 /* Tabs.storyboard in Resources */,
+				CD5446E81D84373600B13BB4 /* RelationshipReference2.storyboard in Resources */,
+				CD5446E61D84373600B13BB4 /* RelationshipReference1.storyboard in Resources */,
 				98D06D371B6B579F0081AFE0 /* Animals.storyboard in Resources */,
 				98EA93BD1BCA48D000E9121D /* Storyboard1.storyboard in Resources */,
 				90E70A3A1C15434100F12C2A /* first.plist in Resources */,
@@ -1337,6 +1355,8 @@
 				90E70A6A1C172DB200F12C2A /* invalid.json in Resources */,
 				98A430711BCE2E5800B6B588 /* Storyboard2.storyboard in Resources */,
 				98689CC41BBFD5410005C6D3 /* Tabs.storyboard in Resources */,
+				CD5446E91D84373600B13BB4 /* RelationshipReference2.storyboard in Resources */,
+				CD5446E71D84373600B13BB4 /* RelationshipReference1.storyboard in Resources */,
 				98689CC31BBFD5410005C6D3 /* Animals.storyboard in Resources */,
 				98A430701BCE2E5800B6B588 /* Storyboard1.storyboard in Resources */,
 				90E70A3C1C15434100F12C2A /* first.plist in Resources */,
@@ -1683,6 +1703,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1697,6 +1718,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1774,6 +1796,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1788,6 +1811,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};

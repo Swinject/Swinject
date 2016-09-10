@@ -140,14 +140,42 @@ class SwinjectStoryboardSpec: QuickSpec {
                     c.animal = r.resolve(AnimalType.self)
                 }
                 SwinjectStoryboard.defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-                
+
                 let storyboard1 = SwinjectStoryboard.create(name: "Storyboard1", bundle: bundle)
                 let windowController = storyboard1.instantiateInitialController() as! NSWindowController
                 let viewController1 = windowController.contentViewController as! ViewController1
                 viewController1.performSegueWithIdentifier("ToStoryboard2", sender: nil)
                 expect(viewController1.animalViewController?.hasAnimal(named: "Mimi")).toEventually(beTrue())
             }
-            
+            context("referencing storyboard via relationship segue") {
+                it("should inject dependencies once") {
+                    var injectedTimes = 0
+                    SwinjectStoryboard.defaultContainer.registerForStoryboard(ViewController1.self) { r, c in
+                        injectedTimes += 1
+                    }
+
+                    let storyboard = SwinjectStoryboard.create(name: "RelationshipReference1", bundle: bundle)
+                    storyboard.instantiateInitialController()
+
+                    expect(injectedTimes) == 1
+                }
+                context("not using default container") {
+                    it("injects dependency to the view controller opened via segue") {
+                        container.registerForStoryboard(AnimalViewController.self) { r, c in
+                            c.animal = r.resolve(AnimalType.self)
+                        }
+                        container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+
+                        let storyboard = SwinjectStoryboard.create(name: "RelationshipReference1", bundle: bundle, container: container)
+                        let windowController = storyboard.instantiateInitialController() as! NSWindowController
+                        let viewController1 = windowController.contentViewController as! ViewController1
+                        viewController1.performSegueWithIdentifier("ToAnimalViewController", sender: nil)
+
+                        expect(viewController1.animalViewController?.hasAnimal(named: "Mimi")).toEventually(beTrue())
+                    }
+                }
+            }
+
             afterEach {
                 SwinjectStoryboard.defaultContainer.removeAll()
             }

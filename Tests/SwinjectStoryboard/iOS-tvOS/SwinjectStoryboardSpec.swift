@@ -120,24 +120,55 @@ class SwinjectStoryboardSpec: QuickSpec {
                 SwinjectStoryboard.defaultContainer.removeAll()
             }
         }
-        describe("Storyboard reference") {
-            if #available(iOS 9, *) {
+        // We need to have test bundle deployment target on iOS 9.0 in order to compile storyboards with references.
+        // However, we need to disable these tests when running on iOS <9.0
+        // Using #available(iOS 9.0, *) produces complier warning for the reasons above
+        if NSProcessInfo().isOperatingSystemAtLeastVersion(NSOperatingSystemVersion(majorVersion: 9, minorVersion: 0, patchVersion: 0)) {
+            describe("Storyboard reference") {
                 it("inject dependency to the view controller in the referenced storyboard.") {
                     SwinjectStoryboard.defaultContainer.registerForStoryboard(AnimalViewController.self) { r, c in
                         c.animal = r.resolve(AnimalType.self)
                     }
                     SwinjectStoryboard.defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-                    
+
                     let storyboard1 = SwinjectStoryboard.create(name: "Storyboard1", bundle: bundle)
                     let navigationController = storyboard1.instantiateInitialViewController() as! UINavigationController
                     navigationController.performSegueWithIdentifier("ToStoryboard2", sender: navigationController)
                     let animalViewController = navigationController.topViewController as! AnimalViewController
                     expect(animalViewController.hasAnimal(named: "Mimi")) == true
                 }
-            }
-            
-            afterEach {
-                SwinjectStoryboard.defaultContainer.removeAll()
+                context("referencing storyboard via relationship segue") {
+                    it("should inject dependencies once") {
+                        var injectedTimes = 0
+                        SwinjectStoryboard.defaultContainer.registerForStoryboard(UIViewController.self) { r, c in
+                            injectedTimes += 1
+                        }
+
+                        let storyboard = SwinjectStoryboard.create(name: "RelationshipReference1", bundle: bundle)
+                        storyboard.instantiateInitialViewController()
+
+                        expect(injectedTimes) == 1
+                    }
+                    context("not using defaultContainer") {
+                        it("injects dependency to the view controller opened via segue") {
+                            container.registerForStoryboard(AnimalViewController.self) { r, c in
+                                c.animal = r.resolve(AnimalType.self)
+                            }
+                            container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+
+                            let storyboard = SwinjectStoryboard.create(name: "RelationshipReference1", bundle: bundle, container: container)
+                            let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+                            navigationController.topViewController!.performSegueWithIdentifier("ToAnimalViewController", sender: nil)
+                            let animalViewController = navigationController.topViewController as! AnimalViewController
+
+                            expect(animalViewController.hasAnimal(named: "Mimi")) == true
+                        }
+                    }
+                }
+
+                afterEach {
+                    SwinjectStoryboard.defaultContainer.removeAll()
+                }
             }
         }
         describe("Setup") {
