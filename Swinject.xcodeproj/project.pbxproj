@@ -235,7 +235,6 @@
 		CD5446FD1D84385800B13BB4 /* RelationshipReference2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446FB1D84385800B13BB4 /* RelationshipReference2.storyboard */; };
 		CD5446FF1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
 		CD5447001D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
-		CD5447011D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
 		CD5447021D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
 /* End PBXBuildFile section */
 
@@ -1556,7 +1555,6 @@
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				90E70A5C1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 				90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */,
-				CD5447011D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */,
 				984E8A831C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
 				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
