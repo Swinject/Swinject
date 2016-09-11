@@ -10,8 +10,7 @@ Swinject
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 [![License](https://img.shields.io/cocoapods/l/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 [![Platform](https://img.shields.io/cocoapods/p/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
-[![Swift Version](https://img.shields.io/badge/Swift-2.2-F16D39.svg?style=flat)](https://developer.apple.com/swift)
-[![Swift Version](https://img.shields.io/badge/Swift-3.0-F16D39.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift Version](https://img.shields.io/badge/Swift-2.2--3.0-F16D39.svg?style=flat)](https://developer.apple.com/swift)
 
 Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift.
 
@@ -40,7 +39,10 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 ## Requirements
 
 - iOS 8.0+ / Mac OS X 10.10+ / watchOS 2.0+ / tvOS 9.0+
-- Xcode 7.0+
+- Swift 2.2 or 2.3
+  - Xcode 7.0+
+- Swift 3
+  - Xcode 8.0+
 
 ## Installation
 
@@ -50,8 +52,20 @@ Swinject is available through [Carthage](https://github.com/Carthage/Carthage) o
 
 To install Swinject with Carthage, add the following line to your `Cartfile`.
 
-    github "Swinject/Swinject" ~> 1.1.0
+#### Swift 2.2 or 2.3
 
+```
+github "Swinject/Swinject" ~> 1.1.4
+```
+
+#### Swift 3.0
+
+```
+github "Swinject/Swinject" "2.0.0-beta.2"
+
+# Uncomment if you use SwinjectStoryboard
+# github "Swinject/SwinjectStoryboard" "1.0.0-beta.2"
+```
 
 Then run `carthage update --no-use-binaries` command or just `carthage update`. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
 
@@ -60,12 +74,27 @@ Then run `carthage update --no-use-binaries` command or just `carthage update`. 
 
 To install Swinject with CocoaPods, add the following lines to your `Podfile`.
 
+#### Swift 2.2 or 2.3
+
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
 use_frameworks!
 
-pod 'Swinject', '~> 1.1.0'
+pod 'Swinject', '~> 1.1.4'
+```
+
+#### Swift 3.0
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
+use_frameworks!
+
+pod 'Swinject', '2.0.0-beta.2'
+
+# Uncomment if you use SwinjectStoryboard
+# pod 'SwinjectStoryboard', '1.0.0-beta.2'
 ```
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
@@ -146,6 +175,13 @@ class PersonViewController: UIViewController {
 ```
 
 ### With SwinjectStoryboard
+
+Import SwinjectStoryboard at the top of your swift source file if you use Swinject v2 in Swift 3.
+
+```swift
+// Only Swinject v2 in Swift 3.
+import SwinjectStoryboard
+```
 
 Services should be registered in an extension of `SwinjectStoryboard` if you use `SwinjectStoryboard`. Refer to [the document of SwinjectStoryboard](./Documentation/Storyboard.md) for its details.
 
