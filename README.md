@@ -43,6 +43,8 @@ Dependency injection (DI) is a software design pattern that implements Inversion
   - Xcode 7.0+
 - Swift 3
   - Xcode 8.0+
+- Carthage 0.18+ (if you use)
+- CocoaPods 1.1.0.rc.2+ (if you use)
 
 ## Installation
 
