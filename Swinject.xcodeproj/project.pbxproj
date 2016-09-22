@@ -61,10 +61,10 @@
 		984775011C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984774FE1C034C5C0092A757 /* SynchronizedResolverSpec.swift */; };
 		9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
 		9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
-		984BE3131CDA3FCF00BCF2AC /* _ResolverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BE3121CDA3FCF00BCF2AC /* _ResolverType.swift */; };
-		984BE3141CDA3FCF00BCF2AC /* _ResolverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BE3121CDA3FCF00BCF2AC /* _ResolverType.swift */; };
-		984BE3151CDA3FCF00BCF2AC /* _ResolverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BE3121CDA3FCF00BCF2AC /* _ResolverType.swift */; };
-		984BE3161CDA3FCF00BCF2AC /* _ResolverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BE3121CDA3FCF00BCF2AC /* _ResolverType.swift */; };
+		984BE3131CDA3FCF00BCF2AC /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BE3121CDA3FCF00BCF2AC /* _Resolver.swift */; };
+		984BE3141CDA3FCF00BCF2AC /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BE3121CDA3FCF00BCF2AC /* _Resolver.swift */; };
+		984BE3151CDA3FCF00BCF2AC /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BE3121CDA3FCF00BCF2AC /* _Resolver.swift */; };
+		984BE3161CDA3FCF00BCF2AC /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984BE3121CDA3FCF00BCF2AC /* _Resolver.swift */; };
 		984E8A521C317AC90039943D /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A511C317AC90039943D /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		984E8A531C317AC90039943D /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A511C317AC90039943D /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		984E8A541C317AC90039943D /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 984E8A511C317AC90039943D /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -75,7 +75,7 @@
 		985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F31B676BF700BF686B /* ResolutionPool.swift */; };
 		985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
-		985011251BBE7E8900A2CCFC /* ResolverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* ResolverType.swift */; };
+		985011251BBE7E8900A2CCFC /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolver.swift */; };
 		9855C5BF1B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
 		9855C5C01B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
 		9855C5C21B68721800DADB0B /* ResolutionPoolSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C11B68721800DADB0B /* ResolutionPoolSpec.swift */; };
@@ -92,7 +92,7 @@
 		98689C9C1BBFC7EB0005C6D3 /* ResolutionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F31B676BF700BF686B /* ResolutionPool.swift */; };
 		98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
-		98689CA01BBFC7EB0005C6D3 /* ResolverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* ResolverType.swift */; };
+		98689CA01BBFC7EB0005C6D3 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolver.swift */; };
 		98689CB61BBFD5110005C6D3 /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
 		98689CB71BBFD5110005C6D3 /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
 		98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* FoodType.swift */; };
@@ -118,8 +118,8 @@
 		9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */; };
 		98B012B81B82D67300053A32 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
-		98B012BF1B82F68E00053A32 /* ResolverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* ResolverType.swift */; };
-		98B012C01B82F68E00053A32 /* ResolverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* ResolverType.swift */; };
+		98B012BF1B82F68E00053A32 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolver.swift */; };
+		98B012C01B82F68E00053A32 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -321,7 +321,7 @@
 		984774FE1C034C5C0092A757 /* SynchronizedResolverSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedResolverSpec.swift; sourceTree = "<group>"; };
 		9848611A1B6F21EC00C07072 /* Sample-iOS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sample-iOS.playground"; sourceTree = "<group>"; };
 		9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
-		984BE3121CDA3FCF00BCF2AC /* _ResolverType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _ResolverType.swift; sourceTree = "<group>"; };
+		984BE3121CDA3FCF00BCF2AC /* _Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Resolver.swift; sourceTree = "<group>"; };
 		984E8A511C317AC90039943D /* Swinject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		985010BD1BBE76AB00A2CCFC /* watchOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Application.xcconfig"; sourceTree = "<group>"; };
 		985010BE1BBE76AB00A2CCFC /* watchOS-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Base.xcconfig"; sourceTree = "<group>"; };
@@ -363,8 +363,8 @@
 		98AA745A1BB70CBB00E2F48A /* Mac-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		98B012B71B82D67300053A32 /* Container.Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.Arguments.swift; sourceTree = "<group>"; };
 		98B012BA1B82D6A400053A32 /* Container.Arguments.erb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Container.Arguments.erb; sourceTree = "<group>"; };
-		98B012BE1B82F68E00053A32 /* ResolverType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolverType.swift; sourceTree = "<group>"; };
-		98B012C11B82F70A00053A32 /* ResolverType.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = ResolverType.erb; sourceTree = "<group>"; };
+		98B012BE1B82F68E00053A32 /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		98B012C11B82F70A00053A32 /* Resolver.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resolver.erb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,8 +482,8 @@
 				985BAFA81B625E0F0055F998 /* ServiceEntry.swift */,
 				981577F31B676BF700BF686B /* ResolutionPool.swift */,
 				9819701E1B6145D600EEB942 /* ObjectScope.swift */,
-				984BE3121CDA3FCF00BCF2AC /* _ResolverType.swift */,
-				98B012C11B82F70A00053A32 /* ResolverType.erb */,
+				984BE3121CDA3FCF00BCF2AC /* _Resolver.swift */,
+				98B012C11B82F70A00053A32 /* Resolver.erb */,
 				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
 				984E8A511C317AC90039943D /* Swinject.h */,
@@ -512,10 +512,10 @@
 		98383A1B1C1AF75A00733248 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				98383A241C1AF75B00733248 /* Nimble.framework */,
-				98383A261C1AF75B00733248 /* NimbleTests.xctest */,
 				98383A281C1AF75B00733248 /* Nimble.framework */,
 				98383A2A1C1AF75B00733248 /* NimbleTests.xctest */,
+				98383A241C1AF75B00733248 /* Nimble.framework */,
+				98383A261C1AF75B00733248 /* NimbleTests.xctest */,
 				98383A2C1C1AF75B00733248 /* Nimble.framework */,
 				98383A2E1C1AF75B00733248 /* NimbleTests.xctest */,
 			);
@@ -649,7 +649,7 @@
 			children = (
 				98B012B71B82D67300053A32 /* Container.Arguments.swift */,
 				984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */,
-				98B012BE1B82F68E00053A32 /* ResolverType.swift */,
+				98B012BE1B82F68E00053A32 /* Resolver.swift */,
 			);
 			name = GeneratedCode;
 			sourceTree = "<group>";
@@ -1094,14 +1094,14 @@
 				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
 				9880E70F1C09EE2900ED5293 /* FunctionType.swift in Sources */,
-				98B012C01B82F68E00053A32 /* ResolverType.swift in Sources */,
+				98B012C01B82F68E00053A32 /* Resolver.swift in Sources */,
 				90B0297A1C185B1600A6A521 /* Assembler.swift in Sources */,
 				90B029761C18599200A6A521 /* AssemblyType.swift in Sources */,
 				984774F11C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				981899E51B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */,
 				9884E2A81B60B77400120259 /* ServiceKey.swift in Sources */,
-				984BE3141CDA3FCF00BCF2AC /* _ResolverType.swift in Sources */,
+				984BE3141CDA3FCF00BCF2AC /* _Resolver.swift in Sources */,
 				981970201B6145D600EEB942 /* ObjectScope.swift in Sources */,
 				984774FB1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 			);
@@ -1138,12 +1138,12 @@
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				984774F01C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				981577F41B676BF700BF686B /* ResolutionPool.swift in Sources */,
-				98B012BF1B82F68E00053A32 /* ResolverType.swift in Sources */,
+				98B012BF1B82F68E00053A32 /* Resolver.swift in Sources */,
 				981899E41B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B81B82D67300053A32 /* Container.Arguments.swift in Sources */,
 				9884E2A71B60B77400120259 /* ServiceKey.swift in Sources */,
 				9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */,
-				984BE3131CDA3FCF00BCF2AC /* _ResolverType.swift in Sources */,
+				984BE3131CDA3FCF00BCF2AC /* _Resolver.swift in Sources */,
 				984774FA1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 				90B029751C18599200A6A521 /* AssemblyType.swift in Sources */,
 			);
@@ -1177,13 +1177,13 @@
 				983B98331C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				9880E7101C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */,
-				985011251BBE7E8900A2CCFC /* ResolverType.swift in Sources */,
+				985011251BBE7E8900A2CCFC /* Resolver.swift in Sources */,
 				9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */,
 				985011211BBE7E8900A2CCFC /* ResolutionPool.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
-				984BE3151CDA3FCF00BCF2AC /* _ResolverType.swift in Sources */,
+				984BE3151CDA3FCF00BCF2AC /* _Resolver.swift in Sources */,
 				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
 				984774F21C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				90B029771C18599200A6A521 /* AssemblyType.swift in Sources */,
@@ -1200,13 +1200,13 @@
 				9880E7111C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
 				984774F31C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
-				98689CA01BBFC7EB0005C6D3 /* ResolverType.swift in Sources */,
+				98689CA01BBFC7EB0005C6D3 /* Resolver.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
 				98689C9C1BBFC7EB0005C6D3 /* ResolutionPool.swift in Sources */,
 				98689C9A1BBFC7EB0005C6D3 /* ServiceKey.swift in Sources */,
 				90B0297C1C185B1600A6A521 /* Assembler.swift in Sources */,
 				98689C9B1BBFC7EB0005C6D3 /* ServiceEntry.swift in Sources */,
-				984BE3161CDA3FCF00BCF2AC /* _ResolverType.swift in Sources */,
+				984BE3161CDA3FCF00BCF2AC /* _Resolver.swift in Sources */,
 				98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */,
 				984774FD1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 			);
