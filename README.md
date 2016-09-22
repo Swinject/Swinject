@@ -27,13 +27,13 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 - [x] Support of both Reference and [Value Types](./Documentation/Misc.md#value-types)
 - [x] [Self-registration (Self-binding)](./Documentation/Misc.md#self-registration-self-binding)
 - [x] [Container Hierarchy](./Documentation/ContainerHierarchy.md)
-- [x] [Property Injection from Resource files](./Documentation/Properties.md)
 - [x] [Thread Safety](./Documentation/ThreadSafety.md)
 - [x] [Modular Components](./Documentation/Assembler.md)
-- [x] [Storyboard](./Documentation/Storyboard.md)
 
 ## Extensions
 
+- **[SwinjectPropertyLoader](https://github.com/Swinject/SwinjectPropertyLoader)**: Loading property values from resources.
+- **[SwinjectStoryboard](https://github.com/Swinject/SwinjectStoryboard)**: Automatic dependency injection via Storyboard.
 - **[Swinject-CodeGen](https://github.com/Swinject/Swinject-CodeGen)**: Type-safe code generation of `Container` from a CSV/YAML file defining dependencies.
 
 ## Requirements
@@ -279,11 +279,6 @@ The DI container features of Swinject are inspired by:
 and highly inspired by:
 
 - [Funq](http://funq.codeplex.com) - [Daniel Cazzulino](http://www.codeplex.com/site/users/view/dcazzulino) and [the project team](http://funq.codeplex.com/team/view).
-
-SwinjectStoryboard is inspired by:
-
-- [Typhoon](http://typhoonframework.org) - [Jasper Blues](https://github.com/jasperblues), [Aleksey Garbarev](https://github.com/alexgarbarev) and [contributors](https://github.com/appsquickly/Typhoon/graphs/contributors).
-- [BlindsidedStoryboard](https://github.com/briancroom/BlindsidedStoryboard) - [Brian Croom](https://github.com/briancroom).
 
 ## License
 

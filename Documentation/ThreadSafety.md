@@ -74,8 +74,6 @@ dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
 let viewController = storyboard.instantiateInitialViewController()
 ```
 
-Refer to [Storyboard Documentation](Storyboard.md) for more details about `SwinjectStoryboard` itself.
-
-_[Next page: Storyboard](Storyboard.md)_
+Refer to [Storyboard README](https://github.com/Swinject/SwinjectStoryboard) for more details about `SwinjectStoryboard` itself.
 
 _[Table of Contents](README.md)_
