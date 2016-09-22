@@ -76,6 +76,4 @@ let viewController = storyboard.instantiateInitialViewController()
 
 Refer to [Storyboard Documentation](Storyboard.md) for more details about `SwinjectStoryboard` itself.
 
-_[Next page: Storyboard](Storyboard.md)_
-
 _[Table of Contents](README.md)_
