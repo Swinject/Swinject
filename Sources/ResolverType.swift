@@ -1,5 +1,5 @@
 //
-//  ResolverType.swift
+//  Resolver.swift
 //  Swinject
 //
 //  Created by Yoichi Tagaya on 8/18/15.
@@ -9,13 +9,13 @@
 //
 // NOTICE:
 //
-// ResolverType.swift is generated from ResolverType.erb by ERB.
+// Resolver.swift is generated from Resolver.erb by ERB.
 // Do NOT modify Container.Arguments.swift directly.
-// Instead, modify ResolverType.erb and run `script/gencode` at the project root directory to generate the code.
+// Instead, modify Resolver.erb and run `script/gencode` at the project root directory to generate the code.
 //
 
 
-public protocol ResolverType {
+public protocol Resolver {
     /// Retrieves the instance with the specified service type.
     ///
     /// - Parameter serviceType: The service type to resolve.

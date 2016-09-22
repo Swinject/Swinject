@@ -1,5 +1,5 @@
 //
-//  _ResolverType.swift
+//  _Resolver.swift
 //  Swinject
 //
 //  Created by Yoichi Tagaya on 5/4/16.
@@ -9,8 +9,8 @@
 /// This protocol is designed for the use to extend Swinject functionality.
 /// Do NOT use this protocol unless you intend to write an extension or plugin to Swinject framework.
 ///
-/// A type conforming ResolverType protocol must conform _ResolverType protocol too.
-public protocol _ResolverType {
+/// A type conforming Resolver protocol must conform _Resolver protocol too.
+public protocol _Resolver {
     /// This method is designed for the use to extend Swinject functionality.
     /// Do NOT use this method unless you intend to write an extension or plugin to Swinject framework.
     ///
