@@ -31,7 +31,7 @@ extension Container {
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `ResolverType` instance and <%= arg_description %> to inject dependencies to the instance,
+    ///                  It takes a `Resolver` instance and <%= arg_description %> to inject dependencies to the instance,
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
@@ -39,7 +39,7 @@ extension Container {
     public func register<Service, <%= arg_types %>>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (ResolverType, <%= arg_types %>) -> Service) -> ServiceEntry<Service>
+        factory: (Resolver, <%= arg_types %>) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -47,7 +47,7 @@ extension Container {
 <% end %>
 }
 
-// MARK: - ResolverType with Arguments
+// MARK: - Resolver with Arguments
 extension Container {
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
@@ -85,7 +85,7 @@ extension Container {
         name: String?,
         <%= arg_param_def %>) -> Service?
     {
-        typealias FactoryType = (ResolverType, <%= arg_types %>) -> Service
+        typealias FactoryType = (Resolver, <%= arg_types %>) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self, <%= arg_param_call %>) }
     }
 

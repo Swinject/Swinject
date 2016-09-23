@@ -15,7 +15,7 @@
 //
 
 
-// MARK: - ResolverType with Arguments
+// MARK: - Resolver with Arguments
 extension SynchronizedResolver {
     internal func resolve<Service, Arg1>(
         _ serviceType: Service.Type,
