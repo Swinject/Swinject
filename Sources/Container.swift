@@ -140,7 +140,22 @@ extension Container: _Resolver {
                 resolvedInstance = entry.instance as? Service
             }
         }
+
+        if resolvedInstance == nil {
+            Container.debugHelper.resolutionFailed(
+                serviceType: Service.self,
+                key: key,
+                availableRegistrations: getRegistrations()
+            )
+        }
+
         return resolvedInstance
+    }
+
+    private func getRegistrations() -> [ServiceKey: ServiceEntryType] {
+        var registrations = parent?.getRegistrations() ?? [:]
+        services.forEach { key, value in registrations[key] = value }
+        return registrations
     }
 }
 

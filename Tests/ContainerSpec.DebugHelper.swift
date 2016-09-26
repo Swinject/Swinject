@@ -12,7 +12,61 @@ import Nimble
 
 class ContainerSpec_DebugHelper: QuickSpec {
     override func spec() {
+        var spy: DebugHelperSpy!
+        beforeEach {
+            spy = DebugHelperSpy()
+            Container.debugHelper = spy
+        }
 
-        
+        describe("resolution fails") {
+            it("should call debug helper with failing service and key") {
+                let container = Container()
+
+                let _ = container._resolve(name: "name") { (a: Int, b: Int) in return 1 as Double }
+
+                expect("\(spy.serviceType)") == "Double"
+                expect(spy.key) == ServiceKey(factoryType: (Int, Int).self, name: "name", option: nil)
+            }
+
+            it("should call helper with all registrations") {
+                let container = Container()
+                container.register(Int.self) { _ in 0 }
+                container.register(Double.self) { _ in 0}
+
+                let _ = container.resolve(String.self)
+
+                expect(spy.availableRegistrations?.count) == 2
+            }
+
+            context("has parent container") {
+                it("should call helper with parent registrations") {
+                    let parent = Container()
+                    parent.register(Int.self) { _ in 0 }
+                    let container = Container(parent: parent)
+                    container.register(Double.self) { _ in 0 }
+
+                    let _ = container.resolve(String.self)
+
+                    expect(spy.availableRegistrations?.count) == 2
+                }
+            }
+        }
+    }
+}
+
+private class DebugHelperSpy: DebugHelper {
+
+    var serviceType: Any = ""
+    var key: ServiceKey?
+    var availableRegistrations: [ServiceKey : ServiceEntryType]?
+
+    func resolutionFailed<Service>(
+        serviceType: Service.Type,
+        key: ServiceKey,
+        availableRegistrations: [ServiceKey : ServiceEntryType]
+    ) {
+        self.serviceType = serviceType
+        self.key = key
+        self.availableRegistrations = availableRegistrations
     }
 }
