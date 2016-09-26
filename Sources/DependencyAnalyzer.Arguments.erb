@@ -1,0 +1,63 @@
+//
+//  DependencyAnalyzer.Arguments.swift
+//  Swinject
+//
+//  Created by Markus Riegel on 25.09.16.
+//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//
+
+//
+// NOTICE:
+//
+// DependencyAnalyzer.Arguments.swift is generated from DependencyAnalyzer.Arguments.erb by ERB.
+// Do NOT modify DependencyAnalyzer.Arguments.swift directly.
+// Instead, modify DependencyAnalyzer.Arguments.erb and run `script/gencode` at the project root directory to generate the code.
+//
+
+<% arg_count = 9 %>
+
+import Foundation
+
+// MARK: - Resolvable with Arguments
+extension DependencyAnalyzer {
+<% (1..arg_count).each do |i| %>
+<%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+<%   arg_param_name = i == 1 ? "argument" : "arguments" %>
+<%   arg_param_type = i == 1 ? arg_types : "(" + arg_types + ")" %>
+<%   arg_param_description = i == 1 ? "#{i} argument" : "tuple of #{i} arguments" %>
+<%   args_factory = i == 1 ? "argument" : (1..i).map { |n| "arguments.#{n-1}" }.join(", ") %>
+/// Retrieves the instance with the specified service type and <%= arg_param_description %> to the factory closure.
+///
+/// - Parameters:
+///   - serviceType: The service type to resolve.
+///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
+///
+/// - Returns: The resolved service type instance, or nil if no registration for the service type
+///            and <%= arg_param_description %> is found in the `Container`.
+public func resolve<Service, <%= arg_types %>>(
+serviceType: Service.Type,
+<%= arg_param_name %>: <%= arg_param_type %>) -> Service?
+{
+return resolve(serviceType, name: nil, <%= arg_param_name %>: <%= arg_param_name %>)
+}
+
+/// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
+///
+/// - Parameters:
+///   - serviceType: The service type to resolve.
+///   - name:        The registration name.
+///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
+///
+/// - Returns: The resolved service type instance, or nil if no registration for the service type,
+///            <%= arg_param_description %> and name is found in the `Container`.
+public func resolve<Service, <%= arg_types %>>(
+serviceType: Service.Type,
+name: String?,
+<%= arg_param_name %>: <%= arg_param_type %>) -> Service?
+{
+typealias FactoryType = (ResolverType, <%= arg_types %>) -> Service
+return resolveImpl(name) { (factory: FactoryType) in factory(self, <%= args_factory %>) }
+}
+
+<% end %>
+}

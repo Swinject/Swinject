@@ -24,7 +24,7 @@ class SynchronizedResolverSpec: QuickSpec {
                     container.register(ChildType.self) { _ in Child() }
                         .initCompleted { r, s in
                             let child = s as! Child
-                            child.parent = r.resolve(ParentType.self)!
+                            child.parent = r.resolve(ParentType.self)
                         }
                         .inObjectScope(.Graph)
                 }.synchronize()

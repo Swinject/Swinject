@@ -32,6 +32,8 @@ public final class Container {
     private var resolutionPool = ResolutionPool()
     private var properties = [String:AnyObject]()
     internal let lock: SpinLock // Used by SynchronizedResolver.
+    private var invokerSet = Set<ServiceType>()
+    private var pendingCompleteClosures = [PendingCompleteClosure]()
     
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
     ///
@@ -160,12 +162,12 @@ extension Container: Resolvable {
                 }
                 
                 if ownEntry.instance == nil {
-                    ownEntry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
+                    ownEntry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any?
                 }
                 resolvedInstance = ownEntry.instance as? Service
             case .Hierarchy:
                 if entry.instance == nil {
-                    entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any
+                    entry.instance = resolveEntry(entry, key: key, invoker: invoker) as Any?
                 }
                 resolvedInstance = entry.instance as? Service
             }
@@ -185,24 +187,71 @@ extension Container: Resolvable {
         return entry.map { ($0, fromParent) }
     }
     
-    private func resolveEntry<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: Factory -> Service) -> Service {
+    private func resolveEntry<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: Factory -> Service) -> Service? {
         let usesPool = entry.objectScope != .None
         if usesPool, let pooledInstance = resolutionPool[key] as? Service {
             return pooledInstance
         }
         
+        // Check if the Service requested is already being constructed. If so this means we are dealing with a dependency cycle.
+        let serviceType = ServiceType(serviceType: Service.self)
+        guard !invokerSet.contains(serviceType) else {
+            // Dependency will be supplied later on, so we can return nil here.
+            // ToDo: Check if this request comes from within an initComplete closure. This way we can throw an error if illegal cycles occur (not from within an initComplete that is)
+            return nil
+        }
+        invokerSet.insert(serviceType)
+        
         let resolvedInstance = invoker(entry.factory as! Factory)
         if usesPool {
             if let pooledInstance = resolutionPool[key] as? Service {
-                // An instance for the key might be added by the factory invocation.
+                invokerSet.remove(serviceType)
                 return pooledInstance
             }
             resolutionPool[key] = resolvedInstance as Any
         }
         
         if let completed = entry.initCompleted as? (ResolverType, Service) -> () {
-            resolutionPool.appendPendingCompletion({completed(self, resolvedInstance)})
+            
+            // Analyze the initComplete by using a fake resolver.
+            let analyzer = DependencyAnalyzer()
+            completed(analyzer, resolvedInstance)
+            
+            // Check if we got any dependencies that are already being constructed (and therefore will not be created a second time). These initCompleted calls then will be repeated once these dependecies are initiated.
+            var pendingCompleteClosure: PendingCompleteClosure?
+            for cycleDependency in analyzer.dependencies {
+                if invokerSet.contains(cycleDependency) {
+                    if pendingCompleteClosure == nil {
+                        pendingCompleteClosure = PendingCompleteClosure(closure: { completed(self, resolvedInstance) })
+                        pendingCompleteClosures.append(pendingCompleteClosure!)
+                    }
+                    pendingCompleteClosure?.dependsOn.insert(cycleDependency)
+                }
+            }
+            
+            // Need to call completed to construct deps that are not being constructed at this time.
+            completed(self, resolvedInstance)
         }
+        
+        invokerSet.remove(serviceType)
+        
+        if pendingCompleteClosures.count > 0 {
+            for index in (0...pendingCompleteClosures.count - 1).reverse() {
+                let pendingClosure = pendingCompleteClosures[index]
+                var isFullfilled = true
+                for serviceType in pendingClosure.dependsOn {
+                    if invokerSet.contains(serviceType) {
+                        isFullfilled = false
+                    }
+                }
+                if isFullfilled {
+                    pendingCompleteClosures.removeAtIndex(index)
+                    pendingClosure.closure()
+                }
+
+            }
+        }
+        
         return resolvedInstance
     }
 }
@@ -221,5 +270,14 @@ extension Container: PropertyRetrievable {
     /// - Returns: The value for the property name
     public func property<Property>(name: String) -> Property? {
         return properties[name] as? Property
+    }
+}
+
+private class PendingCompleteClosure {
+    let closure: () -> ()
+    var dependsOn = Set<ServiceType>()
+    
+    init(closure: () -> ()) {
+        self.closure = closure
     }
 }
