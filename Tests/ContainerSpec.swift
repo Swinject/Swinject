@@ -248,7 +248,7 @@ class ContainerSpec: QuickSpec {
                 container.register(PersonType.self) { _ in PetOwner() }
                     .initCompleted { r, s in
                         let owner = s as! PetOwner
-                        owner.pet = r.resolve(AnimalType.self)!
+                        owner.pet = r.resolve(AnimalType.self)
                     }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
@@ -270,7 +270,7 @@ class ContainerSpec: QuickSpec {
                 container.register(PersonType.self) { _ in PetOwner() }
                     .initCompleted { r, s in
                         let owner = s as! PetOwner
-                        owner.injectAnimal(r.resolve(AnimalType.self)!)
+                        owner.injectAnimal(r.resolve(AnimalType.self))
                     }
                 
                 let owner = container.resolve(PersonType.self) as! PetOwner
