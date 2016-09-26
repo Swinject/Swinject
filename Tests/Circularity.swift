@@ -81,3 +81,35 @@ internal class DDependingOnBC: DType {
     weak var b: BType?
     weak var c: CType?
 }
+
+// MARK: -Circular dependency with an otuside Player X -> Y <-> Z
+
+internal protocol FType: AnyObject {}
+internal protocol GType: AnyObject {
+    var h: HType? {get set}
+    func foo() -> Bool
+}
+internal protocol HType: AnyObject {}
+
+internal class FDependindOnG: FType {
+    var gFooWasSuccessful: Bool = false
+    
+    init(g: GType) {
+        self.gFooWasSuccessful = g.foo()
+    }
+}
+
+internal class GDependingOnH: GType {
+    var h: HType?
+    
+    internal func foo() -> Bool {
+        return h != nil
+    }
+}
+
+internal class HDependingOnG: HType {
+    var g: GType
+    init(g: GType) {
+        self.g = g
+    }
+}

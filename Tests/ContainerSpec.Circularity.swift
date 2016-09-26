@@ -145,6 +145,17 @@ class ContainerSpec_Circularity: QuickSpec {
                 expect(d.b as? BDependingOnC) === b
                 expect(d.c as? CDependingOnAD) === c
             }
+            it("resolves circular dependencies as soon as possible during the construction of the tree") {
+                container.register(FType.self) { r in FDependindOnG(g: r.resolve(GType.self)!) }
+                container.register(GType.self) { r in GDependingOnH() }
+                    .initCompleted { r, g in
+                        g.h = r.resolve(HType.self)
+                }
+                container.register(HType.self) { r in HDependingOnG(g: r.resolve(GType.self)!) }
+                
+                let f = container.resolve(FType.self)! as! FDependindOnG
+                expect(f.gFooWasSuccessful) == true
+            }
         }
     }
 }
