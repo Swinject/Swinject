@@ -13,14 +13,11 @@ import Nimble
 class ContainerSpec_DebugHelper: QuickSpec {
     override func spec() {
         var spy: DebugHelperSpy!
-        beforeEach {
-            spy = DebugHelperSpy()
-            Container.debugHelper = spy
-        }
+        beforeEach { spy = DebugHelperSpy() }
 
         describe("resolution fails") {
             it("should call debug helper with failing service and key") {
-                let container = Container()
+                let container = Container(debugHelper: spy)
 
                 let _ = container._resolve(name: "name") { (a: Int, b: Int) in return 1 as Double }
 
@@ -29,7 +26,7 @@ class ContainerSpec_DebugHelper: QuickSpec {
             }
 
             it("should call helper with all registrations") {
-                let container = Container()
+                let container = Container(debugHelper: spy)
                 container.register(Int.self) { _ in 0 }
                 container.register(Double.self) { _ in 0}
 
@@ -42,7 +39,7 @@ class ContainerSpec_DebugHelper: QuickSpec {
                 it("should call helper with parent registrations") {
                     let parent = Container()
                     parent.register(Int.self) { _ in 0 }
-                    let container = Container(parent: parent)
+                    let container = Container(parent: parent, debugHelper: spy)
                     container.register(Double.self) { _ in 0 }
 
                     let _ = container.resolve(String.self)
