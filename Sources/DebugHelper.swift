@@ -30,7 +30,7 @@ internal final class LoggingDebugHelper: DebugHelper {
             .filter { $0.1 is ServiceEntry<Service> }
             .map { "\t{ " + $0.1.describeWithKey($0.0) + " }" }
 
-        print(output.joined(separator: "\n"))
+        Container.log(output.joined(separator: "\n"))
     }
 }
 
