@@ -62,15 +62,11 @@ public final class ServiceEntry<Service> {
 
 extension ServiceEntry: ServiceEntryType {
     internal func describeWithKey(_ serviceKey: ServiceKey) -> String {
-        // The protocol order in "protocol<>" is non-deterministic.
-        let nameDescription = serviceKey.name.map { ", Name: \"\($0)\"" } ?? ""
-        let optionDescription = serviceKey.option.map { ", \($0)" } ?? ""
-        let initCompletedDescription = initCompleted.map { _ in ", InitCompleted: Specified" } ?? ""
-        return "Service: \(serviceType)"
-            + nameDescription
-            + optionDescription
-            + ", Factory: \(type(of: factory))"
-            + ", ObjectScope: \(objectScope)"
-            + initCompletedDescription
+        return description(
+            serviceType: serviceType,
+            serviceKey: serviceKey,
+            objectScope: objectScope,
+            initCompleted: initCompleted
+        )
     }
 }
