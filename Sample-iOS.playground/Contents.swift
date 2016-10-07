@@ -108,7 +108,7 @@ class InjectablePerson: PersonType {
         log = "Injected by initializer."
     }
     
-    func setPet(pet: AnimalType) {
+    func setPet(_ pet: AnimalType) {
         self.pet = pet
         log = "Injected by method."
     }
@@ -308,12 +308,12 @@ class B {
 
 class C { }
 
-//: ### ObjectScope.None (aka Transient)
+//: ### ObjectScope.none (aka Transient)
 
 // New instatnces are created every time.
 let container1 = Container()
 container1.register(C.self) { _ in C() }
-    .inObjectScope(.None)
+    .inObjectScope(.none)
 
 let c1 = container1.resolve(C.self)
 let c2 = container1.resolve(C.self)
@@ -326,30 +326,30 @@ container1.register(B.self) { r in B(c: r.resolve(C.self)!) }
 let a1 = container1.resolve(A.self)!
 print(a1.b.c !== a1.c)
 
-//: ### ObjectScope.Graph
+//: ### ObjectScope.graph
 
-// New instances are created like ObjectScope.None.
+// New instances are created like ObjectScope.none.
 let container2 = Container()
 container2.register(C.self) { _ in C() }
-    .inObjectScope(.Graph) // This is the default scope.
+    .inObjectScope(.graph) // This is the default scope.
 
 let c3 = container2.resolve(C.self)
 let c4 = container2.resolve(C.self)
 print(c3 !== c4)
 
-// But unlike ObjectScope.None, the same instance is resolved in the object graph.
+// But unlike ObjectScope.none, the same instance is resolved in the object graph.
 container2.register(A.self) { r in A(b: r.resolve(B.self)!, c: r.resolve(C.self)!) }
 container2.register(B.self) { r in B(c: r.resolve(C.self)!) }
 
 let a2 = container2.resolve(A.self)!
 print(a2.b.c === a2.c)
 
-//: ### ObjectScope.Container (aka Singleton)
+//: ### ObjectScope.container (aka Singleton)
 
 // The same instance is shared in the container.
 let container3 = Container()
 container3.register(C.self) { _ in C() }
-    .inObjectScope(.Container)
+    .inObjectScope(.container)
 
 let c5 = container3.resolve(C.self)
 let c6 = container3.resolve(C.self)
@@ -360,18 +360,18 @@ let childOfContainer3 = Container(parent: container3)
 let c7 = childOfContainer3.resolve(C.self)
 print(c5 !== c7)
 
-//: ### ObjectScope.Hierarchy (aka Singleton in the Hierarchy)
+//: ### ObjectScope.hierarchy (aka Singleton in the Hierarchy)
 
-// The same instance is shared in the container like ObjectScope.Container.
+// The same instance is shared in the container like ObjectScope.container.
 let container4 = Container()
 container4.register(C.self) { _ in C() }
-    .inObjectScope(.Hierarchy)
+    .inObjectScope(.hierarchy)
 
 let c8 = container4.resolve(C.self)
 let c9 = container4.resolve(C.self)
 print(c8 === c9)
 
-// Unlike ObjectScope.Container, the instance in the parent container is shared to its child container.
+// Unlike ObjectScope.container, the instance in the parent container is shared to its child container.
 let childOfContainer4 = Container(parent: container4)
 let c10 = childOfContainer4.resolve(C.self)
 print(c8 === c10)
@@ -396,7 +396,7 @@ struct Turtle: AnimalType {
 // The object scope is ignored because a value type always creates a new instance.
 let container5 = Container()
 container5.register(AnimalType.self) { _ in Turtle(name: "Reo") }
-    .inObjectScope(.Container)
+    .inObjectScope(.container)
 
 var turtle1 = container5.resolve(AnimalType.self)!
 var turtle2 = container5.resolve(AnimalType.self)!
