@@ -140,9 +140,7 @@ extension Container: Resolvable {
     
     internal func resolveImpl<Service, Factory>(name: String?, invoker: Factory -> Service) -> Service? {
         resolutionPool.incrementDepth()
-        defer {
-            resolutionPool.decrementDepth()
-        }
+        defer { resolutionPool.decrementDepth() }
         
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name)
@@ -201,7 +199,7 @@ extension Container: Resolvable {
         }
         
         if let completed = entry.initCompleted as? (ResolverType, Service) -> () {
-            resolutionPool.appendPendingCompletion({completed(self, resolvedInstance)})
+            completed(self, resolvedInstance)
         }
         return resolvedInstance
     }
