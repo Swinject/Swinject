@@ -13,7 +13,6 @@ internal struct ResolutionPool {
     
     private var pool = [ServiceKey: Any]()
     private var depth: Int = 0
-    private var pendingCompletions: [()->()] = []
     
     internal subscript(key: ServiceKey) -> Any? {
         get { return pool[key] }
@@ -31,16 +30,9 @@ internal struct ResolutionPool {
     internal mutating func decrementDepth() {
         assert(depth > 0, "The depth cannot be negative.")
         
-        if depth == 1 {
-            while let pendingCompletion = pendingCompletions.popLast() {
-                pendingCompletion() // Must be invoked decrementing depth counter.
-            }
+        depth -= 1
+        if depth == 0 {
             pool = [:]
         }
-        depth -= 1
-    }
-    
-    internal mutating func appendPendingCompletion(_ completion: @escaping ()->()) {
-        pendingCompletions.append(completion)
     }
 }

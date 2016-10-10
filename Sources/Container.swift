@@ -221,9 +221,9 @@ extension Container: Resolver {
             }
             resolutionPool[key] = resolvedInstance as Any
         }
-        
+
         if let completed = entry.initCompleted as? (Resolver, Service) -> () {
-            resolutionPool.appendPendingCompletion({completed(self, resolvedInstance)})
+            completed(self, resolvedInstance)
         }
         return resolvedInstance
     }

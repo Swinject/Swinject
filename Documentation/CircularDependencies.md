@@ -78,6 +78,29 @@ Here both or either of the depending properties must be specified in the `initCo
 
 _Not supported._ This type of dependency causes infinite recursion.
 
+## Remark
+
+When resolving circular dependencies one of the factory methods (one containing resolution of circular dependency) migth be invoked twice. Only one of the resulting instances will be used in the final object graph but in some cases this can be problematic - particularly when there are side effects of factory invocation, such as
+- time consuming operations
+- interactions with resolved dependencies
+ 
+You can avoid duplicate invocation by resolving both parts of the dependency cycle inside `initCompleted` closures, for example refactoring
+```swift
+container.register(ParentType.self) { r in
+    let parent = Parent()
+    parent.child = r.resolve(ChildType.self)!
+    return parent
+}
+```
+to
+```swift
+container.register(ParentType.self) { _ in Parent() } 
+    .initCompleted { r, p in
+        let parent = p as! Parent
+        parent.child = r.resolve(ChildType.self)!
+    }
+```
+
 _[Next page: Object Scopes](ObjectScopes.md)_
 
 _[Table of Contents](README.md)_
