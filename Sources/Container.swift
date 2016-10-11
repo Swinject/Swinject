@@ -31,14 +31,20 @@ public final class Container {
     private let parent: Container?
     private var resolutionPool = ResolutionPool()
     private var properties = [String:AnyObject]()
+    private let debugHelper: DebugHelper
     internal let lock: SpinLock // Used by SynchronizedResolver.
+
+    internal init(parent: Container? = nil, debugHelper: DebugHelper) {
+        self.parent = parent
+        self.debugHelper = debugHelper
+        self.lock = parent.map { $0.lock } ?? SpinLock()
+    }
     
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
     ///
     /// - Parameter parent: The optional parent `Container`.
-    public init(parent: Container? = nil) {
-        self.parent = parent
-        self.lock = parent.map { $0.lock } ?? SpinLock()
+    public convenience init(parent: Container? = nil) {
+        self.init(parent: parent, debugHelper: LoggingDebugHelper())
     }
     
     /// Instantiates a `Container` with its parent `Container` and a closure registering services. The parent is optional.
@@ -168,9 +174,24 @@ extension Container: Resolvable {
                 resolvedInstance = entry.instance as? Service
             }
         }
+
+        if resolvedInstance == nil {
+            debugHelper.resolutionFailed(
+                serviceType: Service.self,
+                key: key,
+                availableRegistrations: getRegistrations()
+            )
+        }
+
         return resolvedInstance
     }
-    
+
+    private func getRegistrations() -> [ServiceKey: ServiceEntryType] {
+        var registrations = parent?.getRegistrations() ?? [:]
+        services.forEach { key, value in registrations[key] = value }
+        return registrations
+    }
+
     private func getEntry<Service>(key: ServiceKey) -> (ServiceEntry<Service>, Bool)? {
         var fromParent = false
         var entry = services[key] as? ServiceEntry<Service>
