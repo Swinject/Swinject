@@ -185,7 +185,7 @@ Import SwinjectStoryboard at the top of your swift source file if you use Swinje
 import SwinjectStoryboard
 ```
 
-Services should be registered in an extension of `SwinjectStoryboard` if you use `SwinjectStoryboard`. Refer to [the document of SwinjectStoryboard](./Documentation/Storyboard.md) for its details.
+Services should be registered in an extension of `SwinjectStoryboard` if you use `SwinjectStoryboard`. Refer to [the project page of SwinjectStoryboard](https://github.com/Swinject/SwinjectStoryboard) for its details.
 
 ```swift
 extension SwinjectStoryboard {
