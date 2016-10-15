@@ -317,6 +317,7 @@ class ContainerSpec: QuickSpec {
             it("resolves only once if object scope is container or hierarchy to simulate singleton (instantiation only once).") {
                 let runInObjectScope: (ObjectScope, Int) -> Void = { scope, expectation in
                     var invokedCount = 0
+                    container.removeAll()
                     container.register(AnimalType.self) { _ in
                         invokedCount += 1
                         return Turtle(name: "Ninja")

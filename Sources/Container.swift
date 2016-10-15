@@ -26,7 +26,7 @@ import Foundation
 public final class Container {
     fileprivate var services = [ServiceKey: ServiceEntryType]()
     internal let parent: Container? // Used by HierarchyObjectScope
-    internal var resolutionPool = ResolutionPool() // Used by GraphObjectScope
+    internal let resolutionPool = ResolutionPool() // Used by GraphObjectScope
     internal let containerPool = ObjectPool() // Used by ContainerObjectScope
     fileprivate let debugHelper: DebugHelper
     internal let lock: SpinLock // Used by SynchronizedResolver.
@@ -57,6 +57,7 @@ public final class Container {
     /// Removes all registrations in the container.
     public func removeAll() {
         services.removeAll()
+        containerPool.removeAll()
     }
     
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.

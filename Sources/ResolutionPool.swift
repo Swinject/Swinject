@@ -25,7 +25,7 @@ internal class ResolutionPool: ObjectPool {
         
         depth -= 1
         if depth == 0 {
-            pool = [:]
+            removeAll()
         }
     }
 }

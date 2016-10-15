@@ -15,6 +15,10 @@ public class ObjectPool {
         get { return pool[key] }
         set { pool[key] = newValue }
     }
+
+    internal func removeAll() {
+        pool = [:]
+    }
 }
 
 open class ObjectScope {
