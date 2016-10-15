@@ -14,7 +14,7 @@ class ResolutionPoolSpec: QuickSpec {
     override func spec() {
         it("clears the pool when its depth gets zero.") {
             let key = ServiceKey(factoryType: Any.self)
-            var resolutionPool = ResolutionPool()
+            let resolutionPool = ResolutionPool()
             resolutionPool.incrementDepth()
             resolutionPool[key] = 0
             
