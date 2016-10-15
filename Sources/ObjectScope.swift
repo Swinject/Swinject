@@ -6,6 +6,22 @@
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
+/// A configuration how an instance provided by a `Container` is shared in the system.
+/// The configuration is ignored if it is applied to a value type.
+open class ObjectScope {
+    public init() {}
+
+    /// Used by `Container` to obtain `ObjectPool` during service resolution.
+    /// Custom implementations can use this to manage lifetime of provided instances.
+    ///
+    /// Default implementation always returns a new instance.
+    open func objectPool(for container: Container) -> ObjectPool {
+        return ObjectPool()
+    }
+}
+
+/// Storage for instances created by `Container`.
+/// Multiple instances can be used by `ObjectScope` to manage lifetime of objects created by `Container`.
 public class ObjectPool {
     internal var pool = [ServiceKey: Any]()
 
@@ -19,70 +35,4 @@ public class ObjectPool {
     internal func removeAll() {
         pool = [:]
     }
-}
-
-open class ObjectScope {
-    public init() {}
-
-    open var name: String { return "" }
-
-    open func objectPool(container: Container) -> ObjectPool {
-        fatalError()
-    }
-}
-
-extension ObjectScope: CustomStringConvertible {
-    public var description: String { return name }
-}
-
-
-
-internal final class NoneObjectScope: ObjectScope {
-    override var name: String { return "none" }
-
-    override func objectPool(container: Container) -> ObjectPool {
-        return ObjectPool()
-    }
-}
-
-
-internal final class GraphObjectScope: ObjectScope {
-    override var name: String { return "graph" }
-
-    override func objectPool(container: Container) -> ObjectPool {
-        return container.resolutionPool
-    }
-}
-
-
-internal final class ContainerObjectScope: ObjectScope {
-    override var name: String { return "container" }
-
-    override func objectPool(container: Container) -> ObjectPool {
-        return container.containerPool
-    }
-}
-
-internal final class HierarchyObjectScope: ObjectScope {
-    override var name: String { return "hierarchy" }
-
-    override func objectPool(container: Container) -> ObjectPool {
-        return root(container).containerPool
-    }
-
-    private func root(_ container: Container) -> Container {
-        if let parent = container.parent {
-            return root(parent)
-        } else {
-            return container
-        }
-    }
-}
-
-
-extension ObjectScope {
-    public static let none = NoneObjectScope() as ObjectScope
-    public static let graph = GraphObjectScope() as ObjectScope
-    public static let container = ContainerObjectScope() as ObjectScope
-    public static let hierarchy = HierarchyObjectScope() as ObjectScope
 }

@@ -186,7 +186,7 @@ extension Container: Resolver {
     }
     
     fileprivate func resolve<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
-        let objectPool = entry.objectScope.objectPool(container: self)
+        let objectPool = entry.objectScope.objectPool(for: self)
 
         if let persistedInstance = objectPool[key] as? Service {
             return persistedInstance
