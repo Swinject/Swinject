@@ -45,7 +45,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
   - Xcode 8.0+
 - Carthage 0.18+ (if you use)
 - CocoaPods 1.1.0.rc.2+ (if you use)
-- When using Swinject for resolving ViewControllers, your `UIViewController` subclass *must* implement the `required init?(coder aDecoder: NSCoder)` initializer.
+- When using Swinject for resolving ViewControllers, your `UIViewController` subclass **must** implement the `required init?(coder aDecoder: NSCoder)` initializer.
 
 ## Installation
 
