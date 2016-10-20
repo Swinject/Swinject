@@ -27,10 +27,10 @@ public final class Container {
     fileprivate var services = [ServiceKey: ServiceEntryType]()
     fileprivate let parent: Container?
     fileprivate var resolutionPool = ResolutionPool()
-    fileprivate let debugHelper: DebugHelper
+    fileprivate let debugHelper: DebugHelper?
     internal let lock: SpinLock // Used by SynchronizedResolver.
 
-    internal init(parent: Container? = nil, debugHelper: DebugHelper) {
+    internal init(parent: Container? = nil, debugHelper: DebugHelper?) {
         self.parent = parent
         self.debugHelper = debugHelper
         self.lock = parent.map { $0.lock } ?? SpinLock()
@@ -38,18 +38,21 @@ public final class Container {
     
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
     ///
-    /// - Parameter parent: The optional parent `Container`.
-    public convenience init(parent: Container? = nil) {
-        self.init(parent: parent, debugHelper: LoggingDebugHelper())
+    /// - Parameters:
+    ///     - parent:         The optional parent `Container`.
+    ///     - enableDebugLog: The flag to enable or disable debug logging, enabled by default.
+    public convenience init(parent: Container? = nil, enableDebugLog: Bool = true) {
+        self.init(parent: parent, debugHelper: enableDebugLog ? LoggingDebugHelper() : nil)
     }
     
     /// Instantiates a `Container` with its parent `Container` and a closure registering services. The parent is optional.
     ///
     /// - Parameters:
     ///     - parent:             The optional parent `Container`.
+    ///     - enableDebugLog:     The flag to enable or disable debug logging, enabled by default.
     ///     - registeringClosure: The closure registering services to the new container instance.
-    public convenience init(parent: Container? = nil, registeringClosure: (Container) -> Void) {
-        self.init(parent: parent)
+    public convenience init(parent: Container? = nil, enableDebugLog: Bool = true, registeringClosure: (Container) -> Void) {
+        self.init(parent: parent, enableDebugLog: enableDebugLog)
         registeringClosure(self)
     }
     
@@ -148,7 +151,7 @@ extension Container: _Resolver {
         }
 
         if resolvedInstance == nil {
-            debugHelper.resolutionFailed(
+            debugHelper?.resolutionFailed(
                 serviceType: Service.self,
                 key: key,
                 availableRegistrations: getRegistrations()
