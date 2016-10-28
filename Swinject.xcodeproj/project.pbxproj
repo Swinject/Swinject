@@ -238,6 +238,11 @@
 		CD276B641DABC45E00DD3AA3 /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD276B501DABC44300DD3AA3 /* DebugHelper.swift */; };
 		CD276B651DABC45E00DD3AA3 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD276B4F1DABC44300DD3AA3 /* Container.Logging.swift */; };
 		CD276B661DABC45E00DD3AA3 /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD276B501DABC44300DD3AA3 /* DebugHelper.swift */; };
+		CD3AB1881DC3A48A001A45FA /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD3AB1871DC3A48A001A45FA /* Pages.storyboard */; };
+		CD3AB18F1DC3A625001A45FA /* InjectionVerifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3AB18E1DC3A625001A45FA /* InjectionVerifiable.swift */; };
+		CD3AB1901DC3A625001A45FA /* InjectionVerifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3AB18E1DC3A625001A45FA /* InjectionVerifiable.swift */; };
+		CD3AB1911DC3A625001A45FA /* InjectionVerifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3AB18E1DC3A625001A45FA /* InjectionVerifiable.swift */; };
+		CD3AB1921DC3A625001A45FA /* InjectionVerifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3AB18E1DC3A625001A45FA /* InjectionVerifiable.swift */; };
 		CD5446E61D84373600B13BB4 /* RelationshipReference1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446E41D84373600B13BB4 /* RelationshipReference1.storyboard */; };
 		CD5446E71D84373600B13BB4 /* RelationshipReference1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446E41D84373600B13BB4 /* RelationshipReference1.storyboard */; };
 		CD5446E81D84373600B13BB4 /* RelationshipReference2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD5446E51D84373600B13BB4 /* RelationshipReference2.storyboard */; };
@@ -251,6 +256,7 @@
 		CD7340FC1DC1F2A4002E47FA /* AnimalPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7340FA1DC1F2A4002E47FA /* AnimalPagesViewController.swift */; };
 		CDDC9F1F1DC38EB80088B16E /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDDC9F1E1DC38EB80088B16E /* Pages.storyboard */; };
 		CDDC9F201DC38EB80088B16E /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDDC9F1E1DC38EB80088B16E /* Pages.storyboard */; };
+		CDDC9F2D1DC3A3480088B16E /* AnimalPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDC9F2A1DC3A3410088B16E /* AnimalPagesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -541,6 +547,8 @@
 		CD276B4F1DABC44300DD3AA3 /* Container.Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.Logging.swift; sourceTree = "<group>"; };
 		CD276B501DABC44300DD3AA3 /* DebugHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugHelper.swift; sourceTree = "<group>"; };
 		CD276B5C1DABC45300DD3AA3 /* ContainerSpec.DebugHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.DebugHelper.swift; sourceTree = "<group>"; };
+		CD3AB1871DC3A48A001A45FA /* Pages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Pages.storyboard; sourceTree = "<group>"; };
+		CD3AB18E1DC3A625001A45FA /* InjectionVerifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionVerifiable.swift; sourceTree = "<group>"; };
 		CD5446E41D84373600B13BB4 /* RelationshipReference1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference1.storyboard; sourceTree = "<group>"; };
 		CD5446E51D84373600B13BB4 /* RelationshipReference2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference2.storyboard; sourceTree = "<group>"; };
 		CD5446FA1D84385800B13BB4 /* RelationshipReference1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference1.storyboard; sourceTree = "<group>"; };
@@ -548,6 +556,7 @@
 		CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwinjectStoryboard+StoryboardReference.swift"; sourceTree = "<group>"; };
 		CD7340FA1DC1F2A4002E47FA /* AnimalPagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalPagesViewController.swift; sourceTree = "<group>"; };
 		CDDC9F1E1DC38EB80088B16E /* Pages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Pages.storyboard; sourceTree = "<group>"; };
+		CDDC9F2A1DC3A3410088B16E /* AnimalPagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalPagesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -764,6 +773,7 @@
 				984E8A8D1C319F4A0039943D /* Container+SwinjectStoryboard.swift */,
 				984E8A7B1C319F090039943D /* SwinjectStoryboardType.swift */,
 				984E8A7A1C319F090039943D /* SwinjectStoryboard.swift */,
+				CD3AB18E1DC3A625001A45FA /* InjectionVerifiable.swift */,
 				984E8A791C319F090039943D /* Storyboard+Swizzling.swift */,
 				984E8A7C1C319F090039943D /* ViewController+Swinject.swift */,
 				CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */,
@@ -827,6 +837,8 @@
 			children = (
 				981650301B6D085900BC4222 /* AnimalViewController.swift */,
 				9816502E1B6D041300BC4222 /* AnimalWindowController.swift */,
+				CDDC9F2A1DC3A3410088B16E /* AnimalPagesViewController.swift */,
+				CD3AB1871DC3A48A001A45FA /* Pages.storyboard */,
 				986A58391B6D031700FE710F /* Animals.storyboard */,
 				981650391B6D270E00BC4222 /* Tabs.storyboard */,
 				98D462771BE76D500006D45A /* ViewController1.swift */,
@@ -1328,6 +1340,7 @@
 				CD5446FC1D84385800B13BB4 /* RelationshipReference1.storyboard in Resources */,
 				90E70A421C15461600F12C2A /* second.plist in Resources */,
 				90E70A691C172DB200F12C2A /* invalid.json in Resources */,
+				CD3AB1881DC3A48A001A45FA /* Pages.storyboard in Resources */,
 				9816503A1B6D270E00BC4222 /* Tabs.storyboard in Resources */,
 				90E70A251C15398100F12C2A /* second.json in Resources */,
 				986A583A1B6D031700FE710F /* Animals.storyboard in Resources */,
@@ -1445,6 +1458,7 @@
 				984E8A8A1C319F090039943D /* ViewController+Swinject.swift in Sources */,
 				90E70A5B1C17279300F12C2A /* PropertyLoaderError.swift in Sources */,
 				981577F51B676BF700BF686B /* ResolutionPool.swift in Sources */,
+				CD3AB1901DC3A625001A45FA /* InjectionVerifiable.swift in Sources */,
 				9880E70F1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				984E8A821C319F090039943D /* SwinjectStoryboard.swift in Sources */,
 				CD5447001D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */,
@@ -1474,6 +1488,7 @@
 				90B029841C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				90E70A3E1C15458B00F12C2A /* Properties.swift in Sources */,
 				9855C5C61B689B7B00DADB0B /* FoodType.swift in Sources */,
+				CDDC9F2D1DC3A3480088B16E /* AnimalPagesViewController.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				984775001C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
 				986A58371B6D02A500FE710F /* SwinjectStoryboardSpec.swift in Sources */,
@@ -1513,6 +1528,7 @@
 				984E8A891C319F090039943D /* ViewController+Swinject.swift in Sources */,
 				984774F01C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				981577F41B676BF700BF686B /* ResolutionPool.swift in Sources */,
+				CD3AB18F1DC3A625001A45FA /* InjectionVerifiable.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* Resolvable.swift in Sources */,
 				98F2F7731C07E789009571E6 /* Box.swift in Sources */,
 				CD5446FF1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */,
@@ -1583,6 +1599,7 @@
 				9880E7101C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */,
 				985011251BBE7E8900A2CCFC /* Resolvable.swift in Sources */,
+				CD3AB1911DC3A625001A45FA /* InjectionVerifiable.swift in Sources */,
 				9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */,
 				98F2F7751C07E789009571E6 /* Box.swift in Sources */,
 				984E8A8B1C319F090039943D /* ViewController+Swinject.swift in Sources */,
@@ -1615,6 +1632,7 @@
 				984E8A8C1C319F090039943D /* ViewController+Swinject.swift in Sources */,
 				9880E7111C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
+				CD3AB1921DC3A625001A45FA /* InjectionVerifiable.swift in Sources */,
 				984774F31C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolvable.swift in Sources */,
 				CD5447021D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */,

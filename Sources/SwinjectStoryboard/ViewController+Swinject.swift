@@ -13,7 +13,7 @@ import ObjectiveC
 private var uivcRegistrationNameKey: String = "UIViewController.swinjectRegistrationName"
 private var uivcWasInjectedKey: String = "UIViewController.wasInjected"
 
-extension UIViewController: RegistrationNameAssociatable {
+extension UIViewController: RegistrationNameAssociatable, InjectionVerifiable {
     internal var swinjectRegistrationName: String? {
         get { return getAssociatedString(key: &uivcRegistrationNameKey) }
         set { setAssociatedString(newValue, key: &uivcRegistrationNameKey) }
@@ -27,28 +27,32 @@ extension UIViewController: RegistrationNameAssociatable {
 
 #elseif os(OSX)
 
-private var nsvcAssociationKey: String = "NSViewController.swinjectRegistrationName"
-private var nswcAssociationKey: String = "NSWindowController.swinjectRegistrationName"
+private var nsvcRegistrationNameKey: String = "NSViewController.swinjectRegistrationName"
+private var nswcRegistrationNameKey: String = "NSWindowController.swinjectRegistrationName"
+private var nsvcWasInjectedKey: String = "NSViewController.wasInjected"
+private var nswcWasInjectedKey: String = "NSWindowController.wasInjected"
 
-extension NSViewController: RegistrationNameAssociatable {
+extension NSViewController: RegistrationNameAssociatable, InjectionVerifiable {
     internal var swinjectRegistrationName: String? {
-        get {
-            return getAssociatedString(key: &nsvcAssociationKey)
-        }
-        set {
-            setAssociatedString(newValue, key: &nsvcAssociationKey)
-        }
+        get { return getAssociatedString(key: &nsvcRegistrationNameKey) }
+        set { setAssociatedString(newValue, key: &nsvcRegistrationNameKey) }
+    }
+
+    internal var wasInjected: Bool {
+        get { return getAssociatedBool(key: &nsvcWasInjectedKey) ?? false }
+        set { setAssociatedBool(newValue, key: &nsvcWasInjectedKey) }
     }
 }
 
-extension NSWindowController: RegistrationNameAssociatable {
+extension NSWindowController: RegistrationNameAssociatable, InjectionVerifiable {
     internal var swinjectRegistrationName: String? {
-        get {
-            return getAssociatedString(key: &nswcAssociationKey)
-        }
-        set {
-            setAssociatedString(newValue, key: &nswcAssociationKey)
-        }
+        get { return getAssociatedString(key: &nsvcRegistrationNameKey) }
+        set { setAssociatedString(newValue, key: &nsvcRegistrationNameKey) }
+    }
+
+    internal var wasInjected: Bool {
+        get { return getAssociatedBool(key: &nswcWasInjectedKey) ?? false }
+        set { setAssociatedBool(newValue, key: &nswcWasInjectedKey) }
     }
 }
 
