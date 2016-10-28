@@ -6,18 +6,22 @@
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
+import ObjectiveC
+
 #if os(iOS) || os(tvOS)
 
-private var uivcAssociationKey: String = "UIViewController.swinjectRegistrationName"
+private var uivcRegistrationNameKey: String = "UIViewController.swinjectRegistrationName"
+private var uivcWasInjectedKey: String = "UIViewController.wasInjected"
 
 extension UIViewController: RegistrationNameAssociatable {
     internal var swinjectRegistrationName: String? {
-        get {
-            return getAssociatedString(key: &uivcAssociationKey)
-        }
-        set {
-            setAssociatedString(newValue, key: &uivcAssociationKey)
-        }
+        get { return getAssociatedString(key: &uivcRegistrationNameKey) }
+        set { setAssociatedString(newValue, key: &uivcRegistrationNameKey) }
+    }
+
+    internal var wasInjected: Bool {
+        get { return getAssociatedBool(key: &uivcWasInjectedKey) ?? false }
+        set { setAssociatedBool(newValue, key: &uivcWasInjectedKey) }
     }
 }
 
@@ -49,3 +53,21 @@ extension NSWindowController: RegistrationNameAssociatable {
 }
 
 #endif
+
+extension NSObject {
+    private func getAssociatedString(key key: UnsafePointer<Void>) -> String? {
+        return objc_getAssociatedObject(self, key) as? String
+    }
+
+    private func setAssociatedString(string: String?, key: UnsafePointer<Void>) {
+        objc_setAssociatedObject(self, key, string, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
+    }
+
+    private func getAssociatedBool(key key: UnsafePointer<Void>) -> Bool? {
+        return (objc_getAssociatedObject(self, key) as? NSNumber)?.boolValue
+    }
+
+    private func setAssociatedBool(bool: Bool, key: UnsafePointer<Void>) {
+        objc_setAssociatedObject(self, key, NSNumber(bool: bool), objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
+    }
+}

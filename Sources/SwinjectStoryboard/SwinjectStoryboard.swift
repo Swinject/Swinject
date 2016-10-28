@@ -80,14 +80,15 @@ public class SwinjectStoryboard: _SwinjectStoryboardBase, SwinjectStoryboardType
         let viewController = super.instantiateViewControllerWithIdentifier(identifier)
         SwinjectStoryboard.popInstantiatingStoryboard()
 
-        if !SwinjectStoryboard.isCreatingStoryboardReference {
-            injectDependency(viewController)
-        }
+        injectDependency(viewController)
 
         return viewController
     }
 
     private func injectDependency(viewController: UIViewController) {
+        guard !viewController.wasInjected else { return }
+        defer { viewController.wasInjected = true }
+
         let registrationName = viewController.swinjectRegistrationName
 
         // Xcode 7.1 workaround for Issue #10. This workaround is not necessary with Xcode 7.
