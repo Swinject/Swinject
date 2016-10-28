@@ -247,6 +247,10 @@
 		CD5446FF1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
 		CD5447001D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
 		CD5447021D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */; };
+		CD7340FB1DC1F2A4002E47FA /* AnimalPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7340FA1DC1F2A4002E47FA /* AnimalPagesViewController.swift */; };
+		CD7340FC1DC1F2A4002E47FA /* AnimalPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7340FA1DC1F2A4002E47FA /* AnimalPagesViewController.swift */; };
+		CDDC9F1F1DC38EB80088B16E /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDDC9F1E1DC38EB80088B16E /* Pages.storyboard */; };
+		CDDC9F201DC38EB80088B16E /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDDC9F1E1DC38EB80088B16E /* Pages.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -542,6 +546,8 @@
 		CD5446FA1D84385800B13BB4 /* RelationshipReference1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference1.storyboard; sourceTree = "<group>"; };
 		CD5446FB1D84385800B13BB4 /* RelationshipReference2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationshipReference2.storyboard; sourceTree = "<group>"; };
 		CD5446FE1D8439AD00B13BB4 /* SwinjectStoryboard+StoryboardReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwinjectStoryboard+StoryboardReference.swift"; sourceTree = "<group>"; };
+		CD7340FA1DC1F2A4002E47FA /* AnimalPagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalPagesViewController.swift; sourceTree = "<group>"; };
+		CDDC9F1E1DC38EB80088B16E /* Pages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Pages.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -941,8 +947,10 @@
 			isa = PBXGroup;
 			children = (
 				98D06D3C1B6B816C0081AFE0 /* AnimalViewController.swift */,
+				CD7340FA1DC1F2A4002E47FA /* AnimalPagesViewController.swift */,
 				98D06D361B6B579F0081AFE0 /* Animals.storyboard */,
 				98D06D481B6CB79B0081AFE0 /* Tabs.storyboard */,
+				CDDC9F1E1DC38EB80088B16E /* Pages.storyboard */,
 				98EA93BC1BCA48D000E9121D /* Storyboard1.storyboard */,
 				988EEDAE1BCA082900E935F7 /* Storyboard2.storyboard */,
 				CD5446E41D84373600B13BB4 /* RelationshipReference1.storyboard */,
@@ -1340,6 +1348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90E70A201C14FADE00F12C2A /* first.json in Resources */,
+				CDDC9F1F1DC38EB80088B16E /* Pages.storyboard in Resources */,
 				90E70A411C15461600F12C2A /* second.plist in Resources */,
 				90E70A681C172DB200F12C2A /* invalid.json in Resources */,
 				988EEDAF1BCA082900E935F7 /* Storyboard2.storyboard in Resources */,
@@ -1373,6 +1382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90E70A221C14FB0000F12C2A /* first.json in Resources */,
+				CDDC9F201DC38EB80088B16E /* Pages.storyboard in Resources */,
 				90E70A431C15461600F12C2A /* second.plist in Resources */,
 				90E70A6A1C172DB200F12C2A /* invalid.json in Resources */,
 				98A430711BCE2E5800B6B588 /* Storyboard2.storyboard in Resources */,
@@ -1533,6 +1543,7 @@
 				9855C5C51B689B7B00DADB0B /* FoodType.swift in Sources */,
 				989AE5BD1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift in Sources */,
 				9855C5C81B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
+				CD7340FB1DC1F2A4002E47FA /* AnimalPagesViewController.swift in Sources */,
 				9809A75F1B6B5288005E037E /* SwinjectStoryboardSpec.swift in Sources */,
 				9878C63C1B65CA8700CBEFEF /* PersonType.swift in Sources */,
 				90B0298B1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
@@ -1634,6 +1645,7 @@
 				98689CBB1BBFD5110005C6D3 /* ContainerSpec.Arguments.swift in Sources */,
 				989AE5BF1C462F2700BDCE65 /* ViewController+SwinjectSpec.swift in Sources */,
 				98689CBE1BBFD5110005C6D3 /* ServiceEntrySpec.swift in Sources */,
+				CD7340FC1DC1F2A4002E47FA /* AnimalPagesViewController.swift in Sources */,
 				98689CC91BBFD5B90005C6D3 /* SwinjectStoryboardSpec.swift in Sources */,
 				98689CBC1BBFD5110005C6D3 /* ContainerSpec.Circularity.swift in Sources */,
 				98689CB61BBFD5110005C6D3 /* PersonType.swift in Sources */,
