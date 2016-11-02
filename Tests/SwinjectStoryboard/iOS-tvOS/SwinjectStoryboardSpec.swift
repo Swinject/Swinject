@@ -82,6 +82,18 @@ class SwinjectStoryboardSpec: QuickSpec {
                     expect(animalViewController.hasAnimal(named: "Mimi")) == true
                 }
             }
+            context("with second controller instantiation during instantiation of initial one") {
+                it("injects second controller.") {
+                    container.registerForStoryboard(AnimalViewController.self) { r, c in
+                        c.animal = r.resolve(AnimalType.self)
+                    }
+                    container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
+
+                    let storyboard = SwinjectStoryboard.create(name: "Pages", bundle: bundle, container: container)
+                    let pagesController = storyboard.instantiateInitialViewController() as! AnimalPagesViewController
+                    expect(pagesController.animalPage.hasAnimal(named: "Mimi")) == true
+                }
+            }
         }
         describe("Initial view controller") {
             it("injects dependency definded by initCompleted handler.") {
