@@ -11,6 +11,8 @@ import Foundation
 // A generic-type-free protocol to be the type of values in a strongly-typed collection.
 internal protocol ServiceEntryType: Any {
     func describeWithKey(_ serviceKey: ServiceKey) -> String
+    var objectScope: ObjectScopeType { get }
+    var storage: InstanceStorage { get }
 }
 
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
@@ -19,9 +21,11 @@ public final class ServiceEntry<Service> {
     fileprivate let serviceType: Service.Type
     internal let factory: FunctionType
 
-    internal var objectScope = ObjectScope.graph
+    internal var objectScope: ObjectScopeType = ObjectScope.graph
+    internal lazy var storage: InstanceStorage = { [unowned self] in
+        self.objectScope.makeStorage()
+    }()
     internal var initCompleted: FunctionType?
-    internal var instance: Any?
 
     internal init(serviceType: Service.Type, factory: FunctionType) {
         self.serviceType = serviceType
@@ -41,9 +45,15 @@ public final class ServiceEntry<Service> {
     ///
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
-    public func inObjectScope(_ objectScope: ObjectScope) -> Self {
+    public func inObjectScope(_ objectScope: ObjectScopeType) -> Self {
         self.objectScope = objectScope
         return self
+    }
+
+    // TODO: doc
+    @discardableResult
+    public func inObjectScope(_ objectScope: ObjectScope) -> Self {
+        return inObjectScope(objectScope as ObjectScopeType)
     }
 
     /// Adds the callback to setup the instance after its `init` completes.

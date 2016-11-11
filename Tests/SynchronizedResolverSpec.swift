@@ -81,7 +81,6 @@ class SynchronizedResolverSpec: QuickSpec {
                 runInObjectScope(.none)
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
-                runInObjectScope(.hierarchy)
             }
         }
     }

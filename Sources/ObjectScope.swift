@@ -6,33 +6,25 @@
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
-/// A configuration how an instance provided by a `Container` is shared in the system.
-/// The configuration is ignored if it is applied to a value type.
-open class ObjectScope {
-    public init() {}
-
-    /// Used by `Container` to obtain `ObjectPool` during service resolution.
-    /// Custom implementations can use this to manage lifetime of provided instances.
-    ///
-    /// Default implementation always returns a new instance.
-    open func objectPool(for container: Container) -> ObjectPool {
-        return ObjectPool()
-    }
+// TODO: doc
+public protocol ObjectScopeType: AnyObject {
+    func makeStorage() -> InstanceStorage
 }
 
-/// Storage for instances created by `Container`.
-/// Multiple instances can be used by `ObjectScope` to manage lifetime of objects created by `Container`.
-public class ObjectPool {
-    internal var pool = [ServiceKey: Any]()
+public class ObjectScope: ObjectScopeType, CustomStringConvertible {
 
-    public init() {}
+    public private(set) var description: String
+    private var storageFactory: () -> InstanceStorage
 
-    internal subscript(key: ServiceKey) -> Any? {
-        get { return pool[key] }
-        set { pool[key] = newValue }
+    public init(
+        storageFactory: @escaping () -> InstanceStorage,
+        description: String = ""
+    ) {
+        self.storageFactory = storageFactory
+        self.description = description
     }
 
-    internal func removeAll() {
-        pool = [:]
+    public func makeStorage() -> InstanceStorage {
+        return storageFactory()
     }
 }

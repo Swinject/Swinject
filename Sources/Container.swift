@@ -25,9 +25,8 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
 public final class Container {
     fileprivate var services = [ServiceKey: ServiceEntryType]()
-    internal let parent: Container? // Used by HierarchyObjectScope
-    internal let resolutionPool = ResolutionPool() // Used by GraphObjectScope
-    internal let containerPool = ObjectPool() // Used by ContainerObjectScope
+    fileprivate let parent: Container? // Used by HierarchyObjectScope
+    fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
     internal let lock: SpinLock // Used by SynchronizedResolver.
 
@@ -57,7 +56,19 @@ public final class Container {
     /// Removes all registrations in the container.
     public func removeAll() {
         services.removeAll()
-        containerPool.removeAll()
+    }
+
+    // TODO: doc
+    public func resetObjectScope(_ objectScope: ObjectScopeType) {
+        services.values
+            .filter { $0.objectScope === objectScope }
+            .forEach { $0.storage.instance = nil }
+
+        parent?.resetObjectScope(objectScope)
+    }
+
+    public func resetObjectScope(_ objectScope: ObjectScope) {
+        resetObjectScope(objectScope as ObjectScopeType)
     }
     
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -119,8 +130,8 @@ public final class Container {
 // MARK: - _Resolver
 extension Container: _Resolver {
     public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOptionType? = nil, invoker: (Factory) -> Service) -> Service? {
-        resolutionPool.incrementDepth()
-        defer { resolutionPool.decrementDepth() }
+        incrementResolutionDepth()
+        defer { decrementResolutionDepth() }
         
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name, option: option)
@@ -144,6 +155,25 @@ extension Container: _Resolver {
         var registrations = parent?.getRegistrations() ?? [:]
         services.forEach { key, value in registrations[key] = value }
         return registrations
+    }
+
+    private var maxResolutionDepth: Int { return 200 }
+
+    private func incrementResolutionDepth() {
+        guard resolutionDepth < maxResolutionDepth else {
+            fatalError("Infinite recursive call for circular dependency has been detected. " +
+                "To avoid the infinite call, 'initCompleted' handler should be used to inject circular dependency.")
+        }
+        resolutionDepth += 1
+    }
+
+    private func decrementResolutionDepth() {
+        assert(resolutionDepth > 0, "The depth cannot be negative.")
+
+        resolutionDepth -= 1
+        if resolutionDepth == 0 {
+            resetObjectScope(.graph)
+        }
     }
 }
 
@@ -186,18 +216,17 @@ extension Container: Resolver {
     }
     
     fileprivate func resolve<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
-        let objectPool = entry.objectScope.objectPool(for: self)
 
-        if let persistedInstance = objectPool[key] as? Service {
+        if let persistedInstance = entry.storage.instance as? Service {
             return persistedInstance
         }
         
         let resolvedInstance = invoker(entry.factory as! Factory)
-        if let persistedInstance = objectPool[key] as? Service {
+        if let persistedInstance = entry.storage.instance as? Service {
             // An instance for the key might be added by the factory invocation.
             return persistedInstance
         }
-        objectPool[key] = resolvedInstance as Any
+        entry.storage.instance = resolvedInstance as Any
 
         if let completed = entry.initCompleted as? (Resolver, Service) -> () {
             completed(self, resolvedInstance)
