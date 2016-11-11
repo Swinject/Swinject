@@ -41,7 +41,7 @@ public final class ServiceEntry<Service> {
 
     /// Specifies the object scope to resolve the service.
     ///
-    /// - Parameter scope: The `ObjectScope` value.
+    /// - Parameter scope: The `ObjectScopeType` value.
     ///
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
@@ -50,7 +50,13 @@ public final class ServiceEntry<Service> {
         return self
     }
 
-    // TODO: doc
+    /// Specifies the object scope to resolve the service.
+    /// Performs the same functionality as `inObjectScope(_: ObjectScopeType) -> Self`,
+    /// but provides more convenient usage syntax.
+    ///
+    /// - Parameter scope: The `ObjectScope` value.
+    ///
+    /// - Returns: `self` to add another configuration fluently.
     @discardableResult
     public func inObjectScope(_ objectScope: ObjectScope) -> Self {
         return inObjectScope(objectScope as ObjectScopeType)

@@ -58,7 +58,13 @@ public final class Container {
         services.removeAll()
     }
 
-    // TODO: doc
+    /// Discards instances for services registered in the given `ObjectsScopeType`.
+    ///
+    /// **Example usage:**
+    ///     container.resetObjectScope(ObjectScope.container)
+    ///
+    /// - Parameters:
+    ///     - objectScope: All instances registered in given `ObjectsScopeType` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScopeType) {
         services.values
             .filter { $0.objectScope === objectScope }
@@ -67,6 +73,14 @@ public final class Container {
         parent?.resetObjectScope(objectScope)
     }
 
+    /// Discards instances for services registered in the given `ObjectsScope`. It performs the same operation
+    /// as `resetObjectScope(_:ObjectScopeType)`, but provides more convenient usage syntax.
+    ///
+    /// **Example usage:**
+    ///     container.resetObjectScope(.container)
+    ///
+    /// - Parameters:
+    ///     - objectScope: All instances registered in given `ObjectsScope` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScope) {
         resetObjectScope(objectScope as ObjectScopeType)
     }
