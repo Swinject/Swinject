@@ -44,7 +44,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 - Swift 3
   - Xcode 8.0+
 - Carthage 0.18+ (if you use)
-- CocoaPods 1.1.0.rc.2+ (if you use)
+- CocoaPods 1.1.1+ (if you use)
 
 ## Installation
 
@@ -185,7 +185,7 @@ Import SwinjectStoryboard at the top of your swift source file if you use Swinje
 import SwinjectStoryboard
 ```
 
-Services should be registered in an extension of `SwinjectStoryboard` if you use `SwinjectStoryboard`. Refer to [the document of SwinjectStoryboard](./Documentation/Storyboard.md) for its details.
+Services should be registered in an extension of `SwinjectStoryboard` if you use `SwinjectStoryboard`. Refer to [the project page of SwinjectStoryboard](https://github.com/Swinject/SwinjectStoryboard) for its details.
 
 ```swift
 extension SwinjectStoryboard {

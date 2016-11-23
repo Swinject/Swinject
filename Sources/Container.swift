@@ -101,7 +101,7 @@ public final class Container {
     public func register<Service>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolver) -> Service) -> ServiceEntry<Service>
+        factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
