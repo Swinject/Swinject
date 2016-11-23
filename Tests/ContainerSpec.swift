@@ -94,10 +94,10 @@ class ContainerSpec: QuickSpec {
                 }
             }
             
-            context("in no scope") {
+            context("in transient scope") {
                 it("does not have a shared object in a container.") {
                     container.register(AnimalType.self) { _ in Cat() }
-                        .inObjectScope(.none)
+                        .inObjectScope(.transient)
                     
                     let cat1 = container.resolve(AnimalType.self) as! Cat
                     let cat2 = container.resolve(AnimalType.self) as! Cat
@@ -106,7 +106,7 @@ class ContainerSpec: QuickSpec {
                 it("resolves a service to new objects in a graph") {
                     registerCatAndPetOwnerDependingOnFood(container)
                     container.register(FoodType.self) { _ in Sushi() }
-                        .inObjectScope(.none)
+                        .inObjectScope(.transient)
                     
                     let owner = container.resolve(PersonType.self) as! PetOwner
                     let ownersSushi = owner.favoriteFood as! Sushi
@@ -252,7 +252,7 @@ class ContainerSpec: QuickSpec {
                     expect(turtle2.name) == "Ninja"
                 }
                 
-                runInObjectScope(.none)
+                runInObjectScope(.transient)
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
             }
@@ -270,7 +270,7 @@ class ContainerSpec: QuickSpec {
                     expect(turtle2.name) == "Ninja"
                 }
                 
-                runInObjectScope(.none)
+                runInObjectScope(.transient)
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
             }
@@ -287,7 +287,7 @@ class ContainerSpec: QuickSpec {
                     expect(invokedCount) == expectation
                 }
                 
-                runInObjectScope(.none, 2)
+                runInObjectScope(.transient, 2)
                 runInObjectScope(.graph, 2)
                 runInObjectScope(.container, 1)
             }

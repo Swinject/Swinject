@@ -9,7 +9,7 @@
 extension ObjectScope {
     /// A new instance is always created by the `Container` when a type is resolved.
     /// The instance is not shared.
-    public static let none = ObjectScope(storageFactory: TransientStorage.init, description: "none")
+    public static let transient = ObjectScope(storageFactory: TransientStorage.init, description: "transient")
 
     /// Instances are shared only when an object graph is being created,
     /// otherwise a new instance is created by the `Container`. This is the default scope.

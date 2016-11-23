@@ -78,7 +78,7 @@ class SynchronizedResolverSpec: QuickSpec {
                     }
                 }
                 
-                runInObjectScope(.none)
+                runInObjectScope(.transient)
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
             }
