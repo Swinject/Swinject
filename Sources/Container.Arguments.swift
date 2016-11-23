@@ -35,7 +35,7 @@ extension Container {
     public func register<Service, Arg1>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolver, Arg1) -> Service) -> ServiceEntry<Service>
+        factory: @escaping (Resolver, Arg1) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -56,7 +56,7 @@ extension Container {
     public func register<Service, Arg1, Arg2>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolver, Arg1, Arg2) -> Service) -> ServiceEntry<Service>
+        factory: @escaping (Resolver, Arg1, Arg2) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -77,7 +77,7 @@ extension Container {
     public func register<Service, Arg1, Arg2, Arg3>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolver, Arg1, Arg2, Arg3) -> Service) -> ServiceEntry<Service>
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -98,7 +98,7 @@ extension Container {
     public func register<Service, Arg1, Arg2, Arg3, Arg4>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolver, Arg1, Arg2, Arg3, Arg4) -> Service) -> ServiceEntry<Service>
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -119,7 +119,7 @@ extension Container {
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service) -> ServiceEntry<Service>
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -140,7 +140,7 @@ extension Container {
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service) -> ServiceEntry<Service>
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -161,7 +161,7 @@ extension Container {
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service) -> ServiceEntry<Service>
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -182,7 +182,7 @@ extension Container {
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service) -> ServiceEntry<Service>
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
@@ -203,7 +203,7 @@ extension Container {
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service) -> ServiceEntry<Service>
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service) -> ServiceEntry<Service>
     {
         return _register(serviceType, factory: factory, name: name)
     }
