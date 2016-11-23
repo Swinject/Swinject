@@ -6,32 +6,43 @@ The object scope is specified with `inObjectScope` method when you register a pa
 
 ```swift
 container.register(AnimalType.self) { _ in Cat() }
-    .inObjectScope(.Container)
+    .inObjectScope(.container)
 ```
 
 The object scope is ignored if the factory closure returns a value type because its instance is never shared per the Swift specification.
 
-## None (aka Transient)
+## Built-in scopes
+### Transient
 
-If `ObjectScope.None` is specified, an instance provided by a container is not shared. In other words, the container always creates a new instance when the type is resolved.
+If `ObjectScope.transient` is specified, an instance provided by a container is not shared. In other words, the container always creates a new instance when the type is resolved.
 
-This scope is also known as _Transient_ in other DI frameworks.
+If this scope is specified, circular dependencies resolution will not work properly.
 
-## Graph (the default scope)
+### Graph (the default scope)
 
-With `ObjectScope.Graph`, an instance is always created, as in `ObjectScope.None`, if you directly call `resolve` method of a container, but instances resolved in factory closures are shared during the resolution of the root instance to construct the object graph.
+With `ObjectScope.graph`, an instance is always created, as in `ObjectScope.transient`, if you directly call `resolve` method of a container, but instances resolved in factory closures are shared during the resolution of the root instance to construct the object graph.
 
-This scope must be specified, or `inObjectScope` must not be called if you register circular dependencies.
+### Container
 
-## Container (aka Singleton)
-
-In `ObjectScope.Container`, an instance provided by a container is shared within the container. In other words, when you resolve the type for the first time, it is created by the container by invoking the factory closure. The same instance is returned by the container in any succeeding resolution of the type.
+In `ObjectScope.container`, an instance provided by a container is shared within the container and its child containers (see [Container Hierarchy](ContainerHierarchy.md)). In other words, when you resolve the type for the first time, it is created by the container by invoking the factory closure. The same instance is returned by the container in any succeeding resolution of the type.
 
 This scope is also known as _Singleton_ in other DI frameworks.
 
-## Hierarchy
+## Custom Scopes
 
-In `ObjectScope.Hierarchy`, an instance provided by a container is not only shared within the container but also shared within its child containers. Refer to [Container Hierarchy](ContainerHierarchy.md) for parent-child relationship of containers.
+Custom object scopes can be defined like this:
+```swift
+extension ObjectScope {
+    static let custom = ObjectScope(storageFactory: PersistentStorage.init)
+}
+```
+Instances in `.custom` scope will be shared in the same way as in `.container` scope but can be discarded as needed:
+```swift
+container.resetObjectScope(.custom)
+```
+After scope is reset, container will create a new instance first time the type is resolved and will share this instance in any succeeding resolution of the type.
+
+Behavior of custom scopes can be additionally modified by providing different `storageFactory`, or writing custom implementation of `ObjectScopeType` protocol.
 
 _[Next page: Misc](Misc.md)_
 
