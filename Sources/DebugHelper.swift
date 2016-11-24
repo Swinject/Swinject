@@ -37,7 +37,7 @@ internal final class LoggingDebugHelper: DebugHelper {
 internal func description<Service>(
     serviceType: Service.Type,
     serviceKey: ServiceKey,
-    objectScope: ObjectScope? = nil,
+    objectScope: ObjectScopeType? = nil,
     initCompleted: FunctionType? = nil
 ) -> String {
     // The protocol order in "protocol<>" is non-deterministic.

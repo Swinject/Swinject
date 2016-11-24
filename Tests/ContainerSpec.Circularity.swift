@@ -41,7 +41,6 @@ class ContainerSpec_Circularity: QuickSpec {
                 
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
-                runInObjectScope(.hierarchy)
             }
             it("resolves circular dependency on the initializer and property.") {
                 let runInObjectScope: (ObjectScope) -> Void = { scope in
@@ -62,7 +61,6 @@ class ContainerSpec_Circularity: QuickSpec {
                 
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
-                runInObjectScope(.hierarchy)
             }
         }
         describe("More than two objects") {

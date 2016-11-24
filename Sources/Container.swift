@@ -25,13 +25,13 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
 public final class Container {
     fileprivate var services = [ServiceKey: ServiceEntryType]()
-    fileprivate let parent: Container?
-    fileprivate var resolutionPool = ResolutionPool()
+    fileprivate let parent: Container? // Used by HierarchyObjectScope
+    fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
     internal let lock: SpinLock // Used by SynchronizedResolver.
 
     internal init(parent: Container? = nil, debugHelper: DebugHelper) {
-        self.parent = parent
+        self.parent = parent    
         self.debugHelper = debugHelper
         self.lock = parent.map { $0.lock } ?? SpinLock()
     }
@@ -56,6 +56,33 @@ public final class Container {
     /// Removes all registrations in the container.
     public func removeAll() {
         services.removeAll()
+    }
+
+    /// Discards instances for services registered in the given `ObjectsScopeType`.
+    ///
+    /// **Example usage:**
+    ///     container.resetObjectScope(ObjectScope.container)
+    ///
+    /// - Parameters:
+    ///     - objectScope: All instances registered in given `ObjectsScopeType` will be discarded.
+    public func resetObjectScope(_ objectScope: ObjectScopeType) {
+        services.values
+            .filter { $0.objectScope === objectScope }
+            .forEach { $0.storage.instance = nil }
+
+        parent?.resetObjectScope(objectScope)
+    }
+
+    /// Discards instances for services registered in the given `ObjectsScope`. It performs the same operation
+    /// as `resetObjectScope(_:ObjectScopeType)`, but provides more convenient usage syntax.
+    ///
+    /// **Example usage:**
+    ///     container.resetObjectScope(.container)
+    ///
+    /// - Parameters:
+    ///     - objectScope: All instances registered in given `ObjectsScope` will be discarded.
+    public func resetObjectScope(_ objectScope: ObjectScope) {
+        resetObjectScope(objectScope as ObjectScopeType)
     }
     
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -117,34 +144,14 @@ public final class Container {
 // MARK: - _Resolver
 extension Container: _Resolver {
     public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOptionType? = nil, invoker: (Factory) -> Service) -> Service? {
-        resolutionPool.incrementDepth()
-        defer { resolutionPool.decrementDepth() }
+        incrementResolutionDepth()
+        defer { decrementResolutionDepth() }
         
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name, option: option)
-        if let (entry, fromParent) = getEntry(key) as (ServiceEntry<Service>, Bool)? {
-            switch entry.objectScope {
-            case .none, .graph:
-                resolvedInstance = resolve(entry: entry, key: key, invoker: invoker)
-            case .container:
-                let ownEntry: ServiceEntry<Service>
-                if fromParent {
-                    ownEntry = entry.copyExceptInstance()
-                    services[key] = ownEntry
-                } else {
-                    ownEntry = entry
-                }
-                
-                if ownEntry.instance == nil {
-                    ownEntry.instance = resolve(entry: entry, key: key, invoker: invoker) as Any
-                }
-                resolvedInstance = ownEntry.instance as? Service
-            case .hierarchy:
-                if entry.instance == nil {
-                    entry.instance = resolve(entry: entry, key: key, invoker: invoker) as Any
-                }
-                resolvedInstance = entry.instance as? Service
-            }
+
+        if let entry = getEntry(key) as ServiceEntry<Service>? {
+            resolvedInstance = resolve(entry: entry, key: key, invoker: invoker)
         }
 
         if resolvedInstance == nil {
@@ -162,6 +169,25 @@ extension Container: _Resolver {
         var registrations = parent?.getRegistrations() ?? [:]
         services.forEach { key, value in registrations[key] = value }
         return registrations
+    }
+
+    private var maxResolutionDepth: Int { return 200 }
+
+    private func incrementResolutionDepth() {
+        guard resolutionDepth < maxResolutionDepth else {
+            fatalError("Infinite recursive call for circular dependency has been detected. " +
+                "To avoid the infinite call, 'initCompleted' handler should be used to inject circular dependency.")
+        }
+        resolutionDepth += 1
+    }
+
+    private func decrementResolutionDepth() {
+        assert(resolutionDepth > 0, "The depth cannot be negative.")
+
+        resolutionDepth -= 1
+        if resolutionDepth == 0 {
+            resetObjectScope(.graph)
+        }
     }
 }
 
@@ -195,32 +221,26 @@ extension Container: Resolver {
         return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }
     
-    fileprivate func getEntry<Service>(_ key: ServiceKey) -> (ServiceEntry<Service>, Bool)? {
-        var fromParent = false
-        var entry = services[key] as? ServiceEntry<Service>
-        if entry == nil, let parent = self.parent {
-            if let (parentEntry, _) = parent.getEntry(key) as (ServiceEntry<Service>, Bool)? {
-                entry = parentEntry
-                fromParent = true
-            }
+    fileprivate func getEntry<Service>(_ key: ServiceKey) -> ServiceEntry<Service>? {
+        if let entry = services[key] as? ServiceEntry<Service> {
+            return entry
+        } else {
+            return parent?.getEntry(key)
         }
-        return entry.map { ($0, fromParent) }
     }
     
     fileprivate func resolve<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
-        let usesPool = entry.objectScope != .none
-        if usesPool, let pooledInstance = resolutionPool[key] as? Service {
-            return pooledInstance
+
+        if let persistedInstance = entry.storage.instance as? Service {
+            return persistedInstance
         }
         
         let resolvedInstance = invoker(entry.factory as! Factory)
-        if usesPool {
-            if let pooledInstance = resolutionPool[key] as? Service {
-                // An instance for the key might be added by the factory invocation.
-                return pooledInstance
-            }
-            resolutionPool[key] = resolvedInstance as Any
+        if let persistedInstance = entry.storage.instance as? Service {
+            // An instance for the key might be added by the factory invocation.
+            return persistedInstance
         }
+        entry.storage.instance = resolvedInstance as Any
 
         if let completed = entry.initCompleted as? (Resolver, Service) -> () {
             completed(self, resolvedInstance)
