@@ -464,7 +464,7 @@
 			children = (
 				9848611A1B6F21EC00C07072 /* Sample-iOS.playground */,
 				981ABE831B5FC9DF00294975 /* Sources */,
-				981ABE8F1B5FC9DF00294975 /* Tests */,
+				981ABE8F1B5FC9DF00294975 /* SwinjectTests */,
 				981ABE821B5FC9DF00294975 /* Products */,
 				98AA74441BB70C8C00E2F48A /* Configuration */,
 				9802C9B11B5FD7E80088018E /* Frameworks */,
@@ -514,7 +514,7 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		981ABE8F1B5FC9DF00294975 /* Tests */ = {
+		981ABE8F1B5FC9DF00294975 /* SwinjectTests */ = {
 			isa = PBXGroup;
 			children = (
 				9878C63A1B65CA0600CBEFEF /* Fakes */,
@@ -529,7 +529,8 @@
 				9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 			);
-			path = Tests;
+			name = SwinjectTests;
+			path = Tests/SwinjectTests;
 			sourceTree = "<group>";
 		};
 		98383A1B1C1AF75A00733248 /* Products */ = {
@@ -1348,7 +1349,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98AA74561BB70CBB00E2F48A /* Mac-Application.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/SwinjectTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1358,7 +1359,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98AA74561BB70CBB00E2F48A /* Mac-Application.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/SwinjectTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1433,7 +1434,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98AA74511BB70CBB00E2F48A /* iOS-Application.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/SwinjectTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 				SWIFT_VERSION = 3.0;
@@ -1444,7 +1445,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98AA74511BB70CBB00E2F48A /* iOS-Application.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/SwinjectTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 				SWIFT_VERSION = 3.0;
@@ -1503,7 +1504,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/SwinjectTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
@@ -1513,7 +1514,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/SwinjectTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(PROJECT_NAME)Tests";
 			};
