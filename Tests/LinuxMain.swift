@@ -7,7 +7,18 @@
 //
 
 import XCTest
+import Quick
+
 @testable import SwinjectTests
 
-XCTMain([
+Quick.QCKMain([
+    AssemblerSpec.self,
+    ContainerSpec.self,
+    ContainerSpec_Arguments.self,
+    ContainerSpec_Circularity.self,
+    ContainerSpec_DebugHelper.self,
+    ContainerSpec_CustomScope.self,
+    SynchronizedResolverSpec.self,
+    ServiceKeySpec.self,
+    ServiceEntrySpec.self,
 ])
