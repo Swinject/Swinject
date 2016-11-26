@@ -6,6 +6,7 @@ disabled_rules:
   - opening_brace
   - valid_docs
   - type_name
+  - vertical_whitespace
 excluded:
   - Sources/Container.Arguments.swift
   - Sources/SynchronizedResolver.Arguments.swift
