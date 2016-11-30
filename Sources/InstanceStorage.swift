@@ -27,3 +27,15 @@ public final class TransientStorage: InstanceStorage {
 
     public init() {}
 }
+
+public final class WeakStorage: InstanceStorage {
+
+    private weak var object: AnyObject?
+
+    public var instance: Any? {
+        get { return object }
+        set { object = newValue as AnyObject? }
+    }
+
+    public init () {}
+}
