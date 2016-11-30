@@ -14,3 +14,6 @@ extension ObjectScope {
     @available(*, unavailable, renamed: "container")
     public static let hierarchy = container
 }
+
+@available(*, unavailable, renamed: "Resolver")
+public protocol ResolverType { }
