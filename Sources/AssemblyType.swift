@@ -6,7 +6,6 @@
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
-
 /// The `AssemblyType` provides a means to organize your `Service` registration in logic groups which allows
 /// the user to swap out different implementations of `Services` by providing different `AssemblyType` instances
 /// to the `Assembler`

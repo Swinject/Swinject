@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// The `Container` class represents a dependency injection container, which stores registrations of services
 /// and retrieves registered services with dependencies injected.
 ///
@@ -203,8 +202,6 @@ extension Container: Resolver {
     {
         return resolve(serviceType, name: nil)
     }
-    
-    
     
     /// Retrieves the instance with the specified service type and registration name.
     ///
