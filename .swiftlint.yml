@@ -13,7 +13,7 @@ excluded:
   - Tests
   - Sample-iOS.playground
   - Carthage
-
+  - Packages
 variable_name:
   min_length:
     warning: 1

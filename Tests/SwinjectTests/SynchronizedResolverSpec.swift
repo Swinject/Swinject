@@ -6,6 +6,7 @@
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
+import Dispatch
 import Quick
 import Nimble
 @testable import Swinject

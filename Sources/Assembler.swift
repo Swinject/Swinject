@@ -6,7 +6,6 @@
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
-
 /// The `Assembler` provides a means to build a container via `AssemblyType` instances.
 public final class Assembler {
     
