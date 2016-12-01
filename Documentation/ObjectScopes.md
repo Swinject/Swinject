@@ -28,6 +28,12 @@ In `ObjectScope.container`, an instance provided by a container is shared within
 
 This scope is also known as _Singleton_ in other DI frameworks.
 
+### Weak
+
+In `ObjectScope.weak` an instance provided by a container is shared within the container and its child containers as long as there are other strong references to it. Once all strong references to an instance cease to exist, it won't be shared anymore and new instance will be created during next resolution of the type.
+
+Above holds for reference types - value types are not shared in this object scope.
+
 ## Custom Scopes
 
 Custom object scopes can be defined like this:

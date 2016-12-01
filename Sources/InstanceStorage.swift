@@ -27,3 +27,16 @@ public final class TransientStorage: InstanceStorage {
 
     public init() {}
 }
+
+/// Does not persist value types.
+/// Persists reference types as long as there are strong references to given instance.
+public final class WeakStorage: InstanceStorage {
+    private weak var object: AnyObject?
+
+    public var instance: Any? {
+        get { return object }
+        set { object = newValue as AnyObject? }
+    }
+
+    public init () {}
+}

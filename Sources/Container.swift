@@ -202,7 +202,7 @@ extension Container: Resolver {
     {
         return resolve(serviceType, name: nil)
     }
-    
+
     /// Retrieves the instance with the specified service type and registration name.
     ///
     /// - Parameters:
