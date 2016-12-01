@@ -113,6 +113,7 @@
 		98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98B012BF1B82F68E00053A32 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolver.swift */; };
 		98B012C01B82F68E00053A32 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolver.swift */; };
+		98E550C31DEF066300BE6304 /* UnavailableItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E550C21DEF066300BE6304 /* UnavailableItems.swift */; };
 		CD3B32921DD6121500B208A3 /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3B32911DD6121500B208A3 /* InstanceStorage.swift */; };
 		CD3B32931DD6123F00B208A3 /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3B32911DD6121500B208A3 /* InstanceStorage.swift */; };
 		CD3B32941DD6123F00B208A3 /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3B32911DD6121500B208A3 /* InstanceStorage.swift */; };
@@ -381,6 +382,7 @@
 		98B012BA1B82D6A400053A32 /* Container.Arguments.erb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Container.Arguments.erb; sourceTree = "<group>"; };
 		98B012BE1B82F68E00053A32 /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		98B012C11B82F70A00053A32 /* Resolver.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resolver.erb; sourceTree = "<group>"; };
+		98E550C21DEF066300BE6304 /* UnavailableItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnavailableItems.swift; sourceTree = "<group>"; };
 		CD3B32911DD6121500B208A3 /* InstanceStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstanceStorage.swift; sourceTree = "<group>"; };
 		CD3B32961DD6126E00B208A3 /* ObjectScope.Standard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectScope.Standard.swift; sourceTree = "<group>"; };
 		CD3B329B1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.CustomScope.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				984BE3121CDA3FCF00BCF2AC /* _Resolver.swift */,
 				98B012C11B82F70A00053A32 /* Resolver.erb */,
 				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
+				98E550C21DEF066300BE6304 /* UnavailableItems.swift */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
 				984E8A511C317AC90039943D /* Swinject.h */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
@@ -1182,6 +1185,7 @@
 				984BE3131CDA3FCF00BCF2AC /* _Resolver.swift in Sources */,
 				984774FA1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 				CDBBACF61D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
+				98E550C31DEF066300BE6304 /* UnavailableItems.swift in Sources */,
 				90B029751C18599200A6A521 /* AssemblyType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
