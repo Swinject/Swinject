@@ -33,10 +33,17 @@ public final class TransientStorage: InstanceStorage {
 public final class WeakStorage: InstanceStorage {
     private weak var object: AnyObject?
 
+    #if os(Linux)
+    public var instance: Any? {
+        get { return object }
+        set { object = newValue.flatMap { $0 as? AnyObject } }
+    }
+    #else
     public var instance: Any? {
         get { return object }
         set { object = newValue as AnyObject? }
     }
+    #endif
 
     public init () {}
 }
