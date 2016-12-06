@@ -8,12 +8,12 @@ import Swinject
 ## Basic Use
 */
 
-protocol AnimalType {
+protocol Animal {
     var name: String? { get set }
     func sound() -> String
 }
 
-class Cat: AnimalType {
+class Cat: Animal {
     var name: String?
     
     init(name: String?) {
@@ -25,14 +25,14 @@ class Cat: AnimalType {
     }
 }
 
-protocol PersonType {
+protocol Person {
     func play() -> String
 }
 
-class PetOwner: PersonType {
-    let pet: AnimalType
+class PetOwner: Person {
+    let pet: Animal
     
-    init(pet: AnimalType) {
+    init(pet: Animal) {
         self.pet = pet
     }
     
@@ -44,18 +44,18 @@ class PetOwner: PersonType {
 
 // Create a container and register service and component pairs.
 let container = Container()
-container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-container.register(PersonType.self) { r in PetOwner(pet: r.resolve(AnimalType.self)!) }
+container.register(Animal.self) { _ in Cat(name: "Mimi") }
+container.register(Person.self) { r in PetOwner(pet: r.resolve(Animal.self)!) }
 
 // The person is resolved to a PetOwner with a Cat.
-let person = container.resolve(PersonType.self)!
+let person = container.resolve(Person.self)!
 print(person.play())
 
 /*:
 ## Named Registration
 */
 
-class Dog: AnimalType {
+class Dog: Animal {
     var name: String?
     
     init(name: String?) {
@@ -68,11 +68,11 @@ class Dog: AnimalType {
 }
 
 // Add more registrations to the container already containing the PetOwner with the Cat.
-container.register(AnimalType.self, name: "dog") { _ in Dog(name: "Hachi") }
-container.register(PersonType.self, name: "doggy") { r in PetOwner(pet: r.resolve(AnimalType.self, name: "dog")!) }
+container.register(Animal.self, name: "dog") { _ in Dog(name: "Hachi") }
+container.register(Person.self, name: "doggy") { r in PetOwner(pet: r.resolve(Animal.self, name: "dog")!) }
 
 // Resolve the service with the registration name to differentiate from the cat owner.
-let doggyPerson = container.resolve(PersonType.self, name:"doggy")!
+let doggyPerson = container.resolve(Person.self, name:"doggy")!
 print(doggyPerson.play())
 
 /*:
@@ -81,20 +81,20 @@ print(doggyPerson.play())
 
 // A closure can be registered as an initCompleted callback.
 var called = false
-container.register(AnimalType.self, name: "cb") { _ in Cat(name: "Mew") }
+container.register(Animal.self, name: "cb") { _ in Cat(name: "Mew") }
     .initCompleted { _, _ in called = true }
 print(called)
 
 // The closure is executed when the instance is created.
-let catWithCallback = container.resolve(AnimalType.self, name: "cb")
+let catWithCallback = container.resolve(Animal.self, name: "cb")
 print(called)
 
 /*:
 ## Injection Patterns
 */
 
-class InjectablePerson: PersonType {
-    var pet: AnimalType? {
+class InjectablePerson: Person {
+    var pet: Animal? {
         didSet {
             log = "Injected by property."
         }
@@ -103,12 +103,12 @@ class InjectablePerson: PersonType {
     
     init() { }
     
-    init(pet: AnimalType) {
+    init(pet: Animal) {
         self.pet = pet
         log = "Injected by initializer."
     }
     
-    func setPet(_ pet: AnimalType) {
+    func setPet(_ pet: Animal) {
         self.pet = pet
         log = "Injected by method."
     }
@@ -119,81 +119,81 @@ class InjectablePerson: PersonType {
 }
 
 // Initializer injection
-container.register(PersonType.self, name: "initializer") { r in
-    InjectablePerson(pet: r.resolve(AnimalType.self)!)
+container.register(Person.self, name: "initializer") { r in
+    InjectablePerson(pet: r.resolve(Animal.self)!)
 }
 
-let initializerInjection = container.resolve(PersonType.self, name:"initializer")!
+let initializerInjection = container.resolve(Person.self, name:"initializer")!
 print(initializerInjection.play())
 
 // Property injection 1 (in the component factory)
-container.register(PersonType.self, name: "property1") { r in
+container.register(Person.self, name: "property1") { r in
     let person = InjectablePerson()
-    person.pet = r.resolve(AnimalType.self)
+    person.pet = r.resolve(Animal.self)
     return person
 }
 
-let propertyInjection1 = container.resolve(PersonType.self, name:"property1")!
+let propertyInjection1 = container.resolve(Person.self, name:"property1")!
 print(propertyInjection1.play())
 
 // Property injection 2 (in the initCompleted callback)
-container.register(PersonType.self, name: "property2") { _ in InjectablePerson() }
+container.register(Person.self, name: "property2") { _ in InjectablePerson() }
     .initCompleted { r, p in
         let injectablePerson = p as! InjectablePerson
-        injectablePerson.pet = r.resolve(AnimalType.self)
+        injectablePerson.pet = r.resolve(Animal.self)
     }
 
-let propertyInjection2 = container.resolve(PersonType.self, name:"property2")!
+let propertyInjection2 = container.resolve(Person.self, name:"property2")!
 print(propertyInjection2.play())
 
 // Method injection 1 (in the component factory)
-container.register(PersonType.self, name: "method1") { r in
+container.register(Person.self, name: "method1") { r in
     let person = InjectablePerson()
-    person.setPet(r.resolve(AnimalType.self)!)
+    person.setPet(r.resolve(Animal.self)!)
     return person
 }
 
-let methodInjection1 = container.resolve(PersonType.self, name:"method1")!
+let methodInjection1 = container.resolve(Person.self, name:"method1")!
 print(methodInjection1.play())
 
 // Method injection 2 (in the initCompleted callback)
-container.register(PersonType.self, name: "method2") { _ in InjectablePerson() }
+container.register(Person.self, name: "method2") { _ in InjectablePerson() }
     .initCompleted { r, p in
         let injectablePerson = p as! InjectablePerson
-        injectablePerson.setPet(r.resolve(AnimalType.self)!)
+        injectablePerson.setPet(r.resolve(Animal.self)!)
     }
 
-let methodInjection2 = container.resolve(PersonType.self, name:"method2")!
+let methodInjection2 = container.resolve(Person.self, name:"method2")!
 print(methodInjection2.play())
 
 /*:
 ## Circular Dependency
 */
 
-internal protocol ParentType: AnyObject { }
-internal protocol ChildType: AnyObject { }
+internal protocol ParentProtocol: AnyObject { }
+internal protocol ChildProtocol: AnyObject { }
 
-internal class Parent: ParentType {
-    let child: ChildType?
+internal class Parent: ParentProtocol {
+    let child: ChildProtocol?
     
-    init(child: ChildType?) {
+    init(child: ChildProtocol?) {
         self.child = child
     }
 }
 
-internal class Child: ChildType {
-    weak var parent: ParentType?
+internal class Child: ChildProtocol {
+    weak var parent: ParentProtocol?
 }
 
 // Use initCompleted callback to set the circular dependency to avoid infinite recursion.
-container.register(ParentType.self) { r in Parent(child: r.resolve(ChildType.self)!) }
-container.register(ChildType.self) { _ in Child() }
+container.register(ParentProtocol.self) { r in Parent(child: r.resolve(ChildProtocol.self)!) }
+container.register(ChildProtocol.self) { _ in Child() }
     .initCompleted { r, c in
         let child = c as! Child
-        child.parent = r.resolve(ParentType.self)
+        child.parent = r.resolve(ParentProtocol.self)
     }
 
-let parent = container.resolve(ParentType.self) as! Parent
+let parent = container.resolve(ParentProtocol.self) as! Parent
 let child = parent.child as! Child
 
 // The parent and child are referencing each other.
@@ -203,7 +203,7 @@ print(parent === child.parent)
 ## Injection with Arguments
 */
 
-class Horse: AnimalType {
+class Horse: Animal {
     var name: String?
     var running: Bool
     
@@ -222,19 +222,19 @@ class Horse: AnimalType {
 }
 
 // The factory closure can take arguments after the `Resolvable` parameter (in this example, unused as `_`).
-// Note that the container already has an AnimalType without a registration name,
+// Note that the container already has an Animal without a registration name,
 // but the factory with the arguments is recognized as a different registration to resolve.
-container.register(AnimalType.self) { _, name in Horse(name: name) }
-container.register(AnimalType.self) { _, name, running in Horse(name: name, running: running) }
+container.register(Animal.self) { _, name in Horse(name: name) }
+container.register(Animal.self) { _, name, running in Horse(name: name, running: running) }
 
 // The arguments to the factory are specified on the resolution.
 // If you pass an argument, pass it to `argument` parameter.
 // If you pass more arguments, pass them as a tuple to `arguments` parameter.
-let horse1 = container.resolve(AnimalType.self, argument: "Spirit") as! Horse
+let horse1 = container.resolve(Animal.self, argument: "Spirit") as! Horse
 print(horse1.name)
 print(horse1.running)
 
-let horse2 = container.resolve(AnimalType.self, arguments: "Lucky", true) as! Horse
+let horse2 = container.resolve(Animal.self, arguments: "Lucky", true) as! Horse
 print(horse2.name)
 print(horse2.running)
 
@@ -242,26 +242,26 @@ print(horse2.running)
 ## Self-binding
 */
 
-protocol MyDataType {
+protocol MyData {
     var data: String { get }
 }
 
-class MyImportantData: MyDataType {
+class MyImportantData: MyData {
     let data = "Important data"
 }
 
 class MyController {
-    var myData: MyDataType?
+    var myData: MyData?
     
     func showData() -> String {
         return myData.map { $0.data } ?? ""
     }
 }
 
-// Register MyController as both service and component types to inject dependency to its property.
+// Register MyController as both service and component s to inject dependency to its property.
 container.register(MyController.self) { r in MyController() }
-    .initCompleted { r, c in c.myData = r.resolve(MyDataType.self)! }
-container.register(MyDataType.self) { _ in MyImportantData() }
+    .initCompleted { r, c in c.myData = r.resolve(MyData.self)! }
+container.register(MyData.self) { _ in MyImportantData() }
 
 let myController = container.resolve(MyController.self)!
 print(myController.showData())
@@ -271,17 +271,17 @@ print(myController.showData())
 */
 
 let parentContainer = Container()
-parentContainer.register(AnimalType.self, name: "cat") { _ in Cat(name: "Mimi") }
+parentContainer.register(Animal.self, name: "cat") { _ in Cat(name: "Mimi") }
 
 let childContainer = Container(parent: parentContainer)
-childContainer.register(AnimalType.self, name: "dog") { _ in Dog(name: "Hachi") }
+childContainer.register(Animal.self, name: "dog") { _ in Dog(name: "Hachi") }
 
 // The registration on the parent container is resolved on the child container.
-let cat = childContainer.resolve(AnimalType.self, name: "cat")
+let cat = childContainer.resolve(Animal.self, name: "cat")
 print(cat != nil)
 
 // The registration on the child container is not resolved on the parent container.
-let dog = parentContainer.resolve(AnimalType.self, name: "dog")
+let dog = parentContainer.resolve(Animal.self, name: "dog")
 print(dog == nil)
 
 /*:
@@ -308,12 +308,12 @@ class B {
 
 class C { }
 
-//: ### ObjectScope.none (aka Transient)
+//: ### ObjectScope.transient
 
 // New instatnces are created every time.
 let container1 = Container()
 container1.register(C.self) { _ in C() }
-    .inObjectScope(.none)
+    .inObjectScope(.transient)
 
 let c1 = container1.resolve(C.self)
 let c2 = container1.resolve(C.self)
@@ -328,7 +328,7 @@ print(a1.b.c !== a1.c)
 
 //: ### ObjectScope.graph
 
-// New instances are created like ObjectScope.none.
+// New instances are created like ObjectScope.transient.
 let container2 = Container()
 container2.register(C.self) { _ in C() }
     .inObjectScope(.graph) // This is the default scope.
@@ -337,50 +337,34 @@ let c3 = container2.resolve(C.self)
 let c4 = container2.resolve(C.self)
 print(c3 !== c4)
 
-// But unlike ObjectScope.none, the same instance is resolved in the object graph.
+// But unlike ObjectScope.transient, the same instance is resolved in the object graph.
 container2.register(A.self) { r in A(b: r.resolve(B.self)!, c: r.resolve(C.self)!) }
 container2.register(B.self) { r in B(c: r.resolve(C.self)!) }
 
 let a2 = container2.resolve(A.self)!
 print(a2.b.c === a2.c)
 
-//: ### ObjectScope.container (aka Singleton)
+//: ### ObjectScope.container
 
-// The same instance is shared in the container.
-let container3 = Container()
-container3.register(C.self) { _ in C() }
-    .inObjectScope(.container)
-
-let c5 = container3.resolve(C.self)
-let c6 = container3.resolve(C.self)
-print(c5 === c6)
-
-// The instance in the parent container is not shared to its child container.
-let childOfContainer3 = Container(parent: container3)
-let c7 = childOfContainer3.resolve(C.self)
-print(c5 !== c7)
-
-//: ### ObjectScope.hierarchy (aka Singleton in the Hierarchy)
-
-// The same instance is shared in the container like ObjectScope.container.
+// The same instance is shared in the container
 let container4 = Container()
 container4.register(C.self) { _ in C() }
-    .inObjectScope(.hierarchy)
+    .inObjectScope(.container)
 
 let c8 = container4.resolve(C.self)
 let c9 = container4.resolve(C.self)
 print(c8 === c9)
 
-// Unlike ObjectScope.container, the instance in the parent container is shared to its child container.
+// The instance in the parent container is shared to its child container.
 let childOfContainer4 = Container(parent: container4)
 let c10 = childOfContainer4.resolve(C.self)
 print(c8 === c10)
 
 /*:
-## Injection of Value Types
+## Injection of Value s
 */
 
-struct Turtle: AnimalType {
+struct Turtle: Animal {
     var name: String?
     
     init(name: String?) {
@@ -392,16 +376,16 @@ struct Turtle: AnimalType {
     }
 }
 
-// A value type can be registered as a component.
-// The object scope is ignored because a value type always creates a new instance.
+// A value  can be registered as a component.
+// The object scope is ignored because a value  always creates a new instance.
 let container5 = Container()
-container5.register(AnimalType.self) { _ in Turtle(name: "Reo") }
+container5.register(Animal.self) { _ in Turtle(name: "Reo") }
     .inObjectScope(.container)
 
-var turtle1 = container5.resolve(AnimalType.self)!
-var turtle2 = container5.resolve(AnimalType.self)!
+var turtle1 = container5.resolve(Animal.self)!
+var turtle2 = container5.resolve(Animal.self)!
 
-// Still the type of turtle1 and turtle2 is AnimalType protocol, they work as value types.
+// Still the  of turtle1 and turtle2 is Animal protocol, they work as value s.
 // (Try editing 'var turtle1' to 'let turtle1', then you see a compilation error!)
 turtle1.name = "Laph"
 print(turtle1.name!)
