@@ -10,7 +10,7 @@ internal protocol DebugHelper {
     func resolutionFailed<Service>(
         serviceType: Service.Type,
         key: ServiceKey,
-        availableRegistrations: [ServiceKey: ServiceEntryType]
+        availableRegistrations: [ServiceKey: ServiceEntryProtocol]
     )
 }
 
@@ -19,7 +19,7 @@ internal final class LoggingDebugHelper: DebugHelper {
     func resolutionFailed<Service>(
         serviceType: Service.Type,
         key: ServiceKey,
-        availableRegistrations: [ServiceKey: ServiceEntryType]
+        availableRegistrations: [ServiceKey: ServiceEntryProtocol]
     ) {
         var output = [
             "Swinject: Resolution failed. Expected registration:",

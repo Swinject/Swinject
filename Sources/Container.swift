@@ -23,7 +23,7 @@ import Foundation
 ///
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
 public final class Container {
-    fileprivate var services = [ServiceKey: ServiceEntryType]()
+    fileprivate var services = [ServiceKey: ServiceEntryProtocol]()
     fileprivate let parent: Container? // Used by HierarchyObjectScope
     fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
@@ -164,7 +164,7 @@ extension Container: _Resolver {
         return resolvedInstance
     }
 
-    private func getRegistrations() -> [ServiceKey: ServiceEntryType] {
+    private func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
         var registrations = parent?.getRegistrations() ?? [:]
         services.forEach { key, value in registrations[key] = value }
         return registrations

@@ -55,12 +55,12 @@ private class DebugHelperSpy: DebugHelper {
 
     var serviceType: Any = ""
     var key: ServiceKey?
-    var availableRegistrations: [ServiceKey : ServiceEntryType]?
+    var availableRegistrations: [ServiceKey : ServiceEntryProtocol]?
 
     func resolutionFailed<Service>(
         serviceType: Service.Type,
         key: ServiceKey,
-        availableRegistrations: [ServiceKey : ServiceEntryType]
+        availableRegistrations: [ServiceKey : ServiceEntryProtocol]
     ) {
         self.serviceType = serviceType
         self.key = key

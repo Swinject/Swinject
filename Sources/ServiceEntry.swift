@@ -9,7 +9,7 @@
 import Foundation
 
 // A generic-type-free protocol to be the type of values in a strongly-typed collection.
-internal protocol ServiceEntryType: Any {
+internal protocol ServiceEntryProtocol: Any {
     func describeWithKey(_ serviceKey: ServiceKey) -> String
     var objectScope: ObjectScopeType { get }
     var storage: InstanceStorage { get }
@@ -76,7 +76,7 @@ public final class ServiceEntry<Service> {
     }
 }
 
-extension ServiceEntry: ServiceEntryType {
+extension ServiceEntry: ServiceEntryProtocol {
     internal func describeWithKey(_ serviceKey: ServiceKey) -> String {
         return description(
             serviceType: serviceType,
