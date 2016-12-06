@@ -11,10 +11,10 @@ import Nimble
 @testable import Swinject
 
 // MARK: Option
-private struct Option: ServiceKeyOptionType {
+private struct Option: ServiceKeyOption {
     let option: Int
     
-    func isEqualTo(_ another: ServiceKeyOptionType) -> Bool {
+    func isEqualTo(_ another: ServiceKeyOption) -> Bool {
         guard let another = another as? Option else {
             return false
         }

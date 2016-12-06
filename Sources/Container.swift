@@ -123,7 +123,7 @@ public final class Container {
         _ serviceType: Service.Type,
         factory: Factory,
         name: String? = nil,
-        option: ServiceKeyOptionType? = nil) -> ServiceEntry<Service>
+        option: ServiceKeyOption? = nil) -> ServiceEntry<Service>
     {
         let key = ServiceKey(factoryType: type(of: factory), name: name, option: option)
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
@@ -142,7 +142,7 @@ public final class Container {
 
 // MARK: - _Resolver
 extension Container: _Resolver {
-    public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOptionType? = nil, invoker: (Factory) -> Service) -> Service? {
+    public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOption? = nil, invoker: (Factory) -> Service) -> Service? {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
         
