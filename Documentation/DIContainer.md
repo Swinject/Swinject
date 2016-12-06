@@ -19,23 +19,23 @@ Here is an example of service registration:
 
 ```swift
 let container = Container()
-container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-container.register(PersonType.self) { r in
-    PetOwner(name: "Stephen", pet: r.resolve(AnimalType.self)!)
+container.register(Animal.self) { _ in Cat(name: "Mimi") }
+container.register(Person.self) { r in
+    PetOwner(name: "Stephen", pet: r.resolve(Animal.self)!)
 }
 ```
 
 Where the protocols and classes are:
 
 ```swift
-protocol AnimalType {
+protocol Animal {
     var name: String { get }
 }
-protocol PersonType {
+protocol Person {
     var name: String { get }
 }
 
-class Cat: AnimalType {
+class Cat: Animal {
     let name: String
 
     init(name: String) {
@@ -43,11 +43,11 @@ class Cat: AnimalType {
     }
 }
 
-class PetOwner: PersonType {
+class PetOwner: Person {
     let name: String
-    let pet: AnimalType
+    let pet: Animal
 
-    init(name: String, pet: AnimalType) {
+    init(name: String, pet: Animal) {
         self.name = name
         self.pet = pet
     }
@@ -57,8 +57,8 @@ class PetOwner: PersonType {
 After you register the components, you can get service instances from the container by calling the `resolve` method. It returns resolved components with the specified service (protocol) types.
 
 ```swift
-let animal = container.resolve(AnimalType.self)!
-let person = container.resolve(PersonType.self)!
+let animal = container.resolve(Animal.self)!
+let person = container.resolve(Person.self)!
 let pet = (person as! PetOwner).pet
 
 print(animal.name) // prints "Mimi"
@@ -77,15 +77,15 @@ If you would like to register two or more components for a service type, you can
 
 ```swift
 let container = Container()
-container.register(AnimalType.self, name: "cat") { _ in Cat(name: "Mimi") }
-container.register(AnimalType.self, name: "dog") { _ in Dog(name: "Hachi") }
+container.register(Animal.self, name: "cat") { _ in Cat(name: "Mimi") }
+container.register(Animal.self, name: "dog") { _ in Dog(name: "Hachi") }
 ```
 
 Then you can get the service instances with the registered names:
 
 ```swift
-let cat = container.resolve(AnimalType.self, name:"cat")!
-let dog = container.resolve(AnimalType.self, name:"dog")!
+let cat = container.resolve(Animal.self, name:"cat")!
+let dog = container.resolve(Animal.self, name:"dog")!
 
 print(cat.name) // prints "Mimi"
 print(cat is Cat) // prints "true"
@@ -96,7 +96,7 @@ print(dog is Dog) // prints "true"
 Where `Dog` class is:
 
 ```swift
-class Dog: AnimalType {
+class Dog: Animal {
     let name: String
 
     init(name: String) {
@@ -110,10 +110,10 @@ class Dog: AnimalType {
 The factory closure passed to the `register` method can take arguments that are passed when the service is resolved. When you register the service, the arguments can be specified after the `Resolvable` parameter. Note that if the resolver is not use it can be given as `_` as in the following example (this is practice in  Swift):
 
 ```swift
-container.register(AnimalType.self) { _, name in
+container.register(Animal.self) { _, name in
     Horse(name: name)
 }
-container.register(AnimalType.self) { _, name, running in
+container.register(Animal.self) { _, name, running in
     Horse(name: name, running: running)
 }
 ```
@@ -121,7 +121,7 @@ container.register(AnimalType.self) { _, name, running in
 Then pass runtime arguments when you call `resolve` method. If you pass only 1 argument, use `resolve(_:argument:)`.
 
 ```swift
-let animal1 = container.resolve(AnimalType.self, argument: "Spirit")!
+let animal1 = container.resolve(Animal.self, argument: "Spirit")!
 
 print(animal1.name) // prints "Spirit"
 print((animal1 as! Horse).running) // prints "false"
@@ -130,7 +130,7 @@ print((animal1 as! Horse).running) // prints "false"
 If you pass 2 arguments or more, use `resolve(_:arguments:)` where the arguments are passed as a tuple.
 
 ```swift
-let animal2 = container.resolve(AnimalType.self, arguments: ("Lucky", true))!
+let animal2 = container.resolve(Animal.self, arguments: ("Lucky", true))!
 
 print(animal2.name) // prints "Lucky"
 print((animal2 as! Horse).running) // prints "true"
@@ -139,7 +139,7 @@ print((animal2 as! Horse).running) // prints "true"
 Where the `Horse` class is:
 
 ```swift
-class Horse: AnimalType {
+class Horse: Animal {
     let name: String
     let running: Bool
 
@@ -169,33 +169,33 @@ If a registration matches an existing registration with all the parts of the key
 For example, the following registrations can co-exist in a container because the service _types_ are different:
 
 ```swift
-container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-container.register(PersonType.self) { r in
-    PetOwner(name: "Stephen", pet: r.resolve(AnimalType.self)!)
+container.register(Animal.self) { _ in Cat(name: "Mimi") }
+container.register(Person.self) { r in
+    PetOwner(name: "Stephen", pet: r.resolve(Animal.self)!)
 }
 ```
 
 The following registrations can co-exist in a container because the registration _names_ are different:
 
 ```swift
-container.register(AnimalType.self, name: "cat") { _ in Cat(name: "Mimi") }
-container.register(AnimalType.self, name: "dog") { _ in Dog(name: "Hachi") }
+container.register(Animal.self, name: "cat") { _ in Cat(name: "Mimi") }
+container.register(Animal.self, name: "dog") { _ in Dog(name: "Hachi") }
 ```
 
 The following registrations can co-exist in a container because the _numbers of arguments_ are different. The first registration has no arguments, and the second has an argument:
 
 ```swift
-container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-container.register(AnimalType.self) { _, name in Cat(name: name) }
+container.register(Animal.self) { _ in Cat(name: "Mimi") }
+container.register(Animal.self) { _, name in Cat(name: name) }
 ```
 
 The following registrations can co-exist in a container because the _types of the arguments_ are different. The first registration has `String` and `Bool` types. The second registration has `Bool` and `String` types in the order:
 
 ```swift
-container.register(AnimalType.self) { _, name, running in
+container.register(Animal.self) { _, name, running in
     Horse(name: name, running: running)
 }
-container.register(AnimalType.self) { _, running, name in
+container.register(Animal.self) { _, running, name in
     Horse(name: name, running: running)
 }
 ```
@@ -207,16 +207,16 @@ Be careful with the types of arguments when you resolve an instance from a conta
 ```swift
 // Registers with name argument as String.
 // The argument is inferred as String because Cat initializer takes an argument as String.
-// The Registration Key is (AnimalType, (String) -> AnimalType)
-container.register(AnimalType.self) { _, name in Cat(name: name) }
+// The Registration Key is (Animal, (String) -> Animal)
+container.register(Animal.self) { _, name in Cat(name: name) }
 
-// Cannot resolve since the container has no Registration Key matching (AnimalType, (NSString) -> AnimalType)
+// Cannot resolve since the container has no Registration Key matching (Animal, (NSString) -> Animal)
 let name1: NSString = "Mimi"
-let mimi1 = container.resolve(AnimalType.self, argument: name1) // Returns nil.
+let mimi1 = container.resolve(Animal.self, argument: name1) // Returns nil.
 
-// This is the correct Registration Key (AnimalType, (String) -> AnimalType)
+// This is the correct Registration Key (Animal, (String) -> Animal)
 let name2: String = "Mimi"
-let mimi2 = container.resolve(AnimalType.self, argument: name2) // Returns a Cat instance.
+let mimi2 = container.resolve(Animal.self, argument: name2) // Returns a Cat instance.
 ```
 
 _[Next page: Injection Patterns](InjectionPatterns.md)_
