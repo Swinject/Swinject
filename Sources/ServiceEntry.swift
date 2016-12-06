@@ -11,7 +11,7 @@ import Foundation
 // A generic-type-free protocol to be the type of values in a strongly-typed collection.
 internal protocol ServiceEntryProtocol: Any {
     func describeWithKey(_ serviceKey: ServiceKey) -> String
-    var objectScope: ObjectScopeType { get }
+    var objectScope: ObjectScopeProtocol { get }
     var storage: InstanceStorage { get }
 }
 
@@ -21,7 +21,7 @@ public final class ServiceEntry<Service> {
     fileprivate let serviceType: Service.Type
     internal let factory: FunctionType
 
-    internal var objectScope: ObjectScopeType = ObjectScope.graph
+    internal var objectScope: ObjectScopeProtocol = ObjectScope.graph
     internal lazy var storage: InstanceStorage = { [unowned self] in
         self.objectScope.makeStorage()
     }()
@@ -41,17 +41,17 @@ public final class ServiceEntry<Service> {
 
     /// Specifies the object scope to resolve the service.
     ///
-    /// - Parameter scope: The `ObjectScopeType` value.
+    /// - Parameter scope: The `ObjectScopeProtocol` value.
     ///
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
-    public func inObjectScope(_ objectScope: ObjectScopeType) -> Self {
+    public func inObjectScope(_ objectScope: ObjectScopeProtocol) -> Self {
         self.objectScope = objectScope
         return self
     }
 
     /// Specifies the object scope to resolve the service.
-    /// Performs the same functionality as `inObjectScope(_: ObjectScopeType) -> Self`,
+    /// Performs the same functionality as `inObjectScope(_: ObjectScopeProtocol) -> Self`,
     /// but provides more convenient usage syntax.
     ///
     /// - Parameter scope: The `ObjectScope` value.
@@ -59,7 +59,7 @@ public final class ServiceEntry<Service> {
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
     public func inObjectScope(_ objectScope: ObjectScope) -> Self {
-        return inObjectScope(objectScope as ObjectScopeType)
+        return inObjectScope(objectScope as ObjectScopeProtocol)
     }
 
     /// Adds the callback to setup the instance after its `init` completes.

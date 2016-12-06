@@ -64,7 +64,7 @@ public final class Container {
     ///
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScopeType` will be discarded.
-    public func resetObjectScope(_ objectScope: ObjectScopeType) {
+    public func resetObjectScope(_ objectScope: ObjectScopeProtocol) {
         services.values
             .filter { $0.objectScope === objectScope }
             .forEach { $0.storage.instance = nil }
@@ -73,7 +73,7 @@ public final class Container {
     }
 
     /// Discards instances for services registered in the given `ObjectsScope`. It performs the same operation
-    /// as `resetObjectScope(_:ObjectScopeType)`, but provides more convenient usage syntax.
+    /// as `resetObjectScope(_:ObjectScopeProtocol)`, but provides more convenient usage syntax.
     ///
     /// **Example usage:**
     ///     container.resetObjectScope(.container)
@@ -81,7 +81,7 @@ public final class Container {
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScope` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScope) {
-        resetObjectScope(objectScope as ObjectScopeType)
+        resetObjectScope(objectScope as ObjectScopeProtocol)
     }
     
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
