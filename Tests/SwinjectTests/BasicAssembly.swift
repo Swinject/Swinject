@@ -8,7 +8,7 @@
 
 import Swinject
 
-class AnimalAssembly: AssemblyType {
+class AnimalAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(AnimalType.self) { r in
@@ -17,7 +17,7 @@ class AnimalAssembly: AssemblyType {
     }
 }
 
-class FoodAssembly: AssemblyType {
+class FoodAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(FoodType.self) { r in
@@ -26,7 +26,7 @@ class FoodAssembly: AssemblyType {
     }
 }
 
-class PersonAssembly: AssemblyType {
+class PersonAssembly: Assembly {
     
     func assemble(container: Container) {
         container.register(PetOwner.self) { r in

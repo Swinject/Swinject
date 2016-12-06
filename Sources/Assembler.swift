@@ -6,7 +6,7 @@
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
 
-/// The `Assembler` provides a means to build a container via `AssemblyType` instances.
+/// The `Assembler` provides a means to build a container via `Assembly` instances.
 public final class Assembler {
     
     /// the container that each assembly will build its `Service` definitions into
@@ -33,22 +33,22 @@ public final class Assembler {
         container = Container(parent: parentAssembler?.container)
     }
     
-    /// Will create a new `Assembler` with the given `AssemblyType` instances to build a `Container`
+    /// Will create a new `Assembler` with the given `Assembly` instances to build a `Container`
     ///
     /// - parameter assemblies:         the list of assemblies to build the container from
     /// - parameter container:          the baseline container
     ///
-    public init(assemblies: [AssemblyType], container: Container? = Container()) throws {
+    public init(assemblies: [Assembly], container: Container? = Container()) throws {
         self.container = container!
         run(assemblies: assemblies)
     }
     
-    /// Will create a new `Assembler` with the given `AssemblyType` instances to build a `Container`
+    /// Will create a new `Assembler` with the given `Assembly` instances to build a `Container`
     ///
     /// - parameter assemblies:         the list of assemblies to build the container from
     /// - parameter parentAssembler:    the baseline assembler
     ///
-    public init(assemblies: [AssemblyType], parentAssembler: Assembler?) throws {
+    public init(assemblies: [Assembly], parentAssembler: Assembler?) throws {
         container = Container(parent: parentAssembler?.container)
         run(assemblies: assemblies)
     }
@@ -62,7 +62,7 @@ public final class Assembler {
     ///
     /// - parameter assembly: the assembly to apply to the container
     ///
-    public func apply(assembly: AssemblyType) {
+    public func apply(assembly: Assembly) {
         run(assemblies: [assembly])
     }
     
@@ -74,13 +74,13 @@ public final class Assembler {
     ///
     /// - parameter assemblies: the assemblies to apply to the container
     ///
-    public func apply(assemblies: [AssemblyType]) {
+    public func apply(assemblies: [Assembly]) {
         run(assemblies: assemblies)
     }
     
     // MARK: Private
     
-    private func run(assemblies: [AssemblyType]) {
+    private func run(assemblies: [Assembly]) {
         // build the container from each assembly
         for assembly in assemblies {
             assembly.assemble(container: self.container)

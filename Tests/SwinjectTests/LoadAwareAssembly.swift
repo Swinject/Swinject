@@ -9,7 +9,7 @@
 import Swinject
 
 
-class LoadAwareAssembly: AssemblyType {
+class LoadAwareAssembly: Assembly {
     var onLoad: (Resolver) -> Void
     var loaded = false
     
