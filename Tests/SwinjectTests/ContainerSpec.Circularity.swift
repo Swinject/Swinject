@@ -21,20 +21,20 @@ class ContainerSpec_Circularity: QuickSpec {
             it("resolves circular dependency on each property.") {
                 let runInObjectScope: (ObjectScope) -> Void = { scope in
                     container.removeAll()
-                    container.register(ParentType.self) { _ in Parent() }
+                    container.register(ParentProtocol.self) { _ in Parent() }
                         .initCompleted { r, s in
                             let parent = s as! Parent
-                            parent.child = r.resolve(ChildType.self)
+                            parent.child = r.resolve(ChildProtocol.self)
                         }
                         .inObjectScope(scope)
-                    container.register(ChildType.self) { _ in Child() }
+                    container.register(ChildProtocol.self) { _ in Child() }
                         .initCompleted { r, s in
                             let child = s as! Child
-                            child.parent = r.resolve(ParentType.self)!
+                            child.parent = r.resolve(ParentProtocol.self)!
                         }
                         .inObjectScope(scope)
                     
-                    let parent = container.resolve(ParentType.self) as! Parent
+                    let parent = container.resolve(ParentProtocol.self) as! Parent
                     let child = parent.child as! Child
                     expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                 }
@@ -45,16 +45,16 @@ class ContainerSpec_Circularity: QuickSpec {
             it("resolves circular dependency on the initializer and property.") {
                 let runInObjectScope: (ObjectScope) -> Void = { scope in
                     container.removeAll()
-                    container.register(ParentType.self) { r in Parent(child: r.resolve(ChildType.self)!) }
+                    container.register(ParentProtocol.self) { r in Parent(child: r.resolve(ChildProtocol.self)!) }
                         .inObjectScope(scope)
-                    container.register(ChildType.self) { _ in Child() }
+                    container.register(ChildProtocol.self) { _ in Child() }
                         .initCompleted { r, s in
                             let child = s as! Child
-                            child.parent = r.resolve(ParentType.self)
+                            child.parent = r.resolve(ParentProtocol.self)
                         }
                         .inObjectScope(scope)
                     
-                    let parent = container.resolve(ParentType.self) as! Parent
+                    let parent = container.resolve(ParentProtocol.self) as! Parent
                     let child = parent.child as! Child
                     expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                 }
@@ -65,30 +65,30 @@ class ContainerSpec_Circularity: QuickSpec {
         }
         describe("More than two objects") {
             it("resolves circular dependency on properties.") {
-                container.register(AType.self) { _ in ADependingOnB() }
+                container.register(A.self) { _ in ADependingOnB() }
                     .initCompleted {
                         let a = $1 as! ADependingOnB
-                        a.b = $0.resolve(BType.self)
+                        a.b = $0.resolve(B.self)
                     }
-                container.register(BType.self) { _ in BDependingOnC() }
+                container.register(B.self) { _ in BDependingOnC() }
                     .initCompleted {
                         let b = $1 as! BDependingOnC
-                        b.c = $0.resolve(CType.self)
+                        b.c = $0.resolve(C.self)
                     }
-                container.register(CType.self) { _ in CDependingOnAD() }
+                container.register(C.self) { _ in CDependingOnAD() }
                     .initCompleted {
                         let c = $1 as! CDependingOnAD
-                        c.a = $0.resolve(AType.self)
-                        c.d = $0.resolve(DType.self)
+                        c.a = $0.resolve(A.self)
+                        c.d = $0.resolve(D.self)
                     }
-                container.register(DType.self) { _ in DDependingOnBC() }
+                container.register(D.self) { _ in DDependingOnBC() }
                     .initCompleted {
                         let d = $1 as! DDependingOnBC
-                        d.b = $0.resolve(BType.self)
-                        d.c = $0.resolve(CType.self)
+                        d.b = $0.resolve(B.self)
+                        d.c = $0.resolve(C.self)
                     }
                 
-                let a = container.resolve(AType.self) as! ADependingOnB
+                let a = container.resolve(A.self) as! ADependingOnB
                 let b = a.b as! BDependingOnC
                 let c = b.c as! CDependingOnAD
                 let d = c.d as! DDependingOnBC
@@ -97,21 +97,21 @@ class ContainerSpec_Circularity: QuickSpec {
                 expect(d.c as? CDependingOnAD === c).to(beTrue()) // Workaround for crash in Nimble
             }
             it("resolves circular dependency on initializers and properties.") {
-                container.register(AType.self) { r in ADependingOnB(b: r.resolve(BType.self)!) }
-                container.register(BType.self) { r in BDependingOnC(c: r.resolve(CType.self)!) }
-                container.register(CType.self) { r in CDependingOnAD(d: r.resolve(DType.self)!) }
+                container.register(A.self) { r in ADependingOnB(b: r.resolve(B.self)!) }
+                container.register(B.self) { r in BDependingOnC(c: r.resolve(C.self)!) }
+                container.register(C.self) { r in CDependingOnAD(d: r.resolve(D.self)!) }
                     .initCompleted {
                         let c = $1 as! CDependingOnAD
-                        c.a = $0.resolve(AType.self)
+                        c.a = $0.resolve(A.self)
                     }
-                container.register(DType.self) { _ in DDependingOnBC() }
+                container.register(D.self) { _ in DDependingOnBC() }
                     .initCompleted {
                         let d = $1 as! DDependingOnBC
-                        d.b = $0.resolve(BType.self)
-                        d.c = $0.resolve(CType.self)
+                        d.b = $0.resolve(B.self)
+                        d.c = $0.resolve(C.self)
                     }
                 
-                let a = container.resolve(AType.self) as! ADependingOnB
+                let a = container.resolve(A.self) as! ADependingOnB
                 let b = a.b as! BDependingOnC
                 let c = b.c as! CDependingOnAD
                 let d = c.d as! DDependingOnBC

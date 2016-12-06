@@ -75,8 +75,8 @@
 		985011251BBE7E8900A2CCFC /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolver.swift */; };
 		9855C5BF1B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
 		9855C5C01B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */; };
-		9855C5C51B689B7B00DADB0B /* FoodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* FoodType.swift */; };
-		9855C5C61B689B7B00DADB0B /* FoodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* FoodType.swift */; };
+		9855C5C51B689B7B00DADB0B /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* Food.swift */; };
+		9855C5C61B689B7B00DADB0B /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* Food.swift */; };
 		9855C5C81B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */; };
 		9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */; };
 		985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985BAFA81B625E0F0055F998 /* ServiceEntry.swift */; };
@@ -87,9 +87,9 @@
 		98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012B71B82D67300053A32 /* Container.Arguments.swift */; };
 		98689CA01BBFC7EB0005C6D3 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B012BE1B82F68E00053A32 /* Resolver.swift */; };
-		98689CB61BBFD5110005C6D3 /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
-		98689CB71BBFD5110005C6D3 /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
-		98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* FoodType.swift */; };
+		98689CB61BBFD5110005C6D3 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* Person.swift */; };
+		98689CB71BBFD5110005C6D3 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* Animal.swift */; };
+		98689CB81BBFD5110005C6D3 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C41B689B7B00DADB0B /* Food.swift */; };
 		98689CB91BBFD5110005C6D3 /* Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981577F01B675B7F00BF686B /* Circularity.swift */; };
 		98689CBA1BBFD5110005C6D3 /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E01B5FF88800C702D0 /* ContainerSpec.swift */; };
 		98689CBB1BBFD5110005C6D3 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */; };
@@ -97,10 +97,10 @@
 		98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */; };
 		98689CBE1BBFD5110005C6D3 /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */; };
 		98689CD51BBFDEBC0005C6D3 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98689C7F1BBFC7A50005C6D3 /* Swinject.framework */; };
-		9878C6381B65C9E000CBEFEF /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
-		9878C6391B65C9E000CBEFEF /* AnimalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* AnimalType.swift */; };
-		9878C63C1B65CA8700CBEFEF /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
-		9878C63D1B65CA8700CBEFEF /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* PersonType.swift */; };
+		9878C6381B65C9E000CBEFEF /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* Animal.swift */; };
+		9878C6391B65C9E000CBEFEF /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C6371B65C9E000CBEFEF /* Animal.swift */; };
+		9878C63C1B65CA8700CBEFEF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* Person.swift */; };
+		9878C63D1B65CA8700CBEFEF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9878C63B1B65CA8700CBEFEF /* Person.swift */; };
 		9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9880E70D1C09EE2800ED5293 /* FunctionType.swift */; };
 		9880E70F1C09EE2900ED5293 /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9880E70D1C09EE2800ED5293 /* FunctionType.swift */; };
 		9880E7101C09EE2900ED5293 /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9880E70D1C09EE2800ED5293 /* FunctionType.swift */; };
@@ -368,7 +368,7 @@
 		985010C01BBE76AB00A2CCFC /* watchOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		985010C61BBE76D400A2CCFC /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Circularity.swift; sourceTree = "<group>"; };
-		9855C5C41B689B7B00DADB0B /* FoodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodType.swift; sourceTree = "<group>"; };
+		9855C5C41B689B7B00DADB0B /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntrySpec.swift; sourceTree = "<group>"; };
 		985BAFA81B625E0F0055F998 /* ServiceEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEntry.swift; sourceTree = "<group>"; };
 		98689C761BBFC77F0005C6D3 /* tvOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-Application.xcconfig"; sourceTree = "<group>"; };
@@ -377,8 +377,8 @@
 		98689C791BBFC77F0005C6D3 /* tvOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "tvOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		98689C7F1BBFC7A50005C6D3 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98689C881BBFC7A60005C6D3 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9878C6371B65C9E000CBEFEF /* AnimalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalType.swift; sourceTree = "<group>"; };
-		9878C63B1B65CA8700CBEFEF /* PersonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonType.swift; sourceTree = "<group>"; };
+		9878C6371B65C9E000CBEFEF /* Animal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
+		9878C63B1B65CA8700CBEFEF /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		9880E70D1C09EE2800ED5293 /* FunctionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionType.swift; sourceTree = "<group>"; };
 		9884E2A61B60B77400120259 /* ServiceKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceKey.swift; sourceTree = "<group>"; };
 		9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceKeySpec.swift; sourceTree = "<group>"; };
@@ -579,8 +579,8 @@
 			isa = PBXGroup;
 			children = (
 				98383A3C1C1AF76400733248 /* Quick.framework */,
-				98383A3E1C1AF76400733248 /* Quick-OSXTests.xctest */,
-				98383A401C1AF76400733248 /* QuickFocused-OSXTests.xctest */,
+				98383A3E1C1AF76400733248 /* Quick-macOSTests.xctest */,
+				98383A401C1AF76400733248 /* QuickFocused-macOSTests.xctest */,
 				CDB572981DF6A33600D3785D /* QuickAfterSuite-macOSTests.xctest */,
 				98383A421C1AF76400733248 /* Quick.framework */,
 				98383A441C1AF76400733248 /* Quick-iOSTests.xctest */,
@@ -621,9 +621,9 @@
 		9878C63A1B65CA0600CBEFEF /* Fakes */ = {
 			isa = PBXGroup;
 			children = (
-				9878C63B1B65CA8700CBEFEF /* PersonType.swift */,
-				9878C6371B65C9E000CBEFEF /* AnimalType.swift */,
-				9855C5C41B689B7B00DADB0B /* FoodType.swift */,
+				9878C63B1B65CA8700CBEFEF /* Person.swift */,
+				9878C6371B65C9E000CBEFEF /* Animal.swift */,
+				9855C5C41B689B7B00DADB0B /* Food.swift */,
 				981577F01B675B7F00BF686B /* Circularity.swift */,
 				90B029821C18670000A6A521 /* BasicAssembly.swift */,
 				90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */,
@@ -1000,14 +1000,14 @@
 			remoteRef = 98383A3B1C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		98383A3E1C1AF76400733248 /* Quick-OSXTests.xctest */ = {
+		98383A3E1C1AF76400733248 /* Quick-macOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "Quick-macOSTests.xctest";
 			remoteRef = 98383A3D1C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		98383A401C1AF76400733248 /* QuickFocused-OSXTests.xctest */ = {
+		98383A401C1AF76400733248 /* QuickFocused-macOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "QuickFocused-macOSTests.xctest";
@@ -1192,18 +1192,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				90B029841C18670000A6A521 /* BasicAssembly.swift in Sources */,
-				9855C5C61B689B7B00DADB0B /* FoodType.swift in Sources */,
+				9855C5C61B689B7B00DADB0B /* Food.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				CD3C2CF31D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				984775001C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
 				CD3B329D1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift in Sources */,
 				9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
-				9878C63D1B65CA8700CBEFEF /* PersonType.swift in Sources */,
+				9878C63D1B65CA8700CBEFEF /* Person.swift in Sources */,
 				CDD44AD81DEEED1000916595 /* WeakStorageSpec.swift in Sources */,
 				9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				90B0298C1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				90B029801C18666200A6A521 /* AssemblerSpec.swift in Sources */,
-				9878C6391B65C9E000CBEFEF /* AnimalType.swift in Sources */,
+				9878C6391B65C9E000CBEFEF /* Animal.swift in Sources */,
 				981899E21B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 				981577F21B675B7F00BF686B /* Circularity.swift in Sources */,
 				9855C5C01B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */,
@@ -1239,9 +1239,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9855C5C51B689B7B00DADB0B /* FoodType.swift in Sources */,
+				9855C5C51B689B7B00DADB0B /* Food.swift in Sources */,
 				9855C5C81B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
-				9878C63C1B65CA8700CBEFEF /* PersonType.swift in Sources */,
+				9878C63C1B65CA8700CBEFEF /* Person.swift in Sources */,
 				CD3C2CF21D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				90B0298B1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				CD3B329C1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift in Sources */,
@@ -1250,7 +1250,7 @@
 				CDD44AD71DEEED1000916595 /* WeakStorageSpec.swift in Sources */,
 				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				984774FF1C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
-				9878C6381B65C9E000CBEFEF /* AnimalType.swift in Sources */,
+				9878C6381B65C9E000CBEFEF /* Animal.swift in Sources */,
 				90B029831C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 				981577F11B675B7F00BF686B /* Circularity.swift in Sources */,
@@ -1314,7 +1314,7 @@
 				98689CBE1BBFD5110005C6D3 /* ServiceEntrySpec.swift in Sources */,
 				98689CBC1BBFD5110005C6D3 /* ContainerSpec.Circularity.swift in Sources */,
 				CD3C2CF41D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
-				98689CB61BBFD5110005C6D3 /* PersonType.swift in Sources */,
+				98689CB61BBFD5110005C6D3 /* Person.swift in Sources */,
 				CD3B329E1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift in Sources */,
 				90B0298D1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				98689CBA1BBFD5110005C6D3 /* ContainerSpec.swift in Sources */,
@@ -1322,9 +1322,9 @@
 				90B029811C18666200A6A521 /* AssemblerSpec.swift in Sources */,
 				98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */,
 				984775011C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
-				98689CB81BBFD5110005C6D3 /* FoodType.swift in Sources */,
+				98689CB81BBFD5110005C6D3 /* Food.swift in Sources */,
 				90B029851C18670000A6A521 /* BasicAssembly.swift in Sources */,
-				98689CB71BBFD5110005C6D3 /* AnimalType.swift in Sources */,
+				98689CB71BBFD5110005C6D3 /* Animal.swift in Sources */,
 				98689CB91BBFD5110005C6D3 /* Circularity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

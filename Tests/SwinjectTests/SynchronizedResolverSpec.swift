@@ -16,16 +16,16 @@ class SynchronizedResolverSpec: QuickSpec {
         describe("Multiple threads") {
             it("can resolve circular dependencies.") {
                 let container = Container() { container in
-                    container.register(ParentType.self) { _ in Parent() }
+                    container.register(ParentProtocol.self) { _ in Parent() }
                         .initCompleted { r, s in
                             let parent = s as! Parent
-                            parent.child = r.resolve(ChildType.self)
+                            parent.child = r.resolve(ChildProtocol.self)
                         }
                         .inObjectScope(.graph)
-                    container.register(ChildType.self) { _ in Child() }
+                    container.register(ChildProtocol.self) { _ in Child() }
                         .initCompleted { r, s in
                             let child = s as! Child
-                            child.parent = r.resolve(ParentType.self)!
+                            child.parent = r.resolve(ParentProtocol.self)!
                         }
                         .inObjectScope(.graph)
                 }.synchronize()
@@ -36,7 +36,7 @@ class SynchronizedResolverSpec: QuickSpec {
                     let counter = Counter(max: 2 * totalThreads)
                     for _ in 0..<totalThreads {
                         queue.async() {
-                            let parent = container.resolve(ParentType.self) as! Parent
+                            let parent = container.resolve(ParentProtocol.self) as! Parent
                             let child = parent.child as! Child
                             expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                             
@@ -51,7 +51,7 @@ class SynchronizedResolverSpec: QuickSpec {
             it("can access parent and child containers without dead lock.") {
                 let runInObjectScope = { (scope: ObjectScope) in
                     let parentContainer = Container() { container in
-                        container.register(AnimalType.self) { _ in Cat() }
+                        container.register(Animal.self) { _ in Cat() }
                             .inObjectScope(scope)
                     }
                     let parentResolver = parentContainer.synchronize()
@@ -64,13 +64,13 @@ class SynchronizedResolverSpec: QuickSpec {
                         
                         for _ in 0..<totalThreads {
                             queue.async() {
-                                _ = parentResolver.resolve(AnimalType.self) as! Cat
+                                _ = parentResolver.resolve(Animal.self) as! Cat
                                 if counter.increment() == .reachedMax {
                                     done()
                                 }
                             }
                             queue.async() {
-                                _ = childResolver.resolve(AnimalType.self) as! Cat
+                                _ = childResolver.resolve(Animal.self) as! Cat
                                 if counter.increment() == .reachedMax {
                                     done()
                                 }

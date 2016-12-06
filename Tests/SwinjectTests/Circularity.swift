@@ -9,65 +9,65 @@
 import Foundation
 
 // MARK: Circular dependency of two objects
-internal protocol ParentType: AnyObject { }
-internal protocol ChildType: AnyObject { }
+internal protocol ParentProtocol: AnyObject { }
+internal protocol ChildProtocol: AnyObject { }
 
-internal class Parent: ParentType {
-    var child: ChildType?
+internal class Parent: ParentProtocol {
+    var child: ChildProtocol?
     
     init() {
     }
     
-    init(child: ChildType) {
+    init(child: ChildProtocol) {
         self.child = child
     }
 }
 
-internal class Child: ChildType {
-    weak var parent: ParentType?
+internal class Child: ChildProtocol {
+    weak var parent: ParentProtocol?
 }
 
 // MARK: - Circular dependency of more than two objects
-internal protocol AType: AnyObject { }
-internal protocol BType: AnyObject { }
-internal protocol CType: AnyObject { }
-internal protocol DType: AnyObject { }
+internal protocol A: AnyObject { }
+internal protocol B: AnyObject { }
+internal protocol C: AnyObject { }
+internal protocol D: AnyObject { }
 
-internal class ADependingOnB: AType {
-    var b: BType?
+internal class ADependingOnB: A {
+    var b: B?
     
     init() {
     }
     
-    init(b: BType) {
+    init(b: B) {
         self.b = b
     }
 }
 
-internal class BDependingOnC: BType {
-    var c: CType?
+internal class BDependingOnC: B {
+    var c: C?
     
     init() {
     }
     
-    init(c: CType) {
+    init(c: C) {
         self.c = c
     }
 }
 
-internal class CDependingOnAD: CType {
-    weak var a: AType?
-    var d: DType?
+internal class CDependingOnAD: C {
+    weak var a: A?
+    var d: D?
     
     init() {
     }
     
-    init(d: DType) {
+    init(d: D) {
         self.d = d
     }
 }
 
-internal class DDependingOnBC: DType {
-    weak var b: BType?
-    weak var c: CType?
+internal class DDependingOnBC: D {
+    weak var b: B?
+    weak var c: C?
 }
