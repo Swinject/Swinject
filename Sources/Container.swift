@@ -23,7 +23,7 @@ import Foundation
 ///
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
 public final class Container {
-    fileprivate var services = [ServiceKey: ServiceEntryType]()
+    fileprivate var services = [ServiceKey: ServiceEntryProtocol]()
     fileprivate let parent: Container? // Used by HierarchyObjectScope
     fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
@@ -64,7 +64,7 @@ public final class Container {
     ///
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScopeType` will be discarded.
-    public func resetObjectScope(_ objectScope: ObjectScopeType) {
+    public func resetObjectScope(_ objectScope: ObjectScopeProtocol) {
         services.values
             .filter { $0.objectScope === objectScope }
             .forEach { $0.storage.instance = nil }
@@ -73,7 +73,7 @@ public final class Container {
     }
 
     /// Discards instances for services registered in the given `ObjectsScope`. It performs the same operation
-    /// as `resetObjectScope(_:ObjectScopeType)`, but provides more convenient usage syntax.
+    /// as `resetObjectScope(_:ObjectScopeProtocol)`, but provides more convenient usage syntax.
     ///
     /// **Example usage:**
     ///     container.resetObjectScope(.container)
@@ -81,7 +81,7 @@ public final class Container {
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScope` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScope) {
-        resetObjectScope(objectScope as ObjectScopeType)
+        resetObjectScope(objectScope as ObjectScopeProtocol)
     }
     
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
@@ -123,7 +123,7 @@ public final class Container {
         _ serviceType: Service.Type,
         factory: Factory,
         name: String? = nil,
-        option: ServiceKeyOptionType? = nil) -> ServiceEntry<Service>
+        option: ServiceKeyOption? = nil) -> ServiceEntry<Service>
     {
         let key = ServiceKey(factoryType: type(of: factory), name: name, option: option)
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
@@ -142,7 +142,7 @@ public final class Container {
 
 // MARK: - _Resolver
 extension Container: _Resolver {
-    public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOptionType? = nil, invoker: (Factory) -> Service) -> Service? {
+    public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOption? = nil, invoker: (Factory) -> Service) -> Service? {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
         
@@ -164,7 +164,7 @@ extension Container: _Resolver {
         return resolvedInstance
     }
 
-    private func getRegistrations() -> [ServiceKey: ServiceEntryType] {
+    private func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
         var registrations = parent?.getRegistrations() ?? [:]
         services.forEach { key, value in registrations[key] = value }
         return registrations

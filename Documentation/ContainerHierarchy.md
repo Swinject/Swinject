@@ -4,7 +4,7 @@ A container hierarchy is a tree of containers for the purposes of sharing the re
 
 ```swift
 let parentContainer = Container()
-parentContainer.register(AnimalType.self) { _ in Cat() }
+parentContainer.register(Animal.self) { _ in Cat() }
 let childContainer = Container(parent: parentContainer)
 
 let cat = childContainer.resolve(AnimalType.self)
@@ -16,9 +16,9 @@ In contrast, service types registered to a child container are _not_ resolved in
 ```swift
 let parentContainer = Container()
 let childContainer = Container(parent: parentContainer)
-childContainer.register(AnimalType.self) { _ in Cat() }
+childContainer.register(Animal.self) { _ in Cat() }
 
-let cat = parentContainer.resolve(AnimalType.self)
+let cat = parentContainer.resolve(Animal.self)
 print(cat == nil) // prints "true"
 ```
 

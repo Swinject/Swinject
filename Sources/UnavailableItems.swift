@@ -17,3 +17,9 @@ extension ObjectScope {
 
 @available(*, unavailable, renamed: "Resolver")
 public protocol ResolverType { }
+
+@available(*, unavailable, renamed: "Assembly")
+public protocol AssemblyType { }
+
+@available(*, unavailable, renamed: "ServiceKeyOption")
+public protocol ServiceKeyOptionType { }

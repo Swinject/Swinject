@@ -1,7 +1,7 @@
 # Modularizing Service Registration
 
 This feature provides your implementation the ability to group related service definitions together
-in an `AssemblyType`. This allows your application to:
+in an `Assembly`. This allows your application to:
 
    - Keep things organized by keeping like services in one place.
    - Provide a shared `Container`.
@@ -12,31 +12,31 @@ This feature is an opinionated way to how your can register services in your `Co
 
 There are several parts to this feature.
 
-## AssemblyType
+## Assembly
 
-The `AssemblyType` is a protocol that is provided a shared `Container` where service definitions
+The `Assembly` is a protocol that is provided a shared `Container` where service definitions
 can be registered. The shared `Container` will contain **all** service definitions from every
-`AssemblyType` registered to the `Assembler`. Let's look at an example:
+`Assembly` registered to the `Assembler`. Let's look at an example:
 
 ```swift
-class ServiceAssembly: AssemblyType {
+class ServiceAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(FooServiceType.self) { r in
+        container.register(FooServiceProtocol.self) { r in
            return FooService()
         }
-        container.register(BarServiceType.self) { r in
+        container.register(BarServiceProtocol.self) { r in
            return BarService()
         }
     }
 }
 
-class ManagerAssembly: AssemblyType {
+class ManagerAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(FooManagerType.self) { r in
-           return FooManager(service: r.resolve(FooServiceType.self)!)
+        container.register(FooManagerProtocol.self) { r in
+           return FooManager(service: r.resolve(FooServiceProtocol.self)!)
         }
-        container.register(BarManagerType.self) { r in
-           return BarManager(service: r.resolve(BarServiceType.self)!)
+        container.register(BarManagerProtocol.self) { r in
+           return BarManager(service: r.resolve(BarServiceProtocol.self)!)
         }
     }
 }
@@ -44,18 +44,18 @@ class ManagerAssembly: AssemblyType {
 
 Here we have created 2 assemblies: 1 for services and 1 for managers. As you can see the `ManagerAssembly`
 leverages service definitions registered in the `ServiceAssembly`. Using this pattern the `ManagerAssembly`
-doesn't care where the `FooServiceType` and `BarServiceType` are registered, it just requires them to
+doesn't care where the `FooServiceProtocol` and `BarServiceProtocol` are registered, it just requires them to
 be registered else where.
 
 ### Load aware
 
-The `AssemblyType` allows the assembly to be aware when the container has been fully loaded
+The `Assembly` allows the assembly to be aware when the container has been fully loaded
 by the `Assembler`.
 
 Let's imagine you have an simple Logger class that can be configured with different log handlers:
 
 ```swift
-protocol LogHandlerType {
+protocol LogHandler {
     func log(message: String)
 }
 
@@ -63,9 +63,9 @@ class Logger {
 
     class var sharedInstance: Logger!
 
-    var logHandlers = [LogHandlerType]()
+    var logHandlers = [LogHandler]()
 
-    func addHandler(logHandler: LogHandlerType) {
+    func addHandler(logHandler: LogHandler) {
         logHandlers.append(logHandler)
     }
 
@@ -87,34 +87,34 @@ func logDebug(message: String) {
 ```
 
 In order to configure the `Logger` shared instance in the container we will need to resolve the
-`Logger` after the `Container` has been built. Using a `AssemblyType` you can keep this
+`Logger` after the `Container` has been built. Using a `Assembly` you can keep this
 bootstrapping in the assembly:
 
 ```swift
-class LoggerAssembly: AssemblyType {
+class LoggerAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(LogHandlerType.self, name: "console") { r in
+        container.register(LogHandler.self, name: "console") { r in
             return ConsoleLogHandler()
         }
-        container.register(LogHandlerType.self, name: "file") { r in
+        container.register(LogHandler.self, name: "file") { r in
             return FileLogHandler()
         }
     }
 
-    func loaded(resolver: ResolverType) {
+    func loaded(resolver: Resolver) {
         Logger.sharedInstance.addHandler(
-            resolver.resolve(LogHandlerType.self, name: "console")!)
+            resolver.resolve(LogHandler.self, name: "console")!)
         Logger.sharedInstance.addHandler(
-            resolver.resolve(LogHandlerType.self, name: "file")!)
+            resolver.resolve(LogHandler.self, name: "file")!)
     }
 }
 ```
 
 ## Assembler
 
-The `Assembler` is responsible for managing the `AssemblyType` instances and the `Container`. Using
+The `Assembler` is responsible for managing the `Assembly` instances and the `Container`. Using
 the `Assembler`, the `Container` is only exposed to assemblies registered with the assembler and
-only provides your application access via the `ResolverType` protocol which limits registration
+only provides your application access via the `Resolver` protocol which limits registration
 access strictly to the assemblies.
 
 Using the `ServiceAssembly` and `ManagerAssembly` above we can create our assembler:
@@ -129,7 +129,7 @@ let assembler = try! Assembler(assemblies: [
 Now you can resolve any components from either assembly:
 
 ```swift
-let fooManager = assembler.resolver.resolve(FooManagerType.self)!
+let fooManager = assembler.resolver.resolve(FooManagerProtocol.self)!
 ```
 
 You can also lazy load assemblies:

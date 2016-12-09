@@ -19,18 +19,18 @@ class AssemblerSpec: QuickSpec {
                 let assembler = try! Assembler(assemblies: [
                     AnimalAssembly()
                 ])
-                let cat = assembler.resolver.resolve(AnimalType.self)
+                let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Whiskers"
                 
-                let sushi = assembler.resolver.resolve(FoodType.self)
+                let sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).to(beNil())
             }
             
             it("can assembly a container with nil parent") {
                 let assembler = Assembler(parentAssembler: nil)
                 
-                let sushi = assembler.resolver.resolve(FoodType.self)
+                let sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).to(beNil())
             }
             
@@ -38,11 +38,11 @@ class AssemblerSpec: QuickSpec {
                 let assembler = try! Assembler(assemblies: [
                     AnimalAssembly()
                     ], parentAssembler : nil)
-                let cat = assembler.resolver.resolve(AnimalType.self)
+                let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Whiskers"
                 
-                let sushi = assembler.resolver.resolve(FoodType.self)
+                let sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).to(beNil())
             }
             
@@ -51,11 +51,11 @@ class AssemblerSpec: QuickSpec {
                     AnimalAssembly(),
                     FoodAssembly()
                 ])
-                let cat = assembler.resolver.resolve(AnimalType.self)
+                let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Whiskers"
                 
-                let sushi = assembler.resolver.resolve(FoodType.self)
+                let sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).toNot(beNil())
                 expect(sushi is Sushi) == true
             }
@@ -100,23 +100,23 @@ class AssemblerSpec: QuickSpec {
         describe("Assembler lazy build") {
             it("can assembly a single container") {
                 let assembler = try! Assembler(assemblies: [])
-                var cat = assembler.resolver.resolve(AnimalType.self)
+                var cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
                 assembler.apply(assembly: AnimalAssembly())
                 
-                cat = assembler.resolver.resolve(AnimalType.self)
+                cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Whiskers"
             }
             
             it("can assembly a single load aware container") {
                 let assembler = try! Assembler(assemblies: [])
-                var cat = assembler.resolver.resolve(AnimalType.self)
+                var cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
                 let loadAwareAssembly = LoadAwareAssembly() { resolver in
-                    let cat = resolver.resolve(AnimalType.self)
+                    let cat = resolver.resolve(Animal.self)
                     expect(cat).toNot(beNil())
                     expect(cat!.name) == "Bojangles"
                 }
@@ -125,40 +125,40 @@ class AssemblerSpec: QuickSpec {
                 assembler.apply(assembly: loadAwareAssembly)
                 expect(loadAwareAssembly.loaded) == true
                 
-                cat = assembler.resolver.resolve(AnimalType.self)
+                cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Bojangles"
             }
             
             it("can assembly a multiple containers 1 by 1") {
                 let assembler = try! Assembler(assemblies: [])
-                var cat = assembler.resolver.resolve(AnimalType.self)
+                var cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
-                var sushi = assembler.resolver.resolve(FoodType.self)
+                var sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).to(beNil())
                 
                 assembler.apply(assembly: AnimalAssembly())
                 
-                cat = assembler.resolver.resolve(AnimalType.self)
+                cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Whiskers"
                 
-                sushi = assembler.resolver.resolve(FoodType.self)
+                sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).to(beNil())
                 
                 assembler.apply(assembly: FoodAssembly())
                 
-                sushi = assembler.resolver.resolve(FoodType.self)
+                sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).toNot(beNil())
             }
             
             it("can assembly a multiple containers at once") {
                 let assembler = try! Assembler(assemblies: [])
-                var cat = assembler.resolver.resolve(AnimalType.self)
+                var cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
-                var sushi = assembler.resolver.resolve(FoodType.self)
+                var sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).to(beNil())
                 
                 assembler.apply(assemblies: [
@@ -166,11 +166,11 @@ class AssemblerSpec: QuickSpec {
                     FoodAssembly()
                 ])
                 
-                cat = assembler.resolver.resolve(AnimalType.self)
+                cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Whiskers"
                 
-                sushi = assembler.resolver.resolve(FoodType.self)
+                sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).toNot(beNil())
             }
         }
@@ -178,7 +178,7 @@ class AssemblerSpec: QuickSpec {
         describe("Assembler load aware") {
             it("can assembly a single container") {
                 let loadAwareAssembly = LoadAwareAssembly() { resolver in
-                    let cat = resolver.resolve(AnimalType.self)
+                    let cat = resolver.resolve(Animal.self)
                     expect(cat).toNot(beNil())
                     expect(cat!.name) == "Bojangles"
                 }
@@ -189,18 +189,18 @@ class AssemblerSpec: QuickSpec {
                 ])
                 expect(loadAwareAssembly.loaded) == true
 
-                let cat = assembler.resolver.resolve(AnimalType.self)
+                let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Bojangles"
             }
             
             it("can assembly a multiple container") {
                 let loadAwareAssembly = LoadAwareAssembly() { resolver in
-                    let cat = resolver.resolve(AnimalType.self)
+                    let cat = resolver.resolve(Animal.self)
                     expect(cat).toNot(beNil())
                     expect(cat!.name) == "Bojangles"
                     
-                    let sushi = resolver.resolve(FoodType.self)
+                    let sushi = resolver.resolve(Food.self)
                     expect(sushi).toNot(beNil())
                 }
                 
@@ -211,11 +211,11 @@ class AssemblerSpec: QuickSpec {
                 ])
                 expect(loadAwareAssembly.loaded) == true
                 
-                let cat = assembler.resolver.resolve(AnimalType.self)
+                let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Bojangles"
                 
-                let sushi = assembler.resolver.resolve(FoodType.self)
+                let sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).toNot(beNil())
             }
         }
@@ -224,12 +224,12 @@ class AssemblerSpec: QuickSpec {
             it("can create an empty assembler and build it") {
                 let assembler = Assembler()
                 
-                var cat = assembler.resolver.resolve(AnimalType.self)
+                var cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
                 assembler.apply(assembly: AnimalAssembly())
                 
-                cat = assembler.resolver.resolve(AnimalType.self)
+                cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Whiskers"
             }
@@ -243,16 +243,16 @@ class AssemblerSpec: QuickSpec {
                 
                 let childAssembler = Assembler(parentAssembler: assembler)
                 
-                let cat = assembler.resolver.resolve(AnimalType.self)
+                let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 
-                let sushi = assembler.resolver.resolve(FoodType.self)
+                let sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).to(beNil())
                 
-                let childCat = childAssembler.resolver.resolve(AnimalType.self)
+                let childCat = childAssembler.resolver.resolve(Animal.self)
                 expect(childCat).toNot(beNil())
                 
-                let childSushi = childAssembler.resolver.resolve(FoodType.self)
+                let childSushi = childAssembler.resolver.resolve(Food.self)
                 expect(childSushi).to(beNil())
             }
             
@@ -262,10 +262,10 @@ class AssemblerSpec: QuickSpec {
                     AnimalAssembly()
                 ], parentAssembler: assembler)
                 
-                let cat = assembler.resolver.resolve(AnimalType.self)
+                let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
-                let childCat = childAssembler.resolver.resolve(AnimalType.self)
+                let childCat = childAssembler.resolver.resolve(Animal.self)
                 expect(childCat).toNot(beNil())
             }
         }

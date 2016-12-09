@@ -1,5 +1,5 @@
 //
-//  FoodType.swift
+//  Food.swift
 //  Swinject
 //
 //  Created by Yoichi Tagaya on 7/29/15.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-internal protocol FoodType { }
+internal protocol Food { }
 
-internal class Sushi: FoodType { }
+internal class Sushi: Food { }

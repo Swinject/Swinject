@@ -19,5 +19,5 @@ public protocol _Resolver {
     /// - Parameter invoker: A closure to execute service resolution.
     ///
     /// - Returns: The resolved service type instance, or nil if no service is found.
-    func _resolve<Service, Factory>(name: String?, option: ServiceKeyOptionType?, invoker: (Factory) -> Service) -> Service?
+    func _resolve<Service, Factory>(name: String?, option: ServiceKeyOption?, invoker: (Factory) -> Service) -> Service?
 }

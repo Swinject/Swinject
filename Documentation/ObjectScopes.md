@@ -5,7 +5,7 @@ Object scope is a configuration option to determine how an instance provided by 
 The object scope is specified with `inObjectScope` method when you register a pair of a service type and component factory. For example:
 
 ```swift
-container.register(AnimalType.self) { _ in Cat() }
+container.register(Animal.self) { _ in Cat() }
     .inObjectScope(.container)
 ```
 
@@ -48,7 +48,7 @@ container.resetObjectScope(.custom)
 ```
 After scope is reset, container will create a new instance first time the type is resolved and will share this instance in any succeeding resolution of the type.
 
-Behavior of custom scopes can be additionally modified by providing different `storageFactory`, or writing custom implementation of `ObjectScopeType` protocol.
+Behavior of custom scopes can be additionally modified by providing different `storageFactory`, or writing custom implementation of `ObjectScopeProtocol` protocol.
 
 _[Next page: Misc](Misc.md)_
 

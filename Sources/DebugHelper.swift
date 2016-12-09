@@ -10,7 +10,7 @@ internal protocol DebugHelper {
     func resolutionFailed<Service>(
         serviceType: Service.Type,
         key: ServiceKey,
-        availableRegistrations: [ServiceKey: ServiceEntryType]
+        availableRegistrations: [ServiceKey: ServiceEntryProtocol]
     )
 }
 
@@ -19,7 +19,7 @@ internal final class LoggingDebugHelper: DebugHelper {
     func resolutionFailed<Service>(
         serviceType: Service.Type,
         key: ServiceKey,
-        availableRegistrations: [ServiceKey: ServiceEntryType]
+        availableRegistrations: [ServiceKey: ServiceEntryProtocol]
     ) {
         var output = [
             "Swinject: Resolution failed. Expected registration:",
@@ -37,7 +37,7 @@ internal final class LoggingDebugHelper: DebugHelper {
 internal func description<Service>(
     serviceType: Service.Type,
     serviceKey: ServiceKey,
-    objectScope: ObjectScopeType? = nil,
+    objectScope: ObjectScopeProtocol? = nil,
     initCompleted: FunctionType? = nil
 ) -> String {
     // The protocol order in "protocol<>" is non-deterministic.

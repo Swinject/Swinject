@@ -1,5 +1,5 @@
 //
-//  AnimalType.swift
+//  Animal.swift
 //  Swinject
 //
 //  Created by Yoichi Tagaya on 7/27/15.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-internal protocol AnimalType {
+internal protocol Animal {
     var name: String? { get set }
 }
 
-internal class Cat: AnimalType {
+internal class Cat: Animal {
     var name: String?
     var sleeping = false
-    var favoriteFood: FoodType?
+    var favoriteFood: Food?
     
     init() {
     }
@@ -33,7 +33,7 @@ internal class Cat: AnimalType {
 internal class Siamese: Cat {
 }
 
-internal class Dog: AnimalType {
+internal class Dog: Animal {
     var name: String?
     
     init() {
@@ -44,6 +44,6 @@ internal class Dog: AnimalType {
     }
 }
 
-internal struct Turtle: AnimalType {
+internal struct Turtle: Animal {
     var name: String?
 }

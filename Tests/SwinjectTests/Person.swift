@@ -1,5 +1,5 @@
 //
-//  PersonType.swift
+//  Person.swift
 //  Swinject
 //
 //  Created by Yoichi Tagaya on 7/27/15.
@@ -8,20 +8,20 @@
 
 import Foundation
 
-internal protocol PersonType { }
+internal protocol Person { }
 
-internal class PetOwner: PersonType {
-    var pet: AnimalType?
-    var favoriteFood: FoodType?
+internal class PetOwner: Person {
+    var pet: Animal?
+    var favoriteFood: Food?
     
     init() {
     }
     
-    init(pet: AnimalType) {
+    init(pet: Animal) {
         self.pet = pet
     }
     
-    func injectAnimal(_ animal: AnimalType) {
+    func injectAnimal(_ animal: Animal) {
         self.pet = animal
     }
 }
