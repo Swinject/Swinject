@@ -60,13 +60,13 @@ To install Swinject with Carthage, add the following line to your `Cartfile`.
 github "Swinject/Swinject" ~> 1.1.4
 ```
 
-#### Swift 3.0
+#### Swift 3.0.x
 
 ```
-github "Swinject/Swinject" "2.0.0-beta.2"
+github "Swinject/Swinject" "2.0.0-beta.3"
 
 # Uncomment if you use SwinjectStoryboard
-# github "Swinject/SwinjectStoryboard" "1.0.0-beta.2"
+# github "Swinject/SwinjectStoryboard" "1.0.0-beta.3"
 ```
 
 Then run `carthage update --no-use-binaries` command or just `carthage update`. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
@@ -86,17 +86,17 @@ use_frameworks!
 pod 'Swinject', '~> 1.1.4'
 ```
 
-#### Swift 3.0
+#### Swift 3.0.x
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
 use_frameworks!
 
-pod 'Swinject', '2.0.0-beta.2'
+pod 'Swinject', '2.0.0-beta.3'
 
 # Uncomment if you use SwinjectStoryboard
-# pod 'SwinjectStoryboard', '1.0.0-beta.2'
+# pod 'SwinjectStoryboard', '1.0.0-beta.3'
 ```
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
@@ -108,31 +108,31 @@ Then run `pod install` command. For details of the installation and usage of Coc
 
 ## Basic Usage
 
-First, register a service and component pair to a `Container`, where the component is created by the registered closure as a factory. In this example, `Cat` and `PetOwner` are component classes implementing `AnimalType` and `PersonType` service protocols, respectively.
+First, register a service and component pair to a `Container`, where the component is created by the registered closure as a factory. In this example, `Cat` and `PetOwner` are component classes implementing `Animal` and `Person` service protocols, respectively.
 
 ```swift
 let container = Container()
-container.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-container.register(PersonType.self) { r in
-    PetOwner(pet: r.resolve(AnimalType.self)!)
+container.register(Animal.self) { _ in Cat(name: "Mimi") }
+container.register(Person.self) { r in
+    PetOwner(pet: r.resolve(Animal.self)!)
 }
 ```
 
 Then get an instance of a service from the container. The person is resolved to a pet owner, and playing with the cat named Mimi!
 
 ```swift
-let person = container.resolve(PersonType.self)!
+let person = container.resolve(Person.self)!
 person.play() // prints "I'm playing with Mimi."
 ```
 
 Where definitions of the protocols and classes are
 
 ```swift
-protocol AnimalType {
+protocol Animal {
     var name: String? { get }
 }
 
-class Cat: AnimalType {
+class Cat: Animal {
     let name: String?
 
     init(name: String?) {
@@ -144,14 +144,14 @@ class Cat: AnimalType {
 and
 
 ```swift
-protocol PersonType {
+protocol Person {
     func play()
 }
 
-class PetOwner: PersonType {
-    let pet: AnimalType
+class PetOwner: Person {
+    let pet: Animal
 
-    init(pet: AnimalType) {
+    init(pet: Animal) {
         self.pet = pet
     }
 
@@ -162,7 +162,7 @@ class PetOwner: PersonType {
 }
 ```
 
-Notice that the `pet` of `PetOwner` is automatically set as the instance of `Cat` when `PersonType` is resolved to the instance of `PetOwner`. If a container already set up is given, you do not have to care what are the actual types of the services and how they are created with their dependency.
+Notice that the `pet` of `PetOwner` is automatically set as the instance of `Cat` when `Person` is resolved to the instance of `PetOwner`. If a container already set up is given, you do not have to care what are the actual types of the services and how they are created with their dependency.
 
 ## Where to Register Services
 
@@ -172,7 +172,7 @@ The following view controller class is used in addition to the protocols and cla
 
 ```swift
 class PersonViewController: UIViewController {
-    var person: PersonType?
+    var person: Person?
 }
 ```
 
@@ -190,13 +190,13 @@ Services should be registered in an extension of `SwinjectStoryboard` if you use
 ```swift
 extension SwinjectStoryboard {
     class func setup() {
-        defaultContainer.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-        defaultContainer.register(PersonType.self) { r in
-            PetOwner(pet: r.resolve(AnimalType.self)!)
+        defaultContainer.register(Animal.self) { _ in Cat(name: "Mimi") }
+        defaultContainer.register(Person.self) { r in
+            PetOwner(pet: r.resolve(Animal.self)!)
         }
         defaultContainer.register(PersonViewController.self) { r in
             let controller = PersonViewController()
-            controller.person = r.resolve(PersonType.self)
+            controller.person = r.resolve(Person.self)
             return controller
         }
     }
@@ -211,24 +211,23 @@ Typically services are registered to a container in `AppDelegate` if you do not 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let container = Container() { c in
-        c.register(AnimalType.self) { _ in Cat(name: "Mimi") }
-        c.register(PersonType.self) { r in
-            PetOwner(pet: r.resolve(AnimalType.self)!)
+        c.register(Animal.self) { _ in Cat(name: "Mimi") }
+        c.register(Person.self) { r in
+            PetOwner(pet: r.resolve(Animal.self)!)
         }
         c.register(PersonViewController.self) { r in
             let controller = PersonViewController()
-            controller.person = r.resolve(PersonType.self)
+            controller.person = r.resolve(Person.self)
             return controller
         }
     }
 
     func application(
-        application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 
         // Instantiate a window.
-        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window.backgroundColor = UIColor.whiteColor()
+        let window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
         self.window = window
 
