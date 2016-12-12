@@ -127,10 +127,10 @@ print(animal1.name) // prints "Spirit"
 print((animal1 as! Horse).running) // prints "false"
 ```
 
-If you pass 2 arguments or more, use `resolve(_:arguments:)` where the arguments are passed as a tuple.
+If you pass 2 arguments or more, use `resolve(_:arguments:,_:)`.
 
 ```swift
-let animal2 = container.resolve(Animal.self, arguments: ("Lucky", true))!
+let animal2 = container.resolve(Animal.self, arguments: "Lucky", true)!
 
 print(animal2.name) // prints "Lucky"
 print((animal2 as! Horse).running) // prints "true"
