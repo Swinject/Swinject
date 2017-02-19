@@ -63,10 +63,10 @@ github "Swinject/Swinject" ~> 1.1.4
 #### Swift 3.0.x
 
 ```
-github "Swinject/Swinject" "2.0.0"
+github "Swinject/Swinject" ~> 2.0.0
 
 # Uncomment if you use SwinjectStoryboard
-# github "Swinject/SwinjectStoryboard" "1.0.0"
+# github "Swinject/SwinjectStoryboard" ~> 1.0.0
 ```
 
 Then run `carthage update --no-use-binaries` command or just `carthage update`. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
@@ -93,10 +93,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
 use_frameworks!
 
-pod 'Swinject', '2.0.0'
+pod 'Swinject', '~> 2.0.0'
 
 # Uncomment if you use SwinjectStoryboard
-# pod 'SwinjectStoryboard', '1.0.0'
+# pod 'SwinjectStoryboard', '~> 1.0.0'
 ```
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
