@@ -35,6 +35,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 - **[SwinjectPropertyLoader](https://github.com/Swinject/SwinjectPropertyLoader)**: Loading property values from resources.
 - **[SwinjectStoryboard](https://github.com/Swinject/SwinjectStoryboard)**: Automatic dependency injection via Storyboard.
 - **[Swinject-CodeGen](https://github.com/Swinject/Swinject-CodeGen)**: Type-safe code generation of `Container` from a CSV/YAML file defining dependencies.
+- **[SwinjectAutoregistration](https://github.com/Swinject/SwinjectAutoregistration)**: Automatic registration of services by leveraging the Swift Generics.
 
 ## Requirements
 

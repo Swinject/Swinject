@@ -25,3 +25,4 @@ Swinject is a lightweight dependency injection framework for Swift apps. It allo
 1. [SwinjectPropertyLoader](https://github.com/Swinject/SwinjectPropertyLoader): Loading property values from resources
 2. [SwinjectStoryboard](https://github.com/Swinject/SwinjectStoryboard): Automatic dependency injection via Storyboard
 3. [Swinject-CodeGen](https://github.com/Swinject/Swinject-CodeGen): Type-safe code generation of `Container` from a CSV/YAML file defining dependencies
+4. [SwinjectAutoregistration](https://github.com/Swinject/SwinjectAutoregistration): Automatic registration of services by leveraging the Swift Generics.
