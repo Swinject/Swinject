@@ -80,7 +80,7 @@ _Not supported._ This type of dependency causes infinite recursion.
 
 ## Remark
 
-When resolving circular dependencies one of the factory methods (one containing resolution of circular dependency) migth be invoked twice. Only one of the resulting instances will be used in the final object graph but in some cases this can be problematic - particularly when there are side effects of factory invocation, such as
+When resolving circular dependencies one of the factory methods (one containing resolution of circular dependency) might be invoked twice. Only one of the resulting instances will be used in the final object graph but in some cases this can be problematic - particularly when there are side effects of factory invocation, such as
 - time consuming operations
 - interactions with resolved dependencies
  
