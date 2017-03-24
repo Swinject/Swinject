@@ -25,6 +25,12 @@ extension SynchronizedResolver {
             return self.container.resolve(serviceType, argument: argument)
         }
     }
+    
+    internal func resolve<Service, Arg1>(
+        argument: Arg1) -> Service?
+    {
+        return resolve(Service.self, argument: argument)
+    }
 
     internal func resolve<Service, Arg1>(
         _ serviceType: Service.Type,
@@ -34,6 +40,14 @@ extension SynchronizedResolver {
         return container.lock.sync {
             return self.container.resolve(serviceType, name: name, argument: argument)
         }
+    }
+    
+    internal func resolve<Service, Arg1>(
+        name: String?,
+        argument: Arg1) -> Service?
+    {
+        return resolve(Service.self, name: name, argument: argument)
+
     }
 
     internal func resolve<Service, Arg1, Arg2>(
@@ -46,6 +60,12 @@ extension SynchronizedResolver {
     }
 
     internal func resolve<Service, Arg1, Arg2>(
+        arguments arg1: Arg1, _ arg2: Arg2) -> Service?
+    {
+        return resolve(Service.self, arguments: arg1, arg2)
+    }
+    
+    internal func resolve<Service, Arg1, Arg2>(
         _ serviceType: Service.Type,
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2) -> Service?
@@ -55,6 +75,14 @@ extension SynchronizedResolver {
         }
     }
 
+    internal func resolve<Service, Arg1, Arg2>(
+        name: String?,
+        arguments arg1: Arg1, _ arg2: Arg2) -> Service?
+    {
+        return resolve(Service.self, name: name, arguments: arg1, arg2)
+        
+    }
+    
     internal func resolve<Service, Arg1, Arg2, Arg3>(
         _ serviceType: Service.Type,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> Service?
@@ -65,6 +93,12 @@ extension SynchronizedResolver {
     }
 
     internal func resolve<Service, Arg1, Arg2, Arg3>(
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> Service?
+    {
+        return resolve(Service.self, arguments: arg1, arg2, arg3)
+    }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3>(
         _ serviceType: Service.Type,
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> Service?
@@ -72,6 +106,14 @@ extension SynchronizedResolver {
         return container.lock.sync {
             return self.container.resolve(serviceType, name: name, arguments: arg1, arg2, arg3)
         }
+    }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3>(
+        name: String?,
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> Service?
+    {
+        return resolve(Service.self, name: name, arguments: arg1, arg2, arg3)
+        
     }
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4>(
@@ -81,6 +123,12 @@ extension SynchronizedResolver {
         return container.lock.sync {
             return self.container.resolve(serviceType, arguments: arg1, arg2, arg3, arg4)
         }
+    }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4>(
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) -> Service?
+    {
+        return resolve(Service.self, arguments: arg1, arg2, arg3, arg4)
     }
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4>(
@@ -92,6 +140,14 @@ extension SynchronizedResolver {
             return self.container.resolve(serviceType, name: name, arguments: arg1, arg2, arg3, arg4)
         }
     }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4>(
+        name: String?,
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) -> Service?
+    {
+        return resolve(Service.self, name: name, arguments: arg1, arg2, arg3, arg4)
+        
+    }
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
         _ serviceType: Service.Type,
@@ -100,6 +156,12 @@ extension SynchronizedResolver {
         return container.lock.sync {
             return self.container.resolve(serviceType, arguments: arg1, arg2, arg3, arg4, arg5)
         }
+    }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) -> Service?
+    {
+        return resolve(Service.self, arguments: arg1, arg2, arg3, arg4, arg5)
     }
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
@@ -112,6 +174,14 @@ extension SynchronizedResolver {
         }
     }
 
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
+        name: String?,
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) -> Service?
+    {
+        return resolve(Service.self, name: name, arguments: arg1, arg2, arg3, arg4, arg5)
+        
+    }
+    
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
         _ serviceType: Service.Type,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6) -> Service?
@@ -122,6 +192,12 @@ extension SynchronizedResolver {
     }
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6) -> Service?
+    {
+        return resolve(Service.self, arguments: arg1, arg2, arg3, arg4, arg5, arg6)
+    }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
         _ serviceType: Service.Type,
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6) -> Service?
@@ -129,6 +205,14 @@ extension SynchronizedResolver {
         return container.lock.sync {
             return self.container.resolve(serviceType, name: name, arguments: arg1, arg2, arg3, arg4, arg5, arg6)
         }
+    }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
+        name: String?,
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6) -> Service?
+    {
+        return resolve(Service.self, name: name, arguments: arg1, arg2, arg3, arg4, arg5, arg6)
+        
     }
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
@@ -139,6 +223,13 @@ extension SynchronizedResolver {
             return self.container.resolve(serviceType, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7)
         }
     }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7) -> Service?
+    {
+        return resolve(Service.self, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+    }
+    
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
         _ serviceType: Service.Type,
@@ -149,6 +240,15 @@ extension SynchronizedResolver {
             return self.container.resolve(serviceType, name: name, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7)
         }
     }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
+        name: String?,
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7) -> Service?
+    {
+        return resolve(Service.self, name: name, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+        
+    }
+
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
         _ serviceType: Service.Type,
@@ -158,7 +258,14 @@ extension SynchronizedResolver {
             return self.container.resolve(serviceType, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
         }
     }
-
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8) -> Service?
+    {
+        return resolve(Service.self, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
+    }
+    
+    
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
         _ serviceType: Service.Type,
         name: String?,
@@ -167,6 +274,14 @@ extension SynchronizedResolver {
         return container.lock.sync {
             return self.container.resolve(serviceType, name: name, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
         }
+    }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
+        name: String?,
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8) -> Service?
+    {
+        return resolve(Service.self, name: name, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
+        
     }
 
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
@@ -177,7 +292,13 @@ extension SynchronizedResolver {
             return self.container.resolve(serviceType, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
         }
     }
-
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8, _ arg9: Arg9) -> Service?
+    {
+        return resolve(Service.self, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
+    }
+    
     internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
         _ serviceType: Service.Type,
         name: String?,
@@ -186,6 +307,14 @@ extension SynchronizedResolver {
         return container.lock.sync {
             return self.container.resolve(serviceType, name: name, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
         }
+    }
+    
+    internal func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
+        name: String?,
+        arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8, _ arg9: Arg9) -> Service?
+    {
+        return resolve(Service.self, name: name, arguments: arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
+        
     }
 
 }

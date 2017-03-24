@@ -49,6 +49,18 @@ class ContainerSpec: QuickSpec {
                 expect(mew.name) == "Mew"
                 expect(noname.name).to(beNil())
             }
+            it("resolves by the registered name. GENERICS IMPROVEMENTS") {
+                container.register(Animal.self, name: "RegMimi") { _ in Cat(name: "Mimi") }
+                container.register(Animal.self, name: "RegMew") { _ in Cat(name: "Mew") }
+                container.register(Animal.self) { _ in Cat() }
+                
+                let mimi: Animal = container.resolve(name: "RegMimi")!
+                let mew: Animal = container.resolve(name: "RegMew")!
+                let noname: Animal = container.resolve()!
+                expect(mimi.name) == "Mimi"
+                expect(mew.name) == "Mew"
+                expect(noname.name).to(beNil())
+            }
         }
         describe("Removal of registered services") {
             it("can remove all registered services.") {
