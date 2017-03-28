@@ -119,6 +119,7 @@ public final class Container {
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
+    // swiftlint:disable:next identifier_name
     public func _register<Service, Factory>(
         _ serviceType: Service.Type,
         factory: Factory,
@@ -142,6 +143,7 @@ public final class Container {
 
 // MARK: - _Resolver
 extension Container: _Resolver {
+    // swiftlint:disable:next identifier_name
     public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOption? = nil, invoker: (Factory) -> Service) -> Service? {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
