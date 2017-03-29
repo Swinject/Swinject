@@ -7,7 +7,7 @@ let parentContainer = Container()
 parentContainer.register(Animal.self) { _ in Cat() }
 let childContainer = Container(parent: parentContainer)
 
-let cat = childContainer.resolve(AnimalType.self)
+let cat = childContainer.resolve(Animal.self)
 print(cat != nil) // prints "true"
 ```
 
