@@ -16,7 +16,7 @@ class AssemblerSpec: QuickSpec {
         
         describe("Assembler basic init") {
             it("can assembly a single container") {
-                let assembler = try! Assembler(assemblies: [
+                let assembler = Assembler([
                     AnimalAssembly()
                 ])
                 let cat = assembler.resolver.resolve(Animal.self)
@@ -35,9 +35,9 @@ class AssemblerSpec: QuickSpec {
             }
             
             it("can assembly a container with nil parent and assemblies") {
-                let assembler = try! Assembler(assemblies: [
+                let assembler = Assembler([
                     AnimalAssembly()
-                    ], parentAssembler : nil)
+                ], parent: nil)
                 let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
                 expect(cat!.name) == "Whiskers"
@@ -47,7 +47,7 @@ class AssemblerSpec: QuickSpec {
             }
             
             it("can assembly a multiple container") {
-                let assembler = try! Assembler(assemblies: [
+                let assembler = Assembler([
                     AnimalAssembly(),
                     FoodAssembly()
                 ])
@@ -61,7 +61,7 @@ class AssemblerSpec: QuickSpec {
             }
             
             it("can assembly a multiple container with inter dependencies") {
-                let assembler = try! Assembler(assemblies: [
+                let assembler = Assembler([
                     AnimalAssembly(),
                     FoodAssembly(),
                     PersonAssembly()
@@ -79,7 +79,7 @@ class AssemblerSpec: QuickSpec {
             }
             
             it("can assembly a multiple container with inter dependencies in any order") {
-                let assembler = try! Assembler(assemblies: [
+                let assembler = Assembler([
                     PersonAssembly(),
                     AnimalAssembly(),
                     FoodAssembly(),
@@ -99,7 +99,7 @@ class AssemblerSpec: QuickSpec {
         
         describe("Assembler lazy build") {
             it("can assembly a single container") {
-                let assembler = try! Assembler(assemblies: [])
+                let assembler = Assembler([])
                 var cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
@@ -111,7 +111,7 @@ class AssemblerSpec: QuickSpec {
             }
             
             it("can assembly a single load aware container") {
-                let assembler = try! Assembler(assemblies: [])
+                let assembler = Assembler([])
                 var cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
@@ -131,7 +131,7 @@ class AssemblerSpec: QuickSpec {
             }
             
             it("can assembly a multiple containers 1 by 1") {
-                let assembler = try! Assembler(assemblies: [])
+                let assembler = Assembler([])
                 var cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
@@ -154,7 +154,7 @@ class AssemblerSpec: QuickSpec {
             }
             
             it("can assembly a multiple containers at once") {
-                let assembler = try! Assembler(assemblies: [])
+                let assembler = Assembler([])
                 var cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
@@ -184,7 +184,7 @@ class AssemblerSpec: QuickSpec {
                 }
                 
                 expect(loadAwareAssembly.loaded) == false
-                let assembler = try! Assembler(assemblies: [
+                let assembler = Assembler([
                     loadAwareAssembly
                 ])
                 expect(loadAwareAssembly.loaded) == true
@@ -205,7 +205,7 @@ class AssemblerSpec: QuickSpec {
                 }
                 
                 expect(loadAwareAssembly.loaded) == false
-                let assembler = try! Assembler(assemblies: [
+                let assembler = Assembler([
                     loadAwareAssembly,
                     FoodAssembly()
                 ])
@@ -237,7 +237,7 @@ class AssemblerSpec: QuickSpec {
         
         describe("Child Assembler") {
             it("can be empty") {
-                let assembler = try! Assembler(assemblies: [
+                let assembler = Assembler([
                     AnimalAssembly()
                 ])
                 
@@ -258,9 +258,9 @@ class AssemblerSpec: QuickSpec {
             
             it("can't give entities to parent") {
                 let assembler = Assembler()
-                let childAssembler = try! Assembler(assemblies: [
+                let childAssembler = Assembler([
                     AnimalAssembly()
-                ], parentAssembler: assembler)
+                ], parent: assembler)
                 
                 let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())

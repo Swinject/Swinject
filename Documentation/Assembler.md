@@ -120,7 +120,7 @@ access strictly to the assemblies.
 Using the `ServiceAssembly` and `ManagerAssembly` above we can create our assembler:
 
 ```swift
-let assembler = try! Assembler(assemblies: [
+let assembler = Assembler([
     ServiceAssembly(),
     ManagerAssembly()
 ])
@@ -141,7 +141,7 @@ assembler.applyAssembly(LoggerAssembly())
 The assembler also supports managing your property files as well via construction or lazy loading:
 
 ```swift
-let assembler = try! Assembler(assemblies: [
+let assembler = Assembler([
         ServiceAssembly(),
         ManagerAssembly()
     ], propertyLoaders: [
