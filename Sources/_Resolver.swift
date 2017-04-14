@@ -19,5 +19,6 @@ public protocol _Resolver {
     /// - Parameter invoker: A closure to execute service resolution.
     ///
     /// - Returns: The resolved service type instance, or nil if no service is found.
+    // swiftlint:disable:next identifier_name
     func _resolve<Service, Factory>(name: String?, option: ServiceKeyOption?, invoker: (Factory) -> Service) -> Service?
 }
