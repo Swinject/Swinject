@@ -210,13 +210,21 @@ Be careful with the types of arguments when you resolve an instance from a conta
 // The Registration Key is (Animal, (String) -> Animal)
 container.register(Animal.self) { _, name in Cat(name: name) }
 
-// Cannot resolve since the container has no Registration Key matching (Animal, (NSString) -> Animal)
-let name1: NSString = "Mimi"
-let mimi1 = container.resolve(Animal.self, argument: name1) // Returns nil.
-
 // This is the correct Registration Key (Animal, (String) -> Animal)
-let name2: String = "Mimi"
-let mimi2 = container.resolve(Animal.self, argument: name2) // Returns a Cat instance.
+let name1: String = "Mimi"
+let mimi1 = container.resolve(Animal.self, argument: name1) // Returns a Cat instance.
+
+// Cannot resolve since the container has no Registration Key matching (Animal, (NSString) -> Animal)
+let name2: NSString = "Mimi"
+let mimi2 = container.resolve(Animal.self, argument: name2) // Returns nil.
+
+// Cannot resolve since the container has no Registration Key matching (Animal, (Optional<String>) -> Animal)
+let name3: String? = "Mimi"
+let mimi3 = container.resolve(Animal.self, argument: name3) // Returns nil.
+
+// Cannot resolve since the container has no Registration Key matching (Animal, (ImplicitlyUnwrappedOptional<String>) -> Animal)
+let name4: String! = "Mimi"
+let mimi4 = container.resolve(Animal.self, argument: name4) // Returns nil.
 ```
 
 _[Next page: Injection Patterns](InjectionPatterns.md)_
