@@ -211,17 +211,19 @@ Typically services are registered to a container in `AppDelegate` if you do not 
 ```swift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    let container = Container() { c in
-        c.register(Animal.self) { _ in Cat(name: "Mimi") }
-        c.register(Person.self) { r in
+    let container: Container = {
+        let container = Container()
+        container.register(Animal.self) { _ in Cat(name: "Mimi") }
+        container.register(Person.self) { r in
             PetOwner(pet: r.resolve(Animal.self)!)
         }
-        c.register(PersonViewController.self) { r in
+        container.register(PersonViewController.self) { r in
             let controller = PersonViewController()
             controller.person = r.resolve(Person.self)
             return controller
         }
-    }
+        return container
+    }()
 
     func application(
         _ application: UIApplication,
