@@ -10,7 +10,7 @@ Swinject
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 [![License](https://img.shields.io/cocoapods/l/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 [![Platforms](https://img.shields.io/badge/platform-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20Linux-lightgrey.svg)](http://cocoapods.org/pods/Swinject)
-[![Swift Version](https://img.shields.io/badge/Swift-2.2--3.0.x-F16D39.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift Version](https://img.shields.io/badge/Swift-2.2--3.1.x-F16D39.svg?style=flat)](https://developer.apple.com/swift)
 
 Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift.
 
@@ -61,7 +61,7 @@ To install Swinject with Carthage, add the following line to your `Cartfile`.
 github "Swinject/Swinject" ~> 1.1.4
 ```
 
-#### Swift 3.0.x
+#### Swift 3.x
 
 ```
 github "Swinject/Swinject" ~> 2.0.0
@@ -87,14 +87,14 @@ use_frameworks!
 pod 'Swinject', '~> 1.1.4'
 ```
 
-#### Swift 3.0.x
+#### Swift 3.x
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
 use_frameworks!
 
-pod 'Swinject', '~> 2.0.0'
+pod 'Swinject', '~> 2.1.0'
 
 # Uncomment if you use SwinjectStoryboard
 # pod 'SwinjectStoryboard', '~> 1.0.0'
