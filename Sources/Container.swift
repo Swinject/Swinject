@@ -201,7 +201,7 @@ extension Container: Resolver {
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type is found in the `Container`.
     public func resolve<Service>(
-        _ serviceType: Service.Type) -> Service?
+        _ serviceType: Service.Type = Service.self) -> Service?
     {
         return resolve(serviceType, name: nil)
     }
@@ -214,7 +214,7 @@ extension Container: Resolver {
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type and name is found in the `Container`.
     public func resolve<Service>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         name: String?) -> Service?
     {
         typealias FactoryType = (Resolver) -> Service
