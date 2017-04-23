@@ -53,9 +53,14 @@ class ContainerSpec: QuickSpec {
                 container.register(Animal.self) { _ in Cat() }
                 let animal1: Animal? = container.resolve()
                 let animal2 = container.resolve() as Animal?
-                let cat: Cat? = container.resolve()
+                let animal3: Animal! = container.resolve()
+                let _: Animal = container.resolve()!
+                
                 expect(animal1).notTo(beNil())
                 expect(animal2).notTo(beNil())
+                expect(animal3).notTo(beNil())
+                
+                let cat: Cat? = container.resolve()
                 expect(cat).to(beNil())
             }
         }
