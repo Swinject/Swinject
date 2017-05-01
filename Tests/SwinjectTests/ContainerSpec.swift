@@ -343,7 +343,7 @@ class ContainerSpec: QuickSpec {
                 
                 expect(container.description) ==
                     "[\n"
-                    + "    { Service: Animal, Factory: ((Resolver, String, Bool)) -> Animal, ObjectScope: graph }\n"
+                    + "    { Service: Animal, Factory: (Resolver, String, Bool) -> Animal, ObjectScope: graph }\n"
                     + "]"
             }
             it("describes a registration with a specified object scope.") {
