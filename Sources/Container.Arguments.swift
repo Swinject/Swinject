@@ -23,7 +23,7 @@ extension Container {
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///   - name:        A registration name, which is used to differentiate from other registrations
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
@@ -44,7 +44,7 @@ extension Container {
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///   - name:        A registration name, which is used to differentiate from other registrations
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
@@ -65,7 +65,7 @@ extension Container {
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///   - name:        A registration name, which is used to differentiate from other registrations
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
@@ -86,7 +86,7 @@ extension Container {
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///   - name:        A registration name, which is used to differentiate from other registrations
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
@@ -107,7 +107,7 @@ extension Container {
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///   - name:        A registration name, which is used to differentiate from other registrations
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
@@ -128,7 +128,7 @@ extension Container {
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///   - name:        A registration name, which is used to differentiate from other registrations
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
@@ -149,7 +149,7 @@ extension Container {
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///   - name:        A registration name, which is used to differentiate from other registrations
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
@@ -170,7 +170,7 @@ extension Container {
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///   - name:        A registration name, which is used to differentiate from other registrations
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
@@ -191,7 +191,7 @@ extension Container {
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differenciate from other registrations
+    ///   - name:        A registration name, which is used to differentiate from other registrations
     ///                  that have the same service and factory types.
     ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
     ///                  It is invoked when the `Container` needs to instantiate the instance.
