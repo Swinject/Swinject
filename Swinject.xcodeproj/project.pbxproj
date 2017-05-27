@@ -579,17 +579,17 @@
 			isa = PBXGroup;
 			children = (
 				98383A3C1C1AF76400733248 /* Quick.framework */,
-				98383A3E1C1AF76400733248 /* Quick-macOSTests.xctest */,
-				98383A401C1AF76400733248 /* QuickFocused-macOSTests.xctest */,
-				CDB572981DF6A33600D3785D /* QuickAfterSuite-macOSTests.xctest */,
+				98383A3E1C1AF76400733248 /* Quick - macOSTests.xctest */,
+				98383A401C1AF76400733248 /* QuickFocused - macOSTests.xctest */,
+				CDB572981DF6A33600D3785D /* QuickAfterSuite - macOSTests.xctest */,
 				98383A421C1AF76400733248 /* Quick.framework */,
-				98383A441C1AF76400733248 /* Quick-iOSTests.xctest */,
-				98383A461C1AF76400733248 /* QuickFocused-iOSTests.xctest */,
-				CDB5729A1DF6A33600D3785D /* QuickAfterSuite-iOSTests.xctest */,
+				98383A441C1AF76400733248 /* Quick - iOSTests.xctest */,
+				98383A461C1AF76400733248 /* QuickFocused - iOSTests.xctest */,
+				CDB5729A1DF6A33600D3785D /* QuickAfterSuite - iOSTests.xctest */,
 				98383A481C1AF76400733248 /* Quick.framework */,
-				98383A4A1C1AF76400733248 /* Quick-tvOSTests.xctest */,
-				98383A4C1C1AF76400733248 /* QuickFocused-tvOSTests.xctest */,
-				CDB5729C1DF6A33600D3785D /* QuickAfterSuite-tvOSTests.xctest */,
+				98383A4A1C1AF76400733248 /* Quick - tvOSTests.xctest */,
+				98383A4C1C1AF76400733248 /* QuickFocused - tvOSTests.xctest */,
+				CDB5729C1DF6A33600D3785D /* QuickAfterSuite - tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -602,8 +602,7 @@
 				985010BF1BBE76AB00A2CCFC /* watchOS-Framework.xcconfig */,
 				985010C01BBE76AB00A2CCFC /* watchOS-StaticLibrary.xcconfig */,
 			);
-			name = watchOS;
-			path = Carthage/Checkouts/xcconfigs/watchOS;
+			path = watchOS;
 			sourceTree = "<group>";
 		};
 		98689C751BBFC77F0005C6D3 /* tvOS */ = {
@@ -615,7 +614,7 @@
 				98689C791BBFC77F0005C6D3 /* tvOS-StaticLibrary.xcconfig */,
 			);
 			name = tvOS;
-			path = Carthage/Checkouts/xcconfigs/tvOS;
+			path = Configurations/tvOS;
 			sourceTree = SOURCE_ROOT;
 		};
 		9878C63A1B65CA0600CBEFEF /* Fakes */ = {
@@ -637,10 +636,11 @@
 				98AA74451BB70CBB00E2F48A /* Base */,
 				98AA74501BB70CBB00E2F48A /* iOS */,
 				98AA74551BB70CBB00E2F48A /* Mac OS X */,
-				985010BC1BBE76AB00A2CCFC /* watchOS */,
 				98689C751BBFC77F0005C6D3 /* tvOS */,
+				985010BC1BBE76AB00A2CCFC /* watchOS */,
 			);
 			name = Configuration;
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 		98AA74451BB70CBB00E2F48A /* Base */ = {
@@ -650,8 +650,7 @@
 				98AA74471BB70CBB00E2F48A /* Configurations */,
 				98AA744C1BB70CBB00E2F48A /* Targets */,
 			);
-			name = Base;
-			path = Carthage/Checkouts/xcconfigs/Base;
+			path = Base;
 			sourceTree = "<group>";
 		};
 		98AA74471BB70CBB00E2F48A /* Configurations */ = {
@@ -683,8 +682,7 @@
 				98AA74531BB70CBB00E2F48A /* iOS-Framework.xcconfig */,
 				98AA74541BB70CBB00E2F48A /* iOS-StaticLibrary.xcconfig */,
 			);
-			name = iOS;
-			path = Carthage/Checkouts/xcconfigs/iOS;
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		98AA74551BB70CBB00E2F48A /* Mac OS X */ = {
@@ -696,8 +694,7 @@
 				98AA74591BB70CBB00E2F48A /* Mac-Framework.xcconfig */,
 				98AA745A1BB70CBB00E2F48A /* Mac-StaticLibrary.xcconfig */,
 			);
-			name = "Mac OS X";
-			path = "Carthage/Checkouts/xcconfigs/Mac OS X";
+			path = "Mac OS X";
 			sourceTree = "<group>";
 		};
 		98B012BD1B82D6B000053A32 /* GeneratedCode */ = {
@@ -1000,17 +997,17 @@
 			remoteRef = 98383A3B1C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		98383A3E1C1AF76400733248 /* Quick-macOSTests.xctest */ = {
+		98383A3E1C1AF76400733248 /* Quick - macOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "Quick-macOSTests.xctest";
+			path = "Quick - macOSTests.xctest";
 			remoteRef = 98383A3D1C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		98383A401C1AF76400733248 /* QuickFocused-macOSTests.xctest */ = {
+		98383A401C1AF76400733248 /* QuickFocused - macOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "QuickFocused-macOSTests.xctest";
+			path = "QuickFocused - macOSTests.xctest";
 			remoteRef = 98383A3F1C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1021,17 +1018,17 @@
 			remoteRef = 98383A411C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		98383A441C1AF76400733248 /* Quick-iOSTests.xctest */ = {
+		98383A441C1AF76400733248 /* Quick - iOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "Quick-iOSTests.xctest";
+			path = "Quick - iOSTests.xctest";
 			remoteRef = 98383A431C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		98383A461C1AF76400733248 /* QuickFocused-iOSTests.xctest */ = {
+		98383A461C1AF76400733248 /* QuickFocused - iOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "QuickFocused-iOSTests.xctest";
+			path = "QuickFocused - iOSTests.xctest";
 			remoteRef = 98383A451C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1042,38 +1039,38 @@
 			remoteRef = 98383A471C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		98383A4A1C1AF76400733248 /* Quick-tvOSTests.xctest */ = {
+		98383A4A1C1AF76400733248 /* Quick - tvOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "Quick-tvOSTests.xctest";
+			path = "Quick - tvOSTests.xctest";
 			remoteRef = 98383A491C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		98383A4C1C1AF76400733248 /* QuickFocused-tvOSTests.xctest */ = {
+		98383A4C1C1AF76400733248 /* QuickFocused - tvOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "QuickFocused-tvOSTests.xctest";
+			path = "QuickFocused - tvOSTests.xctest";
 			remoteRef = 98383A4B1C1AF76400733248 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CDB572981DF6A33600D3785D /* QuickAfterSuite-macOSTests.xctest */ = {
+		CDB572981DF6A33600D3785D /* QuickAfterSuite - macOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "QuickAfterSuite-macOSTests.xctest";
+			path = "QuickAfterSuite - macOSTests.xctest";
 			remoteRef = CDB572971DF6A33600D3785D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CDB5729A1DF6A33600D3785D /* QuickAfterSuite-iOSTests.xctest */ = {
+		CDB5729A1DF6A33600D3785D /* QuickAfterSuite - iOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "QuickAfterSuite-iOSTests.xctest";
+			path = "QuickAfterSuite - iOSTests.xctest";
 			remoteRef = CDB572991DF6A33600D3785D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CDB5729C1DF6A33600D3785D /* QuickAfterSuite-tvOSTests.xctest */ = {
+		CDB5729C1DF6A33600D3785D /* QuickAfterSuite - tvOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "QuickAfterSuite-tvOSTests.xctest";
+			path = "QuickAfterSuite - tvOSTests.xctest";
 			remoteRef = CDB5729B1DF6A33600D3785D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
