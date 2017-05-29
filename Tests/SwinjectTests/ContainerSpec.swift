@@ -174,6 +174,24 @@ class ContainerSpec: QuickSpec {
                     expect(ownersSushi === catsSushi).to(beTrue()) // Workaround for crash in Nimble.
                 }
             }
+            context("in weak scope") {
+                it("shares the object in the container") {
+                    container.register(Animal.self) { _ in Cat() }
+                        .inObjectScope(.weak)
+
+                    let cat1 = container.resolve(Animal.self) as! Cat
+                    let cat2 = container.resolve(Animal.self) as! Cat
+                    expect(cat1).notTo(beNil())
+                    expect(cat1 === cat2).to(beTrue()) // Workaround for crash in Nimble.
+                }
+                it("does not maintain a strong reference to the object") {
+                    container.register(Animal.self) { _ in Cat() }
+                        .inObjectScope(.weak)
+
+                    weak var cat = container.resolve(Animal.self) as? Cat
+                    expect(cat).to(beNil())
+                }
+            }
         }
         describe("Init completed event") {
             it("raises the event when a new instance is created.") {
