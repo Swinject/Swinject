@@ -4,6 +4,10 @@
 
 Unfortunately, implementations of dependency injection often use slightly different terminology, which if not explained clearly in advance can cause confusion. In Swinject we define the following terms:
 
+<p align="center">
+  <img src="https://github.com/gonini/Swinject/blob/master/Documentation/Assets/composed_swinject_graph.png" width="60%">
+</p>
+
 * **Service**: A protocol defining an interface for a dependent type.
 * **Component**: An actual type implementing a service.
 * **Factory**: A function or closure instantiating a component.
