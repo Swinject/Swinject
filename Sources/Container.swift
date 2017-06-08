@@ -205,6 +205,11 @@ extension Container: Resolver {
     {
         return resolve(serviceType, name: nil)
     }
+    
+    public func resolve<Service>() -> Service?
+    {
+        return resolve(Service.self, name: nil)
+    }
 
     /// Retrieves the instance with the specified service type and registration name.
     ///
@@ -219,6 +224,12 @@ extension Container: Resolver {
     {
         typealias FactoryType = (Resolver) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self) }
+    }
+    
+    public func resolve<Service>(
+        name: String?) -> Service?
+    {
+        return resolve(Service.self, name: name)
     }
     
     fileprivate func getEntry<Service>(_ key: ServiceKey) -> ServiceEntry<Service>? {
