@@ -84,6 +84,23 @@ class SynchronizedResolverSpec: QuickSpec {
                 runInObjectScope(.container)
             }
         }
+        describe("Nested resolve") {
+            it("can make it without deadlock") {
+                
+                let container = Container()
+                let threadSafeResolver = container.synchronize()
+                
+                container.register(ChildProtocol.self) { _ in
+                    return Child()
+                }
+                container.register(ParentProtocol.self) { _ in
+                    let child = threadSafeResolver.resolve(ChildProtocol.self)!
+                    return Parent(child: child)
+                }
+                
+                _ = threadSafeResolver.resolve(ParentProtocol.self)
+            }
+        }
     }
     
     fileprivate final class Counter {
