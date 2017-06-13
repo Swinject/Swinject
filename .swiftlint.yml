@@ -5,9 +5,7 @@ disabled_rules:
   - valid_docs
   - type_name
 excluded:
-  - Sources/Container.Arguments.swift
-  - Sources/SynchronizedResolver.Arguments.swift
-  - Sources/Resolver.swift
+  - Sources/GeneratedCode
   - Sample-iOS.playground
   - Carthage
   - Packages
