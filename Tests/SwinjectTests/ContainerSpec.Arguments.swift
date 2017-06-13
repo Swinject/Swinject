@@ -18,7 +18,7 @@ class ContainerSpec_Arguments: QuickSpec {
         beforeEach {
             container = Container()
         }
-        
+
         it("accepts 1 argument.") {
             container.register(Animal.self) { _, arg1 in
                 Cat(name: arg1)

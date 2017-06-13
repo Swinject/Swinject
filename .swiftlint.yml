@@ -1,7 +1,6 @@
 disabled_rules:
   - force_cast
   - line_length
-  - trailing_whitespace
   - nesting
   - opening_brace
   - valid_docs

@@ -31,7 +31,7 @@ class SynchronizedResolverSpec: QuickSpec {
                         }
                         .inObjectScope(.graph)
                 }.synchronize()
-                
+
                 waitUntil(timeout: 2.0) { done in
                     let queue = DispatchQueue(label: "SwinjectTests.SynchronizedContainerSpec.Queue", attributes: .concurrent)
                     let totalThreads = 500 // 500 threads are enough to get fail unless the container is thread safe.
@@ -41,7 +41,7 @@ class SynchronizedResolverSpec: QuickSpec {
                             let parent = container.resolve(ParentProtocol.self) as! Parent
                             let child = parent.child as! Child
                             expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
-                            
+
                             counter.increment()
                             if counter.count >= totalThreads {
                                 done()
@@ -58,12 +58,12 @@ class SynchronizedResolverSpec: QuickSpec {
                     }
                     let parentResolver = parentContainer.synchronize()
                     let childResolver = Container(parent: parentContainer).synchronize()
-                    
+
                     waitUntil(timeout: 2.0) { done in
                         let queue = DispatchQueue(label: "SwinjectTests.SynchronizedContainerSpec.Queue", attributes: .concurrent)
                         let totalThreads = 500
                         let counter = Counter(max: 2 * totalThreads)
-                        
+
                         for _ in 0..<totalThreads {
                             queue.async {
                                 _ = parentResolver.resolve(Animal.self) as! Cat
@@ -80,19 +80,19 @@ class SynchronizedResolverSpec: QuickSpec {
                         }
                     }
                 }
-                
+
                 runInObjectScope(.transient)
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
             }
         }
     }
-    
+
     fileprivate final class Counter {
         enum Status {
             case underMax, reachedMax
         }
-        
+
         private var max: Int
         private let lock = DispatchQueue(label: "SwinjectTests.SynchronizedContainerSpec.Counter.Lock", attributes: [])
         var count = 0
@@ -100,7 +100,7 @@ class SynchronizedResolverSpec: QuickSpec {
         init(max: Int) {
             self.max = max
         }
-        
+
         @discardableResult
         func increment() -> Status {
             var status = Status.underMax

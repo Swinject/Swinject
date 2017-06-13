@@ -19,7 +19,7 @@ internal struct ServiceKey {
     internal let factoryType: FunctionType.Type
     internal let name: String?
     internal let option: ServiceKeyOption? // Used for SwinjectStoryboard or other extensions.
-    
+
     internal init(factoryType: FunctionType.Type, name: String? = nil, option: ServiceKeyOption? = nil) {
         self.factoryType = factoryType
         self.name = name

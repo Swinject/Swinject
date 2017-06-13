@@ -8,7 +8,7 @@
 
 internal final class SynchronizedResolver {
     internal let container: Container
-    
+
     internal init(container: Container) {
         self.container = container
     }
@@ -29,7 +29,7 @@ extension SynchronizedResolver: Resolver {
             return self.container.resolve(serviceType)
         }
     }
-    
+
     internal func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
         return container.lock.sync {
             return self.container.resolve(serviceType, name: name)

@@ -15,19 +15,19 @@ import Nimble
 // MARK: Option
 private struct Option: ServiceKeyOption {
     let option: Int
-    
+
     func isEqualTo(_ another: ServiceKeyOption) -> Bool {
         guard let another = another as? Option else {
             return false
         }
-        
+
         return self.option == another.option
     }
-    
+
     var hashValue: Int {
         return option.hashValue
     }
-    
+
     var description: String {
         return ""
     }
@@ -43,7 +43,7 @@ class ServiceKeySpec: QuickSpec {
                 let key2 = ServiceKey(factoryType: FactoryType0Args.self)
                 expect(key1) == key2
                 expect(key1.hashValue) == key2.hashValue
-                
+
                 typealias FactoryType2Args = (Resolver, String, Bool) -> Animal
                 let key3 = ServiceKey(factoryType: FactoryType2Args.self)
                 let key4 = ServiceKey(factoryType: FactoryType2Args.self)
@@ -65,7 +65,7 @@ class ServiceKeySpec: QuickSpec {
                 let key2 = ServiceKey(factoryType: FactoryType2Args.self)
                 expect(key1) != key2
                 expect(key1.hashValue) != key2.hashValue
-                
+
                 typealias FactoryTypeStringBoolArgs = (Resolver, String, Bool) -> Animal
                 typealias FactoryTypeStringIntArgs = (Resolver, String, Int) -> Animal
                 let key3 = ServiceKey(factoryType: FactoryTypeStringBoolArgs.self)
@@ -81,7 +81,7 @@ class ServiceKeySpec: QuickSpec {
                 let key2 = ServiceKey(factoryType: FactoryType0Args.self, name: "my factory")
                 expect(key1) == key2
                 expect(key1.hashValue) == key2.hashValue
-                
+
                 typealias FactoryType2Args = (Resolver, String, Bool) -> Animal
                 let key3 = ServiceKey(factoryType: FactoryType2Args.self, name: "my factory")
                 let key4 = ServiceKey(factoryType: FactoryType2Args.self, name: "my factory")
@@ -94,7 +94,7 @@ class ServiceKeySpec: QuickSpec {
                 let key2 = ServiceKey(factoryType: FactoryType0Args.self, name: "your factory")
                 expect(key1) != key2
                 expect(key1.hashValue) != key2.hashValue
-                
+
                 typealias FactoryType2Args = (Resolver, String, Bool) -> Animal
                 let key3 = ServiceKey(factoryType: FactoryType2Args.self, name: "my factory")
                 let key4 = ServiceKey(factoryType: FactoryType2Args.self, name: "your factory")
@@ -109,7 +109,7 @@ class ServiceKeySpec: QuickSpec {
                 let key2 = ServiceKey(factoryType: FactoryType0Args.self, option: Option(option: 1))
                 expect(key1) == key2
                 expect(key1.hashValue) == key2.hashValue
-                
+
                 typealias FactoryType2Args = (Resolver, String, Bool) -> Animal
                 let key3 = ServiceKey(factoryType: FactoryType2Args.self, option: Option(option: 1))
                 let key4 = ServiceKey(factoryType: FactoryType2Args.self, option: Option(option: 1))
@@ -122,7 +122,7 @@ class ServiceKeySpec: QuickSpec {
                 let key2 = ServiceKey(factoryType: FactoryType0Args.self, option: Option(option: 2))
                 expect(key1) != key2
                 expect(key1.hashValue) != key2.hashValue
-                
+
                 typealias FactoryType2Args = (Resolver, String, Bool) -> Animal
                 let key3 = ServiceKey(factoryType: FactoryType2Args.self, option: Option(option: 1))
                 let key4 = ServiceKey(factoryType: FactoryType2Args.self, option: Option(option: 2))
