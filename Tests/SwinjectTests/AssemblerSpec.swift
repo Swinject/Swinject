@@ -82,7 +82,7 @@ class AssemblerSpec: QuickSpec {
                 let assembler = Assembler([
                     PersonAssembly(),
                     AnimalAssembly(),
-                    FoodAssembly(),
+                    FoodAssembly()
                 ])
                 let petOwner = assembler.resolver.resolve(PetOwner.self)
                 expect(petOwner).toNot(beNil())
@@ -115,7 +115,7 @@ class AssemblerSpec: QuickSpec {
                 var cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).to(beNil())
                 
-                let loadAwareAssembly = LoadAwareAssembly() { resolver in
+                let loadAwareAssembly = LoadAwareAssembly { resolver in
                     let cat = resolver.resolve(Animal.self)
                     expect(cat).toNot(beNil())
                     expect(cat!.name) == "Bojangles"
@@ -177,7 +177,7 @@ class AssemblerSpec: QuickSpec {
         
         describe("Assembler load aware") {
             it("can assembly a single container") {
-                let loadAwareAssembly = LoadAwareAssembly() { resolver in
+                let loadAwareAssembly = LoadAwareAssembly { resolver in
                     let cat = resolver.resolve(Animal.self)
                     expect(cat).toNot(beNil())
                     expect(cat!.name) == "Bojangles"
@@ -195,7 +195,7 @@ class AssemblerSpec: QuickSpec {
             }
             
             it("can assembly a multiple container") {
-                let loadAwareAssembly = LoadAwareAssembly() { resolver in
+                let loadAwareAssembly = LoadAwareAssembly { resolver in
                     let cat = resolver.resolve(Animal.self)
                     expect(cat).toNot(beNil())
                     expect(cat!.name) == "Bojangles"

@@ -8,7 +8,6 @@
 
 import Swinject
 
-
 class LoadAwareAssembly: Assembly {
     var onLoad: (Resolver) -> Void
     var loaded = false
@@ -18,7 +17,7 @@ class LoadAwareAssembly: Assembly {
     }
     
     func assemble(container: Container) {
-        container.register(Animal.self) { r in
+        container.register(Animal.self) { _ in
             return Cat(name: "Bojangles")
         }
     }

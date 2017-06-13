@@ -328,7 +328,7 @@ class ContainerSpec: QuickSpec {
         }
         describe("Convenience initializers") {
             it("takes a closure registering services.") {
-                let container = Container() {
+                let container = Container {
                     $0.register(Animal.self) { _ in Cat() }
                 }
                 

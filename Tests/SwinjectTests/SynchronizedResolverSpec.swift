@@ -15,7 +15,7 @@ class SynchronizedResolverSpec: QuickSpec {
     override func spec() {
         describe("Multiple threads") {
             it("can resolve circular dependencies.") {
-                let container = Container() { container in
+                let container = Container { container in
                     container.register(ParentProtocol.self) { _ in Parent() }
                         .initCompleted { r, s in
                             let parent = s as! Parent
@@ -35,7 +35,7 @@ class SynchronizedResolverSpec: QuickSpec {
                     let totalThreads = 500 // 500 threads are enough to get fail unless the container is thread safe.
                     let counter = Counter(max: 2 * totalThreads)
                     for _ in 0..<totalThreads {
-                        queue.async() {
+                        queue.async {
                             let parent = container.resolve(ParentProtocol.self) as! Parent
                             let child = parent.child as! Child
                             expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
@@ -50,7 +50,7 @@ class SynchronizedResolverSpec: QuickSpec {
             }
             it("can access parent and child containers without dead lock.") {
                 let runInObjectScope = { (scope: ObjectScope) in
-                    let parentContainer = Container() { container in
+                    let parentContainer = Container { container in
                         container.register(Animal.self) { _ in Cat() }
                             .inObjectScope(scope)
                     }
@@ -63,13 +63,13 @@ class SynchronizedResolverSpec: QuickSpec {
                         let counter = Counter(max: 2 * totalThreads)
                         
                         for _ in 0..<totalThreads {
-                            queue.async() {
+                            queue.async {
                                 _ = parentResolver.resolve(Animal.self) as! Cat
                                 if counter.increment() == .reachedMax {
                                     done()
                                 }
                             }
-                            queue.async() {
+                            queue.async {
                                 _ = childResolver.resolve(Animal.self) as! Cat
                                 if counter.increment() == .reachedMax {
                                     done()
