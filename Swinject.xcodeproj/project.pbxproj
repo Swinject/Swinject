@@ -559,7 +559,7 @@
 				984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */,
 				98B012BE1B82F68E00053A32 /* Resolver.swift */,
 			);
-			path = GeneratedCode;
+			name = GeneratedCode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
