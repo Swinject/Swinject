@@ -77,8 +77,8 @@ public final class Assembler {
         run(assemblies: assemblies)
     }
 
-    /// Will apply the assembly to the container. This is useful if you want to lazy load an assembly into the assembler's
-    /// container.
+    /// Will apply the assembly to the container. This is useful if you want to lazy load an assembly into the 
+    /// assembler's container.
     ///
     /// If this assembly type is load aware, the loaded hook will be invoked right after the container has assembled
     /// since after each call to `addAssembly` the container is fully loaded in its current state. If you wish to
@@ -90,8 +90,8 @@ public final class Assembler {
         run(assemblies: [assembly])
     }
 
-    /// Will apply the assemblies to the container. This is useful if you want to lazy load several assemblies into the assembler's
-    /// container
+    /// Will apply the assemblies to the container. This is useful if you want to lazy load several assemblies into the 
+    /// assembler's container
     ///
     /// If this assembly type is load aware, the loaded hook will be invoked right after the container has assembled
     /// since after each call to `addAssembly` the container is fully loaded in its current state.

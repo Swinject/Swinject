@@ -33,7 +33,10 @@ class SynchronizedResolverSpec: QuickSpec {
                 }.synchronize()
 
                 waitUntil(timeout: 2.0) { done in
-                    let queue = DispatchQueue(label: "SwinjectTests.SynchronizedContainerSpec.Queue", attributes: .concurrent)
+                    let queue = DispatchQueue(
+                        label: "SwinjectTests.SynchronizedContainerSpec.Queue",
+                        attributes: .concurrent
+                    )
                     let totalThreads = 500 // 500 threads are enough to get fail unless the container is thread safe.
                     let counter = Counter(max: 2 * totalThreads)
                     for _ in 0..<totalThreads {
@@ -60,7 +63,10 @@ class SynchronizedResolverSpec: QuickSpec {
                     let childResolver = Container(parent: parentContainer).synchronize()
 
                     waitUntil(timeout: 2.0) { done in
-                        let queue = DispatchQueue(label: "SwinjectTests.SynchronizedContainerSpec.Queue", attributes: .concurrent)
+                        let queue = DispatchQueue(
+                            label: "SwinjectTests.SynchronizedContainerSpec.Queue",
+                            attributes: .concurrent
+                        )
                         let totalThreads = 500
                         let counter = Counter(max: 2 * totalThreads)
 

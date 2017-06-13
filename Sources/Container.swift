@@ -21,7 +21,8 @@ import Foundation
 ///
 ///     let x = container.resolve(X.self)!
 ///
-/// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
+/// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` 
+/// and depending on `A`.
 public final class Container {
     fileprivate var services = [ServiceKey: ServiceEntryProtocol]()
     fileprivate let parent: Container? // Used by HierarchyObjectScope
@@ -42,12 +43,14 @@ public final class Container {
         self.init(parent: parent, debugHelper: LoggingDebugHelper())
     }
 
-    /// Instantiates a `Container` with its parent `Container` and a closure registering services. The parent is optional.
+    /// Instantiates a `Container` with its parent `Container` and a closure registering services. 
+    /// The parent is optional.
     ///
     /// - Parameters:
     ///     - parent:             The optional parent `Container`.
     ///     - registeringClosure: The closure registering services to the new container instance.
-    /// - Remark: Compile time may be long if you pass a long closure to this initializer. Use `init()` or `init(parent:)` instead.
+    /// - Remark: Compile time may be long if you pass a long closure to this initializer. 
+    ///           Use `init()` or `init(parent:)` instead.
     public convenience init(parent: Container? = nil, registeringClosure: (Container) -> Void) {
         self.init(parent: parent)
         registeringClosure(self)
@@ -85,7 +88,8 @@ public final class Container {
         resetObjectScope(objectScope as ObjectScopeProtocol)
     }
 
-    /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
+    /// Adds a registration for the specified service with the factory closure to specify how the service is 
+    /// resolved with dependencies.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
@@ -134,7 +138,8 @@ public final class Container {
     }
 
     /// Returns a synchronized view of the container for thread safety.
-    /// The returned container is `Resolver` type. Call this method after you finish all service registrations to the original container.
+    /// The returned container is `Resolver` type. Call this method after you finish all service registrations 
+    /// to the original container.
     ///
     /// - Returns: A synchronized container as `Resolver`.
     public func synchronize() -> Resolver {
@@ -145,7 +150,11 @@ public final class Container {
 // MARK: - _Resolver
 extension Container: _Resolver {
     // swiftlint:disable:next identifier_name
-    public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOption? = nil, invoker: (Factory) -> Service) -> Service? {
+    public func _resolve<Service, Factory>(
+        name: String?,
+        option: ServiceKeyOption? = nil,
+        invoker: (Factory) -> Service
+    ) -> Service? {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
 
@@ -199,7 +208,8 @@ extension Container: Resolver {
     ///
     /// - Parameter serviceType: The service type to resolve.
     ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type is found in the `Container`.
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type 
+    ///            is found in the `Container`.
     public func resolve<Service>(_ serviceType: Service.Type) -> Service? {
         return resolve(serviceType, name: nil)
     }
@@ -210,7 +220,8 @@ extension Container: Resolver {
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
     ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name is found in the `Container`.
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name 
+    ///            is found in the `Container`.
     public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
         typealias FactoryType = (Resolver) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self) }
@@ -224,8 +235,11 @@ extension Container: Resolver {
         }
     }
 
-    fileprivate func resolve<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
-
+    fileprivate func resolve<Service, Factory>(
+        entry: ServiceEntry<Service>,
+        key: ServiceKey,
+        invoker: (Factory) -> Service
+    ) -> Service {
         if let persistedInstance = entry.storage.instance as? Service {
             return persistedInstance
         }

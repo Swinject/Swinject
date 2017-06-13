@@ -294,22 +294,24 @@ class ContainerSpec: QuickSpec {
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
             }
-            it("resolves only once if object scope is container or hierarchy to simulate singleton (instantiation only once).") {
-                let runInObjectScope: (ObjectScope, Int) -> Void = { scope, expectation in
-                    var invokedCount = 0
-                    container.removeAll()
-                    container.register(Animal.self) { _ in
-                        invokedCount += 1
-                        return Turtle(name: "Ninja")
-                    }.inObjectScope(scope)
-                    _ = container.resolve(Animal.self)!
-                    _ = container.resolve(Animal.self)!
-                    expect(invokedCount) == expectation
-                }
+            context("object scope is container or hierarchy") {
+                it("resolves only once to simulate singleton (instantiation only once).") {
+                    let runInObjectScope: (ObjectScope, Int) -> Void = { scope, expectation in
+                        var invokedCount = 0
+                        container.removeAll()
+                        container.register(Animal.self) { _ in
+                            invokedCount += 1
+                            return Turtle(name: "Ninja")
+                            }.inObjectScope(scope)
+                        _ = container.resolve(Animal.self)!
+                        _ = container.resolve(Animal.self)!
+                        expect(invokedCount) == expectation
+                    }
 
-                runInObjectScope(.transient, 2)
-                runInObjectScope(.graph, 2)
-                runInObjectScope(.container, 1)
+                    runInObjectScope(.transient, 2)
+                    runInObjectScope(.graph, 2)
+                    runInObjectScope(.container, 1)
+                }
             }
         }
         describe("Class as a service type") {
@@ -335,64 +337,6 @@ class ContainerSpec: QuickSpec {
                 }
 
                 expect(container.resolve(Animal.self) as? Cat).notTo(beNil())
-            }
-        }
-
-        describe("CustomStringConvertible") {
-            it("describes empty description without service registrations.") {
-                expect(container.description) == "[\n]"
-            }
-            it("describes a registration.") {
-                container.register(Animal.self) { _ in Cat() }
-
-                expect(container.description) ==
-                    "[\n"
-                    + "    { Service: Animal, Factory: (Resolver) -> Animal, ObjectScope: graph }\n"
-                    + "]"
-            }
-            it("describes a registration with name.") {
-                container.register(Animal.self, name: "My Cat") { _ in Cat() }
-
-                expect(container.description) ==
-                    "[\n"
-                    + "    { Service: Animal, Name: \"My Cat\", Factory: (Resolver) -> Animal, ObjectScope: graph }\n"
-                    + "]"
-            }
-            it("describes a registration with arguments.") {
-                container.register(Animal.self) { _, arg1, arg2 in Cat(name: arg1, sleeping: arg2) }
-
-                expect(container.description) ==
-                    "[\n"
-                    + "    { Service: Animal, Factory: (Resolver, String, Bool) -> Animal, ObjectScope: graph }\n"
-                    + "]"
-            }
-            it("describes a registration with a specified object scope.") {
-                container.register(Animal.self) { _ in Cat() }
-                    .inObjectScope(.container)
-
-                expect(container.description) ==
-                    "[\n"
-                    + "    { Service: Animal, Factory: (Resolver) -> Animal, ObjectScope: container }\n"
-                    + "]"
-            }
-            it("describes a registration with initCompleted.") {
-                container.register(Animal.self) { _ in Cat() }
-                    .initCompleted { _, _ in }
-
-                expect(container.description) ==
-                    "[\n"
-                    + "    { Service: Animal, Factory: (Resolver) -> Animal, ObjectScope: graph, InitCompleted: Specified }\n"
-                    + "]"
-            }
-            it("describes multiple registrations.") {
-                container.register(Animal.self, name: "1") { _ in Cat() }
-                container.register(Animal.self, name: "2") { _ in Cat() }
-
-                expect(container.description) ==
-                    "[\n"
-                    + "    { Service: Animal, Name: \"1\", Factory: (Resolver) -> Animal, ObjectScope: graph },\n"
-                    + "    { Service: Animal, Name: \"2\", Factory: (Resolver) -> Animal, ObjectScope: graph }\n"
-                    + "]"
             }
         }
     }
