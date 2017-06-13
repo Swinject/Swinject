@@ -5,6 +5,8 @@
 //  Created by mike.owens on 12/9/15.
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
+// swiftlint:disable type_body_length
+// swiftlint:disable function_body_length
 
 import Foundation
 import Quick
