@@ -10,7 +10,7 @@
 extension ObjectScope {
     @available(*, unavailable, renamed: "transient")
     public static let none = transient
-    
+
     @available(*, unavailable, renamed: "container")
     public static let hierarchy = container
 }

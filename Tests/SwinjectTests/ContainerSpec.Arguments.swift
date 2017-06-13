@@ -5,6 +5,8 @@
 //  Created by Yoichi Tagaya on 8/3/15.
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
+// swiftlint:disable type_body_length
+// swiftlint:disable function_body_length
 
 import Quick
 import Nimble
@@ -16,7 +18,7 @@ class ContainerSpec_Arguments: QuickSpec {
         beforeEach {
             container = Container()
         }
-        
+
         it("accepts 1 argument.") {
             container.register(Animal.self) { _, arg1 in
                 Cat(name: arg1)

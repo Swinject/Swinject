@@ -21,7 +21,8 @@ import Foundation
 ///
 ///     let x = container.resolve(X.self)!
 ///
-/// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
+/// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` 
+/// and depending on `A`.
 public final class Container {
     fileprivate var services = [ServiceKey: ServiceEntryProtocol]()
     fileprivate let parent: Container? // Used by HierarchyObjectScope
@@ -30,29 +31,31 @@ public final class Container {
     internal let lock: SpinLock // Used by SynchronizedResolver.
 
     internal init(parent: Container? = nil, debugHelper: DebugHelper) {
-        self.parent = parent    
+        self.parent = parent
         self.debugHelper = debugHelper
         self.lock = parent.map { $0.lock } ?? SpinLock()
     }
-    
+
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
     ///
     /// - Parameter parent: The optional parent `Container`.
     public convenience init(parent: Container? = nil) {
         self.init(parent: parent, debugHelper: LoggingDebugHelper())
     }
-    
-    /// Instantiates a `Container` with its parent `Container` and a closure registering services. The parent is optional.
+
+    /// Instantiates a `Container` with its parent `Container` and a closure registering services. 
+    /// The parent is optional.
     ///
     /// - Parameters:
     ///     - parent:             The optional parent `Container`.
     ///     - registeringClosure: The closure registering services to the new container instance.
-    /// - Remark: Compile time may be long if you pass a long closure to this initializer. Use `init()` or `init(parent:)` instead.
+    /// - Remark: Compile time may be long if you pass a long closure to this initializer. 
+    ///           Use `init()` or `init(parent:)` instead.
     public convenience init(parent: Container? = nil, registeringClosure: (Container) -> Void) {
         self.init(parent: parent)
         registeringClosure(self)
     }
-    
+
     /// Removes all registrations in the container.
     public func removeAll() {
         services.removeAll()
@@ -84,8 +87,9 @@ public final class Container {
     public func resetObjectScope(_ objectScope: ObjectScope) {
         resetObjectScope(objectScope as ObjectScopeProtocol)
     }
-    
-    /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
+
+    /// Adds a registration for the specified service with the factory closure to specify how the service is 
+    /// resolved with dependencies.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
@@ -101,8 +105,8 @@ public final class Container {
     public func register<Service>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service>
-    {
+        factory: @escaping (Resolver) -> Service
+    ) -> ServiceEntry<Service> {
         return _register(serviceType, factory: factory, name: name)
     }
 
@@ -125,16 +129,17 @@ public final class Container {
         _ serviceType: Service.Type,
         factory: Factory,
         name: String? = nil,
-        option: ServiceKeyOption? = nil) -> ServiceEntry<Service>
-    {
+        option: ServiceKeyOption? = nil
+    ) -> ServiceEntry<Service> {
         let key = ServiceKey(factoryType: type(of: factory), name: name, option: option)
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
         services[key] = entry
         return entry
     }
-    
+
     /// Returns a synchronized view of the container for thread safety.
-    /// The returned container is `Resolver` type. Call this method after you finish all service registrations to the original container.
+    /// The returned container is `Resolver` type. Call this method after you finish all service registrations 
+    /// to the original container.
     ///
     /// - Returns: A synchronized container as `Resolver`.
     public func synchronize() -> Resolver {
@@ -145,10 +150,14 @@ public final class Container {
 // MARK: - _Resolver
 extension Container: _Resolver {
     // swiftlint:disable:next identifier_name
-    public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOption? = nil, invoker: (Factory) -> Service) -> Service? {
+    public func _resolve<Service, Factory>(
+        name: String?,
+        option: ServiceKeyOption? = nil,
+        invoker: (Factory) -> Service
+    ) -> Service? {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
-        
+
         var resolvedInstance: Service?
         let key = ServiceKey(factoryType: Factory.self, name: name, option: option)
 
@@ -199,10 +208,9 @@ extension Container: Resolver {
     ///
     /// - Parameter serviceType: The service type to resolve.
     ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type is found in the `Container`.
-    public func resolve<Service>(
-        _ serviceType: Service.Type) -> Service?
-    {
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type 
+    ///            is found in the `Container`.
+    public func resolve<Service>(_ serviceType: Service.Type) -> Service? {
         return resolve(serviceType, name: nil)
     }
 
@@ -212,15 +220,13 @@ extension Container: Resolver {
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
     ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name is found in the `Container`.
-    public func resolve<Service>(
-        _ serviceType: Service.Type,
-        name: String?) -> Service?
-    {
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name 
+    ///            is found in the `Container`.
+    public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
         typealias FactoryType = (Resolver) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }
-    
+
     fileprivate func getEntry<Service>(_ key: ServiceKey) -> ServiceEntry<Service>? {
         if let entry = services[key] as? ServiceEntry<Service> {
             return entry
@@ -228,13 +234,16 @@ extension Container: Resolver {
             return parent?.getEntry(key)
         }
     }
-    
-    fileprivate func resolve<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
 
+    fileprivate func resolve<Service, Factory>(
+        entry: ServiceEntry<Service>,
+        key: ServiceKey,
+        invoker: (Factory) -> Service
+    ) -> Service {
         if let persistedInstance = entry.storage.instance as? Service {
             return persistedInstance
         }
-        
+
         let resolvedInstance = invoker(entry.factory as! Factory)
         if let persistedInstance = entry.storage.instance as? Service {
             // An instance for the key might be added by the factory invocation.
@@ -242,7 +251,7 @@ extension Container: Resolver {
         }
         entry.storage.instance = resolvedInstance as Any
 
-        if let completed = entry.initCompleted as? (Resolver, Service) -> () {
+        if let completed = entry.initCompleted as? (Resolver, Service) -> Void {
             completed(self, resolvedInstance)
         }
         return resolvedInstance

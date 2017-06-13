@@ -5,6 +5,8 @@
 //  Created by Jakub Vaňo on 11/11/16.
 //  Copyright © 2016 Swinject Contributors. All rights reserved.
 //
+// swiftlint:disable type_body_length
+// swiftlint:disable function_body_length
 
 import Quick
 import Nimble

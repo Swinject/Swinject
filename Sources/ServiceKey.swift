@@ -19,7 +19,7 @@ internal struct ServiceKey {
     internal let factoryType: FunctionType.Type
     internal let name: String?
     internal let option: ServiceKeyOption? // Used for SwinjectStoryboard or other extensions.
-    
+
     internal init(factoryType: FunctionType.Type, name: String? = nil, option: ServiceKeyOption? = nil) {
         self.factoryType = factoryType
         self.name = name
@@ -36,7 +36,9 @@ extension ServiceKey: Hashable {
 
 // MARK: Equatable
 func == (lhs: ServiceKey, rhs: ServiceKey) -> Bool {
-    return lhs.factoryType == rhs.factoryType && lhs.name == rhs.name && equalOptions(opt1: lhs.option, opt2: rhs.option)
+    return lhs.factoryType == rhs.factoryType
+        && lhs.name == rhs.name
+        && equalOptions(opt1: lhs.option, opt2: rhs.option)
 }
 
 private func equalOptions(opt1: ServiceKeyOption?, opt2: ServiceKeyOption?) -> Bool {

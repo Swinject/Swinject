@@ -5,6 +5,8 @@
 //  Created by Yoichi Tagaya on 7/29/15.
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
+// swiftlint:disable type_body_length
+// swiftlint:disable function_body_length
 
 import Quick
 import Nimble
@@ -16,7 +18,7 @@ class ContainerSpec_Circularity: QuickSpec {
         beforeEach {
             container = Container()
         }
-        
+
         describe("Two objects") {
             it("resolves circular dependency on each property.") {
                 let runInObjectScope: (ObjectScope) -> Void = { scope in
@@ -33,12 +35,12 @@ class ContainerSpec_Circularity: QuickSpec {
                             child.parent = r.resolve(ParentProtocol.self)!
                         }
                         .inObjectScope(scope)
-                    
+
                     let parent = container.resolve(ParentProtocol.self) as! Parent
                     let child = parent.child as! Child
                     expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                 }
-                
+
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
             }
@@ -53,12 +55,12 @@ class ContainerSpec_Circularity: QuickSpec {
                             child.parent = r.resolve(ParentProtocol.self)
                         }
                         .inObjectScope(scope)
-                    
+
                     let parent = container.resolve(ParentProtocol.self) as! Parent
                     let child = parent.child as! Child
                     expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                 }
-                
+
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
             }
@@ -87,7 +89,7 @@ class ContainerSpec_Circularity: QuickSpec {
                         d.b = $0.resolve(B.self)
                         d.c = $0.resolve(C.self)
                     }
-                
+
                 let a = container.resolve(A.self) as! ADependingOnB
                 let b = a.b as! BDependingOnC
                 let c = b.c as! CDependingOnAD
@@ -110,7 +112,7 @@ class ContainerSpec_Circularity: QuickSpec {
                         d.b = $0.resolve(B.self)
                         d.c = $0.resolve(C.self)
                     }
-                
+
                 let a = container.resolve(A.self) as! ADependingOnB
                 let b = a.b as! BDependingOnC
                 let c = b.c as! CDependingOnAD
