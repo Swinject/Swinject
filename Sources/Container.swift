@@ -101,8 +101,8 @@ public final class Container {
     public func register<Service>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service>
-    {
+        factory: @escaping (Resolver) -> Service
+    ) -> ServiceEntry<Service> {
         return _register(serviceType, factory: factory, name: name)
     }
 
@@ -125,8 +125,8 @@ public final class Container {
         _ serviceType: Service.Type,
         factory: Factory,
         name: String? = nil,
-        option: ServiceKeyOption? = nil) -> ServiceEntry<Service>
-    {
+        option: ServiceKeyOption? = nil
+    ) -> ServiceEntry<Service> {
         let key = ServiceKey(factoryType: type(of: factory), name: name, option: option)
         let entry = ServiceEntry(serviceType: serviceType, factory: factory)
         services[key] = entry
@@ -200,9 +200,7 @@ extension Container: Resolver {
     /// - Parameter serviceType: The service type to resolve.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type is found in the `Container`.
-    public func resolve<Service>(
-        _ serviceType: Service.Type) -> Service?
-    {
+    public func resolve<Service>(_ serviceType: Service.Type) -> Service? {
         return resolve(serviceType, name: nil)
     }
 
@@ -213,10 +211,7 @@ extension Container: Resolver {
     ///   - name:        The registration name.
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type and name is found in the `Container`.
-    public func resolve<Service>(
-        _ serviceType: Service.Type,
-        name: String?) -> Service?
-    {
+    public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
         typealias FactoryType = (Resolver) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }

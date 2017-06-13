@@ -2,7 +2,6 @@ disabled_rules:
   - force_cast
   - line_length
   - nesting
-  - opening_brace
   - valid_docs
   - type_name
 excluded:
