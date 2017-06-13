@@ -1,7 +1,6 @@
 disabled_rules:
   - force_cast
   - line_length
-  - nesting
   - type_name
 excluded:
   - Sources/GeneratedCode

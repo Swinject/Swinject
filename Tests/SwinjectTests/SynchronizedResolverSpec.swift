@@ -87,30 +87,30 @@ class SynchronizedResolverSpec: QuickSpec {
             }
         }
     }
+}
 
-    fileprivate final class Counter {
-        enum Status {
-            case underMax, reachedMax
-        }
+fileprivate final class Counter {
+    enum Status {
+        case underMax, reachedMax
+    }
 
-        private var max: Int
-        private let lock = DispatchQueue(label: "SwinjectTests.SynchronizedContainerSpec.Counter.Lock", attributes: [])
-        var count = 0
+    private var max: Int
+    private let lock = DispatchQueue(label: "SwinjectTests.SynchronizedContainerSpec.Counter.Lock", attributes: [])
+    var count = 0
 
-        init(max: Int) {
-            self.max = max
-        }
+    init(max: Int) {
+        self.max = max
+    }
 
-        @discardableResult
-        func increment() -> Status {
-            var status = Status.underMax
-            lock.sync {
-                self.count += 1
-                if self.count >= self.max {
-                    status = .reachedMax
-                }
+    @discardableResult
+    func increment() -> Status {
+        var status = Status.underMax
+        lock.sync {
+            self.count += 1
+            if self.count >= self.max {
+                status = .reachedMax
             }
-            return status
         }
+        return status
     }
 }
