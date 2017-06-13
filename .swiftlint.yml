@@ -10,7 +10,6 @@ excluded:
   - Sources/Container.Arguments.swift
   - Sources/SynchronizedResolver.Arguments.swift
   - Sources/Resolver.swift
-  - Tests
   - Sample-iOS.playground
   - Carthage
   - Packages
