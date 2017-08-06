@@ -70,7 +70,7 @@ public final class ServiceEntry<Service> {
     ///
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
-    public func initCompleted(_ completed: @escaping (Resolver, Service) -> Void) -> Self {
+    public func initCompleted(_ completed: @escaping (Resolver, Service) -> ()) -> Self {
         initCompleted = completed
         return self
     }

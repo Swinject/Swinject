@@ -242,7 +242,7 @@ extension Container: Resolver {
         }
         entry.storage.instance = resolvedInstance as Any
 
-        if let completed = entry.initCompleted as? (Resolver, Service) -> Void {
+        if let completed = entry.initCompleted as? (Resolver, Service) -> () {
             completed(self, resolvedInstance)
         }
         return resolvedInstance
