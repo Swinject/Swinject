@@ -30,9 +30,9 @@ Move to the Swinject directory.
 
 `cd Swinject`
 
-Then run `carthage` command to download the frameworks that Swinject uses.
+Then run `carthage` command to build the frameworks that Swinject uses.
 
-`carthage bootstrap --use-submodules --no-build`
+`carthage bootstrap`
 
 Now it is ready to open `Swinject.xcodeproj`. Modify the code, run unit tests, and submit your pull request.
 

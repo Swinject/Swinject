@@ -8,15 +8,15 @@
 
 /// The `Assembler` provides a means to build a container via `Assembly` instances.
 public final class Assembler {
-    
+
     /// the container that each assembly will build its `Service` definitions into
     private let container: Container
-    
+
     /// expose the container as a resolver so `Service` registration only happens within an assembly
     public var resolver: Resolver {
         return container
     }
-    
+
     /// Will create an empty `Assembler`
     ///
     /// - parameter container: the baseline container
@@ -24,7 +24,7 @@ public final class Assembler {
     public init(container: Container? = Container()) {
         self.container = container!
     }
-    
+
     /// Will create an empty `Assembler`
     ///
     /// - parameter parentAssembler: the baseline assembler
@@ -32,7 +32,7 @@ public final class Assembler {
     public init(parentAssembler: Assembler?) {
         container = Container(parent: parentAssembler?.container)
     }
-    
+
     /// Will create a new `Assembler` with the given `Assembly` instances to build a `Container`
     ///
     /// - parameter assemblies:         the list of assemblies to build the container from
@@ -56,7 +56,7 @@ public final class Assembler {
         self.container = container
         run(assemblies: assemblies)
     }
-    
+
     /// Will create a new `Assembler` with the given `Assembly` instances to build a `Container`
     ///
     /// - parameter assemblies:         the list of assemblies to build the container from
@@ -76,9 +76,9 @@ public final class Assembler {
         container = Container(parent: parent?.container)
         run(assemblies: assemblies)
     }
-    
-    /// Will apply the assembly to the container. This is useful if you want to lazy load an assembly into the assembler's
-    /// container.
+
+    /// Will apply the assembly to the container. This is useful if you want to lazy load an assembly into the 
+    /// assembler's container.
     ///
     /// If this assembly type is load aware, the loaded hook will be invoked right after the container has assembled
     /// since after each call to `addAssembly` the container is fully loaded in its current state. If you wish to
@@ -89,9 +89,9 @@ public final class Assembler {
     public func apply(assembly: Assembly) {
         run(assemblies: [assembly])
     }
-    
-    /// Will apply the assemblies to the container. This is useful if you want to lazy load several assemblies into the assembler's
-    /// container
+
+    /// Will apply the assemblies to the container. This is useful if you want to lazy load several assemblies into the 
+    /// assembler's container
     ///
     /// If this assembly type is load aware, the loaded hook will be invoked right after the container has assembled
     /// since after each call to `addAssembly` the container is fully loaded in its current state.
@@ -101,15 +101,15 @@ public final class Assembler {
     public func apply(assemblies: [Assembly]) {
         run(assemblies: assemblies)
     }
-    
+
     // MARK: Private
-    
+
     private func run(assemblies: [Assembly]) {
         // build the container from each assembly
         for assembly in assemblies {
             assembly.assemble(container: self.container)
         }
-        
+
         // inform all of the assemblies that the container is loaded
         for assembly in assemblies {
             assembly.loaded(resolver: self.resolver)
