@@ -24,7 +24,7 @@ internal final class LoggingDebugHelper: DebugHelper {
         var output = [
             "Swinject: Resolution failed. Expected registration:",
             "\t{ \(description(serviceType: serviceType, serviceKey: key)) }",
-            "Available registrations:",
+            "Available registrations:"
         ]
         output += availableRegistrations
             .filter { $0.1 is ServiceEntry<Service> }
