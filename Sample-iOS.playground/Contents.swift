@@ -390,3 +390,28 @@ var turtle2 = container5.resolve(Animal.self)!
 turtle1.name = "Laph"
 print(turtle1.name!)
 print(turtle2.name!)
+
+/*:
+## Using RegistryType
+*/
+
+// Implement the RegistryType to enum
+enum ZooType: String, RegistryType {
+	case ueno
+	case asahiyama
+	
+	var name: String {
+		return rawValue
+	}
+}
+
+let containerRegistryType = Container()
+
+containerRegistryType.register(Animal.self, registryType: ZooType.ueno) { _ in Cat(name: "Tama") }
+containerRegistryType.register(Animal.self, registryType: ZooType.asahiyama) { _ in Cat(name: "Kotetsu") }
+
+let ueno = containerRegistryType.resolve(Animal.self, registryType: ZooType.ueno)!
+let asahiyama = containerRegistryType.resolve(Animal.self, registryType: ZooType.asahiyama)!
+
+print(ueno.name)
+print(asahiyama.name)
