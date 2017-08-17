@@ -39,4 +39,10 @@ extension SynchronizedResolver: Resolver {
             return self.container.resolve(serviceType, name: name)
         }
     }
+
+    internal func resolve<Service>(_ serviceType: Service.Type, registryType: RegistryType) -> Service? {
+        return container.lock.sync {
+            return self.container.resolve(serviceType, name: registryType.name)
+        }
+  	}
 }

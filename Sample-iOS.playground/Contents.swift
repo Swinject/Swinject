@@ -19,7 +19,7 @@ class Cat: Animal {
     init(name: String?) {
         self.name = name
     }
-    
+
     func sound() -> String {
         return "Meow!"
     }
@@ -226,6 +226,7 @@ class Horse: Animal {
 // but the factory with the arguments is recognized as a different registration to resolve.
 container.register(Animal.self) { _, name in Horse(name: name) }
 container.register(Animal.self) { _, name, running in Horse(name: name, running: running) }
+container.register(Cat.self) { _, name in Cat(name: name) }
 
 // The arguments to the factory are specified on the resolution.
 // If you pass an argument, pass it to `argument` parameter.

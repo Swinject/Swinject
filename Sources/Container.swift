@@ -110,6 +110,28 @@ public final class Container {
         return _register(serviceType, factory: factory, name: name)
     }
 
+    /// Adds a registration for the specified service with the factory closure to specify how the service is
+    /// resolved with dependencies.
+    ///
+    /// - Parameters:
+    ///   - serviceType:  The service type to register.
+    ///   - registryType: A registration type, which is used to differentiate from other registrations
+    ///                   that have the same service and factory types.
+    ///   - factory:      The closure to specify how the service type is resolved with the dependencies of the type.
+    ///                   It is invoked when the `Container` needs to instantiate the instance.
+    ///                   It takes a `Resolver` to inject dependencies to the instance,
+    ///                   and returns the instance of the component type for the service.
+    ///
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
+    public func register<Service>(
+        _ serviceType: Service.Type,
+        registryType: RegistryType,
+        factory: @escaping (Resolver) -> Service
+        ) -> ServiceEntry<Service> {
+        return register(serviceType, name: registryType.name, factory: factory)
+    }
+
     /// This method is designed for the use to extend Swinject functionality.
     /// Do NOT use this method unless you intend to write an extension or plugin to Swinject framework.
     ///
@@ -225,6 +247,18 @@ extension Container: Resolver {
     public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
         typealias FactoryType = (Resolver) -> Service
         return _resolve(name: name) { (factory: FactoryType) in factory(self) }
+    }
+
+    /// Retrieves the instance with the specified service type and registration name.
+    ///
+    /// - Parameters:
+    ///   - serviceType:  The service type to resolve.
+    ///   - registryType: The registration type.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name
+    ///            is found in the `Container`.
+    public func resolve<Service>(_ serviceType: Service.Type, registryType: RegistryType) -> Service? {
+        return resolve(serviceType, name: registryType.name)
     }
 
     fileprivate func getEntry<Service>(_ key: ServiceKey) -> ServiceEntry<Service>? {
