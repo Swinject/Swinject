@@ -5,7 +5,6 @@
 //  Created by Jakub Vaňo on 13/06/2017.
 //  Copyright © 2017 Swinject Contributors. All rights reserved.
 //
-// swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
 // swiftlint:disable line_length
 
