@@ -24,7 +24,7 @@ matrix:
         - pod lib lint
     - env: JOB="XCODE" DEST="OS=8.4,name=iPhone 5" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
     - env: JOB="XCODE" DEST="OS=9.3,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
-    - env: JOB="XCODE" DEST="OS=10.3,name=iPhone 7 Plus" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
+    - env: JOB="XCODE" DEST="OS=10.3.1,name=iPhone 7 Plus" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
     - env: JOB="XCODE" DEST="OS=11.0,name=iPhone 8 Plus" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
     - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-OSX" SDK="macosx" ACTION="test"
     - env: JOB="XCODE" DEST="OS=9.2,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test"
