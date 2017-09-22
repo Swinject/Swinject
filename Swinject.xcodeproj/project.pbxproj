@@ -738,7 +738,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Swinject Contributors";
 				TargetAttributes = {
 					981899BB1B5FE63F00C702D0 = {
