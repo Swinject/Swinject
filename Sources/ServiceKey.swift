@@ -30,7 +30,7 @@ internal struct ServiceKey {
 // MARK: Hashable
 extension ServiceKey: Hashable {
     var hashValue: Int {
-        return String(describing: factoryType).hashValue ^ (name?.hashValue ?? 0) ^ (option?.hashValue ?? 0)
+        return ObjectIdentifier(factoryType).hashValue ^ (name?.hashValue ?? 0) ^ (option?.hashValue ?? 0)
     }
 }
 
