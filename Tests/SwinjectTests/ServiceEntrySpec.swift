@@ -16,5 +16,10 @@ class ServiceEntrySpec: QuickSpec {
             let entry = ServiceEntry(serviceType: Int.self, factory: { return 0 })
             expect(entry.objectScope) === ObjectScope.graph
         }
+
+        it("has ObjectScope set to value from init.") {
+            let entry = ServiceEntry(serviceType: Int.self, factory: { return 0 }, objectScope: .weak)
+            expect(entry.objectScope) === ObjectScope.weak
+        }
     }
 }
