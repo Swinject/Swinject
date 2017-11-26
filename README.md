@@ -167,7 +167,7 @@ Notice that the `pet` of `PetOwner` is automatically set as the instance of `Cat
 
 ## Where to Register Services
 
-Services must be registered to a container before they are used. The typical registration approach will differ depending upon whether you are using `SwinjectStoryboard`.
+Services must be registered to a container before they are used. The typical registration approach will differ depending upon whether you are using `SwinjectStoryboard` or not.
 
 The following view controller class is used in addition to the protocols and classes above in the examples below.
 
