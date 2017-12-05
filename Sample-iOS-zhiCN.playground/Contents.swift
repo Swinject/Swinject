@@ -4,13 +4,9 @@
 
 import Swinject
 
-// register 相当于添加
-// resolve 相当于查找
-
 /*:
 ## 基本用法
 */
-
 
 protocol Animal {
     var name: String? { get set }
@@ -19,7 +15,6 @@ protocol Animal {
 protocol Person {
     func play() -> String
 }
-
 
 class Cat: Animal {
     var name: String?
@@ -46,7 +41,6 @@ class PetOwner: Person {
     }
 }
 
-// Create a container and register service and component pairs.
 // 创建 container 并 注册服务和组件对
 // 创建 container
 let container = Container()
@@ -54,13 +48,10 @@ let container = Container()
 container.register(Animal.self) { _ in Cat(name: "Mimi") }
 container.register(Person.self) { r in PetOwner(pet: r.resolve(Animal.self)!) }
 
-// The person is resolved to a PetOwner with a Cat.
 // 通过 container 查找服务 Person.self，返回上面的 PetOwner(pet: r.resolve(Animal.self)!)初始化结果
 let person = container.resolve(Person.self)!
 print(person.play())
 
-
-/////////////////////////////////////////////////////////////////////
 /*:
 ## Named Registration 命名注册
 */
@@ -88,28 +79,20 @@ container.register(Person.self, name: "doggy") { r in PetOwner(pet: r.resolve(An
 let doggyPerson = container.resolve(Person.self, name:"doggy")!
 print(doggyPerson.play())
 
-
-
-/////////////////////////////////////////////////////////////////////
 /*:
 ## Initialization Callback 初始化回调
 */
 
-// A closure can be registered as an initCompleted callback.
 // 闭包可以被注册为 initCompleted 回调
 var called = false
 container.register(Animal.self, name: "cb") { _ in Cat(name: "Mew") }
     .initCompleted { _, _ in called = true }
 print(called)
 
-// The closure is executed when the instance is created.
 // 当实例被初始化后（ Cat(name: "Mew")初始化 ），闭包会立马执行
 let catWithCallback = container.resolve(Animal.self, name: "cb")
 print(called)
 
-
-
-/////////////////////////////////////////////////////////////////////
 /*:
 ## Injection Patterns  注入模式
 */
@@ -121,7 +104,7 @@ class InjectablePerson: Person {
         }
     }
     var log = ""
-    
+
     init() { }
     
     init(pet: Animal) {
@@ -187,10 +170,6 @@ container.register(Person.self, name: "method2") { _ in InjectablePerson() }
 let methodInjection2 = container.resolve(Person.self, name:"method2")!
 print(methodInjection2.play())      // Injected by method.
 
-
-
-
-/////////////////////////////////////////////////////////////////////
 /*:
 ## Circular Dependency  循环依赖
 */
@@ -210,7 +189,6 @@ internal class Child: ChildProtocol {
     weak var parent: ParentProtocol?
 }
 
-// Use initCompleted callback to set the circular dependency to avoid infinite recursion.
 // 通过 initCompleted 回调来设置循环依赖，从而避免无限递归
 container.register(ParentProtocol.self) { r in Parent(child: r.resolve(ChildProtocol.self)!) }
 container.register(ChildProtocol.self) { _ in Child() }
@@ -225,9 +203,6 @@ let child = parent.child as! Child
 // The parent and child are referencing each other.
 print(parent === child.parent)
 
-
-
-/////////////////////////////////////////////////////////////////////
 /*:
 ## Injection with Arguments  注入参数
 */
@@ -269,9 +244,6 @@ let horse2 = container.resolve(Animal.self, arguments: "Lucky", true) as! Horse
 print(horse2.name)
 print(horse2.running)
 
-
-
-/////////////////////////////////////////////////////////////////////
 /*:
 ## Self-binding  自我绑定
 */
@@ -300,9 +272,6 @@ container.register(MyData.self) { _ in MyImportantData() }
 let myController = container.resolve(MyController.self)!
 print(myController.showData())
 
-
-
-/////////////////////////////////////////////////////////////////////
 /*:
 ## Container Hierarchy 容器的层次结构
 */
@@ -321,9 +290,6 @@ print(cat != nil)
 let dog = parentContainer.resolve(Animal.self, name: "dog")
 print(dog == nil)
 
-
-
-/////////////////////////////////////////////////////////////////////
 /*:
 ## Object Scopes 对象范围
 */
@@ -350,7 +316,6 @@ class C { }
 
 //: ### ObjectScope.transient   transient用法
 
-// New instatnces are created every time.
 // 实例每次都被创建
 let container1 = Container()
 container1.register(C.self) { _ in C() }
@@ -370,7 +335,6 @@ print(a1.b.c !== a1.c)  // true
 
 //: ### ObjectScope.graph   graph用法
 
-// New instances are created like ObjectScope.transient.
 // 和 .transient一样，.graph 实例每次都被创建
 let container2 = Container()
 container2.register(C.self) { _ in C() }
@@ -380,7 +344,6 @@ let c3 = container2.resolve(C.self)
 let c4 = container2.resolve(C.self)
 print(c3 !== c4)    // true
 
-// But unlike ObjectScope.transient, the same instance is resolved in the object graph.
 // 和 .transient 不一样，.graph 在一个对象图中创建出相同的实例
 container2.register(A.self) { r in A(b: r.resolve(B.self)!, c: r.resolve(C.self)!) }
 container2.register(B.self) { r in B(c: r.resolve(C.self)!) }
@@ -390,7 +353,6 @@ print(a2.b.c === a2.c)  // true
 
 //: ### ObjectScope.container   container用法
 
-// The same instance is shared in the container
 // 使用 .container 可创建相同实例
 let container4 = Container()
 container4.register(C.self) { _ in C() }
@@ -400,15 +362,11 @@ let c8 = container4.resolve(C.self)
 let c9 = container4.resolve(C.self)
 print(c8 === c9)    // true
 
-// The instance in the parent container is shared to its child container.
 // 父容器中的实例被共享到它的子容器中
 let childOfContainer4 = Container(parent: container4)
 let c10 = childOfContainer4.resolve(C.self)
 print(c8 === c10)   // true
 
-
-
-/////////////////////////////////////////////////////////////////////
 /*:
 ## Injection of Value s     通过 值 注入
 */
@@ -425,7 +383,6 @@ struct Turtle: Animal {
     }
 }
 
-// A value  can be registered as a component.
 // The object scope is ignored because a value  always creates a new instance.
 // value 作为一个组件 来注入
 let container5 = Container()
