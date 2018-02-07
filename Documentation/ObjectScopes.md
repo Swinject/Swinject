@@ -39,9 +39,17 @@ Above holds for reference types - value types are not shared in this object scop
 Custom object scopes can be defined like this:
 ```swift
 extension ObjectScope {
-    static let custom = ObjectScope(storageFactory: PersistentStorage.init)
+    static let custom = ObjectScope(storageFactory: YourCustomStorage.init)
+}
+
+public final class YourCustomStorage: InstanceStorage {
+  public var instance: Any?
+
+  public init() {}
 }
 ```
+
+
 Instances in `.custom` scope will be shared in the same way as in `.container` scope but can be discarded as needed:
 ```swift
 container.resetObjectScope(.custom)
