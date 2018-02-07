@@ -32,6 +32,11 @@ public final class ServiceEntry<Service> {
         self.factory = factory
     }
 
+    convenience internal init(serviceType: Service.Type, factory: FunctionType, objectScope: ObjectScope) {
+      self.init(serviceType: serviceType, factory: factory)
+      self.objectScope = objectScope
+    }
+
     internal func copyExceptInstance() -> ServiceEntry<Service> {
         let copy = ServiceEntry(serviceType: serviceType, factory: factory)
         copy.objectScope = objectScope

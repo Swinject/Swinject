@@ -28,12 +28,14 @@ public final class Container {
     fileprivate let parent: Container? // Used by HierarchyObjectScope
     fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
+    fileprivate let defaultObjectScope: ObjectScope
     internal let lock: SpinLock // Used by SynchronizedResolver.
 
-    internal init(parent: Container? = nil, debugHelper: DebugHelper) {
+    internal init(parent: Container? = nil, debugHelper: DebugHelper, defaultObjectScope: ObjectScope = .graph) {
         self.parent = parent
         self.debugHelper = debugHelper
         self.lock = parent.map { $0.lock } ?? SpinLock()
+        self.defaultObjectScope = defaultObjectScope
     }
 
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
@@ -132,7 +134,7 @@ public final class Container {
         option: ServiceKeyOption? = nil
     ) -> ServiceEntry<Service> {
         let key = ServiceKey(factoryType: type(of: factory), name: name, option: option)
-        let entry = ServiceEntry(serviceType: serviceType, factory: factory)
+        let entry = ServiceEntry(serviceType: serviceType, factory: factory, objectScope: defaultObjectScope)
         services[key] = entry
         return entry
     }
