@@ -44,6 +44,8 @@ Dependency injection (DI) is a software design pattern that implements Inversion
   - Xcode 7.0+
 - Swift 3
   - Xcode 8.0+
+- Swift 3.2, 4.x
+  - Xcode 9.0+
 - Carthage 0.18+ (if you use)
 - CocoaPods 1.1.1+ (if you use)
 
@@ -61,13 +63,13 @@ To install Swinject with Carthage, add the following line to your `Cartfile`.
 github "Swinject/Swinject" ~> 1.1.4
 ```
 
-#### Swift 3.x
+#### Swift 3.x or 4.x
 
 ```
-github "Swinject/Swinject" ~> 2.0.0
+github "Swinject/Swinject"
 
 # Uncomment if you use SwinjectStoryboard
-# github "Swinject/SwinjectStoryboard" ~> 1.0.0
+# github "Swinject/SwinjectStoryboard"
 ```
 
 Then run `carthage update --no-use-binaries` command or just `carthage update`. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
@@ -94,10 +96,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
 use_frameworks!
 
-pod 'Swinject', '~> 2.1.0'
+pod 'Swinject'
 
 # Uncomment if you use SwinjectStoryboard
-# pod 'SwinjectStoryboard', '~> 1.0.0'
+# pod 'SwinjectStoryboard'
 ```
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
