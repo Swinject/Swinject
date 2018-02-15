@@ -20,6 +20,7 @@ public class ObjectScope: ObjectScopeProtocol, CustomStringConvertible {
 
     public private(set) var description: String
     private var storageFactory: () -> InstanceStorage
+    private let parent: ObjectScopeProtocol?
 
     /// Instantiates an `ObjectScope` with storage factory and description.
     ///  - Parameters:
@@ -27,14 +28,20 @@ public class ObjectScope: ObjectScopeProtocol, CustomStringConvertible {
     ///     - description:      Description of object scope for `CustomStringConvertible` implementation
     public init(
         storageFactory: @escaping () -> InstanceStorage,
-        description: String = ""
+        description: String = "",
+        parent: ObjectScopeProtocol? = nil
     ) {
         self.storageFactory = storageFactory
         self.description = description
+        self.parent = parent
     }
 
     /// Will invoke and return the result of `storageFactory` closure provided during initialisation.
     public func makeStorage() -> InstanceStorage {
-        return storageFactory()
+        if let parent = parent {
+            return CompositeStorage([storageFactory(), parent.makeStorage()])
+        } else {
+            return storageFactory()
+        }
     }
 }

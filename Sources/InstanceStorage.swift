@@ -62,3 +62,20 @@ public final class WeakStorage: InstanceStorage {
 
     public init () {}
 }
+
+public final class CompositeStorage: InstanceStorage {
+    private let components: [InstanceStorage]
+
+    public var instance: Any? {
+        get { return components.flatMap { $0.instance } .first }
+        set { components.forEach { $0.instance = newValue } }
+    }
+
+    public init(_ components: [InstanceStorage]) {
+        self.components = components
+    }
+
+    public func graphResolutionCompleted() {
+        components.forEach { $0.graphResolutionCompleted() }
+    }
+}
