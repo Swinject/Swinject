@@ -16,10 +16,10 @@ internal final class SynchronizedResolver {
 
 extension SynchronizedResolver: _Resolver {
     // swiftlint:disable:next identifier_name
-    internal func _resolve<Service, Factory>(
+    internal func _resolve<Service, Arguments>(
         name: String?,
         option: ServiceKeyOption?,
-        invoker: (Factory) -> Service
+        invoker: ((Arguments) -> Service) -> Service
     ) -> Service? {
         return container.lock.sync {
             return self.container._resolve(name: name, option: option, invoker: invoker)

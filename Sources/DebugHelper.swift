@@ -48,7 +48,7 @@ internal func description<Service>(
     return "Service: \(serviceType)"
         + nameDescription
         + optionDescription
-        + ", Factory: \(serviceKey.factoryType)"
+        + ", Factory: \(serviceKey.argumentsType) -> \(serviceKey.serviceType)"
         + objectScopeDescription
         + initCompletedDescription
 }

@@ -127,13 +127,13 @@ public final class Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     // swiftlint:disable:next identifier_name
-    public func _register<Service, Factory>(
+    public func _register<Service, Arguments>(
         _ serviceType: Service.Type,
-        factory: Factory,
+        factory: @escaping (Arguments) -> Service,
         name: String? = nil,
         option: ServiceKeyOption? = nil
     ) -> ServiceEntry<Service> {
-        let key = ServiceKey(factoryType: type(of: factory), name: name, option: option)
+        let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
         let entry = ServiceEntry(serviceType: serviceType, factory: factory, objectScope: defaultObjectScope)
         services[key] = entry
         return entry
@@ -152,16 +152,16 @@ public final class Container {
 // MARK: - _Resolver
 extension Container: _Resolver {
     // swiftlint:disable:next identifier_name
-    public func _resolve<Service, Factory>(
+    public func _resolve<Service, Arguments>(
         name: String?,
         option: ServiceKeyOption? = nil,
-        invoker: (Factory) -> Service
+        invoker: ((Arguments) -> Service) -> Service
     ) -> Service? {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
 
         var resolvedInstance: Service?
-        let key = ServiceKey(factoryType: Factory.self, name: name, option: option)
+        let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
 
         if let entry = getEntry(key) as ServiceEntry<Service>? {
             resolvedInstance = resolve(entry: entry, key: key, invoker: invoker)

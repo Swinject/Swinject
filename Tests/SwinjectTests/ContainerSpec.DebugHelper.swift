@@ -19,10 +19,15 @@ class ContainerSpec_DebugHelper: QuickSpec {
             it("should call debug helper with failing service and key") {
                 let container = Container(debugHelper: spy)
 
-                _ = container._resolve(name: "name") { (_: Int, _: Int) in return 1 as Double }
+                _ = container._resolve(name: "name") { (_: (Int) -> Double) in return 1 as Double }
 
                 expect("\(spy.serviceType)") == "Double"
-                expect(spy.key) == ServiceKey(factoryType: (Int, Int).self, name: "name", option: nil)
+                expect(spy.key) == ServiceKey(
+                    serviceType: Double.self,
+                    argumentsType: Int.self,
+                    name: "name",
+                    option: nil
+                )
             }
 
             it("should call helper with all registrations") {
