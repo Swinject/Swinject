@@ -26,6 +26,7 @@ public class ObjectScope: ObjectScopeProtocol, CustomStringConvertible {
     ///  - Parameters:
     ///     - storageFactory:   Closure for creating an `InstanceStorage`
     ///     - description:      Description of object scope for `CustomStringConvertible` implementation
+    ///     - parent:           If provided, its storage will be composed with the result of `storageFactory`
     public init(
         storageFactory: @escaping () -> InstanceStorage,
         description: String = "",

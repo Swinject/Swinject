@@ -16,6 +16,7 @@ extension InstanceStorage {
     public func graphResolutionCompleted() {}
 }
 
+/// Persists storage during the resolution of the object graph
 public final class GraphStorage: InstanceStorage {
     public var instance: Any?
 
@@ -63,6 +64,8 @@ public final class WeakStorage: InstanceStorage {
     public init () {}
 }
 
+/// Combines the behavior of multiple instance storages.
+/// Instance is persisted as long as at least one of the underlying storages is persisting it.
 public final class CompositeStorage: InstanceStorage {
     private let components: [InstanceStorage]
 
