@@ -21,5 +21,5 @@ extension ObjectScope {
     /// An instance provided by the `Container` is shared within the `Container` and its child `Container`s 
     /// as long as there are strong references to given instance. Otherwise new instance is created
     /// when resolving the type.
-    public static let weak = ObjectScope(storageFactory: WeakStorage.init, description: "weak")
+    public static let weak = ObjectScope(storageFactory: WeakStorage.init, description: "weak", parent: ObjectScope.graph)
 }
