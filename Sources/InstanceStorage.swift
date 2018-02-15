@@ -9,6 +9,21 @@
 /// Storage provided by `ObjectScope`. It is used by `Container` to persist resolved instances.
 public protocol InstanceStorage: AnyObject {
     var instance: Any? { get set }
+    func graphResolutionCompleted()
+}
+
+extension InstanceStorage {
+    public func graphResolutionCompleted() {}
+}
+
+public final class GraphStorage: InstanceStorage {
+    public var instance: Any?
+
+    public init() {}
+
+    public func graphResolutionCompleted() {
+        instance = nil
+    }
 }
 
 /// Persists stored instance until it is explicitly discarded.

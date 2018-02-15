@@ -199,7 +199,7 @@ extension Container: _Resolver {
 
         resolutionDepth -= 1
         if resolutionDepth == 0 {
-            resetObjectScope(.graph)
+            services.values.forEach { $0.storage.graphResolutionCompleted() }
         }
     }
 }
