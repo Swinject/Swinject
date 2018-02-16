@@ -63,13 +63,13 @@ public final class Container {
         services.removeAll()
     }
 
-    /// Discards instances for services registered in the given `ObjectsScopeType`.
+    /// Discards instances for services registered in the given `ObjectsScopeProtocol`.
     ///
     /// **Example usage:**
     ///     container.resetObjectScope(ObjectScope.container)
     ///
     /// - Parameters:
-    ///     - objectScope: All instances registered in given `ObjectsScopeType` will be discarded.
+    ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScopeProtocol) {
         services.values
             .filter { $0.objectScope === objectScope }
@@ -199,7 +199,7 @@ extension Container: _Resolver {
 
         resolutionDepth -= 1
         if resolutionDepth == 0 {
-            resetObjectScope(.graph)
+            services.values.forEach { $0.storage.graphResolutionCompleted() }
         }
     }
 }

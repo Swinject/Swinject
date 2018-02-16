@@ -71,3 +71,7 @@ internal class DDependingOnBC: D {
     weak var b: B?
     weak var c: C?
 }
+
+internal class CDependingOnWeakB: C {
+    weak var b: B?
+}

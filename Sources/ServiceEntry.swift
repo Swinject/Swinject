@@ -37,13 +37,6 @@ public final class ServiceEntry<Service> {
       self.objectScope = objectScope
     }
 
-    internal func copyExceptInstance() -> ServiceEntry<Service> {
-        let copy = ServiceEntry(serviceType: serviceType, factory: factory)
-        copy.objectScope = objectScope
-        copy.initCompleted = initCompleted
-        return copy
-    }
-
     /// Specifies the object scope to resolve the service.
     ///
     /// - Parameter scope: The `ObjectScopeProtocol` value.

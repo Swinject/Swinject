@@ -121,5 +121,18 @@ class ContainerSpec_Circularity: QuickSpec {
                 expect(d.c as? CDependingOnAD === c).to(beTrue()) // Workaround for crash in Nimble
             }
         }
+        describe("Graph root is in weak object scope") {
+            it("does not deallocate during graph resolution") {
+                container.register(B.self) { r in BDependingOnC(c: r.resolve(C.self)!) }
+                    .inObjectScope(.weak)
+                container.register(C.self) { _ in CDependingOnWeakB() }
+                    .initCompleted { r, c in (c as! CDependingOnWeakB).b = r.resolve(B.self) }
+
+                let b = container.resolve(B.self) as? BDependingOnC
+                let c = b?.c as? CDependingOnWeakB
+
+                expect(c?.b).notTo(beNil())
+            }
+        }
     }
 }
