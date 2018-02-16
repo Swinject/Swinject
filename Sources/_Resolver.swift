@@ -23,6 +23,6 @@ public protocol _Resolver {
     func _resolve<Service, Arguments>(
         name: String?,
         option: ServiceKeyOption?,
-        invoker: ((Arguments) -> Service) -> Service
+        invoker: ((Arguments) -> Any) -> Service
     ) -> Service?
 }

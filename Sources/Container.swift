@@ -24,7 +24,7 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` 
 /// and depending on `A`.
 public final class Container {
-    fileprivate var services = [ServiceKey: ServiceEntryProtocol]()
+    internal var services = [ServiceKey: ServiceEntryProtocol]()
     fileprivate let parent: Container? // Used by HierarchyObjectScope
     fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
@@ -129,12 +129,12 @@ public final class Container {
     // swiftlint:disable:next identifier_name
     public func _register<Service, Arguments>(
         _ serviceType: Service.Type,
-        factory: @escaping (Arguments) -> Service,
+        factory: @escaping (Arguments) -> Any,
         name: String? = nil,
         option: ServiceKeyOption? = nil
     ) -> ServiceEntry<Service> {
         let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
-        let entry = ServiceEntry(serviceType: serviceType, factory: factory, objectScope: defaultObjectScope)
+        let entry = ServiceEntry(serviceType: serviceType, key: key, factory: factory, objectScope: defaultObjectScope)
         services[key] = entry
         return entry
     }
@@ -155,7 +155,7 @@ extension Container: _Resolver {
     public func _resolve<Service, Arguments>(
         name: String?,
         option: ServiceKeyOption? = nil,
-        invoker: ((Arguments) -> Service) -> Service
+        invoker: ((Arguments) -> Any) -> Service
     ) -> Service? {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
@@ -163,7 +163,7 @@ extension Container: _Resolver {
         var resolvedInstance: Service?
         let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
 
-        if let entry = getEntry(key) as ServiceEntry<Service>? {
+        if let entry = getEntry(key, ofType: Service.self) {
             resolvedInstance = resolve(entry: entry, key: key, invoker: invoker)
         }
 
@@ -225,20 +225,20 @@ extension Container: Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type and name 
     ///            is found in the `Container`.
     public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
-        typealias FactoryType = (Resolver) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self) }
+        typealias FactoryType = (Resolver) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory(self) as! Service }
     }
 
-    fileprivate func getEntry<Service>(_ key: ServiceKey) -> ServiceEntry<Service>? {
-        if let entry = services[key] as? ServiceEntry<Service> {
+    fileprivate func getEntry<Service>(_ key: ServiceKey, ofType: Service.Type) -> ServiceEntryProtocol? {
+        if let entry = services[key] {
             return entry
         } else {
-            return parent?.getEntry(key)
+            return parent?.getEntry(key, ofType: Service.self)
         }
     }
 
     fileprivate func resolve<Service, Factory>(
-        entry: ServiceEntry<Service>,
+        entry: ServiceEntryProtocol,
         key: ServiceKey,
         invoker: (Factory) -> Service
     ) -> Service {

@@ -34,8 +34,8 @@ internal final class LoggingDebugHelper: DebugHelper {
     }
 }
 
-internal func description<Service>(
-    serviceType: Service.Type,
+internal func description(
+    serviceType: Any.Type,
     serviceKey: ServiceKey,
     objectScope: ObjectScopeProtocol? = nil,
     initCompleted: FunctionType? = nil

@@ -24,8 +24,8 @@ class ContainerSpec_Arguments: QuickSpec {
             }
             let animal = container.resolve(
                 Animal.self,
-                argument: "1")!
-            expect(animal.name) == "1"
+                argument: "1")
+            expect(animal?.name) == "1"
         }
         it("accepts 2 arguments.") {
             container.register(Animal.self) { _, arg1, arg2 in
@@ -33,8 +33,8 @@ class ContainerSpec_Arguments: QuickSpec {
             }
             let animal = container.resolve(
                 Animal.self,
-                arguments: "1", "2")!
-            expect(animal.name) == "12"
+                arguments: "1", "2")
+            expect(animal?.name) == "12"
         }
         it("accepts 3 arguments.") {
             container.register(Animal.self) { _, arg1, arg2, arg3 in
@@ -42,8 +42,8 @@ class ContainerSpec_Arguments: QuickSpec {
             }
             let animal = container.resolve(
                 Animal.self,
-                arguments: "1", "2", "3")!
-            expect(animal.name) == "123"
+                arguments: "1", "2", "3")
+            expect(animal?.name) == "123"
         }
         it("accepts 4 arguments.") {
             container.register(Animal.self) { _, arg1, arg2, arg3, arg4 in
@@ -51,8 +51,8 @@ class ContainerSpec_Arguments: QuickSpec {
             }
             let animal = container.resolve(
                 Animal.self,
-                arguments: "1", "2", "3", "4")!
-            expect(animal.name) == "1234"
+                arguments: "1", "2", "3", "4")
+            expect(animal?.name) == "1234"
         }
         it("accepts 5 arguments.") {
             container.register(Animal.self) { _, arg1, arg2, arg3, arg4, arg5 in
@@ -60,8 +60,8 @@ class ContainerSpec_Arguments: QuickSpec {
             }
             let animal = container.resolve(
                 Animal.self,
-                arguments: "1", "2", "3", "4", "5")!
-            expect(animal.name) == "12345"
+                arguments: "1", "2", "3", "4", "5")
+            expect(animal?.name) == "12345"
         }
         it("accepts 6 arguments.") {
             container.register(Animal.self) { _, arg1, arg2, arg3, arg4, arg5, arg6 in
@@ -69,8 +69,8 @@ class ContainerSpec_Arguments: QuickSpec {
             }
             let animal = container.resolve(
                 Animal.self,
-                arguments: "1", "2", "3", "4", "5", "6")!
-            expect(animal.name) == "123456"
+                arguments: "1", "2", "3", "4", "5", "6")
+            expect(animal?.name) == "123456"
         }
         it("accepts 7 arguments.") {
             container.register(Animal.self) { _, arg1, arg2, arg3, arg4, arg5, arg6, arg7 in
@@ -78,8 +78,8 @@ class ContainerSpec_Arguments: QuickSpec {
             }
             let animal = container.resolve(
                 Animal.self,
-                arguments: "1", "2", "3", "4", "5", "6", "7")!
-            expect(animal.name) == "1234567"
+                arguments: "1", "2", "3", "4", "5", "6", "7")
+            expect(animal?.name) == "1234567"
         }
         it("accepts 8 arguments.") {
             container.register(Animal.self) { _, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8 in
@@ -87,8 +87,8 @@ class ContainerSpec_Arguments: QuickSpec {
             }
             let animal = container.resolve(
                 Animal.self,
-                arguments: "1", "2", "3", "4", "5", "6", "7", "8")!
-            expect(animal.name) == "12345678"
+                arguments: "1", "2", "3", "4", "5", "6", "7", "8")
+            expect(animal?.name) == "12345678"
         }
         it("accepts 9 arguments.") {
             container.register(Animal.self) { _, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 in
@@ -96,8 +96,8 @@ class ContainerSpec_Arguments: QuickSpec {
             }
             let animal = container.resolve(
                 Animal.self,
-                arguments: "1", "2", "3", "4", "5", "6", "7", "8", "9")!
-            expect(animal.name) == "123456789"
+                arguments: "1", "2", "3", "4", "5", "6", "7", "8", "9")
+            expect(animal?.name) == "123456789"
         }
     }
 }
