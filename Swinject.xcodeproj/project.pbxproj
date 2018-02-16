@@ -129,6 +129,10 @@
 		CD6A9F821EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
 		CD6A9F831EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
 		CD6A9F841EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
+		CD89E3472036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
+		CD89E3492036F2BE00A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
+		CD89E34A2036F2BF00A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
+		CD89E34B2036F2C000A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
 		CDBBACF61D9EAD60002F5EF9 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */; };
 		CDBBACF71D9EAD60002F5EF9 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */; };
 		CDBBACF81D9EAD60002F5EF9 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */; };
@@ -292,6 +296,8 @@
 		CD3C2CDE1D98E47000863421 /* DebugHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugHelper.swift; sourceTree = "<group>"; };
 		CD3C2CF11D98EF4A00863421 /* ContainerSpec.DebugHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.DebugHelper.swift; sourceTree = "<group>"; };
 		CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.CustomStringConvertible.swift; sourceTree = "<group>"; };
+		CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntry.TypeForwarding.swift; sourceTree = "<group>"; };
+		CD89E3482036F2A800A9ED33 /* ServiceEntry.TypeForwarding.erb */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ServiceEntry.TypeForwarding.erb; sourceTree = "<group>"; };
 		CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.Logging.swift; sourceTree = "<group>"; };
 		CDBD0E672035EDF20030F566 /* ContainerSpec.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.TypeForwarding.swift; sourceTree = "<group>"; };
 		CDBD0E6B2035EEBB0030F566 /* Container.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.TypeForwarding.swift; sourceTree = "<group>"; };
@@ -417,6 +423,7 @@
 				981899E31B5FFE5800C702D0 /* Container.swift */,
 				CDBD0E6B2035EEBB0030F566 /* Container.TypeForwarding.swift */,
 				98B012BA1B82D6A400053A32 /* Container.Arguments.erb */,
+				CD89E3482036F2A800A9ED33 /* ServiceEntry.TypeForwarding.erb */,
 				CD3C2CDE1D98E47000863421 /* DebugHelper.swift */,
 				CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */,
 				984774EF1C02F25D0092A757 /* SynchronizedResolver.swift */,
@@ -569,6 +576,7 @@
 				98B012B71B82D67300053A32 /* Container.Arguments.swift */,
 				984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */,
 				98B012BE1B82F68E00053A32 /* Resolver.swift */,
+				CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */,
 			);
 			name = GeneratedCode;
 			sourceTree = "<group>";
@@ -911,6 +919,7 @@
 				981970201B6145D600EEB942 /* ObjectScope.swift in Sources */,
 				CDBBACF71D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
 				984774FB1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
+				CD89E3492036F2BE00A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,6 +954,7 @@
 			files = (
 				983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
+				CD89E3472036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				CD3B32971DD6126E00B208A3 /* ObjectScope.Standard.swift in Sources */,
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
@@ -1012,6 +1022,7 @@
 				90B029771C18599200A6A521 /* Assembly.swift in Sources */,
 				CDBBACF81D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
 				984774FC1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
+				CD89E34A2036F2BF00A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,6 +1048,7 @@
 				98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */,
 				CDBBACF91D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
 				984774FD1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
+				CD89E34B2036F2C000A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

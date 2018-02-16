@@ -22,8 +22,9 @@ internal protocol ServiceEntryProtocol: AnyObject {
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public final class ServiceEntry<Service>: ServiceEntryProtocol {
     internal let serviceType: Any.Type
-    internal let key: ServiceKey
+    internal let key: ServiceKey // FIXME: this doesnt feel in place. Should we replace this by necessary properties?
     internal let factory: FunctionType
+    internal weak var container: Container?
 
     internal var objectScope: ObjectScopeProtocol = ObjectScope.graph
     internal lazy var storage: InstanceStorage = { [unowned self] in
