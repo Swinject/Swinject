@@ -22,7 +22,7 @@ internal protocol ServiceEntryProtocol: AnyObject {
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public final class ServiceEntry<Service>: ServiceEntryProtocol {
     internal let serviceType: Any.Type
-    internal let key: ServiceKey // FIXME: this doesnt feel in place. Should we replace this by necessary properties?
+    internal let argumentsType: Any.Type
     internal let factory: FunctionType
     internal weak var container: Container?
 
@@ -32,19 +32,19 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
     }()
     internal var initCompleted: FunctionType?
 
-    internal init(serviceType: Service.Type, key: ServiceKey, factory: FunctionType) {
+    internal init(serviceType: Service.Type, argumentsType: Any.Type, factory: FunctionType) {
         self.serviceType = serviceType
-        self.key = key
+        self.argumentsType = argumentsType
         self.factory = factory
     }
 
     convenience internal init(
         serviceType: Service.Type,
-        key: ServiceKey,
+        argumentsType: Any.Type,
         factory: FunctionType,
         objectScope: ObjectScope
     ) {
-        self.init(serviceType: serviceType, key: key, factory: factory)
+        self.init(serviceType: serviceType, argumentsType: argumentsType, factory: factory)
         self.objectScope = objectScope
     }
 

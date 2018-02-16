@@ -36,6 +36,22 @@ class ContainerSpec_TypeForwarding: QuickSpec {
                 expect(animal?.name) == "Mimi"
                 expect(animal?.sleeping).to(beTrue())
             }
+            it("resolves forwarded type given correct name") {
+                let service = container.register(Dog.self) { _ in Dog() }
+                container.forward(Animal.self, name: "Hachi", to: service)
+
+                let animal = container.resolve(Animal.self, name: "Hachi")
+
+                expect(animal).notTo(beNil())
+            }
+            it("does not resolve forwarded type given incorrect name") {
+                let service = container.register(Dog.self) { _ in Dog() }
+                container.forward(Animal.self, name: "Hachi", to: service)
+
+                let animal = container.resolve(Animal.self, name: "Mimi")
+
+                expect(animal).to(beNil())
+            }
         }
         describe("service entry method") {
             it("resolves forwarded type") {
@@ -59,6 +75,20 @@ class ContainerSpec_TypeForwarding: QuickSpec {
                 expect(dog1).notTo(beNil())
                 expect(dog2).notTo(beNil())
                 expect(dog3).notTo(beNil())
+            }
+            it("resolves forwarded types only when correct name is given") {
+                container.register(Dog.self) { _ in Dog() }
+                    .implements(DogProtocol1.self, name: "1")
+                    .implements(DogProtocol2.self, name: "2")
+                    .implements(DogProtocol3.self, name: "3")
+
+                let dog1 = container.resolve(DogProtocol1.self, name: "1")
+                let dog2 = container.resolve(DogProtocol2.self)
+                let dog3 = container.resolve(DogProtocol3.self, name: "2")
+
+                expect(dog1).notTo(beNil())
+                expect(dog2).to(beNil())
+                expect(dog3).to(beNil())
             }
             it("supports defining multiple types at once") {
                 container.register(Dog.self) { _ in Dog() }

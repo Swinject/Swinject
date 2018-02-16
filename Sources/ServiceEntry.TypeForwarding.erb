@@ -18,8 +18,8 @@
 
 extension ServiceEntry {
     @discardableResult
-    public func implements<T>(_ type: T.Type) -> ServiceEntry<Service> {
-        container?.forward(type, to: self)
+    public func implements<T>(_ type: T.Type, name: String? = nil) -> ServiceEntry<Service> {
+        container?.forward(type, name: name, to: self)
         return self
     }
 

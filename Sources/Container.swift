@@ -134,7 +134,12 @@ public final class Container {
         option: ServiceKeyOption? = nil
     ) -> ServiceEntry<Service> {
         let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
-        let entry = ServiceEntry(serviceType: serviceType, key: key, factory: factory, objectScope: defaultObjectScope)
+        let entry = ServiceEntry(
+            serviceType: serviceType,
+            argumentsType: Arguments.self,
+            factory: factory,
+            objectScope: defaultObjectScope
+        )
         entry.container = self
         services[key] = entry
         return entry
