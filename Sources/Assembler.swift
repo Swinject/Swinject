@@ -28,9 +28,10 @@ public final class Assembler {
     /// Will create an empty `Assembler`
     ///
     /// - parameter parentAssembler: the baseline assembler
-    ///
-    public init(parentAssembler: Assembler?) {
-        container = Container(parent: parentAssembler?.container)
+    /// - parameter defaultObjectScope: default object scope for container
+    public init(parentAssembler: Assembler?, defaultObjectScope: ObjectScope = .graph) {
+        container = Container(parent: parentAssembler?.container,
+                              defaultObjectScope: defaultObjectScope)
     }
 
     /// Will create a new `Assembler` with the given `Assembly` instances to build a `Container`
@@ -61,19 +62,24 @@ public final class Assembler {
     ///
     /// - parameter assemblies:         the list of assemblies to build the container from
     /// - parameter parentAssembler:    the baseline assembler
+    /// - parameter defaultObjectScope: default object scope for container
     ///
     @available(*, deprecated, message: "Use not throwing alternative: init(_:, parent:)")
-    public convenience init(assemblies: [Assembly], parentAssembler: Assembler?) throws {
-        self.init(_: assemblies, parent: parentAssembler)
+    public convenience init(
+        assemblies: [Assembly],
+        parentAssembler: Assembler?,
+        defaultObjectScope: ObjectScope = .graph) throws {
+        self.init(_: assemblies, parent: parentAssembler, defaultObjectScope: defaultObjectScope)
     }
 
     /// Will create a new `Assembler` with the given `Assembly` instances to build a `Container`
     ///
-    /// - parameter assemblies: the list of assemblies to build the container from
-    /// - parameter parent:     the baseline assembler
+    /// - parameter assemblies:         the list of assemblies to build the container from
+    /// - parameter parent:             the baseline assembler
+    /// - parameter defaultObjectScope: default object scope for container
     ///
-    public init(_ assemblies: [Assembly], parent: Assembler?) {
-        container = Container(parent: parent?.container)
+    public init(_ assemblies: [Assembly], parent: Assembler?, defaultObjectScope: ObjectScope = .graph) {
+        container = Container(parent: parent?.container, defaultObjectScope: defaultObjectScope)
         run(assemblies: assemblies)
     }
 
