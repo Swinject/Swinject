@@ -62,14 +62,10 @@ public final class Assembler {
     ///
     /// - parameter assemblies:         the list of assemblies to build the container from
     /// - parameter parentAssembler:    the baseline assembler
-    /// - parameter defaultObjectScope: default object scope for container
     ///
     @available(*, deprecated, message: "Use not throwing alternative: init(_:, parent:)")
-    public convenience init(
-        assemblies: [Assembly],
-        parentAssembler: Assembler?,
-        defaultObjectScope: ObjectScope = .graph) throws {
-        self.init(_: assemblies, parent: parentAssembler, defaultObjectScope: defaultObjectScope)
+    public convenience init(assemblies: [Assembly], parentAssembler: Assembler?) throws {
+        self.init(_: assemblies, parent: parentAssembler)
     }
 
     /// Will create a new `Assembler` with the given `Assembly` instances to build a `Container`
