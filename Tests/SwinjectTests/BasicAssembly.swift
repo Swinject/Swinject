@@ -37,3 +37,11 @@ class PersonAssembly: Assembly {
         }
     }
 }
+
+class ContainerSpyAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(Container.self) { _ in
+            return container
+        }
+    }
+}

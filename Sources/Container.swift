@@ -31,7 +31,10 @@ public final class Container {
     fileprivate let defaultObjectScope: ObjectScope
     internal let lock: SpinLock // Used by SynchronizedResolver.
 
-    internal init(parent: Container? = nil, debugHelper: DebugHelper, defaultObjectScope: ObjectScope = .graph) {
+    internal init(
+        parent: Container? = nil,
+        debugHelper: DebugHelper,
+        defaultObjectScope: ObjectScope = .graph) {
         self.parent = parent
         self.debugHelper = debugHelper
         self.lock = parent.map { $0.lock } ?? SpinLock()
@@ -41,8 +44,9 @@ public final class Container {
     /// Instantiates a `Container` with its parent `Container`. The parent is optional.
     ///
     /// - Parameter parent: The optional parent `Container`.
-    public convenience init(parent: Container? = nil) {
-        self.init(parent: parent, debugHelper: LoggingDebugHelper())
+    /// - Parameter defaultObjectScope: Default object scope (graph if no scope is injected)
+    public convenience init(parent: Container? = nil, defaultObjectScope: ObjectScope = .graph) {
+        self.init(parent: parent, debugHelper: LoggingDebugHelper(), defaultObjectScope: defaultObjectScope)
     }
 
     /// Instantiates a `Container` with its parent `Container` and a closure registering services. 
