@@ -206,6 +206,20 @@ class ContainerSpec: QuickSpec {
                 expect(eventRaised) == true
             }
         }
+        describe("Multiple init completed event") {
+            it("raises the event for all subscribed closures when a new instance is created.") {
+                var eventsRaised = 0
+                container.register(Animal.self) { _ in Cat() }
+                    .initCompleted { _, _ in eventsRaised += 1 }
+                    .initCompleted { _, _ in eventsRaised += 1 }
+                    .initCompleted { _, _ in eventsRaised += 1 }
+                    .initCompleted { _, _ in eventsRaised += 1 }
+
+                let cat = container.resolve(Animal.self)
+                expect(cat).notTo(beNil())
+                expect(eventsRaised) == 4
+            }
+        }
         describe("Injection types") {
             it("accepts initializer injection.") {
                 container.register(Animal.self) { _ in Cat() }
