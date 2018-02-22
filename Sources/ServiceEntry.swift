@@ -18,6 +18,7 @@ internal protocol ServiceEntryProtocol: Any {
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public final class ServiceEntry<Service> {
+    private var initCompletedActions: [(Resolver, Service) -> Void] = []
     fileprivate let serviceType: Service.Type
     internal let factory: FunctionType
 
@@ -25,7 +26,17 @@ public final class ServiceEntry<Service> {
     internal lazy var storage: InstanceStorage = { [unowned self] in
         self.objectScope.makeStorage()
     }()
-    internal var initCompleted: FunctionType?
+
+    internal var initCompleted: FunctionType? {
+        get {
+            guard !initCompletedActions.isEmpty else { return nil }
+
+            return {[weak self] (resolver: Resolver, service: Service) -> Void in
+                guard let strongSelf = self else { return }
+                strongSelf.initCompletedActions.forEach { $0(resolver, service) }
+            }
+        }
+    }
 
     internal init(serviceType: Service.Type, factory: FunctionType) {
         self.serviceType = serviceType
@@ -69,7 +80,7 @@ public final class ServiceEntry<Service> {
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
     public func initCompleted(_ completed: @escaping (Resolver, Service) -> Void) -> Self {
-        initCompleted = completed
+        initCompletedActions.append(completed)
         return self
     }
 }
@@ -80,7 +91,7 @@ extension ServiceEntry: ServiceEntryProtocol {
             serviceType: serviceType,
             serviceKey: serviceKey,
             objectScope: objectScope,
-            initCompleted: initCompleted
+            initCompleted: initCompletedActions
         )
     }
 }
