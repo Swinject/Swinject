@@ -232,7 +232,12 @@ extension Container: Resolver {
     ///            is found in the `Container`.
     public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
         typealias FactoryType = (Resolver) -> Any
-        return _resolve(name: name) { (factory: FactoryType) in factory(self) as! Service }
+        return _resolve(name: name) { (factory: FactoryType) in cast(factory(self), to: Service.self) }
+    }
+
+    internal func cast<Service>(_ instance: Any, to type: Service.Type) -> Service {
+        precondition(instance is Service, "Cannot forward \(instance) to \(Service.self)")
+        return instance as! Service
     }
 
     fileprivate func getEntry<Service>(_ key: ServiceKey, ofType: Service.Type) -> ServiceEntryProtocol? {

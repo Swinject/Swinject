@@ -52,6 +52,16 @@ class ContainerSpec_TypeForwarding: QuickSpec {
 
                 expect(animal).to(beNil())
             }
+            it("throws assertion when forwarding incompatible types") {
+                let service = container.register(Dog.self) { _ in Dog() }
+                container.forward(Cat.self, to: service)
+                expect { _ = container.resolve(Cat.self) }.to(throwAssertion())
+            }
+            it("throws assertion when forwarding incompatible types with arguments") {
+                let service = container.register(Dog.self) { (_, _: String) in Dog() }
+                container.forward(Cat.self, to: service)
+                expect { _ = container.resolve(Cat.self, argument: "") }.to(throwAssertion())
+            }
         }
         describe("service entry method") {
             it("resolves forwarded type") {
