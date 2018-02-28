@@ -236,7 +236,7 @@ extension Container: Resolver {
     }
 
     internal func cast<Service>(_ instance: Any, to type: Service.Type) -> Service {
-        precondition(instance is Service, "Cannot forward \(instance) to \(Service.self)")
+        precondition(instance is Service, "Cannot forward \(Service.self) to \(instance)")
         return instance as! Service
     }
 

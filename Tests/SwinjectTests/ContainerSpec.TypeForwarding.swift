@@ -62,6 +62,12 @@ class ContainerSpec_TypeForwarding: QuickSpec {
                 container.forward(Cat.self, to: service)
                 expect { _ = container.resolve(Cat.self, argument: "") }.to(throwAssertion())
             }
+            it("resolves forwarded type even if only implementation type conforms to it") {
+                let service = container.register(Animal.self) { _ in Dog() }
+                container.forward(Dog.self, to: service)
+                let dog = container.resolve(Dog.self)
+                expect(dog).notTo(beNil())
+            }
         }
         describe("service entry method") {
             it("resolves forwarded type") {
