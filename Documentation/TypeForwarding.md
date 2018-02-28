@@ -18,9 +18,9 @@ This works well enough, but has a couple of problems: It requires a registration
 
 ```swift
 container.register(Dog.self) { _, name in Dog(name: name) }
-container.register(Animal.self) { (r, name: String) in r.resolve(Dog.self, argument: name) }
-container.register(Carnivore.self) { (r, name: String) in r.resolve(Dog.self, argument: name) }
-container.register(Domesticated.self) { (r, name: String) in r.resolve(Dog.self, argument: name) }
+container.register(Animal.self) { (r, name: String) in r.resolve(Dog.self, argument: name)! }
+container.register(Carnivore.self) { (r, name: String) in r.resolve(Dog.self, argument: name)! }
+container.register(Domesticated.self) { (r, name: String) in r.resolve(Dog.self, argument: name)! }
 
 ```
 
@@ -44,7 +44,7 @@ When resolving forwarded types, `ServiceEntry` used will be the same as for the 
 Unfortunatelly, there is no way in Swift (yet) to ensure that original registration conforms to the forwarded types. If you define forwarding to an unrelated type there will be a runtime crash during its resolution:
 
 ```swift
-container.register(Dog.self) { _ in Dog*() }
+container.register(Dog.self) { _ in Dog() }
 	.implements(Cat.self)
 
 let dog = container.resolve(Dog.self) // all good
