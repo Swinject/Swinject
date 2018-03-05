@@ -60,7 +60,8 @@ class ContainerSpec_CustomStringConvertible: QuickSpec {
 
             expect(container.description) ==
                 "[\n"
-                + "    { Service: Animal, Factory: Resolver -> Animal, ObjectScope: graph, InitCompleted: Specified 1 closures }\n"
+                + "    { Service: Animal, Factory: Resolver -> Animal, ObjectScope: graph, "
+                + "InitCompleted: Specified 1 closures }\n"
                 + "]"
         }
         it("describes multiple registrations.") {
