@@ -52,6 +52,7 @@ class ContainerSpec_TypeForwarding: QuickSpec {
 
                 expect(animal).to(beNil())
             }
+            #if arch(x86_64) && _runtime(_ObjC)
             it("throws assertion when forwarding incompatible types") {
                 let service = container.register(Dog.self) { _ in Dog() }
                 container.forward(Cat.self, to: service)
@@ -62,6 +63,7 @@ class ContainerSpec_TypeForwarding: QuickSpec {
                 container.forward(Cat.self, to: service)
                 expect { _ = container.resolve(Cat.self, argument: "") }.to(throwAssertion())
             }
+            #endif
             it("resolves forwarded type even if only implementation type conforms to it") {
                 let service = container.register(Animal.self) { _ in Dog() }
                 container.forward(Dog.self, to: service)
