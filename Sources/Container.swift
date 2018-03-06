@@ -156,6 +156,11 @@ public final class Container {
         return SynchronizedResolver(container: self)
     }
 
+    /// Adds behavior to the container. `Behavior.container(_:didRegisterService:withName:)` will be invoked for
+    /// each service registered to the `container` **after** the behavior has been added.
+    ///
+    /// - Parameters:
+    ///     - behavior: Behavior to be added to the container
     public func addBehavior(_ behavior: Behavior) {
         behaviors.append(behavior)
     }
