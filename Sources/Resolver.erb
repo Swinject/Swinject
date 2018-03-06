@@ -33,11 +33,21 @@ public protocol Resolver {
     /// - Returns: The resolved service type instance, or nil if no service with the name is found.
     func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service?
 
+    /// Retrieves the instance with the specified service type and registration type.
+    ///
+    /// - Parameters:
+    ///   - serviceType:   The service type to resolve.
+    ///   - repsitoryType: The registration type.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no service with the registry type is found.
+    func resolve<Service>(_ serviceType: Service.Type, registryType: RegistryType) -> Service?
+
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
 <%   arg_param = i == 1 ? "argument: Arg1" : "arguments arg1: Arg1, " + (2..i).map{ |n| "_ arg#{n}: Arg#{n}" }.join(", ") %>
 <%   arg_param_name = i == 1 ? "argument" : "arguments" %>
 <%   arg_param_description = i == 1 ? "#{i} argument" : "list of #{i} arguments" %>
+<%   arg_param_delegation = i == 1 ? "argument: argument" : "arguments: " + (1..i).map{ |n| "arg#{n}" }.join(", ") %>
     /// Retrieves the instance with the specified service type and <%= arg_param_description %> to the factory closure.
     ///
     /// - Parameters:
@@ -64,6 +74,20 @@ public protocol Resolver {
         name: String?,
         <%= arg_param %>) -> Service?
 
-<% end %>
+    /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
+    ///
+    /// - Parameters:
+    ///   - serviceType:   The service type to resolve.
+    ///   - repsitoryType: The registration type.
+    ///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type,
+    ///            <%= arg_param_description %> and the registry type is found.
+    func resolve<Service, <%= arg_types %>>(
+      _ serviceType: Service.Type,
+      registryType: RegistryType,
+      <%= arg_param %>) -> Service?
 
+<% end %>
 }
+

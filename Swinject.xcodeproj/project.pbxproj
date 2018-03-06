@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6742CE561F459F6900F6B648 /* RegistryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6742CE551F459F6900F6B648 /* RegistryType.swift */; };
+		6742CE571F45A42E00F6B648 /* RegistryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6742CE551F459F6900F6B648 /* RegistryType.swift */; };
+		6742CE581F45A43300F6B648 /* RegistryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6742CE551F459F6900F6B648 /* RegistryType.swift */; };
+		6742CE591F45A43A00F6B648 /* RegistryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6742CE551F459F6900F6B648 /* RegistryType.swift */; };
 		90B029751C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029761C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029771C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
@@ -211,6 +215,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6742CE551F459F6900F6B648 /* RegistryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistryType.swift; sourceTree = "<group>"; };
 		90B029741C18599200A6A521 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		90B029781C185B1600A6A521 /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		90B0297E1C18666200A6A521 /* AssemblerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblerSpec.swift; sourceTree = "<group>"; };
@@ -419,6 +424,7 @@
 				CD3B32911DD6121500B208A3 /* InstanceStorage.swift */,
 				984BE3121CDA3FCF00BCF2AC /* _Resolver.swift */,
 				98B012C11B82F70A00053A32 /* Resolver.erb */,
+				6742CE551F459F6900F6B648 /* RegistryType.swift */,
 				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
 				98E550C21DEF066300BE6304 /* UnavailableItems.swift */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
@@ -882,6 +888,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6742CE571F45A42E00F6B648 /* RegistryType.swift in Sources */,
 				983B98321C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				CD3B32981DD6126E00B208A3 /* ObjectScope.Standard.swift in Sources */,
@@ -934,6 +941,7 @@
 				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
 				9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				CD3B32971DD6126E00B208A3 /* ObjectScope.Standard.swift in Sources */,
+				6742CE561F459F6900F6B648 /* RegistryType.swift in Sources */,
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				984774F01C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				CD3C2CDF1D98E47000863421 /* DebugHelper.swift in Sources */,
@@ -979,6 +987,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6742CE581F45A43300F6B648 /* RegistryType.swift in Sources */,
 				983B98331C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				9880E7101C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */,
@@ -1003,6 +1012,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6742CE591F45A43A00F6B648 /* RegistryType.swift in Sources */,
 				90B0297D1C185B2200A6A521 /* Assembly.swift in Sources */,
 				983B98341C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				9880E7111C09EE2900ED5293 /* FunctionType.swift in Sources */,
