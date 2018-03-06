@@ -42,24 +42,24 @@ public final class Container {
         self.defaultObjectScope = defaultObjectScope
     }
 
-    /// Instantiates a `Container` with its parent `Container`. The parent is optional.
+    /// Instantiates a `Container`
     ///
-    /// - Parameter parent: The optional parent `Container`.
-    /// - Parameter defaultObjectScope: Default object scope (graph if no scope is injected)
-    public convenience init(parent: Container? = nil, defaultObjectScope: ObjectScope = .graph) {
-        self.init(parent: parent, debugHelper: LoggingDebugHelper(), defaultObjectScope: defaultObjectScope)
-    }
-
-    /// Instantiates a `Container` with its parent `Container` and a closure registering services. 
-    /// The parent is optional.
-    ///
-    /// - Parameters:
-    ///     - parent:             The optional parent `Container`.
+    /// - Parameters
+    ///     - parent: The optional parent `Container`.
+    ///     - defaultObjectScope: Default object scope (graph if no scope is injected)
+    ///     - behaviors: List of behaviors to be added to the container
     ///     - registeringClosure: The closure registering services to the new container instance.
-    /// - Remark: Compile time may be long if you pass a long closure to this initializer. 
+    ///
+    /// - Remark: Compile time may be long if you pass a long closure to this initializer.
     ///           Use `init()` or `init(parent:)` instead.
-    public convenience init(parent: Container? = nil, registeringClosure: (Container) -> Void) {
-        self.init(parent: parent)
+    public convenience init(
+        parent: Container? = nil,
+        defaultObjectScope: ObjectScope = .graph,
+        behaviors: [Behavior] = [],
+        registeringClosure: (Container) -> Void = { _ in }
+    ) {
+        self.init(parent: parent, debugHelper: LoggingDebugHelper(), defaultObjectScope: defaultObjectScope)
+        behaviors.forEach(addBehavior)
         registeringClosure(self)
     }
 

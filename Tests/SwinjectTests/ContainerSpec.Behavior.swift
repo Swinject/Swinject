@@ -39,6 +39,18 @@ class ContainerSpec_Behavior: QuickSpec {
                 expect(spy.names[1]).to(beNil())
             }
         }
+        describe("convenience initialiser") {
+            it("adds behaviors to the container") {
+                let spy1 = BehaviorSpy()
+                let spy2 = BehaviorSpy()
+                container = Container(behaviors: [spy1, spy2])
+
+                container.register(Dog.self) { _ in Dog() }
+
+                expect(spy1.entries).to(haveCount(1))
+                expect(spy2.entries).to(haveCount(1))
+            }
+        }
     }
 }
 
