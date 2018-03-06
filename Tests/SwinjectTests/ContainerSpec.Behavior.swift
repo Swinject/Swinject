@@ -53,17 +53,3 @@ class ContainerSpec_Behavior: QuickSpec {
         }
     }
 }
-
-private class BehaviorSpy: Behavior {
-    var entries = [ServiceEntryProtocol]()
-    var names = [String?]()
-
-    func container<Service>(
-        _ container: Container,
-        didRegisterService entry: ServiceEntry<Service>,
-        withName name: String?
-    ) {
-        entries.append(entry)
-        names.append(name)
-    }
-}
