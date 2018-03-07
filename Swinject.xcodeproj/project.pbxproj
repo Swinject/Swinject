@@ -133,6 +133,17 @@
 		CDBBACF71D9EAD60002F5EF9 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */; };
 		CDBBACF81D9EAD60002F5EF9 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */; };
 		CDBBACF91D9EAD60002F5EF9 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */; };
+		CDC4FCF4205028B00021C60F /* Lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FCF3205028B00021C60F /* Lazy.swift */; };
+		CDC4FCF5205028B00021C60F /* Lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FCF3205028B00021C60F /* Lazy.swift */; };
+		CDC4FCF6205028B00021C60F /* Lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FCF3205028B00021C60F /* Lazy.swift */; };
+		CDC4FCF7205028B00021C60F /* Lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FCF3205028B00021C60F /* Lazy.swift */; };
+		CDC4FCFD20502A9F0021C60F /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FCF820502A9A0021C60F /* LazySpec.swift */; };
+		CDC4FCFE20502AA00021C60F /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FCF820502A9A0021C60F /* LazySpec.swift */; };
+		CDC4FCFF20502AA10021C60F /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FCF820502A9A0021C60F /* LazySpec.swift */; };
+		CDC4FD0120502B5C0021C60F /* Container.Lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FD0020502B5C0021C60F /* Container.Lazy.swift */; };
+		CDC4FD0220502B5C0021C60F /* Container.Lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FD0020502B5C0021C60F /* Container.Lazy.swift */; };
+		CDC4FD0320502B5C0021C60F /* Container.Lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FD0020502B5C0021C60F /* Container.Lazy.swift */; };
+		CDC4FD0420502B5C0021C60F /* Container.Lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4FD0020502B5C0021C60F /* Container.Lazy.swift */; };
 		CDD44AD71DEEED1000916595 /* WeakStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD44AD61DEEED1000916595 /* WeakStorageSpec.swift */; };
 		CDD44AD81DEEED1000916595 /* WeakStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD44AD61DEEED1000916595 /* WeakStorageSpec.swift */; };
 		CDD44AD91DEEED1000916595 /* WeakStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD44AD61DEEED1000916595 /* WeakStorageSpec.swift */; };
@@ -286,6 +297,9 @@
 		CD3C2CF11D98EF4A00863421 /* ContainerSpec.DebugHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.DebugHelper.swift; sourceTree = "<group>"; };
 		CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.CustomStringConvertible.swift; sourceTree = "<group>"; };
 		CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.Logging.swift; sourceTree = "<group>"; };
+		CDC4FCF3205028B00021C60F /* Lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lazy.swift; sourceTree = "<group>"; };
+		CDC4FCF820502A9A0021C60F /* LazySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazySpec.swift; sourceTree = "<group>"; };
+		CDC4FD0020502B5C0021C60F /* Container.Lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.Lazy.swift; sourceTree = "<group>"; };
 		CDD44AD61DEEED1000916595 /* WeakStorageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakStorageSpec.swift; sourceTree = "<group>"; };
 		FF15F77F1EDCE81600F96686 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		FF15F7801EDCE81600F96686 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
@@ -424,6 +438,8 @@
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
 				984E8A511C317AC90039943D /* Swinject.h */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
+				CDC4FCF3205028B00021C60F /* Lazy.swift */,
+				CDC4FD0020502B5C0021C60F /* Container.Lazy.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -444,6 +460,7 @@
 				9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */,
 				CDD44AD61DEEED1000916595 /* WeakStorageSpec.swift */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
+				CDC4FCF820502A9A0021C60F /* LazySpec.swift */,
 			);
 			name = SwinjectTests;
 			path = Tests/SwinjectTests;
@@ -889,6 +906,8 @@
 				98B012C01B82F68E00053A32 /* Resolver.swift in Sources */,
 				CD3C2CE01D98E47000863421 /* DebugHelper.swift in Sources */,
 				90B0297A1C185B1600A6A521 /* Assembler.swift in Sources */,
+				CDC4FD0220502B5C0021C60F /* Container.Lazy.swift in Sources */,
+				CDC4FCF5205028B00021C60F /* Lazy.swift in Sources */,
 				90B029761C18599200A6A521 /* Assembly.swift in Sources */,
 				CD3B32931DD6123F00B208A3 /* InstanceStorage.swift in Sources */,
 				984774F11C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
@@ -910,6 +929,7 @@
 				9855C5C61B689B7B00DADB0B /* Food.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				CD3C2CF31D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
+				CDC4FCFE20502AA00021C60F /* LazySpec.swift in Sources */,
 				984775001C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
 				CD6A9F831EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				CD3B329D1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift in Sources */,
@@ -930,8 +950,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC4FD0120502B5C0021C60F /* Container.Lazy.swift in Sources */,
 				983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
+				CDC4FCF4205028B00021C60F /* Lazy.swift in Sources */,
 				9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				CD3B32971DD6126E00B208A3 /* ObjectScope.Standard.swift in Sources */,
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
@@ -959,6 +981,7 @@
 				9855C5C81B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				9878C63C1B65CA8700CBEFEF /* Person.swift in Sources */,
 				CD3C2CF21D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
+				CDC4FCFD20502A9F0021C60F /* LazySpec.swift in Sources */,
 				90B0298B1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				CD6A9F821EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				CD3B329C1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift in Sources */,
@@ -986,6 +1009,8 @@
 				985011251BBE7E8900A2CCFC /* Resolver.swift in Sources */,
 				9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */,
 				CD3C2CE11D98E47000863421 /* DebugHelper.swift in Sources */,
+				CDC4FD0320502B5C0021C60F /* Container.Lazy.swift in Sources */,
+				CDC4FCF6205028B00021C60F /* Lazy.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				CD3B32941DD6123F00B208A3 /* InstanceStorage.swift in Sources */,
 				90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */,
@@ -1010,6 +1035,8 @@
 				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
 				984774F31C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				CD3C2CE21D98E47000863421 /* DebugHelper.swift in Sources */,
+				CDC4FD0420502B5C0021C60F /* Container.Lazy.swift in Sources */,
+				CDC4FCF7205028B00021C60F /* Lazy.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolver.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
 				CD3B32951DD6124000B208A3 /* InstanceStorage.swift in Sources */,
@@ -1031,6 +1058,7 @@
 				98689CBE1BBFD5110005C6D3 /* ServiceEntrySpec.swift in Sources */,
 				98689CBC1BBFD5110005C6D3 /* ContainerSpec.Circularity.swift in Sources */,
 				CD3C2CF41D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
+				CDC4FCFF20502AA10021C60F /* LazySpec.swift in Sources */,
 				98689CB61BBFD5110005C6D3 /* Person.swift in Sources */,
 				CD6A9F841EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				CD3B329E1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift in Sources */,
