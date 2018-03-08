@@ -5,6 +5,7 @@ excluded:
   - Sources/Container.Arguments.swift
   - Sources/SynchronizedResolver.Arguments.swift
   - Sources/Resolver.swift
+  - Sources/ServiceEntry.TypeForwarding.swift
   - Sample-iOS.playground
   - Carthage
   - Packages
