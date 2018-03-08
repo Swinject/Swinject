@@ -11,13 +11,16 @@
 class BehaviorSpy: Behavior {
     var entries = [ServiceEntryProtocol]()
     var names = [String?]()
+    var types = [Any.Type]()
 
-    func container<Service>(
+    func container<Type, Service>(
         _ container: Container,
-        didRegisterService entry: ServiceEntry<Service>,
+        didRegisterType type: Type.Type,
+        toService entry: ServiceEntry<Service>,
         withName name: String?
     ) {
         entries.append(entry)
         names.append(name)
+        types.append(type)
     }
 }

@@ -30,7 +30,7 @@ public final class Container {
     fileprivate let debugHelper: DebugHelper
     fileprivate let defaultObjectScope: ObjectScope
     internal let lock: SpinLock // Used by SynchronizedResolver.
-    fileprivate var behaviors = [Behavior]()
+    internal var behaviors = [Behavior]()
 
     internal init(
         parent: Container? = nil,
@@ -148,7 +148,7 @@ public final class Container {
         entry.container = self
         services[key] = entry
 
-        behaviors.forEach { $0.container(self, didRegisterService: entry, withName: name) }
+        behaviors.forEach { $0.container(self, didRegisterType: serviceType, toService: entry, withName: name) }
 
         return entry
     }
