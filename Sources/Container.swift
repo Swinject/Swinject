@@ -29,6 +29,7 @@ public final class Container {
     fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
     fileprivate let defaultObjectScope: ObjectScope
+    internal var currentObjectGraph: GraphIdentifier?
     internal let lock: SpinLock // Used by SynchronizedResolver.
 
     internal init(
@@ -191,6 +192,9 @@ extension Container: _Resolver {
     private var maxResolutionDepth: Int { return 200 }
 
     private func incrementResolutionDepth() {
+        if resolutionDepth == 0 && currentObjectGraph == nil {
+            currentObjectGraph = GraphIdentifier()
+        }
         guard resolutionDepth < maxResolutionDepth else {
             fatalError("Infinite recursive call for circular dependency has been detected. " +
                 "To avoid the infinite call, 'initCompleted' handler should be used to inject circular dependency.")
@@ -204,6 +208,7 @@ extension Container: _Resolver {
         resolutionDepth -= 1
         if resolutionDepth == 0 {
             services.values.forEach { $0.storage.graphResolutionCompleted() }
+            self.currentObjectGraph = nil
         }
     }
 }
@@ -246,16 +251,18 @@ extension Container: Resolver {
         key: ServiceKey,
         invoker: (Factory) -> Service
     ) -> Service {
-        if let persistedInstance = entry.storage.instance as? Service {
+        guard let currentObjectGraph = currentObjectGraph else { fatalError() }
+
+        if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph) as? Service {
             return persistedInstance
         }
 
         let resolvedInstance = invoker(entry.factory as! Factory)
-        if let persistedInstance = entry.storage.instance as? Service {
+        if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph) as? Service {
             // An instance for the key might be added by the factory invocation.
             return persistedInstance
         }
-        entry.storage.instance = resolvedInstance as Any
+        entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
 
         if let completed = entry.initCompleted as? (Resolver, Service) -> Void {
             completed(self, resolvedInstance)

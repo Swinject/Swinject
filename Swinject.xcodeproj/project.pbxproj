@@ -126,6 +126,17 @@
 		CD3C2CF21D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3C2CF11D98EF4A00863421 /* ContainerSpec.DebugHelper.swift */; };
 		CD3C2CF31D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3C2CF11D98EF4A00863421 /* ContainerSpec.DebugHelper.swift */; };
 		CD3C2CF41D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3C2CF11D98EF4A00863421 /* ContainerSpec.DebugHelper.swift */; };
+		CD5E9A32205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A31205157E3009090F9 /* ContainerSpec.GraphCaching.swift */; };
+		CD5E9A33205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A31205157E3009090F9 /* ContainerSpec.GraphCaching.swift */; };
+		CD5E9A34205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A31205157E3009090F9 /* ContainerSpec.GraphCaching.swift */; };
+		CD5E9A3620515898009090F9 /* GraphIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3520515898009090F9 /* GraphIdentifier.swift */; };
+		CD5E9A3720515898009090F9 /* GraphIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3520515898009090F9 /* GraphIdentifier.swift */; };
+		CD5E9A3820515898009090F9 /* GraphIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3520515898009090F9 /* GraphIdentifier.swift */; };
+		CD5E9A3920515898009090F9 /* GraphIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3520515898009090F9 /* GraphIdentifier.swift */; };
+		CD5E9A3B205158D6009090F9 /* Container.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3A205158D6009090F9 /* Container.GraphCaching.swift */; };
+		CD5E9A3C205158D6009090F9 /* Container.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3A205158D6009090F9 /* Container.GraphCaching.swift */; };
+		CD5E9A3D205158D6009090F9 /* Container.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3A205158D6009090F9 /* Container.GraphCaching.swift */; };
+		CD5E9A3E205158D6009090F9 /* Container.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3A205158D6009090F9 /* Container.GraphCaching.swift */; };
 		CD6A9F821EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
 		CD6A9F831EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
 		CD6A9F841EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
@@ -295,6 +306,9 @@
 		CD3B329B1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.CustomScope.swift; sourceTree = "<group>"; };
 		CD3C2CDE1D98E47000863421 /* DebugHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugHelper.swift; sourceTree = "<group>"; };
 		CD3C2CF11D98EF4A00863421 /* ContainerSpec.DebugHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.DebugHelper.swift; sourceTree = "<group>"; };
+		CD5E9A31205157E3009090F9 /* ContainerSpec.GraphCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.GraphCaching.swift; sourceTree = "<group>"; };
+		CD5E9A3520515898009090F9 /* GraphIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphIdentifier.swift; sourceTree = "<group>"; };
+		CD5E9A3A205158D6009090F9 /* Container.GraphCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.GraphCaching.swift; sourceTree = "<group>"; };
 		CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.CustomStringConvertible.swift; sourceTree = "<group>"; };
 		CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.Logging.swift; sourceTree = "<group>"; };
 		CDC4FCF3205028B00021C60F /* Lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lazy.swift; sourceTree = "<group>"; };
@@ -440,6 +454,8 @@
 				981ABE861B5FC9DF00294975 /* Info.plist */,
 				CDC4FCF3205028B00021C60F /* Lazy.swift */,
 				CDC4FD0020502B5C0021C60F /* Container.Lazy.swift */,
+				CD5E9A3520515898009090F9 /* GraphIdentifier.swift */,
+				CD5E9A3A205158D6009090F9 /* Container.GraphCaching.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -461,6 +477,7 @@
 				CDD44AD61DEEED1000916595 /* WeakStorageSpec.swift */,
 				981ABE921B5FC9DF00294975 /* Info.plist */,
 				CDC4FCF820502A9A0021C60F /* LazySpec.swift */,
+				CD5E9A31205157E3009090F9 /* ContainerSpec.GraphCaching.swift */,
 			);
 			name = SwinjectTests;
 			path = Tests/SwinjectTests;
@@ -907,7 +924,9 @@
 				CD3C2CE01D98E47000863421 /* DebugHelper.swift in Sources */,
 				90B0297A1C185B1600A6A521 /* Assembler.swift in Sources */,
 				CDC4FD0220502B5C0021C60F /* Container.Lazy.swift in Sources */,
+				CD5E9A3C205158D6009090F9 /* Container.GraphCaching.swift in Sources */,
 				CDC4FCF5205028B00021C60F /* Lazy.swift in Sources */,
+				CD5E9A3720515898009090F9 /* GraphIdentifier.swift in Sources */,
 				90B029761C18599200A6A521 /* Assembly.swift in Sources */,
 				CD3B32931DD6123F00B208A3 /* InstanceStorage.swift in Sources */,
 				984774F11C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
@@ -928,6 +947,7 @@
 				90B029841C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				9855C5C61B689B7B00DADB0B /* Food.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
+				CD5E9A33205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */,
 				CD3C2CF31D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				CDC4FCFE20502AA00021C60F /* LazySpec.swift in Sources */,
 				984775001C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
@@ -950,10 +970,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD5E9A3620515898009090F9 /* GraphIdentifier.swift in Sources */,
 				CDC4FD0120502B5C0021C60F /* Container.Lazy.swift in Sources */,
 				983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
 				CDC4FCF4205028B00021C60F /* Lazy.swift in Sources */,
+				CD5E9A3B205158D6009090F9 /* Container.GraphCaching.swift in Sources */,
 				9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				CD3B32971DD6126E00B208A3 /* ObjectScope.Standard.swift in Sources */,
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
@@ -980,6 +1002,7 @@
 				9855C5C51B689B7B00DADB0B /* Food.swift in Sources */,
 				9855C5C81B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				9878C63C1B65CA8700CBEFEF /* Person.swift in Sources */,
+				CD5E9A32205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */,
 				CD3C2CF21D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				CDC4FCFD20502A9F0021C60F /* LazySpec.swift in Sources */,
 				90B0298B1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
@@ -1010,7 +1033,9 @@
 				9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */,
 				CD3C2CE11D98E47000863421 /* DebugHelper.swift in Sources */,
 				CDC4FD0320502B5C0021C60F /* Container.Lazy.swift in Sources */,
+				CD5E9A3D205158D6009090F9 /* Container.GraphCaching.swift in Sources */,
 				CDC4FCF6205028B00021C60F /* Lazy.swift in Sources */,
+				CD5E9A3820515898009090F9 /* GraphIdentifier.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				CD3B32941DD6123F00B208A3 /* InstanceStorage.swift in Sources */,
 				90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */,
@@ -1036,7 +1061,9 @@
 				984774F31C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				CD3C2CE21D98E47000863421 /* DebugHelper.swift in Sources */,
 				CDC4FD0420502B5C0021C60F /* Container.Lazy.swift in Sources */,
+				CD5E9A3E205158D6009090F9 /* Container.GraphCaching.swift in Sources */,
 				CDC4FCF7205028B00021C60F /* Lazy.swift in Sources */,
+				CD5E9A3920515898009090F9 /* GraphIdentifier.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolver.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
 				CD3B32951DD6124000B208A3 /* InstanceStorage.swift in Sources */,
@@ -1057,6 +1084,7 @@
 				98689CBB1BBFD5110005C6D3 /* ContainerSpec.Arguments.swift in Sources */,
 				98689CBE1BBFD5110005C6D3 /* ServiceEntrySpec.swift in Sources */,
 				98689CBC1BBFD5110005C6D3 /* ContainerSpec.Circularity.swift in Sources */,
+				CD5E9A34205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */,
 				CD3C2CF41D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				CDC4FCFF20502AA10021C60F /* LazySpec.swift in Sources */,
 				98689CB61BBFD5110005C6D3 /* Person.swift in Sources */,

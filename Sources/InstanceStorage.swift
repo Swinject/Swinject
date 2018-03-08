@@ -10,20 +10,36 @@
 public protocol InstanceStorage: AnyObject {
     var instance: Any? { get set }
     func graphResolutionCompleted()
+    func instance(inGraph graph: GraphIdentifier) -> Any?
+    func setInstance(_ instance: Any?, inGraph graph: GraphIdentifier)
 }
 
 extension InstanceStorage {
     public func graphResolutionCompleted() {}
+    public func instance(inGraph _: GraphIdentifier) -> Any? { return instance }
+    public func setInstance(_ instance: Any?, inGraph _: GraphIdentifier) { self.instance = instance }
 }
 
 /// Persists storage during the resolution of the object graph
 public final class GraphStorage: InstanceStorage {
+    private var instances = [GraphIdentifier: Weak<Any>]()
     public var instance: Any?
 
     public init() {}
 
     public func graphResolutionCompleted() {
         instance = nil
+    }
+
+    public func instance(inGraph graph: GraphIdentifier) -> Any? {
+        return instances[graph]?.value
+    }
+
+    public func setInstance(_ instance: Any?, inGraph graph: GraphIdentifier) {
+        self.instance = instance
+
+        if instances[graph] == nil { instances[graph] = Weak() }
+        instances[graph]?.value = instance
     }
 }
 
@@ -47,19 +63,12 @@ public final class TransientStorage: InstanceStorage {
 /// Does not persist value types.
 /// Persists reference types as long as there are strong references to given instance.
 public final class WeakStorage: InstanceStorage {
-    private weak var object: AnyObject?
+    private var _instance = Weak<Any>()
 
-    #if os(Linux)
     public var instance: Any? {
-        get { return object }
-        set { object = newValue.flatMap { $0 as? AnyObject } }
+        get { return _instance.value }
+        set { _instance.value = newValue }
     }
-    #else
-    public var instance: Any? {
-        get { return object }
-        set { object = newValue as AnyObject? }
-    }
-    #endif
 
     public init () {}
 }
@@ -80,5 +89,22 @@ public final class CompositeStorage: InstanceStorage {
 
     public func graphResolutionCompleted() {
         components.forEach { $0.graphResolutionCompleted() }
+    }
+
+    public func setInstance(_ instance: Any?, inGraph graph: GraphIdentifier) {
+        components.forEach { $0.setInstance(instance, inGraph: graph) }
+    }
+
+    public func instance(inGraph graph: GraphIdentifier) -> Any? {
+        return components.flatMap { $0.instance(inGraph: graph) } .first
+    }
+}
+
+private class Weak<Wrapped> {
+    private weak var object: AnyObject?
+
+    var value: Wrapped? {
+        get { return object as? Wrapped }
+        set { object = newValue as AnyObject? }
     }
 }
