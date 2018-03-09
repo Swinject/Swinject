@@ -9,18 +9,24 @@
 import Foundation
 
 // A generic-type-free protocol to be the type of values in a strongly-typed collection.
-internal protocol ServiceEntryProtocol: Any {
+internal protocol ServiceEntryProtocol: AnyObject {
     func describeWithKey(_ serviceKey: ServiceKey) -> String
     var objectScope: ObjectScopeProtocol { get }
     var storage: InstanceStorage { get }
+    var factory: FunctionType { get }
+    var initCompleted: FunctionType? { get }
+    var serviceType: Any.Type { get }
 }
 
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
-public final class ServiceEntry<Service> {
+public final class ServiceEntry<Service>: ServiceEntryProtocol {
     fileprivate var initCompletedActions: [(Resolver, Service) -> Void] = []
-    fileprivate let serviceType: Service.Type
+    internal let serviceType: Any.Type
+    internal let argumentsType: Any.Type
+
     internal let factory: FunctionType
+    internal weak var container: Container?
 
     internal var objectScope: ObjectScopeProtocol = ObjectScope.graph
     internal lazy var storage: InstanceStorage = { [unowned self] in
@@ -36,14 +42,20 @@ public final class ServiceEntry<Service> {
         }
     }
 
-    internal init(serviceType: Service.Type, factory: FunctionType) {
+    internal init(serviceType: Service.Type, argumentsType: Any.Type, factory: FunctionType) {
         self.serviceType = serviceType
+        self.argumentsType = argumentsType
         self.factory = factory
     }
 
-    convenience internal init(serviceType: Service.Type, factory: FunctionType, objectScope: ObjectScope) {
-      self.init(serviceType: serviceType, factory: factory)
-      self.objectScope = objectScope
+    convenience internal init(
+        serviceType: Service.Type,
+        argumentsType: Any.Type,
+        factory: FunctionType,
+        objectScope: ObjectScope
+    ) {
+        self.init(serviceType: serviceType, argumentsType: argumentsType, factory: factory)
+        self.objectScope = objectScope
     }
 
     /// Specifies the object scope to resolve the service.
@@ -81,9 +93,7 @@ public final class ServiceEntry<Service> {
         initCompletedActions.append(completed)
         return self
     }
-}
 
-extension ServiceEntry: ServiceEntryProtocol {
     internal func describeWithKey(_ serviceKey: ServiceKey) -> String {
         return description(
             serviceType: serviceType,

@@ -34,8 +34,8 @@ internal final class LoggingDebugHelper: DebugHelper {
     }
 }
 
-internal func description<Service>(
-    serviceType: Service.Type,
+internal func description(
+    serviceType: Any.Type,
     serviceKey: ServiceKey,
     objectScope: ObjectScopeProtocol? = nil,
     initCompleted: [Any] = []
@@ -49,7 +49,7 @@ internal func description<Service>(
     return "Service: \(serviceType)"
         + nameDescription
         + optionDescription
-        + ", Factory: \(serviceKey.factoryType)"
+        + ", Factory: \(serviceKey.argumentsType) -> \(serviceKey.serviceType)"
         + objectScopeDescription
         + initCompletedDescription
 }

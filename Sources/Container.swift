@@ -24,7 +24,7 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` 
 /// and depending on `A`.
 public final class Container {
-    fileprivate var services = [ServiceKey: ServiceEntryProtocol]()
+    internal var services = [ServiceKey: ServiceEntryProtocol]()
     fileprivate let parent: Container? // Used by HierarchyObjectScope
     fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
@@ -132,14 +132,20 @@ public final class Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     // swiftlint:disable:next identifier_name
-    public func _register<Service, Factory>(
+    public func _register<Service, Arguments>(
         _ serviceType: Service.Type,
-        factory: Factory,
+        factory: @escaping (Arguments) -> Any,
         name: String? = nil,
         option: ServiceKeyOption? = nil
     ) -> ServiceEntry<Service> {
-        let key = ServiceKey(factoryType: type(of: factory), name: name, option: option)
-        let entry = ServiceEntry(serviceType: serviceType, factory: factory, objectScope: defaultObjectScope)
+        let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
+        let entry = ServiceEntry(
+            serviceType: serviceType,
+            argumentsType: Arguments.self,
+            factory: factory,
+            objectScope: defaultObjectScope
+        )
+        entry.container = self
         services[key] = entry
         return entry
     }
@@ -157,18 +163,18 @@ public final class Container {
 // MARK: - _Resolver
 extension Container: _Resolver {
     // swiftlint:disable:next identifier_name
-    public func _resolve<Service, Factory>(
+    public func _resolve<Service, Arguments>(
         name: String?,
         option: ServiceKeyOption? = nil,
-        invoker: (Factory) -> Service
+        invoker: ((Arguments) -> Any) -> Service
     ) -> Service? {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
 
         var resolvedInstance: Service?
-        let key = ServiceKey(factoryType: Factory.self, name: name, option: option)
+        let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
 
-        if let entry = getEntry(key) as ServiceEntry<Service>? {
+        if let entry = getEntry(key, ofType: Service.self) {
             resolvedInstance = resolve(entry: entry, key: key, invoker: invoker)
         }
 
@@ -234,20 +240,25 @@ extension Container: Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type and name 
     ///            is found in the `Container`.
     public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
-        typealias FactoryType = (Resolver) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self) }
+        typealias FactoryType = (Resolver) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in cast(factory(self), to: Service.self) }
     }
 
-    fileprivate func getEntry<Service>(_ key: ServiceKey) -> ServiceEntry<Service>? {
-        if let entry = services[key] as? ServiceEntry<Service> {
+    internal func cast<Service>(_ instance: Any, to type: Service.Type) -> Service {
+        precondition(instance is Service, "Cannot forward \(Service.self) to \(instance)")
+        return instance as! Service
+    }
+
+    fileprivate func getEntry<Service>(_ key: ServiceKey, ofType: Service.Type) -> ServiceEntryProtocol? {
+        if let entry = services[key] {
             return entry
         } else {
-            return parent?.getEntry(key)
+            return parent?.getEntry(key, ofType: Service.self)
         }
     }
 
     fileprivate func resolve<Service, Factory>(
-        entry: ServiceEntry<Service>,
+        entry: ServiceEntryProtocol,
         key: ServiceKey,
         invoker: (Factory) -> Service
     ) -> Service {
