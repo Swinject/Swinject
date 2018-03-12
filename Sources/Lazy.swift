@@ -6,23 +6,15 @@
 //  Copyright © 2018 Swinject Contributors. All rights reserved.
 //
 
-public final class Lazy<Service>: EntryWrapper {
-    private let resolveInstance: () -> Any?
+public final class Lazy<Service>: InstanceWrapper {
+    private let factory: () -> Any?
+    private let graphIdentifier: GraphIdentifier?
+    private weak var container: Container?
 
-    init<Arguments>(
-        container: Container,
-        entry: ServiceEntryProtocol,
-        invoker: @escaping ((Arguments) -> Any) -> Any
-    ) {
-        let graphIdentifier = container.currentObjectGraph!
-        weak var weakContainer = container
-        weak var weakEntry = entry
-
-        self.resolveInstance = {
-            guard let container = weakContainer, let entry = weakEntry else { return nil }
-            container.restoreObjectGraph(graphIdentifier)
-            return container.resolve(entry: entry, invoker: invoker)
-        }
+    init(inContainer container: Container, withInstanceFactory factory: @escaping () -> Any?) {
+        self.factory = factory
+        self.graphIdentifier = container.currentObjectGraph
+        self.container = container
     }
 
     private var _instance: Service?
@@ -30,8 +22,18 @@ public final class Lazy<Service>: EntryWrapper {
         if let instance = _instance {
             return instance
         } else {
-            _instance = resolveInstance() as? Service
+            _instance = makeInstance()
             return _instance!
         }
+    }
+
+    private func makeInstance() -> Service? {
+        guard let container = container else {
+            return nil
+        }
+        if let graphIdentifier = graphIdentifier {
+            container.restoreObjectGraph(graphIdentifier)
+        }
+        return factory() as? Service
     }
 }

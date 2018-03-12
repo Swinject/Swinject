@@ -179,7 +179,7 @@ extension Container: _Resolver {
         }
 
         if resolvedInstance == nil {
-            resolvedInstance = resolveWrapper(invoker: invoker)
+            resolvedInstance = resolveAsWrapper(invoker: invoker)
         }
 
         if resolvedInstance == nil {
@@ -193,10 +193,11 @@ extension Container: _Resolver {
         return resolvedInstance
     }
 
-    private func resolveWrapper<Wrapper, Arguments>(invoker: @escaping ((Arguments) -> Any) -> Any) -> Wrapper? {
+    private func resolveAsWrapper<Wrapper, Arguments>(invoker: @escaping ((Arguments) -> Any) -> Any) -> Wrapper? {
         for entry in getRegistrations().values {
             for type in entry.wrappers where type == Wrapper.self {
-                if let instance = type.init(container: self, entry: entry, invoker: invoker) as? Wrapper {
+                let factory = { [weak self] in self?.resolve(entry: entry, invoker: invoker) as Any? }
+                if let instance = type.init(inContainer: self, withInstanceFactory: factory) as? Wrapper {
                     return instance
                 }
             }

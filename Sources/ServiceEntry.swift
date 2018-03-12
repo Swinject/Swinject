@@ -8,12 +8,8 @@
 
 import Foundation
 
-protocol EntryWrapper {
-    init<Arguments>(
-        container: Container,
-        entry: ServiceEntryProtocol,
-        invoker: @escaping ((Arguments) -> Any) -> Any
-    )
+protocol InstanceWrapper {
+    init(inContainer container: Container, withInstanceFactory factory: @escaping () -> Any?)
 }
 
 // A generic-type-free protocol to be the type of values in a strongly-typed collection.
@@ -24,7 +20,7 @@ internal protocol ServiceEntryProtocol: AnyObject {
     var factory: FunctionType { get }
     var initCompleted: FunctionType? { get }
     var serviceType: Any.Type { get }
-    var wrappers: [EntryWrapper.Type] { get }
+    var wrappers: [InstanceWrapper.Type] { get }
 }
 
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
@@ -36,7 +32,7 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
 
     internal let factory: FunctionType
     internal weak var container: Container?
-    internal var wrappers = [EntryWrapper.Type]()
+    internal var wrappers = [InstanceWrapper.Type]()
 
     internal var objectScope: ObjectScopeProtocol = ObjectScope.graph
     internal lazy var storage: InstanceStorage = { [unowned self] in
