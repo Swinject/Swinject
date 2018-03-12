@@ -175,7 +175,7 @@ extension Container: _Resolver {
         let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
 
         if let entry = getEntry(key, ofType: Service.self) {
-            resolvedInstance = resolve(entry: entry, key: key, invoker: invoker)
+            resolvedInstance = resolve(entry: entry, invoker: invoker)
         }
 
         if resolvedInstance == nil {
@@ -259,7 +259,6 @@ extension Container: Resolver {
 
     fileprivate func resolve<Service, Factory>(
         entry: ServiceEntryProtocol,
-        key: ServiceKey,
         invoker: (Factory) -> Service
     ) -> Service {
         guard let currentObjectGraph = currentObjectGraph else { fatalError() }
