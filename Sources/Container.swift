@@ -174,12 +174,12 @@ extension Container: _Resolver {
         var resolvedInstance: Service?
         let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
 
-        if let entry = getEntry(key, ofType: Service.self) {
+        if let entry = getEntry(for: key) {
             resolvedInstance = resolve(entry: entry, invoker: invoker)
         }
 
         if resolvedInstance == nil {
-            resolvedInstance = resolveAsWrapper(invoker: invoker)
+            resolvedInstance = resolveAsWrapper(name: name, option: option, invoker: invoker)
         }
 
         if resolvedInstance == nil {
@@ -193,16 +193,20 @@ extension Container: _Resolver {
         return resolvedInstance
     }
 
-    private func resolveAsWrapper<Wrapper, Arguments>(invoker: @escaping ((Arguments) -> Any) -> Any) -> Wrapper? {
-        for entry in getRegistrations().values {
-            for type in entry.wrappers where type == Wrapper.self {
-                let factory = { [weak self] in self?.resolve(entry: entry, invoker: invoker) as Any? }
-                if let instance = type.init(inContainer: self, withInstanceFactory: factory) as? Wrapper {
-                    return instance
-                }
-            }
-        }
-        return nil
+    private func resolveAsWrapper<Wrapper, Arguments>(
+        name: String?,
+        option: ServiceKeyOption?,
+        invoker: @escaping ((Arguments) -> Any) -> Any
+    ) -> Wrapper? {
+        guard let wrapper = Wrapper.self as? InstanceWrapper.Type else { return nil }
+
+        let key = ServiceKey(
+            serviceType: wrapper.wrappedType, argumentsType: Arguments.self, name: name, option: option
+        )
+        guard let entry = getEntry(for: key) else { return nil }
+
+        let factory = { [weak self] in self?.resolve(entry: entry, invoker: invoker) as Any? }
+        return wrapper.init(inContainer: self, withInstanceFactory: factory) as? Wrapper
     }
 
     private func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
@@ -260,11 +264,11 @@ extension Container: Resolver {
         return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }
 
-    fileprivate func getEntry<Service>(_ key: ServiceKey, ofType: Service.Type) -> ServiceEntryProtocol? {
+    fileprivate func getEntry(for key: ServiceKey) -> ServiceEntryProtocol? {
         if let entry = services[key] {
             return entry
         } else {
-            return parent?.getEntry(key, ofType: Service.self)
+            return parent?.getEntry(for: key)
         }
     }
 

@@ -9,6 +9,7 @@
 import Foundation
 
 protocol InstanceWrapper {
+    static var wrappedType: Any.Type { get }
     init(inContainer container: Container, withInstanceFactory factory: @escaping () -> Any?)
 }
 
