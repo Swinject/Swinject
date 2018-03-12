@@ -96,6 +96,16 @@ class LazySpec: QuickSpec {
                 }
             }
         }
+        describe("complex registrations") {
+            it("resolves lazy with arguments") {
+                let service = container.register(Dog.self) { (_, name, _: Int) in  Dog(name: name) }
+                container.enableLazy(service)
+
+                let lazy = container.resolve(Lazy<Dog>.self, arguments: "Hachi", 42)
+
+                expect(lazy?.instance.name) == "Hachi"
+            }
+        }
     }
 }
 
