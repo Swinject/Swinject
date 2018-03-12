@@ -19,8 +19,7 @@ class LazySpec: QuickSpec {
 
         describe("instance production") {
             it("provides instance from container") {
-                let service = container.register(Animal.self) { _ in Dog() }
-                container.enableLazy(service)
+                container.register(Animal.self) { _ in Dog() }.enableLazy()
 
                 let lazy = container.resolve(Lazy<Animal>.self)
 
@@ -28,8 +27,8 @@ class LazySpec: QuickSpec {
             }
             it("does not create instance until requested") {
                 var created = false
-                let service = container.register(Animal.self) { _ in created = true; return Dog() }
-                container.enableLazy(service)
+                container.register(Animal.self) { _ in created = true; return Dog() }
+                    .enableLazy()
 
                 _ = container.resolve(Lazy<Animal>.self)
 
@@ -37,8 +36,8 @@ class LazySpec: QuickSpec {
             }
             it("resolves instance from container only once") {
                 var created = 0
-                let service = container.register(Animal.self) { _ in created += 1; return Dog() }
-                container.enableLazy(service)
+                container.register(Animal.self) { _ in created += 1; return Dog() }
+                    .enableLazy()
 
                 let lazy = container.resolve(Lazy<Animal>.self)
                 _ = lazy?.instance
@@ -49,26 +48,25 @@ class LazySpec: QuickSpec {
         }
         describe("object scopes") {
             func setup(_ scope: ObjectScope) {
-                let customerService = container.register(Customer.self) { _ in Customer() }.inObjectScope(scope)
-                container.enableLazy(customerService)
+                container.register(Customer.self) { _ in Customer() }
+                    .inObjectScope(scope)
+                    .enableLazy()
 
-                let employeeService = container.register(Employee.self) {
+                container.register(Employee.self) {
                     Employee(
                         customer: $0.resolve(Customer.self)!,
                         lazyCustomer: $0.resolve(Lazy<Customer>.self)!
                     )
-                }.inObjectScope(scope)
-                container.enableLazy(employeeService)
+                }.inObjectScope(scope).enableLazy()
 
-                let employerService = container.register(Employer.self) {
+                container.register(Employer.self) {
                     Employer(
                         customer: $0.resolve(Customer.self)!,
                         lazyCustomer: $0.resolve(Lazy<Customer>.self)!,
                         employee: $0.resolve(Employee.self)!,
                         lazyEmployee: $0.resolve(Lazy<Employee>.self)!
                     )
-                }.inObjectScope(scope)
-                container.enableLazy(employerService)
+                }.inObjectScope(scope).enableLazy()
             }
 
             context("in transient scope") {
@@ -98,16 +96,16 @@ class LazySpec: QuickSpec {
         }
         describe("complex registrations") {
             it("resolves lazy with arguments") {
-                let service = container.register(Dog.self) { (_, name, _: Int) in  Dog(name: name) }
-                container.enableLazy(service)
+                container.register(Dog.self) { (_, name, _: Int) in  Dog(name: name) }
+                    .enableLazy()
 
                 let lazy = container.resolve(Lazy<Dog>.self, arguments: "Hachi", 42)
 
                 expect(lazy?.instance.name) == "Hachi"
             }
             it("resolves lazy with name") {
-                let service = container.register(Dog.self, name: "Hachi") { _ in Dog() }
-                container.enableLazy(service)
+                container.register(Dog.self, name: "Hachi") { _ in Dog() }
+                    .enableLazy()
 
                 let lazy = container.resolve(Lazy<Dog>.self, name: "Hachi")
 

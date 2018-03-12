@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol EntryWrapperProtocol {
+protocol EntryWrapper {
     init<Arguments>(
         container: Container,
         entry: ServiceEntryProtocol,
@@ -24,7 +24,7 @@ internal protocol ServiceEntryProtocol: AnyObject {
     var factory: FunctionType { get }
     var initCompleted: FunctionType? { get }
     var serviceType: Any.Type { get }
-    var wrappers: [EntryWrapperProtocol.Type] { get }
+    var wrappers: [EntryWrapper.Type] { get }
 }
 
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
@@ -36,7 +36,7 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
 
     internal let factory: FunctionType
     internal weak var container: Container?
-    internal var wrappers = [EntryWrapperProtocol.Type]()
+    internal var wrappers = [EntryWrapper.Type]()
 
     internal var objectScope: ObjectScopeProtocol = ObjectScope.graph
     internal lazy var storage: InstanceStorage = { [unowned self] in
@@ -101,6 +101,11 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
     @discardableResult
     public func initCompleted(_ completed: @escaping (Resolver, Service) -> Void) -> Self {
         initCompletedActions.append(completed)
+        return self
+    }
+
+    @discardableResult public func enableLazy() -> Self {
+        wrappers.append(Lazy<Service>.self)
         return self
     }
 

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Swinject Contributors. All rights reserved.
 //
 
-public final class Lazy<Service>: EntryWrapperProtocol {
+public final class Lazy<Service>: EntryWrapper {
     private let resolveInstance: () -> Any?
 
     init<Arguments>(
