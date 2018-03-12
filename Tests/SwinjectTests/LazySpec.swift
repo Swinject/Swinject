@@ -105,6 +105,14 @@ class LazySpec: QuickSpec {
 
                 expect(lazy?.instance.name) == "Hachi"
             }
+            it("resolves lazy with name") {
+                let service = container.register(Dog.self, name: "Hachi") { _ in Dog() }
+                container.enableLazy(service)
+
+                let lazy = container.resolve(Lazy<Dog>.self, name: "Hachi")
+
+                expect(lazy).notTo(beNil())
+            }
         }
     }
 }

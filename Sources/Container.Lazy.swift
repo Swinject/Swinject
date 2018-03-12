@@ -8,7 +8,6 @@
 
 extension Container {
     public func enableLazy<Service>(_ entry: ServiceEntry<Service>) {
-        register(Lazy<Service>.self) { Lazy(resolver: $0, graphIdentifier: ($0 as! Container).currentObjectGraph!) }
-            .inObjectScope(entry.objectScope)
+        entry.wrappers.append(Lazy<Service>.self)
     }
 }

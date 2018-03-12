@@ -166,7 +166,7 @@ extension Container: _Resolver {
     public func _resolve<Service, Arguments>(
         name: String?,
         option: ServiceKeyOption? = nil,
-        invoker: ((Arguments) -> Any) -> Service
+        invoker: @escaping ((Arguments) -> Any) -> Any
     ) -> Service? {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
@@ -179,6 +179,10 @@ extension Container: _Resolver {
         }
 
         if resolvedInstance == nil {
+            resolvedInstance = resolveWrapper(invoker: invoker)
+        }
+
+        if resolvedInstance == nil {
             debugHelper.resolutionFailed(
                 serviceType: Service.self,
                 key: key,
@@ -187,6 +191,17 @@ extension Container: _Resolver {
         }
 
         return resolvedInstance
+    }
+
+    private func resolveWrapper<Wrapper, Arguments>(invoker: @escaping ((Arguments) -> Any) -> Any) -> Wrapper? {
+        for entry in getRegistrations().values {
+            for type in entry.wrappers where type == Wrapper.self {
+                if let instance = type.init(container: self, entry: entry, invoker: invoker) as? Wrapper {
+                    return instance
+                }
+            }
+        }
+        return nil
     }
 
     private func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
@@ -241,12 +256,7 @@ extension Container: Resolver {
     ///            is found in the `Container`.
     public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
         typealias FactoryType = (Resolver) -> Any
-        return _resolve(name: name) { (factory: FactoryType) in cast(factory(self), to: Service.self) }
-    }
-
-    internal func cast<Service>(_ instance: Any, to type: Service.Type) -> Service {
-        precondition(instance is Service, "Cannot forward \(Service.self) to \(instance)")
-        return instance as! Service
+        return _resolve(name: name) { (factory: FactoryType) in factory(self) }
     }
 
     fileprivate func getEntry<Service>(_ key: ServiceKey, ofType: Service.Type) -> ServiceEntryProtocol? {
@@ -257,10 +267,10 @@ extension Container: Resolver {
         }
     }
 
-    fileprivate func resolve<Service, Factory>(
+    internal func resolve<Service, Factory>(
         entry: ServiceEntryProtocol,
-        invoker: (Factory) -> Service
-    ) -> Service {
+        invoker: (Factory) -> Any
+    ) -> Service? {
         guard let currentObjectGraph = currentObjectGraph else { fatalError() }
 
         if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph) as? Service {
@@ -274,10 +284,12 @@ extension Container: Resolver {
         }
         entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
 
-        if let completed = entry.initCompleted as? (Resolver, Service) -> Void {
+        if  let completed = entry.initCompleted as? (Resolver, Service) -> Void,
+            let resolvedInstance = resolvedInstance as? Service {
+
             completed(self, resolvedInstance)
         }
-        return resolvedInstance
+        return resolvedInstance as? Service
     }
 }
 
