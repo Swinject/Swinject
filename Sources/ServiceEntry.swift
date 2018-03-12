@@ -8,11 +8,6 @@
 
 import Foundation
 
-protocol InstanceWrapper {
-    static var wrappedType: Any.Type { get }
-    init(inContainer container: Container, withInstanceFactory factory: @escaping () -> Any?)
-}
-
 // A generic-type-free protocol to be the type of values in a strongly-typed collection.
 internal protocol ServiceEntryProtocol: AnyObject {
     func describeWithKey(_ serviceKey: ServiceKey) -> String
@@ -21,7 +16,6 @@ internal protocol ServiceEntryProtocol: AnyObject {
     var factory: FunctionType { get }
     var initCompleted: FunctionType? { get }
     var serviceType: Any.Type { get }
-    var wrappers: [InstanceWrapper.Type] { get }
 }
 
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
@@ -33,7 +27,6 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
 
     internal let factory: FunctionType
     internal weak var container: Container?
-    internal var wrappers = [InstanceWrapper.Type]()
 
     internal var objectScope: ObjectScopeProtocol = ObjectScope.graph
     internal lazy var storage: InstanceStorage = { [unowned self] in
@@ -98,11 +91,6 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
     @discardableResult
     public func initCompleted(_ completed: @escaping (Resolver, Service) -> Void) -> Self {
         initCompletedActions.append(completed)
-        return self
-    }
-
-    @discardableResult public func enableLazy() -> Self {
-        wrappers.append(Lazy<Service>.self)
         return self
     }
 

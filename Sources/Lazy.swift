@@ -6,6 +6,11 @@
 //  Copyright © 2018 Swinject Contributors. All rights reserved.
 //
 
+protocol InstanceWrapper {
+    static var wrappedType: Any.Type { get }
+    init(inContainer container: Container, withInstanceFactory factory: @escaping () -> Any?)
+}
+
 public final class Lazy<Service>: InstanceWrapper {
     static var wrappedType: Any.Type { return Service.self }
 
