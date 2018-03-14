@@ -14,7 +14,7 @@ import Nimble
 class SynchronizedResolverSpec: QuickSpec {
     override func spec() {
         describe("Multiple threads") {
-            fit("can resolve circular dependencies.") {
+            it("can resolve circular dependencies.") {
                 let container = Container { container in
                     container.register(ParentProtocol.self) { _ in Parent() }
                         .initCompleted { r, s in

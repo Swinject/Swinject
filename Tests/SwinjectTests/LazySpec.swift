@@ -91,12 +91,17 @@ class LazySpec: QuickSpec {
             }
         }
         describe("circular dependencies") {
-            it("resolves dependencies to same instance") {
+            beforeEach {
                 EmploymentAssembly(scope: .graph).assemble(container: container)
+            }
+            it("resolves dependencies to same instance") {
                 let employer = container.resolve(Employer.self)
-
                 expect(employer?.employee.employer) === employer
                 expect(employer?.lazyEmployee.instance.employer) === employer
+            }
+            it("resolves circular dependencies for lazy instance") {
+                let employee = container.resolve(Lazy<Employee>.self)
+                expect(employee?.instance.employer).notTo(beNil())
             }
         }
     }

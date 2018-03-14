@@ -167,9 +167,6 @@ public class Container {
         option: ServiceKeyOption? = nil,
         invoker: @escaping ((Arguments) -> Any) -> Any
     ) -> Service? {
-        incrementResolutionDepth()
-        defer { decrementResolutionDepth() }
-
         var resolvedInstance: Service?
         let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
 
@@ -273,10 +270,13 @@ extension Container: Resolver {
         }
     }
 
-    internal func resolve<Service, Factory>(
+    fileprivate func resolve<Service, Factory>(
         entry: ServiceEntryProtocol,
         invoker: (Factory) -> Any
     ) -> Service? {
+        incrementResolutionDepth()
+        defer { decrementResolutionDepth() }
+
         guard let currentObjectGraph = currentObjectGraph else { fatalError() }
 
         if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph) as? Service {
@@ -290,11 +290,12 @@ extension Container: Resolver {
         }
         entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
 
-        if  let completed = entry.initCompleted as? (Resolver, Service) -> Void,
+        if  let completed = entry.initCompleted as? (Resolver, Any) -> Void,
             let resolvedInstance = resolvedInstance as? Service {
 
             completed(self, resolvedInstance)
         }
+
         return resolvedInstance as? Service
     }
 }

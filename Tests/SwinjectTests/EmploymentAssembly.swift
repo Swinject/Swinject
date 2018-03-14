@@ -13,25 +13,38 @@ class Customer {}
 class Employee {
     let customer: Customer
     let lazyCustomer: Lazy<Customer>
-    weak var employer: Employer?
+    let providedCustomer: Provider<Customer>
+    var employer: Employer?
 
-    init(customer: Customer, lazyCustomer: Lazy<Customer>) {
+    init(customer: Customer, lazyCustomer: Lazy<Customer>, providedCustomer: Provider<Customer>) {
         self.customer = customer
         self.lazyCustomer = lazyCustomer
+        self.providedCustomer = providedCustomer
     }
 }
 
 class Employer {
     let customer: Customer
     let lazyCustomer: Lazy<Customer>
+    let providedCustomer: Provider<Customer>
     let employee: Employee
     let lazyEmployee: Lazy<Employee>
+    let providedEmployee: Provider<Employee>
 
-    init(customer: Customer, lazyCustomer: Lazy<Customer>, employee: Employee, lazyEmployee: Lazy<Employee>) {
+    init(
+        customer: Customer,
+        lazyCustomer: Lazy<Customer>,
+        providedCustomer: Provider<Customer>,
+        employee: Employee,
+        lazyEmployee: Lazy<Employee>,
+        providedEmployee: Provider<Employee>
+    ) {
         self.customer = customer
         self.lazyCustomer = lazyCustomer
+        self.providedCustomer = providedCustomer
         self.employee = employee
         self.lazyEmployee = lazyEmployee
+        self.providedEmployee = providedEmployee
     }
 }
 
@@ -48,7 +61,8 @@ final class EmploymentAssembly: Assembly {
         container.register(Employee.self) {
             Employee(
                 customer: $0.resolve(Customer.self)!,
-                lazyCustomer: $0.resolve(Lazy<Customer>.self)!
+                lazyCustomer: $0.resolve(Lazy<Customer>.self)!,
+                providedCustomer: $0.resolve(Provider<Customer>.self)!
             )
         }.initCompleted {
             if self.scope !== ObjectScope.transient {
@@ -60,8 +74,10 @@ final class EmploymentAssembly: Assembly {
             Employer(
                 customer: $0.resolve(Customer.self)!,
                 lazyCustomer: $0.resolve(Lazy<Customer>.self)!,
+                providedCustomer: $0.resolve(Provider<Customer>.self)!,
                 employee: $0.resolve(Employee.self)!,
-                lazyEmployee: $0.resolve(Lazy<Employee>.self)!
+                lazyEmployee: $0.resolve(Lazy<Employee>.self)!,
+                providedEmployee: $0.resolve(Provider<Employee>.self)!
             )
         }.inObjectScope(scope)
     }

@@ -14,7 +14,7 @@ internal protocol ServiceEntryProtocol: AnyObject {
     var objectScope: ObjectScopeProtocol { get }
     var storage: InstanceStorage { get }
     var factory: FunctionType { get }
-    var initCompleted: FunctionType? { get }
+    var initCompleted: (FunctionType)? { get }
     var serviceType: Any.Type { get }
 }
 
@@ -36,9 +36,9 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
     internal var initCompleted: FunctionType? {
         guard !initCompletedActions.isEmpty else { return nil }
 
-        return {[weak self] (resolver: Resolver, service: Service) -> Void in
+        return {[weak self] (resolver: Resolver, service: Any) -> Void in
             guard let strongSelf = self else { return }
-            strongSelf.initCompletedActions.forEach { $0(resolver, service) }
+            strongSelf.initCompletedActions.forEach { $0(resolver, service as! Service) }
         }
     }
 

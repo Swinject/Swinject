@@ -44,3 +44,17 @@ public final class Lazy<Service>: InstanceWrapper {
         return factory() as? Service
     }
 }
+
+public final class Provider<Service>: InstanceWrapper {
+    static var wrappedType: Any.Type { return Service.self }
+
+    private let factory: () -> Any?
+
+    init(inContainer container: Container, withInstanceFactory factory: @escaping () -> Any?) {
+        self.factory = factory
+    }
+
+    public var instance: Service {
+        return factory() as! Service
+    }
+}
