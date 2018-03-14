@@ -315,6 +315,22 @@ class AssemblerSpec: QuickSpec {
 
                 expect(serviceEntry?.objectScope) === ObjectScope.graph
             }
+
+            it("uses given list of behaviors to container") {
+                let spy = BehaviorSpy()
+                let assembler = Assembler(parentAssembler: Assembler(), behaviors: [spy])
+
+                assembler.apply(assembly: ContainerSpyAssembly())
+
+                expect(spy.entries).to(haveCount(1))
+            }
+
+            it("uses given list of behaviors before applying assemblies") {
+                let spy = BehaviorSpy()
+                _ = Assembler([ContainerSpyAssembly()], parent: Assembler(), behaviors: [spy])
+
+                expect(spy.entries).to(haveCount(1))
+            }
         }
     }
 }

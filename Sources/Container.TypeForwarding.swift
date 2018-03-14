@@ -30,5 +30,6 @@ extension Container {
             option: nil
         )
         services[key] = service
+        behaviors.forEach { $0.container(self, didRegisterType: type, toService: service, withName: name) }
     }
 }

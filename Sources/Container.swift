@@ -30,6 +30,7 @@ public final class Container {
     fileprivate let debugHelper: DebugHelper
     fileprivate let defaultObjectScope: ObjectScope
     internal let lock: SpinLock // Used by SynchronizedResolver.
+    internal var behaviors = [Behavior]()
 
     internal init(
         parent: Container? = nil,
@@ -41,24 +42,24 @@ public final class Container {
         self.defaultObjectScope = defaultObjectScope
     }
 
-    /// Instantiates a `Container` with its parent `Container`. The parent is optional.
+    /// Instantiates a `Container`
     ///
-    /// - Parameter parent: The optional parent `Container`.
-    /// - Parameter defaultObjectScope: Default object scope (graph if no scope is injected)
-    public convenience init(parent: Container? = nil, defaultObjectScope: ObjectScope = .graph) {
-        self.init(parent: parent, debugHelper: LoggingDebugHelper(), defaultObjectScope: defaultObjectScope)
-    }
-
-    /// Instantiates a `Container` with its parent `Container` and a closure registering services. 
-    /// The parent is optional.
-    ///
-    /// - Parameters:
-    ///     - parent:             The optional parent `Container`.
+    /// - Parameters
+    ///     - parent: The optional parent `Container`.
+    ///     - defaultObjectScope: Default object scope (graph if no scope is injected)
+    ///     - behaviors: List of behaviors to be added to the container
     ///     - registeringClosure: The closure registering services to the new container instance.
-    /// - Remark: Compile time may be long if you pass a long closure to this initializer. 
+    ///
+    /// - Remark: Compile time may be long if you pass a long closure to this initializer.
     ///           Use `init()` or `init(parent:)` instead.
-    public convenience init(parent: Container? = nil, registeringClosure: (Container) -> Void) {
-        self.init(parent: parent)
+    public convenience init(
+        parent: Container? = nil,
+        defaultObjectScope: ObjectScope = .graph,
+        behaviors: [Behavior] = [],
+        registeringClosure: (Container) -> Void = { _ in }
+    ) {
+        self.init(parent: parent, debugHelper: LoggingDebugHelper(), defaultObjectScope: defaultObjectScope)
+        behaviors.forEach(addBehavior)
         registeringClosure(self)
     }
 
@@ -146,6 +147,9 @@ public final class Container {
         )
         entry.container = self
         services[key] = entry
+
+        behaviors.forEach { $0.container(self, didRegisterType: serviceType, toService: entry, withName: name) }
+
         return entry
     }
 
@@ -156,6 +160,15 @@ public final class Container {
     /// - Returns: A synchronized container as `Resolver`.
     public func synchronize() -> Resolver {
         return SynchronizedResolver(container: self)
+    }
+
+    /// Adds behavior to the container. `Behavior.container(_:didRegisterService:withName:)` will be invoked for
+    /// each service registered to the `container` **after** the behavior has been added.
+    ///
+    /// - Parameters:
+    ///     - behavior: Behavior to be added to the container
+    public func addBehavior(_ behavior: Behavior) {
+        behaviors.append(behavior)
     }
 }
 
