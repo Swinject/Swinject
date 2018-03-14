@@ -43,29 +43,9 @@ class LazySpec: QuickSpec {
             }
         }
         describe("object scopes") {
-            func setup(_ scope: ObjectScope) {
-                container.register(Customer.self) { _ in Customer() }.inObjectScope(scope)
-
-                container.register(Employee.self) {
-                    Employee(
-                        customer: $0.resolve(Customer.self)!,
-                        lazyCustomer: $0.resolve(Lazy<Customer>.self)!
-                    )
-                }.inObjectScope(scope)
-
-                container.register(Employer.self) {
-                    Employer(
-                        customer: $0.resolve(Customer.self)!,
-                        lazyCustomer: $0.resolve(Lazy<Customer>.self)!,
-                        employee: $0.resolve(Employee.self)!,
-                        lazyEmployee: $0.resolve(Lazy<Employee>.self)!
-                    )
-                }.inObjectScope(scope)
-            }
-
             context("in transient scope") {
                 it("always produces different instance for related objects") {
-                    setup(.transient)
+                    EmploymentAssembly(scope: .transient).assemble(container: container)
                     let employer = container.resolve(Employer.self)!
                     expect(employer.lazyCustomer.instance).notTo(beIdenticalTo(employer.employee.lazyCustomer.instance))
                     expect(employer.lazyCustomer.instance).notTo(beIdenticalTo(employer.customer))
@@ -73,7 +53,7 @@ class LazySpec: QuickSpec {
             }
             context("in container scope") {
                 it("always produces the same instance for related objects") {
-                    setup(.container)
+                    EmploymentAssembly(scope: .container).assemble(container: container)
                     let employer = container.resolve(Employer.self)!
                     expect(employer.lazyCustomer.instance).to(beIdenticalTo(employer.employee.lazyCustomer.instance))
                     expect(employer.lazyCustomer.instance).to(beIdenticalTo(employer.customer))
@@ -81,7 +61,7 @@ class LazySpec: QuickSpec {
             }
             context("in graph scope") {
                 it("always produces the same instance for related objects") {
-                    setup(.graph)
+                    EmploymentAssembly(scope: .graph).assemble(container: container)
                     let employer = container.resolve(Employer.self)!
                     expect(employer.lazyCustomer.instance).to(beIdenticalTo(employer.employee.lazyCustomer.instance))
                     expect(employer.lazyCustomer.instance).to(beIdenticalTo(employer.customer))
@@ -110,31 +90,14 @@ class LazySpec: QuickSpec {
                 expect(lazy).notTo(beNil())
             }
         }
-    }
-}
+        describe("circular dependencies") {
+            it("resolves dependencies to same instance") {
+                EmploymentAssembly(scope: .graph).assemble(container: container)
+                let employer = container.resolve(Employer.self)
 
-class Customer {}
-
-class Employee {
-    let customer: Customer
-    let lazyCustomer: Lazy<Customer>
-
-    init(customer: Customer, lazyCustomer: Lazy<Customer>) {
-        self.customer = customer
-        self.lazyCustomer = lazyCustomer
-    }
-}
-
-class Employer {
-    let customer: Customer
-    let lazyCustomer: Lazy<Customer>
-    let employee: Employee
-    let lazyEmployee: Lazy<Employee>
-
-    init(customer: Customer, lazyCustomer: Lazy<Customer>, employee: Employee, lazyEmployee: Lazy<Employee>) {
-        self.customer = customer
-        self.lazyCustomer = lazyCustomer
-        self.employee = employee
-        self.lazyEmployee = lazyEmployee
+                expect(employer?.employee.employer) === employer
+                expect(employer?.lazyEmployee.instance.employer) === employer
+            }
+        }
     }
 }

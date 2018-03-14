@@ -137,6 +137,9 @@
 		CD5E9A3C205158D6009090F9 /* Container.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3A205158D6009090F9 /* Container.GraphCaching.swift */; };
 		CD5E9A3D205158D6009090F9 /* Container.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3A205158D6009090F9 /* Container.GraphCaching.swift */; };
 		CD5E9A3E205158D6009090F9 /* Container.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E9A3A205158D6009090F9 /* Container.GraphCaching.swift */; };
+		CD65F049205943D400FB43EE /* EmploymentAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD65F048205943D400FB43EE /* EmploymentAssembly.swift */; };
+		CD65F04A205943D400FB43EE /* EmploymentAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD65F048205943D400FB43EE /* EmploymentAssembly.swift */; };
+		CD65F04B205943D400FB43EE /* EmploymentAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD65F048205943D400FB43EE /* EmploymentAssembly.swift */; };
 		CD6A9F821EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
 		CD6A9F831EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
 		CD6A9F841EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
@@ -316,6 +319,7 @@
 		CD5E9A31205157E3009090F9 /* ContainerSpec.GraphCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.GraphCaching.swift; sourceTree = "<group>"; };
 		CD5E9A3520515898009090F9 /* GraphIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphIdentifier.swift; sourceTree = "<group>"; };
 		CD5E9A3A205158D6009090F9 /* Container.GraphCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.GraphCaching.swift; sourceTree = "<group>"; };
+		CD65F048205943D400FB43EE /* EmploymentAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmploymentAssembly.swift; sourceTree = "<group>"; };
 		CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.CustomStringConvertible.swift; sourceTree = "<group>"; };
 		CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntry.TypeForwarding.swift; sourceTree = "<group>"; };
 		CD89E3482036F2A800A9ED33 /* ServiceEntry.TypeForwarding.erb */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ServiceEntry.TypeForwarding.erb; sourceTree = "<group>"; };
@@ -527,6 +531,7 @@
 				981577F01B675B7F00BF686B /* Circularity.swift */,
 				90B029821C18670000A6A521 /* BasicAssembly.swift */,
 				90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */,
+				CD65F048205943D400FB43EE /* EmploymentAssembly.swift */,
 			);
 			name = Fakes;
 			sourceTree = "<group>";
@@ -973,6 +978,7 @@
 				9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				90B0298C1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				90B029801C18666200A6A521 /* AssemblerSpec.swift in Sources */,
+				CD65F04A205943D400FB43EE /* EmploymentAssembly.swift in Sources */,
 				9878C6391B65C9E000CBEFEF /* Animal.swift in Sources */,
 				981899E21B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 				981577F21B675B7F00BF686B /* Circularity.swift in Sources */,
@@ -1030,6 +1036,7 @@
 				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				984774FF1C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
 				9878C6381B65C9E000CBEFEF /* Animal.swift in Sources */,
+				CD65F049205943D400FB43EE /* EmploymentAssembly.swift in Sources */,
 				90B029831C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 				981577F11B675B7F00BF686B /* Circularity.swift in Sources */,
@@ -1115,6 +1122,7 @@
 				90B029811C18666200A6A521 /* AssemblerSpec.swift in Sources */,
 				98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */,
 				984775011C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
+				CD65F04B205943D400FB43EE /* EmploymentAssembly.swift in Sources */,
 				98689CB81BBFD5110005C6D3 /* Food.swift in Sources */,
 				90B029851C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				98689CB71BBFD5110005C6D3 /* Animal.swift in Sources */,
