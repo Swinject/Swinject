@@ -207,7 +207,7 @@ extension Container: _Resolver {
         return resolvedInstance
     }
 
-    private func resolveAsWrapper<Wrapper, Arguments>(
+    fileprivate func resolveAsWrapper<Wrapper, Arguments>(
         name: String?,
         option: ServiceKeyOption?,
         invoker: @escaping ((Arguments) -> Any) -> Any
@@ -223,15 +223,15 @@ extension Container: _Resolver {
         return wrapper.init(inContainer: self, withInstanceFactory: factory) as? Wrapper
     }
 
-    private func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
+    fileprivate func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
         var registrations = parent?.getRegistrations() ?? [:]
         services.forEach { key, value in registrations[key] = value }
         return registrations
     }
 
-    private var maxResolutionDepth: Int { return 200 }
+    fileprivate var maxResolutionDepth: Int { return 200 }
 
-    private func incrementResolutionDepth() {
+    fileprivate func incrementResolutionDepth() {
         if resolutionDepth == 0 && currentObjectGraph == nil {
             currentObjectGraph = GraphIdentifier()
         }
@@ -242,7 +242,7 @@ extension Container: _Resolver {
         resolutionDepth += 1
     }
 
-    private func decrementResolutionDepth() {
+    fileprivate func decrementResolutionDepth() {
         assert(resolutionDepth > 0, "The depth cannot be negative.")
 
         resolutionDepth -= 1
