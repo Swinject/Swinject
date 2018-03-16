@@ -192,7 +192,7 @@ Services should be registered in an extension of `SwinjectStoryboard` if you use
 
 ```swift
 extension SwinjectStoryboard {
-    class func setup() {
+    @objc class func setup() {
         defaultContainer.register(Animal.self) { _ in Cat(name: "Mimi") }
         defaultContainer.register(Person.self) { r in
             PetOwner(pet: r.resolve(Animal.self)!)
