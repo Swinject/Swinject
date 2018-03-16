@@ -158,6 +158,10 @@ public final class Container {
     public func synchronize() -> Resolver {
         return SynchronizedResolver(container: self)
     }
+
+    internal func restoreObjectGraph(_ identifier: GraphIdentifier) {
+        currentObjectGraph = identifier
+    }
 }
 
 // MARK: - _Resolver

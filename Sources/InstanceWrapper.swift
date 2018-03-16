@@ -11,6 +11,9 @@ protocol InstanceWrapper {
     init(inContainer container: Container, withInstanceFactory factory: @escaping () -> Any?)
 }
 
+/// Wrapper to enable delayed dependency instantiation.
+/// `Lazy<Type>` does not need to be explicitly registered into the `Container` - resolution will work
+/// as long as there is a registration for the `Type`.
 public final class Lazy<Service>: InstanceWrapper {
     static var wrappedType: Any.Type { return Service.self }
 
@@ -25,6 +28,9 @@ public final class Lazy<Service>: InstanceWrapper {
     }
 
     private var _instance: Service?
+
+    /// Getter for the wrapped object.
+    /// It will be resolved from the `Container` when first accessed, all other calls will return the same instance.
     public var instance: Service {
         if let instance = _instance {
             return instance
@@ -45,6 +51,9 @@ public final class Lazy<Service>: InstanceWrapper {
     }
 }
 
+/// Wrapper to enable delayed dependency instantiation.
+/// `Provider<Type>` does not need to be explicitly registered into the `Container` - resolution will work
+/// as long as there is a registration for the `Type`.
 public final class Provider<Service>: InstanceWrapper {
     static var wrappedType: Any.Type { return Service.self }
 
@@ -54,6 +63,8 @@ public final class Provider<Service>: InstanceWrapper {
         self.factory = factory
     }
 
+    /// Getter for the wrapped object.
+    /// New instance will be resolved from the `Container` every time it is accessed.
     public var instance: Service {
         return factory() as! Service
     }

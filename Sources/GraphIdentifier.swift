@@ -6,6 +6,7 @@
 //  Copyright © 2018 Swinject Contributors. All rights reserved.
 //
 
+/// Unique identifier of an object graph during a resolution process.
 public struct GraphIdentifier {
     private let uuid = UUID()
 }
