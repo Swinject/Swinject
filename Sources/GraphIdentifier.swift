@@ -7,14 +7,12 @@
 //
 
 /// Unique identifier of an object graph during a resolution process.
-public struct GraphIdentifier {
-    private let uuid = UUID()
-}
+public final class GraphIdentifier {}
 
 extension GraphIdentifier: Equatable, Hashable {
     public static func == (lhs: GraphIdentifier, rhs: GraphIdentifier) -> Bool {
-        return lhs.uuid == rhs.uuid
+        return lhs === rhs
     }
 
-    public var hashValue: Int { return uuid.hashValue }
+    public var hashValue: Int { return ObjectIdentifier(self).hashValue }
 }
