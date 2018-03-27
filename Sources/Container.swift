@@ -217,10 +217,13 @@ extension Container: _Resolver {
         let key = ServiceKey(
             serviceType: wrapper.wrappedType, argumentsType: Arguments.self, name: name, option: option
         )
-        guard let entry = getEntry(for: key) else { return nil }
 
-        let factory = { [weak self] in self?.resolve(entry: entry, invoker: invoker) as Any? }
-        return wrapper.init(inContainer: self, withInstanceFactory: factory) as? Wrapper
+        if let entry = getEntry(for: key) {
+            let factory = { [weak self] in self?.resolve(entry: entry, invoker: invoker) as Any? }
+            return wrapper.init(inContainer: self, withInstanceFactory: factory) as? Wrapper
+        } else {
+            return wrapper.init(inContainer: self, withInstanceFactory: nil) as? Wrapper
+        }
     }
 
     fileprivate func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {

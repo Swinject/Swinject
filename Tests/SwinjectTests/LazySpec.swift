@@ -41,6 +41,10 @@ class LazySpec: QuickSpec {
 
                 expect(created) == 1
             }
+            it("does not resolve lazy if base type is not registered") {
+                let lazy = container.resolve(Lazy<Animal>.self)
+                expect(lazy).to(beNil())
+            }
         }
         describe("object scopes") {
             context("in transient scope") {
