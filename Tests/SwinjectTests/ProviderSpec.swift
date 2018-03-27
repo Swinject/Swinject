@@ -41,6 +41,10 @@ class ProviderSpec: QuickSpec {
 
                 expect(created) == 2
             }
+            it("does not resolve provider if base type is not registered") {
+                let provider = container.resolve(Provider<Animal>.self)
+                expect(provider).to(beNil())
+            }
         }
         describe("object scopes") {
             context("in transient scope") {
