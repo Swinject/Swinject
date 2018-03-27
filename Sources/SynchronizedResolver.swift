@@ -19,7 +19,7 @@ extension SynchronizedResolver: _Resolver {
     internal func _resolve<Service, Arguments>(
         name: String?,
         option: ServiceKeyOption?,
-        invoker: ((Arguments) -> Any) -> Service
+        invoker: @escaping ((Arguments) -> Any) -> Any
     ) -> Service? {
         return container.lock.sync {
             return self.container._resolve(name: name, option: option, invoker: invoker)
