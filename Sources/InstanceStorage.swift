@@ -79,7 +79,7 @@ public final class CompositeStorage: InstanceStorage {
     private let components: [InstanceStorage]
 
     public var instance: Any? {
-        get { return components.flatMap { $0.instance } .first }
+        get { return components.compactMap { $0.instance } .first }
         set { components.forEach { $0.instance = newValue } }
     }
 
@@ -96,7 +96,7 @@ public final class CompositeStorage: InstanceStorage {
     }
 
     public func instance(inGraph graph: GraphIdentifier) -> Any? {
-        return components.flatMap { $0.instance(inGraph: graph) } .first
+        return components.compactMap { $0.instance(inGraph: graph) } .first
     }
 }
 
