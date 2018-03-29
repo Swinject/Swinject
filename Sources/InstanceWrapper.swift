@@ -79,11 +79,3 @@ extension Optional: InstanceWrapper {
         self = factory?() as? Wrapped
     }
 }
-
-extension ImplicitlyUnwrappedOptional: InstanceWrapper {
-    static var wrappedType: Any.Type { return Wrapped.self }
-
-    init?(inContainer container: Container, withInstanceFactory factory: (() -> Any?)?) {
-        self = factory?() as? Wrapped
-    }
-}
