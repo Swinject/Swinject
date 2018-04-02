@@ -277,8 +277,7 @@ extension Container: Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type and name 
     ///            is found in the `Container`.
     public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
-        typealias FactoryType = (Resolver) -> Any
-        return _resolve(name: name) { (factory: FactoryType) in factory(self) }
+        return _resolve(name: name) { (factory: (Resolver) -> Any) in factory(self) }
     }
 
     fileprivate func getEntry(for key: ServiceKey) -> ServiceEntryProtocol? {

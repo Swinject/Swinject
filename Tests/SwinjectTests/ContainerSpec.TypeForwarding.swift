@@ -129,27 +129,27 @@ class ContainerSpec_TypeForwarding: QuickSpec {
             it("resolves optional when wrapped type is registered") {
                 container.register(Dog.self) { _ in Dog() }
                 let optionalDog = container.resolve(Dog?.self)
-                let unwrappedDog = container.resolve(Dog!.self)
+                let unwrappedDog = container.resolve(Dog?.self)
                 expect(optionalDog ?? nil).notTo(beNil())
                 expect(unwrappedDog ?? nil).notTo(beNil())
             }
             it("resolves optional to nil when wrapped type is not registered") {
                 let optionalDog = container.resolve(Dog?.self)
-                let unwrappedDog = container.resolve(Dog!.self)
+                let unwrappedDog = container.resolve(Dog?.self)
                 expect(optionalDog).notTo(beNil())
                 expect(unwrappedDog).notTo(beNil())
             }
             it("resolves optional with name") {
                 container.register(Dog.self, name: "Hachi") { _ in Dog() }
                 let optionalDog = container.resolve(Dog?.self, name: "Hachi")
-                let unwrappedDog = container.resolve(Dog!.self, name: "Hachi")
+                let unwrappedDog = container.resolve(Dog?.self, name: "Hachi")
                 expect(optionalDog ?? nil).notTo(beNil())
                 expect(unwrappedDog ?? nil).notTo(beNil())
             }
             it("resolves optional to nil with wrong name") {
                 container.register(Dog.self, name: "Hachi") { _ in Dog() }
                 let optionalDog = container.resolve(Dog?.self, name: "Mimi")
-                let unwrappedDog = container.resolve(Dog!.self, name: "Mimi")
+                let unwrappedDog = container.resolve(Dog?.self, name: "Mimi")
                 expect(optionalDog ?? nil).to(beNil())
                 expect(unwrappedDog ?? nil).to(beNil())
                 expect(optionalDog).notTo(beNil())
@@ -158,14 +158,14 @@ class ContainerSpec_TypeForwarding: QuickSpec {
             it("resolves optional with arguments") {
                 container.register(Dog.self) { _, name in Dog(name: name) }
                 let optionalDog = container.resolve(Dog?.self, argument: "Hachi")
-                let unwrappedDog = container.resolve(Dog!.self, argument: "Hachi")
+                let unwrappedDog = container.resolve(Dog?.self, argument: "Hachi")
                 expect(optionalDog ?? nil).notTo(beNil())
                 expect(unwrappedDog ?? nil).notTo(beNil())
             }
             it("resolves optional of fowrarded type") {
                 container.register(Dog.self) { _ in Dog() }.implements(Animal.self)
                 let optionalAnimal = container.resolve(Animal?.self)
-                let unwrappedAnimal = container.resolve(Animal!.self)
+                let unwrappedAnimal = container.resolve(Animal?.self)
                 expect(optionalAnimal ?? nil).notTo(beNil())
                 expect(unwrappedAnimal ?? nil).notTo(beNil())
             }

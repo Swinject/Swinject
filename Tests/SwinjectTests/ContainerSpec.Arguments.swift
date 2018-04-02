@@ -5,7 +5,7 @@
 //  Created by Yoichi Tagaya on 8/3/15.
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
-// swiftlint:disable function_body_length
+// swiftlint:disable function_body_length line_length
 
 import Quick
 import Nimble
@@ -55,7 +55,7 @@ class ContainerSpec_Arguments: QuickSpec {
             expect(animal?.name) == "1234"
         }
         it("accepts 5 arguments.") {
-            container.register(Animal.self) { _, arg1, arg2, arg3, arg4, arg5 in
+            container.register(Animal.self) { (_, arg1: String, arg2: String, arg3: String, arg4: String, arg5: String) in
                 Cat(name: arg1 + arg2 + arg3 + arg4 + arg5)
             }
             let animal = container.resolve(
@@ -64,7 +64,7 @@ class ContainerSpec_Arguments: QuickSpec {
             expect(animal?.name) == "12345"
         }
         it("accepts 6 arguments.") {
-            container.register(Animal.self) { _, arg1, arg2, arg3, arg4, arg5, arg6 in
+            container.register(Animal.self) { (_, arg1: String, arg2: String, arg3: String, arg4: String, arg5: String, arg6: String) in
                 Cat(name: arg1 + arg2 + arg3 + arg4 + arg5 + arg6)
             }
             let animal = container.resolve(
@@ -73,7 +73,7 @@ class ContainerSpec_Arguments: QuickSpec {
             expect(animal?.name) == "123456"
         }
         it("accepts 7 arguments.") {
-            container.register(Animal.self) { _, arg1, arg2, arg3, arg4, arg5, arg6, arg7 in
+            container.register(Animal.self) { (_, arg1: String, arg2: String, arg3: String, arg4: String, arg5: String, arg6: String, arg7: String) in
                 Cat(name: arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7)
             }
             let animal = container.resolve(
@@ -82,7 +82,7 @@ class ContainerSpec_Arguments: QuickSpec {
             expect(animal?.name) == "1234567"
         }
         it("accepts 8 arguments.") {
-            container.register(Animal.self) { _, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8 in
+            container.register(Animal.self) { (_, arg1: String, arg2: String, arg3: String, arg4: String, arg5: String, arg6: String, arg7: String, arg8: String) in
                 Cat(name: arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8)
             }
             let animal = container.resolve(
@@ -91,7 +91,7 @@ class ContainerSpec_Arguments: QuickSpec {
             expect(animal?.name) == "12345678"
         }
         it("accepts 9 arguments.") {
-            container.register(Animal.self) { _, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 in
+            container.register(Animal.self) { (_, arg1: String, arg2: String, arg3: String, arg4: String, arg5: String, arg6: String, arg7: String, arg8: String, arg9: String) in
                 Cat(name: arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9)
             }
             let animal = container.resolve(
