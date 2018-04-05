@@ -139,6 +139,10 @@
 		CD6A9F821EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
 		CD6A9F831EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
 		CD6A9F841EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */; };
+		CD89E3472036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
+		CD89E3492036F2BE00A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
+		CD89E34A2036F2BF00A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
+		CD89E34B2036F2C000A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
 		CD89E34D2037016700A9ED33 /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E34C2037016700A9ED33 /* Behavior.swift */; };
 		CD89E34E20371C0100A9ED33 /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E34C2037016700A9ED33 /* Behavior.swift */; };
 		CD89E34F20371C0200A9ED33 /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E34C2037016700A9ED33 /* Behavior.swift */; };
@@ -146,16 +150,12 @@
 		CD89E35220371D7900A9ED33 /* ContainerSpec.Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E35120371D7900A9ED33 /* ContainerSpec.Behavior.swift */; };
 		CD89E35320371D7900A9ED33 /* ContainerSpec.Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E35120371D7900A9ED33 /* ContainerSpec.Behavior.swift */; };
 		CD89E35420371D7900A9ED33 /* ContainerSpec.Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E35120371D7900A9ED33 /* ContainerSpec.Behavior.swift */; };
-		CDB19E52204ED97400D67123 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB19E51204ED97400D67123 /* BehaviorFakes.swift */; };
-		CDB19E53204ED97400D67123 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB19E51204ED97400D67123 /* BehaviorFakes.swift */; };
-		CDB19E54204ED97400D67123 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB19E51204ED97400D67123 /* BehaviorFakes.swift */; };
-		CD89E3472036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
-		CD89E3492036F2BE00A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
-		CD89E34A2036F2BF00A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
-		CD89E34B2036F2C000A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */; };
 		CD8E362C20595ACD00F2A5CF /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E362B20595ACD00F2A5CF /* ProviderSpec.swift */; };
 		CD8E362D20595ACD00F2A5CF /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E362B20595ACD00F2A5CF /* ProviderSpec.swift */; };
 		CD8E362E20595ACD00F2A5CF /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E362B20595ACD00F2A5CF /* ProviderSpec.swift */; };
+		CDB19E52204ED97400D67123 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB19E51204ED97400D67123 /* BehaviorFakes.swift */; };
+		CDB19E53204ED97400D67123 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB19E51204ED97400D67123 /* BehaviorFakes.swift */; };
+		CDB19E54204ED97400D67123 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB19E51204ED97400D67123 /* BehaviorFakes.swift */; };
 		CDBBACF61D9EAD60002F5EF9 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */; };
 		CDBBACF71D9EAD60002F5EF9 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */; };
 		CDBBACF81D9EAD60002F5EF9 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */; };
@@ -329,12 +329,12 @@
 		CD5E9A3520515898009090F9 /* GraphIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphIdentifier.swift; sourceTree = "<group>"; };
 		CD65F048205943D400FB43EE /* EmploymentAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmploymentAssembly.swift; sourceTree = "<group>"; };
 		CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.CustomStringConvertible.swift; sourceTree = "<group>"; };
-		CD89E34C2037016700A9ED33 /* Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behavior.swift; sourceTree = "<group>"; };
-		CD89E35120371D7900A9ED33 /* ContainerSpec.Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Behavior.swift; sourceTree = "<group>"; };
-		CDB19E51204ED97400D67123 /* BehaviorFakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorFakes.swift; sourceTree = "<group>"; };
 		CD89E3462036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntry.TypeForwarding.swift; sourceTree = "<group>"; };
 		CD89E3482036F2A800A9ED33 /* ServiceEntry.TypeForwarding.erb */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ServiceEntry.TypeForwarding.erb; sourceTree = "<group>"; };
+		CD89E34C2037016700A9ED33 /* Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behavior.swift; sourceTree = "<group>"; };
+		CD89E35120371D7900A9ED33 /* ContainerSpec.Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Behavior.swift; sourceTree = "<group>"; };
 		CD8E362B20595ACD00F2A5CF /* ProviderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderSpec.swift; sourceTree = "<group>"; };
+		CDB19E51204ED97400D67123 /* BehaviorFakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorFakes.swift; sourceTree = "<group>"; };
 		CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.Logging.swift; sourceTree = "<group>"; };
 		CDBD0E672035EDF20030F566 /* ContainerSpec.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.TypeForwarding.swift; sourceTree = "<group>"; };
 		CDBD0E6B2035EEBB0030F566 /* Container.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.TypeForwarding.swift; sourceTree = "<group>"; };
@@ -805,7 +805,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Swinject Contributors";
 				TargetAttributes = {
 					981899BB1B5FE63F00C702D0 = {
@@ -1260,6 +1260,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
