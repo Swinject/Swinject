@@ -268,6 +268,16 @@ extension Container: Resolver {
         return resolve(serviceType, name: nil)
     }
 
+    /// Retrieves the instance with the specified service type.
+    ///
+    /// - Parameter serviceType: The service type to resolve.
+    ///
+    /// - Returns: The resolved service type instance, or exception (ResolverError) if no registration for
+    ///            the service type is found in the `Container`.
+    public func throwsResolve<Service>(_ serviceType: Service.Type) throws -> Service {
+        return try throwsResolve(serviceType, name: nil)
+    }
+
     /// Retrieves the instance with the specified service type and registration name.
     ///
     /// - Parameters:
@@ -278,6 +288,21 @@ extension Container: Resolver {
     ///            is found in the `Container`.
     public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
         return _resolve(name: name) { (factory: (Resolver) -> Any) in factory(self) }
+    }
+
+    /// Retrieves the instance with the specified service type and registration name.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
+    ///   - name:        The registration name.
+    ///
+    /// - Returns: The resolved service type instance, or exception (ResolverError) if no registration for
+    ///            the service type and name is found in the `Container`.
+    public func throwsResolve<Service>(_ serviceType: Service.Type, name: String?) throws -> Service {
+        guard let resolved: Service = self.resolve(serviceType, name: name) else {
+            throw ResolverError.cantResolve(type: serviceType, name: name)
+        }
+        return resolved
     }
 
     fileprivate func getEntry(for key: ServiceKey) -> ServiceEntryProtocol? {

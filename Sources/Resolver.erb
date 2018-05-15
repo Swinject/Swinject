@@ -24,6 +24,13 @@ public protocol Resolver {
     /// - Returns: The resolved service type instance, or nil if no service is found.
     func resolve<Service>(_ serviceType: Service.Type) -> Service?
 
+    /// Retrieves the instance with the specified service type.
+    ///
+    /// - Parameter serviceType: The service type to resolve.
+    ///
+    /// - Returns: The resolved service type instance, or exception (ResolverError) if no service is found.
+    func throwsResolve<Service>(_ serviceType: Service.Type) throws -> Service
+
     /// Retrieves the instance with the specified service type and registration name.
     ///
     /// - Parameters:
@@ -32,6 +39,15 @@ public protocol Resolver {
     ///
     /// - Returns: The resolved service type instance, or nil if no service with the name is found.
     func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service?
+
+    /// Retrieves the instance with the specified service type and registration name.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
+    ///   - name:        The registration name.
+    ///
+    /// - Returns: The resolved service type instance, or exception (ResolverError) if no service with the name is found.
+    func throwsResolve<Service>(_ serviceType: Service.Type, name: String?) throws -> Service
 
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
@@ -50,6 +66,18 @@ public protocol Resolver {
         _ serviceType: Service.Type,
         <%= arg_param %>) -> Service?
 
+    /// Retrieves the instance with the specified service type and <%= arg_param_description %> to the factory closure.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
+    ///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
+    ///
+    /// - Returns: The resolved service type instance, or exception (ResolverError) if no registration for
+    ///            the service type and <%= arg_param_description %> is found.
+    func throwsResolve<Service, <%= arg_types %>>(
+        _ serviceType: Service.Type,
+        <%= arg_param %>) throws -> Service
+
     /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
     ///
     /// - Parameters:
@@ -63,6 +91,20 @@ public protocol Resolver {
         _ serviceType: Service.Type,
         name: String?,
         <%= arg_param %>) -> Service?
+
+    /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
+    ///   - name:        The registration name.
+    ///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
+    ///
+    /// - Returns: The resolved service type instance, or exception (ResolverError) if no registration for
+    ///            the service type, <%= arg_param_description %> and name is found.
+    func throwsResolve<Service, <%= arg_types %>>(
+        _ serviceType: Service.Type,
+        name: String?,
+        <%= arg_param %>) throws -> Service
 
 <% end %>
 
