@@ -28,15 +28,28 @@ extension SynchronizedResolver: _Resolver {
 }
 
 extension SynchronizedResolver: Resolver {
+
     internal func resolve<Service>(_ serviceType: Service.Type) -> Service? {
         return container.lock.sync {
             return self.container.resolve(serviceType)
         }
     }
 
+    internal func throwsResolve<Service>(_ serviceType: Service.Type) throws -> Service {
+        return try container.lock.throwsSync {
+            return try self.container.throwsResolve(serviceType)
+        }
+    }
+
     internal func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
         return container.lock.sync {
             return self.container.resolve(serviceType, name: name)
+        }
+    }
+
+    internal func throwsResolve<Service>(_ serviceType: Service.Type, name: String?) throws -> Service {
+        return try container.lock.throwsSync {
+            return try self.container.throwsResolve(serviceType, name: name)
         }
     }
 }

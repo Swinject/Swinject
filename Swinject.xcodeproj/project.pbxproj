@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15644BC220AB000D00EA9ABB /* ResolverError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15644BC120AB000D00EA9ABB /* ResolverError.swift */; };
 		90B029751C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029761C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029771C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
@@ -252,6 +253,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15644BC120AB000D00EA9ABB /* ResolverError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolverError.swift; sourceTree = "<group>"; };
 		90B029741C18599200A6A521 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		90B029781C185B1600A6A521 /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		90B0297E1C18666200A6A521 /* AssemblerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblerSpec.swift; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 				983B98301C06ECB2006A23D4 /* SpinLock.swift */,
 				98E550C21DEF066300BE6304 /* UnavailableItems.swift */,
 				CD89E34C2037016700A9ED33 /* Behavior.swift */,
+				15644BC120AB000D00EA9ABB /* ResolverError.swift */,
 				98B012BD1B82D6B000053A32 /* GeneratedCode */,
 				984E8A511C317AC90039943D /* Swinject.h */,
 				981ABE861B5FC9DF00294975 /* Info.plist */,
@@ -1019,6 +1022,7 @@
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				CD89E34D2037016700A9ED33 /* Behavior.swift in Sources */,
 				984774F01C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
+				15644BC220AB000D00EA9ABB /* ResolverError.swift in Sources */,
 				CD3C2CDF1D98E47000863421 /* DebugHelper.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* Resolver.swift in Sources */,
 				CD3B32921DD6121500B208A3 /* InstanceStorage.swift in Sources */,

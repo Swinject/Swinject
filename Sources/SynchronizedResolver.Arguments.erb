@@ -32,6 +32,15 @@ extension SynchronizedResolver {
         }
     }
 
+    internal func throwsResolve<Service, <%= arg_types %>>(
+        _ serviceType: Service.Type,
+        <%= arg_param_def %>) throws -> Service
+    {
+        return try container.lock.throwsSync {
+            return try self.container.throwsResolve(serviceType, <%= arg_param_name %>: <%= arg_param_call %>)
+        }
+    }
+
     internal func resolve<Service, <%= arg_types %>>(
         _ serviceType: Service.Type,
         name: String?,
@@ -39,6 +48,16 @@ extension SynchronizedResolver {
     {
         return container.lock.sync {
             return self.container.resolve(serviceType, name: name, <%= arg_param_name %>: <%= arg_param_call %>)
+        }
+    }
+
+    internal func throwsResolve<Service, <%= arg_types %>>(
+        _ serviceType: Service.Type,
+        name: String?,
+        <%= arg_param_def %>) throws -> Service
+    {
+        return try container.lock.throwsSync {
+            return try self.container.throwsResolve(serviceType, name: name, <%= arg_param_name %>: <%= arg_param_call %>)
         }
     }
 
