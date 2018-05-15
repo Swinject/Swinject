@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		15644BC220AB000D00EA9ABB /* ResolverError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15644BC120AB000D00EA9ABB /* ResolverError.swift */; };
+		15644BE020AB228200EA9ABB /* ResolverError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15644BC120AB000D00EA9ABB /* ResolverError.swift */; };
+		15644BE120AB228500EA9ABB /* ResolverError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15644BC120AB000D00EA9ABB /* ResolverError.swift */; };
+		15644BE220AB228500EA9ABB /* ResolverError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15644BC120AB000D00EA9ABB /* ResolverError.swift */; };
 		90B029751C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029761C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029771C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
@@ -965,6 +968,7 @@
 				90B029761C18599200A6A521 /* Assembly.swift in Sources */,
 				CD3B32931DD6123F00B208A3 /* InstanceStorage.swift in Sources */,
 				984774F11C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
+				15644BE020AB228200EA9ABB /* ResolverError.swift in Sources */,
 				981899E51B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B91B82D67300053A32 /* Container.Arguments.swift in Sources */,
 				9884E2A81B60B77400120259 /* ServiceKey.swift in Sources */,
@@ -1087,6 +1091,7 @@
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
 				CD3B32941DD6123F00B208A3 /* InstanceStorage.swift in Sources */,
 				90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */,
+				15644BE120AB228500EA9ABB /* ResolverError.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
 				984BE3151CDA3FCF00BCF2AC /* _Resolver.swift in Sources */,
 				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
@@ -1116,6 +1121,7 @@
 				98689CA01BBFC7EB0005C6D3 /* Resolver.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
 				CD3B32951DD6124000B208A3 /* InstanceStorage.swift in Sources */,
+				15644BE220AB228500EA9ABB /* ResolverError.swift in Sources */,
 				98689C9A1BBFC7EB0005C6D3 /* ServiceKey.swift in Sources */,
 				90B0297C1C185B1600A6A521 /* Assembler.swift in Sources */,
 				98689C9B1BBFC7EB0005C6D3 /* ServiceEntry.swift in Sources */,
