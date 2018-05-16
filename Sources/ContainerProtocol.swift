@@ -8,7 +8,15 @@
 
 import Foundation
 
-public protocol ContainerProtocol {
+/// These are functions made public so we can have a ContainerProtocol instead of a final class.
+public protocol ServiceGetterProtocol {
+    func getRegistrations() -> [ServiceKey: ServiceEntryProtocol]
+    func getEntry(for key: ServiceKey) -> ServiceEntryProtocol?
+}
+
+public protocol ContainerProtocol: Resolver, ServiceGetterProtocol {
+    var lock: SpinLock { get }
+    
     func removeAll()
     /// Discards instances for services registered in the given `ObjectsScopeProtocol`.
     ///
