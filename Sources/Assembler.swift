@@ -10,7 +10,7 @@
 public final class Assembler {
 
     /// the container that each assembly will build its `Service` definitions into
-    private let container: Container
+    private let container: ContainerProtocol
 
     /// expose the container as a resolver so `Service` registration only happens within an assembly
     public var resolver: Resolver {
@@ -21,7 +21,7 @@ public final class Assembler {
     ///
     /// - parameter container: the baseline container
     ///
-    public init(container: Container? = Container()) {
+    public init(container: ContainerProtocol? = Container()) {
         self.container = container!
     }
 

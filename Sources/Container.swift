@@ -26,7 +26,7 @@ import Foundation
 public final class Container: ContainerProtocol {
     
     internal var services = [ServiceKey: ServiceEntryProtocol]()
-    fileprivate let parent: Container? // Used by HierarchyObjectScope
+    fileprivate let parent: ContainerProtocol? // Used by HierarchyObjectScope
     fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
     fileprivate let defaultObjectScope: ObjectScope
@@ -35,7 +35,7 @@ public final class Container: ContainerProtocol {
     internal var behaviors = [Behavior]()
 
     internal init(
-        parent: Container? = nil,
+        parent: ContainerProtocol? = nil,
         debugHelper: DebugHelper,
         defaultObjectScope: ObjectScope = .graph) {
         self.parent = parent
@@ -55,7 +55,7 @@ public final class Container: ContainerProtocol {
     /// - Remark: Compile time may be long if you pass a long closure to this initializer.
     ///           Use `init()` or `init(parent:)` instead.
     public convenience init(
-        parent: Container? = nil,
+        parent: ContainerProtocol? = nil,
         defaultObjectScope: ObjectScope = .graph,
         behaviors: [Behavior] = [],
         registeringClosure: (Container) -> Void = { _ in }
