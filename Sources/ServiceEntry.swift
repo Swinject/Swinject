@@ -42,7 +42,7 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
         }
     }
 
-    internal init(serviceType: Service.Type, argumentsType: Any.Type, factory: FunctionType) {
+    public init(serviceType: Service.Type, argumentsType: Any.Type, factory: FunctionType) {
         self.serviceType = serviceType
         self.argumentsType = argumentsType
         self.factory = factory
