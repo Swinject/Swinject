@@ -43,6 +43,14 @@ extension Container {
     {
         return _register(serviceType, factory: factory, name: name)
     }
+    
+    @discardableResult
+    public func register<Service, <%= arg_types %>>(
+    _ serviceType: Service.Type,
+    factory: @escaping (Resolver, <%= arg_types %>) -> Service) -> ServiceEntry<Service>
+    {
+        return _register(serviceType, factory: factory, name: nil)
+    }
 
 <% end %>
 }

@@ -8,13 +8,13 @@
 
 import Foundation
 
-/// These are functions made public so we can have a ContainerProtocol instead of a final class.
+/// These are functions made so we can have a ContainerProtocol instead of a final class.
 public protocol ServiceGetterProtocol {
     func getRegistrations() -> [ServiceKey: ServiceEntryProtocol]
     func getEntry(for key: ServiceKey) -> ServiceEntryProtocol?
 }
 
-public protocol ContainerProtocol: Resolver, ServiceGetterProtocol {
+public protocol ContainerProtocol: Resolver, ServiceGetterProtocol, ContainerArgumentable {
     var lock: SpinLock { get }
     
     func removeAll()
@@ -96,4 +96,74 @@ public protocol ContainerProtocol: Resolver, ServiceGetterProtocol {
     /// - Parameters:
     ///     - behavior: Behavior to be added to the container
     func addBehavior(_ behavior: Behavior)
+}
+
+/// Manualy added this, should be done by a script script/gencode but had no time to that
+public protocol ContainerArgumentable {
+    
+    @discardableResult
+    func register<Service, Arg1>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1) -> Service) -> ServiceEntry<Service>
+
+    @discardableResult
+    func register<Service, Arg1>(
+        _ serviceType: Service.Type,
+        factory: @escaping (Resolver, Arg1) -> Service) -> ServiceEntry<Service>
+
+    @discardableResult
+    func register<Service, Arg1, Arg2>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1, Arg2) -> Service) -> ServiceEntry<Service>
+
+    @discardableResult
+    func register<Service, Arg1, Arg2>(
+        _ serviceType: Service.Type,
+        factory: @escaping (Resolver, Arg1, Arg2) -> Service) -> ServiceEntry<Service>
+
+    @discardableResult
+    func register<Service, Arg1, Arg2, Arg3>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3) -> Service) -> ServiceEntry<Service>
+    
+    @discardableResult
+    func register<Service, Arg1, Arg2, Arg3>(
+        _ serviceType: Service.Type,
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3) -> Service) -> ServiceEntry<Service>
+    
+    // MARK: - Resolver with Arguments
+        func resolve<Service, Arg1>(
+            _ serviceType: Service.Type,
+            argument: Arg1) -> Service?
+ 
+        func resolve<Service, Arg1>(
+            _ serviceType: Service.Type,
+            name: String?,
+            argument: Arg1) -> Service?
+ 
+        func resolve<Service, Arg1, Arg2>(
+            _ serviceType: Service.Type,
+            arguments arg1: Arg1, _ arg2: Arg2) -> Service?
+
+        func resolve<Service, Arg1, Arg2>(
+            _ serviceType: Service.Type,
+            name: String?,
+            arguments arg1: Arg1, _ arg2: Arg2) -> Service?
+
+        func resolve<Service, Arg1, Arg2, Arg3>(
+            _ serviceType: Service.Type,
+            arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> Service?
+
+        func resolve<Service, Arg1, Arg2, Arg3>(
+            _ serviceType: Service.Type,
+            name: String?,
+            arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> Service?
+
+        func resolve<Service, Arg1, Arg2, Arg3, Arg4>(
+            _ serviceType: Service.Type,
+            arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) -> Service?
+    
 }
