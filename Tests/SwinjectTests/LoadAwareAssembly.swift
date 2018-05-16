@@ -16,7 +16,7 @@ class LoadAwareAssembly: Assembly {
         self.onLoad = onLoad
     }
 
-    func assemble(container: Container) {
+    func assemble(container: ContainerProtocol) {
         container.register(Animal.self) { _ in
             return Cat(name: "Bojangles")
         }

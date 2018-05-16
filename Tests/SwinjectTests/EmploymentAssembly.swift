@@ -55,7 +55,7 @@ final class EmploymentAssembly: Assembly {
         self.scope = scope
     }
 
-    func assemble(container: Container) {
+    func assemble(container: ContainerProtocol) {
         container.register(Customer.self) { _ in Customer() }.inObjectScope(scope)
 
         container.register(Employee.self) {

@@ -52,7 +52,7 @@ class AssemblerSpec: QuickSpec {
                 let assembler = Assembler([], parent: nil, defaultObjectScope: ObjectScope.container)
 
                 assembler.apply(assembly: ContainerSpyAssembly())
-                let container = assembler.resolver.resolve(Container.self)
+                let container = assembler.resolver.resolve(ContainerProtocol.self)
                 let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
 
                 expect(serviceEntry?.objectScope) === ObjectScope.container
@@ -62,7 +62,7 @@ class AssemblerSpec: QuickSpec {
                 let assembler = Assembler([], parent: nil)
 
                 assembler.apply(assembly: ContainerSpyAssembly())
-                let container = assembler.resolver.resolve(Container.self)
+                let container = assembler.resolver.resolve(ContainerProtocol.self)
                 let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
 
                 expect(serviceEntry?.objectScope) === ObjectScope.graph
@@ -298,7 +298,7 @@ class AssemblerSpec: QuickSpec {
                                                defaultObjectScope: ObjectScope.container)
 
                 childAssembler.apply(assembly: ContainerSpyAssembly())
-                let container = childAssembler.resolver.resolve(Container.self)
+                let container = childAssembler.resolver.resolve(ContainerProtocol.self)
                 let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
 
                 expect(serviceEntry?.objectScope) === ObjectScope.container
@@ -310,7 +310,7 @@ class AssemblerSpec: QuickSpec {
                 let childAssembler = Assembler(parentAssembler: parentAssembler)
 
                 childAssembler.apply(assembly: ContainerSpyAssembly())
-                let container = childAssembler.resolver.resolve(Container.self)
+                let container = childAssembler.resolver.resolve(ContainerProtocol.self)
                 let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
 
                 expect(serviceEntry?.objectScope) === ObjectScope.graph

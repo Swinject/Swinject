@@ -10,7 +10,7 @@ import Swinject
 
 class AnimalAssembly: Assembly {
 
-    func assemble(container: Container) {
+    func assemble(container: ContainerProtocol) {
         container.register(Animal.self) { _ in
             return Cat(name: "Whiskers")
         }
@@ -19,7 +19,7 @@ class AnimalAssembly: Assembly {
 
 class FoodAssembly: Assembly {
 
-    func assemble(container: Container) {
+    func assemble(container: ContainerProtocol) {
         container.register(Food.self) { _ in
             return Sushi()
         }
@@ -28,7 +28,7 @@ class FoodAssembly: Assembly {
 
 class PersonAssembly: Assembly {
 
-    func assemble(container: Container) {
+    func assemble(container: ContainerProtocol) {
         container.register(PetOwner.self) { r in
             let definition = PetOwner()
             definition.favoriteFood = r.resolve(Food.self)
@@ -39,8 +39,8 @@ class PersonAssembly: Assembly {
 }
 
 class ContainerSpyAssembly: Assembly {
-    func assemble(container: Container) {
-        container.register(Container.self) { _ in
+    func assemble(container: ContainerProtocol) {
+        container.register(ContainerProtocol.self) { _ in
             return container
         }
     }

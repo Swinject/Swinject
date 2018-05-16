@@ -24,6 +24,7 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` 
 /// and depending on `A`.
 public final class Container: ContainerProtocol {
+    
     internal var services = [ServiceKey: ServiceEntryProtocol]()
     fileprivate let parent: Container? // Used by HierarchyObjectScope
     fileprivate var resolutionDepth = 0
@@ -112,10 +113,19 @@ public final class Container: ContainerProtocol {
     @discardableResult
     public func register<Service>(
         _ serviceType: Service.Type,
-        name: String? = nil,
+        name: String?,
         factory: @escaping (Resolver) -> Service
     ) -> ServiceEntry<Service> {
         return _register(serviceType, factory: factory, name: name)
+    }
+    
+    /// Duplicate to conform to protocol
+    @discardableResult
+    public func register<Service>(
+        _ serviceType: Service.Type,
+        factory: @escaping (Resolver) -> Service
+    ) -> ServiceEntry<Service> {
+        return register(serviceType, name: nil, factory: factory)
     }
 
     /// This method is designed for the use to extend Swinject functionality.

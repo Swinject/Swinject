@@ -10,7 +10,6 @@ import Foundation
 
 public protocol ContainerProtocol {
     func removeAll()
-
     /// Discards instances for services registered in the given `ObjectsScopeProtocol`.
     ///
     /// **Example usage:**
@@ -19,7 +18,6 @@ public protocol ContainerProtocol {
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
     func resetObjectScope(_ objectScope: ObjectScopeProtocol)
-
     /// Discards instances for services registered in the given `ObjectsScope`. It performs the same operation
     /// as `resetObjectScope(_:ObjectScopeProtocol)`, but provides more convenient usage syntax.
     ///
@@ -29,7 +27,7 @@ public protocol ContainerProtocol {
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScope` will be discarded.
     func resetObjectScope(_ objectScope: ObjectScope)
-
+    
     /// Adds a registration for the specified service with the factory closure to specify how the service is
     /// resolved with dependencies.
     ///
@@ -43,7 +41,19 @@ public protocol ContainerProtocol {
     ///                  and returns the instance of the component type for the service.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
-    func register<Service>(_ serviceType: Service.Type, name: String?, factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service>
+    @discardableResult
+    func register<Service>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver) -> Service
+    ) -> ServiceEntry<Service>
+    
+    /// Duplicate but without name because protocols do not allow default arguments
+    @discardableResult
+    func register<Service>(
+        _ serviceType: Service.Type,
+        factory: @escaping (Resolver) -> Service
+    ) -> ServiceEntry<Service>
 
     /// This method is designed for the use to extend Swinject functionality.
     /// Do NOT use this method unless you intend to write an extension or plugin to Swinject framework.
@@ -58,7 +68,12 @@ public protocol ContainerProtocol {
     ///   - option:      A service key option for an extension/plugin.
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
-    func _register<Service, Arguments>(_ serviceType: Service.Type, factory: @escaping (Arguments) -> Any, name: String?, option: ServiceKeyOption?) -> ServiceEntry<Service>
+    func _register<Service, Arguments>(
+            _ serviceType: Service.Type,
+            factory: @escaping (Arguments) -> Any,
+            name: String?,
+            option: ServiceKeyOption?
+    ) -> ServiceEntry<Service>
 
     /// Returns a synchronized view of the container for thread safety.
     /// The returned container is `Resolver` type. Call this method after you finish all service registrations
