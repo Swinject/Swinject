@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal final class SpinLock {
+public final class SpinLock {
     private let lock =  NSLock()
 
     func sync<T>(action: () -> T) -> T {

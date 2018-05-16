@@ -9,7 +9,7 @@
 import Foundation
 
 // A generic-type-free protocol to be the type of values in a strongly-typed collection.
-internal protocol ServiceEntryProtocol: AnyObject {
+public protocol ServiceEntryProtocol: AnyObject {
     func describeWithKey(_ serviceKey: ServiceKey) -> String
     var objectScope: ObjectScopeProtocol { get }
     var storage: InstanceStorage { get }
@@ -22,18 +22,18 @@ internal protocol ServiceEntryProtocol: AnyObject {
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public final class ServiceEntry<Service>: ServiceEntryProtocol {
     fileprivate var initCompletedActions: [(Resolver, Service) -> Void] = []
-    internal let serviceType: Any.Type
+    public let serviceType: Any.Type
     internal let argumentsType: Any.Type
 
-    internal let factory: FunctionType
+    public let factory: FunctionType
     internal weak var container: Container?
 
-    internal var objectScope: ObjectScopeProtocol = ObjectScope.graph
-    internal lazy var storage: InstanceStorage = { [unowned self] in
+    public var objectScope: ObjectScopeProtocol = ObjectScope.graph
+    public lazy var storage: InstanceStorage = { [unowned self] in
         self.objectScope.makeStorage()
     }()
 
-    internal var initCompleted: FunctionType? {
+    public var initCompleted: FunctionType? {
         guard !initCompletedActions.isEmpty else { return nil }
 
         return {[weak self] (resolver: Resolver, service: Any) -> Void in
@@ -94,7 +94,7 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
         return self
     }
 
-    internal func describeWithKey(_ serviceKey: ServiceKey) -> String {
+    public func describeWithKey(_ serviceKey: ServiceKey) -> String {
         return description(
             serviceType: serviceType,
             serviceKey: serviceKey,

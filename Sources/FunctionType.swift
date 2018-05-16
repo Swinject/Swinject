@@ -7,4 +7,4 @@
 //
 
 // Type alias to expect a closure.
-internal typealias FunctionType = Any
+public typealias FunctionType = Any

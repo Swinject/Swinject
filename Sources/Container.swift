@@ -25,13 +25,14 @@ import Foundation
 /// and depending on `A`.
 public final class Container: ContainerProtocol {
     
+    public let lock: SpinLock // Used by SynchronizedResolver.
+
     internal var services = [ServiceKey: ServiceEntryProtocol]()
     fileprivate let parent: ContainerProtocol? // Used by HierarchyObjectScope
     fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
     fileprivate let defaultObjectScope: ObjectScope
     internal var currentObjectGraph: GraphIdentifier?
-    internal let lock: SpinLock // Used by SynchronizedResolver.
     internal var behaviors = [Behavior]()
 
     internal init(
@@ -236,7 +237,7 @@ extension Container: _Resolver {
         }
     }
 
-    fileprivate func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
+    public func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
         var registrations = parent?.getRegistrations() ?? [:]
         services.forEach { key, value in registrations[key] = value }
         return registrations
@@ -290,7 +291,7 @@ extension Container: Resolver {
         return _resolve(name: name) { (factory: (Resolver) -> Any) in factory(self) }
     }
 
-    fileprivate func getEntry(for key: ServiceKey) -> ServiceEntryProtocol? {
+    public func getEntry(for key: ServiceKey) -> ServiceEntryProtocol? {
         if let entry = services[key] {
             return entry
         } else {
