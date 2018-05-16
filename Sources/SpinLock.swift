@@ -11,6 +11,9 @@ import Foundation
 public final class SpinLock {
     private let lock =  NSLock()
 
+    public init() {
+    }
+    
     func sync<T>(action: () -> T) -> T {
         lock.lock()
         defer { lock.unlock() }
