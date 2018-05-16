@@ -44,7 +44,7 @@ public final class Assembler {
     /// - parameter container:          the baseline container
     ///
     @available(*, deprecated, message: "Use not throwing alternative: init(_:, container:)")
-    public convenience init(assemblies: [Assembly], container: Container? = Container()) throws {
+    public convenience init(assemblies: [Assembly], container: ContainerProtocol? = Container()) throws {
         if let container = container {
             self.init(assemblies, container: container)
         } else {
@@ -57,7 +57,7 @@ public final class Assembler {
     /// - parameter assemblies:         the list of assemblies to build the container from
     /// - parameter container:          the baseline container
     ///
-    public init(_ assemblies: [Assembly], container: Container = Container()) {
+    public init(_ assemblies: [Assembly], container: ContainerProtocol = Container()) {
         self.container = container
         run(assemblies: assemblies)
     }
