@@ -1,6 +1,8 @@
 disabled_rules:
   - force_cast
   - type_name
+  - identifier_name
+  - trailing_whitespace
 excluded:
   - Sources/Container.Arguments.swift
   - Sources/SynchronizedResolver.Arguments.swift
