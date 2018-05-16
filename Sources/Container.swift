@@ -23,7 +23,7 @@ import Foundation
 ///
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` 
 /// and depending on `A`.
-public final class Container {
+public final class Container: ContainerProtocol {
     internal var services = [ServiceKey: ServiceEntryProtocol]()
     fileprivate let parent: Container? // Used by HierarchyObjectScope
     fileprivate var resolutionDepth = 0

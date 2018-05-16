@@ -15,7 +15,7 @@ public protocol Assembly {
     ///
     /// - parameter container: the container provided by the `Assembler`
     ///
-    func assemble(container: Container)
+    func assemble(container: ContainerProtocol)
 
     /// Provides a hook to the `Assembly` that will be called once the `Assembler` has loaded all `Assembly`
     /// instances into the container.

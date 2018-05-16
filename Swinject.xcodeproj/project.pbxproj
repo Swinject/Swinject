@@ -177,6 +177,10 @@
 		CDD44AD71DEEED1000916595 /* WeakStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD44AD61DEEED1000916595 /* WeakStorageSpec.swift */; };
 		CDD44AD81DEEED1000916595 /* WeakStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD44AD61DEEED1000916595 /* WeakStorageSpec.swift */; };
 		CDD44AD91DEEED1000916595 /* WeakStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD44AD61DEEED1000916595 /* WeakStorageSpec.swift */; };
+		FD3FBA8920AC0924000BBE85 /* ContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3FBA8820AC0924000BBE85 /* ContainerProtocol.swift */; };
+		FD3FBA8A20AC0924000BBE85 /* ContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3FBA8820AC0924000BBE85 /* ContainerProtocol.swift */; };
+		FD3FBA8B20AC0924000BBE85 /* ContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3FBA8820AC0924000BBE85 /* ContainerProtocol.swift */; };
+		FD3FBA8C20AC0924000BBE85 /* ContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3FBA8820AC0924000BBE85 /* ContainerProtocol.swift */; };
 		FF15F7831EDCE81B00F96686 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF15F77F1EDCE81600F96686 /* Nimble.framework */; };
 		FF15F7841EDCE81B00F96686 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF15F7801EDCE81600F96686 /* Quick.framework */; };
 		FF15F7871EDCE82600F96686 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF15F7851EDCE82600F96686 /* Nimble.framework */; };
@@ -341,6 +345,7 @@
 		CDC4FCF3205028B00021C60F /* InstanceWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceWrapper.swift; sourceTree = "<group>"; };
 		CDC4FCF820502A9A0021C60F /* LazySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazySpec.swift; sourceTree = "<group>"; };
 		CDD44AD61DEEED1000916595 /* WeakStorageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakStorageSpec.swift; sourceTree = "<group>"; };
+		FD3FBA8820AC0924000BBE85 /* ContainerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerProtocol.swift; sourceTree = "<group>"; };
 		FF15F77F1EDCE81600F96686 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		FF15F7801EDCE81600F96686 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		FF15F7851EDCE82600F96686 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
@@ -460,6 +465,7 @@
 				90B029781C185B1600A6A521 /* Assembler.swift */,
 				90B029741C18599200A6A521 /* Assembly.swift */,
 				981899E31B5FFE5800C702D0 /* Container.swift */,
+				FD3FBA8820AC0924000BBE85 /* ContainerProtocol.swift */,
 				CDBD0E6B2035EEBB0030F566 /* Container.TypeForwarding.swift */,
 				98B012BA1B82D6A400053A32 /* Container.Arguments.erb */,
 				CD89E3482036F2A800A9ED33 /* ServiceEntry.TypeForwarding.erb */,
@@ -957,6 +963,7 @@
 				98B012C01B82F68E00053A32 /* Resolver.swift in Sources */,
 				CD3C2CE01D98E47000863421 /* DebugHelper.swift in Sources */,
 				90B0297A1C185B1600A6A521 /* Assembler.swift in Sources */,
+				FD3FBA8A20AC0924000BBE85 /* ContainerProtocol.swift in Sources */,
 				CDC4FCF5205028B00021C60F /* InstanceWrapper.swift in Sources */,
 				CD5E9A3720515898009090F9 /* GraphIdentifier.swift in Sources */,
 				90B029761C18599200A6A521 /* Assembly.swift in Sources */,
@@ -1024,6 +1031,7 @@
 				CD3B32921DD6121500B208A3 /* InstanceStorage.swift in Sources */,
 				981899E41B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B81B82D67300053A32 /* Container.Arguments.swift in Sources */,
+				FD3FBA8920AC0924000BBE85 /* ContainerProtocol.swift in Sources */,
 				9884E2A71B60B77400120259 /* ServiceKey.swift in Sources */,
 				9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */,
 				984BE3131CDA3FCF00BCF2AC /* _Resolver.swift in Sources */,
@@ -1078,6 +1086,7 @@
 				985011251BBE7E8900A2CCFC /* Resolver.swift in Sources */,
 				9850111E1BBE7E8900A2CCFC /* Container.swift in Sources */,
 				CD3C2CE11D98E47000863421 /* DebugHelper.swift in Sources */,
+				FD3FBA8B20AC0924000BBE85 /* ContainerProtocol.swift in Sources */,
 				CDC4FCF6205028B00021C60F /* InstanceWrapper.swift in Sources */,
 				CD5E9A3820515898009090F9 /* GraphIdentifier.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
@@ -1107,6 +1116,7 @@
 				98689C9D1BBFC7EB0005C6D3 /* ObjectScope.swift in Sources */,
 				984774F31C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				CD3C2CE21D98E47000863421 /* DebugHelper.swift in Sources */,
+				FD3FBA8C20AC0924000BBE85 /* ContainerProtocol.swift in Sources */,
 				CDC4FCF7205028B00021C60F /* InstanceWrapper.swift in Sources */,
 				CD5E9A3920515898009090F9 /* GraphIdentifier.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolver.swift in Sources */,
