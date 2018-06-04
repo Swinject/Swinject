@@ -69,6 +69,26 @@ class SynchronizedResolverSpec: QuickSpec {
                 expect(graphs.count) == totalThreads
             }
         }
+        describe("Nested resolve") {
+            fit("can make it without deadlock") {
+                let container = Container()
+                let threadSafeResolver = container.synchronize()
+                container.register(ChildProtocol.self) { _ in  Child() }
+                container.register(ParentProtocol.self) { _ in
+                    Parent(child: threadSafeResolver.resolve(ChildProtocol.self)!)
+                }
+
+                let queue = DispatchQueue(
+                    label: "SwinjectTests.SynchronizedContainerSpec.Queue", attributes: .concurrent
+                )
+                waitUntil(timeout: 2.0) { done in
+                    queue.async {
+                        _ = threadSafeResolver.resolve(ParentProtocol.self)
+                        done()
+                    }
+                }
+            }
+        }
     }
 }
 
