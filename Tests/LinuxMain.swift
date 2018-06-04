@@ -20,5 +20,5 @@ Quick.QCKMain([
     ContainerSpec_CustomScope.self,
     SynchronizedResolverSpec.self,
     ServiceKeySpec.self,
-    ServiceEntrySpec.self,
+    ServiceEntrySpec.self
 ])

@@ -19,10 +19,15 @@ class ContainerSpec_DebugHelper: QuickSpec {
             it("should call debug helper with failing service and key") {
                 let container = Container(debugHelper: spy)
 
-                let _ = container._resolve(name: "name") { (a: Int, b: Int) in return 1 as Double }
+                _ = container._resolve(name: "name") { (_: (Int) -> Any) in return 1 as Double } as Double?
 
                 expect("\(spy.serviceType)") == "Double"
-                expect(spy.key) == ServiceKey(factoryType: (Int, Int).self, name: "name", option: nil)
+                expect(spy.key) == ServiceKey(
+                    serviceType: Double.self,
+                    argumentsType: Int.self,
+                    name: "name",
+                    option: nil
+                )
             }
 
             it("should call helper with all registrations") {
@@ -30,7 +35,7 @@ class ContainerSpec_DebugHelper: QuickSpec {
                 container.register(Int.self) { _ in 0 }
                 container.register(Double.self) { _ in 0}
 
-                let _ = container.resolve(String.self)
+                _ = container.resolve(String.self)
 
                 expect(spy.availableRegistrations?.count) == 2
             }
@@ -42,7 +47,7 @@ class ContainerSpec_DebugHelper: QuickSpec {
                     let container = Container(parent: parent, debugHelper: spy)
                     container.register(Double.self) { _ in 0 }
 
-                    let _ = container.resolve(String.self)
+                    _ = container.resolve(String.self)
 
                     expect(spy.availableRegistrations?.count) == 2
                 }
@@ -55,12 +60,12 @@ private class DebugHelperSpy: DebugHelper {
 
     var serviceType: Any = ""
     var key: ServiceKey?
-    var availableRegistrations: [ServiceKey : ServiceEntryProtocol]?
+    var availableRegistrations: [ServiceKey: ServiceEntryProtocol]?
 
     func resolutionFailed<Service>(
         serviceType: Service.Type,
         key: ServiceKey,
-        availableRegistrations: [ServiceKey : ServiceEntryProtocol]
+        availableRegistrations: [ServiceKey: ServiceEntryProtocol]
     ) {
         self.serviceType = serviceType
         self.key = key

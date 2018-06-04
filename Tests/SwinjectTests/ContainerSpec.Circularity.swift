@@ -5,6 +5,7 @@
 //  Created by Yoichi Tagaya on 7/29/15.
 //  Copyright © 2015 Swinject Contributors. All rights reserved.
 //
+// swiftlint:disable function_body_length
 
 import Quick
 import Nimble
@@ -16,7 +17,7 @@ class ContainerSpec_Circularity: QuickSpec {
         beforeEach {
             container = Container()
         }
-        
+
         describe("Two objects") {
             it("resolves circular dependency on each property.") {
                 let runInObjectScope: (ObjectScope) -> Void = { scope in
@@ -33,12 +34,12 @@ class ContainerSpec_Circularity: QuickSpec {
                             child.parent = r.resolve(ParentProtocol.self)!
                         }
                         .inObjectScope(scope)
-                    
+
                     let parent = container.resolve(ParentProtocol.self) as! Parent
                     let child = parent.child as! Child
                     expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                 }
-                
+
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
             }
@@ -53,12 +54,12 @@ class ContainerSpec_Circularity: QuickSpec {
                             child.parent = r.resolve(ParentProtocol.self)
                         }
                         .inObjectScope(scope)
-                    
+
                     let parent = container.resolve(ParentProtocol.self) as! Parent
                     let child = parent.child as! Child
                     expect(child.parent as? Parent === parent).to(beTrue()) // Workaround for crash in Nimble
                 }
-                
+
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
             }
@@ -87,7 +88,7 @@ class ContainerSpec_Circularity: QuickSpec {
                         d.b = $0.resolve(B.self)
                         d.c = $0.resolve(C.self)
                     }
-                
+
                 let a = container.resolve(A.self) as! ADependingOnB
                 let b = a.b as! BDependingOnC
                 let c = b.c as! CDependingOnAD
@@ -110,7 +111,7 @@ class ContainerSpec_Circularity: QuickSpec {
                         d.b = $0.resolve(B.self)
                         d.c = $0.resolve(C.self)
                     }
-                
+
                 let a = container.resolve(A.self) as! ADependingOnB
                 let b = a.b as! BDependingOnC
                 let c = b.c as! CDependingOnAD
@@ -118,6 +119,19 @@ class ContainerSpec_Circularity: QuickSpec {
                 expect(c.a as? ADependingOnB === a).to(beTrue()) // Workaround for crash in Nimble
                 expect(d.b as? BDependingOnC === b).to(beTrue()) // Workaround for crash in Nimble
                 expect(d.c as? CDependingOnAD === c).to(beTrue()) // Workaround for crash in Nimble
+            }
+        }
+        describe("Graph root is in weak object scope") {
+            it("does not deallocate during graph resolution") {
+                container.register(B.self) { r in BDependingOnC(c: r.resolve(C.self)!) }
+                    .inObjectScope(.weak)
+                container.register(C.self) { _ in CDependingOnWeakB() }
+                    .initCompleted { r, c in (c as! CDependingOnWeakB).b = r.resolve(B.self) }
+
+                let b = container.resolve(B.self) as? BDependingOnC
+                let c = b?.c as? CDependingOnWeakB
+
+                expect(c?.b).notTo(beNil())
             }
         }
     }

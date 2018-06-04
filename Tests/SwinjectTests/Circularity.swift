@@ -14,10 +14,10 @@ internal protocol ChildProtocol: AnyObject { }
 
 internal class Parent: ParentProtocol {
     var child: ChildProtocol?
-    
+
     init() {
     }
-    
+
     init(child: ChildProtocol) {
         self.child = child
     }
@@ -35,10 +35,10 @@ internal protocol D: AnyObject { }
 
 internal class ADependingOnB: A {
     var b: B?
-    
+
     init() {
     }
-    
+
     init(b: B) {
         self.b = b
     }
@@ -46,10 +46,10 @@ internal class ADependingOnB: A {
 
 internal class BDependingOnC: B {
     var c: C?
-    
+
     init() {
     }
-    
+
     init(c: C) {
         self.c = c
     }
@@ -58,10 +58,10 @@ internal class BDependingOnC: B {
 internal class CDependingOnAD: C {
     weak var a: A?
     var d: D?
-    
+
     init() {
     }
-    
+
     init(d: D) {
         self.d = d
     }
@@ -70,4 +70,8 @@ internal class CDependingOnAD: C {
 internal class DDependingOnBC: D {
     weak var b: B?
     weak var c: C?
+}
+
+internal class CDependingOnWeakB: C {
+    weak var b: B?
 }

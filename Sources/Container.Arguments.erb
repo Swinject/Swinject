@@ -85,8 +85,8 @@ extension Container {
         name: String?,
         <%= arg_param_def %>) -> Service?
     {
-        typealias FactoryType = (Resolver, <%= arg_types %>) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, <%= arg_param_call %>) }
+        typealias FactoryType = ((Resolver, <%= arg_types %>)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, <%= arg_param_call %>)) }
     }
 
 <% end %>

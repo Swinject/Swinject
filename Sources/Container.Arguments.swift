@@ -241,8 +241,8 @@ extension Container {
         name: String?,
         argument: Arg1) -> Service?
     {
-        typealias FactoryType = (Resolver, Arg1) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, argument) }
+        typealias FactoryType = ((Resolver, Arg1)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, argument)) }
     }
 
     /// Retrieves the instance with the specified service type and list of 2 arguments to the factory closure.
@@ -274,8 +274,8 @@ extension Container {
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2) -> Service?
     {
-        typealias FactoryType = (Resolver, Arg1, Arg2) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2) }
+        typealias FactoryType = ((Resolver, Arg1, Arg2)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, arg1, arg2)) }
     }
 
     /// Retrieves the instance with the specified service type and list of 3 arguments to the factory closure.
@@ -307,8 +307,8 @@ extension Container {
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> Service?
     {
-        typealias FactoryType = (Resolver, Arg1, Arg2, Arg3) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3) }
+        typealias FactoryType = ((Resolver, Arg1, Arg2, Arg3)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, arg1, arg2, arg3)) }
     }
 
     /// Retrieves the instance with the specified service type and list of 4 arguments to the factory closure.
@@ -340,8 +340,8 @@ extension Container {
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) -> Service?
     {
-        typealias FactoryType = (Resolver, Arg1, Arg2, Arg3, Arg4) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4) }
+        typealias FactoryType = ((Resolver, Arg1, Arg2, Arg3, Arg4)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, arg1, arg2, arg3, arg4)) }
     }
 
     /// Retrieves the instance with the specified service type and list of 5 arguments to the factory closure.
@@ -373,8 +373,8 @@ extension Container {
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) -> Service?
     {
-        typealias FactoryType = (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5) }
+        typealias FactoryType = ((Resolver, Arg1, Arg2, Arg3, Arg4, Arg5)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, arg1, arg2, arg3, arg4, arg5)) }
     }
 
     /// Retrieves the instance with the specified service type and list of 6 arguments to the factory closure.
@@ -406,8 +406,8 @@ extension Container {
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6) -> Service?
     {
-        typealias FactoryType = (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6) }
+        typealias FactoryType = ((Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, arg1, arg2, arg3, arg4, arg5, arg6)) }
     }
 
     /// Retrieves the instance with the specified service type and list of 7 arguments to the factory closure.
@@ -439,8 +439,8 @@ extension Container {
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7) -> Service?
     {
-        typealias FactoryType = (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7) }
+        typealias FactoryType = ((Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, arg1, arg2, arg3, arg4, arg5, arg6, arg7)) }
     }
 
     /// Retrieves the instance with the specified service type and list of 8 arguments to the factory closure.
@@ -472,8 +472,8 @@ extension Container {
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8) -> Service?
     {
-        typealias FactoryType = (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) }
+        typealias FactoryType = ((Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)) }
     }
 
     /// Retrieves the instance with the specified service type and list of 9 arguments to the factory closure.
@@ -505,8 +505,8 @@ extension Container {
         name: String?,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8, _ arg9: Arg9) -> Service?
     {
-        typealias FactoryType = (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) }
+        typealias FactoryType = ((Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)) }
     }
 
 }

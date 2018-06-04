@@ -21,50 +21,61 @@ import Foundation
 ///
 ///     let x = container.resolve(X.self)!
 ///
-/// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` and depending on `A`.
+/// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` 
+/// and depending on `A`.
 public final class Container {
-    fileprivate var services = [ServiceKey: ServiceEntryProtocol]()
+    internal var services = [ServiceKey: ServiceEntryProtocol]()
     fileprivate let parent: Container? // Used by HierarchyObjectScope
     fileprivate var resolutionDepth = 0
     fileprivate let debugHelper: DebugHelper
+    fileprivate let defaultObjectScope: ObjectScope
+    internal var currentObjectGraph: GraphIdentifier?
     internal let lock: SpinLock // Used by SynchronizedResolver.
+    internal var behaviors = [Behavior]()
 
-    internal init(parent: Container? = nil, debugHelper: DebugHelper) {
-        self.parent = parent    
+    internal init(
+        parent: Container? = nil,
+        debugHelper: DebugHelper,
+        defaultObjectScope: ObjectScope = .graph) {
+        self.parent = parent
         self.debugHelper = debugHelper
         self.lock = parent.map { $0.lock } ?? SpinLock()
+        self.defaultObjectScope = defaultObjectScope
     }
-    
-    /// Instantiates a `Container` with its parent `Container`. The parent is optional.
+
+    /// Instantiates a `Container`
     ///
-    /// - Parameter parent: The optional parent `Container`.
-    public convenience init(parent: Container? = nil) {
-        self.init(parent: parent, debugHelper: LoggingDebugHelper())
-    }
-    
-    /// Instantiates a `Container` with its parent `Container` and a closure registering services. The parent is optional.
-    ///
-    /// - Parameters:
-    ///     - parent:             The optional parent `Container`.
+    /// - Parameters
+    ///     - parent: The optional parent `Container`.
+    ///     - defaultObjectScope: Default object scope (graph if no scope is injected)
+    ///     - behaviors: List of behaviors to be added to the container
     ///     - registeringClosure: The closure registering services to the new container instance.
-    /// - Remark: Compile time may be long if you pass a long closure to this initializer. Use `init()` or `init(parent:)` instead.
-    public convenience init(parent: Container? = nil, registeringClosure: (Container) -> Void) {
-        self.init(parent: parent)
+    ///
+    /// - Remark: Compile time may be long if you pass a long closure to this initializer.
+    ///           Use `init()` or `init(parent:)` instead.
+    public convenience init(
+        parent: Container? = nil,
+        defaultObjectScope: ObjectScope = .graph,
+        behaviors: [Behavior] = [],
+        registeringClosure: (Container) -> Void = { _ in }
+    ) {
+        self.init(parent: parent, debugHelper: LoggingDebugHelper(), defaultObjectScope: defaultObjectScope)
+        behaviors.forEach(addBehavior)
         registeringClosure(self)
     }
-    
+
     /// Removes all registrations in the container.
     public func removeAll() {
         services.removeAll()
     }
 
-    /// Discards instances for services registered in the given `ObjectsScopeType`.
+    /// Discards instances for services registered in the given `ObjectsScopeProtocol`.
     ///
     /// **Example usage:**
     ///     container.resetObjectScope(ObjectScope.container)
     ///
     /// - Parameters:
-    ///     - objectScope: All instances registered in given `ObjectsScopeType` will be discarded.
+    ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScopeProtocol) {
         services.values
             .filter { $0.objectScope === objectScope }
@@ -84,8 +95,9 @@ public final class Container {
     public func resetObjectScope(_ objectScope: ObjectScope) {
         resetObjectScope(objectScope as ObjectScopeProtocol)
     }
-    
-    /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
+
+    /// Adds a registration for the specified service with the factory closure to specify how the service is 
+    /// resolved with dependencies.
     ///
     /// - Parameters:
     ///   - serviceType: The service type to register.
@@ -101,8 +113,8 @@ public final class Container {
     public func register<Service>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service>
-    {
+        factory: @escaping (Resolver) -> Service
+    ) -> ServiceEntry<Service> {
         return _register(serviceType, factory: factory, name: name)
     }
 
@@ -121,39 +133,67 @@ public final class Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     // swiftlint:disable:next identifier_name
-    public func _register<Service, Factory>(
+    public func _register<Service, Arguments>(
         _ serviceType: Service.Type,
-        factory: Factory,
+        factory: @escaping (Arguments) -> Any,
         name: String? = nil,
-        option: ServiceKeyOption? = nil) -> ServiceEntry<Service>
-    {
-        let key = ServiceKey(factoryType: type(of: factory), name: name, option: option)
-        let entry = ServiceEntry(serviceType: serviceType, factory: factory)
+        option: ServiceKeyOption? = nil
+    ) -> ServiceEntry<Service> {
+        let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
+        let entry = ServiceEntry(
+            serviceType: serviceType,
+            argumentsType: Arguments.self,
+            factory: factory,
+            objectScope: defaultObjectScope
+        )
+        entry.container = self
         services[key] = entry
+
+        behaviors.forEach { $0.container(self, didRegisterType: serviceType, toService: entry, withName: name) }
+
         return entry
     }
-    
+
     /// Returns a synchronized view of the container for thread safety.
-    /// The returned container is `Resolver` type. Call this method after you finish all service registrations to the original container.
+    /// The returned container is `Resolver` type. Call this method after you finish all service registrations 
+    /// to the original container.
     ///
     /// - Returns: A synchronized container as `Resolver`.
     public func synchronize() -> Resolver {
         return SynchronizedResolver(container: self)
+    }
+
+    /// Adds behavior to the container. `Behavior.container(_:didRegisterService:withName:)` will be invoked for
+    /// each service registered to the `container` **after** the behavior has been added.
+    ///
+    /// - Parameters:
+    ///     - behavior: Behavior to be added to the container
+    public func addBehavior(_ behavior: Behavior) {
+        behaviors.append(behavior)
+    }
+
+    internal func restoreObjectGraph(_ identifier: GraphIdentifier) {
+        currentObjectGraph = identifier
     }
 }
 
 // MARK: - _Resolver
 extension Container: _Resolver {
     // swiftlint:disable:next identifier_name
-    public func _resolve<Service, Factory>(name: String?, option: ServiceKeyOption? = nil, invoker: (Factory) -> Service) -> Service? {
-        incrementResolutionDepth()
-        defer { decrementResolutionDepth() }
-        
+    public func _resolve<Service, Arguments>(
+        name: String?,
+        option: ServiceKeyOption? = nil,
+        invoker: @escaping ((Arguments) -> Any) -> Any
+    ) -> Service? {
         var resolvedInstance: Service?
-        let key = ServiceKey(factoryType: Factory.self, name: name, option: option)
+        let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
 
-        if let entry = getEntry(key) as ServiceEntry<Service>? {
-            resolvedInstance = resolve(entry: entry, key: key, invoker: invoker)
+        if let entry = getEntry(for: key) {
+            resolvedInstance = resolve(entry: entry, invoker: invoker)
+        }
+
+        if resolvedInstance == nil {
+            resolvedInstance = resolveAsWrapper(name: name, option: option, invoker: invoker)
         }
 
         if resolvedInstance == nil {
@@ -167,15 +207,37 @@ extension Container: _Resolver {
         return resolvedInstance
     }
 
-    private func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
+    fileprivate func resolveAsWrapper<Wrapper, Arguments>(
+        name: String?,
+        option: ServiceKeyOption?,
+        invoker: @escaping ((Arguments) -> Any) -> Any
+    ) -> Wrapper? {
+        guard let wrapper = Wrapper.self as? InstanceWrapper.Type else { return nil }
+
+        let key = ServiceKey(
+            serviceType: wrapper.wrappedType, argumentsType: Arguments.self, name: name, option: option
+        )
+
+        if let entry = getEntry(for: key) {
+            let factory = { [weak self] in self?.resolve(entry: entry, invoker: invoker) as Any? }
+            return wrapper.init(inContainer: self, withInstanceFactory: factory) as? Wrapper
+        } else {
+            return wrapper.init(inContainer: self, withInstanceFactory: nil) as? Wrapper
+        }
+    }
+
+    fileprivate func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
         var registrations = parent?.getRegistrations() ?? [:]
         services.forEach { key, value in registrations[key] = value }
         return registrations
     }
 
-    private var maxResolutionDepth: Int { return 200 }
+    fileprivate var maxResolutionDepth: Int { return 200 }
 
-    private func incrementResolutionDepth() {
+    fileprivate func incrementResolutionDepth() {
+        if resolutionDepth == 0 && currentObjectGraph == nil {
+            currentObjectGraph = GraphIdentifier()
+        }
         guard resolutionDepth < maxResolutionDepth else {
             fatalError("Infinite recursive call for circular dependency has been detected. " +
                 "To avoid the infinite call, 'initCompleted' handler should be used to inject circular dependency.")
@@ -183,12 +245,13 @@ extension Container: _Resolver {
         resolutionDepth += 1
     }
 
-    private func decrementResolutionDepth() {
+    fileprivate func decrementResolutionDepth() {
         assert(resolutionDepth > 0, "The depth cannot be negative.")
 
         resolutionDepth -= 1
         if resolutionDepth == 0 {
-            resetObjectScope(.graph)
+            services.values.forEach { $0.storage.graphResolutionCompleted() }
+            self.currentObjectGraph = nil
         }
     }
 }
@@ -199,10 +262,9 @@ extension Container: Resolver {
     ///
     /// - Parameter serviceType: The service type to resolve.
     ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type is found in the `Container`.
-    public func resolve<Service>(
-        _ serviceType: Service.Type) -> Service?
-    {
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type 
+    ///            is found in the `Container`.
+    public func resolve<Service>(_ serviceType: Service.Type) -> Service? {
         return resolve(serviceType, name: nil)
     }
 
@@ -212,40 +274,47 @@ extension Container: Resolver {
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
     ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name is found in the `Container`.
-    public func resolve<Service>(
-        _ serviceType: Service.Type,
-        name: String?) -> Service?
-    {
-        typealias FactoryType = (Resolver) -> Service
-        return _resolve(name: name) { (factory: FactoryType) in factory(self) }
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name 
+    ///            is found in the `Container`.
+    public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
+        return _resolve(name: name) { (factory: (Resolver) -> Any) in factory(self) }
     }
-    
-    fileprivate func getEntry<Service>(_ key: ServiceKey) -> ServiceEntry<Service>? {
-        if let entry = services[key] as? ServiceEntry<Service> {
+
+    fileprivate func getEntry(for key: ServiceKey) -> ServiceEntryProtocol? {
+        if let entry = services[key] {
             return entry
         } else {
-            return parent?.getEntry(key)
+            return parent?.getEntry(for: key)
         }
     }
-    
-    fileprivate func resolve<Service, Factory>(entry: ServiceEntry<Service>, key: ServiceKey, invoker: (Factory) -> Service) -> Service {
 
-        if let persistedInstance = entry.storage.instance as? Service {
+    fileprivate func resolve<Service, Factory>(
+        entry: ServiceEntryProtocol,
+        invoker: (Factory) -> Any
+    ) -> Service? {
+        incrementResolutionDepth()
+        defer { decrementResolutionDepth() }
+
+        guard let currentObjectGraph = currentObjectGraph else { fatalError() }
+
+        if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph) as? Service {
             return persistedInstance
         }
-        
+
         let resolvedInstance = invoker(entry.factory as! Factory)
-        if let persistedInstance = entry.storage.instance as? Service {
+        if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph) as? Service {
             // An instance for the key might be added by the factory invocation.
             return persistedInstance
         }
-        entry.storage.instance = resolvedInstance as Any
+        entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
 
-        if let completed = entry.initCompleted as? (Resolver, Service) -> () {
+        if  let completed = entry.initCompleted as? (Resolver, Any) -> Void,
+            let resolvedInstance = resolvedInstance as? Service {
+
             completed(self, resolvedInstance)
         }
-        return resolvedInstance
+
+        return resolvedInstance as? Service
     }
 }
 

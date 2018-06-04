@@ -44,6 +44,8 @@ Dependency injection (DI) is a software design pattern that implements Inversion
   - Xcode 7.0+
 - Swift 3
   - Xcode 8.0+
+- Swift 3.2, 4.x
+  - Xcode 9.0+
 - Carthage 0.18+ (if you use)
 - CocoaPods 1.1.1+ (if you use)
 
@@ -61,13 +63,13 @@ To install Swinject with Carthage, add the following line to your `Cartfile`.
 github "Swinject/Swinject" ~> 1.1.4
 ```
 
-#### Swift 3.x
+#### Swift 3.x or 4.x
 
 ```
-github "Swinject/Swinject" ~> 2.0.0
+github "Swinject/Swinject"
 
 # Uncomment if you use SwinjectStoryboard
-# github "Swinject/SwinjectStoryboard" ~> 1.0.0
+# github "Swinject/SwinjectStoryboard"
 ```
 
 Then run `carthage update --no-use-binaries` command or just `carthage update`. For details of the installation and usage of Carthage, visit [its project page](https://github.com/Carthage/Carthage).
@@ -94,10 +96,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
 use_frameworks!
 
-pod 'Swinject', '~> 2.1.0'
+pod 'Swinject'
 
 # Uncomment if you use SwinjectStoryboard
-# pod 'SwinjectStoryboard', '~> 1.0.0'
+# pod 'SwinjectStoryboard'
 ```
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
@@ -167,7 +169,7 @@ Notice that the `pet` of `PetOwner` is automatically set as the instance of `Cat
 
 ## Where to Register Services
 
-Services must be registered to a container before they are used. Typical ways of the registrations are different between the cases with/without `SwinjectStoryboard`.
+Services must be registered to a container before they are used. The typical registration approach will differ depending upon whether you are using `SwinjectStoryboard` or not.
 
 The following view controller class is used in addition to the protocols and classes above in the examples below.
 
@@ -186,11 +188,11 @@ Import SwinjectStoryboard at the top of your swift source file if you use Swinje
 import SwinjectStoryboard
 ```
 
-Services should be registered in an extension of `SwinjectStoryboard` if you use `SwinjectStoryboard`. Refer to [the project page of SwinjectStoryboard](https://github.com/Swinject/SwinjectStoryboard) for its details.
+Services should be registered in an extension of `SwinjectStoryboard` if you use `SwinjectStoryboard`. Refer to [the project page of SwinjectStoryboard](https://github.com/Swinject/SwinjectStoryboard) for further details.
 
 ```swift
 extension SwinjectStoryboard {
-    class func setup() {
+    @objc class func setup() {
         defaultContainer.register(Animal.self) { _ in Cat(name: "Mimi") }
         defaultContainer.register(Person.self) { r in
             PetOwner(pet: r.resolve(Animal.self)!)
@@ -206,7 +208,7 @@ extension SwinjectStoryboard {
 
 ### Without SwinjectStoryboard
 
-Typically services are registered to a container in `AppDelegate` if you do not use `SwinjectStoryboard` to instantiate view controllers. If you register the services in `AppDelegate` especially before exiting the call of `application:didFinishLaunchingWithOptions:`, it is ensured that the services are registered before they are used.
+If you do not use `SwinjectStoryboard` to instantiate view controllers, services should be registered to a container in your application's `AppDelegate`. Registering before exiting `application:didFinishLaunchingWithOptions:` will ensure that the services are setup appropriately before they are used.
 
 ```swift
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -269,7 +271,7 @@ A guide to [submit issues](https://github.com/Swinject/Swinject/issues), to ask 
 
 ## Question?
 
-If you have a general question and hesitate to submit an issue at GitHub, you can feel free to ask the question at [Stack Overflow](http://stackoverflow.com). The author of Swinject monitors `swinject` tag there to answer as quickly as possible.
+If you have a general question and are feeling hesitant about submitting a Github issue, feel free to ask the question at [Stack Overflow](http://stackoverflow.com). The author of Swinject monitors the `swinject` tag so as to answer as quickly as possible.
 
 ## Credits
 
