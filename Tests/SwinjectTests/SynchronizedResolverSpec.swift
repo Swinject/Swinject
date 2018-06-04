@@ -68,7 +68,61 @@ class SynchronizedResolverSpec: QuickSpec {
 
                 expect(graphs.count) == totalThreads
             }
+            it("won't resolve the same instance") {
+                
+                class Generator {
+                    let _r: Resolver
+                    init(r: Resolver) { self._r = r }
+                    func generateA() -> A { return _r.resolve(A.self)! }
+                }
+                class A {
+                    private var state = false
+                    func setState() -> Bool { let oldState = state; state = true; return oldState }
+                }
+                
+                let threadSafeResolver = Container() { container in
+                    container.register(Generator.self) { r in Generator(r: r) }
+                    container.register(A.self) { _ in A() }
+                }.synchronize()
+                
+                let dispatchGroup = DispatchGroup()
+                let queue = DispatchQueue(label: "SwinjectTests.SynchronizedContainerSpec.Queue", attributes: .concurrent)
+                
+                let generator = threadSafeResolver.resolve(Generator.self)!
+                
+                for _ in 0..<200 {
+                    queue.async(group: dispatchGroup) {
+                        
+                        let a = generator.generateA()
+                        let oldState = a.setState()
+                        
+                        expect(oldState).to(beFalse())
+                        
+                        // The `oldState` will be true if `resolve(A.self)` inside of `generateA`
+                        //   returns the same instance as it just did for another concurrent resolve.
+                    }
+                }
+                
+                dispatchGroup.wait()
+            }
         }
+//        describe("Nested resolve") {
+//            it("can make it without deadlock") {
+//                
+//                let container = Container()
+//                let threadSafeResolver = container.synchronize()
+//                
+//                container.register(ChildProtocol.self) { _ in
+//                    return Child()
+//                }
+//                container.register(ParentProtocol.self) { _ in
+//                    let child = threadSafeResolver.resolve(ChildProtocol.self)!
+//                    return Parent(child: child)
+//                }
+//                
+//                _ = threadSafeResolver.resolve(ParentProtocol.self)
+//            }
+//        }
     }
 }
 
