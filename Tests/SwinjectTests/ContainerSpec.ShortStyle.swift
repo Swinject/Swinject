@@ -16,7 +16,8 @@ class ContainerSpec_ShortStyle: QuickSpec {
         var container: Container!
         beforeEach {
             container = Container()
-        }        
+        }
+
         it("accepts 0 argument.") {
             container.register(Animal.self) { _ in
                 Cat(name: "No args")
