@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0C8C1320D7B79400C66DF8 /* Container.ShortStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0C8C1220D7B79300C66DF8 /* Container.ShortStyle.swift */; };
+		1F0C8C1420D7B79400C66DF8 /* Container.ShortStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0C8C1220D7B79300C66DF8 /* Container.ShortStyle.swift */; };
+		1F0C8C1520D7B79400C66DF8 /* Container.ShortStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0C8C1220D7B79300C66DF8 /* Container.ShortStyle.swift */; };
+		1F0C8C1620D7B79400C66DF8 /* Container.ShortStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0C8C1220D7B79300C66DF8 /* Container.ShortStyle.swift */; };
+		1F0C8C1820D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0C8C1720D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift */; };
+		1F0C8C1920D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0C8C1720D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift */; };
+		1F0C8C1A20D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0C8C1720D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift */; };
 		90B029751C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029761C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029771C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
@@ -252,6 +259,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F0C8C1120D7B60400C66DF8 /* Container.ShortStyle.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = Container.ShortStyle.erb; sourceTree = "<group>"; };
+		1F0C8C1220D7B79300C66DF8 /* Container.ShortStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.ShortStyle.swift; sourceTree = "<group>"; };
+		1F0C8C1720D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.ShortStyle.swift; sourceTree = "<group>"; };
 		90B029741C18599200A6A521 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		90B029781C185B1600A6A521 /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		90B0297E1C18666200A6A521 /* AssemblerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblerSpec.swift; sourceTree = "<group>"; };
@@ -462,6 +472,7 @@
 				981899E31B5FFE5800C702D0 /* Container.swift */,
 				CDBD0E6B2035EEBB0030F566 /* Container.TypeForwarding.swift */,
 				98B012BA1B82D6A400053A32 /* Container.Arguments.erb */,
+				1F0C8C1120D7B60400C66DF8 /* Container.ShortStyle.erb */,
 				CD89E3482036F2A800A9ED33 /* ServiceEntry.TypeForwarding.erb */,
 				CD3C2CDE1D98E47000863421 /* DebugHelper.swift */,
 				CDBBACF51D9EAD60002F5EF9 /* Container.Logging.swift */,
@@ -493,6 +504,7 @@
 				9878C63A1B65CA0600CBEFEF /* Fakes */,
 				90B0297E1C18666200A6A521 /* AssemblerSpec.swift */,
 				981899E01B5FF88800C702D0 /* ContainerSpec.swift */,
+				1F0C8C1720D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift */,
 				9848611B1B6F9B7000C07072 /* ContainerSpec.Arguments.swift */,
 				9855C5BE1B686F5900DADB0B /* ContainerSpec.Circularity.swift */,
 				CD3C2CF11D98EF4A00863421 /* ContainerSpec.DebugHelper.swift */,
@@ -621,6 +633,7 @@
 		98B012BD1B82D6B000053A32 /* GeneratedCode */ = {
 			isa = PBXGroup;
 			children = (
+				1F0C8C1220D7B79300C66DF8 /* Container.ShortStyle.swift */,
 				98B012B71B82D67300053A32 /* Container.Arguments.swift */,
 				984774F91C02F5A50092A757 /* SynchronizedResolver.Arguments.swift */,
 				98B012BE1B82F68E00053A32 /* Resolver.swift */,
@@ -971,6 +984,7 @@
 				CDBBACF71D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
 				984774FB1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 				CD89E3492036F2BE00A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
+				1F0C8C1420D7B79400C66DF8 /* Container.ShortStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1014,7 @@
 				981899E21B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 				981577F21B675B7F00BF686B /* Circularity.swift in Sources */,
 				CDB19E53204ED97400D67123 /* BehaviorFakes.swift in Sources */,
+				1F0C8C1920D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift in Sources */,
 				CDBD0E692035EDF20030F566 /* ContainerSpec.TypeForwarding.swift in Sources */,
 				9855C5C01B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */,
 			);
@@ -1016,6 +1031,7 @@
 				CD89E3472036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				CD3B32971DD6126E00B208A3 /* ObjectScope.Standard.swift in Sources */,
+				1F0C8C1320D7B79400C66DF8 /* Container.ShortStyle.swift in Sources */,
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				CD89E34D2037016700A9ED33 /* Behavior.swift in Sources */,
 				984774F01C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
@@ -1061,6 +1077,7 @@
 				981899E11B5FF88800C702D0 /* ContainerSpec.swift in Sources */,
 				981577F11B675B7F00BF686B /* Circularity.swift in Sources */,
 				CDB19E52204ED97400D67123 /* BehaviorFakes.swift in Sources */,
+				1F0C8C1820D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift in Sources */,
 				CDBD0E682035EDF20030F566 /* ContainerSpec.TypeForwarding.swift in Sources */,
 				9855C5BF1B686F5900DADB0B /* ContainerSpec.Circularity.swift in Sources */,
 			);
@@ -1092,6 +1109,7 @@
 				CDBBACF81D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
 				984774FC1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 				CD89E34A2036F2BF00A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
+				1F0C8C1520D7B79400C66DF8 /* Container.ShortStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1139,7 @@
 				CDBBACF91D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
 				984774FD1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
 				CD89E34B2036F2C000A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
+				1F0C8C1620D7B79400C66DF8 /* Container.ShortStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,6 +1169,7 @@
 				90B029851C18670000A6A521 /* BasicAssembly.swift in Sources */,
 				98689CB71BBFD5110005C6D3 /* Animal.swift in Sources */,
 				CDB19E54204ED97400D67123 /* BehaviorFakes.swift in Sources */,
+				1F0C8C1A20D7B82E00C66DF8 /* ContainerSpec.ShortStyle.swift in Sources */,
 				CDBD0E6A2035EDF20030F566 /* ContainerSpec.TypeForwarding.swift in Sources */,
 				98689CB91BBFD5110005C6D3 /* Circularity.swift in Sources */,
 			);

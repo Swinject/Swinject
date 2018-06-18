@@ -1,0 +1,44 @@
+//
+//  Container.ShortStyle.erb
+//  Swinject
+//
+//  Created by Vincent Saluzzo on 18/06/2018.
+//  Copyright © 2018 Swinject Contributors. All rights reserved.
+//
+
+// NOTICE:
+//
+// Container.Arguments.swift is generated from Container.ShortStyle.erb by ERB.
+// Do NOT modify Container.ShortStyle.swift directly.
+// Instead, modify Container.ShortStyle.swift and run `script/gencode` at the project root directory to generate the code.
+//
+
+<% arg_count = 9 %>
+
+import Foundation
+
+extension Container {
+    
+    public func resolve<Type>() -> Type? {
+        return resolve(Type.self)
+    }
+    <% (1..arg_count).each do |i| %>
+    <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+    <%   arg_param_def = i == 1 ? "argument: Arg1" : "arguments arg1: Arg1, " + (2..i).map{ |n| "_ arg#{n}: Arg#{n}" }.join(", ") %>
+    <%   arg_param_call = i == 1 ? "argument" : (1..i).map{ |n| "arg#{n}" }.join(", ") %>
+    <%   arg_param_name = i == 1 ? "argument" : "arguments" %>
+    <%   arg_param_type = i == 1 ? arg_types : "(" + arg_types + ")" %>
+    <%   arg_param_description = i == 1 ? "#{i} argument" : "list of #{i} arguments" %>
+    
+    /// Retrieves the instance with the specified service type and <%= arg_param_description %> to the factory closure.
+    ///
+    /// - Parameters:
+    ///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type
+    ///            and <%= arg_param_description %> is found in the `Container`.
+    public func resolve<Type, <%= arg_types %>>(<%= arg_param_def %>) -> Type? {
+        return resolve(Type.self, name: nil, <%= arg_param_name %>: <%= arg_param_call %>)
+    }
+    <% end %>
+}
