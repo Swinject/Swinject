@@ -7,8 +7,8 @@
 //
 
 /**
- This class is used to registered types where the initializer is controlled by some third party framework (i.e. UIViewController, UIView)
- If the UIViewContoller is using a UIStoryboard then there is another library to help, but for all others this can be used.
+ This class is used to registered types where the initializer is controlled by some third party framework
+ (i.e. UIViewController, UIView)
 
  --- Example ---
  ```
@@ -55,7 +55,9 @@ public class ManualResolver {
     /**
      This property is used to determine if the object being resolved should be resolved, and primarily used for testing.
 
-     During testing, to get the correct test doubles injected you might need to call the inject function manually. Instead of having the object injected twice, and have to ensure that all dependent types are registered properly for testing, you can turn the ManualResolver off by setting this property to false.
+     During testing, to get the correct test doubles injected you might need to call the inject function manually.
+     Instead of having the object injected twice and ensuring that all dependent types are registered properly,
+     the ManualResolver can be turned off by setting this property to false.
 
      Defaults to `true`.
      */
@@ -64,9 +66,14 @@ public class ManualResolver {
     /**
      This function should be called in all designated initializers (or other logic starting points).
 
-     - Parameter me: This is the object being resolved. Typically will be passing self in when executing an initializer.
-     - Parameter as: This is the type the object was registered as. Defaults to type inference. If the object is registered as a protocol then that protocol should be specified here.
-     - Parameter name: This is the name for the registration and is typically used for multiple registrations of the same type. Defaults to nil.
+     - Parameter me:    This is the object being resolved.
+                        Typically will be passing self in when executing an initializer.
+     - Parameter as:    This is the type the object was registered as.
+                        Defaults to type inference.
+                        If the object is registered as a protocol then that protocol should be specified here.
+     - Parameter name:  This is the name for the registration.
+                        Typically used for multiple registrations of the same type.
+                        Defaults to nil.
      */
     public static func finishConstruction<T>(me object: T, as type: T.Type = T.self, name: String? = nil) {
         guard shouldResolve else {
@@ -84,14 +91,22 @@ extension Container {
     /**
      This function should be used to register manually resolved objects instead of the standard `register()`.
 
-     - Parameter objectType: This is the type that is being registered.
-     - Parameter name: This is the name for the registration and is typically used for multiple registrations of the same type. Defaults to nil.
-     - Parameter injectionHandler: This is the block that will be executed when the object is resolved. It provides the resolver and the object being resolved. In this closure is were the manually created inject function should be called.
+     - Parameter objectType:        This is the type that is being registered.
+     - Parameter name:              This is the name for the registration.
+                                    Typically used for multiple registrations of the same type.
+                                    Defaults to nil.
+     - Parameter injectionHandler:  This is the block that will be executed when the object is resolved.
+                                    It provides the resolver and the object being resolved.
+                                    In this closure is were the manually created inject function should be called.
 
-     - Returns: The service entry for this registration. Typically, this object is ignored during registration or to specify options for the registration (i.e. `inObjectScope()`).
+     - Returns: The service entry for this registration.
+                Typically, this object is ignored during registration or to specify options for the registration
+                (i.e. `inObjectScope()`).
      */
     @discardableResult
-    public func registerManualConstruction<T>(_ objectType: T.Type, name: String? = nil, injectionHandler: @escaping (Resolver, T) -> Void) -> ServiceEntry<T> {
+    public func registerManualConstruction<T>(_ objectType: T.Type,
+                                              name: String? = nil,
+                                              injectionHandler: @escaping (Resolver, T) -> Void) -> ServiceEntry<T> {
         let factory = { (r: Resolver, o: T) -> T in
             injectionHandler(r, o)
             return o

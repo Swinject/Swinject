@@ -13,7 +13,7 @@ import Swinject
 
 class MyAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(Food.self) { (resolver) -> Food in
+        container.register(Food.self) { _ in
             return Sushi()
         }
 

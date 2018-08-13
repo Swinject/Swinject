@@ -15,7 +15,8 @@ import Swinject
 class BasicViewController {
     /**
      This is force unwrapped because this class will not work correctly if it is not resolved first.
-     Since this class is resolved in all initializers then there is not reasonable way this will be nil (assuming it is registered correctly).
+     Since this class is resolved in all initializers then there is not reasonable way this will be nil
+     (assuming it is registered correctly).
      */
     var food: Food!
 
@@ -31,7 +32,10 @@ class BasicViewController {
         self.init(nilOrNibName: nil)
     }
 
-    /// This is the function that will be called when registering the service, or during testing to inject a test double.
+    /**
+     This is the function that will be called when registering the service,
+     or during testing to inject a test double.
+     */
     func inject(food: Food) {
         self.food = food
     }
