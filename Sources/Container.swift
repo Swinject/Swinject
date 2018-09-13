@@ -297,14 +297,14 @@ extension Container: Resolver {
 
         guard let currentObjectGraph = currentObjectGraph else { fatalError() }
 
-        if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph) as? Service {
-            return persistedInstance
+        if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph), let persistedService = persistedInstance as? Service {
+            return persistedService
         }
 
         let resolvedInstance = invoker(entry.factory as! Factory)
-        if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph) as? Service {
+        if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph), let persistedService = persistedInstance as? Service {
             // An instance for the key might be added by the factory invocation.
-            return persistedInstance
+            return persistedService
         }
         entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
 
