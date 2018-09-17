@@ -120,7 +120,10 @@ private class Weak<Wrapped> {
     }
 #else
     var value: Wrapped? {
-        get { return object as? Wrapped }
+        get {
+            guard let object = object else { return nil }
+            return object as? Wrapped
+        }
         set { object = newValue as AnyObject? }
     }
 #endif
