@@ -115,7 +115,10 @@ private class Weak<Wrapped> {
 
 #if os(Linux)
     var value: Wrapped? {
-        get { return object as? Wrapped }
+        get {
+            guard let object = object else { return nil }
+            return object as? Wrapped
+        }
         set { object = newValue.flatMap { $0 as? AnyObject } }
     }
 #else
