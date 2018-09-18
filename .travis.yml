@@ -40,7 +40,6 @@ before_install:
   - carthage bootstrap --verbose
 script:
   - set -o pipefail
-  - open -b com.apple.iphonesimulator # Workaround https://github.com/travis-ci/travis-ci/issues/3040
   - xcodebuild "$ACTION" -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DEST" -configuration Release ENABLE_TESTABILITY=YES | xcpretty
 notifications:
   email:
