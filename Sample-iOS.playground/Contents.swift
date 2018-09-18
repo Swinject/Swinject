@@ -221,7 +221,7 @@ class Horse: Animal {
     }
 }
 
-// The factory closure can take arguments after the `Resolvable` parameter (in this example, unused as `_`).
+// The factory closure can take arguments after the `Resolver` parameter (in this example, unused as `_`).
 // Note that the container already has an Animal without a registration name,
 // but the factory with the arguments is recognized as a different registration to resolve.
 container.register(Animal.self) { _, name in Horse(name: name) }

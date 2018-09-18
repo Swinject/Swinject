@@ -107,7 +107,7 @@ class Dog: Animal {
 
 ## Registration with Arguments in a DI Container
 
-The factory closure passed to the `register` method can take arguments that are passed when the service is resolved. When you register the service, the arguments can be specified after the `Resolvable` parameter. Note that if the resolver is not use it can be given as `_` as in the following example (this is practice in  Swift):
+The factory closure passed to the `register` method can take arguments that are passed when the service is resolved. When you register the service, the arguments can be specified after the `Resolver` parameter. Note that if the resolver is not use it can be given as `_` as in the following example (this is practice in  Swift):
 
 ```swift
 container.register(Animal.self) { _, name in
