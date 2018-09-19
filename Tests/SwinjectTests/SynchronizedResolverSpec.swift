@@ -70,7 +70,7 @@ class SynchronizedResolverSpec: QuickSpec {
             }
         }
         describe("Nested resolve") {
-            fit("can make it without deadlock") {
+            it("can make it without deadlock") {
                 let container = Container()
                 let threadSafeResolver = container.synchronize()
                 container.register(ChildProtocol.self) { _ in  Child() }
