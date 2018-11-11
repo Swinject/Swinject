@@ -5,7 +5,7 @@
 Unfortunately, implementations of dependency injection often use slightly different terminology, which if not explained clearly in advance can cause confusion. In Swinject we define the following terms:
 
 * **Service**: A protocol defining an interface for a dependent type.
-* **Component**: An actual type implementing a service.
+* **Component**: A concrete type implementing a service.
 * **Factory**: A function or closure instantiating a component.
 * **Container**: A collection of component instances.
 
