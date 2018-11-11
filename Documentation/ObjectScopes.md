@@ -9,7 +9,7 @@ container.register(Animal.self) { _ in Cat() }
     .inObjectScope(.container)
 ```
 
-The object scope is ignored if the factory closure returns a value type because its instance is never shared per the Swift specification.
+⚠️ The above holds for reference types. The object scope is **ignored** if the factory closure returns a **value type** because its instance is never shared per the Swift specification.
 
 ## Built-in scopes
 ### Transient
@@ -31,8 +31,6 @@ This scope is also known as _Singleton_ in other DI frameworks.
 ### Weak
 
 In `ObjectScope.weak` an instance provided by a container is shared within the container and its child containers as long as there are other strong references to it. Once all strong references to an instance cease to exist, it won't be shared anymore and new instance will be created during next resolution of the type.
-
-Above holds for reference types - value types are not shared in this object scope.
 
 ## Custom Scopes
 
