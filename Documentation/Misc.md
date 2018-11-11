@@ -85,7 +85,7 @@ class PetOwner {
 
 When `resolve` method fails, Swinject will log information about expected and available registrations to make DI debugging easier. This feature can be disabled / customized by modifying `Container.loggingFunction` variable, e.g.:
 ```swift
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     Container.loggingFunction = nil // disable logging
     ...
 }
