@@ -5,8 +5,8 @@ in an `Assembly`. This allows your application to:
 
    - Keep things organized by keeping like services in one place.
    - Provide a shared `Container`.
-   - Allow registering different assembly configurations, which is useful for swapping in mock implementations.
-   - To be notified when the container is fully configured.
+   - Register different assembly configurations, which is useful for swapping in mock implementations.
+   - Be notified when the container is fully configured.
 
 This feature is an opinionated way to how your can register services in your `Container` and using it is not required.
 
