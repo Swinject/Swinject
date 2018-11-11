@@ -82,7 +82,7 @@ container.register(Person.self) { r in
 
 ## Method Injection
 
-_Method injection_ is a similar pattern to _property injection_, but it uses a method to pass dependencies to a dependent instance.
+_Method injection_ is a similar pattern to _property injection_, but it uses a method to pass dependencies to a dependent instance. It is appropriate when the dependency is encapsulated as a private property.
 
 The following code defines Method Injection to `PetOwner3`:
 
@@ -100,7 +100,7 @@ Where
 
 ```swift
 class PetOwner3: Person {
-    var pet: Animal?
+    private var pet: Animal?
 
     init() { }
 
