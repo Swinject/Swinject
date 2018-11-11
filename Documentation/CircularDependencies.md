@@ -72,7 +72,7 @@ container.register(ChildProtocol.self) { _ in Child() }
     }
 ```
 
-Here both or either of the depending properties must be specified in the `initCompleted` callback to avoid infinite recursion.
+Here both or either of the depending properties must be specified in the `initCompleted` callback to avoid infinite recursion, however using it on both [has proven to avoid issues](#remark).
 
 ## Initializer/Initializer Dependencies
 
