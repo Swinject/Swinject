@@ -40,7 +40,7 @@ class PetOwner: Person {
 }
 ```
 
-Note that the actual type of `Animal` passed to the initializer of `PetOwner` is automatically resolved by Swinject when the `PetOwner` instance is created:
+Note that the actual type of `Animal` passed to the initializer of `PetOwner` is automatically resolved by Swinject when the `PetOwner` instance is created.
 
 ## Property Injection
 
