@@ -37,7 +37,7 @@ print(turtle1.name) // prints "Ninja"
 
 ## Self-registration (Self-binding)
 
-In Swinject or other DI frameworks, a service type can not only be a protocol but also a concrete class. A special case is when the service type and component type are identical. This case is called _self-registration_ or _self-binding_. Here is an example of self-binding with Swinject:
+In Swinject or other DI frameworks, a service type can not only be a protocol but also a concrete class. A special case is when the service type and component type are identical (the same concrete class type). This case is called _self-registration_ or _self-binding_. Here is an example of self-binding with Swinject:
 
 ```swift
 let container = Container()
