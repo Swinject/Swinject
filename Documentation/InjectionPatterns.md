@@ -44,7 +44,7 @@ Note that the actual type of `Animal` passed to the initializer of `PetOwner` is
 
 ## Property Injection
 
-_Property injection_ is a pattern to pass a dependency to a dependent instance via a setter property. Property injection is appropriate if the dependency is optional to the dependent instance.
+_Property injection_ is a pattern to pass a dependency to a dependent instance via a setter property. Property injection is appropriate if the dependency is optional to the dependent instance, and is required in the case of _[circular dependencies](CircularDependencies.md)_.
 
 The following code defines property injection to `PetOwner2`:
 
