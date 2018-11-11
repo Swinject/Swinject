@@ -20,7 +20,7 @@ If this scope is specified, circular dependencies resolution will not work prope
 
 ### Graph (the default scope)
 
-With `ObjectScope.graph`, an instance is always created, as in `ObjectScope.transient`, if you directly call `resolve` method of a container, but instances resolved in factory closures are shared during the resolution of the root instance to construct the object graph.
+With `ObjectScope.graph`, an instance is always created (as in `ObjectScope.transient`) if you directly call `resolve` method of a container, but instances resolved in factory closures are shared during the resolution of the root instance to construct the object graph.
 
 ### Container
 
