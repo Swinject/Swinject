@@ -166,7 +166,7 @@ The key consists of:
 
 If a registration matches an existing registration with all the parts of the key, the existing registration is _overwritten_ with the new registration.
 
-For example, the following registrations can co-exist in a container because the service _types_ are different:
+For example, the following registrations can co-exist in a container because the service _types_ are different (`Animal` vs. `Person`):
 
 ```swift
 container.register(Animal.self) { _ in Cat(name: "Mimi") }
@@ -175,21 +175,21 @@ container.register(Person.self) { r in
 }
 ```
 
-The following registrations can co-exist in a container because the registration _names_ are different:
+The following registrations can co-exist in a container because the registration _names_ are different (`"Mimi"` vs. `"Hachi"`):
 
 ```swift
 container.register(Animal.self, name: "cat") { _ in Cat(name: "Mimi") }
 container.register(Animal.self, name: "dog") { _ in Dog(name: "Hachi") }
 ```
 
-The following registrations can co-exist in a container because the _numbers of arguments_ are different. The first registration has no arguments, and the second has an argument:
+The following registrations can co-exist in a container because the _numbers of arguments_ are different (none vs. `name`):
 
 ```swift
 container.register(Animal.self) { _ in Cat(name: "Mimi") }
 container.register(Animal.self) { _, name in Cat(name: name) }
 ```
 
-The following registrations can co-exist in a container because the _types of the arguments_ are different. The first registration has `String` and `Bool` types. The second registration has `Bool` and `String` types in the order:
+The following registrations can co-exist in a container because the _types of the arguments_ are different (`String` and `Bool` vs. `Bool` and `String`, the order matters):
 
 ```swift
 container.register(Animal.self) { _, name, running in
