@@ -1,6 +1,6 @@
 # Thread Safety
 
-Swinject is designed to be used in concurrent applications. `Container` itself is not thread safe, but its `synchronize` method returns a thread safe view to the container as `Resolver` type.
+Swinject is designed to be used in concurrent applications. `Container` itself is not thread-safe, but its `synchronize` method returns a thread-safe view to the container as `Resolver` type.
 
 ```swift
 let container = Container()
@@ -19,13 +19,13 @@ for _ in 0..<4 {
 
 ## Component Registrations
 
-Since the thread safe view of a container is `Resolver` type, which has only overloads of `resolve` methods, registrations to the container are not thread safe. Registrations must be performed on a single thread, typically at the time when an app starts up.
+Since the thread-safe view of a container is `Resolver` type, which has only overloads of `resolve` methods, registrations to the container are not thread-safe. Registrations must be performed on a single thread, typically at the time when an app starts up.
 
 ## Service Resolutions
 
-Only resolutions through the `Resolver` instance returned by `synchronize` method are thread safe. Calling `resolve` method directly on a `Container` instance is not thread safe.
+Only resolutions through the `Resolver` instance returned by `synchronize` method are thread-safe. Calling `resolve` method directly on a `Container` instance is not thread-safe.
 
-If you have a container hierarchy (parent-child relationship of containers), all the containers must be accessed through the thread safe views when you resolve services.
+If you have a container hierarchy (parent-child relationship of containers), all the containers must be accessed through the thread-safe views when you resolve services.
 
 ```swift
 let parentContainer = Container()
@@ -49,7 +49,7 @@ for _ in 0..<4 {
 
 ## SwinjectStoryboard
 
-`SwinjectStoryboard` does not require the thread safe view of a container in most of the cases because instantiation of a view controller is normally performed on the main thread. Only if you use the same container in another thread, the synchronized view should be passed to `SwinjectStoryboard` when you create its instance and be used in the other thread too.
+`SwinjectStoryboard` does not require the thread-safe view of a container in most of the cases because instantiation of a view controller is normally performed on the main thread. Only if you use the same container in another thread, the synchronized view should be passed to `SwinjectStoryboard` when you create its instance and be used in the other thread too.
 
 ```swift
 let threadSafeContainer: Resolver = Container() { container in

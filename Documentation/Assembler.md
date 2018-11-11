@@ -3,12 +3,12 @@
 This feature provides your implementation the ability to group related service definitions together
 in an `Assembly`. This allows your application to:
 
-   - Keep things organized by keeping like services in one place.
+   - Keep things organized by keeping all services in one place.
    - Provide a shared `Container`.
    - Register different assembly configurations, which is useful for swapping in mock implementations.
    - Be notified when the container is fully configured.
 
-This feature is an opinionated way to how your can register services in your `Container` and using it is not required.
+This feature is an opinionated way to how you can register services in your `Container` and using it is not required.
 
 There are several parts to this feature.
 
@@ -45,14 +45,14 @@ class ManagerAssembly: Assembly {
 Here we have created 2 assemblies: 1 for services and 1 for managers. As you can see the `ManagerAssembly`
 leverages service definitions registered in the `ServiceAssembly`. Using this pattern the `ManagerAssembly`
 doesn't care where the `FooServiceProtocol` and `BarServiceProtocol` are registered, it just requires them to
-be registered else where.
+be registered elsewhere.
 
 ### Load aware
 
 The `Assembly` allows the assembly to be aware when the container has been fully loaded
 by the `Assembler`.
 
-Let's imagine you have an simple Logger class that can be configured with different log handlers:
+Let's imagine you have a simple Logger class that can be configured with different log handlers:
 
 ```swift
 protocol LogHandler {
@@ -78,7 +78,7 @@ class Logger {
 ```
 
 This singleton is accessed in global logging functions to make it easy to add logging anywhere
-without having to deal with injects:
+without having to deal with injections:
 
 ```swift
 func logDebug(message: String) {
@@ -87,7 +87,7 @@ func logDebug(message: String) {
 ```
 
 In order to configure the `Logger` shared instance in the container we will need to resolve the
-`Logger` after the `Container` has been built. Using a `Assembly` you can keep this
+`Logger` after the `Container` has been built. Using an `Assembly` you can keep this
 bootstrapping in the assembly:
 
 ```swift
@@ -159,9 +159,9 @@ assembler.applyPropertyLoader(
    will be deallocated along with your assembler
 
  - If you are lazy loading your properties and assemblies you must load your properties **first** if
-   you want your properties to be available to load aware assemblies when `loaded` is called
+   you want your properties to be available to load-aware assemblies when `loaded` is called
 
- - If you are lazy loading assemblies and you want your load aware assemblies to be invoked after
+ - If you are lazy loading assemblies and you want your load-aware assemblies to be invoked after
    all assemblies have been loaded then you must use `addAssemblies` and pass all lazy loaded assemblies
    at once
 
