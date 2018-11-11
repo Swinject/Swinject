@@ -51,11 +51,11 @@ The following code defines property injection to `PetOwner2`:
 ```swift
 let container = Container()
 container.register(Animal.self) { _ in Cat() }
-container.register(Person.self) { r in
-    let owner = PetOwner2()
-    owner.pet = r.resolve(Animal.self)
-    return owner
-}
+container.register(Person.self) { _ in PetOwner2() }
+    .initCompleted { r, p in
+        let owner = p as! PetOwner2
+        owner.pet = r.resolve(Animal.self)
+    }
 ```
 
 Where
@@ -68,16 +68,16 @@ class PetOwner2: Person {
 }
 ```
 
-Or, you can use <a name="initialization-callback">`initCompleted` callback</a> instead of defining the injection in the registration closure:
+Note that the <a name="initialization-callback">`initCompleted` callback</a> in some cases is the same as defining the injection in the registration closure (see the following example), but `initCompleted` is preferred since it is able to resolve _[circular dependencies](CircularDependencies.md)_.
 
 ```swift
 let container = Container()
 container.register(Animal.self) { _ in Cat() }
-container.register(Person.self) { _ in PetOwner2() }
-    .initCompleted { r, p in
-        let owner = p as! PetOwner2
-        owner.pet = r.resolve(Animal.self)
-    }
+container.register(Person.self) { r in
+    let owner = PetOwner2()
+    owner.pet = r.resolve(Animal.self)
+    return owner
+}
 ```
 
 ## Method Injection
@@ -89,11 +89,11 @@ The following code defines Method Injection to `PetOwner3`:
 ```swift
 let container = Container()
 container.register(Animal.self) { _ in Cat() }
-container.register(Person.self) { r in
-    let owner = PetOwner3()
-    owner.setPet(r.resolve(Animal.self)!)
-    return owner
-}
+container.register(Person.self) { _ in PetOwner3() }
+    .initCompleted { r, p in
+        let owner = p as! PetOwner3
+        owner.setPet(r.resolve(Animal.self)!)
+    }
 ```
 
 Where
@@ -108,18 +108,6 @@ class PetOwner3: Person {
         self.pet = pet
     }
 }
-```
-
-Or, you can use `initCompleted` callback instead of defining the injection in the registration closure:
-
-```swift
-let container = Container()
-container.register(Animal.self) { _ in Cat() }
-container.register(Person.self) { _ in PetOwner3() }
-    .initCompleted { r, p in
-        let owner = p as! PetOwner3
-        owner.setPet(r.resolve(Animal.self)!)
-    }
 ```
 
 _[Next page: Circular Dependencies](CircularDependencies.md)_
