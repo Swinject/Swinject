@@ -33,8 +33,6 @@
 		981899E51B5FFE5800C702D0 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981899E31B5FFE5800C702D0 /* Container.swift */; };
 		9819701F1B6145D600EEB942 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
 		981970201B6145D600EEB942 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9819701E1B6145D600EEB942 /* ObjectScope.swift */; };
-		981A0D0F1BE5B93F0030DD85 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981A0D0E1BE5B93F0030DD85 /* AVKit.framework */; };
-		981A0D111BE5B9460030DD85 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981A0D101BE5B9460030DD85 /* AVKit.framework */; };
 		981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 981ABE811B5FC9DF00294975 /* Swinject.framework */; };
 		983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983B98301C06ECB2006A23D4 /* SpinLock.swift */; };
 		983B98321C06ECB2006A23D4 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983B98301C06ECB2006A23D4 /* SpinLock.swift */; };
@@ -263,8 +261,6 @@
 		981899E01B5FF88800C702D0 /* ContainerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSpec.swift; sourceTree = "<group>"; };
 		981899E31B5FFE5800C702D0 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		9819701E1B6145D600EEB942 /* ObjectScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectScope.swift; sourceTree = "<group>"; };
-		981A0D0E1BE5B93F0030DD85 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
-		981A0D101BE5B9460030DD85 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.0.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
 		981ABE811B5FC9DF00294975 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		981ABE861B5FC9DF00294975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		981ABE8B1B5FC9DF00294975 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -380,7 +376,6 @@
 			files = (
 				FF15F7841EDCE81B00F96686 /* Quick.framework in Frameworks */,
 				FF15F7831EDCE81B00F96686 /* Nimble.framework in Frameworks */,
-				981A0D0F1BE5B93F0030DD85 /* AVKit.framework in Frameworks */,
 				981ABE8C1B5FC9DF00294975 /* Swinject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,7 +400,6 @@
 			files = (
 				FF15F78C1EDCE83100F96686 /* Quick.framework in Frameworks */,
 				FF15F78B1EDCE83100F96686 /* Nimble.framework in Frameworks */,
-				981A0D111BE5B9460030DD85 /* AVKit.framework in Frameworks */,
 				98689CD51BBFDEBC0005C6D3 /* Swinject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,8 +416,6 @@
 				FF15F7861EDCE82600F96686 /* Quick.framework */,
 				FF15F7891EDCE83100F96686 /* Nimble.framework */,
 				FF15F78A1EDCE83100F96686 /* Quick.framework */,
-				981A0D0E1BE5B93F0030DD85 /* AVKit.framework */,
-				981A0D101BE5B9460030DD85 /* AVKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1239,7 +1231,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1261,7 +1253,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
