@@ -13,6 +13,8 @@ extension GraphIdentifier: Equatable, Hashable {
     public static func == (lhs: GraphIdentifier, rhs: GraphIdentifier) -> Bool {
         return lhs === rhs
     }
-
-    public var hashValue: Int { return ObjectIdentifier(self).hashValue }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self).hashValue)
+    }
 }
