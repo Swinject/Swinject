@@ -36,11 +36,11 @@ internal struct ServiceKey {
 
 // MARK: Hashable
 extension ServiceKey: Hashable {
-    var hashValue: Int {
-        return ObjectIdentifier(serviceType).hashValue
-            ^ ObjectIdentifier(argumentsType).hashValue
-            ^ (name?.hashValue ?? 0)
-            ^ (option?.hashValue ?? 0)
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(serviceType))
+        hasher.combine(ObjectIdentifier(argumentsType))
+        hasher.combine(name?.hashValue ?? 0)
+        hasher.combine(option?.hashValue ?? 0)
     }
 }
 

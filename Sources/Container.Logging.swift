@@ -11,7 +11,7 @@ public typealias LoggingFunctionType = (String) -> Void
 public extension Container {
     /// Function to be used for logging debugging data.
     /// Default implementation writes to standard output.
-    public static var loggingFunction: LoggingFunctionType? {
+    static var loggingFunction: LoggingFunctionType? {
         get { return _loggingFunction }
         set { _loggingFunction = newValue }
     }
