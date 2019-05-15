@@ -10,7 +10,7 @@
 // NOTICE:
 //
 // Resolver.swift is generated from Resolver.erb by ERB.
-// Do NOT modify Container.Arguments.swift directly.
+// Do NOT modify Resolver.swift directly.
 // Instead, modify Resolver.erb and run `script/gencode` at the project root directory to generate the code.
 //
 
