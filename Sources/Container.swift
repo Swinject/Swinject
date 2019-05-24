@@ -249,10 +249,13 @@ extension Container: _Resolver {
         assert(resolutionDepth > 0, "The depth cannot be negative.")
 
         resolutionDepth -= 1
-        if resolutionDepth == 0 {
-            services.values.forEach { $0.storage.graphResolutionCompleted() }
-            self.currentObjectGraph = nil
-        }
+        if resolutionDepth == 0 { graphResolutionCompleted() }
+    }
+
+    fileprivate func graphResolutionCompleted() {
+        parent?.graphResolutionCompleted()
+        services.values.forEach { $0.storage.graphResolutionCompleted() }
+        self.currentObjectGraph = nil
     }
 }
 

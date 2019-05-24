@@ -81,6 +81,13 @@ class ContainerSpec: QuickSpec {
                 let cat = parent.resolve(Animal.self)
                 expect(cat).to(beNil())
             }
+            it("does not create zombies") {
+                let parent = Container()
+                let child = Container(parent: parent)
+                parent.register(Cat.self) { _ in Cat() }
+                weak var weakCat = child.resolve(Cat.self)
+                expect(weakCat).to(beNil())
+            }
         }
         describe("Scope") {
             let registerCatAndPetOwnerDependingOnFood: (Container) -> Void = {
