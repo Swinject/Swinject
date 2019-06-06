@@ -28,6 +28,6 @@ let package = Package(
                 "Quick",
                 "Nimble",
                 "Swinject"
-            ]),
+            ])
     ]
 )
