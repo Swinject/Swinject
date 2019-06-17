@@ -298,7 +298,9 @@ extension Container: Resolver {
         incrementResolutionDepth()
         defer { decrementResolutionDepth() }
 
-        guard let currentObjectGraph = currentObjectGraph else { fatalError() }
+        guard let currentObjectGraph = currentObjectGraph else {
+            fatalError("If accessing container from multiple threads, make sure to use a synchronized resolver.")
+        }
 
         if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph), let persistedService = persistedInstance as? Service {
             return persistedService
