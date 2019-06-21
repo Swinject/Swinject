@@ -65,29 +65,39 @@ class ContainerSpec: QuickSpec {
             }
         }
         describe("Container hierarchy") {
+            var child: Container!
+            var parent: Container!
+            beforeEach {
+                parent = Container()
+                child = Container(parent: parent)
+            }
             it("resolves a service registered on the parent container.") {
-                let parent = Container()
                 parent.register(Animal.self) { _ in Cat() }
-                let child = Container(parent: parent)
-
                 let cat = child.resolve(Animal.self)
                 expect(cat).notTo(beNil())
             }
             it("does not resolve a service registred on the child container.") {
-                let parent = Container()
-                let child = Container(parent: parent)
                 child.register(Animal.self) { _ in Cat() }
-
                 let cat = parent.resolve(Animal.self)
                 expect(cat).to(beNil())
             }
             it("does not create zombies") {
-                let parent = Container()
-                let child = Container(parent: parent)
                 parent.register(Cat.self) { _ in Cat() }
                 weak var weakCat = child.resolve(Cat.self)
                 expect(weakCat).to(beNil())
             }
+            #if !SWIFT_PACKAGE
+            it("does not terminate graph prematurely") {
+                child.register(Animal.self) { _ in Cat() }
+                parent.register(Food.self) { _ in Sushi() }
+                parent.register(PetOwner.self) {
+                    let owner = PetOwner(pet: child.resolve(Animal.self)!)
+                    owner.favoriteFood = $0.resolve(Food.self)
+                    return owner
+                }
+                expect { _ = parent.resolve(PetOwner.self) } .notTo(throwAssertion())
+            }
+            #endif
         }
         describe("Scope") {
             let registerCatAndPetOwnerDependingOnFood: (Container) -> Void = {

@@ -235,6 +235,7 @@ extension Container: _Resolver {
     fileprivate var maxResolutionDepth: Int { return 200 }
 
     fileprivate func incrementResolutionDepth() {
+        parent?.incrementResolutionDepth()
         if resolutionDepth == 0 && currentObjectGraph == nil {
             currentObjectGraph = GraphIdentifier()
         }
@@ -246,6 +247,7 @@ extension Container: _Resolver {
     }
 
     fileprivate func decrementResolutionDepth() {
+        parent?.decrementResolutionDepth()
         assert(resolutionDepth > 0, "The depth cannot be negative.")
 
         resolutionDepth -= 1
@@ -253,7 +255,6 @@ extension Container: _Resolver {
     }
 
     fileprivate func graphResolutionCompleted() {
-        parent?.graphResolutionCompleted()
         services.values.forEach { $0.storage.graphResolutionCompleted() }
         self.currentObjectGraph = nil
     }
