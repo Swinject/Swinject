@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7AF5D8FA2120F21800B08AD5 /* ManualResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5D8F92120F21800B08AD5 /* ManualResolver.swift */; };
+		7AF5D8FB2120F21800B08AD5 /* ManualResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5D8F92120F21800B08AD5 /* ManualResolver.swift */; };
+		7AF5D8FC2120F21800B08AD5 /* ManualResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5D8F92120F21800B08AD5 /* ManualResolver.swift */; };
+		7AF5D8FD2120F21800B08AD5 /* ManualResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5D8F92120F21800B08AD5 /* ManualResolver.swift */; };
+		7AF5D9042120F3B600B08AD5 /* ManualResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5D9032120F3B600B08AD5 /* ManualResolverSpec.swift */; };
+		7AF5D9052120F3B600B08AD5 /* ManualResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5D9032120F3B600B08AD5 /* ManualResolverSpec.swift */; };
+		7AF5D9062120F3B600B08AD5 /* ManualResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5D9032120F3B600B08AD5 /* ManualResolverSpec.swift */; };
+		7AF5D9072120F3BA00B08AD5 /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5D8FE2120F2BB00B08AD5 /* BasicViewController.swift */; };
+		7AF5D9082120F3BD00B08AD5 /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5D8FE2120F2BB00B08AD5 /* BasicViewController.swift */; };
+		7AF5D9092120F3BF00B08AD5 /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5D8FE2120F2BB00B08AD5 /* BasicViewController.swift */; };
 		90B029751C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029761C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029771C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
@@ -250,6 +260,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7AF5D8F92120F21800B08AD5 /* ManualResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualResolver.swift; sourceTree = "<group>"; };
+		7AF5D8FE2120F2BB00B08AD5 /* BasicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicViewController.swift; sourceTree = "<group>"; };
+		7AF5D9032120F3B600B08AD5 /* ManualResolverSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualResolverSpec.swift; sourceTree = "<group>"; };
 		90B029741C18599200A6A521 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		90B029781C185B1600A6A521 /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		90B0297E1C18666200A6A521 /* AssemblerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblerSpec.swift; sourceTree = "<group>"; };
@@ -475,6 +488,7 @@
 				981ABE861B5FC9DF00294975 /* Info.plist */,
 				CDC4FCF3205028B00021C60F /* InstanceWrapper.swift */,
 				CD5E9A3520515898009090F9 /* GraphIdentifier.swift */,
+				7AF5D8F92120F21800B08AD5 /* ManualResolver.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -492,6 +506,7 @@
 				CD6A9F811EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift */,
 				CD89E35120371D7900A9ED33 /* ContainerSpec.Behavior.swift */,
 				CDBD0E672035EDF20030F566 /* ContainerSpec.TypeForwarding.swift */,
+				7AF5D9032120F3B600B08AD5 /* ManualResolverSpec.swift */,
 				984774FE1C034C5C0092A757 /* SynchronizedResolverSpec.swift */,
 				9884E2A91B60C51C00120259 /* ServiceKeySpec.swift */,
 				9855C5C71B689D9000DADB0B /* ServiceEntrySpec.swift */,
@@ -539,6 +554,7 @@
 				90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */,
 				CD65F048205943D400FB43EE /* EmploymentAssembly.swift */,
 				CDB19E51204ED97400D67123 /* BehaviorFakes.swift */,
+				7AF5D8FE2120F2BB00B08AD5 /* BasicViewController.swift */,
 			);
 			name = Fakes;
 			sourceTree = "<group>";
@@ -952,6 +968,7 @@
 				CDC4FCF5205028B00021C60F /* InstanceWrapper.swift in Sources */,
 				CD5E9A3720515898009090F9 /* GraphIdentifier.swift in Sources */,
 				90B029761C18599200A6A521 /* Assembly.swift in Sources */,
+				7AF5D8FB2120F21800B08AD5 /* ManualResolver.swift in Sources */,
 				CD3B32931DD6123F00B208A3 /* InstanceStorage.swift in Sources */,
 				984774F11C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
 				981899E51B5FFE5800C702D0 /* Container.swift in Sources */,
@@ -977,7 +994,9 @@
 				CD5E9A33205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */,
 				CD3C2CF31D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				CDC4FCFE20502AA00021C60F /* LazySpec.swift in Sources */,
+				7AF5D9052120F3B600B08AD5 /* ManualResolverSpec.swift in Sources */,
 				984775001C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
+				7AF5D9082120F3BD00B08AD5 /* BasicViewController.swift in Sources */,
 				CD6A9F831EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				CD3B329D1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift in Sources */,
 				9848611D1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
@@ -1024,6 +1043,7 @@
 				CDBBACF61D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
 				98E550C31DEF066300BE6304 /* UnavailableItems.swift in Sources */,
 				90B029751C18599200A6A521 /* Assembly.swift in Sources */,
+				7AF5D8FA2120F21800B08AD5 /* ManualResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1038,7 +1058,9 @@
 				CD5E9A32205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */,
 				CD3C2CF21D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				CDC4FCFD20502A9F0021C60F /* LazySpec.swift in Sources */,
+				7AF5D9042120F3B600B08AD5 /* ManualResolverSpec.swift in Sources */,
 				90B0298B1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
+				7AF5D9072120F3BA00B08AD5 /* BasicViewController.swift in Sources */,
 				CD6A9F821EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				CD3B329C1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift in Sources */,
 				9848611C1B6F9B7000C07072 /* ContainerSpec.Arguments.swift in Sources */,
@@ -1073,6 +1095,7 @@
 				CDC4FCF6205028B00021C60F /* InstanceWrapper.swift in Sources */,
 				CD5E9A3820515898009090F9 /* GraphIdentifier.swift in Sources */,
 				9850111F1BBE7E8900A2CCFC /* ServiceKey.swift in Sources */,
+				7AF5D8FC2120F21800B08AD5 /* ManualResolver.swift in Sources */,
 				CD3B32941DD6123F00B208A3 /* InstanceStorage.swift in Sources */,
 				90B0297B1C185B1600A6A521 /* Assembler.swift in Sources */,
 				985011201BBE7E8900A2CCFC /* ServiceEntry.swift in Sources */,
@@ -1102,6 +1125,7 @@
 				CDC4FCF7205028B00021C60F /* InstanceWrapper.swift in Sources */,
 				CD5E9A3920515898009090F9 /* GraphIdentifier.swift in Sources */,
 				98689CA01BBFC7EB0005C6D3 /* Resolver.swift in Sources */,
+				7AF5D8FD2120F21800B08AD5 /* ManualResolver.swift in Sources */,
 				98689C991BBFC7EB0005C6D3 /* Container.swift in Sources */,
 				CD3B32951DD6124000B208A3 /* InstanceStorage.swift in Sources */,
 				98689C9A1BBFC7EB0005C6D3 /* ServiceKey.swift in Sources */,
@@ -1127,7 +1151,9 @@
 				CD5E9A34205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */,
 				CD3C2CF41D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				CDC4FCFF20502AA10021C60F /* LazySpec.swift in Sources */,
+				7AF5D9062120F3B600B08AD5 /* ManualResolverSpec.swift in Sources */,
 				98689CB61BBFD5110005C6D3 /* Person.swift in Sources */,
+				7AF5D9092120F3BF00B08AD5 /* BasicViewController.swift in Sources */,
 				CD6A9F841EEFCB7A0087E851 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				CD3B329E1DD61F2400B208A3 /* ContainerSpec.CustomScope.swift in Sources */,
 				90B0298D1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
