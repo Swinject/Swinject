@@ -51,21 +51,58 @@ class PropertyWrappersSpec: QuickSpec {
                 expect(foo.bar2.name) == "12"
             }
         }
-        describe("instance wrappers") {
+        describe("lazy") {
             beforeEach {
                 container.register(LazyFoo.self) { _ in LazyFoo() }
-                container.register(ProviderFoo.self) { _ in ProviderFoo() }
             }
             it("resolves lazy property") {
                 expect { _ = container.resolve(LazyFoo.self) }.notTo(throwAssertion())
             }
             it("shares lazy instance in graph scope") {
                 let foo = container.resolve(LazyFoo.self)!
-                expect(foo.bar1.instance) === foo.bar2
+                expect(foo.bar1) === foo.bar2
+            }
+            it("does not create instance until requested") {
+                var created = false
+                container.register(Bar.self) { _ in created = true; return Bar() }
+                _ = container.resolve(LazyFoo.self)
+                expect(created).to(beFalse())
+            }
+            it("resolves instance from the container only once") {
+                var created = 0
+                container.register(Bar.self) { _ in created += 1; return Bar() }
+
+                let foo = container.resolve(LazyFoo.self)
+                _ = foo?.bar1
+                _ = foo?.bar1
+
+                expect(created) == 1
+            }
+        }
+        describe("provider") {
+            beforeEach {
+                container.register(LazyFoo.self) { _ in LazyFoo() }
+                container.register(ProviderFoo.self) { _ in ProviderFoo() }
             }
             it("does not share provider instance in graph scope") {
                 let foo = container.resolve(ProviderFoo.self)!
-                expect(foo.bar1.instance) !== foo.bar2
+                expect(foo.bar1) !== foo.bar2
+            }
+            it("does not create instance until requested") {
+                var created = false
+                container.register(Bar.self) { _ in created = true; return Bar() }
+                _ = container.resolve(ProviderFoo.self)
+                expect(created).to(beFalse())
+            }
+            it("resolves instance from the container each time") {
+                var created = 0
+                container.register(Bar.self) { _ in created += 1; return Bar() }
+
+                let foo = container.resolve(ProviderFoo.self)
+                _ = foo?.bar1
+                _ = foo?.bar1
+
+                expect(created) == 2
             }
         }
     }
@@ -92,11 +129,11 @@ class ArgumentFoo {
 }
 
 class LazyFoo {
-    @Injected var bar1: Lazy<Bar>
-    @Injected var bar2: Bar
+    @LazyInjected var bar1: Bar
+    @LazyInjected var bar2: Bar
 }
 
 class ProviderFoo {
-    @Injected var bar1: Provider<Bar>
-    @Injected var bar2: Bar
+    @ProviderInjected var bar1: Bar
+    @ProviderInjected var bar2: Bar
 }

@@ -24,9 +24,28 @@ public struct Injected<T> {
         wrappedValue = implicitResolver!.resolve(T.self, argument: argument)!
     }
 
-    public init<A1, A2>(arguments a1: A1, _ a2: A2) {
-        wrappedValue = implicitResolver!.resolve(T.self, arguments: a1, a2)!
+    public init<A1, A2>(arguments arg1: A1, _ arg2: A2) {
+        wrappedValue = implicitResolver!.resolve(T.self, arguments: arg1, arg2)!
     }
 
     // TODO: init overloads
 }
+
+@propertyWrapper
+public struct LazyInjected<T> {
+    @Injected private var lazy: Lazy<T>
+
+    public var wrappedValue: T { return lazy.instance }
+
+    public init() {}
+}
+
+@propertyWrapper
+public struct ProviderInjected<T> {
+    @Injected private var lazy: Provider<T>
+
+    public var wrappedValue: T { return lazy.instance }
+
+    public init() {}
+}
+
