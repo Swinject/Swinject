@@ -297,7 +297,7 @@ class ContainerSpec: QuickSpec {
                     container.register(Animal.self) { _ in Turtle(name: "Ninja") }
                         .inObjectScope(scope)
                     var turtle1 = container.resolve(Animal.self)!
-                    var turtle2 = container.resolve(Animal.self)!
+                    let turtle2 = container.resolve(Animal.self)!
                     turtle1.name = "Samurai"
                     expect(turtle1.name) == "Samurai"
                     expect(turtle2.name) == "Ninja"
@@ -315,7 +315,7 @@ class ContainerSpec: QuickSpec {
                     let childContainer = Container(parent: container)
 
                     var turtle1 = childContainer.resolve(Animal.self)!
-                    var turtle2 = childContainer.resolve(Animal.self)!
+                    let turtle2 = childContainer.resolve(Animal.self)!
                     turtle1.name = "Samurai"
                     expect(turtle1.name) == "Samurai"
                     expect(turtle2.name) == "Ninja"
