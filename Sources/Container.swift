@@ -236,8 +236,10 @@ extension Container: _Resolver {
 
     fileprivate func incrementResolutionDepth() {
         parent?.incrementResolutionDepth()
+        implicitResolver = self
         if resolutionDepth == 0 && currentObjectGraph == nil {
             currentObjectGraph = GraphIdentifier()
+            implicitResolver = self
         }
         guard resolutionDepth < maxResolutionDepth else {
             fatalError("Infinite recursive call for circular dependency has been detected. " +
@@ -256,7 +258,8 @@ extension Container: _Resolver {
 
     fileprivate func graphResolutionCompleted() {
         services.values.forEach { $0.storage.graphResolutionCompleted() }
-        self.currentObjectGraph = nil
+        currentObjectGraph = nil
+        implicitResolver = nil
     }
 }
 
