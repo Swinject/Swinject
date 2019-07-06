@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class Driver : NSObject {
+public class Driver: NSObject {
     public var test: String
-    
+
     public override init() {
         test = "Driver"
     }
