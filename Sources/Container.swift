@@ -95,6 +95,65 @@ public final class Container {
     public func resetObjectScope(_ objectScope: ObjectScope) {
         resetObjectScope(objectScope as ObjectScopeProtocol)
     }
+    
+    /// Resolves a type that has been registered through a Json-Config-File
+    /// (Calling the normal function would return an object of type NSObject)
+    ///
+    /// **Example usage:**
+    ///     let car = container.resolveConfigured(Car.self, 'Car')
+    ///
+    /// - Parameters:
+    ///     - type: Type of the Object to resolve
+    ///     - id: Id configured in the Json-Configuration-File
+    public func resolveConfig<Service>(_ type: Service.Type, _ id: String) -> Service {
+        return resolve(NSObject.self, name: id) as! Service
+    }
+    
+    /// Registers Services as defined in the Json-Config-File
+    ///
+    /// **Example usage:**
+    ///     container.registerConfig('config.json')
+    ///
+    /// - Parameters:
+    ///     - configJsonPath: Path to the Json-Config-File
+    public func registerConfig(_ configJsonUrl: URL) throws {
+        do {
+            let data = try Data(contentsOf: configJsonUrl)
+            
+            let config = try JSONDecoder().decode(Config.self, from: data)
+            
+            var types: [String: NSObject.Type] = [:] //Dictionary that maps ids to Types
+            for definition in config.definitions {
+                let anyobjectype : AnyObject.Type? = NSClassFromString(definition.type)
+                let nsobjectype : NSObject.Type = anyobjectype! as! NSObject.Type
+                types[definition.id] = nsobjectype
+            }
+            
+            for definition in config.definitions {
+                self.register(types[definition.id]!, name: definition.id) { r in
+                    let obj = types[definition.id]!.init()
+                    
+                    for arg in definition.arguments {
+                        let argObj = r.resolve(types[arg.id]!, name: arg.id)!
+                        
+                        //Get Setter-Method and invoke it
+                        let selector = Selector("set" + arg.value.prefix(1).uppercased() + arg.value.dropFirst() + ":")
+                        let implementation = obj.method(for: selector)
+                        
+                        typealias ClosureType = @convention(c) (AnyObject, Selector, NSObject) -> Void
+                        let setter : ClosureType = unsafeBitCast(implementation, to: ClosureType.self)
+                        setter(obj, selector, argObj)
+                    }
+                    
+                    return obj
+                }
+            }
+        } catch {
+            throw error
+        }
+        
+        print(services.count)
+    }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is 
     /// resolved with dependencies.

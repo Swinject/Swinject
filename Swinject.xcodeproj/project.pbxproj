@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38900A9B22D09984004CB10F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9A22D09984004CB10F /* Config.swift */; };
+		38900A9D22D0AB6C004CB10F /* ContainerSpec.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9C22D0AB6C004CB10F /* ContainerSpec.Config.swift */; };
+		38900AA022D0AC46004CB10F /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900A9F22D0AC46004CB10F /* Config.json */; };
+		38900AA222D0ACF1004CB10F /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA122D0ACF1004CB10F /* Car.swift */; };
+		38900AA422D0AD2A004CB10F /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA322D0AD2A004CB10F /* Driver.swift */; };
+		38900AA522D0B6D9004CB10F /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900A9F22D0AC46004CB10F /* Config.json */; };
 		90B029751C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029761C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029771C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
@@ -250,6 +256,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		38900A9A22D09984004CB10F /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		38900A9C22D0AB6C004CB10F /* ContainerSpec.Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Config.swift; sourceTree = "<group>"; };
+		38900A9F22D0AC46004CB10F /* Config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Config.json; sourceTree = "<group>"; };
+		38900AA122D0ACF1004CB10F /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		38900AA322D0AD2A004CB10F /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		90B029741C18599200A6A521 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		90B029781C185B1600A6A521 /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		90B0297E1C18666200A6A521 /* AssemblerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblerSpec.swift; sourceTree = "<group>"; };
@@ -407,6 +418,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38900A9922D09976004CB10F /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				38900A9A22D09984004CB10F /* Config.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		38900A9E22D0AC24004CB10F /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				38900A9F22D0AC46004CB10F /* Config.json */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		9802C9B11B5FD7E80088018E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +476,7 @@
 		981ABE831B5FC9DF00294975 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				38900A9922D09976004CB10F /* Config */,
 				90B029781C185B1600A6A521 /* Assembler.swift */,
 				90B029741C18599200A6A521 /* Assembly.swift */,
 				981899E31B5FFE5800C702D0 /* Container.swift */,
@@ -482,6 +510,7 @@
 		981ABE8F1B5FC9DF00294975 /* SwinjectTests */ = {
 			isa = PBXGroup;
 			children = (
+				38900A9E22D0AC24004CB10F /* Configs */,
 				9878C63A1B65CA0600CBEFEF /* Fakes */,
 				90B0297E1C18666200A6A521 /* AssemblerSpec.swift */,
 				981899E01B5FF88800C702D0 /* ContainerSpec.swift */,
@@ -500,6 +529,7 @@
 				CDC4FCF820502A9A0021C60F /* LazySpec.swift */,
 				CD5E9A31205157E3009090F9 /* ContainerSpec.GraphCaching.swift */,
 				CD8E362B20595ACD00F2A5CF /* ProviderSpec.swift */,
+				38900A9C22D0AB6C004CB10F /* ContainerSpec.Config.swift */,
 			);
 			name = SwinjectTests;
 			path = Tests/SwinjectTests;
@@ -539,6 +569,8 @@
 				90B0298A1C186D5300A6A521 /* LoadAwareAssembly.swift */,
 				CD65F048205943D400FB43EE /* EmploymentAssembly.swift */,
 				CDB19E51204ED97400D67123 /* BehaviorFakes.swift */,
+				38900AA122D0ACF1004CB10F /* Car.swift */,
+				38900AA322D0AD2A004CB10F /* Driver.swift */,
 			);
 			name = Fakes;
 			sourceTree = "<group>";
@@ -835,6 +867,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 981ABE771B5FC9DF00294975;
@@ -872,6 +905,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38900AA022D0AC46004CB10F /* Config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,6 +913,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38900AA522D0B6D9004CB10F /* Config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1005,7 +1040,9 @@
 				983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
 				CDC4FCF4205028B00021C60F /* InstanceWrapper.swift in Sources */,
+				38900AA222D0ACF1004CB10F /* Car.swift in Sources */,
 				CD89E3472036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
+				38900A9B22D09984004CB10F /* Config.swift in Sources */,
 				9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				CD3B32971DD6126E00B208A3 /* ObjectScope.Standard.swift in Sources */,
 				985BAFA91B625E0F0055F998 /* ServiceEntry.swift in Sources */,
@@ -1014,6 +1051,8 @@
 				CD3C2CDF1D98E47000863421 /* DebugHelper.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* Resolver.swift in Sources */,
 				CD3B32921DD6121500B208A3 /* InstanceStorage.swift in Sources */,
+				38900AA422D0AD2A004CB10F /* Driver.swift in Sources */,
+				38900A9D22D0AB6C004CB10F /* ContainerSpec.Config.swift in Sources */,
 				981899E41B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B81B82D67300053A32 /* Container.Arguments.swift in Sources */,
 				9884E2A71B60B77400120259 /* ServiceKey.swift in Sources */,
