@@ -10,7 +10,7 @@
 /// It Contains an array of Definitions, which each define one Service
 class Config: Codable {
     var definitions: [Definition]
-    
+
     /// Checks wether the Config is valide or not
     /// - Returns: True if the Config is valid, else returns false
     public func validate() -> Bool {
@@ -21,7 +21,7 @@ class Config: Codable {
                     print("Used Id is not Unique\nId: " + def.identifier)
                     return true
                 }
-                
+
                 return false
             }
             if contains {

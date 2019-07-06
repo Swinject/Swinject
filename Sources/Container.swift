@@ -150,11 +150,11 @@ public final class Container {
                     }
                 }
 
-                self.register(types[definition.identifier]!, name: definition.identifier) { r in
+                self.register(types[definition.identifier]!, name: definition.identifier) { resolver in
                     let obj = types[definition.identifier]!.init()
 
                     for arg in definition.arguments {
-                        let argObj = r.resolve(types[arg.identifier]!, name: arg.identifier)!
+                        let argObj = resolver.resolve(types[arg.identifier]!, name: arg.identifier)!
 
                         //Get Setter-Method and invoke it
                         let selector = Selector(arg.getMethodDescription())
