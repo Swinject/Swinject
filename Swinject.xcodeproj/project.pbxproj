@@ -13,6 +13,11 @@
 		38900AA222D0ACF1004CB10F /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA122D0ACF1004CB10F /* Car.swift */; };
 		38900AA422D0AD2A004CB10F /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA322D0AD2A004CB10F /* Driver.swift */; };
 		38900AA522D0B6D9004CB10F /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900A9F22D0AC46004CB10F /* Config.json */; };
+		38900AA722D0D683004CB10F /* ErroneousConfig1.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AA622D0D683004CB10F /* ErroneousConfig1.json */; };
+		38900AA822D0D84A004CB10F /* ErroneousConfig1.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AA622D0D683004CB10F /* ErroneousConfig1.json */; };
+		38900AAA22D0D974004CB10F /* InvalidSwinjectConfigError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA922D0D974004CB10F /* InvalidSwinjectConfigError.swift */; };
+		38900AAC22D0DF06004CB10F /* ErroneousConfig2.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AAB22D0DF06004CB10F /* ErroneousConfig2.json */; };
+		38900AAE22D0DFED004CB10F /* ErroneousConfig3.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AAD22D0DFED004CB10F /* ErroneousConfig3.json */; };
 		90B029751C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029761C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029771C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
@@ -261,6 +266,10 @@
 		38900A9F22D0AC46004CB10F /* Config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Config.json; sourceTree = "<group>"; };
 		38900AA122D0ACF1004CB10F /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		38900AA322D0AD2A004CB10F /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
+		38900AA622D0D683004CB10F /* ErroneousConfig1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ErroneousConfig1.json; sourceTree = "<group>"; };
+		38900AA922D0D974004CB10F /* InvalidSwinjectConfigError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidSwinjectConfigError.swift; sourceTree = "<group>"; };
+		38900AAB22D0DF06004CB10F /* ErroneousConfig2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ErroneousConfig2.json; sourceTree = "<group>"; };
+		38900AAD22D0DFED004CB10F /* ErroneousConfig3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ErroneousConfig3.json; sourceTree = "<group>"; };
 		90B029741C18599200A6A521 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		90B029781C185B1600A6A521 /* Assembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		90B0297E1C18666200A6A521 /* AssemblerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssemblerSpec.swift; sourceTree = "<group>"; };
@@ -422,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				38900A9A22D09984004CB10F /* Config.swift */,
+				38900AA922D0D974004CB10F /* InvalidSwinjectConfigError.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -430,6 +440,9 @@
 			isa = PBXGroup;
 			children = (
 				38900A9F22D0AC46004CB10F /* Config.json */,
+				38900AA622D0D683004CB10F /* ErroneousConfig1.json */,
+				38900AAB22D0DF06004CB10F /* ErroneousConfig2.json */,
+				38900AAD22D0DFED004CB10F /* ErroneousConfig3.json */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -906,6 +919,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				38900AA022D0AC46004CB10F /* Config.json in Resources */,
+				38900AA722D0D683004CB10F /* ErroneousConfig1.json in Resources */,
+				38900AAC22D0DF06004CB10F /* ErroneousConfig2.json in Resources */,
+				38900AAE22D0DFED004CB10F /* ErroneousConfig3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -914,6 +930,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38900AA522D0B6D9004CB10F /* Config.json in Resources */,
+				38900AA822D0D84A004CB10F /* ErroneousConfig1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1039,6 +1056,7 @@
 				CD5E9A3620515898009090F9 /* GraphIdentifier.swift in Sources */,
 				983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
+				38900AAA22D0D974004CB10F /* InvalidSwinjectConfigError.swift in Sources */,
 				CDC4FCF4205028B00021C60F /* InstanceWrapper.swift in Sources */,
 				38900AA222D0ACF1004CB10F /* Car.swift in Sources */,
 				CD89E3472036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,

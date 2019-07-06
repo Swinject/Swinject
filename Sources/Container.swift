@@ -105,8 +105,8 @@ public final class Container {
     /// - Parameters:
     ///     - type: Type of the Object to resolve
     ///     - id: Id configured in the Json-Configuration-File
-    public func resolveConfig<Service>(_ type: Service.Type, _ id: String) -> Service {
-        return resolve(NSObject.self, name: id) as! Service
+    public func resolveConfig<Service>(_ type: Service.Type, _ id: String) -> Service? {
+        return resolve(NSObject.self, name: id) as? Service
     }
     
     /// Registers Services as defined in the Json-Config-File
@@ -122,6 +122,10 @@ public final class Container {
             
             let config = try JSONDecoder().decode(Config.self, from: data)
             
+            if !config.validate() {
+                throw InvalidSwinjectConfigError.runtimeError("Ivalid Configuration used. See Debug-Output for more information.")
+            }
+            
             var types: [String: NSObject.Type] = [:] //Dictionary that maps ids to Types
             for definition in config.definitions {
                 let anyobjectype : AnyObject.Type? = NSClassFromString(definition.type)
@@ -130,6 +134,20 @@ public final class Container {
             }
             
             for definition in config.definitions {
+                //Check if Setter-Functions of the Values exist
+                for arg in definition.arguments {
+                    let methodDescr = arg.getMethodDescription()
+                    let selector = Selector(methodDescr)
+                    
+                    if !types[definition.id]!.instancesRespond(to: selector) {
+                        throw InvalidSwinjectConfigError.runtimeError(
+                            "Please define a Setter Method \"" +
+                            methodDescr + "\" for Type \"" +
+                            definition.type + "\""
+                        )
+                    }
+                }
+                
                 self.register(types[definition.id]!, name: definition.id) { r in
                     let obj = types[definition.id]!.init()
                     
@@ -137,7 +155,7 @@ public final class Container {
                         let argObj = r.resolve(types[arg.id]!, name: arg.id)!
                         
                         //Get Setter-Method and invoke it
-                        let selector = Selector("set" + arg.value.prefix(1).uppercased() + arg.value.dropFirst() + ":")
+                        let selector = Selector(arg.getMethodDescription())
                         let implementation = obj.method(for: selector)
                         
                         typealias ClosureType = @convention(c) (AnyObject, Selector, NSObject) -> Void
