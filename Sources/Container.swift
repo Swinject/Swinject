@@ -131,7 +131,13 @@ public final class Container {
             var types: [String: NSObject.Type] = [:] //Dictionary that maps ids to Types
             for definition in config.definitions {
                 let anyobjectype: AnyObject.Type? = NSClassFromString(definition.type)
-                let nsobjectype: NSObject.Type = anyobjectype! as! NSObject.Type
+                guard let nsobjectype: NSObject.Type = anyobjectype as? NSObject.Type else {
+                    throw InvalidSwinjectConfigError.runtimeError(
+                            "Objects added in Config-File have to inherit from NSObject\n" +
+                            definition.type + " does not inherit from NSObject"
+                        )
+                }
+                
                 types[definition.identifier] = nsobjectype
             }
 
