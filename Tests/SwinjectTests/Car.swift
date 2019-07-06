@@ -11,7 +11,7 @@ import Foundation
 public class Car: NSObject {
     public var driver: Driver!
 
-    @objc public func setDriver(_ driver: NSObject){
+    @objc public func setDriver(_ driver: NSObject) {
         self.driver = driver as? Driver
     }
 }

@@ -130,8 +130,8 @@ public final class Container {
 
             var types: [String: NSObject.Type] = [:] //Dictionary that maps ids to Types
             for definition in config.definitions {
-                let anyobjectype : AnyObject.Type? = NSClassFromString(definition.type)
-                let nsobjectype : NSObject.Type = anyobjectype! as! NSObject.Type
+                let anyobjectype: AnyObject.Type? = NSClassFromString(definition.type)
+                let nsobjectype: NSObject.Type = anyobjectype! as! NSObject.Type
                 types[definition.identifier] = nsobjectype
             }
 
@@ -161,7 +161,7 @@ public final class Container {
                         let implementation = obj.method(for: selector)
 
                         typealias ClosureType = @convention(c) (AnyObject, Selector, NSObject) -> Void
-                        let setter : ClosureType = unsafeBitCast(implementation, to: ClosureType.self)
+                        let setter: ClosureType = unsafeBitCast(implementation, to: ClosureType.self)
                         setter(obj, selector, argObj)
                     }
 

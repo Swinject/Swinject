@@ -5,7 +5,6 @@
 //  Created by Oliver Siedler on 06.07.19.
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
-// swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
 
 import Quick
@@ -24,7 +23,7 @@ class ContainerSpec_Config: QuickSpec {
                 let notExistingUrl = URL(fileURLWithPath: "Not/A/Path/NotAFile.NotAExt")
 
                 print(NSStringFromClass(Car.self))
-                
+
                 expect { try container.registerConfig(notExistingUrl) }.to(throwError())
             }
             it("Resolve configured type") {
