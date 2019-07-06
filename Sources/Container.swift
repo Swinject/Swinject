@@ -137,7 +137,7 @@ public final class Container {
                             definition.type + " does not inherit from NSObject"
                         )
                 }
-                
+
                 types[definition.identifier] = nsobjectype
             }
 
