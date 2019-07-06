@@ -48,6 +48,21 @@ Note that you have to define a setter for each argument defined in the JSON.
 The setter start with a lower-cased set followed by the name defined in the JSON. The Name allways starts upper-cased.
 Also all classes have to inherit from NSObject and the setters have to be signed with @objc.
 
+It is also possible to use a computed-property:
+```swift
+public class Car : NSObject {
+    private var _driver: Driver!
+    @objc public var driver: Driver! {
+        set {
+            _driver = newValue
+        }
+        get {
+            return _driver
+        }
+    }
+}
+```
+
 To register the Json use the following Code:
 ```swift
 let url = URL("ConfigFile.json")

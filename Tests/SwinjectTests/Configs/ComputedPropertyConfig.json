@@ -1,0 +1,19 @@
+{
+    "definitions": [
+        {
+            "identifier": "Car",
+            "type": "SwinjectTests.CarComputedProperty",
+            "arguments": [
+                {
+                    "value": "driver",
+                    "identifier": "Driver"
+                }
+            ]
+        },
+        {
+            "identifier": "Driver",
+            "type": "SwinjectTests.Driver",
+            "arguments": []
+        }
+    ]
+}

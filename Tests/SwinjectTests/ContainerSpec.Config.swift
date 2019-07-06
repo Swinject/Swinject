@@ -22,8 +22,6 @@ class ContainerSpec_Config: QuickSpec {
             it("Register not existing file") {
                 let notExistingUrl = URL(fileURLWithPath: "Not/A/Path/NotAFile.NotAExt")
 
-                print(NSStringFromClass(Car.self))
-
                 expect { try container.registerConfig(notExistingUrl) }.to(throwError())
             }
             it("Resolve configured type") {
@@ -45,6 +43,24 @@ class ContainerSpec_Config: QuickSpec {
                     try container.registerConfig(url!)
 
                     let car = container.resolveConfig(Car.self, "Car")!
+                    expect(car.driver.test) == "Driver"
+
+                    let driver = container.resolveConfig(Driver.self, "Driver")!
+                    expect(driver.test) == "Driver"
+
+                    expect(car.driver).toNot(equal(driver))
+                } catch {
+                    fail("Container failed")
+                }
+            }
+            it("Resolve multiple types with computed property") {
+                do {
+                    let filename = "ComputedPropertyConfig"
+                    let url = Bundle(for: type(of: self)).url(forResource: filename, withExtension: "json")
+
+                    try container.registerConfig(url!)
+
+                    let car = container.resolveConfig(CarComputedProperty.self, "Car")!
                     expect(car.driver.test) == "Driver"
 
                     let driver = container.resolveConfig(Driver.self, "Driver")!
