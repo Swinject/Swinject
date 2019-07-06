@@ -7,17 +7,17 @@ Config File:
 {
     "definitions": [
         {
-            "id": "Car",
+            "identifier": "Car",
             "type": "Projectname.Car",
             "arguments": [
                 {
                 "value": "driver",
-                "id": "Driver"
+                "identifier": "Driver"
                 }
             ]
         },
         {
-            "id": "Driver",
+            "identifier": "Driver",
             "type": "Projectname.Driver",
             "arguments": []
         }

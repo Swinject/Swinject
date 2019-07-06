@@ -95,7 +95,7 @@ public final class Container {
     public func resetObjectScope(_ objectScope: ObjectScope) {
         resetObjectScope(objectScope as ObjectScopeProtocol)
     }
-    
+
     /// Resolves a type that has been registered through a Json-Config-File
     /// (Calling the normal function would return an object of type NSObject)
     ///
@@ -105,10 +105,10 @@ public final class Container {
     /// - Parameters:
     ///     - type: Type of the Object to resolve
     ///     - id: Id configured in the Json-Configuration-File
-    public func resolveConfig<Service>(_ type: Service.Type, _ id: String) -> Service? {
-        return resolve(NSObject.self, name: id) as? Service
+    public func resolveConfig<Service>(_ type: Service.Type, _ identifier: String) -> Service? {
+        return resolve(NSObject.self, name: identifier) as? Service
     }
-    
+
     /// Registers Services as defined in the Json-Config-File
     ///
     /// **Example usage:**
@@ -119,27 +119,29 @@ public final class Container {
     public func registerConfig(_ configJsonUrl: URL) throws {
         do {
             let data = try Data(contentsOf: configJsonUrl)
-            
+
             let config = try JSONDecoder().decode(Config.self, from: data)
-            
+
             if !config.validate() {
-                throw InvalidSwinjectConfigError.runtimeError("Ivalid Configuration used. See Debug-Output for more information.")
+                throw InvalidSwinjectConfigError.runtimeError(
+                    "Ivalid Configuration used. See Debug-Output for more information."
+                )
             }
-            
+
             var types: [String: NSObject.Type] = [:] //Dictionary that maps ids to Types
             for definition in config.definitions {
                 let anyobjectype : AnyObject.Type? = NSClassFromString(definition.type)
                 let nsobjectype : NSObject.Type = anyobjectype! as! NSObject.Type
-                types[definition.id] = nsobjectype
+                types[definition.identifier] = nsobjectype
             }
-            
+
             for definition in config.definitions {
                 //Check if Setter-Functions of the Values exist
                 for arg in definition.arguments {
                     let methodDescr = arg.getMethodDescription()
                     let selector = Selector(methodDescr)
-                    
-                    if !types[definition.id]!.instancesRespond(to: selector) {
+
+                    if !types[definition.identifier]!.instancesRespond(to: selector) {
                         throw InvalidSwinjectConfigError.runtimeError(
                             "Please define a Setter Method \"" +
                             methodDescr + "\" for Type \"" +
@@ -147,30 +149,28 @@ public final class Container {
                         )
                     }
                 }
-                
-                self.register(types[definition.id]!, name: definition.id) { r in
-                    let obj = types[definition.id]!.init()
-                    
+
+                self.register(types[definition.identifier]!, name: definition.identifier) { r in
+                    let obj = types[definition.identifier]!.init()
+
                     for arg in definition.arguments {
-                        let argObj = r.resolve(types[arg.id]!, name: arg.id)!
-                        
+                        let argObj = r.resolve(types[arg.identifier]!, name: arg.identifier)!
+
                         //Get Setter-Method and invoke it
                         let selector = Selector(arg.getMethodDescription())
                         let implementation = obj.method(for: selector)
-                        
+
                         typealias ClosureType = @convention(c) (AnyObject, Selector, NSObject) -> Void
                         let setter : ClosureType = unsafeBitCast(implementation, to: ClosureType.self)
                         setter(obj, selector, argObj)
                     }
-                    
+
                     return obj
                 }
             }
         } catch {
             throw error
         }
-        
-        print(services.count)
     }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is 

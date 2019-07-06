@@ -10,8 +10,7 @@
 
 import Quick
 import Nimble
-//@testable import Swinject
-
+//@testable import Swinject //Syntax error in this file?!?
 
 class ContainerSpec_Config: QuickSpec {
     override func spec() {

@@ -1,17 +1,17 @@
 {
     "definitions": [
         {
-            "id": "Car",
+            "identifier": "Car",
             "type": "Swinject.Car",
             "arguments": [
                 {
                     "value": "driver",
-                    "id": "Driver2"
+                    "identifier": "Driver2"
                 }
             ]
         },
         {
-            "id": "Driver",
+            "identifier": "Driver",
             "type": "Swinject.Driver",
             "arguments": []
         }
