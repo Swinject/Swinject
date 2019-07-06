@@ -8,16 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		38900A9B22D09984004CB10F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9A22D09984004CB10F /* Config.swift */; };
-		38900A9D22D0AB6C004CB10F /* ContainerSpec.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9C22D0AB6C004CB10F /* ContainerSpec.Config.swift */; };
-		38900AA022D0AC46004CB10F /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900A9F22D0AC46004CB10F /* Config.json */; };
-		38900AA222D0ACF1004CB10F /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA122D0ACF1004CB10F /* Car.swift */; };
-		38900AA422D0AD2A004CB10F /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA322D0AD2A004CB10F /* Driver.swift */; };
 		38900AA522D0B6D9004CB10F /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900A9F22D0AC46004CB10F /* Config.json */; };
-		38900AA722D0D683004CB10F /* ErroneousConfig1.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AA622D0D683004CB10F /* ErroneousConfig1.json */; };
 		38900AA822D0D84A004CB10F /* ErroneousConfig1.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AA622D0D683004CB10F /* ErroneousConfig1.json */; };
 		38900AAA22D0D974004CB10F /* InvalidSwinjectConfigError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA922D0D974004CB10F /* InvalidSwinjectConfigError.swift */; };
-		38900AAC22D0DF06004CB10F /* ErroneousConfig2.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AAB22D0DF06004CB10F /* ErroneousConfig2.json */; };
-		38900AAE22D0DFED004CB10F /* ErroneousConfig3.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AAD22D0DFED004CB10F /* ErroneousConfig3.json */; };
+		38900AAF22D13181004CB10F /* ContainerSpec.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9C22D0AB6C004CB10F /* ContainerSpec.Config.swift */; };
+		38900AB022D13182004CB10F /* ContainerSpec.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9C22D0AB6C004CB10F /* ContainerSpec.Config.swift */; };
+		38900AB122D13184004CB10F /* ContainerSpec.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9C22D0AB6C004CB10F /* ContainerSpec.Config.swift */; };
+		38900AB222D1319A004CB10F /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA122D0ACF1004CB10F /* Car.swift */; };
+		38900AB322D1319B004CB10F /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA122D0ACF1004CB10F /* Car.swift */; };
+		38900AB422D1319D004CB10F /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA122D0ACF1004CB10F /* Car.swift */; };
+		38900AB522D131A1004CB10F /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA322D0AD2A004CB10F /* Driver.swift */; };
+		38900AB622D131A2004CB10F /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA322D0AD2A004CB10F /* Driver.swift */; };
+		38900AB722D131A3004CB10F /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA322D0AD2A004CB10F /* Driver.swift */; };
+		38900AB822D13273004CB10F /* ErroneousConfig1.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AA622D0D683004CB10F /* ErroneousConfig1.json */; };
+		38900AB922D13274004CB10F /* ErroneousConfig1.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AA622D0D683004CB10F /* ErroneousConfig1.json */; };
+		38900ABA22D13279004CB10F /* ErroneousConfig2.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AAB22D0DF06004CB10F /* ErroneousConfig2.json */; };
+		38900ABB22D1327A004CB10F /* ErroneousConfig2.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AAB22D0DF06004CB10F /* ErroneousConfig2.json */; };
+		38900ABC22D1327B004CB10F /* ErroneousConfig2.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AAB22D0DF06004CB10F /* ErroneousConfig2.json */; };
+		38900ABD22D1327F004CB10F /* ErroneousConfig3.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AAD22D0DFED004CB10F /* ErroneousConfig3.json */; };
+		38900ABE22D13280004CB10F /* ErroneousConfig3.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AAD22D0DFED004CB10F /* ErroneousConfig3.json */; };
+		38900ABF22D13281004CB10F /* ErroneousConfig3.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AAD22D0DFED004CB10F /* ErroneousConfig3.json */; };
+		38900AC022D13284004CB10F /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900A9F22D0AC46004CB10F /* Config.json */; };
+		38900AC122D13285004CB10F /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900A9F22D0AC46004CB10F /* Config.json */; };
 		90B029751C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029761C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029771C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
@@ -911,6 +923,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38900AB822D13273004CB10F /* ErroneousConfig1.json in Resources */,
+				38900AC022D13284004CB10F /* Config.json in Resources */,
+				38900ABB22D1327A004CB10F /* ErroneousConfig2.json in Resources */,
+				38900ABE22D13280004CB10F /* ErroneousConfig3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,10 +934,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38900AA022D0AC46004CB10F /* Config.json in Resources */,
-				38900AA722D0D683004CB10F /* ErroneousConfig1.json in Resources */,
-				38900AAC22D0DF06004CB10F /* ErroneousConfig2.json in Resources */,
-				38900AAE22D0DFED004CB10F /* ErroneousConfig3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,8 +941,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38900ABD22D1327F004CB10F /* ErroneousConfig3.json in Resources */,
 				38900AA522D0B6D9004CB10F /* Config.json in Resources */,
 				38900AA822D0D84A004CB10F /* ErroneousConfig1.json in Resources */,
+				38900ABA22D13279004CB10F /* ErroneousConfig2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,6 +966,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38900AB922D13274004CB10F /* ErroneousConfig1.json in Resources */,
+				38900AC122D13285004CB10F /* Config.json in Resources */,
+				38900ABC22D1327B004CB10F /* ErroneousConfig2.json in Resources */,
+				38900ABF22D13281004CB10F /* ErroneousConfig3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1026,6 +1044,7 @@
 				9855C5C61B689B7B00DADB0B /* Food.swift in Sources */,
 				9855C5C91B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				CD8E362D20595ACD00F2A5CF /* ProviderSpec.swift in Sources */,
+				38900AB322D1319B004CB10F /* Car.swift in Sources */,
 				CD5E9A33205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */,
 				CD3C2CF31D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				CDC4FCFE20502AA00021C60F /* LazySpec.swift in Sources */,
@@ -1036,6 +1055,8 @@
 				9878C63D1B65CA8700CBEFEF /* Person.swift in Sources */,
 				CD89E35320371D7900A9ED33 /* ContainerSpec.Behavior.swift in Sources */,
 				CDD44AD81DEEED1000916595 /* WeakStorageSpec.swift in Sources */,
+				38900AB622D131A2004CB10F /* Driver.swift in Sources */,
+				38900AB022D13182004CB10F /* ContainerSpec.Config.swift in Sources */,
 				9884E2AB1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				90B0298C1C186D5300A6A521 /* LoadAwareAssembly.swift in Sources */,
 				90B029801C18666200A6A521 /* AssemblerSpec.swift in Sources */,
@@ -1058,7 +1079,6 @@
 				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
 				38900AAA22D0D974004CB10F /* InvalidSwinjectConfigError.swift in Sources */,
 				CDC4FCF4205028B00021C60F /* InstanceWrapper.swift in Sources */,
-				38900AA222D0ACF1004CB10F /* Car.swift in Sources */,
 				CD89E3472036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				38900A9B22D09984004CB10F /* Config.swift in Sources */,
 				9880E70E1C09EE2900ED5293 /* FunctionType.swift in Sources */,
@@ -1069,8 +1089,6 @@
 				CD3C2CDF1D98E47000863421 /* DebugHelper.swift in Sources */,
 				98B012BF1B82F68E00053A32 /* Resolver.swift in Sources */,
 				CD3B32921DD6121500B208A3 /* InstanceStorage.swift in Sources */,
-				38900AA422D0AD2A004CB10F /* Driver.swift in Sources */,
-				38900A9D22D0AB6C004CB10F /* ContainerSpec.Config.swift in Sources */,
 				981899E41B5FFE5800C702D0 /* Container.swift in Sources */,
 				98B012B81B82D67300053A32 /* Container.Arguments.swift in Sources */,
 				9884E2A71B60B77400120259 /* ServiceKey.swift in Sources */,
@@ -1092,6 +1110,7 @@
 				9855C5C81B689D9000DADB0B /* ServiceEntrySpec.swift in Sources */,
 				9878C63C1B65CA8700CBEFEF /* Person.swift in Sources */,
 				CD8E362C20595ACD00F2A5CF /* ProviderSpec.swift in Sources */,
+				38900AB222D1319A004CB10F /* Car.swift in Sources */,
 				CD5E9A32205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */,
 				CD3C2CF21D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				CDC4FCFD20502A9F0021C60F /* LazySpec.swift in Sources */,
@@ -1102,6 +1121,8 @@
 				90B0297F1C18666200A6A521 /* AssemblerSpec.swift in Sources */,
 				CD89E35220371D7900A9ED33 /* ContainerSpec.Behavior.swift in Sources */,
 				CDD44AD71DEEED1000916595 /* WeakStorageSpec.swift in Sources */,
+				38900AB522D131A1004CB10F /* Driver.swift in Sources */,
+				38900AAF22D13181004CB10F /* ContainerSpec.Config.swift in Sources */,
 				9884E2AA1B60C51C00120259 /* ServiceKeySpec.swift in Sources */,
 				984774FF1C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,
 				9878C6381B65C9E000CBEFEF /* Animal.swift in Sources */,
@@ -1181,6 +1202,7 @@
 				98689CBE1BBFD5110005C6D3 /* ServiceEntrySpec.swift in Sources */,
 				98689CBC1BBFD5110005C6D3 /* ContainerSpec.Circularity.swift in Sources */,
 				CD8E362E20595ACD00F2A5CF /* ProviderSpec.swift in Sources */,
+				38900AB422D1319D004CB10F /* Car.swift in Sources */,
 				CD5E9A34205157E3009090F9 /* ContainerSpec.GraphCaching.swift in Sources */,
 				CD3C2CF41D98EF4A00863421 /* ContainerSpec.DebugHelper.swift in Sources */,
 				CDC4FCFF20502AA10021C60F /* LazySpec.swift in Sources */,
@@ -1191,6 +1213,8 @@
 				98689CBA1BBFD5110005C6D3 /* ContainerSpec.swift in Sources */,
 				CD89E35420371D7900A9ED33 /* ContainerSpec.Behavior.swift in Sources */,
 				CDD44AD91DEEED1000916595 /* WeakStorageSpec.swift in Sources */,
+				38900AB722D131A3004CB10F /* Driver.swift in Sources */,
+				38900AB122D13184004CB10F /* ContainerSpec.Config.swift in Sources */,
 				90B029811C18666200A6A521 /* AssemblerSpec.swift in Sources */,
 				98689CBD1BBFD5110005C6D3 /* ServiceKeySpec.swift in Sources */,
 				984775011C034C5C0092A757 /* SynchronizedResolverSpec.swift in Sources */,

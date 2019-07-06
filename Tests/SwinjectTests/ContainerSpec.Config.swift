@@ -10,7 +10,7 @@
 
 import Quick
 import Nimble
-//@testable import Swinject //Syntax error in this file?!?
+@testable import Swinject
 
 class ContainerSpec_Config: QuickSpec {
     override func spec() {
@@ -23,6 +23,8 @@ class ContainerSpec_Config: QuickSpec {
             it("Register not existing file") {
                 let notExistingUrl = URL(fileURLWithPath: "Not/A/Path/NotAFile.NotAExt")
 
+                print(NSStringFromClass(Car.self))
+                
                 expect { try container.registerConfig(notExistingUrl) }.to(throwError())
             }
             it("Resolve configured type") {

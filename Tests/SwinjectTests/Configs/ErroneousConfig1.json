@@ -2,7 +2,7 @@
     "definitions": [
         {
             "identifier": "Car",
-            "type": "Swinject.Car",
+            "type": "SwinjectTests.Car",
             "arguments": [
                 {
                     "value": "driver",
@@ -12,7 +12,7 @@
         },
         {
             "identifier": "Driver",
-            "type": "Swinject.Driver",
+            "type": "SwinjectTests.Driver",
             "arguments": []
         }
     ]
