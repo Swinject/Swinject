@@ -10,7 +10,6 @@
 		38900A9B22D09984004CB10F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9A22D09984004CB10F /* Config.swift */; };
 		38900AA522D0B6D9004CB10F /* Config.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900A9F22D0AC46004CB10F /* Config.json */; };
 		38900AA822D0D84A004CB10F /* ErroneousConfig1.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AA622D0D683004CB10F /* ErroneousConfig1.json */; };
-		38900AAA22D0D974004CB10F /* InvalidSwinjectConfigError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA922D0D974004CB10F /* InvalidSwinjectConfigError.swift */; };
 		38900AAF22D13181004CB10F /* ContainerSpec.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9C22D0AB6C004CB10F /* ContainerSpec.Config.swift */; };
 		38900AB022D13182004CB10F /* ContainerSpec.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9C22D0AB6C004CB10F /* ContainerSpec.Config.swift */; };
 		38900AB122D13184004CB10F /* ContainerSpec.Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9C22D0AB6C004CB10F /* ContainerSpec.Config.swift */; };
@@ -36,6 +35,13 @@
 		38900AC922D14836004CB10F /* ComputedPropertyConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AC722D14788004CB10F /* ComputedPropertyConfig.json */; };
 		38900ACA22D14837004CB10F /* ComputedPropertyConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AC722D14788004CB10F /* ComputedPropertyConfig.json */; };
 		38900ACB22D14837004CB10F /* ComputedPropertyConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 38900AC722D14788004CB10F /* ComputedPropertyConfig.json */; };
+		38900ACC22D185DC004CB10F /* InvalidSwinjectConfigError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA922D0D974004CB10F /* InvalidSwinjectConfigError.swift */; };
+		38900ACD22D1861E004CB10F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9A22D09984004CB10F /* Config.swift */; };
+		38900ACE22D1861F004CB10F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9A22D09984004CB10F /* Config.swift */; };
+		38900ACF22D18621004CB10F /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A9A22D09984004CB10F /* Config.swift */; };
+		38900AD022D18625004CB10F /* InvalidSwinjectConfigError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA922D0D974004CB10F /* InvalidSwinjectConfigError.swift */; };
+		38900AD122D18626004CB10F /* InvalidSwinjectConfigError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA922D0D974004CB10F /* InvalidSwinjectConfigError.swift */; };
+		38900AD222D18627004CB10F /* InvalidSwinjectConfigError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900AA922D0D974004CB10F /* InvalidSwinjectConfigError.swift */; };
 		90B029751C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029761C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
 		90B029771C18599200A6A521 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B029741C18599200A6A521 /* Assembly.swift */; };
@@ -1026,6 +1032,7 @@
 			files = (
 				983B98321C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				CD89E34E20371C0100A9ED33 /* Behavior.swift in Sources */,
+				38900AD022D18625004CB10F /* InvalidSwinjectConfigError.swift in Sources */,
 				985BAFAA1B625E0F0055F998 /* ServiceEntry.swift in Sources */,
 				CD3B32981DD6126E00B208A3 /* ObjectScope.Standard.swift in Sources */,
 				9880E70F1C09EE2900ED5293 /* FunctionType.swift in Sources */,
@@ -1042,6 +1049,7 @@
 				9884E2A81B60B77400120259 /* ServiceKey.swift in Sources */,
 				CDBD0E702035EEC00030F566 /* Container.TypeForwarding.swift in Sources */,
 				984BE3141CDA3FCF00BCF2AC /* _Resolver.swift in Sources */,
+				38900ACD22D1861E004CB10F /* Config.swift in Sources */,
 				981970201B6145D600EEB942 /* ObjectScope.swift in Sources */,
 				CDBBACF71D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
 				984774FB1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
@@ -1091,7 +1099,7 @@
 				CD5E9A3620515898009090F9 /* GraphIdentifier.swift in Sources */,
 				983B98311C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				90B029791C185B1600A6A521 /* Assembler.swift in Sources */,
-				38900AAA22D0D974004CB10F /* InvalidSwinjectConfigError.swift in Sources */,
+				38900ACC22D185DC004CB10F /* InvalidSwinjectConfigError.swift in Sources */,
 				CDC4FCF4205028B00021C60F /* InstanceWrapper.swift in Sources */,
 				CD89E3472036F28300A9ED33 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				38900A9B22D09984004CB10F /* Config.swift in Sources */,
@@ -1157,6 +1165,7 @@
 			files = (
 				983B98331C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				CD89E34F20371C0200A9ED33 /* Behavior.swift in Sources */,
+				38900AD122D18626004CB10F /* InvalidSwinjectConfigError.swift in Sources */,
 				9880E7101C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				985011221BBE7E8900A2CCFC /* ObjectScope.swift in Sources */,
 				CD3B32991DD6126E00B208A3 /* ObjectScope.Standard.swift in Sources */,
@@ -1173,6 +1182,7 @@
 				985011241BBE7E8900A2CCFC /* Container.Arguments.swift in Sources */,
 				CDBD0E712035EEC20030F566 /* Container.TypeForwarding.swift in Sources */,
 				984774F21C02F25D0092A757 /* SynchronizedResolver.swift in Sources */,
+				38900ACE22D1861F004CB10F /* Config.swift in Sources */,
 				90B029771C18599200A6A521 /* Assembly.swift in Sources */,
 				CDBBACF81D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
 				984774FC1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
@@ -1186,6 +1196,7 @@
 			files = (
 				90B0297D1C185B2200A6A521 /* Assembly.swift in Sources */,
 				CD89E35020371C0200A9ED33 /* Behavior.swift in Sources */,
+				38900AD222D18627004CB10F /* InvalidSwinjectConfigError.swift in Sources */,
 				983B98341C06ECB2006A23D4 /* SpinLock.swift in Sources */,
 				9880E7111C09EE2900ED5293 /* FunctionType.swift in Sources */,
 				CD3B329A1DD6126E00B208A3 /* ObjectScope.Standard.swift in Sources */,
@@ -1202,6 +1213,7 @@
 				98689C9B1BBFC7EB0005C6D3 /* ServiceEntry.swift in Sources */,
 				CDBD0E722035EEC20030F566 /* Container.TypeForwarding.swift in Sources */,
 				984BE3161CDA3FCF00BCF2AC /* _Resolver.swift in Sources */,
+				38900ACF22D18621004CB10F /* Config.swift in Sources */,
 				98689C9F1BBFC7EB0005C6D3 /* Container.Arguments.swift in Sources */,
 				CDBBACF91D9EAD60002F5EF9 /* Container.Logging.swift in Sources */,
 				984774FD1C02F5A50092A757 /* SynchronizedResolver.Arguments.swift in Sources */,
