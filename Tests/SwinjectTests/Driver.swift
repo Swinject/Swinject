@@ -1,6 +1,6 @@
 //
 //  Driver.swift
-//  Swinject-iOS
+//  Swinject
 //
 //  Created by Oliver Siedler on 06.07.19.
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
