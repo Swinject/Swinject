@@ -2,8 +2,8 @@
 //  Swinject.h
 //  Swinject
 //
-//  Created by Yoichi Tagaya on 7/22/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//  Created by Jakub Vano on 10/07/2019.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,3 +15,5 @@ FOUNDATION_EXPORT double SwinjectVersionNumber;
 FOUNDATION_EXPORT const unsigned char SwinjectVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Swinject/PublicHeader.h>
+
+
