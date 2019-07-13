@@ -2,10 +2,10 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public struct BindingRequest<BaseType> {
+public struct BindingRequest<Type> {
     let descriptor: AnyTypeDescriptor
 
-    init<Descriptor>(descriptor: Descriptor) where Descriptor: TypeDescriptor, Descriptor.BaseType == BaseType {
+    init<Descriptor>(descriptor: Descriptor) where Descriptor: TypeDescriptor, Descriptor.BaseType == Type {
         self.descriptor = descriptor
     }
 }
@@ -23,11 +23,11 @@ public func bind<Descriptor>(_ descriptor: Descriptor) -> BindingRequest<Descrip
 }
 
 public extension BindingRequest {
-    func with<Manipulator>(_ manipulator: Manipulator) -> Binding<BaseType> where Manipulator: TypeManipulator, Manipulator.ManipulatedType == BaseType {
+    func with<Manipulator>(_ manipulator: Manipulator) -> Binding<Type> where Manipulator: TypeManipulator, Manipulator.ManipulatedType == Type {
         Binding(descriptor: descriptor, manipulator: manipulator)
     }
 }
 
-public func & <BaseType, Manipulator>(lhs: BindingRequest<BaseType>, rhs: Manipulator) -> Binding<BaseType> where Manipulator: TypeManipulator, Manipulator.ManipulatedType == BaseType {
+public func & <Type, Manipulator>(lhs: BindingRequest<Type>, rhs: Manipulator) -> Binding<Type> where Manipulator: TypeManipulator, Manipulator.ManipulatedType == Type {
     lhs.with(rhs)
 }
