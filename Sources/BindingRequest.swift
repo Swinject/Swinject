@@ -27,3 +27,7 @@ public extension BindingRequest {
         Binding(descriptor: descriptor, manipulator: manipulator)
     }
 }
+
+public func & <BaseType, Manipulator>(lhs: BindingRequest<BaseType>, rhs: Manipulator) -> Binding<BaseType> where Manipulator: TypeManipulator, Manipulator.ManipulatedType == BaseType {
+    lhs.with(rhs)
+}
