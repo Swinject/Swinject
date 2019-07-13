@@ -49,12 +49,3 @@ class BindingRequestSpec: QuickSpec { override func spec() {
         }
     }
 }}
-
-// FIXME: generate with sourcery
-class IntManipulator: TypeManipulator {
-    typealias ManipulatedType = Int
-}
-
-class IntDescriptor: TypeDescriptor {
-    typealias BaseType = Int
-}

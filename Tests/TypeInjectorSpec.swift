@@ -20,10 +20,9 @@ class TypeInjectorSpec: QuickSpec { override func spec() {
         try? it.inject(0, using: provider)
         expect(passedProvider) === provider
     }
+    it("rethrows injection method error") {
+        let it = injector(of: Int.self) { _ in throw SwinjectError() }
+        expect { try it.inject(0, using: FakeProvider()) }.to(throwError())
+    }
 }}
 
-class FakeProvider: Provider {
-    func instance<Descriptor>(_ type: Descriptor) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
-        fatalError()
-    }
-}
