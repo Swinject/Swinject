@@ -2,15 +2,15 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public func container(@ModuleBuilder builder: () -> [ModuleEntry]) -> Injector {
+public func container(@ModuleBuilder builder: () -> [ModuleEntry]) -> Injector & Provider {
     Container(entries: builder())
 }
 
-public func container(@ModuleBuilder builder: () -> ModuleEntry) -> Injector {
+public func container(@ModuleBuilder builder: () -> ModuleEntry) -> Injector & Provider {
     Container(entries: [builder()])
 }
 
-public func container(@ModuleBuilder builder: () -> Void) -> Injector {
+public func container(@ModuleBuilder builder: () -> Void) -> Injector & Provider {
     Container(entries: [])
 }
 
@@ -24,15 +24,22 @@ extension Container: Injector {
             ($0 as? Binding<Descriptor.BaseType>)?.manipulator as? TypeInjector<Descriptor.BaseType>
         }
         if let injector = injectors.first {
-            try injector.inject(instance, using: NoProvider())
+            try injector.inject(instance, using: self)
         } else {
             throw SwinjectError()
         }
     }
 }
 
-private struct NoProvider: Provider {
+extension Container: Provider {
     func instance<Descriptor>(_ type: Descriptor) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
-        throw SwinjectError()
+        let providers = entries.compactMap {
+            ($0 as? Binding<Descriptor.BaseType>)?.manipulator as? TypeProvider<Descriptor.BaseType>
+        }
+        if let provider = providers.first {
+            return try provider.instance(using: self)
+        } else {
+            throw SwinjectError()
+        }
     }
 }

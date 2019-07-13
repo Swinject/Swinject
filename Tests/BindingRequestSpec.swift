@@ -35,6 +35,10 @@ class BindingRequestSpec: QuickSpec { override func spec() {
             let binding = Swinject3.bind(Int.self).with(manipulator)
             expect(binding.manipulator) === manipulator
         }
+        it("produces type provider if given value of descriptor type") {
+            let binding = Swinject3.bind(Int.self).with(42)
+            expect(binding.manipulator is TypeProvider<Int>).to(beTrue())
+        }
     }
     describe("binding operator") {
         it("produces binding with correct descriptor") {
@@ -46,6 +50,10 @@ class BindingRequestSpec: QuickSpec { override func spec() {
             let manipulator = IntManipulator()
             let binding = Swinject3.bind(Int.self) & manipulator
             expect(binding.manipulator) === manipulator
+        }
+        it("produces type provider if given value of descriptor type") {
+            let binding = Swinject3.bind(Int.self) & 42
+            expect(binding.manipulator is TypeProvider<Int>).to(beTrue())
         }
     }
 }}

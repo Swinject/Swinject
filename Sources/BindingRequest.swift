@@ -26,8 +26,16 @@ public extension BindingRequest {
     func with<Manipulator>(_ manipulator: Manipulator) -> Binding<Type> where Manipulator: TypeManipulator, Manipulator.ManipulatedType == Type {
         Binding(descriptor: descriptor, manipulator: manipulator)
     }
+
+    func with(_ it: Type) -> Binding<Type> {
+        Binding(descriptor: descriptor, manipulator: value(it))
+    }
 }
 
 public func & <Type, Manipulator>(lhs: BindingRequest<Type>, rhs: Manipulator) -> Binding<Type> where Manipulator: TypeManipulator, Manipulator.ManipulatedType == Type {
+    lhs.with(rhs)
+}
+
+public func & <Type>(lhs: BindingRequest<Type>, rhs: Type) -> Binding<Type> {
     lhs.with(rhs)
 }

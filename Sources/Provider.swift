@@ -7,7 +7,7 @@ public protocol Provider {
 }
 
 public extension Provider {
-    func instance<Type>() throws -> Type {
+    func instance<Type>(of: Type.Type = Type.self) throws -> Type {
         try instance(plain(Type.self))
     }
 }

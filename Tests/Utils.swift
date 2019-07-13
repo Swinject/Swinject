@@ -4,7 +4,7 @@
 
 import Swinject3
 
-// Original `bind` function conflicts with QuickSpec's instance method
+// Original Swinject3 functions conflict with QuickSpec's instance methods
 func bbind<Type>(_: Type.Type) -> BindingRequest<Type> {
     Swinject3.bind(Type.self)
 }
@@ -16,3 +16,8 @@ func bbind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> BindingRequest<Type> whe
 func bbind<Descriptor>(_ descriptor: Descriptor) -> BindingRequest<Descriptor.BaseType> where Descriptor: TypeDescriptor {
     Swinject3.bind(descriptor)
 }
+
+func vvalue<Type>(_ it: Type) -> TypeProvider<Type> {
+    Swinject3.value(it)
+}
+

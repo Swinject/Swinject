@@ -5,7 +5,11 @@
 public struct TypeProvider<Type>: TypeManipulator {
     public typealias ManipulatedType = Type
 
-    let factoryMethod: (Provider) throws -> Type
+    private let factoryMethod: (Provider) throws -> Type
+
+    init(_ factoryMethod: @escaping (Provider) throws -> Type) {
+        self.factoryMethod = factoryMethod
+    }
 
     func instance(using provider: Provider) throws -> Type {
         try factoryMethod(provider)
@@ -21,5 +25,5 @@ public func factory<Type>(_ factoryMethod: @escaping () throws -> Type) -> TypeP
 }
 
 public func factory<Type>(_ factoryMethod: @escaping (Provider) throws -> Type) -> TypeProvider<Type> {
-    TypeProvider(factoryMethod: factoryMethod)
+    TypeProvider(factoryMethod)
 }
