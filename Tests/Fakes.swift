@@ -5,7 +5,7 @@
 import Swinject3
 
 class FakeProvider: Provider {
-    func instance<Descriptor>(_ type: Descriptor) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
+    func instance<Descriptor, Dependency>(_ type: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
         fatalError()
     }
 }

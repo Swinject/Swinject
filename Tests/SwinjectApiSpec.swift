@@ -138,8 +138,39 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
             expect { try container.instance(of: Person.self) } === person
             expect { try container.instance(of: AnyObject.self) } === person
         }
+        it("provides passed dependency during instance provision") {
+            let container = Swinject3.container {
+                bbind(Pet.self) & factory { try Pet(owner: $0.instance()) }
+            }
+            let pet = try? container.instance(with: person) as Pet
+            expect(pet?.owner) === person
+        }
+        it("does not throw if passed dependency type already has a bound provider") {
+            let container = Swinject3.container {
+                bbind(Pet.self) & factory { try Pet(owner: $0.instance()) }
+                bbind(Person.self) & person
+            }
+            expect { try container.instance(of: Pet.self, with: person) }.notTo(throwError())
+        }
+        it("uses passed dependency if type already has a bound provider") {
+            let container = Swinject3.container {
+                bbind(Pet.self) & factory { try Pet(owner: $0.instance()) }
+                bbind(Person.self) & factory { Person() }
+            }
+            let pet = try? container.instance(with: person) as Pet
+            expect(pet?.owner) === person
+        }
+        it("does not inject passed dependency") {
+            let container = Swinject3.container {
+                bbind(Pet.self) & factory { try Pet(owner: $0.instance()) }
+                bbind(Person.self) & factory { Person() }
+                bbind(Person.self) & injector { $0.age = 42 }
+            }
+            let pet = try? container.instance(with: person) as Pet
+            expect(pet?.owner.age) == 0
+        }
+        // TODO: Multiple dependencies
         // TODO: Reuse binding request for multiple manipulators?
-        // TODO: Arguments
         // TODO: Less verbose type forwading API?
     }
 }}
