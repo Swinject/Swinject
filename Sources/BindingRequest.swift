@@ -3,21 +3,27 @@
 //
 
 public struct BindingRequest<BaseType> {
-    let typeDescriptor: AnyTypeDescriptor
+    let descriptor: AnyTypeDescriptor
 
-    init<Descriptor>(typeDescriptor: Descriptor) where Descriptor: TypeDescriptor, Descriptor.BaseType == BaseType {
-        self.typeDescriptor = typeDescriptor
+    init<Descriptor>(descriptor: Descriptor) where Descriptor: TypeDescriptor, Descriptor.BaseType == BaseType {
+        self.descriptor = descriptor
     }
 }
 
 public func bind<Type>(_: Type.Type) -> BindingRequest<Type> {
-    BindingRequest(typeDescriptor: plain(Type.self))
+    BindingRequest(descriptor: plain(Type.self))
 }
 
 public func bind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> BindingRequest<Type> where Tag: Equatable {
-    BindingRequest(typeDescriptor: tagged(Type.self, with: tag))
+    BindingRequest(descriptor: tagged(Type.self, with: tag))
 }
 
 public func bind<Descriptor>(_ descriptor: Descriptor) -> BindingRequest<Descriptor.BaseType> where Descriptor: TypeDescriptor {
-    BindingRequest(typeDescriptor: descriptor)
+    BindingRequest(descriptor: descriptor)
+}
+
+public extension BindingRequest {
+    func with<Manipulator>(_ manipulator: Manipulator) -> Binding<BaseType> where Manipulator: TypeManipulator, Manipulator.ManipulatedType == BaseType {
+        Binding(descriptor: descriptor, manipulator: manipulator)
+    }
 }

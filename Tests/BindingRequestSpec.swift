@@ -7,23 +7,42 @@ import Nimble
 @testable import Swinject3
 
 class BindingRequestSpec: QuickSpec { override func spec() {
-    describe("type descriptor") {
-        it("is correct for simple type") {
+    describe("creation") {
+        it("descriptor is correct for simple type") {
             let request = Swinject3.bind(Int.self)
-            let descriptor = request.typeDescriptor as? Tagged<Int, NoTag>
+            let descriptor = request.descriptor as? Tagged<Int, NoTag>
             expect(descriptor).notTo(beNil())
         }
-        it("has correct tag for tagged type") {
+        it("descriptor has correct tag for tagged type") {
             let request = Swinject3.bind(Int.self, tagged: "Foo")
-            let descriptor = request.typeDescriptor as? Tagged<Int, String>
+            let descriptor = request.descriptor as? Tagged<Int, String>
             expect(descriptor?.tag) == "Foo"
         }
-        it("is used if given as parameter") {
-            struct Descriptor: TypeDescriptor { typealias BaseType = Int }
-            let request = Swinject3.bind(Descriptor())
-            expect(request.typeDescriptor is Descriptor).to(beTrue())
+        it("descriptor is used if given as parameter") {
+            let descriptor = IntDescriptor()
+            let request = Swinject3.bind(descriptor)
+            expect(request.descriptor) === descriptor
+        }
+    }
+    describe("binding") {
+        it("produces binding with correct descriptor") {
+            let descriptor = IntDescriptor()
+            let binding = Swinject3.bind(descriptor).with(IntManipulator())
+            expect(binding.descriptor) === descriptor
+        }
+        it("produces binding with correct manipulator") {
+            let manipulator = IntManipulator()
+            let binding = Swinject3.bind(Int.self).with(manipulator)
+            expect(binding.manipulator) === manipulator
         }
     }
 }}
 
+// FIXME: generate with sourcery
+class IntManipulator: TypeManipulator {
+    typealias ManipulatedType = Int
+}
 
+class IntDescriptor: TypeDescriptor {
+    typealias BaseType = Int
+}
