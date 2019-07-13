@@ -25,7 +25,7 @@ extension Container: Injector {
             .filter { $0.descriptor.matches(descriptor) }
             .compactMap { $0.manipulator as? TypeInjector<Descriptor.BaseType> }
         if injectors.isEmpty {
-            throw SwinjectError()
+            throw MissingTypeInjector()
         } else {
             try injectors.forEach { try $0.inject(instance, using: self) }
         }
@@ -41,7 +41,9 @@ extension Container: Provider {
         if providers.count != 1 {
             throw SwinjectError()
         } else {
-            return try providers[0].instance(using: self)
+            let instance = try providers[0].instance(using: self)
+            do { try inject(instance, descriptor: descriptor) } catch _ as MissingTypeInjector {}
+            return instance
         }
     }
 }
