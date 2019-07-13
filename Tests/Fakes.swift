@@ -16,4 +16,8 @@ class IntManipulator: TypeManipulator {
 
 class IntDescriptor: TypeDescriptor {
     typealias BaseType = Int
+
+    func matches<Descriptor>(_ other: Descriptor) -> Bool where Descriptor : TypeDescriptor {
+        false
+    }
 }

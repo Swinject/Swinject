@@ -10,4 +10,8 @@ public extension Injector {
     func inject<Type>(_ instance: Type) throws {
         try inject(instance, descriptor: plain(Type.self))
     }
+
+    func inject<Type, Tag: Equatable>(_ instance: Type, tagged tag: Tag) throws {
+        try inject(instance, descriptor: tagged(Type.self, with: tag))
+    }
 }
