@@ -110,7 +110,6 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
             expect { try container.instance(of: Int.self, tagged: 42) }.to(throwError())
             expect { try container.instance(of: Int.self, tagged: "OtherTag") }.to(throwError())
         }
-        // TODO: Reuse provider for multiple type descriptors
         it("injects provided instance using bound injectors") {
             let container = Swinject3.container {
                 bbind(Person.self) & Person()
@@ -129,6 +128,15 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
                 bbind(Person.self) & injector { $0.age = try $1.instance() }
             }
             expect { try container.instance(of: Person.self) }.to(throwError())
+        }
+        it("can reuse provider for multiple descriptors") {
+            let personProvider = vvalue(person) // @functionBuilder does not support declarations in closures yet
+            let container = Swinject3.container {
+                bbind(Person.self) & personProvider
+                bbind(AnyObject.self) & personProvider.map { $0 as AnyObject }
+            }
+            expect { try container.instance(of: Person.self) } === person
+            expect { try container.instance(of: AnyObject.self) } === person
         }
         // TODO: Reuse binding request for multiple manipulators?
         // TODO: Arguments

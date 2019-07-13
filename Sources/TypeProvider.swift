@@ -27,3 +27,9 @@ public func factory<Type>(_ factoryMethod: @escaping () throws -> Type) -> TypeP
 public func factory<Type>(_ factoryMethod: @escaping (Provider) throws -> Type) -> TypeProvider<Type> {
     TypeProvider(factoryMethod)
 }
+
+public extension TypeProvider {
+    func map<OtherType>(_ transform: @escaping (Type) -> OtherType) -> TypeProvider<OtherType> {
+        TypeProvider<OtherType> { try transform(self.instance(using: $0)) }
+    }
+}
