@@ -6,7 +6,7 @@ import Quick
 import Nimble
 @testable import Swinject3
 
-class PropertyInjectorSpec: QuickSpec { override func spec() {
+class TypeInjectorSpec: QuickSpec { override func spec() {
     it("calls injection method with given instance") {
         var passedInstance: Int?
         let it = injector(of: Int.self) { passedInstance = $0 }

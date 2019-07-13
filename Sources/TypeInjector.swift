@@ -2,7 +2,7 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public struct PropertyInjector<Type>: TypeManipulator {
+public struct TypeInjector<Type>: TypeManipulator {
     public typealias ManipulatedType = Type
 
     private let injectionMethod: (Type, Provider) throws -> Void
@@ -16,10 +16,10 @@ public struct PropertyInjector<Type>: TypeManipulator {
     }
 }
 
-public func injector<Type>(of: Type.Type, injectionMethod: @escaping (Type) throws -> Void) -> PropertyInjector<Type> {
-    PropertyInjector { instance, _ in try injectionMethod(instance) }
+public func injector<Type>(of: Type.Type = Type.self, injectionMethod: @escaping (Type) throws -> Void) -> TypeInjector<Type> {
+    TypeInjector { instance, _ in try injectionMethod(instance) }
 }
 
-public func injector<Type>(of: Type.Type, injectionMethod: @escaping (Type, Provider) throws -> Void) -> PropertyInjector<Type> {
-    PropertyInjector(injectionMethod)
+public func injector<Type>(of: Type.Type = Type.self, injectionMethod: @escaping (Type, Provider) throws -> Void) -> TypeInjector<Type> {
+    TypeInjector(injectionMethod)
 }

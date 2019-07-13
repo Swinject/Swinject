@@ -8,6 +8,8 @@ public protocol ModuleEntry {}
 public enum ModuleBuilder {
     public typealias Entry = ModuleEntry
 
+    public static func buildBlock() -> Void {}
+
     public static func buildBlock(_ input: Entry ...) -> [Entry] {
         input.flatMap(unpack)
     }
