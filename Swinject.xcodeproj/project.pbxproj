@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		771BFC7A22D5F83E00AFB237 /* Swinject_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BFC7022D5F83E00AFB237 /* Swinject_OSX.framework */; };
-		771BFC7F22D5F83E00AFB237 /* SwinjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771BFC7E22D5F83E00AFB237 /* SwinjectTests.swift */; };
+		771BFC7A22D5F83E00AFB237 /* Swinject3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BFC7022D5F83E00AFB237 /* Swinject3.framework */; };
 		771BFC8122D5F83E00AFB237 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 771BFC7322D5F83E00AFB237 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		771BFC9122D600B700AFB237 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 771BFC9022D600B700AFB237 /* Nimble */; };
 		771BFC9422D600CC00AFB237 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 771BFC9322D600CC00AFB237 /* Quick */; };
+		CDD837FF22DA279C003E9909 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = CDD837FE22DA279C003E9909 /* Swinject */; };
+		CDD8380122DA27EE003E9909 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380022DA27EE003E9909 /* ModuleBuilder.swift */; };
+		CDD8380322DA2B67003E9909 /* ModuleBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380222DA2B67003E9909 /* ModuleBuilderSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,14 +27,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		771BFC7022D5F83E00AFB237 /* Swinject_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		771BFC7022D5F83E00AFB237 /* Swinject3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		771BFC7322D5F83E00AFB237 /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		771BFC7422D5F83E00AFB237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		771BFC7922D5F83E00AFB237 /* SwinjectTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwinjectTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		771BFC7E22D5F83E00AFB237 /* SwinjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTests.swift; sourceTree = "<group>"; };
 		771BFC8022D5F83E00AFB237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		771BFC8B22D5FAAE00AFB237 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		771BFC8C22D5FAAE00AFB237 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
+		CDD8380022DA27EE003E9909 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		CDD8380222DA2B67003E9909 /* ModuleBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilderSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDD837FF22DA279C003E9909 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				771BFC7A22D5F83E00AFB237 /* Swinject_OSX.framework in Frameworks */,
+				771BFC7A22D5F83E00AFB237 /* Swinject3.framework in Frameworks */,
 				771BFC9422D600CC00AFB237 /* Quick in Frameworks */,
 				771BFC9122D600B700AFB237 /* Nimble in Frameworks */,
 			);
@@ -69,7 +73,7 @@
 		771BFC7122D5F83E00AFB237 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				771BFC7022D5F83E00AFB237 /* Swinject_OSX.framework */,
+				771BFC7022D5F83E00AFB237 /* Swinject3.framework */,
 				771BFC7922D5F83E00AFB237 /* SwinjectTests-OSX.xctest */,
 			);
 			name = Products;
@@ -80,6 +84,7 @@
 			children = (
 				771BFC7322D5F83E00AFB237 /* Swinject.h */,
 				771BFC7422D5F83E00AFB237 /* Info.plist */,
+				CDD8380022DA27EE003E9909 /* ModuleBuilder.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -87,8 +92,8 @@
 		771BFC7D22D5F83E00AFB237 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				771BFC7E22D5F83E00AFB237 /* SwinjectTests.swift */,
 				771BFC8022D5F83E00AFB237 /* Info.plist */,
+				CDD8380222DA2B67003E9909 /* ModuleBuilderSpec.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -130,8 +135,11 @@
 			dependencies = (
 			);
 			name = "Swinject-OSX";
+			packageProductDependencies = (
+				CDD837FE22DA279C003E9909 /* Swinject */,
+			);
 			productName = Swinject;
-			productReference = 771BFC7022D5F83E00AFB237 /* Swinject_OSX.framework */;
+			productReference = 771BFC7022D5F83E00AFB237 /* Swinject3.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		771BFC7822D5F83E00AFB237 /* SwinjectTests-OSX */ = {
@@ -168,9 +176,11 @@
 				TargetAttributes = {
 					771BFC6F22D5F83E00AFB237 = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 					771BFC7822D5F83E00AFB237 = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -186,6 +196,7 @@
 			packageReferences = (
 				771BFC8F22D600B700AFB237 /* XCRemoteSwiftPackageReference "Nimble" */,
 				771BFC9222D600CC00AFB237 /* XCRemoteSwiftPackageReference "Quick" */,
+				CDD837FD22DA279C003E9909 /* XCRemoteSwiftPackageReference "swinject" */,
 			);
 			productRefGroup = 771BFC7122D5F83E00AFB237 /* Products */;
 			projectDirPath = "";
@@ -219,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDD8380122DA27EE003E9909 /* ModuleBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				771BFC7F22D5F83E00AFB237 /* SwinjectTests.swift in Sources */,
+				CDD8380322DA2B67003E9909 /* ModuleBuilderSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +377,7 @@
 		771BFC8522D5F83E00AFB237 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -379,14 +392,17 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Swinject3;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		771BFC8622D5F83E00AFB237 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -401,14 +417,17 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Swinject3;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		771BFC8822D5F83E00AFB237 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -423,12 +442,16 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		771BFC8922D5F83E00AFB237 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -443,6 +466,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.SwinjectTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -495,6 +519,14 @@
 				minimumVersion = 2.1.0;
 			};
 		};
+		CDD837FD22DA279C003E9909 /* XCRemoteSwiftPackageReference "swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swinject/swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -507,6 +539,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 771BFC9222D600CC00AFB237 /* XCRemoteSwiftPackageReference "Quick" */;
 			productName = Quick;
+		};
+		CDD837FE22DA279C003E9909 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDD837FD22DA279C003E9909 /* XCRemoteSwiftPackageReference "swinject" */;
+			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

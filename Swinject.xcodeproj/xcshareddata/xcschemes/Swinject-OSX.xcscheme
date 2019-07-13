@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "771BFC6F22D5F83E00AFB237"
-               BuildableName = "Swinject_OSX.framework"
+               BuildableName = "Swinject3.framework"
                BlueprintName = "Swinject-OSX"
                ReferencedContainer = "container:Swinject.xcodeproj">
             </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "771BFC6F22D5F83E00AFB237"
-            BuildableName = "Swinject_OSX.framework"
+            BuildableName = "Swinject3.framework"
             BlueprintName = "Swinject-OSX"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
