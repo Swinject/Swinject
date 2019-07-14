@@ -11,67 +11,7 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
     beforeEach {
         person = Person()
     }
-    describe("property injection") {
-        it("throws for empty swinject") {
-            let swinject = Swinject { }
-            expect { try swinject.inject(42) }.to(throwError())
-        }
-        it("does not throw if has bound injector") {
-            let swinject = Swinject {
-                bbind(Int.self) & injector { _ in }
-            }
-            expect { try swinject.inject(42) }.notTo(throwError())
-        }
-        it("trows if does not have bound injector") {
-            let swinject = Swinject {
-                bbind(Double.self) & injector { _ in }
-                bbind(Int.self) & IntManipulator()
-            }
-            expect { try swinject.inject(42) }.to(throwError())
-        }
-        it("injects intance using bound injector") {
-            let swinject = Swinject {
-                bbind(Person.self) & injector { $0.age = 42 }
-            }
-            try? swinject.inject(person)
-            expect(person.age) == 42
-        }
-        it("throws if injecting type with missing dependency") {
-            let swinject = Swinject {
-                bbind(Person.self) & injector { $0.age = try $1.instance() }
-            }
-            expect { try swinject.inject(Person()) }.to(throwError())
-        }
-        it("injects dependency with bound provider") {
-            let swinject = Swinject {
-                bbind(Person.self) & injector { $0.age = try $1.instance() }
-                bbind(Int.self).with(42)
-            }
-            try? swinject.inject(person)
-            expect(person.age) == 42
-        }
-        it("injects instance using all bound injectors") {
-            let swinject = Swinject {
-                bbind(Person.self) & injector { $0.age = 42 }
-                bbind(Person.self) & injector { $0.height = 123.4 }
-                bbind(Person.self) & injector { $0.name = "name" }
-            }
-            try? swinject.inject(person)
-            expect(person.age) == 42
-            expect(person.height) == 123.4
-            expect(person.name) == "name"
-        }
-        it("throws if injecting type with wrong tag") {
-            let swinject = Swinject {
-                bbind(Person.self, tagged: "Tag") & injector { $0.age = 42 }
-            }
-            expect { try swinject.inject(person) }.to(throwError())
-            expect { try swinject.inject(person, tagged: 42) }.to(throwError())
-            expect { try swinject.inject(person, tagged: "OtherTag") }.to(throwError())
-        }
-        // TODO: Arguments
-    }
-    describe("type provision") {
+    describe("injection") {
         it("throws for empty swinject") {
             let swinject = Swinject { }
             expect { try swinject.instance(of: Int.self) }.to(throwError())
@@ -110,25 +50,6 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
             expect { try swinject.instance(of: Int.self, tagged: 42) }.to(throwError())
             expect { try swinject.instance(of: Int.self, tagged: "OtherTag") }.to(throwError())
         }
-        it("injects provided instance using bound injectors") {
-            let swinject = Swinject {
-                bbind(Person.self) & Person()
-                bbind(Person.self) & injector { $0.age = 42 }
-                bbind(Person.self) & injector { $0.height = 123.4 }
-                bbind(Person.self) & injector { $0.name = "Name" }
-            }
-            let person = try? swinject.instance() as Person
-            expect(person?.age) == 42
-            expect(person?.height) == 123.4
-            expect(person?.name) == "Name"
-        }
-        it("throws if type has bound injector with missing dependency") {
-            let swinject = Swinject {
-                bbind(Person.self) & Person()
-                bbind(Person.self) & injector { $0.age = try $1.instance() }
-            }
-            expect { try swinject.instance(of: Person.self) }.to(throwError())
-        }
         it("can reuse provider for multiple descriptors") {
             let personProvider = vvalue(person) // @functionBuilder does not support declarations in closures yet
             let swinject = Swinject {
@@ -159,15 +80,6 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
             }
             let pet = try? swinject.instance(with: person) as Pet
             expect(pet?.owner) === person
-        }
-        it("does not inject passed dependency") {
-            let swinject = Swinject {
-                bbind(Pet.self) & factory { try Pet(owner: $0.instance()) }
-                bbind(Person.self) & factory { Person() }
-                bbind(Person.self) & injector { $0.age = 42 }
-            }
-            let pet = try? swinject.instance(with: person) as Pet
-            expect(pet?.owner.age) == 0
         }
         // TODO: Multiple dependencies
         // TODO: Reuse binding request for multiple manipulators?

@@ -36,18 +36,6 @@ extension Swinject {
     }
 }
 
-extension Swinject: Injector {
-    public func inject<Descriptor>(_ instance: Descriptor.BaseType, descriptor: Descriptor) throws where Descriptor : TypeDescriptor {
-        let injectors = bindings(for: descriptor)
-            .compactMap { $0.manipulator as? TypeInjector<Descriptor.BaseType> }
-        if injectors.isEmpty {
-            throw MissingTypeInjector()
-        } else {
-            try injectors.forEach { try $0.inject(instance, using: self) }
-        }
-    }
-}
-
 extension Swinject: Provider {
     public func instance<Descriptor, Dependency>(_ descriptor: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
         let providers = bindings(for: descriptor)
@@ -55,9 +43,7 @@ extension Swinject: Provider {
         if providers.count != 1 {
             throw SwinjectError()
         } else {
-            let instance = try providers[0].instance(using: provider(with: dependency))
-            do { try inject(instance, descriptor: descriptor) } catch _ as MissingTypeInjector {}
-            return instance
+            return try providers[0].instance(using: provider(with: dependency))
         }
     }
 
