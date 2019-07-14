@@ -2,23 +2,29 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public func container(@ModuleBuilder builder: () -> [ModuleEntry]) -> Injector & Provider {
-    Container(entries: builder())
-}
-
-public func container(@ModuleBuilder builder: () -> ModuleEntry) -> Injector & Provider {
-    Container(entries: [builder()])
-}
-
-public func container(@ModuleBuilder builder: () -> Void) -> Injector & Provider {
-    Container(entries: [])
-}
-
-struct Container {
+public struct Swinject {
     let entries: [ModuleEntry]
+
+    init(entries: [ModuleEntry]) {
+        self.entries = entries
+    }
 }
 
-extension Container {
+public extension Swinject {
+    init(@ModuleBuilder builder: () -> [ModuleEntry]) {
+        self.init(entries: builder())
+    }
+
+    init(@ModuleBuilder builder: () -> ModuleEntry) {
+        self.init(entries: [builder()])
+    }
+
+    init(@ModuleBuilder builder: () -> Void) {
+        self.init(entries: [])
+    }
+}
+
+extension Swinject {
     private func bindings<Descriptor>(for descriptor: Descriptor) -> [Binding<Descriptor.BaseType>] where Descriptor : TypeDescriptor {
         return entries
             .compactMap { $0 as? Binding<Descriptor.BaseType> }
@@ -30,8 +36,8 @@ extension Container {
     }
 }
 
-extension Container: Injector {
-    func inject<Descriptor>(_ instance: Descriptor.BaseType, descriptor: Descriptor) throws where Descriptor : TypeDescriptor {
+extension Swinject: Injector {
+    public func inject<Descriptor>(_ instance: Descriptor.BaseType, descriptor: Descriptor) throws where Descriptor : TypeDescriptor {
         let injectors = bindings(for: descriptor)
             .compactMap { $0.manipulator as? TypeInjector<Descriptor.BaseType> }
         if injectors.isEmpty {
@@ -42,8 +48,8 @@ extension Container: Injector {
     }
 }
 
-extension Container: Provider {
-    func instance<Descriptor, Dependency>(_ descriptor: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
+extension Swinject: Provider {
+    public func instance<Descriptor, Dependency>(_ descriptor: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
         let providers = bindings(for: descriptor)
             .compactMap { $0.manipulator as? TypeProvider<Descriptor.BaseType> }
         if providers.count != 1 {
@@ -57,7 +63,7 @@ extension Container: Provider {
 
     private func provider<Dependency>(with dependency: Dependency) -> Provider {
         guard !(dependency is Void) else { return self }
-        return Container(entries: entries
+        return Swinject(entries: entries
             .filter { !matches($0, plain(Dependency.self)) }
             + [bind(Dependency.self) & dependency]
         )

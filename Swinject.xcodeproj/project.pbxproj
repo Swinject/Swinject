@@ -25,7 +25,7 @@
 		CDD8380E22DA3B0D003E9909 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380D22DA3B0D003E9909 /* Binding.swift */; };
 		CDD8381022DA429F003E9909 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380F22DA429F003E9909 /* Provider.swift */; };
 		CDD8381222DA43D7003E9909 /* TypeInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381122DA43D7003E9909 /* TypeInjector.swift */; };
-		CDD8381622DA4B55003E9909 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381522DA4B55003E9909 /* Container.swift */; };
+		CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381522DA4B55003E9909 /* Swinject.swift */; };
 		CDD8381822DA4B74003E9909 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381722DA4B74003E9909 /* Injector.swift */; };
 		CDD8381B22DA4CBE003E9909 /* SwinjectApiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381922DA4C9F003E9909 /* SwinjectApiSpec.swift */; };
 		CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381C22DA4E02003E9909 /* SwinjectError.swift */; };
@@ -63,7 +63,7 @@
 		CDD8380D22DA3B0D003E9909 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		CDD8380F22DA429F003E9909 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		CDD8381122DA43D7003E9909 /* TypeInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeInjector.swift; sourceTree = "<group>"; };
-		CDD8381522DA4B55003E9909 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		CDD8381522DA4B55003E9909 /* Swinject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinject.swift; sourceTree = "<group>"; };
 		CDD8381722DA4B74003E9909 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		CDD8381922DA4C9F003E9909 /* SwinjectApiSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectApiSpec.swift; sourceTree = "<group>"; };
 		CDD8381C22DA4E02003E9909 /* SwinjectError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectError.swift; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 				CDD8380F22DA429F003E9909 /* Provider.swift */,
 				CDD8381722DA4B74003E9909 /* Injector.swift */,
 				CDD8380D22DA3B0D003E9909 /* Binding.swift */,
-				CDD8381522DA4B55003E9909 /* Container.swift */,
+				CDD8381522DA4B55003E9909 /* Swinject.swift */,
 				CDD8381C22DA4E02003E9909 /* SwinjectError.swift */,
 			);
 			path = Sources;
@@ -285,7 +285,7 @@
 				CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */,
 				CDD8381822DA4B74003E9909 /* Injector.swift in Sources */,
 				CDD8380122DA27EE003E9909 /* ModuleBuilder.swift in Sources */,
-				CDD8381622DA4B55003E9909 /* Container.swift in Sources */,
+				CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */,
 				CDD8380522DA307F003E9909 /* BindingRequest.swift in Sources */,
 				CD85AF0E22DA57AD00A8B7CA /* TypeProvider.swift in Sources */,
 				CDD8380E22DA3B0D003E9909 /* Binding.swift in Sources */,
