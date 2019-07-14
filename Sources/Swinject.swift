@@ -3,23 +3,23 @@
 //
 
 public struct Swinject {
-    let entries: [ModuleEntry]
+    let entries: [SwinjectEntry]
 
-    init(entries: [ModuleEntry]) {
+    init(entries: [SwinjectEntry]) {
         self.entries = entries
     }
 }
 
 public extension Swinject {
-    init(@ModuleBuilder builder: () -> [ModuleEntry]) {
+    init(@SwinjectTreeBuilder builder: () -> [SwinjectEntry]) {
         self.init(entries: builder())
     }
 
-    init(@ModuleBuilder builder: () -> ModuleEntry) {
+    init(@SwinjectTreeBuilder builder: () -> SwinjectEntry) {
         self.init(entries: [builder()])
     }
 
-    init(@ModuleBuilder builder: () -> Void) {
+    init(@SwinjectTreeBuilder builder: () -> Void) {
         self.init(entries: [])
     }
 }
@@ -31,7 +31,7 @@ extension Swinject {
             .filter { $0.descriptor.matches(descriptor) }
     }
 
-    private func matches<Descriptor>(_ entry: ModuleEntry, _ descriptor: Descriptor) -> Bool where Descriptor: TypeDescriptor {
+    private func matches<Descriptor>(_ entry: SwinjectEntry, _ descriptor: Descriptor) -> Bool where Descriptor: TypeDescriptor {
         (entry as? Binding<Descriptor.BaseType>)?.descriptor.matches(descriptor) ?? false
     }
 }
