@@ -19,6 +19,7 @@
 		CDADF33322DB4C1800C5D8DB /* InstanceBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF33122DB4C1200C5D8DB /* InstanceBindingSpec.swift */; };
 		CDADF33522DB521400C5D8DB /* SwinjectModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF33422DB521400C5D8DB /* SwinjectModule.swift */; };
 		CDADF33722DB753800C5D8DB /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF33622DB753800C5D8DB /* TestModels.swift */; };
+		CDADF34022DB883A00C5D8DB /* GeneratedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF33F22DB883A00C5D8DB /* GeneratedCode.swift */; };
 		CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */; };
 		CDD8380522DA307F003E9909 /* TypeBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380422DA307F003E9909 /* TypeBinder.swift */; };
 		CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */; };
@@ -58,6 +59,8 @@
 		CDADF33122DB4C1200C5D8DB /* InstanceBindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceBindingSpec.swift; sourceTree = "<group>"; };
 		CDADF33422DB521400C5D8DB /* SwinjectModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectModule.swift; sourceTree = "<group>"; };
 		CDADF33622DB753800C5D8DB /* TestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModels.swift; sourceTree = "<group>"; };
+		CDADF33E22DB881D00C5D8DB /* AutoMockable.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoMockable.stencil; sourceTree = "<group>"; };
+		CDADF33F22DB883A00C5D8DB /* GeneratedCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedCode.swift; sourceTree = "<group>"; };
 		CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTreeBuilderSpec.swift; sourceTree = "<group>"; };
 		CDD8380422DA307F003E9909 /* TypeBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinder.swift; sourceTree = "<group>"; };
 		CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 			children = (
 				771BFC7222D5F83E00AFB237 /* Sources */,
 				771BFC7D22D5F83E00AFB237 /* Tests */,
+				CDADF33B22DB878C00C5D8DB /* Templates */,
 				771BFC7122D5F83E00AFB237 /* Products */,
 				771BFC8A22D5FAAE00AFB237 /* Frameworks */,
 			);
@@ -134,6 +138,7 @@
 		771BFC7D22D5F83E00AFB237 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				CDADF33F22DB883A00C5D8DB /* GeneratedCode.swift */,
 				771BFC8022D5F83E00AFB237 /* Info.plist */,
 				CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */,
 				CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */,
@@ -154,6 +159,14 @@
 				771BFC8C22D5FAAE00AFB237 /* Quick.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDADF33B22DB878C00C5D8DB /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				CDADF33E22DB881D00C5D8DB /* AutoMockable.stencil */,
+			);
+			path = Templates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +207,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 771BFC8722D5F83E00AFB237 /* Build configuration list for PBXNativeTarget "SwinjectTests-OSX" */;
 			buildPhases = (
+				CDADF33A22DB866900C5D8DB /* Run Sourcery */,
 				771BFC7522D5F83E00AFB237 /* Sources */,
 				771BFC7622D5F83E00AFB237 /* Frameworks */,
 				771BFC7722D5F83E00AFB237 /* Resources */,
@@ -292,6 +306,24 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftformat >/dev/null; then\n    swiftformat .\nelse\n    echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
+		CDADF33A22DB866900C5D8DB /* Run Sourcery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Sourcery";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sourcery\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -319,6 +351,7 @@
 			files = (
 				CDD8381F22DA4F6F003E9909 /* Utils.swift in Sources */,
 				CDD8381B22DA4CBE003E9909 /* SwinjectSpec.swift in Sources */,
+				CDADF34022DB883A00C5D8DB /* GeneratedCode.swift in Sources */,
 				CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */,
 				CD85AF1222DA5A8F00A8B7CA /* Fakes.swift in Sources */,
 				CDADF33322DB4C1800C5D8DB /* InstanceBindingSpec.swift in Sources */,

@@ -1,0 +1,6 @@
+sources:
+  - Sources
+templates:
+  - Templates
+output:
+  Tests/GeneratedCode.swift
