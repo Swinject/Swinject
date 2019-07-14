@@ -24,13 +24,13 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         }
         it("throws if providing type with missing dependency") {
             let swinject = Swinject {
-                bbind(Pet.self) & factory { Pet(owner: try $0.instance()) }
+                bbind(Pet.self) & provider { Pet(owner: try $0.instance()) }
             }
             expect { try swinject.instance(of: Pet.self) }.to(throwError())
         }
         it("returns instance from bound dependency provider") {
             let swinject = Swinject {
-                bbind(Pet.self) & factory { Pet(owner: try $0.instance()) }
+                bbind(Pet.self) & provider { Pet(owner: try $0.instance()) }
                 bbind(Person.self) & person
             }
             expect { try swinject.instance(of: Pet.self).owner } === person
@@ -50,39 +50,31 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
             expect { try swinject.instance(of: Int.self, tagged: 42) }.to(throwError())
             expect { try swinject.instance(of: Int.self, tagged: "OtherTag") }.to(throwError())
         }
-        it("can reuse provider for multiple descriptors") {
-            let personProvider = vvalue(person) // @functionBuilder does not support declarations in closures yet
-            let swinject = Swinject {
-                bbind(Person.self) & personProvider
-                bbind(AnyObject.self) & personProvider.map { $0 as AnyObject }
-            }
-            expect { try swinject.instance(of: Person.self) } === person
-            expect { try swinject.instance(of: AnyObject.self) } === person
-        }
         it("provides passed dependency during instance provision") {
             let swinject = Swinject {
-                bbind(Pet.self) & factory { try Pet(owner: $0.instance()) }
+                bbind(Pet.self) & provider { try Pet(owner: $0.instance()) }
             }
             let pet = try? swinject.instance(with: person) as Pet
             expect(pet?.owner) === person
         }
         it("does not throw if passed dependency type already has a bound provider") {
             let swinject = Swinject {
-                bbind(Pet.self) & factory { try Pet(owner: $0.instance()) }
+                bbind(Pet.self) & provider { try Pet(owner: $0.instance()) }
                 bbind(Person.self) & person
             }
             expect { try swinject.instance(of: Pet.self, with: person) }.notTo(throwError())
         }
         it("uses passed dependency if type already has a bound provider") {
             let swinject = Swinject {
-                bbind(Pet.self) & factory { try Pet(owner: $0.instance()) }
+                bbind(Pet.self) & provider { try Pet(owner: $0.instance()) }
                 bbind(Person.self) & provider { Person() }
             }
             let pet = try? swinject.instance(with: person) as Pet
             expect(pet?.owner) === person
         }
         // TODO: Multiple dependencies
-        // TODO: Reuse binding request for multiple bindings?
+        // TODO: Reuse descriptor for multiple bindings?
+        // TODO: Reuse binding for multiple descriptors
         // TODO: Less verbose type forwading API?
     }
 }}

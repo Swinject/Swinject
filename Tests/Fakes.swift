@@ -4,14 +4,14 @@
 
 import Swinject
 
-class FakeProvider: Provider {
+class FakeInjector: Injector {
     func instance<Descriptor, Dependency>(_ type: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
         fatalError()
     }
 }
 
 class IntBinding: Binding {
-    typealias BoundType = Int
+    func instance(using provider: Injector) throws -> Int { 0 }
 }
 
 class IntDescriptor: TypeDescriptor {

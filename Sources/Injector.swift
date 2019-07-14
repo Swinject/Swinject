@@ -2,11 +2,11 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public protocol Provider {
+public protocol Injector {
     func instance<Descriptor, Dependency>(_ descriptor: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
 }
 
-public extension Provider {
+public extension Injector {
     func instance<Type>(of: Type.Type = Type.self) throws -> Type {
         try instance(plain(Type.self), with: ())
     }

@@ -2,35 +2,25 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
+// TODO: Make internal
 public struct ProviderBinding<Type>: Binding {
     public typealias BoundType = Type
 
-    private let builder: (Provider) throws -> Type
+    private let builder: (Injector) throws -> Type
 
-    init(_ builder: @escaping (Provider) throws -> Type) {
+    init(_ builder: @escaping (Injector) throws -> Type) {
         self.builder = builder
     }
 
-    func instance(using provider: Provider) throws -> Type {
+    public func instance(using provider: Injector) throws -> Type {
         try builder(provider)
     }
-}
-
-// FIXME: Create InstanceBinding for this
-public func value<Type>(_ it: Type) -> ProviderBinding<Type> {
-    ProviderBinding { _ in it }
 }
 
 public func provider<Type>(_ builder: @escaping () throws -> Type) -> ProviderBinding<Type> {
     ProviderBinding { _ in try builder() }
 }
 
-public func factory<Type>(_ builder: @escaping (Provider) throws -> Type) -> ProviderBinding<Type> {
+public func provider<Type>(_ builder: @escaping (Injector) throws -> Type) -> ProviderBinding<Type> {
     ProviderBinding(builder)
-}
-
-public extension ProviderBinding {
-    func map<OtherType>(_ transform: @escaping (Type) -> OtherType) -> ProviderBinding<OtherType> {
-        ProviderBinding<OtherType> { try transform(self.instance(using: $0)) }
-    }
 }

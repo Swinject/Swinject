@@ -4,5 +4,5 @@
 
 public struct BindingEntry<Type>: SwinjectEntry {
     let descriptor: AnyTypeDescriptor
-    let binding: AnyBinding // TODO: Rename to binding
+    let binding: AnyBinding
 }

@@ -7,7 +7,7 @@ import Nimble
 @testable import Swinject
 
 class TypeBinderSpec: QuickSpec { override func spec() {
-    describe("`bind` method") {
+    describe("bind") {
         it("descriptor is correct for simple type") {
             let request = bbind(Int.self)
             let descriptor = request.descriptor as? Tagged<Int, NoTag>
@@ -25,35 +25,35 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         }
     }
     describe("`with` method") {
-        it("produces binding with correct descriptor") {
+        it("produces entry with correct descriptor") {
             let descriptor = IntDescriptor()
             let entry = bbind(descriptor).with(IntBinding())
             expect(entry.descriptor) === descriptor
         }
-        it("produces binding with correct binding") {
+        it("produces entry with correct binding") {
             let binding = IntBinding()
             let entry = bbind(Int.self).with(binding)
             expect(entry.binding) === binding
         }
-        it("produces type provider if given value of descriptor type") {
+        it("produces entry if given value of descriptor type") {
             let entry = bbind(Int.self).with(42)
-            expect(entry.binding is ProviderBinding<Int>).to(beTrue())
+            expect(entry.binding is InstanceBinding<Int>).to(beTrue())
         }
     }
-    describe("binding operator") {
-        it("produces binding with correct descriptor") {
+    describe("& operator") {
+        it("produces entry with correct descriptor") {
             let descriptor = IntDescriptor()
             let entry = bbind(descriptor) & IntBinding()
             expect(entry.descriptor) === descriptor
         }
-        it("produces binding with correct binding") {
+        it("produces entry with correct binding") {
             let binding = IntBinding()
             let entry = bbind(Int.self) & binding
             expect(entry.binding) === binding
         }
-        it("produces type provider if given value of descriptor type") {
+        it("produces entry provider if given value of descriptor type") {
             let entry = bbind(Int.self) & 42
-            expect(entry.binding is ProviderBinding<Int>).to(beTrue())
+            expect(entry.binding is InstanceBinding<Int>).to(beTrue())
         }
     }
 }}

@@ -15,13 +15,15 @@
 		CD85AF1022DA586D00A8B7CA /* ProviderBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */; };
 		CD85AF1222DA5A8F00A8B7CA /* Fakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF1122DA5A8F00A8B7CA /* Fakes.swift */; };
 		CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */; };
+		CDADF32322DB416C00C5D8DB /* InstanceBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF32222DB416C00C5D8DB /* InstanceBinding.swift */; };
+		CDADF33322DB4C1800C5D8DB /* InstanceBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF33122DB4C1200C5D8DB /* InstanceBindingSpec.swift */; };
 		CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */; };
 		CDD8380522DA307F003E9909 /* TypeBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380422DA307F003E9909 /* TypeBinder.swift */; };
 		CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */; };
 		CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */; };
 		CDD8380C22DA3AD8003E9909 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380B22DA3AD8003E9909 /* Binding.swift */; };
 		CDD8380E22DA3B0D003E9909 /* BindingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */; };
-		CDD8381022DA429F003E9909 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380F22DA429F003E9909 /* Provider.swift */; };
+		CDD8381022DA429F003E9909 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380F22DA429F003E9909 /* Injector.swift */; };
 		CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381522DA4B55003E9909 /* Swinject.swift */; };
 		CDD8381B22DA4CBE003E9909 /* SwinjectApiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381922DA4C9F003E9909 /* SwinjectApiSpec.swift */; };
 		CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381C22DA4E02003E9909 /* SwinjectError.swift */; };
@@ -50,13 +52,15 @@
 		CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderBindingSpec.swift; sourceTree = "<group>"; };
 		CD85AF1122DA5A8F00A8B7CA /* Fakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fakes.swift; sourceTree = "<group>"; };
 		CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTree.swift; sourceTree = "<group>"; };
+		CDADF32222DB416C00C5D8DB /* InstanceBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceBinding.swift; sourceTree = "<group>"; };
+		CDADF33122DB4C1200C5D8DB /* InstanceBindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceBindingSpec.swift; sourceTree = "<group>"; };
 		CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTreeBuilderSpec.swift; sourceTree = "<group>"; };
 		CDD8380422DA307F003E9909 /* TypeBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinder.swift; sourceTree = "<group>"; };
 		CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
 		CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinderSpec.swift; sourceTree = "<group>"; };
 		CDD8380B22DA3AD8003E9909 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingEntry.swift; sourceTree = "<group>"; };
-		CDD8380F22DA429F003E9909 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		CDD8380F22DA429F003E9909 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		CDD8381522DA4B55003E9909 /* Swinject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinject.swift; sourceTree = "<group>"; };
 		CDD8381922DA4C9F003E9909 /* SwinjectApiSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectApiSpec.swift; sourceTree = "<group>"; };
 		CDD8381C22DA4E02003E9909 /* SwinjectError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectError.swift; sourceTree = "<group>"; };
@@ -113,7 +117,8 @@
 				CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */,
 				CDD8380B22DA3AD8003E9909 /* Binding.swift */,
 				CD85AF0D22DA57AD00A8B7CA /* ProviderBinding.swift */,
-				CDD8380F22DA429F003E9909 /* Provider.swift */,
+				CDADF32222DB416C00C5D8DB /* InstanceBinding.swift */,
+				CDD8380F22DA429F003E9909 /* Injector.swift */,
 				CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */,
 				CDD8381522DA4B55003E9909 /* Swinject.swift */,
 				CDD8381C22DA4E02003E9909 /* SwinjectError.swift */,
@@ -128,6 +133,7 @@
 				CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */,
 				CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */,
 				CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */,
+				CDADF33122DB4C1200C5D8DB /* InstanceBindingSpec.swift */,
 				CDD8381922DA4C9F003E9909 /* SwinjectApiSpec.swift */,
 				CDD8381E22DA4F6F003E9909 /* Utils.swift */,
 				CD85AF1122DA5A8F00A8B7CA /* Fakes.swift */,
@@ -266,7 +272,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDD8380C22DA3AD8003E9909 /* Binding.swift in Sources */,
-				CDD8381022DA429F003E9909 /* Provider.swift in Sources */,
+				CDD8381022DA429F003E9909 /* Injector.swift in Sources */,
+				CDADF32322DB416C00C5D8DB /* InstanceBinding.swift in Sources */,
 				CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */,
 				CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */,
 				CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */,
@@ -285,6 +292,7 @@
 				CDD8381B22DA4CBE003E9909 /* SwinjectApiSpec.swift in Sources */,
 				CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */,
 				CD85AF1222DA5A8F00A8B7CA /* Fakes.swift in Sources */,
+				CDADF33322DB4C1800C5D8DB /* InstanceBindingSpec.swift in Sources */,
 				CD85AF1022DA586D00A8B7CA /* ProviderBindingSpec.swift in Sources */,
 				CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */,
 			);

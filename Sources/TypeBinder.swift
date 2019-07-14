@@ -28,7 +28,7 @@ public extension TypeBinder {
     }
 
     func with(_ it: Type) -> BindingEntry<Type> {
-        BindingEntry(descriptor: descriptor, binding: value(it))
+        BindingEntry(descriptor: descriptor, binding: instance(it))
     }
 }
 

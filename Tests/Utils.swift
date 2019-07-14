@@ -6,7 +6,6 @@ import protocol Swinject.TypeDescriptor
 import struct Swinject.TypeBinder
 import struct Swinject.ProviderBinding
 import func Swinject.bind
-import func Swinject.value
 
 // Original Swinject functions conflict with QuickSpec's instance methods
 func bbind<Type>(_: Type.Type) -> TypeBinder<Type> {
@@ -20,8 +19,3 @@ func bbind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<Type> where T
 func bbind<Descriptor>(_ descriptor: Descriptor) -> TypeBinder<Descriptor.BaseType> where Descriptor: TypeDescriptor {
     Swinject.bind(descriptor)
 }
-
-func vvalue<Type>(_ it: Type) -> ProviderBinding<Type> {
-    Swinject.value(it)
-}
-
