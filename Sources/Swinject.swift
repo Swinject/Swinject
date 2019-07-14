@@ -3,54 +3,42 @@
 //
 
 public struct Swinject {
-    let entries: [SwinjectEntry]
+    let tree: SwinjectTree
 
-    init(entries: [SwinjectEntry]) {
-        self.entries = entries
+    init(tree: SwinjectTree) {
+        self.tree = tree
     }
 }
 
 public extension Swinject {
     init(@SwinjectTreeBuilder builder: () -> [SwinjectEntry]) {
-        self.init(entries: builder())
+        self.init(tree: SwinjectTreeBuilder.buildFunction(builder()))
     }
 
     init(@SwinjectTreeBuilder builder: () -> SwinjectEntry) {
-        self.init(entries: [builder()])
+        self.init(tree: SwinjectTreeBuilder.buildFunction([builder()]))
     }
 
     init(@SwinjectTreeBuilder builder: () -> Void) {
-        self.init(entries: [])
+        self.init(tree: SwinjectTreeBuilder.buildFunction([]))
     }
 }
 
 extension Swinject {
-    private func entries<Descriptor>(for descriptor: Descriptor) -> [BindingEntry<Descriptor.BaseType>] where Descriptor : TypeDescriptor {
-        return entries
-            .compactMap { $0 as? BindingEntry<Descriptor.BaseType> }
+    private func findBindings<Descriptor>(for descriptor: Descriptor) -> [AnyBinding] where Descriptor : TypeDescriptor {
+        return tree.bindingEntries
             .filter { $0.descriptor.matches(descriptor) }
-    }
-
-    private func matches<Descriptor>(_ entry: SwinjectEntry, _ descriptor: Descriptor) -> Bool where Descriptor: TypeDescriptor {
-        (entry as? BindingEntry<Descriptor.BaseType>)?.descriptor.matches(descriptor) ?? false
+            .map { $0.binding }
     }
 }
 
 extension Swinject: Injector {
     public func instance<Descriptor, Dependency>(_ descriptor: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
-        let matchingEntries = entries(for: descriptor)
-        if matchingEntries.count != 1 {
+        let bindings = findBindings(for: descriptor)
+        if bindings.count != 1 {
             throw SwinjectError()
         } else {
-            return try matchingEntries[0].binding.instance(using: provider(with: dependency)) as! Descriptor.BaseType
+            return try bindings[0].instance(using: self) as! Descriptor.BaseType
         }
-    }
-
-    private func provider<Dependency>(with dependency: Dependency) -> Injector {
-        guard !(dependency is Void) else { return self }
-        return Swinject(entries: entries
-            .filter { !matches($0, plain(Dependency.self)) }
-            + [bind(Dependency.self) & dependency]
-        )
     }
 }

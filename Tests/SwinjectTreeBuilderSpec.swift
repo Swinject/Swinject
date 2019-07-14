@@ -7,52 +7,62 @@ import Nimble
 @testable import Swinject
 
 class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
-    it("builds empty function") {
-        @SwinjectTreeBuilder func build() -> [SwinjectEntry] {
-
+    describe("allowed syntax") {
+        it("builds empty closure") {
+            let tree = makeTree { }
+            expect(tree.bindingEntries).to(beEmpty())
         }
-        expect(build().count) == 0
-    }
-    it("builds function with single entry") {
-        @SwinjectTreeBuilder func build() -> [SwinjectEntry] {
-            AnyEntry()
+        it("builds closure with single entry") {
+            let tree = makeTree { DummyBindingEntry() }
+            expect(tree.bindingEntries.count) == 1
         }
-        expect(build().count) == 1
-    }
-    it("builds function with multiple entries") {
-        @SwinjectTreeBuilder func build() -> [SwinjectEntry] {
-            AnyEntry(); AnyEntry(); AnyEntry(); AnyEntry(); AnyEntry()
-        }
-        expect(build().count) == 5
-    }
-    it("builds function with if statement") {
-        @SwinjectTreeBuilder func build(_ flag: Bool) -> [SwinjectEntry] {
-            if flag { AnyEntry() }
-        }
-        expect(build(true).count) == 1
-        expect(build(false).count) == 0
-    }
-    it("builds function with nested if statement") {
-        @SwinjectTreeBuilder func build(_ flag1: Bool, _ flag2: Bool) -> [SwinjectEntry] {
-            if flag1 {
-                AnyEntry()
-                if flag2 { AnyEntry() }
+        it("builds closure with multiple entries") {
+            let tree = makeTree {
+                DummyBindingEntry(); DummyBindingEntry(); DummyBindingEntry(); DummyBindingEntry(); DummyBindingEntry()
             }
+            expect(tree.bindingEntries.count) == 5
         }
-        expect(build(true, true).count) == 2
-        expect(build(true, false).count) == 1
-    }
-    it("builds function with if else statement") {
-        @SwinjectTreeBuilder func build(_ flag: Bool) -> [SwinjectEntry] {
-            if flag {
-                AnyEntry()
-            } else {
-                AnyEntry(); AnyEntry()
+        it("builds closure with if statement") {
+            let tree = makeTree  {
+                if true { DummyBindingEntry() }
             }
+            expect(tree.bindingEntries.count) == 1
         }
-        expect(build(true).count) == 1
-        expect(build(false).count) == 2
+        it("builds closure with nested if statement") {
+            let tree = makeTree {
+                if true { DummyBindingEntry(); if true { DummyBindingEntry() } }
+            }
+            expect(tree.bindingEntries.count) == 2
+        }
+        it("builds closure with if else statement") {
+            let tree = makeTree {
+                if false { } else { DummyBindingEntry(); DummyBindingEntry() }
+            }
+            expect(tree.bindingEntries.count) == 2
+        }
+        it("builds closure with binding & include entries") {
+            let tree = makeTree {
+                DummyIncludeEntry()
+                DummyIncludeEntry()
+                DummyBindingEntry()
+                DummyBindingEntry()
+                DummyBindingEntry()
+            }
+            expect(tree.includeEntries.count) == 2
+            expect(tree.bindingEntries.count) == 3
+        }
     }
 }}
 
-struct AnyEntry: SwinjectEntry {}
+// TODO: Return SwinjectTree directly from builder once full support for @functionBuilder is available
+func makeTree(@SwinjectTreeBuilder builder: () -> [SwinjectEntry]) -> SwinjectTree {
+    SwinjectTreeBuilder.buildFunction(builder())
+}
+
+func makeTree(@SwinjectTreeBuilder builder: () -> SwinjectEntry) -> SwinjectTree {
+    SwinjectTreeBuilder.buildFunction([builder()])
+}
+
+func makeTree(@SwinjectTreeBuilder builder: () -> Void) -> SwinjectTree {
+    SwinjectTreeBuilder.buildFunction([])
+}

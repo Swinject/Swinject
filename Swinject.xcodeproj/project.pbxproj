@@ -17,6 +17,7 @@
 		CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */; };
 		CDADF32322DB416C00C5D8DB /* InstanceBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF32222DB416C00C5D8DB /* InstanceBinding.swift */; };
 		CDADF33322DB4C1800C5D8DB /* InstanceBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF33122DB4C1200C5D8DB /* InstanceBindingSpec.swift */; };
+		CDADF33522DB521400C5D8DB /* SwinjectModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF33422DB521400C5D8DB /* SwinjectModule.swift */; };
 		CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */; };
 		CDD8380522DA307F003E9909 /* TypeBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380422DA307F003E9909 /* TypeBinder.swift */; };
 		CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */; };
@@ -54,6 +55,7 @@
 		CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTree.swift; sourceTree = "<group>"; };
 		CDADF32222DB416C00C5D8DB /* InstanceBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceBinding.swift; sourceTree = "<group>"; };
 		CDADF33122DB4C1200C5D8DB /* InstanceBindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceBindingSpec.swift; sourceTree = "<group>"; };
+		CDADF33422DB521400C5D8DB /* SwinjectModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectModule.swift; sourceTree = "<group>"; };
 		CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTreeBuilderSpec.swift; sourceTree = "<group>"; };
 		CDD8380422DA307F003E9909 /* TypeBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinder.swift; sourceTree = "<group>"; };
 		CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */,
 				CDD8381522DA4B55003E9909 /* Swinject.swift */,
 				CDD8381C22DA4E02003E9909 /* SwinjectError.swift */,
+				CDADF33422DB521400C5D8DB /* SwinjectModule.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDD8380C22DA3AD8003E9909 /* Binding.swift in Sources */,
+				CDADF33522DB521400C5D8DB /* SwinjectModule.swift in Sources */,
 				CDD8381022DA429F003E9909 /* Injector.swift in Sources */,
 				CDADF32322DB416C00C5D8DB /* InstanceBinding.swift in Sources */,
 				CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */,

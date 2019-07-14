@@ -2,7 +2,7 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import Swinject
+@testable import Swinject
 
 class FakeInjector: Injector {
     func instance<Descriptor, Dependency>(_ type: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
@@ -21,3 +21,9 @@ class IntDescriptor: TypeDescriptor {
         false
     }
 }
+
+struct DummyBindingEntry: AnyBindingEntry {
+    var binding: AnyBinding { fatalError() }
+    var descriptor: AnyTypeDescriptor { fatalError() }
+}
+struct DummyIncludeEntry: ModuleIncludeEntry {}

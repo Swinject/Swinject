@@ -2,11 +2,12 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-struct SwinjectTree {
-    
-}
-
 public protocol SwinjectEntry {}
+
+public struct SwinjectTree {
+    let bindingEntries: [AnyBindingEntry]
+    let includeEntries: [ModuleIncludeEntry]
+}
 
 @_functionBuilder
 public enum SwinjectTreeBuilder {
@@ -26,6 +27,16 @@ public enum SwinjectTreeBuilder {
 
     public static func buildEither(second input: [SwinjectEntry]) -> SwinjectEntry {
         Composed(parts: input)
+    }
+
+    // This is not used by compiler implicitly yet
+    public static func buildFunction(_ input: [SwinjectEntry]) -> SwinjectTree {
+        let entries = input.flatMap(unpack)
+        return SwinjectTree(
+            bindingEntries: entries.compactMap { $0 as? AnyBindingEntry },
+            includeEntries: entries.compactMap { $0 as? ModuleIncludeEntry }
+        )
+        // TODO: Validate
     }
 }
 

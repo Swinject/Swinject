@@ -50,28 +50,6 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
             expect { try swinject.instance(of: Int.self, tagged: 42) }.to(throwError())
             expect { try swinject.instance(of: Int.self, tagged: "OtherTag") }.to(throwError())
         }
-        it("provides passed dependency during instance provision") {
-            let swinject = Swinject {
-                bbind(Pet.self) & provider { try Pet(owner: $0.instance()) }
-            }
-            let pet = try? swinject.instance(with: person) as Pet
-            expect(pet?.owner) === person
-        }
-        it("does not throw if passed dependency type already has a bound provider") {
-            let swinject = Swinject {
-                bbind(Pet.self) & provider { try Pet(owner: $0.instance()) }
-                bbind(Person.self) & person
-            }
-            expect { try swinject.instance(of: Pet.self, with: person) }.notTo(throwError())
-        }
-        it("uses passed dependency if type already has a bound provider") {
-            let swinject = Swinject {
-                bbind(Pet.self) & provider { try Pet(owner: $0.instance()) }
-                bbind(Person.self) & provider { Person() }
-            }
-            let pet = try? swinject.instance(with: person) as Pet
-            expect(pet?.owner) === person
-        }
         // TODO: Multiple dependencies
         // TODO: Reuse descriptor for multiple bindings?
         // TODO: Reuse binding for multiple descriptors
