@@ -2,6 +2,7 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
+// sourcery: AutoMockable
 public protocol AnyBinding {
     func instance(using provider: Injector) throws -> Any
 }

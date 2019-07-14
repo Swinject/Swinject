@@ -13,40 +13,40 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
             expect(tree.bindingEntries).to(beEmpty())
         }
         it("builds closure with single entry") {
-            let tree = makeTree { DummyBindingEntry() }
+            let tree = makeTree { AnyBindingEntryMock() }
             expect(tree.bindingEntries.count) == 1
         }
         it("builds closure with multiple entries") {
             let tree = makeTree {
-                DummyBindingEntry(); DummyBindingEntry(); DummyBindingEntry(); DummyBindingEntry(); DummyBindingEntry()
+                AnyBindingEntryMock(); AnyBindingEntryMock(); AnyBindingEntryMock(); AnyBindingEntryMock(); AnyBindingEntryMock()
             }
             expect(tree.bindingEntries.count) == 5
         }
         it("builds closure with if statement") {
             let tree = makeTree {
-                if true { DummyBindingEntry() }
+                if true { AnyBindingEntryMock() }
             }
             expect(tree.bindingEntries.count) == 1
         }
         it("builds closure with nested if statement") {
             let tree = makeTree {
-                if true { DummyBindingEntry(); if true { DummyBindingEntry() } }
+                if true { AnyBindingEntryMock(); if true { AnyBindingEntryMock() } }
             }
             expect(tree.bindingEntries.count) == 2
         }
         it("builds closure with if else statement") {
             let tree = makeTree {
-                if false {} else { DummyBindingEntry(); DummyBindingEntry() }
+                if false {} else { AnyBindingEntryMock(); AnyBindingEntryMock() }
             }
             expect(tree.bindingEntries.count) == 2
         }
         it("builds closure with binding & include entries") {
             let tree = makeTree {
-                DummyIncludeEntry()
-                DummyIncludeEntry()
-                DummyBindingEntry()
-                DummyBindingEntry()
-                DummyBindingEntry()
+                ModuleIncludeEntryMock()
+                ModuleIncludeEntryMock()
+                AnyBindingEntryMock()
+                AnyBindingEntryMock()
+                AnyBindingEntryMock()
             }
             expect(tree.includeEntries.count) == 2
             expect(tree.bindingEntries.count) == 3

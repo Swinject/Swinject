@@ -16,44 +16,46 @@ class SwinjectSpec: QuickSpec { override func spec() {
         }
         context("single binding") {
             var swinject: Swinject!
-            var fakeBinding: FakeBinding<Int>!
-            var fakeDescriptor: FakeDescriptor<Int>!
+            var binding = AnyBindingMock()
+            var descriptor = AnyTypeDescriptorMock()
             beforeEach {
-                fakeBinding = FakeBinding(0)
-                fakeDescriptor = FakeDescriptor()
-                swinject = Swinject { bbind(fakeDescriptor) & fakeBinding }
+                binding = AnyBindingMock()
+                descriptor = AnyTypeDescriptorMock()
+                swinject = Swinject { bbind(descriptor) & binding }
             }
             it("request instance from matching binding") {
-                fakeDescriptor.shouldMatch = { _ in true }
-                _ = try? swinject.instance(of: Int.self)
-                expect(fakeBinding.instanceRequestCount) == 1
+                descriptor.matchesReturnValue = true
+                _ = try? swinject.instance(of: Any.self)
+                expect(binding.instanceUsingCallsCount) == 1
             }
             it("does not request instance from matching binding until instance is required") {
-                fakeDescriptor.shouldMatch = { _ in true }
-                expect(fakeBinding.instanceRequestCount) == 0
+                descriptor.matchesReturnValue = true
+                expect(binding.instanceUsingCallsCount) == 0
             }
             it("only requests instance from matching binding") {
-                fakeDescriptor.shouldMatch = { _ in false }
-                _ = try? swinject.instance(of: Int.self)
-                expect(fakeBinding.instanceRequestCount) == 0
+                descriptor.matchesReturnValue = false
+                _ = try? swinject.instance(of: Any.self)
+                expect(binding.instanceUsingCallsCount) == 0
             }
             it("returns instance produced by binding") {
-                fakeDescriptor.shouldMatch = { _ in true }
-                fakeBinding.instance = 42
-                expect { try swinject.instance(of: Int.self) } == 42
+                descriptor.matchesReturnValue = true
+                binding.instanceUsingReturnValue = 42
+                expect { try swinject.instance(of: Any.self) as? Int } == 42
             }
             it("rethrows error from binding") {
-                fakeDescriptor.shouldMatch = { _ in true }
-                fakeBinding.error = TestError()
-                expect { try swinject.instance(of: Int.self) }.to(throwError(errorType: TestError.self))
+                descriptor.matchesReturnValue = true
+                binding.instanceUsingThrowableError = TestError()
+                expect { try swinject.instance(of: Any.self) }.to(throwError(errorType: TestError.self))
             }
             it("throws if bound type does not match requested type") {
-                fakeDescriptor.shouldMatch = { _ in true }
+                descriptor.matchesReturnValue = true
+                binding.instanceUsingReturnValue = ""
                 expect { try swinject.instance(of: Double.self) }.to(throwError())
             }
             it("does not throw if bound type conforms to the requested type") {
-                fakeDescriptor.shouldMatch = { _ in true }
-                expect { try swinject.instance(of: CustomStringConvertible.self) }.notTo(throwError())
+                descriptor.matchesReturnValue = true
+                binding.instanceUsingReturnValue = 42
+                expect { try swinject.instance(of: CustomStringConvertible?.self) }.notTo(throwError())
             }
         }
     }

@@ -3,4 +3,4 @@ sources:
 templates:
   - Templates
 output:
-  Tests/GeneratedCode.swift
+  Tests/GeneratedMocks.swift

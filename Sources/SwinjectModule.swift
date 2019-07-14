@@ -4,4 +4,5 @@
 
 protocol SwinjectModule {}
 
+// sourcery: AutoMockable
 protocol ModuleIncludeEntry: SwinjectEntry {}

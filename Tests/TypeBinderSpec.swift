@@ -19,20 +19,20 @@ class TypeBinderSpec: QuickSpec { override func spec() {
             expect(descriptor?.tag) == "Foo"
         }
         it("descriptor is used if given as parameter") {
-            let descriptor = IntDescriptor()
+            let descriptor = AnyTypeDescriptorMock()
             let request = bbind(descriptor)
             expect(request.descriptor) === descriptor
         }
     }
     describe("`with` method") {
         it("produces entry with correct descriptor") {
-            let descriptor = IntDescriptor()
-            let entry = bbind(descriptor).with(IntBinding())
+            let descriptor = AnyTypeDescriptorMock()
+            let entry = bbind(descriptor).with(AnyBindingMock())
             expect(entry.descriptor) === descriptor
         }
         it("produces entry with correct binding") {
-            let binding = IntBinding()
-            let entry = bbind(Int.self).with(binding)
+            let binding = AnyBindingMock()
+            let entry = bbind(Any.self).with(binding)
             expect(entry.binding) === binding
         }
         it("produces entry if given value of descriptor type") {
@@ -42,13 +42,13 @@ class TypeBinderSpec: QuickSpec { override func spec() {
     }
     describe("& operator") {
         it("produces entry with correct descriptor") {
-            let descriptor = IntDescriptor()
-            let entry = bbind(descriptor) & IntBinding()
+            let descriptor = AnyTypeDescriptorMock()
+            let entry = bbind(descriptor) & AnyBindingMock()
             expect(entry.descriptor) === descriptor
         }
         it("produces entry with correct binding") {
-            let binding = IntBinding()
-            let entry = bbind(Int.self) & binding
+            let binding = AnyBindingMock()
+            let entry = bbind(Any.self) & binding
             expect(entry.binding) === binding
         }
         it("produces entry provider if given value of descriptor type") {
