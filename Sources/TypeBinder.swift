@@ -11,11 +11,11 @@ public struct TypeBinder<Type> {
 }
 
 public func bind<Type>(_: Type.Type) -> TypeBinder<Type> {
-    TypeBinder(descriptor: plain(Type.self))
+    bind(plain(Type.self))
 }
 
 public func bind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<Type> where Tag: Equatable {
-    TypeBinder(descriptor: tagged(Type.self, with: tag))
+    bind(tagged(Type.self, with: tag))
 }
 
 public func bind<Descriptor>(_ descriptor: Descriptor) -> TypeBinder<Descriptor.BaseType> where Descriptor: TypeDescriptor {

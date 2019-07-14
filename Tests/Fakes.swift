@@ -5,7 +5,7 @@
 @testable import Swinject
 
 class FakeInjector: Injector {
-    func instance<Descriptor, Dependency>(_ type: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
+    func instance<Descriptor>(_ type: Descriptor) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
         fatalError()
     }
 }
@@ -26,4 +26,29 @@ struct DummyBindingEntry: AnyBindingEntry {
     var binding: AnyBinding { fatalError() }
     var descriptor: AnyTypeDescriptor { fatalError() }
 }
+
 struct DummyIncludeEntry: ModuleIncludeEntry {}
+
+class FakeBinding<Type>: Binding {
+    var instance: Type
+    var error: Error?
+    var instanceRequestCount = 0
+
+    init(_ instance: Type) {
+        self.instance = instance
+    }
+
+    func instance(using provider: Injector) throws -> Type {
+        instanceRequestCount += 1
+        if let error = error { throw error }
+        return instance
+    }
+}
+
+class FakeDescriptor<BaseType>: TypeDescriptor {
+    var shouldMatch: (Any) -> Bool = { _ in false }
+
+    func matches<Descriptor>(_ other: Descriptor) -> Bool where Descriptor : TypeDescriptor {
+        return shouldMatch(other)
+    }
+}

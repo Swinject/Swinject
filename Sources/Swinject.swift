@@ -24,21 +24,18 @@ public extension Swinject {
     }
 }
 
-extension Swinject {
-    private func findBindings<Descriptor>(for descriptor: Descriptor) -> [AnyBinding] where Descriptor : TypeDescriptor {
-        return tree.bindingEntries
-            .filter { $0.descriptor.matches(descriptor) }
-            .map { $0.binding }
+extension Swinject: Injector {
+    public func instance<Descriptor>(_ descriptor: Descriptor) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
+        guard
+            let entry = tree.bindingEntries.first,
+            entry.descriptor.matches(descriptor)
+        else { throw SwinjectError() }
+        return try entry.binding.instance(using: NoInjector()) as? Descriptor.BaseType ?? { throw SwinjectError() }()
     }
 }
 
-extension Swinject: Injector {
-    public func instance<Descriptor, Dependency>(_ descriptor: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
-        let bindings = findBindings(for: descriptor)
-        if bindings.count != 1 {
-            throw SwinjectError()
-        } else {
-            return try bindings[0].instance(using: self) as! Descriptor.BaseType
-        }
+private struct NoInjector: Injector {
+    func instance<Descriptor>(_ descriptor: Descriptor) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
+        fatalError()
     }
 }
