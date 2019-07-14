@@ -11,7 +11,7 @@ public struct SwinjectTree {
 
 @_functionBuilder
 public enum SwinjectTreeBuilder {
-    public static func buildBlock() -> Void {}
+    public static func buildBlock() {}
 
     public static func buildBlock(_ input: SwinjectEntry ...) -> [SwinjectEntry] {
         input.flatMap(unpack)

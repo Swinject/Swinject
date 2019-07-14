@@ -2,15 +2,15 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 import Swinject
 
 class SwinjectSpec: QuickSpec { override func spec() {
     describe("injection") {
         context("no bindings") {
             it("throws") {
-                let swinject = Swinject { }
+                let swinject = Swinject {}
                 expect { try swinject.instance(of: Int.self) }.to(throwError())
             }
         }
@@ -57,4 +57,4 @@ class SwinjectSpec: QuickSpec { override func spec() {
             }
         }
     }
-}}
+} }

@@ -5,19 +5,19 @@
 @testable import Swinject
 
 class FakeInjector: Injector {
-    func instance<Descriptor>(_ type: Descriptor) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
+    func instance<Descriptor>(_: Descriptor) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         fatalError()
     }
 }
 
 class IntBinding: Binding {
-    func instance(using provider: Injector) throws -> Int { 0 }
+    func instance(using _: Injector) throws -> Int { 0 }
 }
 
 class IntDescriptor: TypeDescriptor {
     typealias BaseType = Int
 
-    func matches<Descriptor>(_ other: Descriptor) -> Bool where Descriptor : TypeDescriptor {
+    func matches<Descriptor>(_: Descriptor) -> Bool where Descriptor: TypeDescriptor {
         false
     }
 }
@@ -38,7 +38,7 @@ class FakeBinding<Type>: Binding {
         self.instance = instance
     }
 
-    func instance(using provider: Injector) throws -> Type {
+    func instance(using _: Injector) throws -> Type {
         instanceRequestCount += 1
         if let error = error { throw error }
         return instance
@@ -48,7 +48,7 @@ class FakeBinding<Type>: Binding {
 class FakeDescriptor<BaseType>: TypeDescriptor {
     var shouldMatch: (Any) -> Bool = { _ in false }
 
-    func matches<Descriptor>(_ other: Descriptor) -> Bool where Descriptor : TypeDescriptor {
+    func matches<Descriptor>(_ other: Descriptor) -> Bool where Descriptor: TypeDescriptor {
         return shouldMatch(other)
     }
 }

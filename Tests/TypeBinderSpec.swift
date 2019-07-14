@@ -2,8 +2,8 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 class TypeBinderSpec: QuickSpec { override func spec() {
@@ -56,4 +56,4 @@ class TypeBinderSpec: QuickSpec { override func spec() {
             expect(entry.binding is InstanceBinding<Int>).to(beTrue())
         }
     }
-}}
+} }

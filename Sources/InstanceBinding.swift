@@ -12,7 +12,7 @@ public struct InstanceBinding<Type>: Binding {
         _instance = instance
     }
 
-    public func instance(using provider: Injector) throws -> Type {
+    public func instance(using _: Injector) throws -> Type {
         _instance
     }
 }

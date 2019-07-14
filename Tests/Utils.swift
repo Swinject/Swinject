@@ -2,10 +2,10 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import protocol Swinject.TypeDescriptor
-import struct Swinject.TypeBinder
-import struct Swinject.ProviderBinding
 import func Swinject.bind
+import struct Swinject.ProviderBinding
+import struct Swinject.TypeBinder
+import protocol Swinject.TypeDescriptor
 
 // Original Swinject functions conflict with QuickSpec's instance methods
 func bbind<Type>(_: Type.Type) -> TypeBinder<Type> {

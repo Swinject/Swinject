@@ -7,11 +7,11 @@ public protocol Injector {
 }
 
 public extension Injector {
-    func instance<Type>(of: Type.Type = Type.self) throws -> Type {
+    func instance<Type>(of _: Type.Type = Type.self) throws -> Type {
         try instance(plain(Type.self))
     }
 
-    func instance<Type, Tag: Equatable>(of: Type.Type = Type.self, tagged tag: Tag) throws -> Type {
+    func instance<Type, Tag: Equatable>(of _: Type.Type = Type.self, tagged tag: Tag) throws -> Type {
         try instance(tagged(Type.self, with: tag))
     }
 }

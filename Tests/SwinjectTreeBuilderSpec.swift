@@ -2,14 +2,14 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
     describe("allowed syntax") {
         it("builds empty closure") {
-            let tree = makeTree { }
+            let tree = makeTree {}
             expect(tree.bindingEntries).to(beEmpty())
         }
         it("builds closure with single entry") {
@@ -23,7 +23,7 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
             expect(tree.bindingEntries.count) == 5
         }
         it("builds closure with if statement") {
-            let tree = makeTree  {
+            let tree = makeTree {
                 if true { DummyBindingEntry() }
             }
             expect(tree.bindingEntries.count) == 1
@@ -36,7 +36,7 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
         }
         it("builds closure with if else statement") {
             let tree = makeTree {
-                if false { } else { DummyBindingEntry(); DummyBindingEntry() }
+                if false {} else { DummyBindingEntry(); DummyBindingEntry() }
             }
             expect(tree.bindingEntries.count) == 2
         }
@@ -52,7 +52,7 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
             expect(tree.bindingEntries.count) == 3
         }
     }
-}}
+} }
 
 // TODO: Return SwinjectTree directly from builder once full support for @functionBuilder is available
 func makeTree(@SwinjectTreeBuilder builder: () -> [SwinjectEntry]) -> SwinjectTree {
@@ -63,6 +63,6 @@ func makeTree(@SwinjectTreeBuilder builder: () -> SwinjectEntry) -> SwinjectTree
     SwinjectTreeBuilder.buildFunction([builder()])
 }
 
-func makeTree(@SwinjectTreeBuilder builder: () -> Void) -> SwinjectTree {
+func makeTree(@SwinjectTreeBuilder _: () -> Void) -> SwinjectTree {
     SwinjectTreeBuilder.buildFunction([])
 }

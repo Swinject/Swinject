@@ -2,8 +2,8 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 class ProviderBindingSpec: QuickSpec { override func spec() {
@@ -33,4 +33,4 @@ class ProviderBindingSpec: QuickSpec { override func spec() {
         let instance2 = try? binding.instance(using: FakeInjector())
         expect(instance1) !== instance2
     }
-}}
+} }

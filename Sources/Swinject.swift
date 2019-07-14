@@ -19,13 +19,13 @@ public extension Swinject {
         self.init(tree: SwinjectTreeBuilder.buildFunction([builder()]))
     }
 
-    init(@SwinjectTreeBuilder builder: () -> Void) {
+    init(@SwinjectTreeBuilder _: () -> Void) {
         self.init(tree: SwinjectTreeBuilder.buildFunction([]))
     }
 }
 
 extension Swinject: Injector {
-    public func instance<Descriptor>(_ descriptor: Descriptor) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
+    public func instance<Descriptor>(_ descriptor: Descriptor) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         guard
             let entry = tree.bindingEntries.first,
             entry.descriptor.matches(descriptor)
@@ -35,7 +35,7 @@ extension Swinject: Injector {
 }
 
 private struct NoInjector: Injector {
-    func instance<Descriptor>(_ descriptor: Descriptor) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
+    func instance<Descriptor>(_: Descriptor) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         fatalError()
     }
 }

@@ -197,6 +197,7 @@
 				771BFC7522D5F83E00AFB237 /* Sources */,
 				771BFC7622D5F83E00AFB237 /* Frameworks */,
 				771BFC7722D5F83E00AFB237 /* Resources */,
+				CDADF33922DB831F00C5D8DB /* Run SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -271,6 +272,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CDADF33922DB831F00C5D8DB /* Run SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftFormat";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftformat >/dev/null; then\n    swiftformat .\nelse\n    echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		771BFC6C22D5F83E00AFB237 /* Sources */ = {
