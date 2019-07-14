@@ -6,7 +6,7 @@ import Quick
 import Nimble
 @testable import Swinject3
 
-class BindingRequestSpec: QuickSpec { override func spec() {
+class TypeBinderSpec: QuickSpec { override func spec() {
     describe("`bind` method") {
         it("descriptor is correct for simple type") {
             let request = Swinject3.bind(Int.self)
