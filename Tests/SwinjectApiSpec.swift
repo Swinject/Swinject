@@ -4,7 +4,7 @@
 
 import Quick
 import Nimble
-import Swinject3
+import Swinject
 
 class SwinjectApiSpec: QuickSpec { override func spec() {
     var person = Person()
@@ -38,7 +38,7 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         it("throws if multiple providers are bound") {
             let swinject = Swinject {
                 bbind(Int.self) & 42
-                bbind(Int.self) & factory { 17 + 25 }
+                bbind(Int.self) & provider { 17 + 25 }
             }
             expect { try swinject.instance(of: Int.self) }.to(throwError())
         }
@@ -76,13 +76,13 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         it("uses passed dependency if type already has a bound provider") {
             let swinject = Swinject {
                 bbind(Pet.self) & factory { try Pet(owner: $0.instance()) }
-                bbind(Person.self) & factory { Person() }
+                bbind(Person.self) & provider { Person() }
             }
             let pet = try? swinject.instance(with: person) as Pet
             expect(pet?.owner) === person
         }
         // TODO: Multiple dependencies
-        // TODO: Reuse binding request for multiple manipulators?
+        // TODO: Reuse binding request for multiple bindings?
         // TODO: Less verbose type forwading API?
     }
 }}

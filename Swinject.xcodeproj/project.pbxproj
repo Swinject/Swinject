@@ -7,21 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		771BFC7A22D5F83E00AFB237 /* Swinject3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BFC7022D5F83E00AFB237 /* Swinject3.framework */; };
+		771BFC7A22D5F83E00AFB237 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BFC7022D5F83E00AFB237 /* Swinject.framework */; };
 		771BFC8122D5F83E00AFB237 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 771BFC7322D5F83E00AFB237 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		771BFC9122D600B700AFB237 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 771BFC9022D600B700AFB237 /* Nimble */; };
 		771BFC9422D600CC00AFB237 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 771BFC9322D600CC00AFB237 /* Quick */; };
-		CD85AF0E22DA57AD00A8B7CA /* TypeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF0D22DA57AD00A8B7CA /* TypeProvider.swift */; };
-		CD85AF1022DA586D00A8B7CA /* TypeProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF0F22DA586D00A8B7CA /* TypeProviderSpec.swift */; };
+		CD85AF0E22DA57AD00A8B7CA /* ProviderBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF0D22DA57AD00A8B7CA /* ProviderBinding.swift */; };
+		CD85AF1022DA586D00A8B7CA /* ProviderBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */; };
 		CD85AF1222DA5A8F00A8B7CA /* Fakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF1122DA5A8F00A8B7CA /* Fakes.swift */; };
 		CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */; };
-		CDD837FF22DA279C003E9909 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = CDD837FE22DA279C003E9909 /* Swinject */; };
 		CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */; };
 		CDD8380522DA307F003E9909 /* TypeBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380422DA307F003E9909 /* TypeBinder.swift */; };
 		CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */; };
 		CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */; };
-		CDD8380C22DA3AD8003E9909 /* TypeManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380B22DA3AD8003E9909 /* TypeManipulator.swift */; };
-		CDD8380E22DA3B0D003E9909 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380D22DA3B0D003E9909 /* Binding.swift */; };
+		CDD8380C22DA3AD8003E9909 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380B22DA3AD8003E9909 /* Binding.swift */; };
+		CDD8380E22DA3B0D003E9909 /* BindingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */; };
 		CDD8381022DA429F003E9909 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380F22DA429F003E9909 /* Provider.swift */; };
 		CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381522DA4B55003E9909 /* Swinject.swift */; };
 		CDD8381B22DA4CBE003E9909 /* SwinjectApiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381922DA4C9F003E9909 /* SwinjectApiSpec.swift */; };
@@ -40,23 +39,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		771BFC7022D5F83E00AFB237 /* Swinject3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		771BFC7022D5F83E00AFB237 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		771BFC7322D5F83E00AFB237 /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		771BFC7422D5F83E00AFB237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		771BFC7922D5F83E00AFB237 /* SwinjectTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwinjectTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		771BFC8022D5F83E00AFB237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		771BFC8B22D5FAAE00AFB237 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		771BFC8C22D5FAAE00AFB237 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
-		CD85AF0D22DA57AD00A8B7CA /* TypeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeProvider.swift; sourceTree = "<group>"; };
-		CD85AF0F22DA586D00A8B7CA /* TypeProviderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeProviderSpec.swift; sourceTree = "<group>"; };
+		CD85AF0D22DA57AD00A8B7CA /* ProviderBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderBinding.swift; sourceTree = "<group>"; };
+		CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderBindingSpec.swift; sourceTree = "<group>"; };
 		CD85AF1122DA5A8F00A8B7CA /* Fakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fakes.swift; sourceTree = "<group>"; };
 		CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTree.swift; sourceTree = "<group>"; };
 		CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTreeBuilderSpec.swift; sourceTree = "<group>"; };
 		CDD8380422DA307F003E9909 /* TypeBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinder.swift; sourceTree = "<group>"; };
 		CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
 		CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinderSpec.swift; sourceTree = "<group>"; };
-		CDD8380B22DA3AD8003E9909 /* TypeManipulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeManipulator.swift; sourceTree = "<group>"; };
-		CDD8380D22DA3B0D003E9909 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		CDD8380B22DA3AD8003E9909 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingEntry.swift; sourceTree = "<group>"; };
 		CDD8380F22DA429F003E9909 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		CDD8381522DA4B55003E9909 /* Swinject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinject.swift; sourceTree = "<group>"; };
 		CDD8381922DA4C9F003E9909 /* SwinjectApiSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectApiSpec.swift; sourceTree = "<group>"; };
@@ -69,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDD837FF22DA279C003E9909 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				771BFC7A22D5F83E00AFB237 /* Swinject3.framework in Frameworks */,
+				771BFC7A22D5F83E00AFB237 /* Swinject.framework in Frameworks */,
 				771BFC9422D600CC00AFB237 /* Quick in Frameworks */,
 				771BFC9122D600B700AFB237 /* Nimble in Frameworks */,
 			);
@@ -99,7 +97,7 @@
 		771BFC7122D5F83E00AFB237 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				771BFC7022D5F83E00AFB237 /* Swinject3.framework */,
+				771BFC7022D5F83E00AFB237 /* Swinject.framework */,
 				771BFC7922D5F83E00AFB237 /* SwinjectTests-OSX.xctest */,
 			);
 			name = Products;
@@ -113,10 +111,10 @@
 				CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */,
 				CDD8380422DA307F003E9909 /* TypeBinder.swift */,
 				CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */,
-				CDD8380B22DA3AD8003E9909 /* TypeManipulator.swift */,
-				CD85AF0D22DA57AD00A8B7CA /* TypeProvider.swift */,
+				CDD8380B22DA3AD8003E9909 /* Binding.swift */,
+				CD85AF0D22DA57AD00A8B7CA /* ProviderBinding.swift */,
 				CDD8380F22DA429F003E9909 /* Provider.swift */,
-				CDD8380D22DA3B0D003E9909 /* Binding.swift */,
+				CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */,
 				CDD8381522DA4B55003E9909 /* Swinject.swift */,
 				CDD8381C22DA4E02003E9909 /* SwinjectError.swift */,
 			);
@@ -129,7 +127,7 @@
 				771BFC8022D5F83E00AFB237 /* Info.plist */,
 				CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */,
 				CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */,
-				CD85AF0F22DA586D00A8B7CA /* TypeProviderSpec.swift */,
+				CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */,
 				CDD8381922DA4C9F003E9909 /* SwinjectApiSpec.swift */,
 				CDD8381E22DA4F6F003E9909 /* Utils.swift */,
 				CD85AF1122DA5A8F00A8B7CA /* Fakes.swift */,
@@ -175,10 +173,9 @@
 			);
 			name = "Swinject-OSX";
 			packageProductDependencies = (
-				CDD837FE22DA279C003E9909 /* Swinject */,
 			);
 			productName = Swinject;
-			productReference = 771BFC7022D5F83E00AFB237 /* Swinject3.framework */;
+			productReference = 771BFC7022D5F83E00AFB237 /* Swinject.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		771BFC7822D5F83E00AFB237 /* SwinjectTests-OSX */ = {
@@ -235,7 +232,6 @@
 			packageReferences = (
 				771BFC8F22D600B700AFB237 /* XCRemoteSwiftPackageReference "Nimble" */,
 				771BFC9222D600CC00AFB237 /* XCRemoteSwiftPackageReference "Quick" */,
-				CDD837FD22DA279C003E9909 /* XCRemoteSwiftPackageReference "swinject" */,
 			);
 			productRefGroup = 771BFC7122D5F83E00AFB237 /* Products */;
 			projectDirPath = "";
@@ -269,15 +265,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDD8380C22DA3AD8003E9909 /* TypeManipulator.swift in Sources */,
+				CDD8380C22DA3AD8003E9909 /* Binding.swift in Sources */,
 				CDD8381022DA429F003E9909 /* Provider.swift in Sources */,
 				CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */,
 				CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */,
 				CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */,
 				CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */,
 				CDD8380522DA307F003E9909 /* TypeBinder.swift in Sources */,
-				CD85AF0E22DA57AD00A8B7CA /* TypeProvider.swift in Sources */,
-				CDD8380E22DA3B0D003E9909 /* Binding.swift in Sources */,
+				CD85AF0E22DA57AD00A8B7CA /* ProviderBinding.swift in Sources */,
+				CDD8380E22DA3B0D003E9909 /* BindingEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +285,7 @@
 				CDD8381B22DA4CBE003E9909 /* SwinjectApiSpec.swift in Sources */,
 				CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */,
 				CD85AF1222DA5A8F00A8B7CA /* Fakes.swift in Sources */,
-				CD85AF1022DA586D00A8B7CA /* TypeProviderSpec.swift in Sources */,
+				CD85AF1022DA586D00A8B7CA /* ProviderBindingSpec.swift in Sources */,
 				CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,7 +440,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-				PRODUCT_NAME = Swinject3;
+				PRODUCT_NAME = Swinject;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -469,7 +465,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.el-eleven.Swinject";
-				PRODUCT_NAME = Swinject3;
+				PRODUCT_NAME = Swinject;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -571,14 +567,6 @@
 				minimumVersion = 2.1.0;
 			};
 		};
-		CDD837FD22DA279C003E9909 /* XCRemoteSwiftPackageReference "swinject" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/swinject/swinject";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.6.2;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -591,11 +579,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 771BFC9222D600CC00AFB237 /* XCRemoteSwiftPackageReference "Quick" */;
 			productName = Quick;
-		};
-		CDD837FE22DA279C003E9909 /* Swinject */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CDD837FD22DA279C003E9909 /* XCRemoteSwiftPackageReference "swinject" */;
-			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

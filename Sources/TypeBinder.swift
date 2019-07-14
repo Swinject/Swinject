@@ -23,19 +23,19 @@ public func bind<Descriptor>(_ descriptor: Descriptor) -> TypeBinder<Descriptor.
 }
 
 public extension TypeBinder {
-    func with<Manipulator>(_ manipulator: Manipulator) -> Binding<Type> where Manipulator: TypeManipulator, Manipulator.ManipulatedType == Type {
-        Binding(descriptor: descriptor, manipulator: manipulator)
+    func with<SomeBinding>(_ binding: SomeBinding) -> BindingEntry<Type> where SomeBinding: Binding, SomeBinding.BoundType == Type {
+        BindingEntry(descriptor: descriptor, binding: binding)
     }
 
-    func with(_ it: Type) -> Binding<Type> {
-        Binding(descriptor: descriptor, manipulator: value(it))
+    func with(_ it: Type) -> BindingEntry<Type> {
+        BindingEntry(descriptor: descriptor, binding: value(it))
     }
 }
 
-public func & <Type, Manipulator>(lhs: TypeBinder<Type>, rhs: Manipulator) -> Binding<Type> where Manipulator: TypeManipulator, Manipulator.ManipulatedType == Type {
+public func & <Type, SomeBinding>(lhs: TypeBinder<Type>, rhs: SomeBinding) -> BindingEntry<Type> where SomeBinding: Binding, SomeBinding.BoundType == Type {
     lhs.with(rhs)
 }
 
-public func & <Type>(lhs: TypeBinder<Type>, rhs: Type) -> Binding<Type> {
+public func & <Type>(lhs: TypeBinder<Type>, rhs: Type) -> BindingEntry<Type> {
     lhs.with(rhs)
 }

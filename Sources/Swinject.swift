@@ -25,21 +25,21 @@ public extension Swinject {
 }
 
 extension Swinject {
-    private func bindings<Descriptor>(for descriptor: Descriptor) -> [Binding<Descriptor.BaseType>] where Descriptor : TypeDescriptor {
+    private func bindings<Descriptor>(for descriptor: Descriptor) -> [BindingEntry<Descriptor.BaseType>] where Descriptor : TypeDescriptor {
         return entries
-            .compactMap { $0 as? Binding<Descriptor.BaseType> }
+            .compactMap { $0 as? BindingEntry<Descriptor.BaseType> }
             .filter { $0.descriptor.matches(descriptor) }
     }
 
     private func matches<Descriptor>(_ entry: SwinjectEntry, _ descriptor: Descriptor) -> Bool where Descriptor: TypeDescriptor {
-        (entry as? Binding<Descriptor.BaseType>)?.descriptor.matches(descriptor) ?? false
+        (entry as? BindingEntry<Descriptor.BaseType>)?.descriptor.matches(descriptor) ?? false
     }
 }
 
 extension Swinject: Provider {
     public func instance<Descriptor, Dependency>(_ descriptor: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
         let providers = bindings(for: descriptor)
-            .compactMap { $0.manipulator as? TypeProvider<Descriptor.BaseType> }
+            .compactMap { $0.binding as? ProviderBinding<Descriptor.BaseType> }
         if providers.count != 1 {
             throw SwinjectError()
         } else {

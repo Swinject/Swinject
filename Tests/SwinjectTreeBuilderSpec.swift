@@ -4,7 +4,7 @@
 
 import Quick
 import Nimble
-@testable import Swinject3
+@testable import Swinject
 
 class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
     it("builds empty function") {

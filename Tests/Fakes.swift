@@ -2,7 +2,7 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import Swinject3
+import Swinject
 
 class FakeProvider: Provider {
     func instance<Descriptor, Dependency>(_ type: Descriptor, with dependency: Dependency) throws -> Descriptor.BaseType where Descriptor : TypeDescriptor {
@@ -10,8 +10,8 @@ class FakeProvider: Provider {
     }
 }
 
-class IntManipulator: TypeManipulator {
-    typealias ManipulatedType = Int
+class IntBinding: Binding {
+    typealias BoundType = Int
 }
 
 class IntDescriptor: TypeDescriptor {
