@@ -4,10 +4,10 @@
 
 import Nimble
 import Quick
-import Swinject
+@testable import Swinject
 
 class SwinjectSpec: QuickSpec { override func spec() {
-    describe("injection") {
+    describe("instance injection") {
         context("no bindings") {
             it("throws") {
                 let swinject = Swinject {}
@@ -47,15 +47,15 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 binding.instanceUsingThrowableError = TestError()
                 expect { try swinject.instance(of: Any.self) }.to(throwError(errorType: TestError.self))
             }
-            it("throws if bound type does not match requested type") {
+            it("crashes if bound type does not match requested type") {
                 descriptor.matchesReturnValue = true
                 binding.instanceUsingReturnValue = ""
-                expect { try swinject.instance(of: Double.self) }.to(throwError())
+                expect { _ = try swinject.instance(of: Double.self) }.to(throwError())
             }
-            it("does not throw if bound type conforms to the requested type") {
+            it("does not crash if bound type conforms to the requested type") {
                 descriptor.matchesReturnValue = true
                 binding.instanceUsingReturnValue = 42
-                expect { try swinject.instance(of: CustomStringConvertible?.self) }.notTo(throwError())
+                expect { _ = try swinject.instance(of: CustomStringConvertible?.self) }.notTo(throwError())
             }
             it("passes swinject as injector") {
                 descriptor.matchesReturnValue = true
@@ -63,7 +63,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 expect(binding.instanceUsingReceivedInjector is Swinject).to(beTrue())
             }
         }
-        context("multipleBindings") {
+        context("multiple bindings") {
             var swinject: Swinject!
             var bindings = [AnyBindingMock]()
             var descriptors = [AnyTypeDescriptorMock]()
@@ -90,6 +90,41 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 bindings[1].instanceUsingReturnValue = 42
                 expect { try swinject.instance(of: Int.self) } == 42
             }
+        }
+    }
+    describe("provider injection") {
+        var swinject: Swinject!
+        var binding = AnyBindingMock()
+        var descriptor = AnyTypeDescriptorMock()
+        beforeEach {
+            binding = AnyBindingMock()
+            descriptor = AnyTypeDescriptorMock()
+            swinject = Swinject { bbind(descriptor) & binding }
+        }
+        it("does not throw if binding matches provided type") {
+            descriptor.matchesReturnValue = true
+            binding.instanceUsingReturnValue = 42
+            expect { try swinject.provider(of: Int.self) }.notTo(throwError())
+        }
+        it("throws if missing binding for provided type") {
+            descriptor.matchesReturnValue = false
+            expect { try swinject.provider(of: Int.self) }.to(throwError())
+        }
+        it("does not request provided type until provider is called") {
+            descriptor.matchesReturnValue = true
+            binding.instanceUsingReturnValue = 42
+            _ = try? swinject.provider(of: Int.self)
+            expect(binding.instanceUsingCallsCount) == 0
+        }
+        it("returns instance from binding") {
+            descriptor.matchesReturnValue = true
+            binding.instanceUsingReturnValue = 42
+            expect { try swinject.provider(of: Int.self)() } == 42
+        }
+        it("rethrows binding error from provider") {
+            descriptor.matchesReturnValue = true
+            binding.instanceUsingThrowableError = TestError()
+            expect { try swinject.provider(of: Int.self)() }.to(throwError(errorType: TestError.self))
         }
     }
 } }

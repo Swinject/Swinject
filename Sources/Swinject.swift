@@ -29,6 +29,11 @@ extension Swinject: Injector {
         try instance(from: findBinding(for: descriptor))
     }
 
+    public func provider<Descriptor>(_ descriptor: Descriptor) throws -> () throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+        let binding = try findBinding(for: descriptor)
+        return { try self.instance(from: binding) }
+    }
+
     private func findBinding(for descriptor: AnyTypeDescriptor) throws -> AnyBinding {
         let entries = tree.bindingEntries.filter { $0.descriptor.matches(descriptor) }
         guard entries.count == 1 else { throw SwinjectError() }
