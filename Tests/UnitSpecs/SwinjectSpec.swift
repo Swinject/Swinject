@@ -17,48 +17,48 @@ class SwinjectSpec: QuickSpec { override func spec() {
         context("single binding") {
             var swinject: Swinject!
             var binding = AnyBindingMock()
-            var descriptor = AnyTypeDescriptorMock()
+            var key = AnyBindingKeyMock()
             beforeEach {
                 binding = AnyBindingMock()
-                descriptor = AnyTypeDescriptorMock()
-                swinject = Swinject { bbind(descriptor) & binding }
+                key = AnyBindingKeyMock()
+                swinject = Swinject { BindingEntry<Any>(key: key, binding: binding) }
             }
             it("request instance from matching binding") {
-                descriptor.matchesReturnValue = true
+                key.matchesReturnValue = true
                 _ = try? swinject.instance(of: Any.self)
                 expect(binding.instanceUsingCallsCount) == 1
             }
             it("does not request instance from matching binding until instance is required") {
-                descriptor.matchesReturnValue = true
+                key.matchesReturnValue = true
                 expect(binding.instanceUsingCallsCount) == 0
             }
             it("only requests instance from matching binding") {
-                descriptor.matchesReturnValue = false
+                key.matchesReturnValue = false
                 _ = try? swinject.instance(of: Any.self)
                 expect(binding.instanceUsingCallsCount) == 0
             }
             it("returns instance produced by binding") {
-                descriptor.matchesReturnValue = true
+                key.matchesReturnValue = true
                 binding.instanceUsingReturnValue = 42
                 expect { try swinject.instance(of: Any.self) as? Int } == 42
             }
             it("rethrows error from binding") {
-                descriptor.matchesReturnValue = true
+                key.matchesReturnValue = true
                 binding.instanceUsingThrowableError = TestError()
                 expect { try swinject.instance(of: Any.self) }.to(throwError(errorType: TestError.self))
             }
             it("crashes if bound type does not match requested type") {
-                descriptor.matchesReturnValue = true
+                key.matchesReturnValue = true
                 binding.instanceUsingReturnValue = ""
                 expect { _ = try swinject.instance(of: Double.self) }.to(throwError())
             }
             it("does not crash if bound type conforms to the requested type") {
-                descriptor.matchesReturnValue = true
+                key.matchesReturnValue = true
                 binding.instanceUsingReturnValue = 42
                 expect { _ = try swinject.instance(of: CustomStringConvertible?.self) }.notTo(throwError())
             }
             it("passes swinject as injector") {
-                descriptor.matchesReturnValue = true
+                key.matchesReturnValue = true
                 _ = try? swinject.instance(of: Any.self)
                 expect(binding.instanceUsingReceivedInjector is Swinject).to(beTrue())
             }
@@ -66,27 +66,27 @@ class SwinjectSpec: QuickSpec { override func spec() {
         context("multiple bindings") {
             var swinject: Swinject!
             var bindings = [AnyBindingMock]()
-            var descriptors = [AnyTypeDescriptorMock]()
+            var keys = [AnyBindingKeyMock]()
             beforeEach {
-                descriptors = Array(0 ..< 3).map { _ in AnyTypeDescriptorMock() }
-                descriptors.forEach { $0.matchesReturnValue = false }
-                bindings = descriptors.map { _ in AnyBindingMock() }
+                keys = Array(0 ..< 3).map { _ in AnyBindingKeyMock() }
+                keys.forEach { $0.matchesReturnValue = false }
+                bindings = keys.map { _ in AnyBindingMock() }
                 swinject = Swinject {
-                    bbind(descriptors[0]) & bindings[0]
-                    bbind(descriptors[1]) & bindings[1]
-                    bbind(descriptors[2]) & bindings[2]
+                    BindingEntry<Any>(key: keys[0], binding: bindings[0])
+                    BindingEntry<Any>(key: keys[1], binding: bindings[1])
+                    BindingEntry<Any>(key: keys[2], binding: bindings[2])
                 }
             }
             it("throws if multiple entries match requested type") {
-                descriptors.forEach { $0.matchesReturnValue = true }
+                keys.forEach { $0.matchesReturnValue = true }
                 expect { try swinject.instance(of: Any.self) }.to(throwError())
             }
             it("does not throw if single entry matches requested type") {
-                descriptors[1].matchesReturnValue = true
+                keys[1].matchesReturnValue = true
                 expect { try swinject.instance(of: Any.self) }.notTo(throwError())
             }
             it("returns instance from matching binding") {
-                descriptors[1].matchesReturnValue = true
+                keys[1].matchesReturnValue = true
                 bindings[1].instanceUsingReturnValue = 42
                 expect { try swinject.instance(of: Int.self) } == 42
             }
@@ -95,34 +95,34 @@ class SwinjectSpec: QuickSpec { override func spec() {
     describe("provider injection") {
         var swinject: Swinject!
         var binding = AnyBindingMock()
-        var descriptor = AnyTypeDescriptorMock()
+        var key = AnyBindingKeyMock()
         beforeEach {
             binding = AnyBindingMock()
-            descriptor = AnyTypeDescriptorMock()
-            swinject = Swinject { bbind(descriptor) & binding }
+            key = AnyBindingKeyMock()
+            swinject = Swinject { BindingEntry<Any>(key: key, binding: binding) }
         }
         it("does not throw if binding matches provided type") {
-            descriptor.matchesReturnValue = true
+            key.matchesReturnValue = true
             binding.instanceUsingReturnValue = 42
             expect { try swinject.provider(of: Int.self) }.notTo(throwError())
         }
         it("throws if missing binding for provided type") {
-            descriptor.matchesReturnValue = false
+            key.matchesReturnValue = false
             expect { try swinject.provider(of: Int.self) }.to(throwError())
         }
         it("does not request provided type until provider is called") {
-            descriptor.matchesReturnValue = true
+            key.matchesReturnValue = true
             binding.instanceUsingReturnValue = 42
             _ = try? swinject.provider(of: Int.self)
             expect(binding.instanceUsingCallsCount) == 0
         }
         it("returns instance from binding") {
-            descriptor.matchesReturnValue = true
+            key.matchesReturnValue = true
             binding.instanceUsingReturnValue = 42
             expect { try swinject.provider(of: Int.self)() } == 42
         }
         it("rethrows binding error from provider") {
-            descriptor.matchesReturnValue = true
+            key.matchesReturnValue = true
             binding.instanceUsingThrowableError = TestError()
             expect { try swinject.provider(of: Int.self)() }.to(throwError(errorType: TestError.self))
         }
