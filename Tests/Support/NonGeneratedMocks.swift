@@ -18,4 +18,6 @@ extension AnyTypeDescriptorMock: TypeDescriptor {
     typealias BaseType = Any
 }
 
-extension AnyBindingMock: Binding {}
+extension AnyBindingMock: Binding {
+    typealias Argument = Any
+}

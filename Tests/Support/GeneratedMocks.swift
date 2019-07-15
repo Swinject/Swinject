@@ -8,6 +8,13 @@
 @testable import Swinject
 
 class AnyBindingMock: AnyBinding {
+    var argumentType: Any.Type {
+        get { return underlyingArgumentType }
+        set(value) { underlyingArgumentType = value }
+    }
+
+    var underlyingArgumentType: Any.Type!
+
     // MARK: - instance
 
     var instanceUsingThrowableError: Error?

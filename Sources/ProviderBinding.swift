@@ -5,6 +5,7 @@
 // TODO: Make internal
 public struct ProviderBinding<Type>: Binding {
     public typealias BoundType = Type
+    public typealias Argument = Void
 
     private let builder: (Injector) throws -> Type
 

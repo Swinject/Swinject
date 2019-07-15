@@ -5,6 +5,7 @@
 // TODO: Make internal
 public struct InstanceBinding<Type>: Binding {
     public typealias BoundType = Type
+    public typealias Argument = Void
 
     private let _instance: Type
 
