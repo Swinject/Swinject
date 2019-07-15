@@ -33,12 +33,12 @@ class AnyBindingMock: AnyBinding {
 }
 
 class AnyBindingEntryMock: AnyBindingEntry {
-    var descriptor: AnyTypeDescriptor {
-        get { return underlyingDescriptor }
-        set(value) { underlyingDescriptor = value }
+    var key: BindingKey {
+        get { return underlyingKey }
+        set(value) { underlyingKey = value }
     }
 
-    var underlyingDescriptor: AnyTypeDescriptor!
+    var underlyingKey: BindingKey!
     var binding: AnyBinding {
         get { return underlyingBinding }
         set(value) { underlyingBinding = value }

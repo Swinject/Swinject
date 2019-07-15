@@ -35,7 +35,7 @@ extension Swinject: Injector {
     }
 
     private func findBinding(for descriptor: AnyTypeDescriptor) throws -> AnyBinding {
-        let entries = tree.bindingEntries.filter { $0.descriptor.matches(descriptor) }
+        let entries = tree.bindingEntries.filter { $0.key.descriptor.matches(descriptor) }
         guard entries.count == 1 else { throw SwinjectError() }
         return entries[0].binding
     }

@@ -4,12 +4,16 @@
 
 // sourcery: AutoMockable
 protocol AnyBindingEntry: SwinjectEntry {
-    var descriptor: AnyTypeDescriptor { get }
+    var key: BindingKey { get }
     var binding: AnyBinding { get }
 }
 
 // TODO: Make this internal
 public struct BindingEntry<Type>: AnyBindingEntry {
-    let descriptor: AnyTypeDescriptor
+    let key: BindingKey
     let binding: AnyBinding
+}
+
+struct BindingKey {
+    let descriptor: AnyTypeDescriptor
 }

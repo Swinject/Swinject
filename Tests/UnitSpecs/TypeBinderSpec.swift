@@ -28,7 +28,7 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         it("produces entry with correct descriptor") {
             let descriptor = AnyTypeDescriptorMock()
             let entry = bbind(descriptor).with(AnyBindingMock())
-            expect(entry.descriptor) === descriptor
+            expect(entry.key.descriptor) === descriptor
         }
         it("produces entry with correct binding") {
             let binding = AnyBindingMock()
@@ -44,7 +44,7 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         it("produces entry with correct descriptor") {
             let descriptor = AnyTypeDescriptorMock()
             let entry = bbind(descriptor) & AnyBindingMock()
-            expect(entry.descriptor) === descriptor
+            expect(entry.key.descriptor) === descriptor
         }
         it("produces entry with correct binding") {
             let binding = AnyBindingMock()

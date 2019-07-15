@@ -24,11 +24,11 @@ public func bind<Descriptor>(_ descriptor: Descriptor) -> TypeBinder<Descriptor.
 
 public extension TypeBinder {
     func with<SomeBinding>(_ binding: SomeBinding) -> BindingEntry<Type> where SomeBinding: Binding, SomeBinding.BoundType == Type {
-        BindingEntry(descriptor: descriptor, binding: binding)
+        BindingEntry(key: BindingKey(descriptor: descriptor), binding: binding)
     }
 
-    func with(_ it: Type) -> BindingEntry<Type> {
-        BindingEntry(descriptor: descriptor, binding: instance(it))
+    func with(_ anInstance: Type) -> BindingEntry<Type> {
+        with(instance(anInstance))
     }
 }
 
