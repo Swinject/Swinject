@@ -19,7 +19,12 @@ protocol AnyBindingKey {
     var argumentType: Any.Type { get }
 }
 
-struct BindingKey<Descriptor, Argument>: AnyBindingKey where Descriptor: TypeDescriptor {
+public struct BindingKey<Descriptor, Argument>: AnyBindingKey where Descriptor: TypeDescriptor {
     let argumentType: Any.Type = Argument.self
     let descriptor: AnyTypeDescriptor
+}
+
+public struct BindingRequest<Descriptor, Argument> where Descriptor: TypeDescriptor {
+    let key: BindingKey<Descriptor, Argument>
+    let argument: Argument
 }

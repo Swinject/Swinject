@@ -25,12 +25,12 @@ public extension Swinject {
 }
 
 extension Swinject: Injector {
-    public func instance<Descriptor>(_ descriptor: Descriptor) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        try instance(from: findBinding(for: descriptor))
+    public func instance<Descriptor, Argument>(for request: BindingRequest<Descriptor, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+        try instance(from: findBinding(for: request.key.descriptor))
     }
 
-    public func provider<Descriptor>(_ descriptor: Descriptor) throws -> () throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        let binding = try findBinding(for: descriptor)
+    public func provider<Descriptor, Argument>(for request: BindingRequest<Descriptor, Argument>) throws -> () throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+        let binding = try findBinding(for: request.key.descriptor)
         return { try self.instance(from: binding) }
     }
 

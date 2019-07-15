@@ -4,12 +4,12 @@
 
 @testable import Swinject
 
-class FakeInjector: Injector {
-    func instance<Descriptor>(_: Descriptor) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+class DummyInjector: Injector {
+    func instance<Descriptor, Argument>(for _: BindingRequest<Descriptor, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         fatalError()
     }
 
-    func provider<Descriptor>(_: Descriptor) throws -> () throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+    func provider<Descriptor, Argument>(for _: BindingRequest<Descriptor, Argument>) throws -> () throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         fatalError()
     }
 }
