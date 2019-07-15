@@ -138,16 +138,10 @@
 		771BFC7D22D5F83E00AFB237 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CDADF33F22DB883A00C5D8DB /* GeneratedMocks.swift */,
-				CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */,
+				77729C9822DCC623005C3281 /* ApiSpecs */,
+				77729C9622DCC597005C3281 /* UnitSpecs */,
+				77729C9422DCC56D005C3281 /* Support */,
 				771BFC8022D5F83E00AFB237 /* Info.plist */,
-				CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */,
-				CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */,
-				CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */,
-				CDADF33122DB4C1200C5D8DB /* InstanceBindingSpec.swift */,
-				CDD8381922DA4C9F003E9909 /* SwinjectSpec.swift */,
-				CDD8381E22DA4F6F003E9909 /* Utils.swift */,
-				CDADF33622DB753800C5D8DB /* TestModels.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -159,6 +153,36 @@
 				771BFC8C22D5FAAE00AFB237 /* Quick.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77729C9422DCC56D005C3281 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CDD8381E22DA4F6F003E9909 /* Utils.swift */,
+				CDADF33622DB753800C5D8DB /* TestModels.swift */,
+				CDADF33F22DB883A00C5D8DB /* GeneratedMocks.swift */,
+				CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		77729C9622DCC597005C3281 /* UnitSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */,
+				CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */,
+				CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */,
+				CDADF33122DB4C1200C5D8DB /* InstanceBindingSpec.swift */,
+				CDD8381922DA4C9F003E9909 /* SwinjectSpec.swift */,
+			);
+			path = UnitSpecs;
+			sourceTree = "<group>";
+		};
+		77729C9822DCC623005C3281 /* ApiSpecs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ApiSpecs;
 			sourceTree = "<group>";
 		};
 		CDADF33B22DB878C00C5D8DB /* Templates */ = {
