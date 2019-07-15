@@ -11,6 +11,7 @@
 		771BFC8122D5F83E00AFB237 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 771BFC7322D5F83E00AFB237 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		771BFC9122D600B700AFB237 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 771BFC9022D600B700AFB237 /* Nimble */; };
 		771BFC9422D600CC00AFB237 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 771BFC9322D600CC00AFB237 /* Quick */; };
+		77729C9E22DCCA20005C3281 /* InjectionApiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77729C9D22DCCA20005C3281 /* InjectionApiSpec.swift */; };
 		CD85AF0E22DA57AD00A8B7CA /* ProviderBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF0D22DA57AD00A8B7CA /* ProviderBinding.swift */; };
 		CD85AF1022DA586D00A8B7CA /* ProviderBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */; };
 		CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */; };
@@ -51,6 +52,7 @@
 		771BFC8022D5F83E00AFB237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		771BFC8B22D5FAAE00AFB237 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		771BFC8C22D5FAAE00AFB237 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
+		77729C9D22DCCA20005C3281 /* InjectionApiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionApiSpec.swift; sourceTree = "<group>"; };
 		CD85AF0D22DA57AD00A8B7CA /* ProviderBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderBinding.swift; sourceTree = "<group>"; };
 		CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderBindingSpec.swift; sourceTree = "<group>"; };
 		CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonGeneratedMocks.swift; sourceTree = "<group>"; };
@@ -138,7 +140,7 @@
 		771BFC7D22D5F83E00AFB237 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				77729C9822DCC623005C3281 /* ApiSpecs */,
+				77729C9C22DCCA20005C3281 /* ApiSpecs */,
 				77729C9622DCC597005C3281 /* UnitSpecs */,
 				77729C9422DCC56D005C3281 /* Support */,
 				771BFC8022D5F83E00AFB237 /* Info.plist */,
@@ -178,11 +180,12 @@
 			path = UnitSpecs;
 			sourceTree = "<group>";
 		};
-		77729C9822DCC623005C3281 /* ApiSpecs */ = {
+		77729C9C22DCCA20005C3281 /* ApiSpecs */ = {
 			isa = PBXGroup;
 			children = (
+				77729C9D22DCCA20005C3281 /* InjectionApiSpec.swift */,
 			);
-			name = ApiSpecs;
+			path = ApiSpecs;
 			sourceTree = "<group>";
 		};
 		CDADF33B22DB878C00C5D8DB /* Templates */ = {
@@ -382,6 +385,7 @@
 				CD85AF1022DA586D00A8B7CA /* ProviderBindingSpec.swift in Sources */,
 				CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */,
 				CDADF33722DB753800C5D8DB /* TestModels.swift in Sources */,
+				77729C9E22DCCA20005C3281 /* InjectionApiSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
