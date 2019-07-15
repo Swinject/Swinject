@@ -26,16 +26,16 @@ public extension Swinject {
 
 extension Swinject: Injector {
     public func instance<Descriptor>(_ descriptor: Descriptor) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        guard
-            let entry = tree.bindingEntries.first,
-            entry.descriptor.matches(descriptor)
-        else { throw SwinjectError() }
-        return try entry.binding.instance(using: NoInjector()) as? Descriptor.BaseType ?? { throw SwinjectError() }()
+        try instance(from: findBinding(for: descriptor))
     }
-}
 
-private struct NoInjector: Injector {
-    func instance<Descriptor>(_: Descriptor) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        fatalError()
+    private func findBinding(for descriptor: AnyTypeDescriptor) throws -> AnyBinding {
+        let entries = tree.bindingEntries.filter { $0.descriptor.matches(descriptor) }
+        guard entries.count == 1 else { throw SwinjectError() }
+        return entries[0].binding
+    }
+
+    private func instance<Type>(from binding: AnyBinding) throws -> Type {
+        try binding.instance(using: self) as? Type ?? { throw SwinjectError() }()
     }
 }

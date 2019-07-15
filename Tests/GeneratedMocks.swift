@@ -16,19 +16,19 @@ class AnyBindingMock: AnyBinding {
         return instanceUsingCallsCount > 0
     }
 
-    var instanceUsingReceivedProvider: Injector?
+    var instanceUsingReceivedInjector: Injector?
     var instanceUsingReceivedInvocations: [Injector] = []
     var instanceUsingReturnValue: Any!
     var instanceUsingClosure: ((Injector) throws -> Any)?
 
-    func instance(using provider: Injector) throws -> Any {
+    func instance(using injector: Injector) throws -> Any {
         if let error = instanceUsingThrowableError {
             throw error
         }
         instanceUsingCallsCount += 1
-        instanceUsingReceivedProvider = provider
-        instanceUsingReceivedInvocations.append(provider)
-        return try instanceUsingClosure.map { try $0(provider) } ?? instanceUsingReturnValue
+        instanceUsingReceivedInjector = injector
+        instanceUsingReceivedInvocations.append(injector)
+        return try instanceUsingClosure.map { try $0(injector) } ?? instanceUsingReturnValue
     }
 }
 

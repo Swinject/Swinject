@@ -57,6 +57,39 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 binding.instanceUsingReturnValue = 42
                 expect { try swinject.instance(of: CustomStringConvertible?.self) }.notTo(throwError())
             }
+            it("passes swinject as injector") {
+                descriptor.matchesReturnValue = true
+                _ = try? swinject.instance(of: Any.self)
+                expect(binding.instanceUsingReceivedInjector is Swinject).to(beTrue())
+            }
+        }
+        context("multipleBindings") {
+            var swinject: Swinject!
+            var bindings = [AnyBindingMock]()
+            var descriptors = [AnyTypeDescriptorMock]()
+            beforeEach {
+                descriptors = Array(0 ..< 3).map { _ in AnyTypeDescriptorMock() }
+                descriptors.forEach { $0.matchesReturnValue = false }
+                bindings = descriptors.map { _ in AnyBindingMock() }
+                swinject = Swinject {
+                    bbind(descriptors[0]) & bindings[0]
+                    bbind(descriptors[1]) & bindings[1]
+                    bbind(descriptors[2]) & bindings[2]
+                }
+            }
+            it("throws if multiple entries match requested type") {
+                descriptors.forEach { $0.matchesReturnValue = true }
+                expect { try swinject.instance(of: Any.self) }.to(throwError())
+            }
+            it("does not throw if single entry matches requested type") {
+                descriptors[1].matchesReturnValue = true
+                expect { try swinject.instance(of: Any.self) }.notTo(throwError())
+            }
+            it("returns instance from matching binding") {
+                descriptors[1].matchesReturnValue = true
+                bindings[1].instanceUsingReturnValue = 42
+                expect { try swinject.instance(of: Int.self) } == 42
+            }
         }
     }
 } }
