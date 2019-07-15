@@ -11,12 +11,12 @@ public protocol TypeDescriptor: AnyTypeDescriptor {
     associatedtype BaseType
 }
 
-struct NoTag: Equatable {}
+public struct NoTag: Equatable {}
 
-struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Equatable {
+public struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Equatable {
     let tag: Tag
 
-    func matches(_ other: AnyTypeDescriptor) -> Bool {
+    public func matches(_ other: AnyTypeDescriptor) -> Bool {
         guard let other = other as? Tagged<BaseType, Tag> else { return false }
         return tag == other.tag
     }

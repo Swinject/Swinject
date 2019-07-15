@@ -4,7 +4,6 @@
 
 // sourcery: AutoMockable
 public protocol AnyBinding {
-    var argumentType: Any.Type { get }
     func instance(using injector: Injector) throws -> Any
 }
 
@@ -15,8 +14,6 @@ public protocol Binding: AnyBinding {
 }
 
 public extension AnyBinding where Self: Binding {
-    var argumentType: Any.Type { return Argument.self }
-
     func instance(using injector: Injector) throws -> Any {
         try instance(using: injector) as BoundType
     }

@@ -8,13 +8,6 @@
 @testable import Swinject
 
 class AnyBindingMock: AnyBinding {
-    var argumentType: Any.Type {
-        get { return underlyingArgumentType }
-        set(value) { underlyingArgumentType = value }
-    }
-
-    var underlyingArgumentType: Any.Type!
-
     // MARK: - instance
 
     var instanceUsingThrowableError: Error?
@@ -40,12 +33,12 @@ class AnyBindingMock: AnyBinding {
 }
 
 class AnyBindingEntryMock: AnyBindingEntry {
-    var key: BindingKey {
+    var key: AnyBindingKey {
         get { return underlyingKey }
         set(value) { underlyingKey = value }
     }
 
-    var underlyingKey: BindingKey!
+    var underlyingKey: AnyBindingKey!
     var binding: AnyBinding {
         get { return underlyingBinding }
         set(value) { underlyingBinding = value }

@@ -21,3 +21,5 @@ extension AnyTypeDescriptorMock: TypeDescriptor {
 extension AnyBindingMock: Binding {
     typealias Argument = Any
 }
+
+class DummyBinding<Argument>: Binding {}

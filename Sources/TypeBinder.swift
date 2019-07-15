@@ -2,40 +2,36 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public struct TypeBinder<Type> {
-    let descriptor: AnyTypeDescriptor
-
-    init<Descriptor>(descriptor: Descriptor) where Descriptor: TypeDescriptor, Descriptor.BaseType == Type {
-        self.descriptor = descriptor
-    }
+public struct TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
+    let descriptor: Descriptor
 }
 
-public func bind<Type>(_: Type.Type) -> TypeBinder<Type> {
+public func bind<Type>(_: Type.Type) -> TypeBinder<Tagged<Type, NoTag>> {
     bind(plain(Type.self))
 }
 
-public func bind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<Type> where Tag: Equatable {
+public func bind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<Tagged<Type, Tag>> where Tag: Equatable {
     bind(tagged(Type.self, with: tag))
 }
 
-public func bind<Descriptor>(_ descriptor: Descriptor) -> TypeBinder<Descriptor.BaseType> where Descriptor: TypeDescriptor {
+public func bind<Descriptor>(_ descriptor: Descriptor) -> TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
     TypeBinder(descriptor: descriptor)
 }
 
 public extension TypeBinder {
-    func with<SomeBinding>(_ binding: SomeBinding) -> BindingEntry<Type> where SomeBinding: Binding, SomeBinding.BoundType == Type {
-        BindingEntry(key: BindingKey(descriptor: descriptor), binding: binding)
+    func with<SomeBinding>(_ binding: SomeBinding) -> BindingEntry<Descriptor.BaseType> where SomeBinding: Binding, SomeBinding.BoundType == Descriptor.BaseType {
+        BindingEntry(key: BindingKey<Descriptor, SomeBinding.Argument>(descriptor: descriptor), binding: binding)
     }
 
-    func with(_ anInstance: Type) -> BindingEntry<Type> {
+    func with(_ anInstance: Descriptor.BaseType) -> BindingEntry<Descriptor.BaseType> {
         with(instance(anInstance))
     }
 }
 
-public func & <Type, SomeBinding>(lhs: TypeBinder<Type>, rhs: SomeBinding) -> BindingEntry<Type> where SomeBinding: Binding, SomeBinding.BoundType == Type {
+public func & <Descriptor, SomeBinding>(lhs: TypeBinder<Descriptor>, rhs: SomeBinding) -> BindingEntry<Descriptor.BaseType> where SomeBinding: Binding, SomeBinding.BoundType == Descriptor.BaseType {
     lhs.with(rhs)
 }
 
-public func & <Type>(lhs: TypeBinder<Type>, rhs: Type) -> BindingEntry<Type> {
+public func & <Descriptor>(lhs: TypeBinder<Descriptor>, rhs: Descriptor.BaseType) -> BindingEntry<Descriptor.BaseType> {
     lhs.with(rhs)
 }
