@@ -9,6 +9,7 @@ public protocol Injector {
     func provider<Descriptor, Argument>(for request: BindingRequest<Descriptor, Argument>) throws -> () throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
 }
 
+// TODO: Overloads for multiple arguments
 public extension Injector {
     func instance<Type>(of _: Type.Type = Type.self) throws -> Type {
         try instance(arg: ())

@@ -17,11 +17,11 @@ class ProviderBindingSpec: QuickSpec { override func spec() {
         expect(called).to(beFalse())
     }
     it("calls builder with given provider") {
-        var passedProvider: Injector?
-        let fake = DummyInjector()
-        let binding = provider { passedProvider = $0 }
-        _ = try? binding.instance(injector: fake)
-        expect(passedProvider) === fake
+        var passedInjector: Injector?
+        let injector = DummyInjector()
+        let binding = provider { passedInjector = $0 }
+        _ = try? binding.instance(injector: injector)
+        expect(passedInjector) === injector
     }
     it("rethrows error from builder") {
         let binding = provider { throw SwinjectError() }

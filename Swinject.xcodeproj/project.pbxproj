@@ -15,6 +15,8 @@
 		CD6DE53522DD1C7300532D08 /* BindingKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */; };
 		CD6DE53722DD1CE900532D08 /* BindingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53622DD1CE900532D08 /* BindingKey.swift */; };
 		CD6DE53922DD1D0A00532D08 /* BindingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53822DD1D0A00532D08 /* BindingRequest.swift */; };
+		CD6DE53B22DD303F00532D08 /* FactoryBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53A22DD303F00532D08 /* FactoryBinding.swift */; };
+		CD6DE53D22DD30A100532D08 /* FactoryBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53C22DD30A100532D08 /* FactoryBindingSpec.swift */; };
 		CD85AF0E22DA57AD00A8B7CA /* ProviderBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF0D22DA57AD00A8B7CA /* ProviderBinding.swift */; };
 		CD85AF1022DA586D00A8B7CA /* ProviderBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */; };
 		CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */; };
@@ -59,6 +61,8 @@
 		CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKeySpec.swift; sourceTree = "<group>"; };
 		CD6DE53622DD1CE900532D08 /* BindingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKey.swift; sourceTree = "<group>"; };
 		CD6DE53822DD1D0A00532D08 /* BindingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingRequest.swift; sourceTree = "<group>"; };
+		CD6DE53A22DD303F00532D08 /* FactoryBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryBinding.swift; sourceTree = "<group>"; };
+		CD6DE53C22DD30A100532D08 /* FactoryBindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryBindingSpec.swift; sourceTree = "<group>"; };
 		CD85AF0D22DA57AD00A8B7CA /* ProviderBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderBinding.swift; sourceTree = "<group>"; };
 		CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderBindingSpec.swift; sourceTree = "<group>"; };
 		CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonGeneratedMocks.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 				CDD8380B22DA3AD8003E9909 /* Binding.swift */,
 				CD85AF0D22DA57AD00A8B7CA /* ProviderBinding.swift */,
 				CDADF32222DB416C00C5D8DB /* InstanceBinding.swift */,
+				CD6DE53A22DD303F00532D08 /* FactoryBinding.swift */,
 				CDD8380F22DA429F003E9909 /* Injector.swift */,
 				CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */,
 				CD6DE53622DD1CE900532D08 /* BindingKey.swift */,
@@ -183,6 +188,7 @@
 				CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */,
 				CD85AF0F22DA586D00A8B7CA /* ProviderBindingSpec.swift */,
 				CDADF33122DB4C1200C5D8DB /* InstanceBindingSpec.swift */,
+				CD6DE53C22DD30A100532D08 /* FactoryBindingSpec.swift */,
 				CDD8381922DA4C9F003E9909 /* SwinjectSpec.swift */,
 				CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */,
 			);
@@ -373,6 +379,7 @@
 				CD6DE53722DD1CE900532D08 /* BindingKey.swift in Sources */,
 				CD6DE53922DD1D0A00532D08 /* BindingRequest.swift in Sources */,
 				CDADF32322DB416C00C5D8DB /* InstanceBinding.swift in Sources */,
+				CD6DE53B22DD303F00532D08 /* FactoryBinding.swift in Sources */,
 				CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */,
 				CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */,
 				CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */,
@@ -392,6 +399,7 @@
 				CDADF34022DB883A00C5D8DB /* GeneratedMocks.swift in Sources */,
 				CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */,
 				CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */,
+				CD6DE53D22DD30A100532D08 /* FactoryBindingSpec.swift in Sources */,
 				CDADF33322DB4C1800C5D8DB /* InstanceBindingSpec.swift in Sources */,
 				CD85AF1022DA586D00A8B7CA /* ProviderBindingSpec.swift in Sources */,
 				CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */,
