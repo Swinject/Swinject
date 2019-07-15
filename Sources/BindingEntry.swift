@@ -13,18 +13,3 @@ public struct BindingEntry<Type>: AnyBindingEntry {
     let key: AnyBindingKey
     let binding: AnyBinding
 }
-
-protocol AnyBindingKey {
-    var descriptor: AnyTypeDescriptor { get }
-    var argumentType: Any.Type { get }
-}
-
-public struct BindingKey<Descriptor, Argument>: AnyBindingKey where Descriptor: TypeDescriptor {
-    let argumentType: Any.Type = Argument.self
-    let descriptor: AnyTypeDescriptor
-}
-
-public struct BindingRequest<Descriptor, Argument> where Descriptor: TypeDescriptor {
-    let key: BindingKey<Descriptor, Argument>
-    let argument: Argument
-}

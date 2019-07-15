@@ -47,6 +47,40 @@ class AnyBindingEntryMock: AnyBindingEntry {
     var underlyingBinding: AnyBinding!
 }
 
+class AnyBindingKeyMock: AnyBindingKey {
+    var descriptor: AnyTypeDescriptor {
+        get { return underlyingDescriptor }
+        set(value) { underlyingDescriptor = value }
+    }
+
+    var underlyingDescriptor: AnyTypeDescriptor!
+    var argumentType: Any.Type {
+        get { return underlyingArgumentType }
+        set(value) { underlyingArgumentType = value }
+    }
+
+    var underlyingArgumentType: Any.Type!
+
+    // MARK: - matches
+
+    var matchesCallsCount = 0
+    var matchesCalled: Bool {
+        return matchesCallsCount > 0
+    }
+
+    var matchesReceivedOther: AnyBindingKey?
+    var matchesReceivedInvocations: [AnyBindingKey] = []
+    var matchesReturnValue: Bool!
+    var matchesClosure: ((AnyBindingKey) -> Bool)?
+
+    func matches(_ other: AnyBindingKey) -> Bool {
+        matchesCallsCount += 1
+        matchesReceivedOther = other
+        matchesReceivedInvocations.append(other)
+        return matchesClosure.map { $0(other) } ?? matchesReturnValue
+    }
+}
+
 class AnyTypeDescriptorMock: AnyTypeDescriptor {
     // MARK: - matches
 
