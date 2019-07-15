@@ -5,7 +5,6 @@
 // TODO: Make internal
 public struct InstanceBinding<Type>: Binding {
     public typealias BoundType = Type
-    public typealias Argument = Void
 
     private let _instance: Type
 
@@ -13,7 +12,7 @@ public struct InstanceBinding<Type>: Binding {
         _instance = instance
     }
 
-    public func instance(using _: Injector) throws -> Type {
+    public func instance(arg _: Void, injector _: Injector) throws -> Type {
         _instance
     }
 }

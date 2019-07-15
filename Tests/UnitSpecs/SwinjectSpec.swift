@@ -26,41 +26,46 @@ class SwinjectSpec: QuickSpec { override func spec() {
             it("request instance from matching binding") {
                 key.matchesReturnValue = true
                 _ = try? swinject.instance(of: Any.self)
-                expect(binding.instanceUsingCallsCount) == 1
+                expect(binding.instanceArgInjectorCallsCount) == 1
             }
             it("does not request instance from matching binding until instance is required") {
                 key.matchesReturnValue = true
-                expect(binding.instanceUsingCallsCount) == 0
+                expect(binding.instanceArgInjectorCallsCount) == 0
             }
             it("only requests instance from matching binding") {
                 key.matchesReturnValue = false
                 _ = try? swinject.instance(of: Any.self)
-                expect(binding.instanceUsingCallsCount) == 0
+                expect(binding.instanceArgInjectorCallsCount) == 0
             }
             it("returns instance produced by binding") {
                 key.matchesReturnValue = true
-                binding.instanceUsingReturnValue = 42
+                binding.instanceArgInjectorReturnValue = 42
                 expect { try swinject.instance(of: Any.self) as? Int } == 42
             }
             it("rethrows error from binding") {
                 key.matchesReturnValue = true
-                binding.instanceUsingThrowableError = TestError()
+                binding.instanceArgInjectorThrowableError = TestError()
                 expect { try swinject.instance(of: Any.self) }.to(throwError(errorType: TestError.self))
             }
             it("crashes if bound type does not match requested type") {
                 key.matchesReturnValue = true
-                binding.instanceUsingReturnValue = ""
+                binding.instanceArgInjectorReturnValue = ""
                 expect { _ = try swinject.instance(of: Double.self) }.to(throwError())
             }
             it("does not crash if bound type conforms to the requested type") {
                 key.matchesReturnValue = true
-                binding.instanceUsingReturnValue = 42
+                binding.instanceArgInjectorReturnValue = 42
                 expect { _ = try swinject.instance(of: CustomStringConvertible?.self) }.notTo(throwError())
             }
             it("passes swinject as injector") {
                 key.matchesReturnValue = true
                 _ = try? swinject.instance(of: Any.self)
-                expect(binding.instanceUsingReceivedInjector is Swinject).to(beTrue())
+                expect(binding.instanceArgInjectorReceivedArguments?.injector is Swinject).to(beTrue())
+            }
+            it("passes given argument to binding") {
+                key.matchesReturnValue = true
+                _ = try? swinject.instance(of: Any.self, arg: 42)
+                expect(binding.instanceArgInjectorReceivedArguments?.arg as? Int) == 42
             }
         }
         context("multiple bindings") {
@@ -87,7 +92,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
             }
             it("returns instance from matching binding") {
                 keys[1].matchesReturnValue = true
-                bindings[1].instanceUsingReturnValue = 42
+                bindings[1].instanceArgInjectorReturnValue = 42
                 expect { try swinject.instance(of: Int.self) } == 42
             }
         }
@@ -103,7 +108,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         }
         it("does not throw if binding matches provided type") {
             key.matchesReturnValue = true
-            binding.instanceUsingReturnValue = 42
+            binding.instanceArgInjectorReturnValue = 42
             expect { try swinject.provider(of: Int.self) }.notTo(throwError())
         }
         it("throws if missing binding for provided type") {
@@ -112,18 +117,18 @@ class SwinjectSpec: QuickSpec { override func spec() {
         }
         it("does not request provided type until provider is called") {
             key.matchesReturnValue = true
-            binding.instanceUsingReturnValue = 42
+            binding.instanceArgInjectorReturnValue = 42
             _ = try? swinject.provider(of: Int.self)
-            expect(binding.instanceUsingCallsCount) == 0
+            expect(binding.instanceArgInjectorCallsCount) == 0
         }
         it("returns instance from binding") {
             key.matchesReturnValue = true
-            binding.instanceUsingReturnValue = 42
+            binding.instanceArgInjectorReturnValue = 42
             expect { try swinject.provider(of: Int.self)() } == 42
         }
         it("rethrows binding error from provider") {
             key.matchesReturnValue = true
-            binding.instanceUsingThrowableError = TestError()
+            binding.instanceArgInjectorThrowableError = TestError()
             expect { try swinject.provider(of: Int.self)() }.to(throwError(errorType: TestError.self))
         }
     }

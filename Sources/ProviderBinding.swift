@@ -5,7 +5,6 @@
 // TODO: Make internal
 public struct ProviderBinding<Type>: Binding {
     public typealias BoundType = Type
-    public typealias Argument = Void
 
     private let builder: (Injector) throws -> Type
 
@@ -13,7 +12,7 @@ public struct ProviderBinding<Type>: Binding {
         self.builder = builder
     }
 
-    public func instance(using provider: Injector) throws -> Type {
+    public func instance(arg _: Void, injector provider: Injector) throws -> Type {
         try builder(provider)
     }
 }

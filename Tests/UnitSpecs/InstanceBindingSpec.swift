@@ -9,6 +9,6 @@ import Quick
 class InstanceBindingSpec: QuickSpec { override func spec() {
     it("returns given instance") {
         let binding = instance(42)
-        expect { try binding.instance(using: DummyInjector()) } == 42
+        expect { try binding.instance(injector: DummyInjector()) } == 42
     }
 } }

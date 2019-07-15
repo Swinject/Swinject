@@ -22,4 +22,8 @@ extension AnyBindingMock: Binding {
     typealias Argument = Any
 }
 
-class DummyBinding<Argument>: Binding {}
+class DummyBinding<Argument>: Binding {
+    func instance(arg _: Argument, injector _: Injector) throws -> Any {
+        fatalError()
+    }
+}

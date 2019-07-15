@@ -10,27 +10,41 @@ public protocol Injector {
 }
 
 public extension Injector {
-    func instance<Descriptor>(_ descriptor: Descriptor) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        try instance(for: BindingRequest<Descriptor, Void>(key: BindingKey(descriptor: descriptor), argument: ()))
-    }
-
     func instance<Type>(of _: Type.Type = Type.self) throws -> Type {
-        try instance(plain(Type.self))
+        try instance(arg: ())
     }
 
     func instance<Type, Tag: Equatable>(of _: Type.Type = Type.self, tagged tag: Tag) throws -> Type {
-        try instance(tagged(Type.self, with: tag))
+        try instance(tagged: tag, arg: ())
     }
 
-    func provider<Descriptor>(_ descriptor: Descriptor) throws -> () throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        try provider(for: BindingRequest<Descriptor, Void>(key: BindingKey(descriptor: descriptor), argument: ()))
+    func instance<Type, Argument>(of _: Type.Type = Type.self, arg: Argument) throws -> Type {
+        try instance(tagged: NoTag(), arg: arg)
+    }
+
+    func instance<Type, Tag: Equatable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag, arg: Argument) throws -> Type {
+        try instance(for: BindingRequest<Tagged<Type, Tag>, Argument>(
+            key: BindingKey(descriptor: tagged(Type.self, with: tag)),
+            argument: arg
+        ))
     }
 
     func provider<Type>(of _: Type.Type = Type.self) throws -> () throws -> Type {
-        try provider(plain(Type.self))
+        try provider(arg: ())
     }
 
     func provider<Type, Tag: Equatable>(of _: Type.Type = Type.self, tagged tag: Tag) throws -> () throws -> Type {
-        try provider(tagged(Type.self, with: tag))
+        try provider(tagged: tag, arg: ())
+    }
+
+    func provider<Type, Argument>(of _: Type.Type = Type.self, arg: Argument) throws -> () throws -> Type {
+        try provider(tagged: NoTag(), arg: arg)
+    }
+
+    func provider<Type, Tag: Equatable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag, arg: Argument) throws -> () throws -> Type {
+        try provider(for: BindingRequest<Tagged<Type, Tag>, Argument>(
+            key: BindingKey(descriptor: tagged(Type.self, with: tag)),
+            argument: arg
+        ))
     }
 }
