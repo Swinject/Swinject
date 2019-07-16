@@ -48,18 +48,24 @@ class AnyBindingEntryMock: AnyBindingEntry {
 }
 
 class AnyBindingKeyMock: AnyBindingKey {
-    var descriptor: AnyTypeDescriptor {
-        get { return underlyingDescriptor }
-        set(value) { underlyingDescriptor = value }
+    var contextType: Any.Type {
+        get { return underlyingContextType }
+        set(value) { underlyingContextType = value }
     }
 
-    var underlyingDescriptor: AnyTypeDescriptor!
+    var underlyingContextType: Any.Type!
     var argumentType: Any.Type {
         get { return underlyingArgumentType }
         set(value) { underlyingArgumentType = value }
     }
 
     var underlyingArgumentType: Any.Type!
+    var descriptor: AnyTypeDescriptor {
+        get { return underlyingDescriptor }
+        set(value) { underlyingDescriptor = value }
+    }
+
+    var underlyingDescriptor: AnyTypeDescriptor!
 
     // MARK: - matches
 

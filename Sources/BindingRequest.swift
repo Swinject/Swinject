@@ -3,7 +3,7 @@
 //
 
 public struct BindingRequest<Descriptor, Context, Argument> where Descriptor: TypeDescriptor {
-    let key: BindingKey<Descriptor, Argument>
+    let key: BindingKey<Descriptor, Context, Argument>
     let context: Context
     let argument: Argument
 }

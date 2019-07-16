@@ -65,7 +65,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
             it("matches binding with correct key") {
                 key.matchesReturnValue = false
                 _ = try? swinject.instance(tagged: "tag") as Int
-                let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Int, String>, Void>
+                let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Int, String>, Void, Void>
                 let descriptor = otherKey?.descriptor as? Tagged<Int, String>
                 expect(descriptor?.tag) == "tag"
             }
@@ -140,7 +140,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("matches binding with correct key") {
             key.matchesReturnValue = true
             _ = try? swinject.provider(of: Any.self, tagged: "tag")()
-            let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Any, String>, Void>
+            let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Any, String>, Void, Void>
             let descriptor = otherKey?.descriptor as? Tagged<Any, String>
             expect(descriptor?.tag) == "tag"
         }
@@ -192,7 +192,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("matches binding with correct key") {
             key.matchesReturnValue = false
             _ = try? swinject.factory(tagged: "tag")("arg") as Int
-            let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Int, String>, String>
+            let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Int, String>, Void, String>
             let descriptor = otherKey?.descriptor as? Tagged<Int, String>
             expect(descriptor?.tag) == "tag"
         }
