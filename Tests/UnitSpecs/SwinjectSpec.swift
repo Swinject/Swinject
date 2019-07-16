@@ -109,16 +109,16 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("does not throw if binding matches provided type") {
             key.matchesReturnValue = true
             binding.instanceArgInjectorReturnValue = 42
-            expect { try swinject.provider(of: Int.self) }.notTo(throwError())
+            expect { try swinject.provider(of: Int.self)() }.notTo(throwError())
         }
         it("throws if missing binding for provided type") {
             key.matchesReturnValue = false
-            expect { try swinject.provider(of: Int.self) }.to(throwError())
+            expect { try swinject.provider(of: Int.self)() }.to(throwError())
         }
         it("does not request provided type until provider is called") {
             key.matchesReturnValue = true
             binding.instanceArgInjectorReturnValue = 42
-            _ = try? swinject.provider(of: Int.self)
+            _ = swinject.provider(of: Int.self)
             expect(binding.instanceArgInjectorCallsCount) == 0
         }
         it("returns instance from binding") {
@@ -130,6 +130,11 @@ class SwinjectSpec: QuickSpec { override func spec() {
             key.matchesReturnValue = true
             binding.instanceArgInjectorThrowableError = TestError()
             expect { try swinject.provider(of: Int.self)() }.to(throwError(errorType: TestError.self))
+        }
+        it("passes given argument to binding") {
+            key.matchesReturnValue = true
+            _ = try? swinject.provider(of: Any.self, arg: 42)()
+            expect(binding.instanceArgInjectorReceivedArguments?.arg as? Int) == 42
         }
     }
 } }
