@@ -34,34 +34,34 @@ extension BindingBuilder {
     }
 }
 
-public func instance<Type>(_ instance: Type) -> SimpleBinding<Type, Void, Void> {
+public func instance<Type>(_ instance: Type) -> SimpleBinding<Type, Any, Void> {
     SimpleBinding { _, _, _ in instance }
 }
 
-public func provider<Type>(_ builder: @escaping () throws -> Type) -> SimpleBinding<Type, Void, Void> {
+public func provider<Type>(_ builder: @escaping () throws -> Type) -> SimpleBinding<Type, Any, Void> {
     SimpleBinding { _, _, _ in try builder() }
 }
 
-public func provider<Type>(_ builder: @escaping (Resolver) throws -> Type) -> SimpleBinding<Type, Void, Void> {
+public func provider<Type>(_ builder: @escaping (Resolver) throws -> Type) -> SimpleBinding<Type, Any, Void> {
     SimpleBinding { r, _, _ in try builder(r) }
 }
 
-public func factory<Type, Arg1>(_ builder: @escaping (Resolver, Arg1) throws -> Type) -> SimpleBinding<Type, Void, Arg1> {
+public func factory<Type, Arg1>(_ builder: @escaping (Resolver, Arg1) throws -> Type) -> SimpleBinding<Type, Any, Arg1> {
     SimpleBinding { try builder($0, $2) }
 }
 
-public func factory<Type, Arg1, Arg2>(_ builder: @escaping (Resolver, Arg1, Arg2) throws -> Type) -> SimpleBinding<Type, Void, (Arg1, Arg2)> {
+public func factory<Type, Arg1, Arg2>(_ builder: @escaping (Resolver, Arg1, Arg2) throws -> Type) -> SimpleBinding<Type, Any, (Arg1, Arg2)> {
     SimpleBinding { try builder($0, $2.0, $2.1) }
 }
 
-public func factory<Type, Arg1, Arg2, Arg3>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3) throws -> Type) -> SimpleBinding<Type, Void, (Arg1, Arg2, Arg3)> {
+public func factory<Type, Arg1, Arg2, Arg3>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3) throws -> Type) -> SimpleBinding<Type, Any, (Arg1, Arg2, Arg3)> {
     SimpleBinding { try builder($0, $2.0, $2.1, $2.2) }
 }
 
-public func factory<Type, Arg1, Arg2, Arg3, Arg4>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4) throws -> Type) -> SimpleBinding<Type, Void, (Arg1, Arg2, Arg3, Arg4)> {
+public func factory<Type, Arg1, Arg2, Arg3, Arg4>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4) throws -> Type) -> SimpleBinding<Type, Any, (Arg1, Arg2, Arg3, Arg4)> {
     SimpleBinding { try builder($0, $2.0, $2.1, $2.2, $2.3) }
 }
 
-public func factory<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) throws -> Type) -> SimpleBinding<Type, Void, (Arg1, Arg2, Arg3, Arg4, Arg5)> {
+public func factory<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) throws -> Type) -> SimpleBinding<Type, Any, (Arg1, Arg2, Arg3, Arg4, Arg5)> {
     SimpleBinding { try builder($0, $2.0, $2.1, $2.2, $2.3, $2.4) }
 }

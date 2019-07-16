@@ -14,7 +14,7 @@ public protocol Binding: AnyBinding {
     func instance(arg: Argument, context: Context, resolver: Resolver) throws -> BoundType
 }
 
-extension Binding where Argument == Void, Context == Void {
+extension Binding where Argument == Void, Context == Any {
     func instance(resolver: Resolver) throws -> BoundType {
         try instance(arg: (), context: (), resolver: resolver)
     }
@@ -26,7 +26,7 @@ extension Binding where Argument == Void {
     }
 }
 
-extension Binding where Context == Void {
+extension Binding where Context == Any {
     func instance(arg: Argument, resolver: Resolver) throws -> BoundType {
         try instance(arg: arg, context: (), resolver: resolver)
     }

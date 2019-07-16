@@ -8,6 +8,10 @@ import Quick
 
 class BindingBuilderSpec: QuickSpec { override func spec() {
     describe("instance") {
+        it("produces binding with correct type signature") {
+            let binding = instance(42) as Any
+            expect(binding is SimpleBinding<Int, Any, Void>).to(beTrue())
+        }
         it("returns given instance") {
             let binding = instance(42)
             expect { try binding.instance(resolver: DummyResolver()) } == 42
@@ -16,6 +20,10 @@ class BindingBuilderSpec: QuickSpec { override func spec() {
     describe("provider") {
         // TODO: Can we reuse tests for with / without context?
         describe("without context") {
+            it("produces binding with correct type signature") {
+                let binding = provider { 42 } as Any
+                expect(binding is SimpleBinding<Int, Any, Void>).to(beTrue())
+            }
             it("returns instance made by provider method") {
                 let binding = provider { 42 }
                 expect { try binding.instance(resolver: DummyResolver()) } == 42
@@ -45,7 +53,7 @@ class BindingBuilderSpec: QuickSpec { override func spec() {
         }
         describe("contexted") {
             it("returns instance made by provider method") {
-                let binding = contexted(Void.self).provider { _, _ in 42 }
+                let binding = contexted(Any.self).provider { _, _ in 42 }
                 expect { try binding.instance(resolver: DummyResolver()) } == 42
             }
             it("does not call builder until instance is requested") {
@@ -56,7 +64,7 @@ class BindingBuilderSpec: QuickSpec { override func spec() {
             it("calls builder with given provider") {
                 var passedResolver: Resolver?
                 let resolver = DummyResolver()
-                let binding = contexted(Void.self).provider { r, _ in passedResolver = r }
+                let binding = contexted(Any.self).provider { r, _ in passedResolver = r }
                 _ = try? binding.instance(resolver: resolver)
                 expect(passedResolver) === resolver
             }
@@ -67,11 +75,11 @@ class BindingBuilderSpec: QuickSpec { override func spec() {
                 expect(passedContext) == 42
             }
             it("rethrows error from builder") {
-                let binding = contexted(Void.self).provider { _, _ in throw SwinjectError() }
+                let binding = contexted(Any.self).provider { _, _ in throw SwinjectError() }
                 expect { try binding.instance(resolver: DummyResolver()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let binding = contexted(Void.self).provider { _, _ in Person() }
+                let binding = contexted(Any.self).provider { _, _ in Person() }
                 let instance1 = try? binding.instance(resolver: DummyResolver())
                 let instance2 = try? binding.instance(resolver: DummyResolver())
                 expect(instance1) !== instance2
@@ -80,6 +88,10 @@ class BindingBuilderSpec: QuickSpec { override func spec() {
     }
     describe("factory") {
         describe("without context") {
+            it("produces binding with correct type signature") {
+                let binding = factory { (_, _: Void) in 42 } as Any
+                expect(binding is SimpleBinding<Int, Any, Void>).to(beTrue())
+            }
             it("returns instance made by builder method") {
                 let binding = factory { (_, _: Void) in 42 }
                 expect { try binding.instance(resolver: DummyResolver()) } == 42
@@ -137,18 +149,18 @@ class BindingBuilderSpec: QuickSpec { override func spec() {
         }
         describe("contexted") {
             it("returns instance made by builder method") {
-                let binding = contexted(Void.self).factory { (_, _, _: Void) in 42 }
+                let binding = contexted(Any.self).factory { (_, _, _: Void) in 42 }
                 expect { try binding.instance(resolver: DummyResolver()) } == 42
             }
             it("does not call builder until instance is requested") {
                 var called = false
-                _ = contexted(Void.self).factory { (_, _, _: Void) in called = true }
+                _ = contexted(Any.self).factory { (_, _, _: Void) in called = true }
                 expect(called).to(beFalse())
             }
             it("calls builder with given provider") {
                 var passedResolver: Resolver?
                 let resolver = DummyResolver()
-                let binding = contexted(Void.self).factory { (r, _, _: Void) in passedResolver = r }
+                let binding = contexted(Any.self).factory { (r, _, _: Void) in passedResolver = r }
                 _ = try? binding.instance(resolver: resolver)
                 expect(passedResolver) === resolver
             }
@@ -160,38 +172,38 @@ class BindingBuilderSpec: QuickSpec { override func spec() {
             }
             it("calls builder with given argument") {
                 var passedArgument: Int?
-                let binding = contexted(Void.self).factory { (_, _, arg: Int) in passedArgument = arg }
+                let binding = contexted(Any.self).factory { (_, _, arg: Int) in passedArgument = arg }
                 _ = try? binding.instance(arg: 42, resolver: DummyResolver())
                 expect(passedArgument) == 42
             }
             it("rethrows error from builder") {
-                let binding = contexted(Void.self).factory { (_, _, _: Void) in throw SwinjectError() }
+                let binding = contexted(Any.self).factory { (_, _, _: Void) in throw SwinjectError() }
                 expect { try binding.instance(resolver: DummyResolver()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let binding = contexted(Void.self).factory { (_, _, _: Void) in Person() }
+                let binding = contexted(Any.self).factory { (_, _, _: Void) in Person() }
                 let instance1 = try? binding.instance(resolver: DummyResolver())
                 let instance2 = try? binding.instance(resolver: DummyResolver())
                 expect(instance1) !== instance2
             }
             describe("multiple arguments") {
                 it("works with 2 arguments") {
-                    let binding = contexted(Void.self).factory { (_, _, _: Int, _: Double) in 42 }
+                    let binding = contexted(Any.self).factory { (_, _, _: Int, _: Double) in 42 }
                     let arguments = (1, 1.0)
                     expect { try binding.instance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 3 arguments") {
-                    let binding = contexted(Void.self).factory { (_, _, _: Int, _: Double, _: String) in 42 }
+                    let binding = contexted(Any.self).factory { (_, _, _: Int, _: Double, _: String) in 42 }
                     let arguments = (1, 1.0, "")
                     expect { try binding.instance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 4 arguments") {
-                    let binding = contexted(Void.self).factory { (_, _, _: Int, _: Double, _: String, _: Float) in 42 }
+                    let binding = contexted(Any.self).factory { (_, _, _: Int, _: Double, _: String, _: Float) in 42 }
                     let arguments = (1, 1.0, "", Float(1.0))
                     expect { try binding.instance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 5 arguments") {
-                    let binding = contexted(Void.self).factory { (_, _, _: Int, _: Double, _: String, _: Float, _: Int) in 42 }
+                    let binding = contexted(Any.self).factory { (_, _, _: Int, _: Double, _: String, _: Float, _: Int) in 42 }
                     let arguments = (1, 1.0, "", Float(1.0), 5)
                     expect { try binding.instance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
