@@ -4,7 +4,6 @@
 
 import func Swinject.bind
 import struct Swinject.NoTag
-import struct Swinject.ProviderBinding
 import struct Swinject.Tagged
 import struct Swinject.TypeBinder
 import protocol Swinject.TypeDescriptor
