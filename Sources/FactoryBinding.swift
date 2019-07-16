@@ -11,8 +11,8 @@ public struct FactoryBinding<Type, Argument>: Binding {
         self.builder = builder
     }
 
-    public func instance(arg: Argument, resolver provider: Resolver) throws -> Type {
-        try builder(provider, arg)
+    public func instance(arg: Argument, context _: Void, resolver: Resolver) throws -> Type {
+        try builder(resolver, arg)
     }
 }
 

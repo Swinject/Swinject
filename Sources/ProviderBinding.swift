@@ -12,7 +12,7 @@ public struct ProviderBinding<Type>: Binding {
         self.builder = builder
     }
 
-    public func instance(arg _: Void, resolver provider: Resolver) throws -> Type {
+    public func instance(arg _: Void, context: Void, resolver provider: Resolver) throws -> Type {
         try builder(provider)
     }
 }

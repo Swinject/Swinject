@@ -4,24 +4,37 @@
 
 // sourcery: AutoMockable
 public protocol AnyBinding {
-    func instance(arg: Any, resolver: Resolver) throws -> Any
+    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any
 }
 
 public protocol Binding: AnyBinding {
     associatedtype BoundType
     associatedtype Argument
-    func instance(arg: Argument, resolver: Resolver) throws -> BoundType
+    associatedtype Context
+    func instance(arg: Argument, context: Context, resolver: Resolver) throws -> BoundType
 }
 
-public extension Binding where Argument == Void {
+extension Binding where Argument == Void, Context == Void {
     func instance(resolver: Resolver) throws -> BoundType {
-        try instance(arg: (), resolver: resolver)
+        try instance(arg: (), context: (), resolver: resolver)
+    }
+}
+
+extension Binding where Argument == Void {
+    func instance(context: Context, resolver: Resolver) throws -> BoundType {
+        try instance(arg: (), context: context, resolver: resolver)
+    }
+}
+
+extension Binding where Context == Void {
+    func instance(arg: Argument, resolver: Resolver) throws -> BoundType {
+        try instance(arg: arg, context: (), resolver: resolver)
     }
 }
 
 public extension AnyBinding where Self: Binding {
-    func instance(arg: Any, resolver: Resolver) throws -> Any {
-        guard let arg = arg as? Argument else { throw SwinjectError() }
-        return try instance(arg: arg, resolver: resolver) as BoundType
+    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
+        guard let arg = arg as? Argument, let context = context as? Context else { throw SwinjectError() }
+        return try instance(arg: arg, context: context, resolver: resolver) as BoundType
     }
 }

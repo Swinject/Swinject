@@ -10,25 +10,25 @@
 class AnyBindingMock: AnyBinding {
     // MARK: - instance
 
-    var instanceArgResolverThrowableError: Error?
-    var instanceArgResolverCallsCount = 0
-    var instanceArgResolverCalled: Bool {
-        return instanceArgResolverCallsCount > 0
+    var instanceArgContextResolverThrowableError: Error?
+    var instanceArgContextResolverCallsCount = 0
+    var instanceArgContextResolverCalled: Bool {
+        return instanceArgContextResolverCallsCount > 0
     }
 
-    var instanceArgResolverReceivedArguments: (arg: Any, resolver: Resolver)?
-    var instanceArgResolverReceivedInvocations: [(arg: Any, resolver: Resolver)] = []
-    var instanceArgResolverReturnValue: Any!
-    var instanceArgResolverClosure: ((Any, Resolver) throws -> Any)?
+    var instanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver)?
+    var instanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver)] = []
+    var instanceArgContextResolverReturnValue: Any!
+    var instanceArgContextResolverClosure: ((Any, Any, Resolver) throws -> Any)?
 
-    func instance(arg: Any, resolver: Resolver) throws -> Any {
-        if let error = instanceArgResolverThrowableError {
+    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
+        if let error = instanceArgContextResolverThrowableError {
             throw error
         }
-        instanceArgResolverCallsCount += 1
-        instanceArgResolverReceivedArguments = (arg: arg, resolver: resolver)
-        instanceArgResolverReceivedInvocations.append((arg: arg, resolver: resolver))
-        return try instanceArgResolverClosure.map { try $0(arg, resolver) } ?? instanceArgResolverReturnValue
+        instanceArgContextResolverCallsCount += 1
+        instanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
+        instanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
+        return try instanceArgContextResolverClosure.map { try $0(arg, context, resolver) } ?? instanceArgContextResolverReturnValue
     }
 }
 

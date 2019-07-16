@@ -23,7 +23,7 @@ extension AnyBindingMock: Binding {
 }
 
 class DummyBinding<Argument>: Binding {
-    func instance(arg _: Argument, resolver _: Resolver) throws -> Any {
+    func instance(arg _: Argument, context: Void, resolver _: Resolver) throws -> Any {
         fatalError()
     }
 }
