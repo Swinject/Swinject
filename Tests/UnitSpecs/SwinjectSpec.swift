@@ -140,6 +140,13 @@ class SwinjectSpec: QuickSpec { override func spec() {
             _ = try? swinject.provider(of: Any.self, arg: 42)()
             expect(binding.instanceArgInjectorReceivedArguments?.arg as? Int) == 42
         }
+        it("uses given tag for the key matching") {
+            key.matchesReturnValue = true
+            _ = try? swinject.provider(of: Any.self, tagged: "tag")()
+            let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Any, String>, Void>
+            let descriptor = otherKey?.descriptor as? Tagged<Any, String>
+            expect(descriptor?.tag) == "tag"
+        }
     }
     describe("factory injection") {
         var swinject: Swinject!
@@ -184,6 +191,13 @@ class SwinjectSpec: QuickSpec { override func spec() {
             binding.instanceArgInjectorReturnValue = 42
             _ = try? swinject.factory(of: Int.self)("arg")
             expect(binding.instanceArgInjectorReceivedArguments?.arg as? String) == "arg"
+        }
+        it("uses given tag for the key matching") {
+            key.matchesReturnValue = false
+            _ = try? swinject.factory(tagged: "tag")("arg") as Int
+            let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Int, String>, String>
+            let descriptor = otherKey?.descriptor as? Tagged<Int, String>
+            expect(descriptor?.tag) == "tag"
         }
     }
 } }

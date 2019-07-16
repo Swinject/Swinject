@@ -37,11 +37,19 @@ public extension Injector {
         provider(tagged: NoTag(), arg: arg)
     }
 
+    func provider<Type, Tag: Equatable>(of _: Type.Type = Type.self, tagged tag: Tag) -> () throws -> Type {
+        provider(tagged: tag, arg: ())
+    }
+
     func provider<Type, Tag: Equatable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag, arg: Argument) -> () throws -> Type {
-        return { try self.instance(tagged: NoTag(), arg: arg) }
+        return { try self.instance(tagged: tag, arg: arg) }
     }
 
     func factory<Type, Argument>(of _: Type.Type = Type.self) -> (Argument) throws -> Type {
-        return { try self.instance(arg: $0) }
+        factory(tagged: NoTag())
+    }
+
+    func factory<Type, Tag: Equatable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag) -> (Argument) throws -> Type {
+        return { try self.instance(of: Type.self, tagged: tag, arg: $0) }
     }
 }
