@@ -109,11 +109,13 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("does not throw if binding matches provided type") {
             key.matchesReturnValue = true
             binding.instanceArgInjectorReturnValue = 42
-            expect { try swinject.provider(of: Int.self)() }.notTo(throwError())
+            let provider = swinject.provider() as () throws -> Int
+            expect { try provider() }.notTo(throwError())
         }
         it("throws if missing binding for provided type") {
             key.matchesReturnValue = false
-            expect { try swinject.provider(of: Int.self)() }.to(throwError())
+            let provider = swinject.provider() as () throws -> Int
+            expect { try provider() }.to(throwError())
         }
         it("does not request provided type until provider is called") {
             key.matchesReturnValue = true
@@ -124,17 +126,64 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("returns instance from binding") {
             key.matchesReturnValue = true
             binding.instanceArgInjectorReturnValue = 42
-            expect { try swinject.provider(of: Int.self)() } == 42
+            let provider = swinject.provider(of: Int.self)
+            expect { try provider() } == 42
         }
         it("rethrows binding error from provider") {
             key.matchesReturnValue = true
             binding.instanceArgInjectorThrowableError = TestError()
-            expect { try swinject.provider(of: Int.self)() }.to(throwError(errorType: TestError.self))
+            let provider = swinject.provider(of: Int.self)
+            expect { try provider() }.to(throwError(errorType: TestError.self))
         }
         it("passes given argument to binding") {
             key.matchesReturnValue = true
             _ = try? swinject.provider(of: Any.self, arg: 42)()
             expect(binding.instanceArgInjectorReceivedArguments?.arg as? Int) == 42
+        }
+    }
+    describe("factory injection") {
+        var swinject: Swinject!
+        var binding = AnyBindingMock()
+        var key = AnyBindingKeyMock()
+        beforeEach {
+            binding = AnyBindingMock()
+            key = AnyBindingKeyMock()
+            swinject = Swinject { BindingEntry<Any>(key: key, binding: binding) }
+        }
+        it("throws if missing binding for created type") {
+            key.matchesReturnValue = false
+            let factory = swinject.factory() as (String) throws -> Int
+            expect { try factory("arg") }.to(throwError())
+        }
+        it("does not throw if binding matches created type") {
+            key.matchesReturnValue = true
+            binding.instanceArgInjectorReturnValue = 42
+            let factory = swinject.factory() as (String) throws -> Int
+            expect { try factory("arg") }.notTo(throwError())
+        }
+        it("does not request created type until factory is called") {
+            key.matchesReturnValue = true
+            binding.instanceArgInjectorReturnValue = 42
+            _ = swinject.factory() as (String) throws -> Int
+            expect(binding.instanceArgInjectorCallsCount) == 0
+        }
+        it("rethrows binding error from factory") {
+            key.matchesReturnValue = true
+            binding.instanceArgInjectorThrowableError = TestError()
+            let factory = swinject.factory() as (String) throws -> Int
+            expect { try factory("arg") }.to(throwError(errorType: TestError.self))
+        }
+        it("returns instance from binding") {
+            key.matchesReturnValue = true
+            binding.instanceArgInjectorReturnValue = 42
+            let factory = swinject.factory() as (String) throws -> Int
+            expect { try factory("arg") } == 42
+        }
+        it("passes given factory argument to binding") {
+            key.matchesReturnValue = true
+            binding.instanceArgInjectorReturnValue = 42
+            _ = try? swinject.factory(of: Int.self)("arg")
+            expect(binding.instanceArgInjectorReceivedArguments?.arg as? String) == "arg"
         }
     }
 } }
