@@ -8,7 +8,7 @@ public protocol Injector {
 
 extension Injector {}
 
-// TODO: Overloads for multiple arguments
+// TODO: Overloads for multiple arguments & tag / notag combinations
 public extension Injector {
     func instance<Type>(of _: Type.Type = Type.self) throws -> Type {
         try instance(arg: ())
@@ -51,5 +51,17 @@ public extension Injector {
 
     func factory<Type, Tag: Equatable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag) -> (Argument) throws -> Type {
         return { try self.instance(of: Type.self, tagged: tag, arg: $0) }
+    }
+
+    func factory<Type, Arg1, Arg2>(of _: Type.Type = Type.self, arg: Arg1) -> (Arg2) throws -> Type {
+        return { try self.instance(of: Type.self, arg: (arg, $0)) }
+    }
+
+    func factory<Type, Arg1, Arg2, Arg3>(of _: Type.Type = Type.self, arg: Arg1) -> (Arg2, Arg3) throws -> Type {
+        return { try self.instance(of: Type.self, arg: (arg, $0, $1)) }
+    }
+
+    func factory<Type, Arg1, Arg2, Arg3>(of _: Type.Type = Type.self, args arg1: Arg1, _ arg2: Arg2) -> (Arg3) throws -> Type {
+        return { try self.instance(of: Type.self, arg: (arg1, arg2, $0)) }
     }
 }

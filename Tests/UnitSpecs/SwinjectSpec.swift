@@ -199,5 +199,31 @@ class SwinjectSpec: QuickSpec { override func spec() {
             let descriptor = otherKey?.descriptor as? Tagged<Int, String>
             expect(descriptor?.tag) == "tag"
         }
+        context("currying") {
+            beforeEach {
+                key.matchesReturnValue = true
+                binding.instanceArgInjectorReturnValue = 42
+            }
+            it("can curry 2-tuple as argument") {
+                _ = try? swinject.factory(arg: "arg1")("arg2") as Int
+                let receivedArg = binding.instanceArgInjectorReceivedArguments?.arg as? (String, String)
+                expect(receivedArg?.0) == "arg1"
+                expect(receivedArg?.1) == "arg2"
+            }
+            it("can curry 3-tuple as 1 / 2 argument") {
+                _ = try? swinject.factory(arg: "arg1")(2, "arg3") as Int
+                let receivedArg = binding.instanceArgInjectorReceivedArguments?.arg as? (String, Int, String)
+                expect(receivedArg?.0) == "arg1"
+                expect(receivedArg?.1) == 2
+                expect(receivedArg?.2) == "arg3"
+            }
+            it("can curry 3-tuple as 2 / 1 argument") {
+                _ = try? swinject.factory(args: "arg1", 2)("arg3") as Int
+                let receivedArg = binding.instanceArgInjectorReceivedArguments?.arg as? (String, Int, String)
+                expect(receivedArg?.0) == "arg1"
+                expect(receivedArg?.1) == 2
+                expect(receivedArg?.2) == "arg3"
+            }
+        }
     }
 } }
