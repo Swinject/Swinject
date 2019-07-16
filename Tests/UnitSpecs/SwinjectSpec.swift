@@ -62,6 +62,13 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 _ = try? swinject.instance(of: Any.self)
                 expect(binding.instanceArgContextResolverReceivedArguments?.resolver is Swinject).to(beTrue())
             }
+            it("matches binding with correct key") {
+                key.matchesReturnValue = false
+                _ = try? swinject.instance(tagged: "tag") as Int
+                let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Int, String>, Void>
+                let descriptor = otherKey?.descriptor as? Tagged<Int, String>
+                expect(descriptor?.tag) == "tag"
+            }
         }
         context("multiple bindings") {
             var swinject: Swinject!
@@ -130,7 +137,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
             let provider = swinject.provider(of: Int.self)
             expect { try provider() }.to(throwError(errorType: TestError.self))
         }
-        it("uses given tag for the key matching") {
+        it("matches binding with correct key") {
             key.matchesReturnValue = true
             _ = try? swinject.provider(of: Any.self, tagged: "tag")()
             let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Any, String>, Void>
@@ -182,7 +189,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
             _ = try? swinject.factory(of: Int.self)("arg")
             expect(binding.instanceArgContextResolverReceivedArguments?.arg as? String) == "arg"
         }
-        it("uses given tag for the key matching") {
+        it("matches binding with correct key") {
             key.matchesReturnValue = false
             _ = try? swinject.factory(tagged: "tag")("arg") as Int
             let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Int, String>, String>
