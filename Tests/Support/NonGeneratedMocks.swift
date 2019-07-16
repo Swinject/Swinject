@@ -5,11 +5,7 @@
 @testable import Swinject
 
 class DummyResolver: Resolver {
-    func resolve<Descriptor, Argument>(_ _: BindingRequest<Descriptor, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        fatalError()
-    }
-
-    func provider<Descriptor, Argument>(for _: BindingRequest<Descriptor, Argument>) throws -> () throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+    func resolve<Descriptor, Context, Argument>(_: BindingRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         fatalError()
     }
 }

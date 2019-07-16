@@ -25,7 +25,7 @@ public extension Swinject {
 }
 
 extension Swinject: Resolver {
-    public func resolve<Descriptor, Argument>(_ request: BindingRequest<Descriptor, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+    public func resolve<Descriptor, Context, Argument>(_ request: BindingRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         try instance(from: findBinding(for: request.key), arg: request.argument)
     }
 

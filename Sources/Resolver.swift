@@ -3,7 +3,7 @@
 //
 
 public protocol Resolver {
-    func resolve<Descriptor, Argument>(_ request: BindingRequest<Descriptor, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
+    func resolve<Descriptor, Context, Argument>(_ request: BindingRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
 }
 
 // TODO: Overloads for multiple arguments & tag / notag combinations
