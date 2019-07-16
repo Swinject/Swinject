@@ -6,13 +6,13 @@
 public struct ProviderBinding<Type>: Binding {
     public typealias BoundType = Type
 
-    private let builder: (Injector) throws -> Type
+    private let builder: (Resolver) throws -> Type
 
-    init(_ builder: @escaping (Injector) throws -> Type) {
+    init(_ builder: @escaping (Resolver) throws -> Type) {
         self.builder = builder
     }
 
-    public func instance(arg _: Void, injector provider: Injector) throws -> Type {
+    public func instance(arg _: Void, resolver provider: Resolver) throws -> Type {
         try builder(provider)
     }
 }
@@ -21,6 +21,6 @@ public func provider<Type>(_ builder: @escaping () throws -> Type) -> ProviderBi
     ProviderBinding { _ in try builder() }
 }
 
-public func provider<Type>(_ builder: @escaping (Injector) throws -> Type) -> ProviderBinding<Type> {
+public func provider<Type>(_ builder: @escaping (Resolver) throws -> Type) -> ProviderBinding<Type> {
     ProviderBinding(builder)
 }

@@ -24,14 +24,9 @@ public extension Swinject {
     }
 }
 
-extension Swinject: Injector {
-    public func instance<Descriptor, Argument>(for request: BindingRequest<Descriptor, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+extension Swinject: Resolver {
+    public func resolve<Descriptor, Argument>(_ request: BindingRequest<Descriptor, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         try instance(from: findBinding(for: request.key), arg: request.argument)
-    }
-
-    public func provider<Descriptor, Argument>(for request: BindingRequest<Descriptor, Argument>) throws -> () throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        let binding = try findBinding(for: request.key)
-        return { try self.instance(from: binding, arg: request.argument) }
     }
 
     private func findBinding(for key: AnyBindingKey) throws -> AnyBinding {
@@ -41,6 +36,6 @@ extension Swinject: Injector {
     }
 
     private func instance<Type, Argument>(from binding: AnyBinding, arg: Argument) throws -> Type {
-        try binding.instance(arg: arg, injector: self) as? Type ?? { throw SwinjectError() }()
+        try binding.instance(arg: arg, resolver: self) as? Type ?? { throw SwinjectError() }()
     }
 }

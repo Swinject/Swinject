@@ -10,25 +10,25 @@
 class AnyBindingMock: AnyBinding {
     // MARK: - instance
 
-    var instanceArgInjectorThrowableError: Error?
-    var instanceArgInjectorCallsCount = 0
-    var instanceArgInjectorCalled: Bool {
-        return instanceArgInjectorCallsCount > 0
+    var instanceArgResolverThrowableError: Error?
+    var instanceArgResolverCallsCount = 0
+    var instanceArgResolverCalled: Bool {
+        return instanceArgResolverCallsCount > 0
     }
 
-    var instanceArgInjectorReceivedArguments: (arg: Any, injector: Injector)?
-    var instanceArgInjectorReceivedInvocations: [(arg: Any, injector: Injector)] = []
-    var instanceArgInjectorReturnValue: Any!
-    var instanceArgInjectorClosure: ((Any, Injector) throws -> Any)?
+    var instanceArgResolverReceivedArguments: (arg: Any, resolver: Resolver)?
+    var instanceArgResolverReceivedInvocations: [(arg: Any, resolver: Resolver)] = []
+    var instanceArgResolverReturnValue: Any!
+    var instanceArgResolverClosure: ((Any, Resolver) throws -> Any)?
 
-    func instance(arg: Any, injector: Injector) throws -> Any {
-        if let error = instanceArgInjectorThrowableError {
+    func instance(arg: Any, resolver: Resolver) throws -> Any {
+        if let error = instanceArgResolverThrowableError {
             throw error
         }
-        instanceArgInjectorCallsCount += 1
-        instanceArgInjectorReceivedArguments = (arg: arg, injector: injector)
-        instanceArgInjectorReceivedInvocations.append((arg: arg, injector: injector))
-        return try instanceArgInjectorClosure.map { try $0(arg, injector) } ?? instanceArgInjectorReturnValue
+        instanceArgResolverCallsCount += 1
+        instanceArgResolverReceivedArguments = (arg: arg, resolver: resolver)
+        instanceArgResolverReceivedInvocations.append((arg: arg, resolver: resolver))
+        return try instanceArgResolverClosure.map { try $0(arg, resolver) } ?? instanceArgResolverReturnValue
     }
 }
 

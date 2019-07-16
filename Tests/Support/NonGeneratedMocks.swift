@@ -4,8 +4,8 @@
 
 @testable import Swinject
 
-class DummyInjector: Injector {
-    func instance<Descriptor, Argument>(for _: BindingRequest<Descriptor, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+class DummyResolver: Resolver {
+    func resolve<Descriptor, Argument>(_ _: BindingRequest<Descriptor, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         fatalError()
     }
 
@@ -23,7 +23,7 @@ extension AnyBindingMock: Binding {
 }
 
 class DummyBinding<Argument>: Binding {
-    func instance(arg _: Argument, injector _: Injector) throws -> Any {
+    func instance(arg _: Argument, resolver _: Resolver) throws -> Any {
         fatalError()
     }
 }
