@@ -38,7 +38,7 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         }
         it("produces entry if given value of descriptor type") {
             let entry = bbind(Int.self).with(42)
-            expect(entry.binding is SimpleBinding<Int, Void>).to(beTrue())
+            expect(entry.binding is SimpleBinding<Int, Void, Void>).to(beTrue())
         }
     }
     describe("& operator") {
@@ -56,7 +56,7 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         }
         it("produces entry provider if given value of descriptor type") {
             let entry = bbind(Int.self) & 42
-            expect(entry.binding is SimpleBinding<Int, Void>).to(beTrue())
+            expect(entry.binding is SimpleBinding<Int, Void, Void>).to(beTrue())
         }
     }
 } }
