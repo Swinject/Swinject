@@ -9,8 +9,8 @@ public struct ScopedBinding {
 }
 
 extension ScopedBinding: Binding {
-    public func matches(_: AnyBindingKey) -> Bool {
-        fatalError()
+    public func matches(_ key: AnyBindingKey) -> Bool {
+        self.key.matches(key)
     }
 
     public func instance(arg _: Any, context _: Any, resolver _: Resolver) throws -> Any {

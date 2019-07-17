@@ -26,4 +26,27 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
             expect(binding?.scope) === scope
         }
     }
+    describe("matching") {
+        var key = AnyBindingKeyMock()
+        var bindingKey = AnyBindingKeyMock()
+        var binding: ScopedBinding!
+        beforeEach {
+            key = AnyBindingKeyMock()
+            bindingKey = AnyBindingKeyMock()
+            bindingKey.matchesReturnValue = false
+            binding = ScopedBinding(key: bindingKey, maker: AnyInstanceMakerMock(), scope: AnyScopeMock())
+        }
+        it("passes the input key to the binding key") {
+            _ = binding.matches(key)
+            expect(bindingKey.matchesReceivedOther) === key
+        }
+        it("returns true if binding key matches") {
+            bindingKey.matchesReturnValue = true
+            expect(binding.matches(key)).to(beTrue())
+        }
+        it("returns false if binding key matches") {
+            bindingKey.matchesReturnValue = false
+            expect(binding.matches(key)).to(beFalse())
+        }
+    }
 } }
