@@ -28,12 +28,6 @@ extension ScopedBinding: Binding {
     }
 }
 
-private class NoResolver: Resolver {
-    func resolve<Descriptor, Context, Argument>(_: InstanceRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        fatalError()
-    }
-}
-
 extension ScopedBinding {
     public struct Builder<Type, AScope, Argument> where AScope: Scope {
         let scope: AScope
