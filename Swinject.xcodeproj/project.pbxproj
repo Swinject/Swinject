@@ -23,7 +23,6 @@
 		CD6DE54C22DF85AF00532D08 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54B22DF85AF00532D08 /* Scope.swift */; };
 		CD6DE54E22DF886F00532D08 /* ScopedInstanceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54D22DF886F00532D08 /* ScopedInstanceMaker.swift */; };
 		CD6DE55022DF8B2700532D08 /* ScopedInstanceMakerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54F22DF8B2700532D08 /* ScopedInstanceMakerSpec.swift */; };
-		CD6DE55222DF93A000532D08 /* BinderEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE55122DF93A000532D08 /* BinderEnvironment.swift */; };
 		CD6DE55322DF94ED00532D08 /* BinderEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE55122DF93A000532D08 /* BinderEnvironment.swift */; };
 		CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */; };
 		CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */; };
@@ -417,7 +416,6 @@
 				CDADF34022DB883A00C5D8DB /* GeneratedMocks.swift in Sources */,
 				CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */,
 				CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */,
-				CD6DE55222DF93A000532D08 /* BinderEnvironment.swift in Sources */,
 				CD6DE53D22DD30A100532D08 /* SimpleInstanceMakerSpec.swift in Sources */,
 				CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */,
 				CD6DE53522DD1C7300532D08 /* BindingKeySpec.swift in Sources */,

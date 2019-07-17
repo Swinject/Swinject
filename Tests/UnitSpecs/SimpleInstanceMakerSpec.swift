@@ -33,7 +33,7 @@ class SimpleInstanceMakerSpec: QuickSpec { override func spec() {
                 _ = provider { called = true }
                 expect(called).to(beFalse())
             }
-            it("calls builder with given provider") {
+            it("calls builder with given resolver") {
                 var passedResolver: Resolver?
                 let resolver = DummyResolver()
                 let maker = provider { passedResolver = $0 }
@@ -61,7 +61,7 @@ class SimpleInstanceMakerSpec: QuickSpec { override func spec() {
                 _ = provider { called = true }
                 expect(called).to(beFalse())
             }
-            it("calls builder with given provider") {
+            it("calls builder with given resolver") {
                 var passedResolver: Resolver?
                 let resolver = DummyResolver()
                 let maker = contexted(Any.self).provider { r, _ in passedResolver = r }
@@ -101,7 +101,7 @@ class SimpleInstanceMakerSpec: QuickSpec { override func spec() {
                 _ = factory { (_, _: Void) in called = true }
                 expect(called).to(beFalse())
             }
-            it("calls builder with given provider") {
+            it("calls builder with given resolver") {
                 var passedResolver: Resolver?
                 let resolver = DummyResolver()
                 let maker = factory { (r, _: Void) in passedResolver = r }
@@ -157,7 +157,7 @@ class SimpleInstanceMakerSpec: QuickSpec { override func spec() {
                 _ = contexted(Any.self).factory { (_, _, _: Void) in called = true }
                 expect(called).to(beFalse())
             }
-            it("calls builder with given provider") {
+            it("calls builder with given resolver") {
                 var passedResolver: Resolver?
                 let resolver = DummyResolver()
                 let maker = contexted(Any.self).factory { (r, _, _: Void) in passedResolver = r }

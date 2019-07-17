@@ -16,7 +16,7 @@ public struct SimpleInstanceMaker<Type, Context, Argument>: InstanceMaker {
     }
 }
 
-public extension BinderEnvironment {
+public extension BinderEnvironment where AScope == Void {
     func provider<Type>(_ builder: @escaping (Resolver, Context) throws -> Type) -> SimpleInstanceMaker<Type, Context, Void> {
         .init { r, c, _ in try builder(r, c) }
     }

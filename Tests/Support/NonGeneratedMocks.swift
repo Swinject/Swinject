@@ -34,3 +34,23 @@ extension AnyResolverMock: Resolver {
         try resolve(request as Any) as! Descriptor.BaseType
     }
 }
+
+extension ScopeMock {
+    typealias Context = Any
+}
+
+// sourcery: AutoMockable
+protocol AnyScopeRegistry {
+    func register(_ instance: Any, for key: ScopeRegistryKey)
+    func instance(for key: ScopeRegistryKey) -> Any?
+}
+
+extension AnyScopeRegistryMock: ScopeRegistry {
+    func register<Type>(_ instance: Type, for key: ScopeRegistryKey) {
+        register(instance as Any, for: key)
+    }
+
+    func instance<Type>(for key: ScopeRegistryKey) -> Type? {
+        (instance(for: key) as Any?) as? Type
+    }
+}

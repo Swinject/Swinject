@@ -97,6 +97,45 @@ class AnyResolverMock: AnyResolver {
     }
 }
 
+class AnyScopeRegistryMock: AnyScopeRegistry {
+    // MARK: - register
+
+    var registerForCallsCount = 0
+    var registerForCalled: Bool {
+        return registerForCallsCount > 0
+    }
+
+    var registerForReceivedArguments: (instance: Any, key: ScopeRegistryKey)?
+    var registerForReceivedInvocations: [(instance: Any, key: ScopeRegistryKey)] = []
+    var registerForClosure: ((Any, ScopeRegistryKey) -> Void)?
+
+    func register(_ instance: Any, for key: ScopeRegistryKey) {
+        registerForCallsCount += 1
+        registerForReceivedArguments = (instance: instance, key: key)
+        registerForReceivedInvocations.append((instance: instance, key: key))
+        registerForClosure?(instance, key)
+    }
+
+    // MARK: - instance
+
+    var instanceForCallsCount = 0
+    var instanceForCalled: Bool {
+        return instanceForCallsCount > 0
+    }
+
+    var instanceForReceivedKey: ScopeRegistryKey?
+    var instanceForReceivedInvocations: [ScopeRegistryKey] = []
+    var instanceForReturnValue: Any?
+    var instanceForClosure: ((ScopeRegistryKey) -> Any?)?
+
+    func instance(for key: ScopeRegistryKey) -> Any? {
+        instanceForCallsCount += 1
+        instanceForReceivedKey = key
+        instanceForReceivedInvocations.append(key)
+        return instanceForClosure.map { $0(key) } ?? instanceForReturnValue
+    }
+}
+
 class AnyTypeDescriptorMock: AnyTypeDescriptor {
     // MARK: - matches
 
@@ -163,3 +202,31 @@ class BindingMock: Binding {
 }
 
 class ModuleIncludeEntryMock: ModuleIncludeEntry {}
+
+class ScopeMock: Scope {
+    var lock: Lock {
+        get { return underlyingLock }
+        set(value) { underlyingLock = value }
+    }
+
+    var underlyingLock: Lock!
+
+    // MARK: - registry
+
+    var registryForCallsCount = 0
+    var registryForCalled: Bool {
+        return registryForCallsCount > 0
+    }
+
+    var registryForReceivedContext: Context?
+    var registryForReceivedInvocations: [Context] = []
+    var registryForReturnValue: ScopeRegistry!
+    var registryForClosure: ((Context) -> ScopeRegistry)?
+
+    func registry(for context: Context) -> ScopeRegistry {
+        registryForCallsCount += 1
+        registryForReceivedContext = context
+        registryForReceivedInvocations.append(context)
+        return registryForClosure.map { $0(context) } ?? registryForReturnValue
+    }
+}
