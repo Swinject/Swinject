@@ -3,7 +3,7 @@
 //
 
 public protocol Resolver {
-    func resolve<Descriptor, Context, Argument>(_ request: MakerRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
+    func resolve<Descriptor, Context, Argument>(_ request: InstanceRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
 }
 
 public extension Resolver {

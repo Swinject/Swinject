@@ -8,9 +8,9 @@ struct ContextedResolver<Context> {
 }
 
 extension ContextedResolver: Resolver {
-    func resolve<Descriptor, Ctx, Argument>(_ request: MakerRequest<Descriptor, Ctx, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+    func resolve<Descriptor, Ctx, Argument>(_ request: InstanceRequest<Descriptor, Ctx, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         try resolver.resolve(
-            MakerRequest(
+            InstanceRequest(
                 key: BindingKey<Descriptor, Context, Argument>(descriptor: request.key.descriptor),
                 context: context,
                 argument: request.argument

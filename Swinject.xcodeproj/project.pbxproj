@@ -15,7 +15,7 @@
 		77906E7D22DF6A8D009CDCF4 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77906E7C22DF6A8D009CDCF4 /* Convenience.swift */; };
 		CD6DE53522DD1C7300532D08 /* BindingKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */; };
 		CD6DE53722DD1CE900532D08 /* BindingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53622DD1CE900532D08 /* BindingKey.swift */; };
-		CD6DE53922DD1D0A00532D08 /* BindingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53822DD1D0A00532D08 /* BindingRequest.swift */; };
+		CD6DE53922DD1D0A00532D08 /* InstanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53822DD1D0A00532D08 /* InstanceRequest.swift */; };
 		CD6DE53D22DD30A100532D08 /* SimpleInstanceMakerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53C22DD30A100532D08 /* SimpleInstanceMakerSpec.swift */; };
 		CD6DE54322DE65B500532D08 /* SimpleInstanceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54222DE65B500532D08 /* SimpleInstanceMaker.swift */; };
 		CD6DE54522DED11600532D08 /* ContextedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54422DED11600532D08 /* ContextedResolver.swift */; };
@@ -60,7 +60,7 @@
 		77906E7C22DF6A8D009CDCF4 /* Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKeySpec.swift; sourceTree = "<group>"; };
 		CD6DE53622DD1CE900532D08 /* BindingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKey.swift; sourceTree = "<group>"; };
-		CD6DE53822DD1D0A00532D08 /* BindingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingRequest.swift; sourceTree = "<group>"; };
+		CD6DE53822DD1D0A00532D08 /* InstanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRequest.swift; sourceTree = "<group>"; };
 		CD6DE53C22DD30A100532D08 /* SimpleInstanceMakerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInstanceMakerSpec.swift; sourceTree = "<group>"; };
 		CD6DE54222DE65B500532D08 /* SimpleInstanceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInstanceMaker.swift; sourceTree = "<group>"; };
 		CD6DE54422DED11600532D08 /* ContextedResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextedResolver.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 				CD6DE54422DED11600532D08 /* ContextedResolver.swift */,
 				CDD8380D22DA3B0D003E9909 /* Binding.swift */,
 				CD6DE53622DD1CE900532D08 /* BindingKey.swift */,
-				CD6DE53822DD1D0A00532D08 /* BindingRequest.swift */,
+				CD6DE53822DD1D0A00532D08 /* InstanceRequest.swift */,
 				CDD8381522DA4B55003E9909 /* Swinject.swift */,
 				CDD8381C22DA4E02003E9909 /* SwinjectError.swift */,
 				CDADF33422DB521400C5D8DB /* SwinjectModule.swift */,
@@ -379,7 +379,7 @@
 				CDADF33522DB521400C5D8DB /* SwinjectModule.swift in Sources */,
 				CDD8381022DA429F003E9909 /* Resolver.swift in Sources */,
 				CD6DE53722DD1CE900532D08 /* BindingKey.swift in Sources */,
-				CD6DE53922DD1D0A00532D08 /* BindingRequest.swift in Sources */,
+				CD6DE53922DD1D0A00532D08 /* InstanceRequest.swift in Sources */,
 				CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */,
 				CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */,
 				CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */,

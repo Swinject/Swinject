@@ -2,7 +2,7 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-struct SwinjectError: Error {
+public struct SwinjectError: Error {
     let file: String
     let line: Int
 
