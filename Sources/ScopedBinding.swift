@@ -13,7 +13,23 @@ extension ScopedBinding: Binding {
         self.key.matches(key)
     }
 
-    public func instance(arg _: Any, context _: Any, resolver _: Resolver) throws -> Any {
+    public func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
+        try scope.lock.sync {
+            let registry = scope.registry(for: context)
+            let key = ScopeRegistryKey(descriptor: self.key.descriptor, argument: arg)
+            if let instance = registry.instance(for: key) as Any? {
+                return instance
+            } else {
+                let newInstance = try maker.makeInstance(arg: arg, context: context, resolver: resolver)
+                registry.register(newInstance, for: key)
+                return newInstance
+            }
+        }
+    }
+}
+
+private class NoResolver: Resolver {
+    func resolve<Descriptor, Context, Argument>(_: InstanceRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         fatalError()
     }
 }

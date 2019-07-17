@@ -19,14 +19,20 @@ extension Scope {
     }
 }
 
-public protocol Lock {}
-
-public protocol ScopeRegistry {
-    func register<Type>(_ instance: Type, for key: ScopeRegistryKey)
-    func instance<Type>(for key: ScopeRegistryKey) -> Type?
+public protocol Lock {
+    func sync<T>(_ action: () throws -> T) rethrows -> T
 }
 
-public struct ScopeRegistryKey {}
+// sourcery: AutoMockable
+public protocol ScopeRegistry {
+    func register(_ instance: Any, for key: ScopeRegistryKey)
+    func instance(for key: ScopeRegistryKey) -> Any?
+}
+
+public struct ScopeRegistryKey {
+    let descriptor: AnyTypeDescriptor
+    let argument: Any
+}
 
 public class ImplicitScope: Scope {
     public typealias Context = Any

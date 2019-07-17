@@ -146,45 +146,6 @@ class AnyScopeMock: AnyScope {
     }
 }
 
-class AnyScopeRegistryMock: AnyScopeRegistry {
-    // MARK: - register
-
-    var registerForCallsCount = 0
-    var registerForCalled: Bool {
-        return registerForCallsCount > 0
-    }
-
-    var registerForReceivedArguments: (instance: Any, key: ScopeRegistryKey)?
-    var registerForReceivedInvocations: [(instance: Any, key: ScopeRegistryKey)] = []
-    var registerForClosure: ((Any, ScopeRegistryKey) -> Void)?
-
-    func register(_ instance: Any, for key: ScopeRegistryKey) {
-        registerForCallsCount += 1
-        registerForReceivedArguments = (instance: instance, key: key)
-        registerForReceivedInvocations.append((instance: instance, key: key))
-        registerForClosure?(instance, key)
-    }
-
-    // MARK: - instance
-
-    var instanceForCallsCount = 0
-    var instanceForCalled: Bool {
-        return instanceForCallsCount > 0
-    }
-
-    var instanceForReceivedKey: ScopeRegistryKey?
-    var instanceForReceivedInvocations: [ScopeRegistryKey] = []
-    var instanceForReturnValue: Any?
-    var instanceForClosure: ((ScopeRegistryKey) -> Any?)?
-
-    func instance(for key: ScopeRegistryKey) -> Any? {
-        instanceForCallsCount += 1
-        instanceForReceivedKey = key
-        instanceForReceivedInvocations.append(key)
-        return instanceForClosure.map { $0(key) } ?? instanceForReturnValue
-    }
-}
-
 class AnyTypeDescriptorMock: AnyTypeDescriptor {
     // MARK: - matches
 
@@ -251,3 +212,42 @@ class BindingMock: Binding {
 }
 
 class ModuleIncludeEntryMock: ModuleIncludeEntry {}
+
+class ScopeRegistryMock: ScopeRegistry {
+    // MARK: - register
+
+    var registerForCallsCount = 0
+    var registerForCalled: Bool {
+        return registerForCallsCount > 0
+    }
+
+    var registerForReceivedArguments: (instance: Any, key: ScopeRegistryKey)?
+    var registerForReceivedInvocations: [(instance: Any, key: ScopeRegistryKey)] = []
+    var registerForClosure: ((Any, ScopeRegistryKey) -> Void)?
+
+    func register(_ instance: Any, for key: ScopeRegistryKey) {
+        registerForCallsCount += 1
+        registerForReceivedArguments = (instance: instance, key: key)
+        registerForReceivedInvocations.append((instance: instance, key: key))
+        registerForClosure?(instance, key)
+    }
+
+    // MARK: - instance
+
+    var instanceForCallsCount = 0
+    var instanceForCalled: Bool {
+        return instanceForCallsCount > 0
+    }
+
+    var instanceForReceivedKey: ScopeRegistryKey?
+    var instanceForReceivedInvocations: [ScopeRegistryKey] = []
+    var instanceForReturnValue: Any?
+    var instanceForClosure: ((ScopeRegistryKey) -> Any?)?
+
+    func instance(for key: ScopeRegistryKey) -> Any? {
+        instanceForCallsCount += 1
+        instanceForReceivedKey = key
+        instanceForReceivedInvocations.append(key)
+        return instanceForClosure.map { $0(key) } ?? instanceForReturnValue
+    }
+}

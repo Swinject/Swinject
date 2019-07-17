@@ -45,22 +45,6 @@ class DummyScope<Context>: Scope {
 }
 
 // sourcery: AutoMockable
-protocol AnyScopeRegistry {
-    func register(_ instance: Any, for key: ScopeRegistryKey)
-    func instance(for key: ScopeRegistryKey) -> Any?
-}
-
-extension AnyScopeRegistryMock: ScopeRegistry {
-    func register<Type>(_ instance: Type, for key: ScopeRegistryKey) {
-        register(instance as Any, for: key)
-    }
-
-    func instance<Type>(for key: ScopeRegistryKey) -> Type? {
-        (instance(for: key) as Any?) as? Type
-    }
-}
-
-// sourcery: AutoMockable
 protocol AnyBindningMaker {
     func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding
 }
@@ -70,5 +54,14 @@ extension AnyBindningMakerMock: BindingMaker {
 
     func makeBinding<Descriptor>(for descriptor: Descriptor) -> Binding where Descriptor: TypeDescriptor {
         makeBinding(for: descriptor as AnyTypeDescriptor)
+    }
+}
+
+class ReplayLock: Lock {
+    var syncCallsCount = 0
+
+    func sync<T>(_ action: () throws -> T) rethrows -> T {
+        syncCallsCount += 1
+        return try action()
     }
 }

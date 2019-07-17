@@ -16,7 +16,7 @@ public protocol InstanceMaker: AnyInstanceMaker {
     func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> MadeType
 }
 
-public extension AnyInstanceMaker where Self: InstanceMaker {
+public extension InstanceMaker {
     func makeInstance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         guard let arg = arg as? Argument, let context = context as? Context else { throw SwinjectError() }
         return try makeInstance(arg: arg, context: context, resolver: resolver) as MadeType
