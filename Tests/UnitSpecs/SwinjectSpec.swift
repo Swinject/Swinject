@@ -69,6 +69,11 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 let descriptor = otherKey?.descriptor as? Tagged<Int, String>
                 expect(descriptor?.tag) == "tag"
             }
+            it("matches binding with correct context") {
+                key.matchesReturnValue = false
+                _ = try? swinject.on("context").instance() as Int
+                expect(key.matchesReceivedOther?.contextType is String.Type).to(beTrue())
+            }
         }
         context("multiple bindings") {
             var swinject: Swinject!
@@ -144,6 +149,16 @@ class SwinjectSpec: QuickSpec { override func spec() {
             let descriptor = otherKey?.descriptor as? Tagged<Any, String>
             expect(descriptor?.tag) == "tag"
         }
+        it("matches binding with correct context") {
+            key.matchesReturnValue = false
+            _ = try? swinject.on("context").provider()() as Int
+            expect(key.matchesReceivedOther?.contextType is String.Type).to(beTrue())
+        }
+        it("passes given context to the bidndning") {
+            key.matchesReturnValue = true
+            _ = try? swinject.on("context").provider()() as Int
+            expect(binding.instanceArgContextResolverReceivedArguments?.context as? String) == "context"
+        }
     }
     describe("factory injection") {
         var swinject: Swinject!
@@ -195,6 +210,16 @@ class SwinjectSpec: QuickSpec { override func spec() {
             let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Int, String>, Void, String>
             let descriptor = otherKey?.descriptor as? Tagged<Int, String>
             expect(descriptor?.tag) == "tag"
+        }
+        it("matches binding with correct context") {
+            key.matchesReturnValue = false
+            _ = try? swinject.on("context").factory()("arg") as Int
+            expect(key.matchesReceivedOther?.contextType is String.Type).to(beTrue())
+        }
+        it("passes given context to the bidndning") {
+            key.matchesReturnValue = true
+            _ = try? swinject.on("context").factory()("arg") as Int
+            expect(binding.instanceArgContextResolverReceivedArguments?.context as? String) == "context"
         }
         context("currying") {
             beforeEach {
