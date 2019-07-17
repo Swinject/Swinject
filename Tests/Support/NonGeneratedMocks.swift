@@ -59,3 +59,16 @@ extension AnyScopeRegistryMock: ScopeRegistry {
         (instance(for: key) as Any?) as? Type
     }
 }
+
+// sourcery: AutoMockable
+protocol AnyBindningMaker {
+    func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding
+}
+
+extension AnyBindningMakerMock: BindingMaker {
+    typealias BoundType = Any
+
+    func makeBinding<Descriptor>(for descriptor: Descriptor) -> Binding where Descriptor: TypeDescriptor {
+        makeBinding(for: descriptor as AnyTypeDescriptor)
+    }
+}

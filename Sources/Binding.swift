@@ -9,5 +9,6 @@ public protocol Binding: SwinjectEntry {
 }
 
 public protocol BindingMaker {
+    associatedtype BoundType
     func makeBinding<Descriptor>(for descriptor: Descriptor) -> Binding where Descriptor: TypeDescriptor
 }

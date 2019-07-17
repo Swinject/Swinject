@@ -8,10 +8,11 @@ import Quick
 
 class TypeBinderSpec: QuickSpec { override func spec() {
     var descriptor = AnyTypeDescriptorMock()
-    var maker = AnyInstanceMakerMock()
+    var maker = AnyBindningMakerMock()
     beforeEach {
         descriptor = AnyTypeDescriptorMock()
-        maker = AnyInstanceMakerMock()
+        maker = AnyBindningMakerMock()
+        maker.makeBindingForReturnValue = BindingMock()
     }
     describe("bind") {
         it("descriptor has correct tag for tagged type") {
@@ -24,47 +25,33 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         }
     }
     describe("`with` method") {
-        it("produces binding with correct descriptor") {
-            let binding = bbind(descriptor).with(maker) as? SimpleBinding
-            expect(binding?.key.descriptor) === descriptor
+        it("passes descriptor to maker") {
+            _ = bbind(descriptor).with(maker)
+            expect(maker.makeBindingForReceivedDescriptor) === descriptor
         }
-        it("produces binding with correct argument type") {
-            let binding = bbind(Any.self).with(DummyMaker<Void, Int>()) as? SimpleBinding
-            expect(binding?.key.argumentType is Int.Type).to(beTrue())
+        it("returns binding from maker") {
+            let binding = BindingMock()
+            maker.makeBindingForReturnValue = binding
+            expect(bbind(descriptor).with(maker)) === binding
         }
-        it("produces binding with correct context type") {
-            let binding = bbind(Any.self).with(DummyMaker<Int, Void>()) as? SimpleBinding
-            expect(binding?.key.contextType is Int.Type).to(beTrue())
-        }
-        it("produces binding with correct maker") {
-            let binding = bbind(Any.self).with(maker) as? SimpleBinding
-            expect(binding?.maker) === maker
-        }
-        it("produces binding if given value of descriptor type") {
-            let binding = bbind(Int.self).with(42) as? SimpleBinding
-            expect(binding?.maker is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
+        it("works with passing instance directly") {
+            let binding = bbind(descriptor).with(42)
+            expect { try binding.instance(arg: (), context: (), resolver: DummyResolver()) as? Int } == 42
         }
     }
-    describe("& operator") {
-        it("produces binding with correct descriptor") {
-            let binding = bbind(descriptor) & maker as? SimpleBinding
-            expect(binding?.key.descriptor) === descriptor
+    describe("`&` method") {
+        it("passes descriptor to maker") {
+            _ = bbind(descriptor) & maker
+            expect(maker.makeBindingForReceivedDescriptor) === descriptor
         }
-        it("produces binding with correct argument type") {
-            let binding = bbind(Any.self) & DummyMaker<Void, Int>() as? SimpleBinding
-            expect(binding?.key.argumentType is Int.Type).to(beTrue())
+        it("returns binding from maker") {
+            let binding = BindingMock()
+            maker.makeBindingForReturnValue = binding
+            expect(bbind(descriptor) & maker) === binding
         }
-        it("produces binding with correct context type") {
-            let binding = bbind(Any.self) & DummyMaker<Int, Void>() as? SimpleBinding
-            expect(binding?.key.contextType is Int.Type).to(beTrue())
-        }
-        it("produces binding with correct maker") {
-            let binding = bbind(Any.self) & maker as? SimpleBinding
-            expect(binding?.maker) === maker
-        }
-        it("produces binding provider if given value of descriptor type") {
-            let binding = bbind(Int.self) & 42 as? SimpleBinding
-            expect(binding?.maker is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
+        it("works with passing instance directly") {
+            let binding = bbind(descriptor) & 42
+            expect { try binding.instance(arg: (), context: (), resolver: DummyResolver()) as? Int } == 42
         }
     }
 } }

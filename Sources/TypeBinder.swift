@@ -19,16 +19,16 @@ public func bind<Descriptor>(_ descriptor: Descriptor) -> TypeBinder<Descriptor>
 }
 
 public extension TypeBinder {
-    func with<SomeMaker>(_ maker: SomeMaker) -> Binding where SomeMaker: InstanceMaker, SomeMaker.MadeType == Descriptor.BaseType {
-        SimpleBinding(key: BindingKey<Descriptor, SomeMaker.Context, SomeMaker.Argument>(descriptor: descriptor), maker: maker)
+    func with<Maker>(_ maker: Maker) -> Binding where Maker: BindingMaker, Maker.BoundType == Descriptor.BaseType {
+        maker.makeBinding(for: descriptor)
     }
 
-    func with(_ anInstance: Descriptor.BaseType) -> Binding {
-        with(instance(anInstance))
+    func with(_ value: Descriptor.BaseType) -> Binding {
+        instance(value).makeBinding(for: descriptor)
     }
 }
 
-public func & <Descriptor, SomeMaker>(lhs: TypeBinder<Descriptor>, rhs: SomeMaker) -> Binding where SomeMaker: InstanceMaker, SomeMaker.MadeType == Descriptor.BaseType {
+public func & <Descriptor, Maker>(lhs: TypeBinder<Descriptor>, rhs: Maker) -> Binding where Maker: BindingMaker, Maker.BoundType == Descriptor.BaseType {
     lhs.with(rhs)
 }
 

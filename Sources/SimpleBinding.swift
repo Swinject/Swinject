@@ -36,6 +36,8 @@ extension SimpleBinding.Builder: InstanceMaker {
 }
 
 extension SimpleBinding.Builder: BindingMaker {
+    public typealias BoundType = Type
+
     public func makeBinding<Descriptor>(for descriptor: Descriptor) -> Binding where Descriptor: TypeDescriptor {
         SimpleBinding(
             key: BindingKey<Descriptor, Context, Argument>(descriptor: descriptor),
