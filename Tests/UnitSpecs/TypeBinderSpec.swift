@@ -42,7 +42,7 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         }
         it("produces binding if given value of descriptor type") {
             let binding = bbind(Int.self).with(42) as? SimpleBinding
-            expect(binding?.maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
+            expect(binding?.maker is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
         }
     }
     describe("& operator") {
@@ -64,7 +64,7 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         }
         it("produces binding provider if given value of descriptor type") {
             let binding = bbind(Int.self) & 42 as? SimpleBinding
-            expect(binding?.maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
+            expect(binding?.maker is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
         }
     }
 } }

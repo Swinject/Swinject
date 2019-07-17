@@ -12,7 +12,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         describe("instance") {
             it("produces maker with correct type signature") {
                 let maker = instance(42) as Any
-                expect(maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
+                expect(maker is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
             }
             it("returns given instance") {
                 let maker = instance(42)
@@ -22,7 +22,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         describe("provider") {
             it("produces maker with correct type signature") {
                 let maker = provider { 42 } as Any
-                expect(maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
+                expect(maker is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
             }
             it("returns instance made by provider method") {
                 let maker = provider { 42 }
@@ -54,7 +54,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         describe("factory") {
             it("produces maker with correct type signature") {
                 let maker = factory { (_, _: Void) in 42 } as Any
-                expect(maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
+                expect(maker is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
             }
             it("returns instance made by builder method") {
                 let maker = factory { (_, _: Void) in 42 }

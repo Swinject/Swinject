@@ -6,6 +6,6 @@ import Nimble
 import Quick
 @testable import Swinject
 
-class SimpleInstanceMakerSpec: QuickSpec { override func spec() {
+class SimpleBindingSpec: QuickSpec { override func spec() {
     //
 } }
