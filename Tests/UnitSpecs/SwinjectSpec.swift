@@ -226,11 +226,24 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 key.matchesReturnValue = true
                 binding.instanceArgContextResolverReturnValue = 42
             }
-            it("can curry 2-tuple as argument") {
+            it("can curry 2-tuple as 0 / 2 argument") {
+                _ = try? swinject.factory()("arg1", "arg2") as Int
+                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, String)
+                expect(receivedArg?.0) == "arg1"
+                expect(receivedArg?.1) == "arg2"
+            }
+            it("can curry 2-tuple as 1 / 1 argument") {
                 _ = try? swinject.factory(arg: "arg1")("arg2") as Int
                 let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, String)
                 expect(receivedArg?.0) == "arg1"
                 expect(receivedArg?.1) == "arg2"
+            }
+            it("can curry 3-tuple as 0 / 3 argument") {
+                _ = try? swinject.factory()("arg1", 2, "arg3") as Int
+                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, Int, String)
+                expect(receivedArg?.0) == "arg1"
+                expect(receivedArg?.1) == 2
+                expect(receivedArg?.2) == "arg3"
             }
             it("can curry 3-tuple as 1 / 2 argument") {
                 _ = try? swinject.factory(arg: "arg1")(2, "arg3") as Int

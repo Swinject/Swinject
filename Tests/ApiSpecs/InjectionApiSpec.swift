@@ -29,7 +29,7 @@ class InjectionApiSpec: QuickSpec { override func spec() {
         }
         expect { try swinject.instance(of: Pet.self) }.to(throwError())
     }
-    it("returns instance from bound dependency provider") {
+    it("returns instance if all dependencies are bound") {
         let swinject = Swinject {
             bbind(Pet.self) & provider { Pet(owner: try $0.instance()) }
             bbind(Person.self) & instance(person)
@@ -67,6 +67,7 @@ class InjectionApiSpec: QuickSpec { override func spec() {
         expect { try provider() } == 42
     }
     it("can inject instance factory") {
+        // FIXME: compiler segfaults if declaring this factory inside function builder
         let intFactory = factory { (r, arg: Int) in Int(try r.instance() as Double) + 5 * arg }
         let swinject = Swinject {
             bbind(Double.self) & 17.0
@@ -82,5 +83,35 @@ class InjectionApiSpec: QuickSpec { override func spec() {
         }
         expect { try swinject.provider(of: Int.self, arg: 5)() } == 42
         expect { try swinject.instance(of: Int.self, arg: 5) } == 42
+    }
+    it("can curry factory's arguments") {
+        let swinject = Swinject {
+            bbind(Int.self) & factory { (_, a1: Int, a2: Double, a3: String) in
+                a1 + Int(a2) + Int(a3)!
+            }
+        }
+        expect { try swinject.factory(of: Int.self)(11, 14.0, "17") } == 42
+        expect { try swinject.factory(of: Int.self, arg: 11)(14.0, "17") } == 42
+        expect { try swinject.factory(of: Int.self, args: 11, 14.0)("17") } == 42
+    }
+    it("can pass context to the bindings") {
+        // FIXME: compiler segfaults if declaring these providers inside function builder
+        let intProvider = contexted(String.self).provider { _, string in Int(string)! }
+        let doubleProvider = contexted(String.self).provider { _, string in Double(string)! }
+        let swinject = Swinject {
+            bbind(Int.self) & intProvider
+            bbind(Double.self) & doubleProvider
+        }
+        let contexted = swinject.on("42")
+        expect { try contexted.instance(of: Int.self) } == 42
+        expect { try contexted.instance(of: Double.self) } == 42
+        expect { try swinject.instance(of: Int.self) }.to(throwError())
+    }
+    it("can use binding without context in any context") {
+        let swinject = Swinject {
+            bbind(Int.self) & 42
+        }
+        expect { try swinject.on("context").instance() as Int } == 42
+        expect { try swinject.on(Person()).instance() as Int } == 42
     }
 } }

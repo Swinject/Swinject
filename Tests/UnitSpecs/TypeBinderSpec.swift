@@ -29,8 +29,12 @@ class TypeBinderSpec: QuickSpec { override func spec() {
             expect(entry.key.descriptor) === descriptor
         }
         it("produces entry with correct argument type") {
-            let entry = bbind(Any.self).with(DummyBinding<Int>())
+            let entry = bbind(Any.self).with(DummyBinding<Void, Int>())
             expect(entry.key.argumentType is Int.Type).to(beTrue())
+        }
+        it("produces entry with correct context type") {
+            let entry = bbind(Any.self).with(DummyBinding<Int, Void>())
+            expect(entry.key.contextType is Int.Type).to(beTrue())
         }
         it("produces entry with correct binding") {
             let entry = bbind(Any.self).with(binding)
@@ -47,8 +51,12 @@ class TypeBinderSpec: QuickSpec { override func spec() {
             expect(entry.key.descriptor) === descriptor
         }
         it("produces entry with correct argument type") {
-            let entry = bbind(Any.self) & DummyBinding<Int>()
+            let entry = bbind(Any.self) & DummyBinding<Void, Int>()
             expect(entry.key.argumentType is Int.Type).to(beTrue())
+        }
+        it("produces entry with correct context type") {
+            let entry = bbind(Any.self) & DummyBinding<Int, Void>()
+            expect(entry.key.contextType is Int.Type).to(beTrue())
         }
         it("produces entry with correct binding") {
             let entry = bbind(Any.self) & binding

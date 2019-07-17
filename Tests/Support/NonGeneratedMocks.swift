@@ -18,8 +18,8 @@ extension AnyBindingMock: Binding {
     typealias Argument = Any
 }
 
-class DummyBinding<Argument>: Binding {
-    func instance(arg _: Argument, context: Void, resolver _: Resolver) throws -> Any {
+class DummyBinding<Context, Argument>: Binding {
+    func instance(arg _: Argument, context: Context, resolver _: Resolver) throws -> Any {
         fatalError()
     }
 }
