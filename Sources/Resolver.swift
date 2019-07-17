@@ -6,7 +6,12 @@ public protocol Resolver {
     func resolve<Descriptor, Context, Argument>(_ request: BindingRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
 }
 
-// TODO: Overloads for multiple arguments & tag / notag combinations
+public extension Resolver {
+    func on<Context>(_ context: Context) -> Resolver {
+        ContextedResolver(context: context, resolver: self)
+    }
+}
+
 public extension Resolver {
     func instance<Type>(of _: Type.Type = Type.self) throws -> Type {
         try instance(tagged: NoTag())
@@ -15,7 +20,9 @@ public extension Resolver {
     func instance<Type, Tag: Equatable>(of _: Type.Type = Type.self, tagged tag: Tag) throws -> Type {
         try resolve(request(tag: tag, arg: ()))
     }
+}
 
+public extension Resolver {
     func provider<Type>(of _: Type.Type = Type.self) -> () throws -> Type {
         provider(tagged: NoTag())
     }
@@ -23,7 +30,10 @@ public extension Resolver {
     func provider<Type, Tag: Equatable>(of _: Type.Type = Type.self, tagged tag: Tag) -> () throws -> Type {
         return { try self.resolve(request(tag: tag, arg: ())) }
     }
+}
 
+// TODO: Overloads for multiple arguments & tag / notag combinations
+public extension Resolver {
     func factory<Type, Argument>(of _: Type.Type = Type.self) -> (Argument) throws -> Type {
         factory(tagged: NoTag())
     }

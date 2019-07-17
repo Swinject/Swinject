@@ -18,6 +18,8 @@
 		CD6DE53D22DD30A100532D08 /* BindingBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53C22DD30A100532D08 /* BindingBuilderSpec.swift */; };
 		CD6DE54122DE657500532D08 /* SimpleBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54022DE657400532D08 /* SimpleBinding.swift */; };
 		CD6DE54322DE65B500532D08 /* BindingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54222DE65B500532D08 /* BindingBuilder.swift */; };
+		CD6DE54522DED11600532D08 /* ContextedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54422DED11600532D08 /* ContextedResolver.swift */; };
+		CD6DE54722DED16400532D08 /* ContextedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54622DED16400532D08 /* ContextedResolverSpec.swift */; };
 		CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */; };
 		CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */; };
 		CDADF33522DB521400C5D8DB /* SwinjectModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF33422DB521400C5D8DB /* SwinjectModule.swift */; };
@@ -61,6 +63,10 @@
 		CD6DE53C22DD30A100532D08 /* BindingBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingBuilderSpec.swift; sourceTree = "<group>"; };
 		CD6DE54022DE657400532D08 /* SimpleBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleBinding.swift; sourceTree = "<group>"; };
 		CD6DE54222DE65B500532D08 /* BindingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingBuilder.swift; sourceTree = "<group>"; };
+		CD6DE54422DED11600532D08 /* ContextedResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextedResolver.swift; sourceTree = "<group>"; };
+		CD6DE54622DED16400532D08 /* ContextedResolverSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextedResolverSpec.swift; sourceTree = "<group>"; };
+		CD6DE54822DED4A100532D08 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
+		CD6DE54A22DED4A100532D08 /* .sourcery.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .sourcery.yml; sourceTree = "<group>"; };
 		CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonGeneratedMocks.swift; sourceTree = "<group>"; };
 		CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTree.swift; sourceTree = "<group>"; };
 		CDADF33422DB521400C5D8DB /* SwinjectModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectModule.swift; sourceTree = "<group>"; };
@@ -104,6 +110,8 @@
 		771BFC6622D5F83E00AFB237 = {
 			isa = PBXGroup;
 			children = (
+				CD6DE54A22DED4A100532D08 /* .sourcery.yml */,
+				CD6DE54822DED4A100532D08 /* .swiftformat */,
 				771BFC7222D5F83E00AFB237 /* Sources */,
 				771BFC7D22D5F83E00AFB237 /* Tests */,
 				CDADF33B22DB878C00C5D8DB /* Templates */,
@@ -133,6 +141,7 @@
 				CD6DE54022DE657400532D08 /* SimpleBinding.swift */,
 				CD6DE54222DE65B500532D08 /* BindingBuilder.swift */,
 				CDD8380F22DA429F003E9909 /* Resolver.swift */,
+				CD6DE54422DED11600532D08 /* ContextedResolver.swift */,
 				CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */,
 				CD6DE53622DD1CE900532D08 /* BindingKey.swift */,
 				CD6DE53822DD1D0A00532D08 /* BindingRequest.swift */,
@@ -182,6 +191,7 @@
 				CD6DE53C22DD30A100532D08 /* BindingBuilderSpec.swift */,
 				CDD8381922DA4C9F003E9909 /* SwinjectSpec.swift */,
 				CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */,
+				CD6DE54622DED16400532D08 /* ContextedResolverSpec.swift */,
 			);
 			path = UnitSpecs;
 			sourceTree = "<group>";
@@ -374,6 +384,7 @@
 				CD6DE54122DE657500532D08 /* SimpleBinding.swift in Sources */,
 				CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */,
 				CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */,
+				CD6DE54522DED11600532D08 /* ContextedResolver.swift in Sources */,
 				CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */,
 				CDD8380522DA307F003E9909 /* TypeBinder.swift in Sources */,
 				CDD8380E22DA3B0D003E9909 /* BindingEntry.swift in Sources */,
@@ -384,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD6DE54722DED16400532D08 /* ContextedResolverSpec.swift in Sources */,
 				CDD8381F22DA4F6F003E9909 /* Utils.swift in Sources */,
 				CDD8381B22DA4CBE003E9909 /* SwinjectSpec.swift in Sources */,
 				CDADF34022DB883A00C5D8DB /* GeneratedMocks.swift in Sources */,

@@ -23,3 +23,14 @@ class DummyBinding<Argument>: Binding {
         fatalError()
     }
 }
+
+// sourcery: AutoMockable
+protocol AnyResolver {
+    func resolve(_ request: Any) throws -> Any
+}
+
+extension AnyResolverMock: Resolver {
+    func resolve<Descriptor, Context, Argument>(_ request: BindingRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+        try resolve(request as Any) as! Descriptor.BaseType
+    }
+}

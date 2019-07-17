@@ -87,6 +87,31 @@ class AnyBindingKeyMock: AnyBindingKey {
     }
 }
 
+class AnyResolverMock: AnyResolver {
+    // MARK: - resolve
+
+    var resolveThrowableError: Error?
+    var resolveCallsCount = 0
+    var resolveCalled: Bool {
+        return resolveCallsCount > 0
+    }
+
+    var resolveReceivedRequest: Any?
+    var resolveReceivedInvocations: [Any] = []
+    var resolveReturnValue: Any!
+    var resolveClosure: ((Any) throws -> Any)?
+
+    func resolve(_ request: Any) throws -> Any {
+        if let error = resolveThrowableError {
+            throw error
+        }
+        resolveCallsCount += 1
+        resolveReceivedRequest = request
+        resolveReceivedInvocations.append(request)
+        return try resolveClosure.map { try $0(request) } ?? resolveReturnValue
+    }
+}
+
 class AnyTypeDescriptorMock: AnyTypeDescriptor {
     // MARK: - matches
 
