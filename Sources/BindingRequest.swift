@@ -2,12 +2,12 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public struct BindingRequest<Descriptor, Context, Argument> where Descriptor: TypeDescriptor {
-    let key: BindingKey<Descriptor, Context, Argument>
+public struct MakerRequest<Descriptor, Context, Argument> where Descriptor: TypeDescriptor {
+    let key: MakerKey<Descriptor, Context, Argument>
     let context: Context
     let argument: Argument
 }
 
-func request<Type, Tag: Equatable, Argument>(type _: Type.Type = Type.self, tag: Tag, arg: Argument) -> BindingRequest<Tagged<Type, Tag>, Void, Argument> {
-    BindingRequest(key: BindingKey(descriptor: Tagged<Type, Tag>(tag: tag)), context: (), argument: arg)
+func request<Type, Tag: Equatable, Argument>(type _: Type.Type = Type.self, tag: Tag, arg: Argument) -> MakerRequest<Tagged<Type, Tag>, Void, Argument> {
+    MakerRequest(key: MakerKey(descriptor: Tagged<Type, Tag>(tag: tag)), context: (), argument: arg)
 }

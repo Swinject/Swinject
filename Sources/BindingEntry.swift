@@ -3,13 +3,13 @@
 //
 
 // sourcery: AutoMockable
-protocol AnyBindingEntry: SwinjectEntry {
-    var key: AnyBindingKey { get }
-    var binding: AnyBinding { get }
+protocol AnyMakerEntry: SwinjectEntry {
+    var key: AnyMakerKey { get }
+    var maker: AnyInstanceMaker { get }
 }
 
 // TODO: Make this internal
-public struct BindingEntry<Type>: AnyBindingEntry {
-    let key: AnyBindingKey
-    let binding: AnyBinding
+public struct MakerEntry<Type>: AnyMakerEntry {
+    let key: AnyMakerKey
+    let maker: AnyInstanceMaker
 }

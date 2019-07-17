@@ -5,7 +5,7 @@
 @testable import Swinject
 
 class DummyResolver: Resolver {
-    func resolve<Descriptor, Context, Argument>(_: BindingRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+    func resolve<Descriptor, Context, Argument>(_: MakerRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         fatalError()
     }
 }
@@ -14,12 +14,12 @@ extension AnyTypeDescriptorMock: TypeDescriptor {
     typealias BaseType = Any
 }
 
-extension AnyBindingMock: Binding {
+extension AnyInstanceMakerMock: InstanceMaker {
     typealias Argument = Any
 }
 
-class DummyBinding<Context, Argument>: Binding {
-    func instance(arg _: Argument, context: Context, resolver _: Resolver) throws -> Any {
+class DummyMaker<Context, Argument>: InstanceMaker {
+    func makeInstance(arg _: Argument, context: Context, resolver _: Resolver) throws -> Any {
         fatalError()
     }
 }
@@ -30,7 +30,7 @@ protocol AnyResolver {
 }
 
 extension AnyResolverMock: Resolver {
-    func resolve<Descriptor, Context, Argument>(_ request: BindingRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+    func resolve<Descriptor, Context, Argument>(_ request: MakerRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         try resolve(request as Any) as! Descriptor.BaseType
     }
 }

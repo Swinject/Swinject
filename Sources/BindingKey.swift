@@ -3,20 +3,20 @@
 //
 
 // sourcery: AutoMockable
-protocol AnyBindingKey {
+protocol AnyMakerKey {
     var contextType: Any.Type { get }
     var argumentType: Any.Type { get }
     var descriptor: AnyTypeDescriptor { get }
 
-    func matches(_ other: AnyBindingKey) -> Bool
+    func matches(_ other: AnyMakerKey) -> Bool
 }
 
-public struct BindingKey<Descriptor, Context, Argument>: AnyBindingKey where Descriptor: TypeDescriptor {
+public struct MakerKey<Descriptor, Context, Argument>: AnyMakerKey where Descriptor: TypeDescriptor {
     let contextType: Any.Type = Context.self
     let argumentType: Any.Type = Argument.self
     let descriptor: AnyTypeDescriptor
 
-    func matches(_ other: AnyBindingKey) -> Bool {
+    func matches(_ other: AnyMakerKey) -> Bool {
         descriptor.matches(other.descriptor)
             && (contextType == other.contextType || contextType == Any.self)
             && argumentType == other.argumentType

@@ -22,20 +22,20 @@ class ContextedResolverSpec: QuickSpec { override func spec() {
         }
         it("calls wrapped resolver with given type descriptor") {
             let descriptor = AnyTypeDescriptorMock()
-            let request = BindingRequest<AnyTypeDescriptorMock, Void, Void>(key: BindingKey(descriptor: descriptor), context: (), argument: ())
+            let request = MakerRequest<AnyTypeDescriptorMock, Void, Void>(key: MakerKey(descriptor: descriptor), context: (), argument: ())
             _ = try? resolver.resolve(request)
-            let receivedRequest = wrapped.resolveReceivedRequest as? BindingRequest<AnyTypeDescriptorMock, Void, Void>
+            let receivedRequest = wrapped.resolveReceivedRequest as? MakerRequest<AnyTypeDescriptorMock, Void, Void>
             expect(receivedRequest?.key.descriptor) === descriptor
         }
         it("calls wrapped resolver with given argument") {
             _ = try? resolver.resolve(request(type: Int.self, tag: NoTag(), arg: "argument"))
-            let receivedRequest = wrapped.resolveReceivedRequest as? BindingRequest<Tagged<Int, NoTag>, Void, String>
+            let receivedRequest = wrapped.resolveReceivedRequest as? MakerRequest<Tagged<Int, NoTag>, Void, String>
             expect(receivedRequest?.argument) == "argument"
         }
         it("calls wrapped resolver with it's context") {
             let resolver = ContextedResolver(context: "context", resolver: wrapped)
             _ = try? resolver.resolve(request(type: Int.self, tag: NoTag(), arg: ()))
-            let receivedRequest = wrapped.resolveReceivedRequest as? BindingRequest<Tagged<Int, NoTag>, String, Void>
+            let receivedRequest = wrapped.resolveReceivedRequest as? MakerRequest<Tagged<Int, NoTag>, String, Void>
             expect(receivedRequest?.context) == "context"
         }
     }

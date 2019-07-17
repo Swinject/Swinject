@@ -7,47 +7,47 @@
 
 @testable import Swinject
 
-class AnyBindingMock: AnyBinding {
-    // MARK: - instance
+class AnyInstanceMakerMock: AnyInstanceMaker {
+    // MARK: - makeInstance
 
-    var instanceArgContextResolverThrowableError: Error?
-    var instanceArgContextResolverCallsCount = 0
-    var instanceArgContextResolverCalled: Bool {
-        return instanceArgContextResolverCallsCount > 0
+    var makeInstanceArgContextResolverThrowableError: Error?
+    var makeInstanceArgContextResolverCallsCount = 0
+    var makeInstanceArgContextResolverCalled: Bool {
+        return makeInstanceArgContextResolverCallsCount > 0
     }
 
-    var instanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver)?
-    var instanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver)] = []
-    var instanceArgContextResolverReturnValue: Any!
-    var instanceArgContextResolverClosure: ((Any, Any, Resolver) throws -> Any)?
+    var makeInstanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver)?
+    var makeInstanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver)] = []
+    var makeInstanceArgContextResolverReturnValue: Any!
+    var makeInstanceArgContextResolverClosure: ((Any, Any, Resolver) throws -> Any)?
 
-    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
-        if let error = instanceArgContextResolverThrowableError {
+    func makeInstance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
+        if let error = makeInstanceArgContextResolverThrowableError {
             throw error
         }
-        instanceArgContextResolverCallsCount += 1
-        instanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
-        instanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
-        return try instanceArgContextResolverClosure.map { try $0(arg, context, resolver) } ?? instanceArgContextResolverReturnValue
+        makeInstanceArgContextResolverCallsCount += 1
+        makeInstanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
+        makeInstanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
+        return try makeInstanceArgContextResolverClosure.map { try $0(arg, context, resolver) } ?? makeInstanceArgContextResolverReturnValue
     }
 }
 
-class AnyBindingEntryMock: AnyBindingEntry {
-    var key: AnyBindingKey {
+class AnyMakerEntryMock: AnyMakerEntry {
+    var key: AnyMakerKey {
         get { return underlyingKey }
         set(value) { underlyingKey = value }
     }
 
-    var underlyingKey: AnyBindingKey!
-    var binding: AnyBinding {
-        get { return underlyingBinding }
-        set(value) { underlyingBinding = value }
+    var underlyingKey: AnyMakerKey!
+    var maker: AnyInstanceMaker {
+        get { return underlyingMaker }
+        set(value) { underlyingMaker = value }
     }
 
-    var underlyingBinding: AnyBinding!
+    var underlyingMaker: AnyInstanceMaker!
 }
 
-class AnyBindingKeyMock: AnyBindingKey {
+class AnyMakerKeyMock: AnyMakerKey {
     var contextType: Any.Type {
         get { return underlyingContextType }
         set(value) { underlyingContextType = value }
@@ -74,12 +74,12 @@ class AnyBindingKeyMock: AnyBindingKey {
         return matchesCallsCount > 0
     }
 
-    var matchesReceivedOther: AnyBindingKey?
-    var matchesReceivedInvocations: [AnyBindingKey] = []
+    var matchesReceivedOther: AnyMakerKey?
+    var matchesReceivedInvocations: [AnyMakerKey] = []
     var matchesReturnValue: Bool!
-    var matchesClosure: ((AnyBindingKey) -> Bool)?
+    var matchesClosure: ((AnyMakerKey) -> Bool)?
 
-    func matches(_ other: AnyBindingKey) -> Bool {
+    func matches(_ other: AnyMakerKey) -> Bool {
         matchesCallsCount += 1
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)

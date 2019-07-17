@@ -76,7 +76,7 @@ class InjectionApiSpec: QuickSpec { override func spec() {
         let factory = swinject.factory() as (Int) throws -> Int
         expect { try factory(5) } == 42
     }
-    it("can inject factory binding as provider or instance") {
+    it("can inject factory maker as provider or instance") {
         let swinject = Swinject {
             bbind(Double.self) & 17.0
             bbind(Int.self) & factory { Int(try $0.instance() as Double) + 5 * $1 }
@@ -94,7 +94,7 @@ class InjectionApiSpec: QuickSpec { override func spec() {
         expect { try swinject.factory(of: Int.self, arg: 11)(14.0, "17") } == 42
         expect { try swinject.factory(of: Int.self, args: 11, 14.0)("17") } == 42
     }
-    it("can pass context to the bindings") {
+    it("can pass context to the makers") {
         // FIXME: compiler segfaults if declaring these providers inside function builder
         let intProvider = contexted(String.self).provider { _, string in Int(string)! }
         let doubleProvider = contexted(String.self).provider { _, string in Double(string)! }
@@ -107,7 +107,7 @@ class InjectionApiSpec: QuickSpec { override func spec() {
         expect { try contexted.instance(of: Double.self) } == 42
         expect { try swinject.instance(of: Int.self) }.to(throwError())
     }
-    it("can use binding without context in any context") {
+    it("can use maker without context in any context") {
         let swinject = Swinject {
             bbind(Int.self) & 42
         }

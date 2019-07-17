@@ -15,9 +15,8 @@
 		CD6DE53522DD1C7300532D08 /* BindingKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */; };
 		CD6DE53722DD1CE900532D08 /* BindingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53622DD1CE900532D08 /* BindingKey.swift */; };
 		CD6DE53922DD1D0A00532D08 /* BindingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53822DD1D0A00532D08 /* BindingRequest.swift */; };
-		CD6DE53D22DD30A100532D08 /* BindingBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53C22DD30A100532D08 /* BindingBuilderSpec.swift */; };
-		CD6DE54122DE657500532D08 /* SimpleBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54022DE657400532D08 /* SimpleBinding.swift */; };
-		CD6DE54322DE65B500532D08 /* BindingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54222DE65B500532D08 /* BindingBuilder.swift */; };
+		CD6DE53D22DD30A100532D08 /* SimpleInstanceMakerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53C22DD30A100532D08 /* SimpleInstanceMakerSpec.swift */; };
+		CD6DE54322DE65B500532D08 /* SimpleInstanceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54222DE65B500532D08 /* SimpleInstanceMaker.swift */; };
 		CD6DE54522DED11600532D08 /* ContextedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54422DED11600532D08 /* ContextedResolver.swift */; };
 		CD6DE54722DED16400532D08 /* ContextedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54622DED16400532D08 /* ContextedResolverSpec.swift */; };
 		CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */; };
@@ -29,7 +28,7 @@
 		CDD8380522DA307F003E9909 /* TypeBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380422DA307F003E9909 /* TypeBinder.swift */; };
 		CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */; };
 		CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */; };
-		CDD8380C22DA3AD8003E9909 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380B22DA3AD8003E9909 /* Binding.swift */; };
+		CDD8380C22DA3AD8003E9909 /* InstanceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380B22DA3AD8003E9909 /* InstanceMaker.swift */; };
 		CDD8380E22DA3B0D003E9909 /* BindingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */; };
 		CDD8381022DA429F003E9909 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8380F22DA429F003E9909 /* Resolver.swift */; };
 		CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381522DA4B55003E9909 /* Swinject.swift */; };
@@ -60,9 +59,8 @@
 		CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKeySpec.swift; sourceTree = "<group>"; };
 		CD6DE53622DD1CE900532D08 /* BindingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKey.swift; sourceTree = "<group>"; };
 		CD6DE53822DD1D0A00532D08 /* BindingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingRequest.swift; sourceTree = "<group>"; };
-		CD6DE53C22DD30A100532D08 /* BindingBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingBuilderSpec.swift; sourceTree = "<group>"; };
-		CD6DE54022DE657400532D08 /* SimpleBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleBinding.swift; sourceTree = "<group>"; };
-		CD6DE54222DE65B500532D08 /* BindingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingBuilder.swift; sourceTree = "<group>"; };
+		CD6DE53C22DD30A100532D08 /* SimpleInstanceMakerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInstanceMakerSpec.swift; sourceTree = "<group>"; };
+		CD6DE54222DE65B500532D08 /* SimpleInstanceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleInstanceMaker.swift; sourceTree = "<group>"; };
 		CD6DE54422DED11600532D08 /* ContextedResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextedResolver.swift; sourceTree = "<group>"; };
 		CD6DE54622DED16400532D08 /* ContextedResolverSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextedResolverSpec.swift; sourceTree = "<group>"; };
 		CD6DE54822DED4A100532D08 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
@@ -77,7 +75,7 @@
 		CDD8380422DA307F003E9909 /* TypeBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinder.swift; sourceTree = "<group>"; };
 		CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
 		CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinderSpec.swift; sourceTree = "<group>"; };
-		CDD8380B22DA3AD8003E9909 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		CDD8380B22DA3AD8003E9909 /* InstanceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceMaker.swift; sourceTree = "<group>"; };
 		CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingEntry.swift; sourceTree = "<group>"; };
 		CDD8380F22DA429F003E9909 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		CDD8381522DA4B55003E9909 /* Swinject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinject.swift; sourceTree = "<group>"; };
@@ -137,9 +135,8 @@
 				CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */,
 				CDD8380422DA307F003E9909 /* TypeBinder.swift */,
 				CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */,
-				CDD8380B22DA3AD8003E9909 /* Binding.swift */,
-				CD6DE54022DE657400532D08 /* SimpleBinding.swift */,
-				CD6DE54222DE65B500532D08 /* BindingBuilder.swift */,
+				CDD8380B22DA3AD8003E9909 /* InstanceMaker.swift */,
+				CD6DE54222DE65B500532D08 /* SimpleInstanceMaker.swift */,
 				CDD8380F22DA429F003E9909 /* Resolver.swift */,
 				CD6DE54422DED11600532D08 /* ContextedResolver.swift */,
 				CDD8380D22DA3B0D003E9909 /* BindingEntry.swift */,
@@ -188,7 +185,7 @@
 			children = (
 				CDD8380222DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift */,
 				CDD8380822DA31C6003E9909 /* TypeBinderSpec.swift */,
-				CD6DE53C22DD30A100532D08 /* BindingBuilderSpec.swift */,
+				CD6DE53C22DD30A100532D08 /* SimpleInstanceMakerSpec.swift */,
 				CDD8381922DA4C9F003E9909 /* SwinjectSpec.swift */,
 				CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */,
 				CD6DE54622DED16400532D08 /* ContextedResolverSpec.swift */,
@@ -374,14 +371,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDD8380C22DA3AD8003E9909 /* Binding.swift in Sources */,
-				CD6DE54322DE65B500532D08 /* BindingBuilder.swift in Sources */,
+				CDD8380C22DA3AD8003E9909 /* InstanceMaker.swift in Sources */,
+				CD6DE54322DE65B500532D08 /* SimpleInstanceMaker.swift in Sources */,
 				CDADF33522DB521400C5D8DB /* SwinjectModule.swift in Sources */,
 				CDD8381022DA429F003E9909 /* Resolver.swift in Sources */,
 				CD6DE53722DD1CE900532D08 /* BindingKey.swift in Sources */,
 				CD6DE53922DD1D0A00532D08 /* BindingRequest.swift in Sources */,
 				CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */,
-				CD6DE54122DE657500532D08 /* SimpleBinding.swift in Sources */,
 				CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */,
 				CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */,
 				CD6DE54522DED11600532D08 /* ContextedResolver.swift in Sources */,
@@ -401,7 +397,7 @@
 				CDADF34022DB883A00C5D8DB /* GeneratedMocks.swift in Sources */,
 				CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */,
 				CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */,
-				CD6DE53D22DD30A100532D08 /* BindingBuilderSpec.swift in Sources */,
+				CD6DE53D22DD30A100532D08 /* SimpleInstanceMakerSpec.swift in Sources */,
 				CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */,
 				CD6DE53522DD1C7300532D08 /* BindingKeySpec.swift in Sources */,
 				CDADF33722DB753800C5D8DB /* TestModels.swift in Sources */,

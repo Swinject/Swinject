@@ -8,10 +8,10 @@ import Quick
 
 class TypeBinderSpec: QuickSpec { override func spec() {
     var descriptor = AnyTypeDescriptorMock()
-    var binding = AnyBindingMock()
+    var maker = AnyInstanceMakerMock()
     beforeEach {
         descriptor = AnyTypeDescriptorMock()
-        binding = AnyBindingMock()
+        maker = AnyInstanceMakerMock()
     }
     describe("bind") {
         it("descriptor has correct tag for tagged type") {
@@ -25,46 +25,46 @@ class TypeBinderSpec: QuickSpec { override func spec() {
     }
     describe("`with` method") {
         it("produces entry with correct descriptor") {
-            let entry = bbind(descriptor).with(binding)
+            let entry = bbind(descriptor).with(maker)
             expect(entry.key.descriptor) === descriptor
         }
         it("produces entry with correct argument type") {
-            let entry = bbind(Any.self).with(DummyBinding<Void, Int>())
+            let entry = bbind(Any.self).with(DummyMaker<Void, Int>())
             expect(entry.key.argumentType is Int.Type).to(beTrue())
         }
         it("produces entry with correct context type") {
-            let entry = bbind(Any.self).with(DummyBinding<Int, Void>())
+            let entry = bbind(Any.self).with(DummyMaker<Int, Void>())
             expect(entry.key.contextType is Int.Type).to(beTrue())
         }
-        it("produces entry with correct binding") {
-            let entry = bbind(Any.self).with(binding)
-            expect(entry.binding) === binding
+        it("produces entry with correct maker") {
+            let entry = bbind(Any.self).with(maker)
+            expect(entry.maker) === maker
         }
         it("produces entry if given value of descriptor type") {
             let entry = bbind(Int.self).with(42)
-            expect(entry.binding is SimpleBinding<Int, Any, Void>).to(beTrue())
+            expect(entry.maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
         }
     }
     describe("& operator") {
         it("produces entry with correct descriptor") {
-            let entry = bbind(descriptor) & binding
+            let entry = bbind(descriptor) & maker
             expect(entry.key.descriptor) === descriptor
         }
         it("produces entry with correct argument type") {
-            let entry = bbind(Any.self) & DummyBinding<Void, Int>()
+            let entry = bbind(Any.self) & DummyMaker<Void, Int>()
             expect(entry.key.argumentType is Int.Type).to(beTrue())
         }
         it("produces entry with correct context type") {
-            let entry = bbind(Any.self) & DummyBinding<Int, Void>()
+            let entry = bbind(Any.self) & DummyMaker<Int, Void>()
             expect(entry.key.contextType is Int.Type).to(beTrue())
         }
-        it("produces entry with correct binding") {
-            let entry = bbind(Any.self) & binding
-            expect(entry.binding) === binding
+        it("produces entry with correct maker") {
+            let entry = bbind(Any.self) & maker
+            expect(entry.maker) === maker
         }
         it("produces entry provider if given value of descriptor type") {
             let entry = bbind(Int.self) & 42
-            expect(entry.binding is SimpleBinding<Int, Any, Void>).to(beTrue())
+            expect(entry.maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
         }
     }
 } }

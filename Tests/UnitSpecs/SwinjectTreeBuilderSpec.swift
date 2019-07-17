@@ -10,47 +10,47 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
     describe("allowed syntax") {
         it("builds empty closure") {
             let tree = makeTree {}
-            expect(tree.bindingEntries).to(beEmpty())
+            expect(tree.makerEntries).to(beEmpty())
         }
         it("builds closure with single entry") {
-            let tree = makeTree { AnyBindingEntryMock() }
-            expect(tree.bindingEntries.count) == 1
+            let tree = makeTree { AnyMakerEntryMock() }
+            expect(tree.makerEntries.count) == 1
         }
         it("builds closure with multiple entries") {
             let tree = makeTree {
-                AnyBindingEntryMock(); AnyBindingEntryMock(); AnyBindingEntryMock(); AnyBindingEntryMock(); AnyBindingEntryMock()
+                AnyMakerEntryMock(); AnyMakerEntryMock(); AnyMakerEntryMock(); AnyMakerEntryMock(); AnyMakerEntryMock()
             }
-            expect(tree.bindingEntries.count) == 5
+            expect(tree.makerEntries.count) == 5
         }
         // FIXME: Test coverage enabled build segfaults on this
 //        it("builds closure with if statement") {
 //            let tree = makeTree {
-//                if true { AnyBindingEntryMock() }
+//                if true { AnyMakerEntryMock() }
 //            }
-//            expect(tree.bindingEntries.count) == 1
+//            expect(tree.makerEntries.count) == 1
 //        }
 //        it("builds closure with nested if statement") {
 //            let tree = makeTree {
-//                if true { AnyBindingEntryMock(); if true { AnyBindingEntryMock() } }
+//                if true { AnyMakerEntryMock(); if true { AnyMakerEntryMock() } }
 //            }
-//            expect(tree.bindingEntries.count) == 2
+//            expect(tree.makerEntries.count) == 2
 //        }
 //        it("builds closure with if else statement") {
 //            let tree = makeTree {
-//                if false {} else { AnyBindingEntryMock(); AnyBindingEntryMock() }
+//                if false {} else { AnyMakerEntryMock(); AnyMakerEntryMock() }
 //            }
-//            expect(tree.bindingEntries.count) == 2
+//            expect(tree.makerEntries.count) == 2
 //        }
-        it("builds closure with binding & include entries") {
+        it("builds closure with maker & include entries") {
             let tree = makeTree {
                 ModuleIncludeEntryMock()
                 ModuleIncludeEntryMock()
-                AnyBindingEntryMock()
-                AnyBindingEntryMock()
-                AnyBindingEntryMock()
+                AnyMakerEntryMock()
+                AnyMakerEntryMock()
+                AnyMakerEntryMock()
             }
             expect(tree.includeEntries.count) == 2
-            expect(tree.bindingEntries.count) == 3
+            expect(tree.makerEntries.count) == 3
         }
     }
 } }
