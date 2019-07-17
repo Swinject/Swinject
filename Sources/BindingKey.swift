@@ -3,7 +3,7 @@
 //
 
 // sourcery: AutoMockable
-protocol AnyBindingKey {
+public protocol AnyBindingKey {
     var contextType: Any.Type { get }
     var argumentType: Any.Type { get }
     var descriptor: AnyTypeDescriptor { get }
@@ -11,7 +11,7 @@ protocol AnyBindingKey {
     func matches(_ other: AnyBindingKey) -> Bool
 }
 
-public struct BindingKey<Descriptor, Context, Argument>: AnyBindingKey where Descriptor: TypeDescriptor {
+struct BindingKey<Descriptor, Context, Argument>: AnyBindingKey where Descriptor: TypeDescriptor {
     let contextType: Any.Type = Context.self
     let argumentType: Any.Type = Argument.self
     let descriptor: AnyTypeDescriptor

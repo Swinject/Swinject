@@ -118,6 +118,48 @@ class AnyTypeDescriptorMock: AnyTypeDescriptor {
     }
 }
 
-class BindingMock: Binding {}
+class BindingMock: Binding {
+    // MARK: - matches
+
+    var matchesCallsCount = 0
+    var matchesCalled: Bool {
+        return matchesCallsCount > 0
+    }
+
+    var matchesReceivedKey: AnyBindingKey?
+    var matchesReceivedInvocations: [AnyBindingKey] = []
+    var matchesReturnValue: Bool!
+    var matchesClosure: ((AnyBindingKey) -> Bool)?
+
+    func matches(_ key: AnyBindingKey) -> Bool {
+        matchesCallsCount += 1
+        matchesReceivedKey = key
+        matchesReceivedInvocations.append(key)
+        return matchesClosure.map { $0(key) } ?? matchesReturnValue
+    }
+
+    // MARK: - instance
+
+    var instanceArgContextResolverThrowableError: Error?
+    var instanceArgContextResolverCallsCount = 0
+    var instanceArgContextResolverCalled: Bool {
+        return instanceArgContextResolverCallsCount > 0
+    }
+
+    var instanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver)?
+    var instanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver)] = []
+    var instanceArgContextResolverReturnValue: Any!
+    var instanceArgContextResolverClosure: ((Any, Any, Resolver) throws -> Any)?
+
+    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
+        if let error = instanceArgContextResolverThrowableError {
+            throw error
+        }
+        instanceArgContextResolverCallsCount += 1
+        instanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
+        instanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
+        return try instanceArgContextResolverClosure.map { try $0(arg, context, resolver) } ?? instanceArgContextResolverReturnValue
+    }
+}
 
 class ModuleIncludeEntryMock: ModuleIncludeEntry {}

@@ -26,16 +26,16 @@ public extension Swinject {
 
 extension Swinject: Resolver {
     public func resolve<Descriptor, Context, Argument>(_ request: MakerRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        try instance(from: findMaker(for: request.key), context: request.context, arg: request.argument)
+        try instance(from: findBinding(for: request.key), context: request.context, arg: request.argument)
     }
 
-    private func findMaker(for key: AnyBindingKey) throws -> AnyInstanceMaker {
-        let bindings = tree.bindings.compactMap { $0 as? SimpleBinding }.filter { $0.key.matches(key) }
+    private func findBinding(for key: AnyBindingKey) throws -> Binding {
+        let bindings = tree.bindings.filter { $0.matches(key) }
         guard bindings.count == 1 else { throw SwinjectError() }
-        return bindings[0].maker
+        return bindings[0]
     }
 
-    private func instance<Type, Context, Argument>(from maker: AnyInstanceMaker, context: Context, arg: Argument) throws -> Type {
-        try maker.makeInstance(arg: arg, context: context, resolver: self) as? Type ?? { throw SwinjectError() }()
+    private func instance<Type, Context, Argument>(from binding: Binding, context: Context, arg: Argument) throws -> Type {
+        try binding.instance(arg: arg, context: context, resolver: self) as? Type ?? { throw SwinjectError() }()
     }
 }
