@@ -307,10 +307,10 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         }
     }
     describe("scoped") {
-        var scope = ScopeMock()
-        var environment: BinderEnvironment<ScopeMock, ScopeMock.Context>!
+        var scope = AnyScopeMock()
+        var environment: BinderEnvironment<AnyScopeMock, AnyScopeMock.Context>!
         beforeEach {
-            scope = ScopeMock()
+            scope = AnyScopeMock()
             environment = scoped(scope)
         }
         describe("singleton") {

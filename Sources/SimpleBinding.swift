@@ -18,17 +18,28 @@ extension SimpleBinding: Binding {
 }
 
 extension SimpleBinding {
-    public struct Builder<Type, Context, Argument>: InstanceMaker {
-        public typealias MadeType = Type
-
+    public struct Builder<Type, Context, Argument> {
         private let builder: (Resolver, Context, Argument) throws -> Type
 
         init(_ builder: @escaping (Resolver, Context, Argument) throws -> Type) {
             self.builder = builder
         }
+    }
+}
 
-        public func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
-            try builder(resolver, context, arg)
-        }
+extension SimpleBinding.Builder: InstanceMaker {
+    public typealias MadeType = Type
+
+    public func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
+        try builder(resolver, context, arg)
+    }
+}
+
+extension SimpleBinding.Builder: BindingMaker {
+    public func makeBinding<Descriptor>(for descriptor: Descriptor) -> Binding where Descriptor: TypeDescriptor {
+        SimpleBinding(
+            key: BindingKey<Descriptor, Context, Argument>(descriptor: descriptor),
+            maker: self
+        )
     }
 }

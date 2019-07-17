@@ -2,15 +2,24 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-// FIXME: AScope is suboptimal name for a parameter
-// Can we rename Scope -> ScopeProtocol?
-public struct ScopedBinding {}
+public struct ScopedBinding {
+    let key: AnyBindingKey
+    let maker: AnyInstanceMaker
+    let scope: AnyScope
+}
+
+extension ScopedBinding: Binding {
+    public func matches(_: AnyBindingKey) -> Bool {
+        fatalError()
+    }
+
+    public func instance(arg _: Any, context _: Any, resolver _: Resolver) throws -> Any {
+        fatalError()
+    }
+}
 
 extension ScopedBinding {
-    public struct Builder<Type, AScope, Argument>: InstanceMaker where AScope: Scope {
-        public typealias MadeType = Type
-        public typealias Context = AScope.Context
-
+    public struct Builder<Type, AScope, Argument> where AScope: Scope {
         let scope: AScope
         private let builder: (Resolver, Context, Argument) throws -> Type
 
@@ -18,9 +27,24 @@ extension ScopedBinding {
             self.scope = scope
             self.builder = builder
         }
+    }
+}
 
-        public func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
-            try builder(resolver, context, arg)
-        }
+extension ScopedBinding.Builder: InstanceMaker {
+    public typealias MadeType = Type
+    public typealias Context = AScope.Context
+
+    public func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
+        try builder(resolver, context, arg)
+    }
+}
+
+extension ScopedBinding.Builder: BindingMaker {
+    public func makeBinding<Descriptor>(for descriptor: Descriptor) -> Binding where Descriptor: TypeDescriptor {
+        ScopedBinding(
+            key: BindingKey<Descriptor, Context, Argument>(descriptor: descriptor),
+            maker: self,
+            scope: scope
+        )
     }
 }

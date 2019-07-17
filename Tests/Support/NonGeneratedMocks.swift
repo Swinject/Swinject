@@ -35,8 +35,13 @@ extension AnyResolverMock: Resolver {
     }
 }
 
-extension ScopeMock {
+extension AnyScopeMock: Scope {
     typealias Context = Any
+}
+
+class DummyScope<Context>: Scope {
+    var lock: Lock { fatalError() }
+    func registry(for _: Context) -> ScopeRegistry { fatalError() }
 }
 
 // sourcery: AutoMockable
