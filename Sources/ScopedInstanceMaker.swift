@@ -54,3 +54,31 @@ public extension BinderEnvironment where AScope: Scope, Context == AScope.Contex
         .init(scope) { try builder($0, $1, $2.0, $2.1, $2.2, $2.3, $2.4) }
     }
 }
+
+public func singleton<Type>(_ builder: @escaping () throws -> Type) -> ScopedInstanceMaker<Type, ImplicitScope, Void> {
+    .init(.implicit) { _, _, _ in try builder() }
+}
+
+public func singleton<Type>(_ builder: @escaping (Resolver) throws -> Type) -> ScopedInstanceMaker<Type, ImplicitScope, Void> {
+    .init(.implicit) { r, _, _ in try builder(r) }
+}
+
+public func multiton<Type, Arg1>(_ builder: @escaping (Resolver, Arg1) throws -> Type) -> ScopedInstanceMaker<Type, ImplicitScope, Arg1> {
+    .init(.implicit) { try builder($0, $2) }
+}
+
+public func multiton<Type, Arg1, Arg2>(_ builder: @escaping (Resolver, Arg1, Arg2) throws -> Type) -> ScopedInstanceMaker<Type, ImplicitScope, (Arg1, Arg2)> {
+    .init(.implicit) { try builder($0, $2.0, $2.1) }
+}
+
+public func multiton<Type, Arg1, Arg2, Arg3>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3) throws -> Type) -> ScopedInstanceMaker<Type, ImplicitScope, (Arg1, Arg2, Arg3)> {
+    .init(.implicit) { try builder($0, $2.0, $2.1, $2.2) }
+}
+
+public func multiton<Type, Arg1, Arg2, Arg3, Arg4>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4) throws -> Type) -> ScopedInstanceMaker<Type, ImplicitScope, (Arg1, Arg2, Arg3, Arg4)> {
+    .init(.implicit) { try builder($0, $2.0, $2.1, $2.2, $2.3) }
+}
+
+public func multiton<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) throws -> Type) -> ScopedInstanceMaker<Type, ImplicitScope, (Arg1, Arg2, Arg3, Arg4, Arg5)> {
+    .init(.implicit) { try builder($0, $2.0, $2.1, $2.2, $2.3, $2.4) }
+}

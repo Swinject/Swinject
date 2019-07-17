@@ -18,3 +18,17 @@ public protocol ScopeRegistry {
 }
 
 public struct ScopeRegistryKey {}
+
+public class ImplicitScope: Scope {
+    public typealias Context = Any
+
+    public var lock: Lock { fatalError() }
+
+    public func registry(for _: Any) -> ScopeRegistry {
+        fatalError()
+    }
+}
+
+extension ImplicitScope {
+    static let implicit = ImplicitScope()
+}
