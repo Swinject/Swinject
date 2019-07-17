@@ -21,6 +21,10 @@
 		CD6DE54522DED11600532D08 /* ContextedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54422DED11600532D08 /* ContextedResolver.swift */; };
 		CD6DE54722DED16400532D08 /* ContextedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54622DED16400532D08 /* ContextedResolverSpec.swift */; };
 		CD6DE54C22DF85AF00532D08 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54B22DF85AF00532D08 /* Scope.swift */; };
+		CD6DE54E22DF886F00532D08 /* ScopedInstanceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54D22DF886F00532D08 /* ScopedInstanceMaker.swift */; };
+		CD6DE55022DF8B2700532D08 /* ScopedInstanceMakerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54F22DF8B2700532D08 /* ScopedInstanceMakerSpec.swift */; };
+		CD6DE55222DF93A000532D08 /* BinderEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE55122DF93A000532D08 /* BinderEnvironment.swift */; };
+		CD6DE55322DF94ED00532D08 /* BinderEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE55122DF93A000532D08 /* BinderEnvironment.swift */; };
 		CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */; };
 		CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */; };
 		CDADF33522DB521400C5D8DB /* SwinjectModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF33422DB521400C5D8DB /* SwinjectModule.swift */; };
@@ -69,6 +73,9 @@
 		CD6DE54822DED4A100532D08 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 		CD6DE54A22DED4A100532D08 /* .sourcery.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .sourcery.yml; sourceTree = "<group>"; };
 		CD6DE54B22DF85AF00532D08 /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
+		CD6DE54D22DF886F00532D08 /* ScopedInstanceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopedInstanceMaker.swift; sourceTree = "<group>"; };
+		CD6DE54F22DF8B2700532D08 /* ScopedInstanceMakerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopedInstanceMakerSpec.swift; sourceTree = "<group>"; };
+		CD6DE55122DF93A000532D08 /* BinderEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinderEnvironment.swift; sourceTree = "<group>"; };
 		CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonGeneratedMocks.swift; sourceTree = "<group>"; };
 		CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTree.swift; sourceTree = "<group>"; };
 		CDADF33422DB521400C5D8DB /* SwinjectModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectModule.swift; sourceTree = "<group>"; };
@@ -141,6 +148,8 @@
 				CDD8380622DA30C6003E9909 /* TypeDescriptor.swift */,
 				CDD8380B22DA3AD8003E9909 /* InstanceMaker.swift */,
 				CD6DE54222DE65B500532D08 /* SimpleInstanceMaker.swift */,
+				CD6DE54D22DF886F00532D08 /* ScopedInstanceMaker.swift */,
+				CD6DE55122DF93A000532D08 /* BinderEnvironment.swift */,
 				CDD8380F22DA429F003E9909 /* Resolver.swift */,
 				CD6DE54422DED11600532D08 /* ContextedResolver.swift */,
 				CDD8380D22DA3B0D003E9909 /* Binding.swift */,
@@ -195,6 +204,7 @@
 				CDD8381922DA4C9F003E9909 /* SwinjectSpec.swift */,
 				CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */,
 				CD6DE54622DED16400532D08 /* ContextedResolverSpec.swift */,
+				CD6DE54F22DF8B2700532D08 /* ScopedInstanceMakerSpec.swift */,
 			);
 			path = UnitSpecs;
 			sourceTree = "<group>";
@@ -388,9 +398,11 @@
 				CD6DE54C22DF85AF00532D08 /* Scope.swift in Sources */,
 				CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */,
 				CD6DE54522DED11600532D08 /* ContextedResolver.swift in Sources */,
+				CD6DE55322DF94ED00532D08 /* BinderEnvironment.swift in Sources */,
 				CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */,
 				CDD8380522DA307F003E9909 /* TypeBinder.swift in Sources */,
 				CDD8380E22DA3B0D003E9909 /* Binding.swift in Sources */,
+				CD6DE54E22DF886F00532D08 /* ScopedInstanceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,11 +417,13 @@
 				CDADF34022DB883A00C5D8DB /* GeneratedMocks.swift in Sources */,
 				CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */,
 				CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */,
+				CD6DE55222DF93A000532D08 /* BinderEnvironment.swift in Sources */,
 				CD6DE53D22DD30A100532D08 /* SimpleInstanceMakerSpec.swift in Sources */,
 				CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */,
 				CD6DE53522DD1C7300532D08 /* BindingKeySpec.swift in Sources */,
 				CDADF33722DB753800C5D8DB /* TestModels.swift in Sources */,
 				77729C9E22DCCA20005C3281 /* InjectionApiSpec.swift in Sources */,
+				CD6DE55022DF8B2700532D08 /* ScopedInstanceMakerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

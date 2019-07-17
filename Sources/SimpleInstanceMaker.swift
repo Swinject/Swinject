@@ -16,32 +16,28 @@ public struct SimpleInstanceMaker<Type, Context, Argument>: InstanceMaker {
     }
 }
 
-public func contexted<Context>(_: Context.Type = Context.self) -> SimpleInstanceMaker<Void, Context, Void>.Type {
-    SimpleInstanceMaker<Void, Context, Void>.self
-}
-
-extension SimpleInstanceMaker {
-    public static func provider<Type>(_ builder: @escaping (Resolver, Context) throws -> Type) -> SimpleInstanceMaker<Type, Context, Void> {
+public extension BinderEnvironment {
+    func provider<Type>(_ builder: @escaping (Resolver, Context) throws -> Type) -> SimpleInstanceMaker<Type, Context, Void> {
         .init { r, c, _ in try builder(r, c) }
     }
 
-    public static func factory<Type, Arg1>(_ builder: @escaping (Resolver, Context, Arg1) throws -> Type) -> SimpleInstanceMaker<Type, Context, Arg1> {
+    func factory<Type, Arg1>(_ builder: @escaping (Resolver, Context, Arg1) throws -> Type) -> SimpleInstanceMaker<Type, Context, Arg1> {
         .init(builder)
     }
 
-    public static func factory<Type, Arg1, Arg2>(_ builder: @escaping (Resolver, Context, Arg1, Arg2) throws -> Type) -> SimpleInstanceMaker<Type, Context, (Arg1, Arg2)> {
+    func factory<Type, Arg1, Arg2>(_ builder: @escaping (Resolver, Context, Arg1, Arg2) throws -> Type) -> SimpleInstanceMaker<Type, Context, (Arg1, Arg2)> {
         .init { try builder($0, $1, $2.0, $2.1) }
     }
 
-    public static func factory<Type, Arg1, Arg2, Arg3>(_ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3) throws -> Type) -> SimpleInstanceMaker<Type, Context, (Arg1, Arg2, Arg3)> {
+    func factory<Type, Arg1, Arg2, Arg3>(_ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3) throws -> Type) -> SimpleInstanceMaker<Type, Context, (Arg1, Arg2, Arg3)> {
         .init { try builder($0, $1, $2.0, $2.1, $2.2) }
     }
 
-    public static func factory<Type, Arg1, Arg2, Arg3, Arg4>(_ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3, Arg4) throws -> Type) -> SimpleInstanceMaker<Type, Context, (Arg1, Arg2, Arg3, Arg4)> {
+    func factory<Type, Arg1, Arg2, Arg3, Arg4>(_ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3, Arg4) throws -> Type) -> SimpleInstanceMaker<Type, Context, (Arg1, Arg2, Arg3, Arg4)> {
         .init { try builder($0, $1, $2.0, $2.1, $2.2, $2.3) }
     }
 
-    public static func factory<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(_ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3, Arg4, Arg5) throws -> Type) -> SimpleInstanceMaker<Type, Context, (Arg1, Arg2, Arg3, Arg4, Arg5)> {
+    func factory<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(_ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3, Arg4, Arg5) throws -> Type) -> SimpleInstanceMaker<Type, Context, (Arg1, Arg2, Arg3, Arg4, Arg5)> {
         .init { try builder($0, $1, $2.0, $2.1, $2.2, $2.3, $2.4) }
     }
 }

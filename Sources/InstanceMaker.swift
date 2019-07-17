@@ -7,6 +7,8 @@ public protocol AnyInstanceMaker {
     func makeInstance(arg: Any, context: Any, resolver: Resolver) throws -> Any
 }
 
+// FIXME: "Maker" is not a typical concept
+// Could we use `InstanceFactory` / `InstanceBuilder` instead, or would it be too overloaded?
 public protocol InstanceMaker: AnyInstanceMaker {
     associatedtype MadeType
     associatedtype Argument
