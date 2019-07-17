@@ -17,11 +17,11 @@ class SwinjectSpec: QuickSpec { override func spec() {
         context("single maker") {
             var swinject: Swinject!
             var maker = AnyInstanceMakerMock()
-            var key = AnyMakerKeyMock()
+            var key = AnyBindingKeyMock()
             beforeEach {
                 maker = AnyInstanceMakerMock()
-                key = AnyMakerKeyMock()
-                swinject = Swinject { MakerEntry<Any>(key: key, maker: maker) }
+                key = AnyBindingKeyMock()
+                swinject = Swinject { SimpleBinding(key: key, maker: maker) }
             }
             it("request instance from matching maker") {
                 key.matchesReturnValue = true
@@ -65,7 +65,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
             it("matches maker with correct key") {
                 key.matchesReturnValue = false
                 _ = try? swinject.instance(tagged: "tag") as Int
-                let otherKey = key.matchesReceivedOther as? MakerKey<Tagged<Int, String>, Void, Void>
+                let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Int, String>, Void, Void>
                 let descriptor = otherKey?.descriptor as? Tagged<Int, String>
                 expect(descriptor?.tag) == "tag"
             }
@@ -78,22 +78,22 @@ class SwinjectSpec: QuickSpec { override func spec() {
         context("multiple makers") {
             var swinject: Swinject!
             var makers = [AnyInstanceMakerMock]()
-            var keys = [AnyMakerKeyMock]()
+            var keys = [AnyBindingKeyMock]()
             beforeEach {
-                keys = Array(0 ..< 3).map { _ in AnyMakerKeyMock() }
+                keys = Array(0 ..< 3).map { _ in AnyBindingKeyMock() }
                 keys.forEach { $0.matchesReturnValue = false }
                 makers = keys.map { _ in AnyInstanceMakerMock() }
                 swinject = Swinject {
-                    MakerEntry<Any>(key: keys[0], maker: makers[0])
-                    MakerEntry<Any>(key: keys[1], maker: makers[1])
-                    MakerEntry<Any>(key: keys[2], maker: makers[2])
+                    SimpleBinding(key: keys[0], maker: makers[0])
+                    SimpleBinding(key: keys[1], maker: makers[1])
+                    SimpleBinding(key: keys[2], maker: makers[2])
                 }
             }
-            it("throws if multiple entries match requested type") {
+            it("throws if multiple bindings match requested type") {
                 keys.forEach { $0.matchesReturnValue = true }
                 expect { try swinject.instance(of: Any.self) }.to(throwError())
             }
-            it("does not throw if single entry matches requested type") {
+            it("does not throw if single binding matches requested type") {
                 keys[1].matchesReturnValue = true
                 expect { try swinject.instance(of: Any.self) }.notTo(throwError())
             }
@@ -107,11 +107,11 @@ class SwinjectSpec: QuickSpec { override func spec() {
     describe("provider injection") {
         var swinject: Swinject!
         var maker = AnyInstanceMakerMock()
-        var key = AnyMakerKeyMock()
+        var key = AnyBindingKeyMock()
         beforeEach {
             maker = AnyInstanceMakerMock()
-            key = AnyMakerKeyMock()
-            swinject = Swinject { MakerEntry<Any>(key: key, maker: maker) }
+            key = AnyBindingKeyMock()
+            swinject = Swinject { SimpleBinding(key: key, maker: maker) }
         }
         it("does not throw if maker matches provided type") {
             key.matchesReturnValue = true
@@ -145,7 +145,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("matches maker with correct key") {
             key.matchesReturnValue = true
             _ = try? swinject.provider(of: Any.self, tagged: "tag")()
-            let otherKey = key.matchesReceivedOther as? MakerKey<Tagged<Any, String>, Void, Void>
+            let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Any, String>, Void, Void>
             let descriptor = otherKey?.descriptor as? Tagged<Any, String>
             expect(descriptor?.tag) == "tag"
         }
@@ -163,11 +163,11 @@ class SwinjectSpec: QuickSpec { override func spec() {
     describe("factory injection") {
         var swinject: Swinject!
         var maker = AnyInstanceMakerMock()
-        var key = AnyMakerKeyMock()
+        var key = AnyBindingKeyMock()
         beforeEach {
             maker = AnyInstanceMakerMock()
-            key = AnyMakerKeyMock()
-            swinject = Swinject { MakerEntry<Any>(key: key, maker: maker) }
+            key = AnyBindingKeyMock()
+            swinject = Swinject { SimpleBinding(key: key, maker: maker) }
         }
         it("throws if missing maker for created type") {
             key.matchesReturnValue = false
@@ -207,7 +207,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("matches maker with correct key") {
             key.matchesReturnValue = false
             _ = try? swinject.factory(tagged: "tag")("arg") as Int
-            let otherKey = key.matchesReceivedOther as? MakerKey<Tagged<Int, String>, Void, String>
+            let otherKey = key.matchesReceivedOther as? BindingKey<Tagged<Int, String>, Void, String>
             let descriptor = otherKey?.descriptor as? Tagged<Int, String>
             expect(descriptor?.tag) == "tag"
         }

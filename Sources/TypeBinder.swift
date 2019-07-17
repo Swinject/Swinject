@@ -19,19 +19,19 @@ public func bind<Descriptor>(_ descriptor: Descriptor) -> TypeBinder<Descriptor>
 }
 
 public extension TypeBinder {
-    func with<SomeMaker>(_ maker: SomeMaker) -> MakerEntry<Descriptor.BaseType> where SomeMaker: InstanceMaker, SomeMaker.MadeType == Descriptor.BaseType {
-        MakerEntry(key: MakerKey<Descriptor, SomeMaker.Context, SomeMaker.Argument>(descriptor: descriptor), maker: maker)
+    func with<SomeMaker>(_ maker: SomeMaker) -> Binding where SomeMaker: InstanceMaker, SomeMaker.MadeType == Descriptor.BaseType {
+        SimpleBinding(key: BindingKey<Descriptor, SomeMaker.Context, SomeMaker.Argument>(descriptor: descriptor), maker: maker)
     }
 
-    func with(_ anInstance: Descriptor.BaseType) -> MakerEntry<Descriptor.BaseType> {
+    func with(_ anInstance: Descriptor.BaseType) -> Binding {
         with(instance(anInstance))
     }
 }
 
-public func & <Descriptor, SomeMaker>(lhs: TypeBinder<Descriptor>, rhs: SomeMaker) -> MakerEntry<Descriptor.BaseType> where SomeMaker: InstanceMaker, SomeMaker.MadeType == Descriptor.BaseType {
+public func & <Descriptor, SomeMaker>(lhs: TypeBinder<Descriptor>, rhs: SomeMaker) -> Binding where SomeMaker: InstanceMaker, SomeMaker.MadeType == Descriptor.BaseType {
     lhs.with(rhs)
 }
 
-public func & <Descriptor>(lhs: TypeBinder<Descriptor>, rhs: Descriptor.BaseType) -> MakerEntry<Descriptor.BaseType> {
+public func & <Descriptor>(lhs: TypeBinder<Descriptor>, rhs: Descriptor.BaseType) -> Binding {
     lhs.with(rhs)
 }

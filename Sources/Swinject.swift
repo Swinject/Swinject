@@ -29,10 +29,10 @@ extension Swinject: Resolver {
         try instance(from: findMaker(for: request.key), context: request.context, arg: request.argument)
     }
 
-    private func findMaker(for key: AnyMakerKey) throws -> AnyInstanceMaker {
-        let entries = tree.makerEntries.filter { $0.key.matches(key) }
-        guard entries.count == 1 else { throw SwinjectError() }
-        return entries[0].maker
+    private func findMaker(for key: AnyBindingKey) throws -> AnyInstanceMaker {
+        let bindings = tree.bindings.compactMap { $0 as? SimpleBinding }.filter { $0.key.matches(key) }
+        guard bindings.count == 1 else { throw SwinjectError() }
+        return bindings[0].maker
     }
 
     private func instance<Type, Context, Argument>(from maker: AnyInstanceMaker, context: Context, arg: Argument) throws -> Type {

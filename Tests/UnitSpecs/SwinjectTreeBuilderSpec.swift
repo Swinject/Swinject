@@ -10,34 +10,34 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
     describe("allowed syntax") {
         it("builds empty closure") {
             let tree = makeTree {}
-            expect(tree.makerEntries).to(beEmpty())
+            expect(tree.bindings).to(beEmpty())
         }
         it("builds closure with single entry") {
-            let tree = makeTree { AnyMakerEntryMock() }
-            expect(tree.makerEntries.count) == 1
+            let tree = makeTree { BindingMock() }
+            expect(tree.bindings.count) == 1
         }
         it("builds closure with multiple entries") {
             let tree = makeTree {
-                AnyMakerEntryMock(); AnyMakerEntryMock(); AnyMakerEntryMock(); AnyMakerEntryMock(); AnyMakerEntryMock()
+                BindingMock(); BindingMock(); BindingMock(); BindingMock(); BindingMock()
             }
-            expect(tree.makerEntries.count) == 5
+            expect(tree.bindings.count) == 5
         }
         // FIXME: Test coverage enabled build segfaults on this
 //        it("builds closure with if statement") {
 //            let tree = makeTree {
-//                if true { AnyMakerEntryMock() }
+//                if true { AnyBindingMock() }
 //            }
 //            expect(tree.makerEntries.count) == 1
 //        }
 //        it("builds closure with nested if statement") {
 //            let tree = makeTree {
-//                if true { AnyMakerEntryMock(); if true { AnyMakerEntryMock() } }
+//                if true { AnyBindingMock(); if true { AnyBindingMock() } }
 //            }
 //            expect(tree.makerEntries.count) == 2
 //        }
 //        it("builds closure with if else statement") {
 //            let tree = makeTree {
-//                if false {} else { AnyMakerEntryMock(); AnyMakerEntryMock() }
+//                if false {} else { AnyBindingMock(); AnyBindingMock() }
 //            }
 //            expect(tree.makerEntries.count) == 2
 //        }
@@ -45,12 +45,12 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
             let tree = makeTree {
                 ModuleIncludeEntryMock()
                 ModuleIncludeEntryMock()
-                AnyMakerEntryMock()
-                AnyMakerEntryMock()
-                AnyMakerEntryMock()
+                BindingMock()
+                BindingMock()
+                BindingMock()
             }
             expect(tree.includeEntries.count) == 2
-            expect(tree.makerEntries.count) == 3
+            expect(tree.bindings.count) == 3
         }
     }
 } }

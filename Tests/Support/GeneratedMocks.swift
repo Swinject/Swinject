@@ -7,47 +7,7 @@
 
 @testable import Swinject
 
-class AnyInstanceMakerMock: AnyInstanceMaker {
-    // MARK: - makeInstance
-
-    var makeInstanceArgContextResolverThrowableError: Error?
-    var makeInstanceArgContextResolverCallsCount = 0
-    var makeInstanceArgContextResolverCalled: Bool {
-        return makeInstanceArgContextResolverCallsCount > 0
-    }
-
-    var makeInstanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver)?
-    var makeInstanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver)] = []
-    var makeInstanceArgContextResolverReturnValue: Any!
-    var makeInstanceArgContextResolverClosure: ((Any, Any, Resolver) throws -> Any)?
-
-    func makeInstance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
-        if let error = makeInstanceArgContextResolverThrowableError {
-            throw error
-        }
-        makeInstanceArgContextResolverCallsCount += 1
-        makeInstanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
-        makeInstanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
-        return try makeInstanceArgContextResolverClosure.map { try $0(arg, context, resolver) } ?? makeInstanceArgContextResolverReturnValue
-    }
-}
-
-class AnyMakerEntryMock: AnyMakerEntry {
-    var key: AnyMakerKey {
-        get { return underlyingKey }
-        set(value) { underlyingKey = value }
-    }
-
-    var underlyingKey: AnyMakerKey!
-    var maker: AnyInstanceMaker {
-        get { return underlyingMaker }
-        set(value) { underlyingMaker = value }
-    }
-
-    var underlyingMaker: AnyInstanceMaker!
-}
-
-class AnyMakerKeyMock: AnyMakerKey {
+class AnyBindingKeyMock: AnyBindingKey {
     var contextType: Any.Type {
         get { return underlyingContextType }
         set(value) { underlyingContextType = value }
@@ -74,16 +34,41 @@ class AnyMakerKeyMock: AnyMakerKey {
         return matchesCallsCount > 0
     }
 
-    var matchesReceivedOther: AnyMakerKey?
-    var matchesReceivedInvocations: [AnyMakerKey] = []
+    var matchesReceivedOther: AnyBindingKey?
+    var matchesReceivedInvocations: [AnyBindingKey] = []
     var matchesReturnValue: Bool!
-    var matchesClosure: ((AnyMakerKey) -> Bool)?
+    var matchesClosure: ((AnyBindingKey) -> Bool)?
 
-    func matches(_ other: AnyMakerKey) -> Bool {
+    func matches(_ other: AnyBindingKey) -> Bool {
         matchesCallsCount += 1
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)
         return matchesClosure.map { $0(other) } ?? matchesReturnValue
+    }
+}
+
+class AnyInstanceMakerMock: AnyInstanceMaker {
+    // MARK: - makeInstance
+
+    var makeInstanceArgContextResolverThrowableError: Error?
+    var makeInstanceArgContextResolverCallsCount = 0
+    var makeInstanceArgContextResolverCalled: Bool {
+        return makeInstanceArgContextResolverCallsCount > 0
+    }
+
+    var makeInstanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver)?
+    var makeInstanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver)] = []
+    var makeInstanceArgContextResolverReturnValue: Any!
+    var makeInstanceArgContextResolverClosure: ((Any, Any, Resolver) throws -> Any)?
+
+    func makeInstance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
+        if let error = makeInstanceArgContextResolverThrowableError {
+            throw error
+        }
+        makeInstanceArgContextResolverCallsCount += 1
+        makeInstanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
+        makeInstanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
+        return try makeInstanceArgContextResolverClosure.map { try $0(arg, context, resolver) } ?? makeInstanceArgContextResolverReturnValue
     }
 }
 
@@ -132,5 +117,7 @@ class AnyTypeDescriptorMock: AnyTypeDescriptor {
         return matchesClosure.map { $0(other) } ?? matchesReturnValue
     }
 }
+
+class BindingMock: Binding {}
 
 class ModuleIncludeEntryMock: ModuleIncludeEntry {}

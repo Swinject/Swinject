@@ -24,47 +24,47 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         }
     }
     describe("`with` method") {
-        it("produces entry with correct descriptor") {
-            let entry = bbind(descriptor).with(maker)
-            expect(entry.key.descriptor) === descriptor
+        it("produces binding with correct descriptor") {
+            let binding = bbind(descriptor).with(maker) as? SimpleBinding
+            expect(binding?.key.descriptor) === descriptor
         }
-        it("produces entry with correct argument type") {
-            let entry = bbind(Any.self).with(DummyMaker<Void, Int>())
-            expect(entry.key.argumentType is Int.Type).to(beTrue())
+        it("produces binding with correct argument type") {
+            let binding = bbind(Any.self).with(DummyMaker<Void, Int>()) as? SimpleBinding
+            expect(binding?.key.argumentType is Int.Type).to(beTrue())
         }
-        it("produces entry with correct context type") {
-            let entry = bbind(Any.self).with(DummyMaker<Int, Void>())
-            expect(entry.key.contextType is Int.Type).to(beTrue())
+        it("produces binding with correct context type") {
+            let binding = bbind(Any.self).with(DummyMaker<Int, Void>()) as? SimpleBinding
+            expect(binding?.key.contextType is Int.Type).to(beTrue())
         }
-        it("produces entry with correct maker") {
-            let entry = bbind(Any.self).with(maker)
-            expect(entry.maker) === maker
+        it("produces binding with correct maker") {
+            let binding = bbind(Any.self).with(maker) as? SimpleBinding
+            expect(binding?.maker) === maker
         }
-        it("produces entry if given value of descriptor type") {
-            let entry = bbind(Int.self).with(42)
-            expect(entry.maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
+        it("produces binding if given value of descriptor type") {
+            let binding = bbind(Int.self).with(42) as? SimpleBinding
+            expect(binding?.maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
         }
     }
     describe("& operator") {
-        it("produces entry with correct descriptor") {
-            let entry = bbind(descriptor) & maker
-            expect(entry.key.descriptor) === descriptor
+        it("produces binding with correct descriptor") {
+            let binding = bbind(descriptor) & maker as? SimpleBinding
+            expect(binding?.key.descriptor) === descriptor
         }
-        it("produces entry with correct argument type") {
-            let entry = bbind(Any.self) & DummyMaker<Void, Int>()
-            expect(entry.key.argumentType is Int.Type).to(beTrue())
+        it("produces binding with correct argument type") {
+            let binding = bbind(Any.self) & DummyMaker<Void, Int>() as? SimpleBinding
+            expect(binding?.key.argumentType is Int.Type).to(beTrue())
         }
-        it("produces entry with correct context type") {
-            let entry = bbind(Any.self) & DummyMaker<Int, Void>()
-            expect(entry.key.contextType is Int.Type).to(beTrue())
+        it("produces binding with correct context type") {
+            let binding = bbind(Any.self) & DummyMaker<Int, Void>() as? SimpleBinding
+            expect(binding?.key.contextType is Int.Type).to(beTrue())
         }
-        it("produces entry with correct maker") {
-            let entry = bbind(Any.self) & maker
-            expect(entry.maker) === maker
+        it("produces binding with correct maker") {
+            let binding = bbind(Any.self) & maker as? SimpleBinding
+            expect(binding?.maker) === maker
         }
-        it("produces entry provider if given value of descriptor type") {
-            let entry = bbind(Int.self) & 42
-            expect(entry.maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
+        it("produces binding provider if given value of descriptor type") {
+            let binding = bbind(Int.self) & 42 as? SimpleBinding
+            expect(binding?.maker is SimpleInstanceMaker<Int, Any, Void>).to(beTrue())
         }
     }
 } }

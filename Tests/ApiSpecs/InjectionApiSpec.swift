@@ -36,7 +36,7 @@ class InjectionApiSpec: QuickSpec { override func spec() {
         }
         expect { try swinject.instance(of: Pet.self).owner } === person
     }
-    it("throws if has multiple entries for the same request") {
+    it("throws if has multiple bindings for the same request") {
         let swinject = Swinject {
             bbind(Int.self) & 42
             bbind(Int.self) & provider { 17 + 25 }

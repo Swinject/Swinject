@@ -22,7 +22,7 @@ class ContextedResolverSpec: QuickSpec { override func spec() {
         }
         it("calls wrapped resolver with given type descriptor") {
             let descriptor = AnyTypeDescriptorMock()
-            let request = MakerRequest<AnyTypeDescriptorMock, Void, Void>(key: MakerKey(descriptor: descriptor), context: (), argument: ())
+            let request = MakerRequest<AnyTypeDescriptorMock, Void, Void>(key: BindingKey(descriptor: descriptor), context: (), argument: ())
             _ = try? resolver.resolve(request)
             let receivedRequest = wrapped.resolveReceivedRequest as? MakerRequest<AnyTypeDescriptorMock, Void, Void>
             expect(receivedRequest?.key.descriptor) === descriptor
