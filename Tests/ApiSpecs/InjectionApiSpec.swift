@@ -11,11 +11,7 @@ class InjectionApiSpec: QuickSpec { override func spec() {
     beforeEach {
         person = Person()
     }
-    it("throws for empty swinject") {
-        let swinject = Swinject {}
-        expect { try swinject.instance(of: Int.self) }.to(throwError())
-    }
-    it("returns instance if provider is bound") {
+    it("returns instance if is bound") {
         let swinject = Swinject {
             bbind(Int.self).with(42)
         }
@@ -40,7 +36,7 @@ class InjectionApiSpec: QuickSpec { override func spec() {
         }
         expect { try swinject.instance(of: Pet.self).owner } === person
     }
-    it("throws if multiple providers are bound") {
+    it("throws if has multiple entries for the same request") {
         let swinject = Swinject {
             bbind(Int.self) & 42
             bbind(Int.self) & provider { 17 + 25 }
@@ -55,12 +51,36 @@ class InjectionApiSpec: QuickSpec { override func spec() {
         expect { try swinject.instance(of: Int.self, tagged: 42) }.to(throwError())
         expect { try swinject.instance(of: Int.self, tagged: "OtherTag") }.to(throwError())
     }
-    it("returns isntance with correct tag") {
+    it("returns instance with correct tag") {
         let swinject = Swinject {
             bbind(String.self) & "Plain"
             bbind(String.self, tagged: "Tag") & "Tagged"
         }
         expect { try swinject.instance(of: String.self) } == "Plain"
         expect { try swinject.instance(of: String.self, tagged: "Tag") } == "Tagged"
+    }
+    it("can inject instance provider") {
+        let swinject = Swinject {
+            bbind(Int.self, tagged: "tag") & 42
+        }
+        let provider = swinject.provider(of: Int.self, tagged: "tag")
+        expect { try provider() } == 42
+    }
+    it("can inject instance factory") {
+        let intFactory = factory { (r, arg: Int) in Int(try r.instance() as Double) + 5 * arg }
+        let swinject = Swinject {
+            bbind(Double.self) & 17.0
+            bbind(Int.self) & intFactory
+        }
+        let factory = swinject.factory() as (Int) throws -> Int
+        expect { try factory(5) } == 42
+    }
+    it("can inject factory binding as provider or instance") {
+        let swinject = Swinject {
+            bbind(Double.self) & 17.0
+            bbind(Int.self) & factory { Int(try $0.instance() as Double) + 5 * $1 }
+        }
+        expect { try swinject.provider(of: Int.self, arg: 5)() } == 42
+        expect { try swinject.instance(of: Int.self, arg: 5) } == 42
     }
 } }
