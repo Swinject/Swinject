@@ -20,6 +20,7 @@
 		CD6DE54322DE65B500532D08 /* SimpleInstanceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54222DE65B500532D08 /* SimpleInstanceMaker.swift */; };
 		CD6DE54522DED11600532D08 /* ContextedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54422DED11600532D08 /* ContextedResolver.swift */; };
 		CD6DE54722DED16400532D08 /* ContextedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54622DED16400532D08 /* ContextedResolverSpec.swift */; };
+		CD6DE54C22DF85AF00532D08 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE54B22DF85AF00532D08 /* Scope.swift */; };
 		CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */; };
 		CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */; };
 		CDADF33522DB521400C5D8DB /* SwinjectModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADF33422DB521400C5D8DB /* SwinjectModule.swift */; };
@@ -67,6 +68,7 @@
 		CD6DE54622DED16400532D08 /* ContextedResolverSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextedResolverSpec.swift; sourceTree = "<group>"; };
 		CD6DE54822DED4A100532D08 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 		CD6DE54A22DED4A100532D08 /* .sourcery.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .sourcery.yml; sourceTree = "<group>"; };
+		CD6DE54B22DF85AF00532D08 /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
 		CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonGeneratedMocks.swift; sourceTree = "<group>"; };
 		CDADF32022DB38C600C5D8DB /* SwinjectTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTree.swift; sourceTree = "<group>"; };
 		CDADF33422DB521400C5D8DB /* SwinjectModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectModule.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				CDD8381522DA4B55003E9909 /* Swinject.swift */,
 				CDD8381C22DA4E02003E9909 /* SwinjectError.swift */,
 				CDADF33422DB521400C5D8DB /* SwinjectModule.swift */,
+				CD6DE54B22DF85AF00532D08 /* Scope.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				CD6DE53922DD1D0A00532D08 /* InstanceRequest.swift in Sources */,
 				CDADF32122DB38C600C5D8DB /* SwinjectTree.swift in Sources */,
 				CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */,
+				CD6DE54C22DF85AF00532D08 /* Scope.swift in Sources */,
 				CDD8380722DA30C6003E9909 /* TypeDescriptor.swift in Sources */,
 				CD6DE54522DED11600532D08 /* ContextedResolver.swift in Sources */,
 				CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */,
