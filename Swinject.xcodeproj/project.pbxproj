@@ -12,6 +12,7 @@
 		771BFC9122D600B700AFB237 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 771BFC9022D600B700AFB237 /* Nimble */; };
 		771BFC9422D600CC00AFB237 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 771BFC9322D600CC00AFB237 /* Quick */; };
 		77729C9E22DCCA20005C3281 /* InjectionApiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77729C9D22DCCA20005C3281 /* InjectionApiSpec.swift */; };
+		77906E7D22DF6A8D009CDCF4 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77906E7C22DF6A8D009CDCF4 /* Convenience.swift */; };
 		CD6DE53522DD1C7300532D08 /* BindingKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */; };
 		CD6DE53722DD1CE900532D08 /* BindingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53622DD1CE900532D08 /* BindingKey.swift */; };
 		CD6DE53922DD1D0A00532D08 /* BindingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53822DD1D0A00532D08 /* BindingRequest.swift */; };
@@ -34,7 +35,7 @@
 		CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381522DA4B55003E9909 /* Swinject.swift */; };
 		CDD8381B22DA4CBE003E9909 /* SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381922DA4C9F003E9909 /* SwinjectSpec.swift */; };
 		CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381C22DA4E02003E9909 /* SwinjectError.swift */; };
-		CDD8381F22DA4F6F003E9909 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381E22DA4F6F003E9909 /* Utils.swift */; };
+		CDD8381F22DA4F6F003E9909 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381E22DA4F6F003E9909 /* Bridge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		771BFC8B22D5FAAE00AFB237 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		771BFC8C22D5FAAE00AFB237 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		77729C9D22DCCA20005C3281 /* InjectionApiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionApiSpec.swift; sourceTree = "<group>"; };
+		77906E7C22DF6A8D009CDCF4 /* Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKeySpec.swift; sourceTree = "<group>"; };
 		CD6DE53622DD1CE900532D08 /* BindingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKey.swift; sourceTree = "<group>"; };
 		CD6DE53822DD1D0A00532D08 /* BindingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingRequest.swift; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 		CDD8381522DA4B55003E9909 /* Swinject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinject.swift; sourceTree = "<group>"; };
 		CDD8381922DA4C9F003E9909 /* SwinjectSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectSpec.swift; sourceTree = "<group>"; };
 		CDD8381C22DA4E02003E9909 /* SwinjectError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectError.swift; sourceTree = "<group>"; };
-		CDD8381E22DA4F6F003E9909 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		CDD8381E22DA4F6F003E9909 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +174,8 @@
 		77729C9422DCC56D005C3281 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				CDD8381E22DA4F6F003E9909 /* Utils.swift */,
+				CDD8381E22DA4F6F003E9909 /* Bridge.swift */,
+				77906E7C22DF6A8D009CDCF4 /* Convenience.swift */,
 				CDADF33622DB753800C5D8DB /* TestModels.swift */,
 				CDADF33F22DB883A00C5D8DB /* GeneratedMocks.swift */,
 				CD85AF1122DA5A8F00A8B7CA /* NonGeneratedMocks.swift */,
@@ -392,7 +395,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD6DE54722DED16400532D08 /* ContextedResolverSpec.swift in Sources */,
-				CDD8381F22DA4F6F003E9909 /* Utils.swift in Sources */,
+				77906E7D22DF6A8D009CDCF4 /* Convenience.swift in Sources */,
+				CDD8381F22DA4F6F003E9909 /* Bridge.swift in Sources */,
 				CDD8381B22DA4CBE003E9909 /* SwinjectSpec.swift in Sources */,
 				CDADF34022DB883A00C5D8DB /* GeneratedMocks.swift in Sources */,
 				CDD8380A22DA31D9003E9909 /* TypeBinderSpec.swift in Sources */,
