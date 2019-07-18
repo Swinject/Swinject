@@ -14,4 +14,12 @@ struct Pet {
     let owner: Human
 }
 
+class Building {
+    let floors: Int
+
+    init(floors: Int) {
+        self.floors = floors
+    }
+}
+
 struct TestError: Error, Equatable {}

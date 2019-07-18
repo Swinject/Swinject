@@ -184,5 +184,14 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         weak var first = try? swinject.instance() as Human
         expect(first).to(beNil())
     }
-
+    it("can bind multitons") {
+        let swinject = Swinject {
+            bbind(Building.self) & multiton { Building(floors: $1) }
+        }
+        let house1 = try? swinject.instance(arg: 1) as Building
+        let house2 = try? swinject.instance(arg: 1) as Building
+        let skyscrapper = try? swinject.instance(arg: 100) as Building
+        expect(house1) === house2
+        expect(skyscrapper) !== house1
+    }
 } }
