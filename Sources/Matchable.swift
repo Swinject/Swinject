@@ -11,21 +11,25 @@ public protocol Matchable {
 // TODO: Box / Unbox internally all the arguments
 struct AnyMatchable: Matchable, Hashable {
     let value: Any
-    private let _matches: (Any) -> Bool
-    private let _hashInto: (inout Hasher) -> Void
+    private let matchesValue: (Any) -> Bool
+    private let hashValueInto: (inout Hasher) -> Void
 
     init<T: Hashable>(_ value: T) {
         self.value = value
-        _matches = { $0 as? T == value }
-        _hashInto = { value.hash(into: &$0) }
+        matchesValue = { $0 as? T == value }
+        hashValueInto = { value.hash(into: &$0) }
     }
 
     func matches(_ other: Any) -> Bool {
-        _matches(other)
+        if let other = other as? AnyMatchable {
+            return matchesValue(other.value)
+        } else {
+            return false
+        }
     }
 
     func hash(into hasher: inout Hasher) {
-        _hashInto(&hasher)
+        hashValueInto(&hasher)
     }
 
     static func == (lhs: AnyMatchable, rhs: AnyMatchable) -> Bool {

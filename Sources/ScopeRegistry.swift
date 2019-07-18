@@ -9,11 +9,13 @@ public protocol ScopeRegistry {
 }
 
 public class StandardScopeRegistry: ScopeRegistry {
-    public func register(_: Any, for _: ScopeRegistryKey) {
-        fatalError()
+    private var entries = [ScopeRegistryKey: [Any]]()
+
+    public func register(_ instance: Any, for key: ScopeRegistryKey) {
+        entries[key, default: []].append(instance)
     }
 
-    public func instance(for _: ScopeRegistryKey) -> Any? {
-        nil
+    public func instance(for key: ScopeRegistryKey) -> Any? {
+        entries[key]?.last
     }
 }
