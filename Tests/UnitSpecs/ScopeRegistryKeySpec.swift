@@ -69,6 +69,11 @@ class ScopeRegistryKeySpec: QuickSpec { override func spec() {
                 argument2.matchesReturnValue = true
                 expect(key1) == key2
             }
+            it("equals if both arguments are Void") {
+                key1 = ScopeRegistryKey(descriptor: descriptor1, argument: ())
+                key2 = ScopeRegistryKey(descriptor: descriptor2, argument: ())
+                expect(key1) == key2
+            }
         }
     }
     describe("hash") {

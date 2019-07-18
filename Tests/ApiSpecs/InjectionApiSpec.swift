@@ -114,4 +114,41 @@ class InjectionApiSpec: QuickSpec { override func spec() {
         expect { try swinject.on("context").instance() as Int } == 42
         expect { try swinject.on(Person()).instance() as Int } == 42
     }
+    it("can bind singleton") {
+        let swinject = Swinject {
+            bbind(Person.self) & singleton { Person() }
+        }
+        let first = try? swinject.instance() as Person
+        let second = try? swinject.instance() as Person
+        expect(first) === second
+    }
+    it("can bind scoped singleton") {
+        let scope = UnboundScope()
+        let swinject = Swinject {
+            bbind(Person.self) & scoped(scope).singleton { Person() }
+        }
+        let first = try? swinject.instance() as Person
+        let second = try? swinject.instance() as Person
+        expect(first) === second
+    }
+    it("can close scopes") {
+        let scope = UnboundScope()
+        let swinject = Swinject {
+            bbind(Person.self) & scoped(scope).singleton { Person() }
+        }
+        let first = try? swinject.instance() as Person
+        scope.close()
+        let second = try? swinject.instance() as Person
+        expect(first) !== second
+    }
+    it("notifies instances when scope is closed") {
+        let scope = UnboundScope()
+        let swinject = Swinject {
+            bbind(ClosableMock.self) & scoped(scope).singleton { ClosableMock() }
+        }
+        let closable = try? swinject.instance() as ClosableMock
+        scope.close()
+        expect(closable?.closeCalled) == true
+    }
+    // FIXME: Binding Protocol to Implementation does not work
 } }
