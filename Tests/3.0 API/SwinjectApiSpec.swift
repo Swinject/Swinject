@@ -6,7 +6,7 @@ import Nimble
 import Quick
 import Swinject
 
-class InjectionApiSpec: QuickSpec { override func spec() {
+class SwinjectApiSpec: QuickSpec { override func spec() {
     var person = Person()
     beforeEach {
         person = Person()
