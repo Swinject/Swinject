@@ -2,6 +2,7 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
+import Nimble
 @testable import Swinject
 
 extension InstanceMaker where Argument == Void, Context == Any {
@@ -19,5 +20,16 @@ extension InstanceMaker where Argument == Void {
 extension InstanceMaker where Context == Any {
     func makeInstance(arg: Argument, resolver: Resolver) throws -> MadeType {
         try makeInstance(arg: arg, context: (), resolver: resolver)
+    }
+}
+
+func concurrentPerform(iterations: Int, action: () -> Void) {
+    var finished = 0
+    DispatchQueue.concurrentPerform(iterations: iterations) { _ in
+        action()
+        finished += 1
+    }
+    waitUntil { done in
+        if finished == iterations { done() }
     }
 }
