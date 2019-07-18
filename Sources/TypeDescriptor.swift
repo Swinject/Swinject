@@ -9,9 +9,9 @@ public protocol TypeDescriptor: AnyTypeDescriptor {
     associatedtype BaseType
 }
 
-public struct NoTag: Equatable {}
+public struct NoTag: Hashable {}
 
-public struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Equatable {
+public struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
     let tag: Tag
 
     public func matches(_ other: Any) -> Bool {
@@ -19,10 +19,12 @@ public struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Equatable {
         return tag == other.tag
     }
 
-    public var hashValue: Int { 0 } // FIXME:
+    public var hashValue: Int {
+        String(describing: BaseType.self).hashValue ^ tag.hashValue
+    }
 }
 
-func tagged<Type, Tag>(_: Type.Type, with tag: Tag) -> Tagged<Type, Tag> where Tag: Equatable {
+func tagged<Type, Tag>(_: Type.Type, with tag: Tag) -> Tagged<Type, Tag> where Tag: Hashable {
     Tagged(tag: tag)
 }
 

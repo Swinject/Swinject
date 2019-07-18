@@ -23,11 +23,11 @@ public extension Resolver {
         try instance(tagged: NoTag(), arg: arg)
     }
 
-    func instance<Type, Tag: Equatable>(of _: Type.Type = Type.self, tagged tag: Tag) throws -> Type {
+    func instance<Type, Tag: Hashable>(of _: Type.Type = Type.self, tagged tag: Tag) throws -> Type {
         try resolve(request(tag: tag, arg: ()))
     }
 
-    func instance<Type, Tag: Equatable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag, arg: Argument) throws -> Type {
+    func instance<Type, Tag: Hashable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag, arg: Argument) throws -> Type {
         try resolve(request(tag: tag, arg: arg))
     }
 }
@@ -41,11 +41,11 @@ public extension Resolver {
         provider(tagged: NoTag(), arg: arg)
     }
 
-    func provider<Type, Tag: Equatable>(of _: Type.Type = Type.self, tagged tag: Tag) -> () throws -> Type {
+    func provider<Type, Tag: Hashable>(of _: Type.Type = Type.self, tagged tag: Tag) -> () throws -> Type {
         provider(tagged: tag, arg: ())
     }
 
-    func provider<Type, Tag: Equatable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag, arg: Argument) -> () throws -> Type {
+    func provider<Type, Tag: Hashable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag, arg: Argument) -> () throws -> Type {
         return { try self.resolve(request(tag: tag, arg: arg)) }
     }
 }
@@ -55,7 +55,7 @@ public extension Resolver {
         factory(tagged: NoTag())
     }
 
-    func factory<Type, Tag: Equatable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag) -> (Argument) throws -> Type {
+    func factory<Type, Tag: Hashable, Argument>(of _: Type.Type = Type.self, tagged tag: Tag) -> (Argument) throws -> Type {
         return { try self.resolve(request(tag: tag, arg: $0)) }
     }
 

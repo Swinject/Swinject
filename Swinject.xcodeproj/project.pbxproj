@@ -16,6 +16,7 @@
 		7723ABDD22E0979E0067D423 /* ScopeRegistryKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ABDB22E097950067D423 /* ScopeRegistryKeySpec.swift */; };
 		7723ABDF22E0A9FD0067D423 /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7723ABDE22E0A9FD0067D423 /* Matchable.swift */; };
 		7755159D22E0B3C2004BF092 /* ScopeRegistryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7755159C22E0B3C2004BF092 /* ScopeRegistryKey.swift */; };
+		775515A022E0BE79004BF092 /* TaggedTypeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7755159E22E0BE62004BF092 /* TaggedTypeSpec.swift */; };
 		77729C9E22DCCA20005C3281 /* InjectionApiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77729C9D22DCCA20005C3281 /* InjectionApiSpec.swift */; };
 		77906E7D22DF6A8D009CDCF4 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77906E7C22DF6A8D009CDCF4 /* Convenience.swift */; };
 		CD6DE53522DD1C7300532D08 /* BindingKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */; };
@@ -71,6 +72,7 @@
 		7723ABDB22E097950067D423 /* ScopeRegistryKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeRegistryKeySpec.swift; sourceTree = "<group>"; };
 		7723ABDE22E0A9FD0067D423 /* Matchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matchable.swift; sourceTree = "<group>"; };
 		7755159C22E0B3C2004BF092 /* ScopeRegistryKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeRegistryKey.swift; sourceTree = "<group>"; };
+		7755159E22E0BE62004BF092 /* TaggedTypeSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedTypeSpec.swift; sourceTree = "<group>"; };
 		77729C9D22DCCA20005C3281 /* InjectionApiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionApiSpec.swift; sourceTree = "<group>"; };
 		77906E7C22DF6A8D009CDCF4 /* Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		CD6DE53322DD1C6800532D08 /* BindingKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKeySpec.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				CD6DE55422DFB2A600532D08 /* BinderEnvironmentSpec.swift */,
 				7723ABD822E0961B0067D423 /* StandardScopeRegistrySpec.swift */,
 				7723ABDB22E097950067D423 /* ScopeRegistryKeySpec.swift */,
+				7755159E22E0BE62004BF092 /* TaggedTypeSpec.swift */,
 			);
 			path = UnitSpecs;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				CD85AF1222DA5A8F00A8B7CA /* NonGeneratedMocks.swift in Sources */,
 				CD6DE53D22DD30A100532D08 /* SimpleBindingSpec.swift in Sources */,
 				CDD8380322DA2B67003E9909 /* SwinjectTreeBuilderSpec.swift in Sources */,
+				775515A022E0BE79004BF092 /* TaggedTypeSpec.swift in Sources */,
 				CD6DE53522DD1C7300532D08 /* BindingKeySpec.swift in Sources */,
 				CD6DE55522DFB2A600532D08 /* BinderEnvironmentSpec.swift in Sources */,
 				7723ABDA22E0962C0067D423 /* StandardScopeRegistrySpec.swift in Sources */,
