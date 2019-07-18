@@ -51,29 +51,33 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
     }
     describe("instance") {
         var key = AnyBindingKeyMock()
-        var lock = ReplayLock()
-        var registry = ScopeRegistryMock()
+        var registry = StaticScopeRegistryMock()
         var scope = AnyScopeMock()
         var maker = AnyInstanceMakerMock()
         var binding: ScopedBinding!
         beforeEach {
-            lock = ReplayLock()
-            registry = ScopeRegistryMock()
+            registry = StaticScopeRegistryMock()
             scope = AnyScopeMock()
-            scope.lock = lock
             scope.registryForReturnValue = registry
             maker = AnyInstanceMakerMock()
             key = AnyBindingKeyMock()
             key.descriptor = AnyTypeDescriptorMock()
             binding = ScopedBinding(key: key, maker: maker, scope: scope)
         }
-        it("syncs using scope's lock") {
-            _ = try? binding.instance(arg: (), context: (), resolver: DummyResolver())
-            expect(lock.syncCallsCount) == 1
+        it("retrieves registry using passed context") {
+            _ = try? binding.instance(arg: (), context: "context", resolver: DummyResolver())
+            expect(scope.registryForReceivedContext as? String) == "context"
         }
-        context("no instance in registry") {
+        it("retrieves instance from registry using a correct key") {
+            let descriptor = AnyTypeDescriptorMock()
+            key.descriptor = descriptor
+            _ = try? binding.instance(arg: 42, context: (), resolver: DummyResolver())
+            expect(registry.instanceKeyReceivedKey?.argument as? Int) == 42
+            expect(registry.instanceKeyReceivedKey?.descriptor) === descriptor
+        }
+        context("instance builder") {
             beforeEach {
-                registry.instanceForReturnValue = nil
+                scope.registryForReturnValue = BuilderScopeRegistry()
             }
             it("returns instance produced by maker") {
                 maker.makeInstanceArgContextResolverReturnValue = 42
@@ -86,11 +90,6 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
                     try binding.instance(arg: (), context: (), resolver: DummyResolver())
                 }.to(throwError(errorType: TestError.self))
             }
-            it("puts made instance into registry") {
-                maker.makeInstanceArgContextResolverReturnValue = 42
-                _ = try? binding.instance(arg: (), context: (), resolver: DummyResolver())
-                expect(registry.registerForReceivedArguments?.instance as? Int) == 42
-            }
             it("invokes maker with correct parameters") {
                 let resolver = DummyResolver()
                 _ = try? binding.instance(arg: 42, context: "context", resolver: resolver)
@@ -98,33 +97,6 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
                 expect(maker.makeInstanceArgContextResolverReceivedArguments?.context as? String) == "context"
                 expect(maker.makeInstanceArgContextResolverReceivedArguments?.resolver) === resolver
             }
-            it("puts instance into registry using a correct key") {
-                let descriptor = AnyTypeDescriptorMock()
-                key.descriptor = descriptor
-                _ = try? binding.instance(arg: 42, context: (), resolver: DummyResolver())
-                expect(registry.registerForReceivedArguments?.key.argument as? Int) == 42
-                expect(registry.registerForReceivedArguments?.key.descriptor) === descriptor
-            }
-        }
-        context("instance in registry") {
-            beforeEach {
-                registry.instanceForReturnValue = 42
-            }
-            it("returns instance from registry") {
-                let instance = try? binding.instance(arg: (), context: (), resolver: DummyResolver()) as? Int
-                expect(instance) == 42
-            }
-        }
-        it("retrieves registry using passed context") {
-            _ = try? binding.instance(arg: (), context: "context", resolver: DummyResolver())
-            expect(scope.registryForReceivedContext as? String) == "context"
-        }
-        it("retrieves instance from registry using a correct key") {
-            let descriptor = AnyTypeDescriptorMock()
-            key.descriptor = descriptor
-            _ = try? binding.instance(arg: 42, context: (), resolver: DummyResolver())
-            expect(registry.instanceForReceivedKey?.argument as? Int) == 42
-            expect(registry.instanceForReceivedKey?.descriptor) === descriptor
         }
     }
 } }

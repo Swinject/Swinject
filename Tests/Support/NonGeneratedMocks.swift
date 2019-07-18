@@ -40,7 +40,6 @@ extension AnyScopeMock: Scope {
 }
 
 class DummyScope<Context>: Scope {
-    var lock: Lock { fatalError() }
     func registry(for _: Context) -> ScopeRegistry { fatalError() }
 }
 
@@ -57,11 +56,19 @@ extension AnyBindningMakerMock: BindingMaker {
     }
 }
 
-class ReplayLock: Lock {
-    var syncCallsCount = 0
+// sourcery: AutoMockable
+protocol StaticScopeRegistry {
+    func instance(key: ScopeRegistryKey) -> Any
+}
 
-    func sync<T>(_ action: () throws -> T) rethrows -> T {
-        syncCallsCount += 1
-        return try action()
+extension StaticScopeRegistryMock: ScopeRegistry {
+    func instance(for key: ScopeRegistryKey, builder _: () throws -> Any) rethrows -> Any {
+        instance(key: key)
+    }
+}
+
+struct BuilderScopeRegistry: ScopeRegistry {
+    func instance(for _: ScopeRegistryKey, builder: () throws -> Any) rethrows -> Any {
+        try builder()
     }
 }

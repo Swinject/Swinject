@@ -119,13 +119,6 @@ class AnyResolverMock: AnyResolver {
 }
 
 class AnyScopeMock: AnyScope {
-    var lock: Lock {
-        get { return underlyingLock }
-        set(value) { underlyingLock = value }
-    }
-
-    var underlyingLock: Lock!
-
     // MARK: - registry
 
     var registryForCallsCount = 0
@@ -264,41 +257,23 @@ class MatchableMock: Matchable {
 
 class ModuleIncludeEntryMock: ModuleIncludeEntry {}
 
-class ScopeRegistryMock: ScopeRegistry {
-    // MARK: - register
-
-    var registerForCallsCount = 0
-    var registerForCalled: Bool {
-        return registerForCallsCount > 0
-    }
-
-    var registerForReceivedArguments: (instance: Any, key: ScopeRegistryKey)?
-    var registerForReceivedInvocations: [(instance: Any, key: ScopeRegistryKey)] = []
-    var registerForClosure: ((Any, ScopeRegistryKey) -> Void)?
-
-    func register(_ instance: Any, for key: ScopeRegistryKey) {
-        registerForCallsCount += 1
-        registerForReceivedArguments = (instance: instance, key: key)
-        registerForReceivedInvocations.append((instance: instance, key: key))
-        registerForClosure?(instance, key)
-    }
-
+class StaticScopeRegistryMock: StaticScopeRegistry {
     // MARK: - instance
 
-    var instanceForCallsCount = 0
-    var instanceForCalled: Bool {
-        return instanceForCallsCount > 0
+    var instanceKeyCallsCount = 0
+    var instanceKeyCalled: Bool {
+        return instanceKeyCallsCount > 0
     }
 
-    var instanceForReceivedKey: ScopeRegistryKey?
-    var instanceForReceivedInvocations: [ScopeRegistryKey] = []
-    var instanceForReturnValue: Any?
-    var instanceForClosure: ((ScopeRegistryKey) -> Any?)?
+    var instanceKeyReceivedKey: ScopeRegistryKey?
+    var instanceKeyReceivedInvocations: [ScopeRegistryKey] = []
+    var instanceKeyReturnValue: Any!
+    var instanceKeyClosure: ((ScopeRegistryKey) -> Any)?
 
-    func instance(for key: ScopeRegistryKey) -> Any? {
-        instanceForCallsCount += 1
-        instanceForReceivedKey = key
-        instanceForReceivedInvocations.append(key)
-        return instanceForClosure.map { $0(key) } ?? instanceForReturnValue
+    func instance(key: ScopeRegistryKey) -> Any {
+        instanceKeyCallsCount += 1
+        instanceKeyReceivedKey = key
+        instanceKeyReceivedInvocations.append(key)
+        return instanceKeyClosure.map { $0(key) } ?? instanceKeyReturnValue
     }
 }

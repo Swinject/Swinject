@@ -2,26 +2,12 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-// sourcery: AutoMockable
 public protocol ScopeRegistry {
-    func register(_ instance: Any, for key: ScopeRegistryKey)
-    func instance(for key: ScopeRegistryKey) -> Any?
+    func instance(for key: ScopeRegistryKey, builder: () throws -> Any) rethrows -> Any
 }
 
 public class StandardScopeRegistry: ScopeRegistry {
-    private var entries = [ScopeRegistryKey: [Any]]()
-
-    public func register(_ instance: Any, for key: ScopeRegistryKey) {
-        entries[key, default: []].append(instance)
-    }
-
-    public func instance(for key: ScopeRegistryKey) -> Any? {
-        entries[key]?.last
-    }
-
-    deinit {
-        entries.values
-            .flatMap { $0 }
-            .forEach { ($0 as? Closable)?.close() }
+    public func instance(for _: ScopeRegistryKey, builder _: () throws -> Any) rethrows -> Any {
+        fatalError()
     }
 }

@@ -14,17 +14,11 @@ extension ScopedBinding: Binding {
     }
 
     public func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
-        try scope.lock.sync {
-            let registry = scope.registry(for: context)
-            let key = ScopeRegistryKey(descriptor: self.key.descriptor, argument: arg)
-            if let instance = registry.instance(for: key) as Any? {
-                return instance
-            } else {
-                let newInstance = try maker.makeInstance(arg: arg, context: context, resolver: resolver)
-                registry.register(newInstance, for: key)
-                return newInstance
+        try scope
+            .registry(for: context)
+            .instance(for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg)) {
+                try maker.makeInstance(arg: arg, context: context, resolver: resolver)
             }
-        }
     }
 }
 

@@ -4,7 +4,6 @@
 
 // sourcery: AutoMockable
 public protocol AnyScope {
-    var lock: Lock { get }
     func registry(for context: Any) -> ScopeRegistry
 }
 
@@ -19,14 +18,8 @@ extension Scope {
     }
 }
 
-public protocol Lock {
-    func sync<T>(_ action: () throws -> T) rethrows -> T
-}
-
 public class ImplicitScope: Scope {
     public typealias Context = Any
-
-    public var lock: Lock { fatalError() }
 
     public func registry(for _: Any) -> ScopeRegistry {
         fatalError()
