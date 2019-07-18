@@ -59,6 +59,7 @@ extension AnyBindningMakerMock: BindingMaker {
 // sourcery: AutoMockable
 protocol StaticScopeRegistry {
     func instance(key: ScopeRegistryKey) -> Any
+    func clear()
 }
 
 extension StaticScopeRegistryMock: ScopeRegistry {
@@ -71,4 +72,6 @@ struct BuilderScopeRegistry: ScopeRegistry {
     func instance(for _: ScopeRegistryKey, builder: () throws -> Any) rethrows -> Any {
         try builder()
     }
+
+    func clear() {}
 }

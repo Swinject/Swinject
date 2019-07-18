@@ -6,11 +6,14 @@ import Foundation
 
 public protocol ScopeRegistry {
     func instance(for key: ScopeRegistryKey, builder: () throws -> Any) rethrows -> Any
+    func clear()
 }
 
 public class StandardScopeRegistry: ScopeRegistry, Closable {
     private let lock = NSRecursiveLock()
     private var instances = [ScopeRegistryKey: Any]()
+
+    public init() {}
 
     public func instance(for key: ScopeRegistryKey, builder: () throws -> Any) rethrows -> Any {
         try lock.sync {
@@ -31,9 +34,9 @@ public class StandardScopeRegistry: ScopeRegistry, Closable {
         }
     }
 
-    deinit {
-        close()
-    }
+    public func clear() { close() }
+
+    deinit { close() }
 }
 
 extension NSLocking {

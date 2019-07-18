@@ -114,7 +114,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         describe("singleton") {
             it("has correct scope") {
                 let maker = singleton { 42 }
-                expect(maker.scope) === ImplicitScope.implicit
+                expect(maker.scope) === UnboundScope.root
             }
             it("returns instance made by builder") {
                 let maker = singleton { 42 }
@@ -146,7 +146,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         describe("multiton") {
             it("has correct scope") {
                 let maker = multiton { (_, _: Void) in 42 }
-                expect(maker.scope) === ImplicitScope.implicit
+                expect(maker.scope) === UnboundScope.root
             }
             it("returns instance made by builder method") {
                 let maker = multiton { (_, _: Void) in 42 }

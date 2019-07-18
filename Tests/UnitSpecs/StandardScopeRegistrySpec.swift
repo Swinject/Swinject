@@ -9,7 +9,9 @@ import Quick
 class StandardScopeRegistrySpec: QuickSpec { override func spec() {
     var registry: StandardScopeRegistry!
     let key = (1 ... 5).map { ScopeRegistryKey(descriptor: plain(Int.self), argument: AnyMatchable($0)) }
+    var closable = [ClosableMock]()
     beforeEach {
+        closable = (1 ... 3).map { _ in ClosableMock() }
         registry = StandardScopeRegistry()
     }
     describe("instance") {
@@ -44,12 +46,25 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             expect(registry.instance(for: key[1]) { 0 } as? Int) == 25
         }
     }
-    describe("closable") {
-        var closable = [ClosableMock]()
-        beforeEach {
-            closable = (1 ... 3).map { _ in ClosableMock() }
+    describe("clear") {
+        it("closes instances when cleared") {
+            _ = registry.instance(for: key[0]) { closable[0] }
+            _ = registry.instance(for: key[1]) { closable[1] }
+            registry.clear()
+            expect(closable[0].closeCallsCount) == 1
+            expect(closable[1].closeCallsCount) == 1
         }
-        it("does not close instance before deinit") {
+        it("releases instance references when cleared") {
+            var person: Person? = Person()
+            weak var weakRef = person
+            _ = registry.instance(for: key[0]) { person! }
+            registry.clear()
+            person = nil
+            expect(weakRef).to(beNil())
+        }
+    }
+    describe("closable") {
+        it("does not close instance by default") {
             _ = registry.instance(for: key[0]) { closable[0] }
             expect(closable[0].closeCallsCount) == 0
         }
@@ -60,13 +75,6 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             expect(closable[0].closeCallsCount) == 1
             expect(closable[1].closeCallsCount) == 1
         }
-        it("closes instances on deinit") {
-            _ = registry.instance(for: key[0]) { closable[0] }
-            _ = registry.instance(for: key[1]) { closable[1] }
-            registry = nil
-            expect(closable[0].closeCallsCount) == 1
-            expect(closable[1].closeCallsCount) == 1
-        }
         it("releases instance references when closed") {
             var person: Person? = Person()
             weak var weakRef = person
@@ -74,6 +82,15 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             registry.close()
             person = nil
             expect(weakRef).to(beNil())
+        }
+    }
+    describe("deinit") {
+        it("closes instances on deinit") {
+            _ = registry.instance(for: key[0]) { closable[0] }
+            _ = registry.instance(for: key[1]) { closable[1] }
+            registry = nil
+            expect(closable[0].closeCallsCount) == 1
+            expect(closable[1].closeCallsCount) == 1
         }
     }
     describe("concurrency") {

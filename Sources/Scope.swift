@@ -18,14 +18,24 @@ extension Scope {
     }
 }
 
-public class ImplicitScope: Scope {
+public class UnboundScope: Scope, Closable {
     public typealias Context = Any
 
+    private let _registry: ScopeRegistry
+
+    public init(registry: ScopeRegistry = StandardScopeRegistry()) {
+        _registry = registry
+    }
+
     public func registry(for _: Any) -> ScopeRegistry {
-        fatalError()
+        _registry
+    }
+
+    public func close() {
+        _registry.clear()
     }
 }
 
-extension ImplicitScope {
-    static let implicit = ImplicitScope()
+extension UnboundScope {
+    static let root = UnboundScope()
 }

@@ -276,4 +276,18 @@ class StaticScopeRegistryMock: StaticScopeRegistry {
         instanceKeyReceivedInvocations.append(key)
         return instanceKeyClosure.map { $0(key) } ?? instanceKeyReturnValue
     }
+
+    // MARK: - clear
+
+    var clearCallsCount = 0
+    var clearCalled: Bool {
+        return clearCallsCount > 0
+    }
+
+    var clearClosure: (() -> Void)?
+
+    func clear() {
+        clearCallsCount += 1
+        clearClosure?()
+    }
 }
