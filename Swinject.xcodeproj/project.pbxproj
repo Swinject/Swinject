@@ -47,6 +47,7 @@
 		CDD8381B22DA4CBE003E9909 /* SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381922DA4C9F003E9909 /* SwinjectSpec.swift */; };
 		CDD8381D22DA4E02003E9909 /* SwinjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381C22DA4E02003E9909 /* SwinjectError.swift */; };
 		CDD8381F22DA4F6F003E9909 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8381E22DA4F6F003E9909 /* Bridge.swift */; };
+		CDE19EC022E0D3A200981365 /* Closable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE19EBF22E0D3A200981365 /* Closable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		CDD8381922DA4C9F003E9909 /* SwinjectSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectSpec.swift; sourceTree = "<group>"; };
 		CDD8381C22DA4E02003E9909 /* SwinjectError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectError.swift; sourceTree = "<group>"; };
 		CDD8381E22DA4F6F003E9909 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
+		CDE19EBF22E0D3A200981365 /* Closable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Closable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				7723ABD622E095460067D423 /* ScopeRegistry.swift */,
 				7755159C22E0B3C2004BF092 /* ScopeRegistryKey.swift */,
 				7723ABDE22E0A9FD0067D423 /* Matchable.swift */,
+				CDE19EBF22E0D3A200981365 /* Closable.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				7723ABDF22E0A9FD0067D423 /* Matchable.swift in Sources */,
 				7755159D22E0B3C2004BF092 /* ScopeRegistryKey.swift in Sources */,
 				CD6DE55322DF94ED00532D08 /* BinderEnvironment.swift in Sources */,
+				CDE19EC022E0D3A200981365 /* Closable.swift in Sources */,
 				7723ABD722E095460067D423 /* ScopeRegistry.swift in Sources */,
 				CDD8381622DA4B55003E9909 /* Swinject.swift in Sources */,
 				CDD8380522DA307F003E9909 /* TypeBinder.swift in Sources */,

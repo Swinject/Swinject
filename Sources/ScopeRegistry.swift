@@ -18,4 +18,10 @@ public class StandardScopeRegistry: ScopeRegistry {
     public func instance(for key: ScopeRegistryKey) -> Any? {
         entries[key]?.last
     }
+
+    deinit {
+        entries.values
+            .flatMap { $0 }
+            .forEach { ($0 as? Closable)?.close() }
+    }
 }

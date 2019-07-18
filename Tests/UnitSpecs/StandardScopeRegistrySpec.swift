@@ -8,8 +8,8 @@ import Quick
 
 class StandardScopeRegistrySpec: QuickSpec { override func spec() {
     var registry: StandardScopeRegistry!
-    let person = Array(1 ... 3).map { _ in Person() }
-    let key = Array(1 ... 3).map { ScopeRegistryKey(descriptor: plain(Int.self), argument: AnyMatchable($0)) }
+    let person = (1 ... 3).map { _ in Person() }
+    let key = (1 ... 3).map { ScopeRegistryKey(descriptor: plain(Int.self), argument: AnyMatchable($0)) }
     beforeEach {
         registry = StandardScopeRegistry()
     }
@@ -48,6 +48,26 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             registry.register(person[0], for: key[0])
             aPerson = nil
             expect(weakRef).notTo(beNil())
+        }
+    }
+    describe("deinit") {
+        var closable = [ClosableMock]()
+        beforeEach {
+            closable = (1 ... 3).map { _ in ClosableMock() }
+        }
+        it("closes all instances registered for single key") {
+            registry.register(closable[0], for: key[0])
+            registry.register(closable[1], for: key[0])
+            registry = nil
+            expect(closable[0].closeCalled).to(beTrue())
+            expect(closable[1].closeCalled).to(beTrue())
+        }
+        it("closes instances registered for all keys") {
+            registry.register(closable[0], for: key[0])
+            registry.register(closable[1], for: key[1])
+            registry = nil
+            expect(closable[0].closeCalled).to(beTrue())
+            expect(closable[1].closeCalled).to(beTrue())
         }
     }
 } }

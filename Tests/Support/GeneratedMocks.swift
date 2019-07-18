@@ -218,6 +218,22 @@ class BindingMock: Binding {
     }
 }
 
+class ClosableMock: Closable {
+    // MARK: - close
+
+    var closeCallsCount = 0
+    var closeCalled: Bool {
+        return closeCallsCount > 0
+    }
+
+    var closeClosure: (() -> Void)?
+
+    func close() {
+        closeCallsCount += 1
+        closeClosure?()
+    }
+}
+
 class MatchableMock: Matchable {
     var hashValue: Int {
         get { return underlyingHashValue }
