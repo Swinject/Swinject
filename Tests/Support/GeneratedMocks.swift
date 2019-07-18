@@ -147,6 +147,13 @@ class AnyScopeMock: AnyScope {
 }
 
 class AnyTypeDescriptorMock: AnyTypeDescriptor {
+    var hashValue: Int {
+        get { return underlyingHashValue }
+        set(value) { underlyingHashValue = value }
+    }
+
+    var underlyingHashValue: Int!
+
     // MARK: - matches
 
     var matchesCallsCount = 0
@@ -154,12 +161,12 @@ class AnyTypeDescriptorMock: AnyTypeDescriptor {
         return matchesCallsCount > 0
     }
 
-    var matchesReceivedOther: AnyTypeDescriptor?
-    var matchesReceivedInvocations: [AnyTypeDescriptor] = []
+    var matchesReceivedOther: Any?
+    var matchesReceivedInvocations: [Any] = []
     var matchesReturnValue: Bool!
-    var matchesClosure: ((AnyTypeDescriptor) -> Bool)?
+    var matchesClosure: ((Any) -> Bool)?
 
-    func matches(_ other: AnyTypeDescriptor) -> Bool {
+    func matches(_ other: Any) -> Bool {
         matchesCallsCount += 1
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)
@@ -208,6 +215,34 @@ class BindingMock: Binding {
         instanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
         instanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
         return try instanceArgContextResolverClosure.map { try $0(arg, context, resolver) } ?? instanceArgContextResolverReturnValue
+    }
+}
+
+class MatchableMock: Matchable {
+    var hashValue: Int {
+        get { return underlyingHashValue }
+        set(value) { underlyingHashValue = value }
+    }
+
+    var underlyingHashValue: Int!
+
+    // MARK: - matches
+
+    var matchesCallsCount = 0
+    var matchesCalled: Bool {
+        return matchesCallsCount > 0
+    }
+
+    var matchesReceivedOther: Any?
+    var matchesReceivedInvocations: [Any] = []
+    var matchesReturnValue: Bool!
+    var matchesClosure: ((Any) -> Bool)?
+
+    func matches(_ other: Any) -> Bool {
+        matchesCallsCount += 1
+        matchesReceivedOther = other
+        matchesReceivedInvocations.append(other)
+        return matchesClosure.map { $0(other) } ?? matchesReturnValue
     }
 }
 
