@@ -59,6 +59,12 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         expect { try swinject.instance(of: String.self) } == "Plain"
         expect { try swinject.instance(of: String.self, tagged: "Tag") } == "Tagged"
     }
+    it("can inject optionals") {
+        let swinject = Swinject {
+            bbind(Int.self) & 42
+        }
+        expect { try swinject.instance() as Int? } == 42
+    }
     it("can inject instance provider") {
         let swinject = Swinject {
             bbind(Int.self, tagged: "tag") & 42
