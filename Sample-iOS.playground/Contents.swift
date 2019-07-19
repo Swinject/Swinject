@@ -1,12 +1,12 @@
-/*:
-# Swinject Sample for iOS
-*/
+//
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
+//
 
 import Swinject
 
 /*:
-## Basic Use
-*/
+ ## Basic Use
+ */
 
 protocol Animal {
     var name: String? { get set }
@@ -15,11 +15,11 @@ protocol Animal {
 
 class Cat: Animal {
     var name: String?
-    
+
     init(name: String?) {
         self.name = name
     }
-    
+
     func sound() -> String {
         return "Meow!"
     }
@@ -31,11 +31,11 @@ protocol Person {
 
 class PetOwner: Person {
     let pet: Animal
-    
+
     init(pet: Animal) {
         self.pet = pet
     }
-    
+
     func play() -> String {
         let name = pet.name ?? "someone"
         return "I'm playing with \(name). \(pet.sound())"
@@ -52,16 +52,16 @@ let person = container.resolve(Person.self)!
 print(person.play())
 
 /*:
-## Named Registration
-*/
+ ## Named Registration
+ */
 
 class Dog: Animal {
     var name: String?
-    
+
     init(name: String?) {
         self.name = name
     }
-    
+
     func sound() -> String {
         return "Bow wow!"
     }
@@ -72,12 +72,12 @@ container.register(Animal.self, name: "dog") { _ in Dog(name: "Hachi") }
 container.register(Person.self, name: "doggy") { r in PetOwner(pet: r.resolve(Animal.self, name: "dog")!) }
 
 // Resolve the service with the registration name to differentiate from the cat owner.
-let doggyPerson = container.resolve(Person.self, name:"doggy")!
+let doggyPerson = container.resolve(Person.self, name: "doggy")!
 print(doggyPerson.play())
 
 /*:
-## Initialization Callback
-*/
+ ## Initialization Callback
+ */
 
 // A closure can be registered as an initCompleted callback.
 var called = false
@@ -90,8 +90,8 @@ let catWithCallback = container.resolve(Animal.self, name: "cb")
 print(called)
 
 /*:
-## Injection Patterns
-*/
+ ## Injection Patterns
+ */
 
 class InjectablePerson: Person {
     var pet: Animal? {
@@ -99,20 +99,21 @@ class InjectablePerson: Person {
             log = "Injected by property."
         }
     }
+
     var log = ""
-    
-    init() { }
-    
+
+    init() {}
+
     init(pet: Animal) {
         self.pet = pet
         log = "Injected by initializer."
     }
-    
+
     func setPet(_ pet: Animal) {
         self.pet = pet
         log = "Injected by method."
     }
-    
+
     func play() -> String {
         return log
     }
@@ -123,7 +124,7 @@ container.register(Person.self, name: "initializer") { r in
     InjectablePerson(pet: r.resolve(Animal.self)!)
 }
 
-let initializerInjection = container.resolve(Person.self, name:"initializer")!
+let initializerInjection = container.resolve(Person.self, name: "initializer")!
 print(initializerInjection.play())
 
 // Property injection 1 (in the component factory)
@@ -133,7 +134,7 @@ container.register(Person.self, name: "property1") { r in
     return person
 }
 
-let propertyInjection1 = container.resolve(Person.self, name:"property1")!
+let propertyInjection1 = container.resolve(Person.self, name: "property1")!
 print(propertyInjection1.play())
 
 // Property injection 2 (in the initCompleted callback)
@@ -143,7 +144,7 @@ container.register(Person.self, name: "property2") { _ in InjectablePerson() }
         injectablePerson.pet = r.resolve(Animal.self)
     }
 
-let propertyInjection2 = container.resolve(Person.self, name:"property2")!
+let propertyInjection2 = container.resolve(Person.self, name: "property2")!
 print(propertyInjection2.play())
 
 // Method injection 1 (in the component factory)
@@ -153,7 +154,7 @@ container.register(Person.self, name: "method1") { r in
     return person
 }
 
-let methodInjection1 = container.resolve(Person.self, name:"method1")!
+let methodInjection1 = container.resolve(Person.self, name: "method1")!
 print(methodInjection1.play())
 
 // Method injection 2 (in the initCompleted callback)
@@ -163,19 +164,19 @@ container.register(Person.self, name: "method2") { _ in InjectablePerson() }
         injectablePerson.setPet(r.resolve(Animal.self)!)
     }
 
-let methodInjection2 = container.resolve(Person.self, name:"method2")!
+let methodInjection2 = container.resolve(Person.self, name: "method2")!
 print(methodInjection2.play())
 
 /*:
-## Circular Dependency
-*/
+ ## Circular Dependency
+ */
 
-internal protocol ParentProtocol: AnyObject { }
-internal protocol ChildProtocol: AnyObject { }
+internal protocol ParentProtocol: AnyObject {}
+internal protocol ChildProtocol: AnyObject {}
 
 internal class Parent: ParentProtocol {
     let child: ChildProtocol?
-    
+
     init(child: ChildProtocol?) {
         self.child = child
     }
@@ -200,13 +201,13 @@ let child = parent.child as! Child
 print(parent === child.parent)
 
 /*:
-## Injection with Arguments
-*/
+ ## Injection with Arguments
+ */
 
 class Horse: Animal {
     var name: String?
     var running: Bool
-    
+
     convenience init(name: String) {
         self.init(name: name, running: false)
     }
@@ -215,7 +216,7 @@ class Horse: Animal {
         self.name = name
         self.running = running
     }
-    
+
     func sound() -> String {
         return "Whinny!"
     }
@@ -239,8 +240,8 @@ print(horse2.name!)
 print(horse2.running)
 
 /*:
-## Self-binding
-*/
+ ## Self-binding
+ */
 
 protocol MyData {
     var data: String { get }
@@ -252,14 +253,14 @@ class MyImportantData: MyData {
 
 class MyController {
     var myData: MyData?
-    
+
     func showData() -> String {
         return myData.map { $0.data } ?? ""
     }
 }
 
 // Register MyController as both service and component s to inject dependency to its property.
-container.register(MyController.self) { r in MyController() }
+container.register(MyController.self) { _ in MyController() }
     .initCompleted { r, c in c.myData = r.resolve(MyData.self)! }
 container.register(MyData.self) { _ in MyImportantData() }
 
@@ -267,8 +268,8 @@ let myController = container.resolve(MyController.self)!
 print(myController.showData())
 
 /*:
-## Container Hierarchy
-*/
+ ## Container Hierarchy
+ */
 
 let parentContainer = Container()
 parentContainer.register(Animal.self, name: "cat") { _ in Cat(name: "Mimi") }
@@ -285,13 +286,13 @@ let dog = parentContainer.resolve(Animal.self, name: "dog")
 print(dog == nil)
 
 /*:
-## Object Scopes
-*/
+ ## Object Scopes
+ */
 
 class A {
     let b: B
     let c: C
-    
+
     init(b: B, c: C) {
         self.b = b
         self.c = c
@@ -300,13 +301,13 @@ class A {
 
 class B {
     let c: C
-    
+
     init(c: C) {
         self.c = c
     }
 }
 
-class C { }
+class C {}
 
 //: ### ObjectScope.transient
 
@@ -361,16 +362,16 @@ let c10 = childOfContainer4.resolve(C.self)
 print(c8 === c10)
 
 /*:
-## Injection of Value s
-*/
+ ## Injection of Value s
+ */
 
 struct Turtle: Animal {
     var name: String?
-    
+
     init(name: String?) {
         self.name = name
     }
-    
+
     func sound() -> String {
         return "Ninja!"
     }

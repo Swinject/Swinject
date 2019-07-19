@@ -1,13 +1,9 @@
 //
-//  ContainerSpec.DebugHelper.swift
-//  Swinject
-//
-//  Created by Jakub Vaňo on 26/09/16.
-//  Copyright © 2016 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 class ContainerSpec_DebugHelper: QuickSpec {
@@ -19,7 +15,7 @@ class ContainerSpec_DebugHelper: QuickSpec {
             it("should call debug helper with failing service and key") {
                 let container = Container(debugHelper: spy)
 
-                _ = container._resolve(name: "name") { (_: (Int) -> Any) in return 1 as Double } as Double?
+                _ = container._resolve(name: "name") { (_: (Int) -> Any) in 1 as Double } as Double?
 
                 expect("\(spy.serviceType)") == "Double"
                 expect(spy.key) == ServiceKey(
@@ -33,7 +29,7 @@ class ContainerSpec_DebugHelper: QuickSpec {
             it("should call helper with all registrations") {
                 let container = Container(debugHelper: spy)
                 container.register(Int.self) { _ in 0 }
-                container.register(Double.self) { _ in 0}
+                container.register(Double.self) { _ in 0 }
 
                 _ = container.resolve(String.self)
 
@@ -57,7 +53,6 @@ class ContainerSpec_DebugHelper: QuickSpec {
 }
 
 private class DebugHelperSpy: DebugHelper {
-
     var serviceType: Any = ""
     var key: ServiceKey?
     var availableRegistrations: [ServiceKey: ServiceEntryProtocol]?

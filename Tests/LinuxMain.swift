@@ -1,13 +1,9 @@
 //
-//  LinuxMain.swift
-//  Swinject
-//
-//  Created by Yoichi Tagaya on 11/25/16.
-//  Copyright © 2016 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import XCTest
 import Quick
+import XCTest
 
 @testable import SwinjectTests
 
@@ -20,5 +16,5 @@ Quick.QCKMain([
     ContainerSpec_CustomScope.self,
     SynchronizedResolverSpec.self,
     ServiceKeySpec.self,
-    ServiceEntrySpec.self
+    ServiceEntrySpec.self,
 ])

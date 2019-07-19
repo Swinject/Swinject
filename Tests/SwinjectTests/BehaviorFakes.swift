@@ -1,9 +1,5 @@
 //
-//  BehaviorFakes.swift
-//  Swinject
-//
-//  Created by Jakub Vaňo on 06/03/2018.
-//  Copyright © 2018 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 @testable import Swinject
@@ -14,7 +10,7 @@ class BehaviorSpy: Behavior {
     var types = [Any.Type]()
 
     func container<Type, Service>(
-        _ container: Container,
+        _: Container,
         didRegisterType type: Type.Type,
         toService entry: ServiceEntry<Service>,
         withName name: String?

@@ -1,17 +1,13 @@
 //
-//  ServiceKeySpec.swift
-//  Swinject
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
-//  Created by Yoichi Tagaya on 7/23/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
-//
-// swiftlint:disable function_body_length
 
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 // MARK: Option
+
 private struct Option: ServiceKeyOption {
     let option: Int
 
@@ -20,7 +16,7 @@ private struct Option: ServiceKeyOption {
             return false
         }
 
-        return self.option == another.option
+        return option == another.option
     }
 
     var hashValue: Int {
@@ -33,6 +29,7 @@ private struct Option: ServiceKeyOption {
 }
 
 // MARK: ServiceKeySpec
+
 class ServiceKeySpec: QuickSpec {
     override func spec() {
         describe("Without name") {

@@ -1,16 +1,11 @@
 //
-//  Assembly.swift
-//  Swinject
-//
-//  Created by mike.owens on 12/9/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 /// The `Assembly` provides a means to organize your `Service` registration in logic groups which allows
 /// the user to swap out different implementations of `Services` by providing different `Assembly` instances
 /// to the `Assembler`
 public protocol Assembly {
-
     /// Provide hook for `Assembler` to load Services into the provided container
     ///
     /// - parameter container: the container provided by the `Assembler`
@@ -26,7 +21,7 @@ public protocol Assembly {
 }
 
 public extension Assembly {
-    func loaded(resolver: Resolver) {
+    func loaded(resolver _: Resolver) {
         // no-op
     }
 }

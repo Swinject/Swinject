@@ -1,14 +1,10 @@
 //
-//  WeakStorageSpec.swift
-//  Swinject
-//
-//  Created by Jakub Vaňo on 11/30/16.
-//  Copyright © 2016 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import Quick
-import Nimble
 import Foundation
+import Nimble
+import Quick
 @testable import Swinject
 
 class WeakStorageSpec: QuickSpec {

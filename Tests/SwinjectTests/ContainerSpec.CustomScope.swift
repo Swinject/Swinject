@@ -1,14 +1,9 @@
 //
-//  ContainerSpec.CustomScope.swift
-//  Swinject
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
-//  Created by Jakub Vaňo on 11/11/16.
-//  Copyright © 2016 Swinject Contributors. All rights reserved.
-//
-// swiftlint:disable function_body_length
 
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 class ContainerSpec_CustomScope: QuickSpec {
@@ -24,7 +19,7 @@ class ContainerSpec_CustomScope: QuickSpec {
                 let custom = ObjectScope(storageFactory: { instances += 1; return FakeStorage() })
 
                 container.register(Int.self) { _ in 0 }.inObjectScope(custom)
-                container.register(Double.self) { _ in 0}.inObjectScope(custom)
+                container.register(Double.self) { _ in 0 }.inObjectScope(custom)
                 _ = container.resolve(Int.self)
                 _ = container.resolve(Double.self)
 
@@ -55,7 +50,7 @@ class ContainerSpec_CustomScope: QuickSpec {
                 let storage = FakeStorage()
                 let custom = ObjectScope(storageFactory: { storage })
 
-                container.register(Int.self) { _ in 0}.inObjectScope(custom)
+                container.register(Int.self) { _ in 0 }.inObjectScope(custom)
                 storage.instance = 42
                 container.resetObjectScope(custom)
 
@@ -66,7 +61,7 @@ class ContainerSpec_CustomScope: QuickSpec {
                 let custom1 = ObjectScope(storageFactory: { storage })
                 let custom2 = ObjectScope(storageFactory: FakeStorage.init)
 
-                container.register(Int.self) { _ in 0}.inObjectScope(custom1)
+                container.register(Int.self) { _ in 0 }.inObjectScope(custom1)
                 storage.instance = 42
                 container.resetObjectScope(custom2)
 
