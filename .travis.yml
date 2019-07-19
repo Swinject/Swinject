@@ -21,7 +21,7 @@ matrix:
     - env: JOB="POD_LINT"
       osx_image: xcode10
       script:
-        - bundle exec pod lib lint
+        - pod lib lint
     - env: JOB="XCODE" DEST="OS=9.3,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
       osx_image: xcode10
     - env: JOB="XCODE" DEST="OS=10.3.1,name=iPhone 7 Plus" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
