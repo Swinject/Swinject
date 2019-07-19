@@ -1,0 +1,35 @@
+name: Swinject
+options:
+  usesTabs: false
+  indentWidth: 4
+  tabWidth: 4
+targets:
+  Swinject:
+    type: framework
+    platform: [macOS, iOS, tvOS, watchOS]
+    settings:
+      MACOSX_DEPLOYMENT_TARGET: 10.10
+      TVOS_DEPLOYMENT_TARGET: 9.0
+      IPHONEOS_DEPLOYMENT_TARGET: 8.0
+      WATCHOS_DEPLOYMENT_TARGET: 2.0
+    scheme:
+      testTargets:
+        - SwinjectTests_$platform
+    sources:
+      - path: Sources
+        excludes: ["*.erb"]
+  SwinjectTests:
+    type: bundle.unit-test
+    platform: [macOS, iOS, tvOS, watchOS]
+    settings:
+      MACOSX_DEPLOYMENT_TARGET: 10.10
+      TVOS_DEPLOYMENT_TARGET: 9.0
+      IPHONEOS_DEPLOYMENT_TARGET: 8.0
+      WATCHOS_DEPLOYMENT_TARGET: 2.0
+    scheme: {}
+    sources:
+      - Tests/SwinjectTests
+    dependencies:
+      - target: Swinject_$platform
+      - carthage: Quick
+      - carthage: Nimble
