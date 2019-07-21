@@ -20,11 +20,15 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
+    let parent: Container?
     let defaultScope: AnyScope?
     var bindings = [Binding]()
     var behaviors = [Behavior]()
     var swinject: Swinject {
-        Swinject(tree: SwinjectTree(bindings: bindings, includeEntries: []))
+        Swinject(tree: SwinjectTree(bindings: allBindings, includeEntries: []))
+    }
+    var allBindings: [Binding] {
+        return bindings + (parent?.allBindings ?? [])
     }
 
     /// Instantiates a `Container`
@@ -43,6 +47,7 @@ public final class Container {
         behaviors: [Behavior] = [],
         registeringClosure: (Container) -> Void = { _ in }
     ) {
+        self.parent = parent
         self.defaultScope = defaultObjectScope.scope
         self.behaviors = behaviors
         registeringClosure(self)
