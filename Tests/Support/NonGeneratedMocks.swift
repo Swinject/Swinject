@@ -67,13 +67,17 @@ protocol StaticScopeRegistry {
 }
 
 extension StaticScopeRegistryMock: ScopeRegistry {
-    func instance(for key: ScopeRegistryKey, builder _: () throws -> Any) rethrows -> Any {
+    func instance(
+        for key: ScopeRegistryKey,
+        builder _: () throws -> Any,
+        finalizer: (Any) throws -> Void
+    ) rethrows -> Any {
         instance(key: key)
     }
 }
 
 struct BuilderScopeRegistry: ScopeRegistry {
-    func instance(for _: ScopeRegistryKey, builder: () throws -> Any) rethrows -> Any {
+    func instance(for _: ScopeRegistryKey, builder: () throws -> Any, finalizer: (Any) throws -> Void) rethrows -> Any {
         try builder()
     }
 

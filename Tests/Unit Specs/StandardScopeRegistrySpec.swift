@@ -16,9 +16,12 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
     }
     describe("instance") {
         var builderCallCount = 0
+        var finalizerCallCount = 0
         let countingBuilder: () -> Any = { builderCallCount += 1; return 0 }
+        let countingFinalizer: (Any) -> Void = { _ in finalizerCallCount += 1 }
         beforeEach {
             builderCallCount = 0
+            finalizerCallCount = 0
         }
         it("calls builder on first invocation for key") {
             _ = registry.instance(for: key[0], builder: countingBuilder)
@@ -44,6 +47,35 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             _ = registry.instance(for: key[1]) { 25 }
             expect(registry.instance(for: key[0]) { 0 } as? Int) == 42
             expect(registry.instance(for: key[1]) { 0 } as? Int) == 25
+        }
+        it("calls finalizer on first invocation for key") {
+            _ = registry.instance(for: key[0], builder: { 0 }, finalizer: countingFinalizer)
+            expect(finalizerCallCount) == 1
+        }
+        it("rethrows error from finalizer") {
+            expect {
+                try registry.instance(for: key[0], builder: { 0 }, finalizer: { _ in throw TestError() })
+            }.to(throwError(errorType: TestError.self))
+        }
+        it("calls finalizer with instance from builder") {
+            var instance: Any?
+            _ = registry.instance(for: key[0], builder: { 42 }, finalizer: { instance = $0 })
+            expect(instance as? Int) == 42
+        }
+        it("only calls finalizer on first invocation for each key") {
+            _ = registry.instance(for: key[0], builder: { 0 }, finalizer: countingFinalizer)
+            _ = registry.instance(for: key[1], builder: { 0 }, finalizer: countingFinalizer)
+            _ = registry.instance(for: key[0], builder: { 0 }, finalizer: countingFinalizer)
+            _ = registry.instance(for: key[1], builder: { 0 }, finalizer: countingFinalizer)
+            expect(finalizerCallCount) == 2
+        }
+        it("returns the last instance if the same key was used during finalization") {
+            let instance = registry.instance(
+                for: key[0],
+                builder: { 0 },
+                finalizer: { _ in _ = registry.instance(for: key[0], builder: { 42 }) }
+            )
+            expect(instance as? Int) == 42
         }
     }
     describe("clear") {
@@ -111,6 +143,16 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             _ = registry.instance(for: key[0]) { closable }
             concurrentPerform(iterations: 5, action: registry.close)
             expect(closable.closeCallsCount) == 1
+        }
+        it("does not deadlock if invoked inside builder") {
+            waitUntil { done in
+                DispatchQueue.global(qos: .background).async {
+                    _ = registry.instance(for: key[0]) {
+                        registry.instance(for: key[1]) { 42 }
+                    }
+                    done()
+                }
+            }
         }
     }
 } }
