@@ -1,0 +1,7 @@
+sources:
+  - Sources
+  - Tests/Support/NonGeneratedMocks.swift
+templates:
+  - Templates
+output:
+  Tests/Support/GeneratedMocks.swift
