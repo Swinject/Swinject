@@ -86,6 +86,13 @@ public final class Container {
     public func addBehavior(_ behavior: Behavior) {
         behaviors.append(behavior)
     }
+
+    func addEntry<Service>(_ entry: ServiceEntry<Service>, with name: String?) {
+        bindings.append(entry)
+        behaviors.forEach {
+            $0.container(self, didRegisterType: Service.self, toService: entry, withName: name)
+        }
+    }
 }
 
 // MARK: CustomStringConvertible

@@ -20,7 +20,7 @@ extension Container {
     @discardableResult
     public func register<Service>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, _: Void) in factory(r) }
-        bindings.append(entry)
+        addEntry(entry, with: name)
         return entry
     }
 
@@ -39,7 +39,7 @@ extension Container {
     @discardableResult
     public func register<Service, Arg1>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, Arg1) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, a: Arg1) in factory(r, a) }
-        bindings.append(entry)
+        addEntry(entry, with: name)
         return entry
     }
 
@@ -58,7 +58,7 @@ extension Container {
     @discardableResult
     public func register<Service, Arg1, Arg2>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, Arg1, Arg2) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, a: (Arg1, Arg2)) in factory(r, a.0, a.1) }
-        bindings.append(entry)
+        addEntry(entry, with: name)
         return entry
     }
 
@@ -77,7 +77,7 @@ extension Container {
     @discardableResult
     public func register<Service, Arg1, Arg2, Arg3>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, Arg1, Arg2, Arg3) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, a: (Arg1, Arg2, Arg3)) in factory(r, a.0, a.1, a.2) }
-        bindings.append(entry)
+        addEntry(entry, with: name)
         return entry
     }
 
@@ -96,7 +96,7 @@ extension Container {
     @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, a: (Arg1, Arg2, Arg3, Arg4)) in factory(r, a.0, a.1, a.2, a.3) }
-        bindings.append(entry)
+        addEntry(entry, with: name)
         return entry
     }
 
@@ -115,7 +115,7 @@ extension Container {
     @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, a: (Arg1, Arg2, Arg3, Arg4, Arg5)) in factory(r, a.0, a.1, a.2, a.3, a.4) }
-        bindings.append(entry)
+        addEntry(entry, with: name)
         return entry
     }
 
@@ -134,7 +134,7 @@ extension Container {
     @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, a: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6)) in factory(r, a.0, a.1, a.2, a.3, a.4, a.5) }
-        bindings.append(entry)
+        addEntry(entry, with: name)
         return entry
     }
 
@@ -153,7 +153,7 @@ extension Container {
     @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, a: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7)) in factory(r, a.0, a.1, a.2, a.3, a.4, a.5, a.6) }
-        bindings.append(entry)
+        addEntry(entry, with: name)
         return entry
     }
 
@@ -172,7 +172,7 @@ extension Container {
     @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, a: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8)) in factory(r, a.0, a.1, a.2, a.3, a.4, a.5, a.6, a.7) }
-        bindings.append(entry)
+        addEntry(entry, with: name)
         return entry
     }
 
@@ -191,7 +191,7 @@ extension Container {
     @discardableResult
     public func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, a: (Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9)) in factory(r, a.0, a.1, a.2, a.3, a.4, a.5, a.6, a.7, a.8) }
-        bindings.append(entry)
+        addEntry(entry, with: name)
         return entry
     }
 
