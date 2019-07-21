@@ -940,6 +940,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A7DEE71EE3B4A20D5EE5AD1 /* Build configuration list for PBXNativeTarget "Swinject_tvOS" */;
 			buildPhases = (
+				2AB7CE6B2DF8658C3EF1D9B5 /* Sourcery */,
 				585AA4C5E589D1DCBB7F94E5 /* Headers */,
 				15C9FE5CAD693ADAC2CE7497 /* Sources */,
 				66D6B3BD3D539FA0C7A9CCA0 /* Swiftlint */,
@@ -958,6 +959,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F17B42C30F10C9E3DB4D9D5 /* Build configuration list for PBXNativeTarget "Swinject_iOS" */;
 			buildPhases = (
+				F50F3DCA9EE4390D69780A5D /* Sourcery */,
 				54CB4C9F1A52910358025C89 /* Headers */,
 				604EA45A8BA53D9420351811 /* Sources */,
 				0001F3C7499902D8D5EB3077 /* Swiftlint */,
@@ -976,6 +978,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 412562B7F5B4B12A7597D10E /* Build configuration list for PBXNativeTarget "Swinject_macOS" */;
 			buildPhases = (
+				8F89A051B21745D585F21607 /* Sourcery */,
 				02763B86C881518A9271575B /* Headers */,
 				01C827BE688B831820F3BF57 /* Sources */,
 				07B6CBBA986B903471B2C38A /* Swiftlint */,
@@ -994,6 +997,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D50D1B060E4711513611A4B /* Build configuration list for PBXNativeTarget "Swinject_watchOS" */;
 			buildPhases = (
+				8B38A2A8E5A9177159728F8A /* Sourcery */,
 				E896EE40D53913BA1CD0CA02 /* Headers */,
 				A40C67870E9515117AC87B4F /* Sources */,
 				DF58753EC2B1D8F6A5679F10 /* Swiftlint */,
@@ -1231,6 +1235,24 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		2AB7CE6B2DF8658C3EF1D9B5 /* Sourcery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Sourcery;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which sourcery >/dev/null; then\n  sourcery\nelse\n  echo \"warning: Sourcery not installed, download from https://github.com/krzysztofzablocki/Sourcery\"\nfi\n";
+		};
 		66D6B3BD3D539FA0C7A9CCA0 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1249,6 +1271,42 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		8B38A2A8E5A9177159728F8A /* Sourcery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Sourcery;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which sourcery >/dev/null; then\n  sourcery\nelse\n  echo \"warning: Sourcery not installed, download from https://github.com/krzysztofzablocki/Sourcery\"\nfi\n";
+		};
+		8F89A051B21745D585F21607 /* Sourcery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Sourcery;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which sourcery >/dev/null; then\n  sourcery\nelse\n  echo \"warning: Sourcery not installed, download from https://github.com/krzysztofzablocki/Sourcery\"\nfi\n";
+		};
 		DF58753EC2B1D8F6A5679F10 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1266,6 +1324,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		F50F3DCA9EE4390D69780A5D /* Sourcery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Sourcery;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which sourcery >/dev/null; then\n  sourcery\nelse\n  echo \"warning: Sourcery not installed, download from https://github.com/krzysztofzablocki/Sourcery\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

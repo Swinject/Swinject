@@ -18,6 +18,14 @@ targets:
     sources:
       - path: Sources
         excludes: ["*.erb"]
+    preBuildScripts:
+      - script: >
+          if which sourcery >/dev/null; then
+            sourcery
+          else
+            echo "warning: Sourcery not installed, download from https://github.com/krzysztofzablocki/Sourcery"
+          fi
+        name: Sourcery
     postCompileScripts:
       - script: >
           if which swiftlint >/dev/null; then
