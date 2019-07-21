@@ -5,12 +5,30 @@
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public struct ServiceEntry<Service> {
-    let key: AnyBindingKey
-    let maker: AnyInstanceMaker
-    var scope: AnyScope?
-    var initCompleted = [(Resolver, Service) -> Void]()
+    private let builder: (Resolver, Any, Any) throws -> Service
+    private var key: AnyBindingKey
+    private var scope: AnyScope?
+    private var initCompleted = [(Resolver, Any) throws -> Void]()
 
     var objectScope: ObjectScope? { return nil }
+
+    init<Context, Argument>(
+        contextType: Context.Type,
+        argumentType: Argument.Type,
+        name: String?,
+        builder: @escaping (Resolver, Any, Any) throws -> Service,
+        scope: AnyScope?
+    ) {
+        self.builder = builder
+        if let name = name {
+            self.key = BindingKey<Tagged<Service, String>, Context, Argument>(
+                descriptor: tagged(Service.self, with: name)
+            )
+        } else {
+            self.key = BindingKey<Tagged<Service, NoTag>, Context, Argument>(descriptor: plain(Service.self))
+        }
+        self.scope = scope
+    }
 
     /// Specifies the object scope to resolve the service.
     ///
@@ -44,5 +62,23 @@ public struct ServiceEntry<Service> {
     @discardableResult
     public func initCompleted(_ completed: @escaping (Resolver, Service) -> Void) -> Self {
         return self
+    }
+}
+
+extension ServiceEntry: Binding {
+    public func matches(_ key: AnyBindingKey) -> Bool {
+        self.key.matches(key)
+    }
+
+    public func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
+        if let scope = scope {
+            return try scope.registry(for: context).instance(
+                for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg),
+                builder: { try builder(resolver, context, arg) },
+                finalizer: { instance in try initCompleted.forEach { try $0(resolver, instance) } }
+            )
+        } else {
+            return try builder(resolver, context, arg)
+        }
     }
 }
