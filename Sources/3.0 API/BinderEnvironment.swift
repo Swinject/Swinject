@@ -14,6 +14,9 @@ public func scoped<AScope>(_ scope: AScope) -> BinderEnvironment<AScope, AScope.
     BinderEnvironment(scope: scope)
 }
 
+// swiftlint:disable large_tuple
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
 public extension BinderEnvironment where AScope == Void {
     func provider<Type>(_ builder: @escaping (Resolver3, Context) throws -> Type) -> SimpleBinding.Builder<Type, Context, Void> {
         .init { r, c, _ in try builder(r, c) }

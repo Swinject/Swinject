@@ -3,6 +3,7 @@
 //
 
 // TODO: Overloads for multiple arguments & tag / notag combinations
+// swiftlint:disable line_length
 
 public extension Resolver3 {
     func instance<Type>(of _: Type.Type = Type.self) throws -> Type {

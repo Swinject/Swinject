@@ -28,7 +28,9 @@ public extension TypeBinder {
     }
 }
 
-public func & <Descriptor, Maker>(lhs: TypeBinder<Descriptor>, rhs: Maker) -> Binding where Maker: BindingMaker, Maker.BoundType == Descriptor.BaseType {
+public func & <Descriptor, Maker>(
+    lhs: TypeBinder<Descriptor>, rhs: Maker
+) -> Binding where Maker: BindingMaker, Maker.BoundType == Descriptor.BaseType {
     lhs.with(rhs)
 }
 

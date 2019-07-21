@@ -4,7 +4,9 @@
 
 // TODO: Rename
 public protocol Resolver3 {
-    func resolve<Descriptor, Context, Argument>(_ request: InstanceRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
+    func resolve<Descriptor, Context, Argument>(
+        _ request: InstanceRequest<Descriptor, Context, Argument>
+    ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
 }
 
 public extension Resolver3 {

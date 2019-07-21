@@ -11,7 +11,9 @@ public struct Swinject {
 }
 
 extension Swinject: Resolver3 {
-    public func resolve<Descriptor, Context, Argument>(_ request: InstanceRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+    public func resolve<Descriptor, Context, Argument>(
+        _ request: InstanceRequest<Descriptor, Context, Argument>
+    ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         try instance(from: findBinding(for: request.key), context: request.context, arg: request.argument)
     }
 
@@ -21,7 +23,9 @@ extension Swinject: Resolver3 {
         return bindings[0]
     }
 
-    private func instance<Type, Context, Argument>(from binding: Binding, context: Context, arg: Argument) throws -> Type {
+    private func instance<Type, Context, Argument>(
+        from binding: Binding, context: Context, arg: Argument
+    ) throws -> Type {
         try binding.instance(arg: arg, context: context, resolver: self) as? Type ?? { throw SwinjectError() }()
     }
 }

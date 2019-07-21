@@ -6,11 +6,12 @@ import Nimble
 import Quick
 @testable import Swinject
 
-class BindingKeySpec: QuickSpec { override func spec() {
+class BindingKeySpec: QuickSpec {
     typealias AnyBindingKey = BindingKey<AnyTypeDescriptorMock, Void, Void>
     typealias ArgumentBindingKey<Arg> = BindingKey<AnyTypeDescriptorMock, Void, Arg>
     typealias ContextBindingKey<Ctx> = BindingKey<AnyTypeDescriptorMock, Ctx, Void>
 
+override func spec() {
     describe("matching") {
         var key: AnyBindingKey!
         var descriptor = AnyTypeDescriptorMock()

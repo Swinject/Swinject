@@ -5,7 +5,9 @@
 @testable import Swinject
 
 class DummyResolver3: Resolver3 {
-    func resolve<Descriptor, Context, Argument>(_: InstanceRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+    func resolve<Descriptor, Context, Argument>(
+        _: InstanceRequest<Descriptor, Context, Argument>
+    ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         fatalError()
     }
 }
@@ -30,7 +32,9 @@ protocol AnyResolver3 {
 }
 
 extension AnyResolver3Mock: Resolver3 {
-    func resolve<Descriptor, Context, Argument>(_ request: InstanceRequest<Descriptor, Context, Argument>) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+    func resolve<Descriptor, Context, Argument>(
+        _ request: InstanceRequest<Descriptor, Context, Argument>
+    ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         try resolve(request as Any) as! Descriptor.BaseType
     }
 }

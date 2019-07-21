@@ -5,7 +5,7 @@
 // sourcery: AutoMockable
 public protocol Matchable {
     func matches(_ other: Any) -> Bool
-    var hashValue: Int { get } // FIXME: Use hash(into:)
+    var hashValue: Int { get }
 }
 
 // TODO: Box / Unbox internally all the arguments
