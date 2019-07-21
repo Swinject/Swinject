@@ -20,10 +20,10 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
-    private let defaultObjectScope: ObjectScope
-    private var bindings = [Binding]()
-    private var behaviors = [Behavior]()
-    private var swinject: Swinject {
+    let defaultScope: AnyScope?
+    var bindings = [Binding]()
+    var behaviors = [Behavior]()
+    var swinject: Swinject {
         Swinject(tree: SwinjectTree(bindings: bindings, includeEntries: []))
     }
 
@@ -43,7 +43,7 @@ public final class Container {
         behaviors: [Behavior] = [],
         registeringClosure: (Container) -> Void = { _ in }
     ) {
-        self.defaultObjectScope = defaultObjectScope
+        self.defaultScope = defaultObjectScope.scope
         self.behaviors = behaviors
         registeringClosure(self)
     }
@@ -62,28 +62,6 @@ public final class Container {
     ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScope) {
         (objectScope.scope as? Closable)?.close()
-    }
-
-    /// Adds a registration for the specified service with the factory closure to specify how the service is
-    /// resolved with dependencies.
-    ///
-    /// - Parameters:
-    ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differentiate from other registrations
-    ///                  that have the same service and factory types.
-    ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
-    ///                  It is invoked when the `Container` needs to instantiate the instance.
-    ///                  It takes a `Resolver` to inject dependencies to the instance,
-    ///                  and returns the instance of the component type for the service.
-    ///
-    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
-    @discardableResult
-    public func register<Service>(
-        _ serviceType: Service.Type,
-        name: String? = nil,
-        factory: @escaping (Resolver) -> Service
-    ) -> ServiceEntry<Service> {
-        fatalError()
     }
 
     /// Returns a synchronized view of the container for thread safety.

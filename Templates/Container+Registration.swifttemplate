@@ -1,0 +1,51 @@
+<% let arg_count = 9 %>
+// sourcery:inline:ContainerRegistrationApi
+extension Container {
+    /// Adds a registration for the specified service with the factory closure to specify how the service is
+    /// resolved with dependencies.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to register.
+    ///   - name:        A registration name, which is used to differentiate from other registrations
+    ///                  that have the same service and factory types.
+    ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
+    ///                  It is invoked when the `Container` needs to instantiate the instance.
+    ///                  It takes a `Resolver` to inject dependencies to the instance,
+    ///                  and returns the instance of the component type for the service.
+    ///
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
+    public func register<Service>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service> {
+        let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, _: Void) in factory(r) }
+        bindings.append(entry)
+        return entry
+    }
+
+<%_ (1...arg_count).forEach { i in
+    let arg_types = (1...i).map { "Arg\($0)" }.joined(separator: ", ")
+    let arg_closure_type = i == 1 ? "Arg1" : "(\(arg_types))"
+    let arg_description = i == 1 ? "\(i) argument" : "\(i) arguments"
+    let arg_vars = i == 1 ? "a" : (0..<i).map { "a.\($0)" }.joined(separator: ", ")
+-%>
+    /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to register.
+    ///   - name:        A registration name, which is used to differentiate from other registrations
+    ///                  that have the same service and factory types.
+    ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
+    ///                  It is invoked when the `Container` needs to instantiate the instance.
+    ///                  It takes a `Resolver` instance and <%= arg_description %> to inject dependencies to the instance,
+    ///                  and returns the instance of the component type for the service.
+    ///
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
+    public func register<Service, <%= arg_types %>>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, <%= arg_types %>) -> Service) -> ServiceEntry<Service> {
+        let entry = ServiceEntry<Service>(name: name, scope: defaultScope) { (r, _, a: <%= arg_closure_type %>) in factory(r, <%= arg_vars %>) }
+        bindings.append(entry)
+        return entry
+    }
+
+<%_ } -%>
+}
+// sourcery:end
