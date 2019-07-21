@@ -50,7 +50,7 @@ public final class PermanentStorage: InstanceStorage {
 public final class TransientStorage: InstanceStorage {
     public var instance: Any? {
         get { return nil }
-        set {}
+        set {} // swiftlint:disable:this unused_setter_value
     }
 
     public init() {}

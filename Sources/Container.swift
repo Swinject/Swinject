@@ -302,14 +302,14 @@ extension Container: Resolver {
             fatalError("If accessing container from multiple threads, make sure to use a synchronized resolver.")
         }
 
-        if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph), let persistedService = persistedInstance as? Service {
-            return persistedService
+        if let persistedInstance = persistedInstance(Service.self, from: entry, in: currentObjectGraph) {
+            return persistedInstance
         }
 
         let resolvedInstance = invoker(entry.factory as! Factory)
-        if let persistedInstance = entry.storage.instance(inGraph: currentObjectGraph), let persistedService = persistedInstance as? Service {
+        if let persistedInstance = persistedInstance(Service.self, from: entry, in: currentObjectGraph) {
             // An instance for the key might be added by the factory invocation.
-            return persistedService
+            return persistedInstance
         }
         entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
 
@@ -319,6 +319,16 @@ extension Container: Resolver {
         }
 
         return resolvedInstance as? Service
+    }
+
+    private func persistedInstance<Service>(
+        _: Service.Type, from entry: ServiceEntryProtocol, in graph: GraphIdentifier
+    ) -> Service? {
+        if let instance = entry.storage.instance(inGraph: graph), let service = instance as? Service {
+            return service
+        } else {
+            return nil
+        }
     }
 }
 

@@ -8,7 +8,7 @@ import Foundation
 
 public protocol ServiceKeyOption: CustomStringConvertible {
     func isEqualTo(_ another: ServiceKeyOption) -> Bool
-    var hashValue: Int { get }
+    func hash(into: inout Hasher)
 }
 
 // MARK: - ServiceKey
@@ -36,10 +36,10 @@ internal struct ServiceKey {
 
 extension ServiceKey: Hashable {
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(serviceType))
-        hasher.combine(ObjectIdentifier(argumentsType))
-        hasher.combine(name?.hashValue ?? 0)
-        hasher.combine(option?.hashValue ?? 0)
+        ObjectIdentifier(serviceType).hash(into: &hasher)
+        ObjectIdentifier(argumentsType).hash(into: &hasher)
+        name?.hash(into: &hasher)
+        option?.hash(into: &hasher)
     }
 }
 

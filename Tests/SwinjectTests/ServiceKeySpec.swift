@@ -19,8 +19,8 @@ private struct Option: ServiceKeyOption {
         return option == another.option
     }
 
-    var hashValue: Int {
-        return option.hashValue
+    func hash(into hasher: inout Hasher) {
+        option.hash(into: &hasher)
     }
 
     var description: String {
