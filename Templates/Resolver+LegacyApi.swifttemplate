@@ -1,15 +1,6 @@
 <% let arg_count = 9 %>
 // sourcery:inline:ResolverLegacyApi
 public extension Resolver {
-    /// Retrieves the instance with the specified service type.
-    ///
-    /// - Parameter serviceType: The service type to resolve.
-    ///
-    /// - Returns: The resolved service type instance, or nil if no service is found.
-    func resolve<Service>(_ serviceType: Service.Type) -> Service? {
-        fatalError()
-    }
-
     /// Retrieves the instance with the specified service type and registration name.
     ///
     /// - Parameters:
@@ -17,8 +8,12 @@ public extension Resolver {
     ///   - name:        The registration name.
     ///
     /// - Returns: The resolved service type instance, or nil if no service with the name is found.
-    func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
-        fatalError()
+    func resolve<Service>(_ serviceType: Service.Type, name: String? = nil) -> Service? {
+        if let name = name {
+            return try? resolve(request(tag: name, arg: ()))
+        } else {
+            return try? resolve(request(tag: NoTag(), arg: ()))
+        }
     }
 
 <%_ (1...arg_count).forEach { i in
@@ -26,19 +21,8 @@ public extension Resolver {
     let arg_param = i == 1 ? "argument: Arg1" : "arguments arg1: Arg1, " + (2...i).map{ "_ arg\($0): Arg\($0)" }.joined(separator: ", ")
     let arg_param_name = i == 1 ? "argument" : "arguments"
     let arg_param_description = i == 1 ? "\(i) argument" : "list of \(i) arguments"
+    let arg_vars = i == 1 ? "argument" : ("(" + (1...i).map { "arg\($0)" }.joined(separator: ", ") + ")")
 -%>
-    /// Retrieves the instance with the specified service type and <%= arg_param_description %> to the factory closure.
-    ///
-    /// - Parameters:
-    ///   - serviceType: The service type to resolve.
-    ///   - <%= arg_param_name %>:   <%= arg_param_description.capitalized %> to pass to the factory closure.
-    ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            and <%= arg_param_description %> is found.
-    func resolve<Service, <%= arg_types %>>(_ serviceType: Service.Type, <%= arg_param %>) -> Service? {
-        fatalError()
-    }
-
     /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
     ///
     /// - Parameters:
@@ -48,8 +32,12 @@ public extension Resolver {
     ///
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            <%= arg_param_description %> and name is found.
-    func resolve<Service, <%= arg_types %>>(_ serviceType: Service.Type, name: String?, <%= arg_param %>) -> Service? {
-        fatalError()
+    func resolve<Service, <%= arg_types %>>(_ serviceType: Service.Type, name: String? = nil, <%= arg_param %>) -> Service? {
+        if let name = name {
+            return try? resolve(request(tag: name, arg: ()))
+        } else {
+            return try? resolve(request(tag: NoTag(), arg: <%= arg_vars %>))
+        }
     }
 
 <%_ } -%>
