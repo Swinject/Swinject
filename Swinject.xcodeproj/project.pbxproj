@@ -596,6 +596,7 @@
 		4F46C48FA15F512EAED5F67A /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				CD4D866922E4CD990042ACDC /* 2.0 */,
 				CC85CB215058F95C0BC190B1 /* Bridge.swift */,
 				5AB605ED0F735221D0EB1D5F /* Convenience.swift */,
 				898BCE370D2257FEAED9E7EA /* GeneratedMocks.swift */,
@@ -711,6 +712,20 @@
 			path = Carthage/Build;
 			sourceTree = "<group>";
 		};
+		CD4D866922E4CD990042ACDC /* 2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				D1FA0377AF4799D42E9462FA /* BasicAssembly.swift */,
+				BBDB67E0FC7B8BEE58EECFBB /* BehaviorFakes.swift */,
+				359BCD3DA6F0CC2241878C82 /* EmploymentAssembly.swift */,
+				EEE8FDF4B975A8F2A9FCC5FF /* Food.swift */,
+				1910A1471C3CA9EA86F350BA /* LoadAwareAssembly.swift */,
+				9985BEF966DCBB28B12BE17B /* Person.swift */,
+				7BA261FF01C5F5510873B3EC /* Animal.swift */,
+			);
+			path = 2.0;
+			sourceTree = "<group>";
+		};
 		D026A6699A2A932511D29E14 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,10 +741,7 @@
 		F64B4AFEC15ABABB3014A636 /* 2.0 API */ = {
 			isa = PBXGroup;
 			children = (
-				7BA261FF01C5F5510873B3EC /* Animal.swift */,
 				B0C926D1E315E596E450D7D6 /* AssemblerSpec.swift */,
-				D1FA0377AF4799D42E9462FA /* BasicAssembly.swift */,
-				BBDB67E0FC7B8BEE58EECFBB /* BehaviorFakes.swift */,
 				1E612D299FB31D27FF9BDCE6 /* Circularity.swift */,
 				21AEDF723BDD949B59E6D1C5 /* ContainerSpec.Arguments.swift */,
 				BEFFEE7870660D8AB209459D /* ContainerSpec.Behavior.swift */,
@@ -737,11 +749,7 @@
 				74118B5030E790B24C0F44AF /* ContainerSpec.CustomStringConvertible.swift */,
 				05B0E1B8963622CA872FA45B /* ContainerSpec.swift */,
 				F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */,
-				359BCD3DA6F0CC2241878C82 /* EmploymentAssembly.swift */,
-				EEE8FDF4B975A8F2A9FCC5FF /* Food.swift */,
 				13513FA012659ADE699A3608 /* LazySpec.swift */,
-				1910A1471C3CA9EA86F350BA /* LoadAwareAssembly.swift */,
-				9985BEF966DCBB28B12BE17B /* Person.swift */,
 				494AA2AA587975747596C157 /* ProviderSpec.swift */,
 				11BC689CB98FD2079AC0B410 /* SynchronizedResolverSpec.swift */,
 			);

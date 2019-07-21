@@ -5,7 +5,12 @@
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public struct ServiceEntry<Service> {
-    let objectScope: ObjectScope
+    let key: AnyBindingKey
+    let maker: AnyInstanceMaker
+    var scope: AnyScope?
+    var initCompleted = [(Resolver, Service) -> Void]()
+
+    var objectScope: ObjectScope? { return nil }
 
     /// Specifies the object scope to resolve the service.
     ///

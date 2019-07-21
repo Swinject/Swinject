@@ -20,6 +20,13 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
+    private let defaultObjectScope: ObjectScope
+    private var bindings = [Binding]()
+    private var behaviors = [Behavior]()
+    private var swinject: Swinject {
+        Swinject(tree: SwinjectTree(bindings: bindings, includeEntries: []))
+    }
+
     /// Instantiates a `Container`
     ///
     /// - Parameters
@@ -36,12 +43,14 @@ public final class Container {
         behaviors: [Behavior] = [],
         registeringClosure: (Container) -> Void = { _ in }
     ) {
-        fatalError()
+        self.defaultObjectScope = defaultObjectScope
+        self.behaviors = behaviors
+        registeringClosure(self)
     }
 
     /// Removes all registrations in the container.
     public func removeAll() {
-        fatalError()
+        bindings = []
     }
 
     /// Discards instances for services registered in the given `ObjectsScopeProtocol`.
@@ -52,7 +61,7 @@ public final class Container {
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScope) {
-        fatalError()
+        (objectScope.scope as? Closable)?.close()
     }
 
     /// Adds a registration for the specified service with the factory closure to specify how the service is
@@ -83,7 +92,7 @@ public final class Container {
     ///
     /// - Returns: A synchronized container as `Resolver`.
     public func synchronize() -> Resolver {
-        fatalError()
+        self
     }
 
     /// Adds behavior to the container. `Behavior.container(_:didRegisterService:withName:)` will be invoked for
@@ -92,7 +101,7 @@ public final class Container {
     /// - Parameters:
     ///     - behavior: Behavior to be added to the container
     public func addBehavior(_ behavior: Behavior) {
-        fatalError()
+        behaviors.append(behavior)
     }
 }
 

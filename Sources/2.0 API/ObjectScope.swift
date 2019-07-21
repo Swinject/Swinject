@@ -21,3 +21,9 @@ public enum ObjectScope {
     /// when resolving the type.
     case weak
 }
+
+
+
+extension ObjectScope {
+    var scope: AnyScope? { nil }
+}
