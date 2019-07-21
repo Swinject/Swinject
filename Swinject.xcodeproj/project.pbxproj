@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01146C3ECC9A6B1973EED93F /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CA0001EA621843F1EF2BB /* SynchronizedResolver.Arguments.swift */; };
 		01197582F81B8D30D7D4A8AF /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D83ADB41363D1E38087B4 /* NonGeneratedMocks.swift */; };
 		0125E3E8A17D6F2F0CE2F893 /* ContainerSpec.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366825BB9272905C79AEA47 /* ContainerSpec.GraphCaching.swift */; };
 		013A1E1096BD1305A3A14493 /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1910A1471C3CA9EA86F350BA /* LoadAwareAssembly.swift */; };
 		01D985B5F99817DEE0E0DAD1 /* BinderEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B843C72AD5C4094F7D6EBCF7 /* BinderEnvironment.swift */; };
 		01F001388FD754499B18FFAC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 10E8C7E53982E88175FD04A7 /* .swiftlint.yml */; };
-		02CBAAF2DD5E7D589F997A27 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919757437CA99D0C506EC028 /* SpinLock.swift */; };
 		03005DC48E35AEF37251FADC /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */; };
 		03E7834C4448A5D939948CCF /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AA2AA587975747596C157 /* ProviderSpec.swift */; };
 		04C24C140F2D0BBFE48C682C /* InstanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0874A043EAEE3C7CF1EA063 /* InstanceRequest.swift */; };
@@ -23,18 +21,15 @@
 		0568E116A56DA02DA92BAC8E /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECCBCAAEAB77D77D1910B0 /* Behavior.swift */; };
 		07538993A345EEC62228247E /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234FFBE7F556D1372AFB42D /* ServiceEntrySpec.swift */; };
 		084187169E13A6E9E709297C /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290F6B1207A0557A528220B /* Assembly.swift */; };
-		087E0E3216DB7D53DE7A6BE0 /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2567098AC12010C308E26D /* FunctionType.swift */; };
 		0C24BE87E4F1CF7482DB3468 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 273FB7A6277E0841E1570990 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C7996FAC479BA40B124F470 /* Swinject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ADD71387EBA54D7EF60D0089 /* Swinject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CB9E677FDF7CF424A738F34 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C13D01A2DE6F53DF3175D22 /* Container.Arguments.swift */; };
 		0CED31C429BA9F9B23EB2B1F /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42490D1D0C395951243F5CFF /* Container.swift */; };
-		0CFCEE57963529ECA1FFD8C2 /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CA0001EA621843F1EF2BB /* SynchronizedResolver.Arguments.swift */; };
 		0D6143A7732F1334275D3658 /* UnboundScopeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671D5D89472DAFA916814506 /* UnboundScopeSpec.swift */; };
 		0DFB6FB4DF6A713EA545930F /* Container.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2DBC728B763B04CB25963 /* Container.TypeForwarding.swift */; };
 		0E465ECE9EC970161D607F7F /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7A547FC60DBD02D132B3E6 /* Swinject.framework */; };
 		0E8E5B08478EB883D9B52947 /* ScopedBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEE0E5A14336481369A3434 /* ScopedBindingSpec.swift */; };
 		100DC02D61F72A611B7CF6E3 /* UnboundScopeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671D5D89472DAFA916814506 /* UnboundScopeSpec.swift */; };
-		10EB88F976AC1025DC22FE8A /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A8ED72CD6241A2CDEA8479 /* InstanceStorage.swift */; };
 		124369E08D4848D05E3EA6B1 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FA0377AF4799D42E9462FA /* BasicAssembly.swift */; };
 		13379D1C70FC17FE2F949341 /* BindingKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8C8D605989E2D208BEB5D /* BindingKeySpec.swift */; };
 		133D41B8AD245B9DBAFC6606 /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 683A1FB7D7F4E9508D57E936 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -42,7 +37,6 @@
 		151340C24653963B97464BA9 /* ContextedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA3EF319F06A1B3B6C84C29 /* ContextedResolver.swift */; };
 		15FA8361AB335F4CC372A52C /* Swinject+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */; };
 		166CBBCA1E1441AD87A60EFF /* BindingKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8C8D605989E2D208BEB5D /* BindingKeySpec.swift */; };
-		16727D477E4258A547C21D93 /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4982F617A2FF202637E57C /* DebugHelper.swift */; };
 		16FE1BC18A9DD0D21CAF2806 /* ScopeRegistryKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2902FD4C1A50263340A51FFB /* ScopeRegistryKeySpec.swift */; };
 		1718A1577AB543174FD8E644 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057BAB33984E3E33469452B /* Scope.swift */; };
 		173F76A64BF34826968532DC /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59111BE319C59E4CD6CF68CD /* Assembler.swift */; };
@@ -57,11 +51,9 @@
 		1C2F5A09F986586F85FAC3E8 /* Resolver+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B00ADF411CA422E1BE6FA /* Resolver+Injection.swift */; };
 		1CFCB38BC4EE2D3AAD40154E /* ScopedBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEE0E5A14336481369A3434 /* ScopedBindingSpec.swift */; };
 		1F256E6920935F88C753F739 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290F6B1207A0557A528220B /* Assembly.swift */; };
-		1F2E1C6B8F28C5441D52C033 /* ObjectScope.Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD433AFA21FF52AF81A9C9B8 /* ObjectScope.Standard.swift */; };
 		1F4FBB9D795CE9D45E5A8BEE /* ScopeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3B73B11CA8650972E1175 /* ScopeRegistry.swift */; };
 		20823C309A5C58900CDFA8C3 /* ContainerSpec.Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFFEE7870660D8AB209459D /* ContainerSpec.Behavior.swift */; };
 		22837E727E47A3B8A588AB78 /* TypeBinderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA62EEBC79ED2639C93A76B /* TypeBinderSpec.swift */; };
-		240057137A0476B5874B0BCB /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4982F617A2FF202637E57C /* DebugHelper.swift */; };
 		2488CDD8D67CAC5C97BDF8B1 /* Resolver3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D19C5F01647E4A576514A /* Resolver3.swift */; };
 		25DE2596CC5387B9353FC204 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30EDBFDB23A7FB3DA7758DD0 /* Nimble.framework */; };
 		261D54C316CB625359F7EE97 /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AA2AA587975747596C157 /* ProviderSpec.swift */; };
@@ -87,24 +79,19 @@
 		37FE9A9C76DB50ABB28AF9BE /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB24A17D2ECAA4869AE1DD0 /* ContainerSpec.Circularity.swift */; };
 		38FACA739BA59278725FAE67 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CDF95C1EAFCD54450B34B6 /* ServiceEntry.TypeForwarding.swift */; };
 		39431794D93EA4DDD0BBB2C5 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290F6B1207A0557A528220B /* Assembly.swift */; };
-		39D7CF8F5563E3C1BDDEED93 /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEC193FDDE3BA488EA592E /* _Resolver.swift */; };
 		39F9BBD670C944E1331FAB13 /* InstanceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3031083A039CCD929CD12 /* InstanceWrapper.swift */; };
 		3A149A223FA316F68C0A486A /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D83ADB41363D1E38087B4 /* NonGeneratedMocks.swift */; };
 		3A2FE7C2BA76C096122F92ED /* UnboundScopeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671D5D89472DAFA916814506 /* UnboundScopeSpec.swift */; };
-		3AC304A612ECAED02C58BBF5 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFF4BA99493C54260878C4 /* ObjectScope.swift */; };
 		3B2E8B8CF4825DB05B0233F8 /* InstanceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3031083A039CCD929CD12 /* InstanceWrapper.swift */; };
 		3B61931D1E9C0F7D1AAEDDF7 /* TypeBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B8E618A08408404FB2A7A /* TypeBinder.swift */; };
 		3DA1F1126FD1FC935353F847 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA41659767E1378A9F492B /* ServiceKeySpec.swift */; };
-		3E13E204659AF2DCE94D75CB /* ObjectScope.Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD433AFA21FF52AF81A9C9B8 /* ObjectScope.Standard.swift */; };
 		3F04B9C7812B5E21DCE4D36C /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BCE370D2257FEAED9E7EA /* GeneratedMocks.swift */; };
 		3F1FB19A735BE6E1FA749E75 /* SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9527A4CA5BCBA7AFA3596757 /* SwinjectSpec.swift */; };
 		3F8EA877F153EE374FF8E31A /* ScopedBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10187BB3A994165E7FC1528 /* ScopedBinding.swift */; };
-		401A790CF8450924114D89ED /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFF4BA99493C54260878C4 /* ObjectScope.swift */; };
 		418F111C8E128766AC8E33CC /* Closable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D0BCCCD61CD9BECC29E064 /* Closable.swift */; };
 		41EEA4724CD401F38F9622E3 /* InstanceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDB3E9E363310028AA5920 /* InstanceMaker.swift */; };
 		439254FAE8DF567DE9659ADA /* SwinjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3586A4987B7C7C8122D674E /* SwinjectError.swift */; };
 		4503217DA585B602EDE65742 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FA0377AF4799D42E9462FA /* BasicAssembly.swift */; };
-		457481A631CA1253094D108B /* GraphIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95633441FFB44D8A05585C /* GraphIdentifier.swift */; };
 		4578AA4291288B21ABD74735 /* ContextedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4021EB1EA6A2770920FAD979 /* ContextedResolverSpec.swift */; };
 		45E5B568D6D0E7FC976DCDC1 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA41659767E1378A9F492B /* ServiceKeySpec.swift */; };
 		462054EB9666775B13C36132 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 10E8C7E53982E88175FD04A7 /* .swiftlint.yml */; };
@@ -116,7 +103,6 @@
 		49FB15929F16836D51779A1D /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B580B43E1891812C97209 /* Binding.swift */; };
 		4A9FFFF0FF25724AC5A0BB52 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AEDF723BDD949B59E6D1C5 /* ContainerSpec.Arguments.swift */; };
 		4B35CE8BAA88DCAE7D36BC4B /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC85CB215058F95C0BC190B1 /* Bridge.swift */; };
-		4BB09CCBB703AADD728BD796 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D101B42AE242A5A00C319FAE /* ServiceKey.swift */; };
 		4BCB79EECFCA81178439A85C /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C58FC14EEA170B0DC079DE4 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C55A4A0FFA4E251DC482E20 /* Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E612D299FB31D27FF9BDCE6 /* Circularity.swift */; };
 		4C6D7AE29CB7E16431AACFA2 /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B0E1B8963622CA872FA45B /* ContainerSpec.swift */; };
@@ -134,7 +120,6 @@
 		53F72D1C7E26B52E5D548206 /* WeakStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1C39517B81037CC0D53 /* WeakStorageSpec.swift */; };
 		549227903CFDDF4E8272C691 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CAC1761180366DE75A4A6 /* TestModels.swift */; };
 		54A1FEE340AC3A2413876AD2 /* ScopeRegistryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A8DD30D81D1A4223A5EBC9 /* ScopeRegistryKey.swift */; };
-		5541D9BB4DF2EBB3E7325359 /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEC193FDDE3BA488EA592E /* _Resolver.swift */; };
 		5570E14A839D4065FFBA7EF4 /* SwinjectModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAF491EC7DCD7477F9A0ECB /* SwinjectModule.swift */; };
 		564B886D2A35AF26FC411922 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB605ED0F735221D0EB1D5F /* Convenience.swift */; };
 		572CA6A9E19927F5D434BB6F /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */; };
@@ -157,7 +142,6 @@
 		60467C140BE3C99C1B872A55 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823617F3B8A9192F56B13331 /* Quick.framework */; };
 		60AF45155775AA5E97AAB5C1 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8FDF4B975A8F2A9FCC5FF /* Food.swift */; };
 		60CEB9FCA08EFF202DD38096 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FA0377AF4799D42E9462FA /* BasicAssembly.swift */; };
-		61FA449BF10682C9E89E767F /* ObjectScope.Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD433AFA21FF52AF81A9C9B8 /* ObjectScope.Standard.swift */; };
 		627F366F03B0D6E549AAE98F /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD71387EBA54D7EF60D0089 /* Swinject.framework */; };
 		62986D0AAAE9D3934E125332 /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */; };
 		648FDC2A1E3DC75CB47D31E1 /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13513FA012659ADE699A3608 /* LazySpec.swift */; };
@@ -183,13 +167,11 @@
 		741344C30785507B22DF703B /* Resolver+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B00ADF411CA422E1BE6FA /* Resolver+Injection.swift */; };
 		7472B748AEA9F4D1E5EF9A70 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C13D01A2DE6F53DF3175D22 /* Container.Arguments.swift */; };
 		7480A500FEC04BB9CB048AE1 /* BinderEnvironmentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */; };
-		748FE5C55FB93BFFA9012CD3 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4040F8D091ED67C84E2B8854 /* SynchronizedResolver.swift */; };
 		76B3D9DBF8D5593F67A7B7E6 /* ContextedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4021EB1EA6A2770920FAD979 /* ContextedResolverSpec.swift */; };
 		782801544D9F468F536E045E /* Container.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2DBC728B763B04CB25963 /* Container.TypeForwarding.swift */; };
 		7845113EAF8FFAFD5EC10540 /* BindingKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8C8D605989E2D208BEB5D /* BindingKeySpec.swift */; };
 		788AE378F10DA216265FFF52 /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AA2AA587975747596C157 /* ProviderSpec.swift */; };
 		78ACD9EBF8625ECD24103A17 /* ServiceEntry.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CDF95C1EAFCD54450B34B6 /* ServiceEntry.TypeForwarding.swift */; };
-		79772C34E5102A8E3003DBF8 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFF4BA99493C54260878C4 /* ObjectScope.swift */; };
 		79814146B3796F42B447326D /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234FFBE7F556D1372AFB42D /* ServiceEntrySpec.swift */; };
 		7A9246A43400FC1504683E20 /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CA41659767E1378A9F492B /* ServiceKeySpec.swift */; };
 		7DD047C203659BCA7F04E48D /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C13D01A2DE6F53DF3175D22 /* Container.Arguments.swift */; };
@@ -228,7 +210,6 @@
 		91FED72828F68263D599B6C0 /* SimpleBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1855CAD6965A000DDC9FF264 /* SimpleBindingSpec.swift */; };
 		920EF7689DA7C81235B75CE7 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34AFFAC41BA9D02A38BDB7A3 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9264E4C053A699FE01EAD232 /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DC5DE630207F56B6CD9EF /* Matchable.swift */; };
-		939769201BD93B84E6BAD258 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919757437CA99D0C506EC028 /* SpinLock.swift */; };
 		93DCA2A58C4067D5E60F7ED1 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74118B5030E790B24C0F44AF /* ContainerSpec.CustomStringConvertible.swift */; };
 		9437AF5CAAD1A2D033AE3599 /* ScopeRegistryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A8DD30D81D1A4223A5EBC9 /* ScopeRegistryKey.swift */; };
 		944F92334ADBCBB7C6A89F20 /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DE57FB3E8228904E6FE0D7 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -245,20 +226,16 @@
 		9B9AA902B80620568D732D7B /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB24A17D2ECAA4869AE1DD0 /* ContainerSpec.Circularity.swift */; };
 		9BAAD1DEBA041700C921A589 /* WeakStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1C39517B81037CC0D53 /* WeakStorageSpec.swift */; };
 		9C08C2D57E0B0B46D5748B6C /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13513FA012659ADE699A3608 /* LazySpec.swift */; };
-		9C81098E44AF728D63640DA1 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4040F8D091ED67C84E2B8854 /* SynchronizedResolver.swift */; };
 		9CEF62C5A3EC3CB8034F08BB /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1910A1471C3CA9EA86F350BA /* LoadAwareAssembly.swift */; };
 		9D1AD9CBA32CEE29EF6C68C2 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BCE370D2257FEAED9E7EA /* GeneratedMocks.swift */; };
-		9D99BBDFE65AC69067BC569C /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A8ED72CD6241A2CDEA8479 /* InstanceStorage.swift */; };
 		9DD1C1273B38FCF4FFE9BCC2 /* BindingKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8C8D605989E2D208BEB5D /* BindingKeySpec.swift */; };
 		9E084F679592ADFA28D3AD6D /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620155728133F451B31C0AD /* Swinject.swift */; };
 		9EF6DF530041FC494572D3DB /* ContextedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA3EF319F06A1B3B6C84C29 /* ContextedResolver.swift */; };
 		9F1C7A652660EA87BF599126 /* ContainerSpec.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */; };
 		9FEC055DC6BE1D844FE5F082 /* Closable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D0BCCCD61CD9BECC29E064 /* Closable.swift */; };
 		A014793C56F8966AD2D7CC50 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB605ED0F735221D0EB1D5F /* Convenience.swift */; };
-		A1650894E467EA95327AEF5E /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2567098AC12010C308E26D /* FunctionType.swift */; };
 		A19EFC58B60E547CC3A3A6BE /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DE57FB3E8228904E6FE0D7 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1B275A2EFA22C45AC46B31E /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB605ED0F735221D0EB1D5F /* Convenience.swift */; };
-		A2745DCB0ACE7714C65CA2A9 /* ObjectScope.Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD433AFA21FF52AF81A9C9B8 /* ObjectScope.Standard.swift */; };
 		A3815641CEB5A06759D288E0 /* Resolver3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D19C5F01647E4A576514A /* Resolver3.swift */; };
 		A4490FF7ACCC5CBFB2C1896C /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4B1E4BA98573B6FED2D118 /* Container.Logging.swift */; };
 		A44D1B2E48E1C0FEF146933A /* AssemblerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C926D1E315E596E450D7D6 /* AssemblerSpec.swift */; };
@@ -269,32 +246,26 @@
 		A54B018EF21348D600F8ABD2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 10E8C7E53982E88175FD04A7 /* .swiftlint.yml */; };
 		A600D3F52D38EBC5A3C75CC2 /* Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E612D299FB31D27FF9BDCE6 /* Circularity.swift */; };
 		A6A470DC3A6D310AA0671075 /* ContainerSpec.CustomScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332BC41A010B0C5AEAFDF545 /* ContainerSpec.CustomScope.swift */; };
-		A778AD223AF6C6E30BFFFC84 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919757437CA99D0C506EC028 /* SpinLock.swift */; };
 		AA6651CFD4090465E7CB7871 /* SwinjectModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAF491EC7DCD7477F9A0ECB /* SwinjectModule.swift */; };
 		AAB6386F88442B22E9F7FF0E /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42490D1D0C395951243F5CFF /* Container.swift */; };
 		AAC84D757FE8F601FF053923 /* SwinjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3586A4987B7C7C8122D674E /* SwinjectError.swift */; };
-		ABA204BE7AEAC01BF1D6002E /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D101B42AE242A5A00C319FAE /* ServiceKey.swift */; };
 		AF5F860DBFE2607EF4157CF7 /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECCBCAAEAB77D77D1910B0 /* Behavior.swift */; };
 		B1B107E3FA2DC2E985160D75 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CAC1761180366DE75A4A6 /* TestModels.swift */; };
 		B1B1A13B6792198E4E835034 /* Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E612D299FB31D27FF9BDCE6 /* Circularity.swift */; };
 		B2FCC51BB61148422256A14A /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057BAB33984E3E33469452B /* Scope.swift */; };
 		B5048A00D49FD5C1C098EE01 /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620155728133F451B31C0AD /* Swinject.swift */; };
 		B61FAC17826BAFD2DC1C0E5E /* InstanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0874A043EAEE3C7CF1EA063 /* InstanceRequest.swift */; };
-		B753AC265ABCEF3CBCE3C4CE /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D101B42AE242A5A00C319FAE /* ServiceKey.swift */; };
 		B7CE6F32765FC472CE205458 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CAC1761180366DE75A4A6 /* TestModels.swift */; };
 		B95786317494375C0E2D2044 /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */; };
 		B9FAEC69210B352FC744079E /* TypeBinderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA62EEBC79ED2639C93A76B /* TypeBinderSpec.swift */; };
 		BAFD66351A9ED8E7BFB19CD3 /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D83ADB41363D1E38087B4 /* NonGeneratedMocks.swift */; };
 		BB3AAADF214D5FF3E25E3974 /* SwinjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9527A4CA5BCBA7AFA3596757 /* SwinjectSpec.swift */; };
-		BF8E048DADB28763928A2ACC /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CA0001EA621843F1EF2BB /* SynchronizedResolver.Arguments.swift */; };
 		C0CCC43D2CDFF01CF0FF9F89 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ADC44E9312C3B974AFD8F07B /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C15318646655D97EBDCAA67B /* SwinjectApiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3797A6BB56AE76CEC19F2A /* SwinjectApiSpec.swift */; };
-		C16D64C4A1ABCF441BEB2EBE /* GraphIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95633441FFB44D8A05585C /* GraphIdentifier.swift */; };
 		C37B885879F0D716B36E1C5B /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DE57FB3E8228904E6FE0D7 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3AD37D47C38E5EB20FAF917 /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECCBCAAEAB77D77D1910B0 /* Behavior.swift */; };
 		C493D6AD1D8748A2698F0B81 /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF340AF8DD2D821A225A36B3 /* ContainerSpec.DebugHelper.swift */; };
 		C50BFD826112288F1D693A30 /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DC5DE630207F56B6CD9EF /* Matchable.swift */; };
-		C5584C2C04564AFC0BCD3710 /* GraphIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95633441FFB44D8A05585C /* GraphIdentifier.swift */; };
 		C6ED278B6F0E08A4B1E57C45 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290F6B1207A0557A528220B /* Assembly.swift */; };
 		C75EC8F8DD60676B120917EA /* ContextedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA3EF319F06A1B3B6C84C29 /* ContextedResolver.swift */; };
 		C797CCF413DF181935DAB58C /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B0E1B8963622CA872FA45B /* ContainerSpec.swift */; };
@@ -302,14 +273,13 @@
 		C8F1F075F5792C9936B0577D /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42490D1D0C395951243F5CFF /* Container.swift */; };
 		C9DD3F5C59F6A8833279F790 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA4ECB5E4CEC9751AD36854 /* Swinject.framework */; };
 		CA202C787FE269EF63ADC449 /* TaggedTypeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC3AF9B0B132A8597D6F3FD /* TaggedTypeSpec.swift */; };
-		CA7DED9FF907336CB6091795 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D101B42AE242A5A00C319FAE /* ServiceKey.swift */; };
-		CC5509F4681D4489DB0D447E /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4982F617A2FF202637E57C /* DebugHelper.swift */; };
-		CE62237127502CCD13CC22C2 /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEC193FDDE3BA488EA592E /* _Resolver.swift */; };
+		CD4D866522E4C8A50042ACDC /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4D866322E4C6DB0042ACDC /* ObjectScope.swift */; };
+		CD4D866622E4C8A70042ACDC /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4D866322E4C6DB0042ACDC /* ObjectScope.swift */; };
+		CD4D866722E4C8A80042ACDC /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4D866322E4C6DB0042ACDC /* ObjectScope.swift */; };
+		CD4D866822E4C8A80042ACDC /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4D866322E4C6DB0042ACDC /* ObjectScope.swift */; };
 		CFC3CDB46CD8FFA22EB0FADD /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0157DBBD5E1F45963BB0932 /* Swinject.framework */; };
-		D0F428B5C92CA0C25EF4BE61 /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BEC193FDDE3BA488EA592E /* _Resolver.swift */; };
 		D10FFA4B80F4BE6024B1DCEE /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1910A1471C3CA9EA86F350BA /* LoadAwareAssembly.swift */; };
 		D18275ADB0E56D3087894518 /* Swinject+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */; };
-		D1E4114EED19E341BB80869A /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2567098AC12010C308E26D /* FunctionType.swift */; };
 		D2391A103E7356AD7E08F5BA /* ScopedBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEE0E5A14336481369A3434 /* ScopedBindingSpec.swift */; };
 		D267BD55BBEDE3ECEC449472 /* Swinject+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */; };
 		D29AAB45717CC7988EC72163 /* WeakStorageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1C39517B81037CC0D53 /* WeakStorageSpec.swift */; };
@@ -319,33 +289,27 @@
 		D557A108A21751DF75542692 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057BAB33984E3E33469452B /* Scope.swift */; };
 		D5BD321738E03967CA8E27C6 /* AssemblerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C926D1E315E596E450D7D6 /* AssemblerSpec.swift */; };
 		D628C0489129065C23B33107 /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2234FFBE7F556D1372AFB42D /* ServiceEntrySpec.swift */; };
-		D688F61360D46A16B0678BA4 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFF4BA99493C54260878C4 /* ObjectScope.swift */; };
 		D6AA597218691F1FE87724E7 /* ScopedBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10187BB3A994165E7FC1528 /* ScopedBinding.swift */; };
-		D7C2A6D05BD948EA1E3B26FB /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4040F8D091ED67C84E2B8854 /* SynchronizedResolver.swift */; };
 		D7D5560E4F790F41126F61CF /* AssemblerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C926D1E315E596E450D7D6 /* AssemblerSpec.swift */; };
 		D7DE20CC15F3A6BD09E43A75 /* ScopeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3B73B11CA8650972E1175 /* ScopeRegistry.swift */; };
 		D7DFD1B77BFB5FABAE165A11 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC85CB215058F95C0BC190B1 /* Bridge.swift */; };
 		D86ACC6D9B9C62FF398F8293 /* TaggedTypeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC3AF9B0B132A8597D6F3FD /* TaggedTypeSpec.swift */; };
 		D88115BD7D62C38F04045EF0 /* ContainerSpec.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = D366825BB9272905C79AEA47 /* ContainerSpec.GraphCaching.swift */; };
 		D88D7841C5C84A2E34CE15FD /* TypeBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B8E618A08408404FB2A7A /* TypeBinder.swift */; };
-		D8E2986FB186B630E54B60CD /* GraphIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95633441FFB44D8A05585C /* GraphIdentifier.swift */; };
 		D98CA679A3AAC176D291CA8E /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8FDF4B975A8F2A9FCC5FF /* Food.swift */; };
 		DA6CB0A98FE5968CAAFDE9BF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9985BEF966DCBB28B12BE17B /* Person.swift */; };
 		DB14CA46130A816F6FAADE92 /* SimpleBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074BAC560F277E806146C60 /* SimpleBinding.swift */; };
 		DC5C3A946BDA224C388D2438 /* EmploymentAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BCD3DA6F0CC2241878C82 /* EmploymentAssembly.swift */; };
 		DD1B936DC7365917DCA09FC8 /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 823617F3B8A9192F56B13331 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD4783AE23A8C2A89F591605 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59111BE319C59E4CD6CF68CD /* Assembler.swift */; };
-		DDFC9466110B6C18B2DCCD34 /* SynchronizedResolver.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CA0001EA621843F1EF2BB /* SynchronizedResolver.Arguments.swift */; };
 		DE0A534B660AA93F73A2CB41 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB605ED0F735221D0EB1D5F /* Convenience.swift */; };
 		DEB3F135FFAEBF825881E886 /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DC5DE630207F56B6CD9EF /* Matchable.swift */; };
 		E0D7B3285AA1FE51E14A52A1 /* BindingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B4E8F1CA18603DBB6884A /* BindingKey.swift */; };
-		E2E66C47DB6C2F99B13F01CF /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4982F617A2FF202637E57C /* DebugHelper.swift */; };
 		E34C98A8BF87513994A6AD86 /* SwinjectTreeBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */; };
 		E423395FC7006DD82513F347 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74118B5030E790B24C0F44AF /* ContainerSpec.CustomStringConvertible.swift */; };
 		E484C3994AD91E91C454B11D /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AA2AA587975747596C157 /* ProviderSpec.swift */; };
 		E584841CFD26155FB056C85A /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC85CB215058F95C0BC190B1 /* Bridge.swift */; };
 		E6E536A44F40492F42CA4044 /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF340AF8DD2D821A225A36B3 /* ContainerSpec.DebugHelper.swift */; };
-		E7383E65C483ED1E66A49C5C /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A8ED72CD6241A2CDEA8479 /* InstanceStorage.swift */; };
 		E7E9DE84E1861D125F8D686A /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07B4728F7C73CC5530956A2 /* Resolver.swift */; };
 		E80558941BC2149C25A17495 /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B0E1B8963622CA872FA45B /* ContainerSpec.swift */; };
 		E8A89383E1D1106DEABB778B /* SwinjectTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47018AC89CBE8254E17C4639 /* SwinjectTree.swift */; };
@@ -355,9 +319,7 @@
 		EAC4EA9BAC87B34AD5BA2110 /* SwinjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3586A4987B7C7C8122D674E /* SwinjectError.swift */; };
 		EAD0757CE0163D3549CB5405 /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB24A17D2ECAA4869AE1DD0 /* ContainerSpec.Circularity.swift */; };
 		EC4EE4B0AECDBA8EC0B8F73D /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA261FF01C5F5510873B3EC /* Animal.swift */; };
-		ED346CAABC0FF77612D9E186 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4040F8D091ED67C84E2B8854 /* SynchronizedResolver.swift */; };
 		EE5763938068B3FA56D1BA59 /* Resolver3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D19C5F01647E4A576514A /* Resolver3.swift */; };
-		EEA8C20EB41C7FF5168941A5 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919757437CA99D0C506EC028 /* SpinLock.swift */; };
 		EEB1E43EF50551F8B9793381 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59111BE319C59E4CD6CF68CD /* Assembler.swift */; };
 		EEB3FA667B9103A8417F5EA4 /* SynchronizedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BC689CB98FD2079AC0B410 /* SynchronizedResolverSpec.swift */; };
 		EEC04BEF02E6776003CC2003 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B580B43E1891812C97209 /* Binding.swift */; };
@@ -374,13 +336,11 @@
 		F78892037CEB565626A69451 /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF340AF8DD2D821A225A36B3 /* ContainerSpec.DebugHelper.swift */; };
 		F7F9B3DB89AC8EC05B6A2B89 /* SwinjectTreeBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */; };
 		F8DB4EDA0367BCC6832E4AA6 /* ContainerSpec.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */; };
-		FA44B27F082856C56051F088 /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A8ED72CD6241A2CDEA8479 /* InstanceStorage.swift */; };
 		FAF8F8B75F63D43995A004E8 /* ContainerSpec.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */; };
 		FB6FF5C5729B8E050616CCF6 /* Swinject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA4ECB5E4CEC9751AD36854 /* Swinject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FC120C659D0A6FB9CE757CB7 /* Resolver3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D19C5F01647E4A576514A /* Resolver3.swift */; };
 		FCBA6B66A6BBA29B3EC6CDDD /* Swinject+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */; };
 		FD1678ED0C9813A653D9C68B /* BinderEnvironmentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */; };
-		FD792405FD95651F8205BB2D /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2567098AC12010C308E26D /* FunctionType.swift */; };
 		FDB7873663CEFBF7BE76ECFF /* BindingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B4E8F1CA18603DBB6884A /* BindingKey.swift */; };
 		FDCF96E2A442CDC6815B8127 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07B4728F7C73CC5530956A2 /* Resolver.swift */; };
 /* End PBXBuildFile section */
@@ -474,14 +434,12 @@
 /* Begin PBXFileReference section */
 		03CDF95C1EAFCD54450B34B6 /* ServiceEntry.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntry.TypeForwarding.swift; sourceTree = "<group>"; };
 		05B0E1B8963622CA872FA45B /* ContainerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.swift; sourceTree = "<group>"; };
-		06A8ED72CD6241A2CDEA8479 /* InstanceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceStorage.swift; sourceTree = "<group>"; };
 		0DEE0E5A14336481369A3434 /* ScopedBindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopedBindingSpec.swift; sourceTree = "<group>"; };
 		0E0B580B43E1891812C97209 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		10480F2154EAA0414D4C1F55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10E8C7E53982E88175FD04A7 /* .swiftlint.yml */ = {isa = PBXFileReference; path = .swiftlint.yml; sourceTree = "<group>"; };
+		10E8C7E53982E88175FD04A7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		11BC689CB98FD2079AC0B410 /* SynchronizedResolverSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedResolverSpec.swift; sourceTree = "<group>"; };
 		13513FA012659ADE699A3608 /* LazySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazySpec.swift; sourceTree = "<group>"; };
-		17BEC193FDDE3BA488EA592E /* _Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Resolver.swift; sourceTree = "<group>"; };
 		1855CAD6965A000DDC9FF264 /* SimpleBindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBindingSpec.swift; sourceTree = "<group>"; };
 		1910A1471C3CA9EA86F350BA /* LoadAwareAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAwareAssembly.swift; sourceTree = "<group>"; };
 		1AAFEBED373D3DD8E29B1131 /* SwinjectTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -498,27 +456,22 @@
 		34AFFAC41BA9D02A38BDB7A3 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
 		359BCD3DA6F0CC2241878C82 /* EmploymentAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmploymentAssembly.swift; sourceTree = "<group>"; };
 		36322E7DDA56C7E6DF006787 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		36BFF4BA99493C54260878C4 /* ObjectScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectScope.swift; sourceTree = "<group>"; };
 		38615FC8EEB466C5C1EAD21C /* ServiceEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntry.swift; sourceTree = "<group>"; };
 		3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swinject+Builder.swift"; sourceTree = "<group>"; };
 		3AC3AF9B0B132A8597D6F3FD /* TaggedTypeSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedTypeSpec.swift; sourceTree = "<group>"; };
 		3DECE1C39517B81037CC0D53 /* WeakStorageSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakStorageSpec.swift; sourceTree = "<group>"; };
 		4021EB1EA6A2770920FAD979 /* ContextedResolverSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextedResolverSpec.swift; sourceTree = "<group>"; };
-		4040F8D091ED67C84E2B8854 /* SynchronizedResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedResolver.swift; sourceTree = "<group>"; };
 		40E8C8D605989E2D208BEB5D /* BindingKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKeySpec.swift; sourceTree = "<group>"; };
 		42490D1D0C395951243F5CFF /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		45CA41659767E1378A9F492B /* ServiceKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceKeySpec.swift; sourceTree = "<group>"; };
 		47018AC89CBE8254E17C4639 /* SwinjectTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTree.swift; sourceTree = "<group>"; };
 		494AA2AA587975747596C157 /* ProviderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderSpec.swift; sourceTree = "<group>"; };
-		4E95633441FFB44D8A05585C /* GraphIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphIdentifier.swift; sourceTree = "<group>"; };
-		4F2567098AC12010C308E26D /* FunctionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionType.swift; sourceTree = "<group>"; };
 		5057BAB33984E3E33469452B /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
 		5543571F82B41D79C35A0871 /* SwinjectTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		583B00ADF411CA422E1BE6FA /* Resolver+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Injection.swift"; sourceTree = "<group>"; };
 		59111BE319C59E4CD6CF68CD /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		5AB605ED0F735221D0EB1D5F /* Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		5E2DC5DE630207F56B6CD9EF /* Matchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matchable.swift; sourceTree = "<group>"; };
-		5F4982F617A2FF202637E57C /* DebugHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHelper.swift; sourceTree = "<group>"; };
 		5F7BC1C4169BB4382C6D3E1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65D0BCCCD61CD9BECC29E064 /* Closable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Closable.swift; sourceTree = "<group>"; };
 		671D5D89472DAFA916814506 /* UnboundScopeSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnboundScopeSpec.swift; sourceTree = "<group>"; };
@@ -533,10 +486,8 @@
 		7DB3B73B11CA8650972E1175 /* ScopeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeRegistry.swift; sourceTree = "<group>"; };
 		823617F3B8A9192F56B13331 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		841D83ADB41363D1E38087B4 /* NonGeneratedMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonGeneratedMocks.swift; sourceTree = "<group>"; };
-		869CA0001EA621843F1EF2BB /* SynchronizedResolver.Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedResolver.Arguments.swift; sourceTree = "<group>"; };
 		898BCE370D2257FEAED9E7EA /* GeneratedMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTreeBuilderSpec.swift; sourceTree = "<group>"; };
-		919757437CA99D0C506EC028 /* SpinLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinLock.swift; sourceTree = "<group>"; };
 		9527A4CA5BCBA7AFA3596757 /* SwinjectSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectSpec.swift; sourceTree = "<group>"; };
 		95C2DBC728B763B04CB25963 /* Container.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.TypeForwarding.swift; sourceTree = "<group>"; };
 		9620155728133F451B31C0AD /* Swinject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinject.swift; sourceTree = "<group>"; };
@@ -562,7 +513,7 @@
 		C765B92B00C0AC8625BB4AC9 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		CADDB3E9E363310028AA5920 /* InstanceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceMaker.swift; sourceTree = "<group>"; };
 		CC85CB215058F95C0BC190B1 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
-		D101B42AE242A5A00C319FAE /* ServiceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceKey.swift; sourceTree = "<group>"; };
+		CD4D866322E4C6DB0042ACDC /* ObjectScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectScope.swift; sourceTree = "<group>"; };
 		D1FA0377AF4799D42E9462FA /* BasicAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAssembly.swift; sourceTree = "<group>"; };
 		D366825BB9272905C79AEA47 /* ContainerSpec.GraphCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.GraphCaching.swift; sourceTree = "<group>"; };
 		DF340AF8DD2D821A225A36B3 /* ContainerSpec.DebugHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.DebugHelper.swift; sourceTree = "<group>"; };
@@ -577,7 +528,6 @@
 		F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.TypeForwarding.swift; sourceTree = "<group>"; };
 		FCAF491EC7DCD7477F9A0ECB /* SwinjectModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectModule.swift; sourceTree = "<group>"; };
 		FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinderEnvironmentSpec.swift; sourceTree = "<group>"; };
-		FD433AFA21FF52AF81A9C9B8 /* ObjectScope.Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectScope.Standard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -688,7 +638,6 @@
 		5F6AA1259C61A4D472220C36 /* 2.0 API */ = {
 			isa = PBXGroup;
 			children = (
-				17BEC193FDDE3BA488EA592E /* _Resolver.swift */,
 				59111BE319C59E4CD6CF68CD /* Assembler.swift */,
 				F290F6B1207A0557A528220B /* Assembly.swift */,
 				20ECCBCAAEAB77D77D1910B0 /* Behavior.swift */,
@@ -696,20 +645,11 @@
 				BE4B1E4BA98573B6FED2D118 /* Container.Logging.swift */,
 				42490D1D0C395951243F5CFF /* Container.swift */,
 				95C2DBC728B763B04CB25963 /* Container.TypeForwarding.swift */,
-				5F4982F617A2FF202637E57C /* DebugHelper.swift */,
-				4F2567098AC12010C308E26D /* FunctionType.swift */,
-				4E95633441FFB44D8A05585C /* GraphIdentifier.swift */,
-				06A8ED72CD6241A2CDEA8479 /* InstanceStorage.swift */,
 				6AA3031083A039CCD929CD12 /* InstanceWrapper.swift */,
-				FD433AFA21FF52AF81A9C9B8 /* ObjectScope.Standard.swift */,
-				36BFF4BA99493C54260878C4 /* ObjectScope.swift */,
+				CD4D866322E4C6DB0042ACDC /* ObjectScope.swift */,
 				C07B4728F7C73CC5530956A2 /* Resolver.swift */,
 				38615FC8EEB466C5C1EAD21C /* ServiceEntry.swift */,
 				03CDF95C1EAFCD54450B34B6 /* ServiceEntry.TypeForwarding.swift */,
-				D101B42AE242A5A00C319FAE /* ServiceKey.swift */,
-				919757437CA99D0C506EC028 /* SpinLock.swift */,
-				869CA0001EA621843F1EF2BB /* SynchronizedResolver.Arguments.swift */,
-				4040F8D091ED67C84E2B8854 /* SynchronizedResolver.swift */,
 			);
 			path = "2.0 API";
 			sourceTree = "<group>";
@@ -1284,16 +1224,10 @@
 				7F22099B321798EAD85DBC07 /* Container.TypeForwarding.swift in Sources */,
 				0CED31C429BA9F9B23EB2B1F /* Container.swift in Sources */,
 				9EF6DF530041FC494572D3DB /* ContextedResolver.swift in Sources */,
-				240057137A0476B5874B0BCB /* DebugHelper.swift in Sources */,
-				A1650894E467EA95327AEF5E /* FunctionType.swift in Sources */,
-				C5584C2C04564AFC0BCD3710 /* GraphIdentifier.swift in Sources */,
 				3547656EF55D129316B7C5E2 /* InstanceMaker.swift in Sources */,
 				B61FAC17826BAFD2DC1C0E5E /* InstanceRequest.swift in Sources */,
-				FA44B27F082856C56051F088 /* InstanceStorage.swift in Sources */,
 				2DCEEF373F410202226D2DB5 /* InstanceWrapper.swift in Sources */,
 				9264E4C053A699FE01EAD232 /* Matchable.swift in Sources */,
-				3E13E204659AF2DCE94D75CB /* ObjectScope.Standard.swift in Sources */,
-				79772C34E5102A8E3003DBF8 /* ObjectScope.swift in Sources */,
 				5C4C106D138E771C872F5E80 /* Resolver+Injection.swift in Sources */,
 				E7E9DE84E1861D125F8D686A /* Resolver.swift in Sources */,
 				FC120C659D0A6FB9CE757CB7 /* Resolver3.swift in Sources */,
@@ -1303,19 +1237,15 @@
 				3F8EA877F153EE374FF8E31A /* ScopedBinding.swift in Sources */,
 				38FACA739BA59278725FAE67 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				EF25C3A81E568411233E6867 /* ServiceEntry.swift in Sources */,
-				4BB09CCBB703AADD728BD796 /* ServiceKey.swift in Sources */,
 				8D71D83DB3F5D3655FB6C71D /* SimpleBinding.swift in Sources */,
-				A778AD223AF6C6E30BFFFC84 /* SpinLock.swift in Sources */,
 				15FA8361AB335F4CC372A52C /* Swinject+Builder.swift in Sources */,
+				CD4D866622E4C8A70042ACDC /* ObjectScope.swift in Sources */,
 				828C5B0915A8D08CF98F5F4C /* Swinject.swift in Sources */,
 				EAC4EA9BAC87B34AD5BA2110 /* SwinjectError.swift in Sources */,
 				94615DB1AD57F1547933D8A5 /* SwinjectModule.swift in Sources */,
 				8F48909C95AA648D056A392B /* SwinjectTree.swift in Sources */,
-				0CFCEE57963529ECA1FFD8C2 /* SynchronizedResolver.Arguments.swift in Sources */,
-				ED346CAABC0FF77612D9E186 /* SynchronizedResolver.swift in Sources */,
 				3B61931D1E9C0F7D1AAEDDF7 /* TypeBinder.swift in Sources */,
 				62986D0AAAE9D3934E125332 /* TypeDescriptor.swift in Sources */,
-				39D7CF8F5563E3C1BDDEED93 /* _Resolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1433,16 +1363,10 @@
 				5381C2CDA084C5BEF82D7521 /* Container.TypeForwarding.swift in Sources */,
 				AAB6386F88442B22E9F7FF0E /* Container.swift in Sources */,
 				C75EC8F8DD60676B120917EA /* ContextedResolver.swift in Sources */,
-				CC5509F4681D4489DB0D447E /* DebugHelper.swift in Sources */,
-				FD792405FD95651F8205BB2D /* FunctionType.swift in Sources */,
-				C16D64C4A1ABCF441BEB2EBE /* GraphIdentifier.swift in Sources */,
 				58CFFB8C98C465B9101AA9A8 /* InstanceMaker.swift in Sources */,
 				9AFDF0122A11B2E996B16C3D /* InstanceRequest.swift in Sources */,
-				E7383E65C483ED1E66A49C5C /* InstanceStorage.swift in Sources */,
 				3B2E8B8CF4825DB05B0233F8 /* InstanceWrapper.swift in Sources */,
 				C50BFD826112288F1D693A30 /* Matchable.swift in Sources */,
-				A2745DCB0ACE7714C65CA2A9 /* ObjectScope.Standard.swift in Sources */,
-				401A790CF8450924114D89ED /* ObjectScope.swift in Sources */,
 				741344C30785507B22DF703B /* Resolver+Injection.swift in Sources */,
 				FDCF96E2A442CDC6815B8127 /* Resolver.swift in Sources */,
 				2488CDD8D67CAC5C97BDF8B1 /* Resolver3.swift in Sources */,
@@ -1452,19 +1376,15 @@
 				73214A0BF7D4AE8B78DEB4FD /* ScopedBinding.swift in Sources */,
 				982E4682C79B74226C03E0C9 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				908AE547955AE4432C1D161A /* ServiceEntry.swift in Sources */,
-				CA7DED9FF907336CB6091795 /* ServiceKey.swift in Sources */,
 				DB14CA46130A816F6FAADE92 /* SimpleBinding.swift in Sources */,
-				EEA8C20EB41C7FF5168941A5 /* SpinLock.swift in Sources */,
 				FCBA6B66A6BBA29B3EC6CDDD /* Swinject+Builder.swift in Sources */,
+				CD4D866822E4C8A80042ACDC /* ObjectScope.swift in Sources */,
 				B5048A00D49FD5C1C098EE01 /* Swinject.swift in Sources */,
 				439254FAE8DF567DE9659ADA /* SwinjectError.swift in Sources */,
 				AA6651CFD4090465E7CB7871 /* SwinjectModule.swift in Sources */,
 				4DA000959B4D60B509859810 /* SwinjectTree.swift in Sources */,
-				DDFC9466110B6C18B2DCCD34 /* SynchronizedResolver.Arguments.swift in Sources */,
-				D7C2A6D05BD948EA1E3B26FB /* SynchronizedResolver.swift in Sources */,
 				5D2C492FD5088FCB2BA5CDB8 /* TypeBinder.swift in Sources */,
 				03005DC48E35AEF37251FADC /* TypeDescriptor.swift in Sources */,
-				5541D9BB4DF2EBB3E7325359 /* _Resolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1582,16 +1502,10 @@
 				0DFB6FB4DF6A713EA545930F /* Container.TypeForwarding.swift in Sources */,
 				C8F1F075F5792C9936B0577D /* Container.swift in Sources */,
 				6BFA0D58FD4131D3A2248208 /* ContextedResolver.swift in Sources */,
-				E2E66C47DB6C2F99B13F01CF /* DebugHelper.swift in Sources */,
-				D1E4114EED19E341BB80869A /* FunctionType.swift in Sources */,
-				D8E2986FB186B630E54B60CD /* GraphIdentifier.swift in Sources */,
 				48714C7B99D346C83E1E8293 /* InstanceMaker.swift in Sources */,
 				04C24C140F2D0BBFE48C682C /* InstanceRequest.swift in Sources */,
-				9D99BBDFE65AC69067BC569C /* InstanceStorage.swift in Sources */,
 				53DC7093FD7C2FEE16154DED /* InstanceWrapper.swift in Sources */,
 				DEB3F135FFAEBF825881E886 /* Matchable.swift in Sources */,
-				61FA449BF10682C9E89E767F /* ObjectScope.Standard.swift in Sources */,
-				D688F61360D46A16B0678BA4 /* ObjectScope.swift in Sources */,
 				1C2F5A09F986586F85FAC3E8 /* Resolver+Injection.swift in Sources */,
 				8108969F33C37040624E0D02 /* Resolver.swift in Sources */,
 				EE5763938068B3FA56D1BA59 /* Resolver3.swift in Sources */,
@@ -1601,19 +1515,15 @@
 				D6AA597218691F1FE87724E7 /* ScopedBinding.swift in Sources */,
 				78ACD9EBF8625ECD24103A17 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				EABC31077D2369311E6C14C3 /* ServiceEntry.swift in Sources */,
-				ABA204BE7AEAC01BF1D6002E /* ServiceKey.swift in Sources */,
 				35175F8F168EDB5EB83BD8E9 /* SimpleBinding.swift in Sources */,
-				939769201BD93B84E6BAD258 /* SpinLock.swift in Sources */,
 				D18275ADB0E56D3087894518 /* Swinject+Builder.swift in Sources */,
+				CD4D866522E4C8A50042ACDC /* ObjectScope.swift in Sources */,
 				9E084F679592ADFA28D3AD6D /* Swinject.swift in Sources */,
 				AAC84D757FE8F601FF053923 /* SwinjectError.swift in Sources */,
 				5570E14A839D4065FFBA7EF4 /* SwinjectModule.swift in Sources */,
 				E8A89383E1D1106DEABB778B /* SwinjectTree.swift in Sources */,
-				01146C3ECC9A6B1973EED93F /* SynchronizedResolver.Arguments.swift in Sources */,
-				9C81098E44AF728D63640DA1 /* SynchronizedResolver.swift in Sources */,
 				050982D62AE0244372456440 /* TypeBinder.swift in Sources */,
 				572CA6A9E19927F5D434BB6F /* TypeDescriptor.swift in Sources */,
-				D0F428B5C92CA0C25EF4BE61 /* _Resolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1633,16 +1543,10 @@
 				782801544D9F468F536E045E /* Container.TypeForwarding.swift in Sources */,
 				91DAE32F86CEA897AD52AEDB /* Container.swift in Sources */,
 				151340C24653963B97464BA9 /* ContextedResolver.swift in Sources */,
-				16727D477E4258A547C21D93 /* DebugHelper.swift in Sources */,
-				087E0E3216DB7D53DE7A6BE0 /* FunctionType.swift in Sources */,
-				457481A631CA1253094D108B /* GraphIdentifier.swift in Sources */,
 				41EEA4724CD401F38F9622E3 /* InstanceMaker.swift in Sources */,
 				5E74770DDD69EAFE5D187F90 /* InstanceRequest.swift in Sources */,
-				10EB88F976AC1025DC22FE8A /* InstanceStorage.swift in Sources */,
 				39F9BBD670C944E1331FAB13 /* InstanceWrapper.swift in Sources */,
 				D3828F01A014F3A06B1141D7 /* Matchable.swift in Sources */,
-				1F2E1C6B8F28C5441D52C033 /* ObjectScope.Standard.swift in Sources */,
-				3AC304A612ECAED02C58BBF5 /* ObjectScope.swift in Sources */,
 				90B4143005C86717AC76B6EE /* Resolver+Injection.swift in Sources */,
 				66033468A5FC65C19B60086A /* Resolver.swift in Sources */,
 				A3815641CEB5A06759D288E0 /* Resolver3.swift in Sources */,
@@ -1652,19 +1556,15 @@
 				6F5323F408E5708076C02768 /* ScopedBinding.swift in Sources */,
 				51F2CD3C07148069167AB6E9 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				4939B8B795061A74ADFC02D8 /* ServiceEntry.swift in Sources */,
-				B753AC265ABCEF3CBCE3C4CE /* ServiceKey.swift in Sources */,
 				87F8C64D9E8B4317C0C036E0 /* SimpleBinding.swift in Sources */,
-				02CBAAF2DD5E7D589F997A27 /* SpinLock.swift in Sources */,
 				D267BD55BBEDE3ECEC449472 /* Swinject+Builder.swift in Sources */,
+				CD4D866722E4C8A80042ACDC /* ObjectScope.swift in Sources */,
 				26C8D37F26408DC308A0CDA3 /* Swinject.swift in Sources */,
 				14AECF24B26ECEC8E9086FBB /* SwinjectError.swift in Sources */,
 				699DB780BD90A5AAAD5B4646 /* SwinjectModule.swift in Sources */,
 				192278AA7165EC3C2C12A4C2 /* SwinjectTree.swift in Sources */,
-				BF8E048DADB28763928A2ACC /* SynchronizedResolver.Arguments.swift in Sources */,
-				748FE5C55FB93BFFA9012CD3 /* SynchronizedResolver.swift in Sources */,
 				D88D7841C5C84A2E34CE15FD /* TypeBinder.swift in Sources */,
 				B95786317494375C0E2D2044 /* TypeDescriptor.swift in Sources */,
-				CE62237127502CCD13CC22C2 /* _Resolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1762,7 +1662,11 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = watchos;
@@ -1786,7 +1690,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = macosx;
@@ -1809,7 +1716,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = iphoneos;
@@ -1856,7 +1766,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = appletvos;
@@ -1878,7 +1791,11 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = appletvos;
@@ -1948,7 +1865,11 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = iphoneos;
@@ -1970,7 +1891,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = appletvos;
@@ -2018,7 +1942,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = macosx;
@@ -2041,7 +1968,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = iphoneos;
@@ -2064,7 +1994,11 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = macosx;
@@ -2083,7 +2017,11 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = appletvos;
@@ -2104,7 +2042,11 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = macosx;
@@ -2123,7 +2065,11 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = watchos;
@@ -2144,7 +2090,11 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = iphoneos;

@@ -4,39 +4,20 @@
 
 /// A configuration how an instance provided by a `Container` is shared in the system.
 /// The configuration is ignored if it is applied to a value type.
-public protocol ObjectScopeProtocol: AnyObject {
-    /// Used to create `InstanceStorage` to persist an instance for single service.
-    /// Will be invoked once for each service registered in given scope.
-    func makeStorage() -> InstanceStorage
-}
+public enum ObjectScope {
+    /// A new instance is always created by the `Container` when a type is resolved.
+    /// The instance is not shared.
+    case transient
 
-/// Basic implementation of `ObjectScopeProtocol`.
-public class ObjectScope: ObjectScopeProtocol, CustomStringConvertible {
-    public private(set) var description: String
-    private var storageFactory: () -> InstanceStorage
-    private let parent: ObjectScopeProtocol?
+    /// Instances are shared only when an object graph is being created,
+    /// otherwise a new instance is created by the `Container`. This is the default scope.
+    case graph
 
-    /// Instantiates an `ObjectScope` with storage factory and description.
-    ///  - Parameters:
-    ///     - storageFactory:   Closure for creating an `InstanceStorage`
-    ///     - description:      Description of object scope for `CustomStringConvertible` implementation
-    ///     - parent:           If provided, its storage will be composed with the result of `storageFactory`
-    public init(
-        storageFactory: @escaping () -> InstanceStorage,
-        description: String = "",
-        parent: ObjectScopeProtocol? = nil
-    ) {
-        self.storageFactory = storageFactory
-        self.description = description
-        self.parent = parent
-    }
+    /// An instance provided by the `Container` is shared within the `Container` and its child `Containers`.
+    case container
 
-    /// Will invoke and return the result of `storageFactory` closure provided during initialisation.
-    public func makeStorage() -> InstanceStorage {
-        if let parent = parent {
-            return CompositeStorage([storageFactory(), parent.makeStorage()])
-        } else {
-            return storageFactory()
-        }
-    }
+    /// An instance provided by the `Container` is shared within the `Container` and its child `Container`s
+    /// as long as there are strong references to given instance. Otherwise new instance is created
+    /// when resolving the type.
+    case weak
 }
