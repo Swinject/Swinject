@@ -36,7 +36,8 @@ targets:
       WATCHOS_DEPLOYMENT_TARGET: '2.0'
     scheme: {}
     sources:
-      - Tests/SwinjectTests
+      - path: Tests
+        excludes: [LinuxMain.swift]
     dependencies:
       - target: Swinject_${platform}
       - carthage: Quick
