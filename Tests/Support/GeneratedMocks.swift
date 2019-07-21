@@ -71,29 +71,29 @@ class AnyBindningMakerMock: AnyBindningMaker {
 class AnyInstanceMakerMock: AnyInstanceMaker {
     // MARK: - makeInstance
 
-    var makeInstanceArgContextResolverThrowableError: Error?
-    var makeInstanceArgContextResolverCallsCount = 0
-    var makeInstanceArgContextResolverCalled: Bool {
-        return makeInstanceArgContextResolverCallsCount > 0
+    var makeInstanceArgContextResolver3ThrowableError: Error?
+    var makeInstanceArgContextResolver3CallsCount = 0
+    var makeInstanceArgContextResolver3Called: Bool {
+        return makeInstanceArgContextResolver3CallsCount > 0
     }
 
-    var makeInstanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver)?
-    var makeInstanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver)] = []
-    var makeInstanceArgContextResolverReturnValue: Any!
-    var makeInstanceArgContextResolverClosure: ((Any, Any, Resolver) throws -> Any)?
+    var makeInstanceArgContextResolver3ReceivedArguments: (arg: Any, context: Any, resolver: Resolver3)?
+    var makeInstanceArgContextResolver3ReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver3)] = []
+    var makeInstanceArgContextResolver3ReturnValue: Any!
+    var makeInstanceArgContextResolver3Closure: ((Any, Any, Resolver3) throws -> Any)?
 
-    func makeInstance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
-        if let error = makeInstanceArgContextResolverThrowableError {
+    func makeInstance(arg: Any, context: Any, resolver: Resolver3) throws -> Any {
+        if let error = makeInstanceArgContextResolver3ThrowableError {
             throw error
         }
-        makeInstanceArgContextResolverCallsCount += 1
-        makeInstanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
-        makeInstanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
-        return try makeInstanceArgContextResolverClosure.map { try $0(arg, context, resolver) } ?? makeInstanceArgContextResolverReturnValue
+        makeInstanceArgContextResolver3CallsCount += 1
+        makeInstanceArgContextResolver3ReceivedArguments = (arg: arg, context: context, resolver: resolver)
+        makeInstanceArgContextResolver3ReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
+        return try makeInstanceArgContextResolver3Closure.map { try $0(arg, context, resolver) } ?? makeInstanceArgContextResolver3ReturnValue
     }
 }
 
-class AnyResolverMock: AnyResolver {
+class AnyResolver3Mock: AnyResolver3 {
     // MARK: - resolve
 
     var resolveThrowableError: Error?
@@ -189,25 +189,25 @@ class BindingMock: Binding {
 
     // MARK: - instance
 
-    var instanceArgContextResolverThrowableError: Error?
-    var instanceArgContextResolverCallsCount = 0
-    var instanceArgContextResolverCalled: Bool {
-        return instanceArgContextResolverCallsCount > 0
+    var instanceArgContextResolver3ThrowableError: Error?
+    var instanceArgContextResolver3CallsCount = 0
+    var instanceArgContextResolver3Called: Bool {
+        return instanceArgContextResolver3CallsCount > 0
     }
 
-    var instanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver)?
-    var instanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver)] = []
-    var instanceArgContextResolverReturnValue: Any!
-    var instanceArgContextResolverClosure: ((Any, Any, Resolver) throws -> Any)?
+    var instanceArgContextResolver3ReceivedArguments: (arg: Any, context: Any, resolver: Resolver3)?
+    var instanceArgContextResolver3ReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver3)] = []
+    var instanceArgContextResolver3ReturnValue: Any!
+    var instanceArgContextResolver3Closure: ((Any, Any, Resolver3) throws -> Any)?
 
-    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
-        if let error = instanceArgContextResolverThrowableError {
+    func instance(arg: Any, context: Any, resolver: Resolver3) throws -> Any {
+        if let error = instanceArgContextResolver3ThrowableError {
             throw error
         }
-        instanceArgContextResolverCallsCount += 1
-        instanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
-        instanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
-        return try instanceArgContextResolverClosure.map { try $0(arg, context, resolver) } ?? instanceArgContextResolverReturnValue
+        instanceArgContextResolver3CallsCount += 1
+        instanceArgContextResolver3ReceivedArguments = (arg: arg, context: context, resolver: resolver)
+        instanceArgContextResolver3ReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
+        return try instanceArgContextResolver3Closure.map { try $0(arg, context, resolver) } ?? instanceArgContextResolver3ReturnValue
     }
 }
 

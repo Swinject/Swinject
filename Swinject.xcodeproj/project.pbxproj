@@ -56,7 +56,7 @@
 		1A03A1D9524E8912AF1CEE11 /* Swinject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA7A547FC60DBD02D132B3E6 /* Swinject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1ACC90951353E5F69899A833 /* SimpleBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1855CAD6965A000DDC9FF264 /* SimpleBindingSpec.swift */; };
 		1AD4C43B074F736BBDADA8C9 /* ScopeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3B73B11CA8650972E1175 /* ScopeRegistry.swift */; };
-		1B29712FD3C5FB3B372EE35F /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5583CF2602DDFB5E8A7D2DE /* Resolver.swift */; };
+		1B29712FD3C5FB3B372EE35F /* Resolver3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5583CF2602DDFB5E8A7D2DE /* Resolver3.swift */; };
 		1BBE296A616C1761DD76935C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 443508AA18D686A564F59882 /* .swiftlint.yml */; };
 		1C2F5A09F986586F85FAC3E8 /* Resolver+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B00ADF411CA422E1BE6FA /* Resolver+Injection.swift */; };
 		1C8B304AAB75579AE100EDDF /* ServiceEntry.TypeForwarding.erb in Resources */ = {isa = PBXBuildFile; fileRef = E6B3186E0AE372A6663F41E9 /* ServiceEntry.TypeForwarding.erb */; };
@@ -227,7 +227,7 @@
 		89613FDC2024EE34FD246A16 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADC44E9312C3B974AFD8F07B /* Nimble.framework */; };
 		89D83D5E42814659DFE8F518 /* SynchronizedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BC689CB98FD2079AC0B410 /* SynchronizedResolverSpec.swift */; };
 		89F0AA65C3C9837A0A2452DF /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C765B92B00C0AC8625BB4AC9 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8A212C0486A514CF17B5F140 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5583CF2602DDFB5E8A7D2DE /* Resolver.swift */; };
+		8A212C0486A514CF17B5F140 /* Resolver3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5583CF2602DDFB5E8A7D2DE /* Resolver3.swift */; };
 		8AAC0C68038E02A6049ABDC0 /* StandardScopeRegistrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF68BC7EEE11B52D4D6FB94 /* StandardScopeRegistrySpec.swift */; };
 		8AEB5894656086C3E2F022FD /* SimpleBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1855CAD6965A000DDC9FF264 /* SimpleBindingSpec.swift */; };
 		8D58DF5C6963153A8B17D325 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CAC1761180366DE75A4A6 /* TestModels.swift */; };
@@ -350,7 +350,7 @@
 		D8E2986FB186B630E54B60CD /* GraphIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E95633441FFB44D8A05585C /* GraphIdentifier.swift */; };
 		D98CA679A3AAC176D291CA8E /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8FDF4B975A8F2A9FCC5FF /* Food.swift */; };
 		DA6CB0A98FE5968CAAFDE9BF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9985BEF966DCBB28B12BE17B /* Person.swift */; };
-		DAFA9AE69744F3C5DC71CF50 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5583CF2602DDFB5E8A7D2DE /* Resolver.swift */; };
+		DAFA9AE69744F3C5DC71CF50 /* Resolver3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5583CF2602DDFB5E8A7D2DE /* Resolver3.swift */; };
 		DB14CA46130A816F6FAADE92 /* SimpleBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074BAC560F277E806146C60 /* SimpleBinding.swift */; };
 		DC5C3A946BDA224C388D2438 /* EmploymentAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BCD3DA6F0CC2241878C82 /* EmploymentAssembly.swift */; };
 		DD1B936DC7365917DCA09FC8 /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 823617F3B8A9192F56B13331 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -364,7 +364,7 @@
 		E423395FC7006DD82513F347 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74118B5030E790B24C0F44AF /* ContainerSpec.CustomStringConvertible.swift */; };
 		E484C3994AD91E91C454B11D /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AA2AA587975747596C157 /* ProviderSpec.swift */; };
 		E584841CFD26155FB056C85A /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC85CB215058F95C0BC190B1 /* Bridge.swift */; };
-		E62C6509D0B52001CC309068 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5583CF2602DDFB5E8A7D2DE /* Resolver.swift */; };
+		E62C6509D0B52001CC309068 /* Resolver3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5583CF2602DDFB5E8A7D2DE /* Resolver3.swift */; };
 		E63F31788438E1A43D480E84 /* Resolver.erb in Resources */ = {isa = PBXBuildFile; fileRef = B7DE2D7907C552B2C165E920 /* Resolver.erb */; };
 		E6E536A44F40492F42CA4044 /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF340AF8DD2D821A225A36B3 /* ContainerSpec.DebugHelper.swift */; };
 		E7383E65C483ED1E66A49C5C /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A8ED72CD6241A2CDEA8479 /* InstanceStorage.swift */; };
@@ -509,7 +509,7 @@
 		20ECCBCAAEAB77D77D1910B0 /* Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behavior.swift; sourceTree = "<group>"; };
 		21AEDF723BDD949B59E6D1C5 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
 		2234FFBE7F556D1372AFB42D /* ServiceEntrySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntrySpec.swift; sourceTree = "<group>"; };
-		24C19DEC1E7BDED41182B68C /* Container.Arguments.erb */ = {isa = PBXFileReference; path = Container.Arguments.erb; sourceTree = "<group>"; };
+		24C19DEC1E7BDED41182B68C /* Container.Arguments.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = Container.Arguments.erb; sourceTree = "<group>"; };
 		273FB7A6277E0841E1570990 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
 		2902FD4C1A50263340A51FFB /* ScopeRegistryKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeRegistryKeySpec.swift; sourceTree = "<group>"; };
 		30EDBFDB23A7FB3DA7758DD0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
@@ -526,7 +526,7 @@
 		4040F8D091ED67C84E2B8854 /* SynchronizedResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedResolver.swift; sourceTree = "<group>"; };
 		40E8C8D605989E2D208BEB5D /* BindingKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKeySpec.swift; sourceTree = "<group>"; };
 		42490D1D0C395951243F5CFF /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
-		443508AA18D686A564F59882 /* .swiftlint.yml */ = {isa = PBXFileReference; path = .swiftlint.yml; sourceTree = "<group>"; };
+		443508AA18D686A564F59882 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		45CA41659767E1378A9F492B /* ServiceKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceKeySpec.swift; sourceTree = "<group>"; };
 		47018AC89CBE8254E17C4639 /* SwinjectTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTree.swift; sourceTree = "<group>"; };
 		494AA2AA587975747596C157 /* ProviderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderSpec.swift; sourceTree = "<group>"; };
@@ -548,7 +548,7 @@
 		6EA4ECB5E4CEC9751AD36854 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		715A7D1ADE43B7CB0EF80004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		722CAC1761180366DE75A4A6 /* TestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModels.swift; sourceTree = "<group>"; };
-		7395512173A1439ED411B188 /* SynchronizedResolver.Arguments.erb */ = {isa = PBXFileReference; path = SynchronizedResolver.Arguments.erb; sourceTree = "<group>"; };
+		7395512173A1439ED411B188 /* SynchronizedResolver.Arguments.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = SynchronizedResolver.Arguments.erb; sourceTree = "<group>"; };
 		74118B5030E790B24C0F44AF /* ContainerSpec.CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.CustomStringConvertible.swift; sourceTree = "<group>"; };
 		74DE57FB3E8228904E6FE0D7 /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		7BA261FF01C5F5510873B3EC /* Animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
@@ -568,12 +568,12 @@
 		A10187BB3A994165E7FC1528 /* ScopedBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopedBinding.swift; sourceTree = "<group>"; };
 		A24B4E8F1CA18603DBB6884A /* BindingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingKey.swift; sourceTree = "<group>"; };
 		A3586A4987B7C7C8122D674E /* SwinjectError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectError.swift; sourceTree = "<group>"; };
-		A5583CF2602DDFB5E8A7D2DE /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		A5583CF2602DDFB5E8A7D2DE /* Resolver3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver3.swift; sourceTree = "<group>"; };
 		ABB24A17D2ECAA4869AE1DD0 /* ContainerSpec.Circularity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Circularity.swift; sourceTree = "<group>"; };
 		ADC44E9312C3B974AFD8F07B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
 		ADD71387EBA54D7EF60D0089 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C926D1E315E596E450D7D6 /* AssemblerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerSpec.swift; sourceTree = "<group>"; };
-		B7DE2D7907C552B2C165E920 /* Resolver.erb */ = {isa = PBXFileReference; path = Resolver.erb; sourceTree = "<group>"; };
+		B7DE2D7907C552B2C165E920 /* Resolver.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = Resolver.erb; sourceTree = "<group>"; };
 		B843C72AD5C4094F7D6EBCF7 /* BinderEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinderEnvironment.swift; sourceTree = "<group>"; };
 		B92B8E618A08408404FB2A7A /* TypeBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinder.swift; sourceTree = "<group>"; };
 		BAF68BC7EEE11B52D4D6FB94 /* StandardScopeRegistrySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardScopeRegistrySpec.swift; sourceTree = "<group>"; };
@@ -592,7 +592,7 @@
 		DF340AF8DD2D821A225A36B3 /* ContainerSpec.DebugHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.DebugHelper.swift; sourceTree = "<group>"; };
 		E0874A043EAEE3C7CF1EA063 /* InstanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRequest.swift; sourceTree = "<group>"; };
 		E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
-		E6B3186E0AE372A6663F41E9 /* ServiceEntry.TypeForwarding.erb */ = {isa = PBXFileReference; path = ServiceEntry.TypeForwarding.erb; sourceTree = "<group>"; };
+		E6B3186E0AE372A6663F41E9 /* ServiceEntry.TypeForwarding.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = ServiceEntry.TypeForwarding.erb; sourceTree = "<group>"; };
 		EA7A547FC60DBD02D132B3E6 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA3EF319F06A1B3B6C84C29 /* ContextedResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextedResolver.swift; sourceTree = "<group>"; };
 		ECE2B2EFBFDA910758EE1CA5 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -884,7 +884,7 @@
 				CADDB3E9E363310028AA5920 /* InstanceMaker.swift */,
 				E0874A043EAEE3C7CF1EA063 /* InstanceRequest.swift */,
 				5E2DC5DE630207F56B6CD9EF /* Matchable.swift */,
-				A5583CF2602DDFB5E8A7D2DE /* Resolver.swift */,
+				A5583CF2602DDFB5E8A7D2DE /* Resolver3.swift */,
 				5057BAB33984E3E33469452B /* Scope.swift */,
 				A10187BB3A994165E7FC1528 /* ScopedBinding.swift */,
 				7DB3B73B11CA8650972E1175 /* ScopeRegistry.swift */,
@@ -1297,7 +1297,7 @@
 				3E13E204659AF2DCE94D75CB /* ObjectScope.Standard.swift in Sources */,
 				79772C34E5102A8E3003DBF8 /* ObjectScope.swift in Sources */,
 				5C4C106D138E771C872F5E80 /* Resolver+Injection.swift in Sources */,
-				DAFA9AE69744F3C5DC71CF50 /* Resolver.swift in Sources */,
+				DAFA9AE69744F3C5DC71CF50 /* Resolver3.swift in Sources */,
 				E7E9DE84E1861D125F8D686A /* Resolver.swift in Sources */,
 				71C4A75D54446D844BA5FB85 /* Scope.swift in Sources */,
 				1AD4C43B074F736BBDADA8C9 /* ScopeRegistry.swift in Sources */,
@@ -1447,7 +1447,7 @@
 				A2745DCB0ACE7714C65CA2A9 /* ObjectScope.Standard.swift in Sources */,
 				401A790CF8450924114D89ED /* ObjectScope.swift in Sources */,
 				741344C30785507B22DF703B /* Resolver+Injection.swift in Sources */,
-				E62C6509D0B52001CC309068 /* Resolver.swift in Sources */,
+				E62C6509D0B52001CC309068 /* Resolver3.swift in Sources */,
 				FDCF96E2A442CDC6815B8127 /* Resolver.swift in Sources */,
 				1718A1577AB543174FD8E644 /* Scope.swift in Sources */,
 				1F4FBB9D795CE9D45E5A8BEE /* ScopeRegistry.swift in Sources */,
@@ -1597,7 +1597,7 @@
 				61FA449BF10682C9E89E767F /* ObjectScope.Standard.swift in Sources */,
 				D688F61360D46A16B0678BA4 /* ObjectScope.swift in Sources */,
 				1C2F5A09F986586F85FAC3E8 /* Resolver+Injection.swift in Sources */,
-				1B29712FD3C5FB3B372EE35F /* Resolver.swift in Sources */,
+				1B29712FD3C5FB3B372EE35F /* Resolver3.swift in Sources */,
 				8108969F33C37040624E0D02 /* Resolver.swift in Sources */,
 				D557A108A21751DF75542692 /* Scope.swift in Sources */,
 				D7DE20CC15F3A6BD09E43A75 /* ScopeRegistry.swift in Sources */,
@@ -1649,7 +1649,7 @@
 				1F2E1C6B8F28C5441D52C033 /* ObjectScope.Standard.swift in Sources */,
 				3AC304A612ECAED02C58BBF5 /* ObjectScope.swift in Sources */,
 				90B4143005C86717AC76B6EE /* Resolver+Injection.swift in Sources */,
-				8A212C0486A514CF17B5F140 /* Resolver.swift in Sources */,
+				8A212C0486A514CF17B5F140 /* Resolver3.swift in Sources */,
 				66033468A5FC65C19B60086A /* Resolver.swift in Sources */,
 				B2FCC51BB61148422256A14A /* Scope.swift in Sources */,
 				46A14FAA5AA73BE8A0397707 /* ScopeRegistry.swift in Sources */,
@@ -1768,7 +1768,11 @@
 				);
 				INFOPLIST_FILE = "Tests/2.0 API/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = watchos;
@@ -1792,7 +1796,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = macosx;
@@ -1815,7 +1822,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = iphoneos;
@@ -1862,7 +1872,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = appletvos;
@@ -1884,7 +1897,11 @@
 				);
 				INFOPLIST_FILE = "Tests/2.0 API/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = appletvos;
@@ -1954,7 +1971,11 @@
 				);
 				INFOPLIST_FILE = "Tests/2.0 API/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = iphoneos;
@@ -1976,7 +1997,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = appletvos;
@@ -2024,7 +2048,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = macosx;
@@ -2047,7 +2074,10 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = Swinject;
 				SDKROOT = iphoneos;
@@ -2070,7 +2100,11 @@
 				);
 				INFOPLIST_FILE = "Tests/2.0 API/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = macosx;
@@ -2089,7 +2123,11 @@
 				);
 				INFOPLIST_FILE = "Tests/2.0 API/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = appletvos;
@@ -2110,7 +2148,11 @@
 				);
 				INFOPLIST_FILE = "Tests/2.0 API/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = macosx;
@@ -2129,7 +2171,11 @@
 				);
 				INFOPLIST_FILE = "Tests/2.0 API/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = watchos;
@@ -2150,7 +2196,11 @@
 				);
 				INFOPLIST_FILE = "Tests/2.0 API/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = iphoneos;

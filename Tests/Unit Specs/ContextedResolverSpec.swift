@@ -6,13 +6,13 @@ import Nimble
 import Quick
 @testable import Swinject
 
-class ContextedResolverSpec: QuickSpec { override func spec() {
-    var resolver: ContextedResolver<Void>!
-    var wrapped = AnyResolverMock()
+class ContextedResolver3Spec: QuickSpec { override func spec() {
+    var resolver: ContextedResolver3<Void>!
+    var wrapped = AnyResolver3Mock()
     beforeEach {
-        wrapped = AnyResolverMock()
+        wrapped = AnyResolver3Mock()
         wrapped.resolveReturnValue = 0
-        resolver = ContextedResolver(context: (), resolver: wrapped)
+        resolver = ContextedResolver3(context: (), resolver: wrapped)
     }
     describe("resolve") {
         it("returns value from wrapped resolver") {
@@ -33,7 +33,7 @@ class ContextedResolverSpec: QuickSpec { override func spec() {
             expect(receivedRequest?.argument) == "argument"
         }
         it("calls wrapped resolver with it's context") {
-            let resolver = ContextedResolver(context: "context", resolver: wrapped)
+            let resolver = ContextedResolver3(context: "context", resolver: wrapped)
             _ = try? resolver.resolve(request(type: Int.self, tag: NoTag(), arg: ()))
             let receivedRequest = wrapped.resolveReceivedRequest as? InstanceRequest<Tagged<Int, NoTag>, String, Void>
             expect(receivedRequest?.context) == "context"

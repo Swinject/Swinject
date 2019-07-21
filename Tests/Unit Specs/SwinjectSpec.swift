@@ -24,41 +24,41 @@ class SwinjectSpec: QuickSpec { override func spec() {
             it("request instance from matching binding") {
                 binding.matchesReturnValue = true
                 _ = try? swinject.instance(of: Any.self)
-                expect(binding.instanceArgContextResolverCallsCount) == 1
+                expect(binding.instanceArgContextResolver3CallsCount) == 1
             }
             it("does not request instance from matching binding until instance is required") {
                 binding.matchesReturnValue = true
-                expect(binding.instanceArgContextResolverCallsCount) == 0
+                expect(binding.instanceArgContextResolver3CallsCount) == 0
             }
             it("only requests instance from matching binding") {
                 binding.matchesReturnValue = false
                 _ = try? swinject.instance(of: Any.self)
-                expect(binding.instanceArgContextResolverCallsCount) == 0
+                expect(binding.instanceArgContextResolver3CallsCount) == 0
             }
             it("returns instance produced by binding") {
                 binding.matchesReturnValue = true
-                binding.instanceArgContextResolverReturnValue = 42
+                binding.instanceArgContextResolver3ReturnValue = 42
                 expect { try swinject.instance(of: Any.self) as? Int } == 42
             }
             it("rethrows error from binding") {
                 binding.matchesReturnValue = true
-                binding.instanceArgContextResolverThrowableError = TestError()
+                binding.instanceArgContextResolver3ThrowableError = TestError()
                 expect { try swinject.instance(of: Any.self) }.to(throwError(errorType: TestError.self))
             }
             it("crashes if bound type does not match requested type") {
                 binding.matchesReturnValue = true
-                binding.instanceArgContextResolverReturnValue = ""
+                binding.instanceArgContextResolver3ReturnValue = ""
                 expect { _ = try swinject.instance(of: Double.self) }.to(throwError())
             }
             it("does not crash if bound type conforms to the requested type") {
                 binding.matchesReturnValue = true
-                binding.instanceArgContextResolverReturnValue = 42
+                binding.instanceArgContextResolver3ReturnValue = 42
                 expect { _ = try swinject.instance(of: CustomStringConvertible?.self) }.notTo(throwError())
             }
             it("passes swinject as resolver") {
                 binding.matchesReturnValue = true
                 _ = try? swinject.instance(of: Any.self)
-                expect(binding.instanceArgContextResolverReceivedArguments?.resolver is Swinject).to(beTrue())
+                expect(binding.instanceArgContextResolver3ReceivedArguments?.resolver is Swinject).to(beTrue())
             }
             it("matches binding with correct key") {
                 binding.matchesReturnValue = false
@@ -95,7 +95,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
             }
             it("returns instance from matching binding") {
                 bindings[1].matchesReturnValue = true
-                bindings[1].instanceArgContextResolverReturnValue = 42
+                bindings[1].instanceArgContextResolver3ReturnValue = 42
                 expect { try swinject.instance(of: Int.self) } == 42
             }
         }
@@ -109,7 +109,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         }
         it("does not throw if binding matches provided type") {
             binding.matchesReturnValue = true
-            binding.instanceArgContextResolverReturnValue = 42
+            binding.instanceArgContextResolver3ReturnValue = 42
             let provider = swinject.provider() as () throws -> Int
             expect { try provider() }.notTo(throwError())
         }
@@ -120,19 +120,19 @@ class SwinjectSpec: QuickSpec { override func spec() {
         }
         it("does not request provided type until provider is called") {
             binding.matchesReturnValue = true
-            binding.instanceArgContextResolverReturnValue = 42
+            binding.instanceArgContextResolver3ReturnValue = 42
             _ = swinject.provider(of: Int.self)
-            expect(binding.instanceArgContextResolverCallsCount) == 0
+            expect(binding.instanceArgContextResolver3CallsCount) == 0
         }
         it("returns instance from binding") {
             binding.matchesReturnValue = true
-            binding.instanceArgContextResolverReturnValue = 42
+            binding.instanceArgContextResolver3ReturnValue = 42
             let provider = swinject.provider(of: Int.self)
             expect { try provider() } == 42
         }
         it("rethrows binding error from provider") {
             binding.matchesReturnValue = true
-            binding.instanceArgContextResolverThrowableError = TestError()
+            binding.instanceArgContextResolver3ThrowableError = TestError()
             let provider = swinject.provider(of: Int.self)
             expect { try provider() }.to(throwError(errorType: TestError.self))
         }
@@ -151,7 +151,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("passes given context to the binding") {
             binding.matchesReturnValue = true
             _ = try? swinject.on("context").provider()() as Int
-            expect(binding.instanceArgContextResolverReceivedArguments?.context as? String) == "context"
+            expect(binding.instanceArgContextResolver3ReceivedArguments?.context as? String) == "context"
         }
     }
     describe("factory injection") {
@@ -168,33 +168,33 @@ class SwinjectSpec: QuickSpec { override func spec() {
         }
         it("does not throw if binding matches created type") {
             binding.matchesReturnValue = true
-            binding.instanceArgContextResolverReturnValue = 42
+            binding.instanceArgContextResolver3ReturnValue = 42
             let factory = swinject.factory() as (String) throws -> Int
             expect { try factory("arg") }.notTo(throwError())
         }
         it("does not request created type until factory is called") {
             binding.matchesReturnValue = true
-            binding.instanceArgContextResolverReturnValue = 42
+            binding.instanceArgContextResolver3ReturnValue = 42
             _ = swinject.factory() as (String) throws -> Int
-            expect(binding.instanceArgContextResolverCallsCount) == 0
+            expect(binding.instanceArgContextResolver3CallsCount) == 0
         }
         it("rethrows binding error from factory") {
             binding.matchesReturnValue = true
-            binding.instanceArgContextResolverThrowableError = TestError()
+            binding.instanceArgContextResolver3ThrowableError = TestError()
             let factory = swinject.factory() as (String) throws -> Int
             expect { try factory("arg") }.to(throwError(errorType: TestError.self))
         }
         it("returns instance from binding") {
             binding.matchesReturnValue = true
-            binding.instanceArgContextResolverReturnValue = 42
+            binding.instanceArgContextResolver3ReturnValue = 42
             let factory = swinject.factory() as (String) throws -> Int
             expect { try factory("arg") } == 42
         }
         it("passes given factory argument to binding") {
             binding.matchesReturnValue = true
-            binding.instanceArgContextResolverReturnValue = 42
+            binding.instanceArgContextResolver3ReturnValue = 42
             _ = try? swinject.factory(of: Int.self)("arg")
-            expect(binding.instanceArgContextResolverReceivedArguments?.arg as? String) == "arg"
+            expect(binding.instanceArgContextResolver3ReceivedArguments?.arg as? String) == "arg"
         }
         it("matches binding with correct key") {
             binding.matchesReturnValue = false
@@ -211,42 +211,42 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("passes given context to the bidndning") {
             binding.matchesReturnValue = true
             _ = try? swinject.on("context").factory()("arg") as Int
-            expect(binding.instanceArgContextResolverReceivedArguments?.context as? String) == "context"
+            expect(binding.instanceArgContextResolver3ReceivedArguments?.context as? String) == "context"
         }
         context("currying") {
             beforeEach {
                 binding.matchesReturnValue = true
-                binding.instanceArgContextResolverReturnValue = 42
+                binding.instanceArgContextResolver3ReturnValue = 42
             }
             it("can curry 2-tuple as 0 / 2 argument") {
                 _ = try? swinject.factory()("arg1", "arg2") as Int
-                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, String)
+                let receivedArg = binding.instanceArgContextResolver3ReceivedArguments?.arg as? (String, String)
                 expect(receivedArg?.0) == "arg1"
                 expect(receivedArg?.1) == "arg2"
             }
             it("can curry 2-tuple as 1 / 1 argument") {
                 _ = try? swinject.factory(arg: "arg1")("arg2") as Int
-                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, String)
+                let receivedArg = binding.instanceArgContextResolver3ReceivedArguments?.arg as? (String, String)
                 expect(receivedArg?.0) == "arg1"
                 expect(receivedArg?.1) == "arg2"
             }
             it("can curry 3-tuple as 0 / 3 argument") {
                 _ = try? swinject.factory()("arg1", 2, "arg3") as Int
-                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, Int, String)
+                let receivedArg = binding.instanceArgContextResolver3ReceivedArguments?.arg as? (String, Int, String)
                 expect(receivedArg?.0) == "arg1"
                 expect(receivedArg?.1) == 2
                 expect(receivedArg?.2) == "arg3"
             }
             it("can curry 3-tuple as 1 / 2 argument") {
                 _ = try? swinject.factory(arg: "arg1")(2, "arg3") as Int
-                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, Int, String)
+                let receivedArg = binding.instanceArgContextResolver3ReceivedArguments?.arg as? (String, Int, String)
                 expect(receivedArg?.0) == "arg1"
                 expect(receivedArg?.1) == 2
                 expect(receivedArg?.2) == "arg3"
             }
             it("can curry 3-tuple as 2 / 1 argument") {
                 _ = try? swinject.factory(args: "arg1", 2)("arg3") as Int
-                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, Int, String)
+                let receivedArg = binding.instanceArgContextResolver3ReceivedArguments?.arg as? (String, Int, String)
                 expect(receivedArg?.0) == "arg1"
                 expect(receivedArg?.1) == 2
                 expect(receivedArg?.2) == "arg3"

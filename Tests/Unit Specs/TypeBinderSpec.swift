@@ -36,7 +36,7 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         }
         it("works with passing instance directly") {
             let binding = bbind(descriptor).with(42)
-            expect { try binding.instance(arg: (), context: (), resolver: DummyResolver()) as? Int } == 42
+            expect { try binding.instance(arg: (), context: (), resolver: DummyResolver3()) as? Int } == 42
         }
     }
     describe("`&` method") {
@@ -51,7 +51,7 @@ class TypeBinderSpec: QuickSpec { override func spec() {
         }
         it("works with passing instance directly") {
             let binding = bbind(descriptor) & 42
-            expect { try binding.instance(arg: (), context: (), resolver: DummyResolver()) as? Int } == 42
+            expect { try binding.instance(arg: (), context: (), resolver: DummyResolver3()) as? Int } == 42
         }
     }
 } }
