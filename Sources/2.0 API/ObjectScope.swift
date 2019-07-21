@@ -23,5 +23,20 @@ public enum ObjectScope {
 }
 
 extension ObjectScope {
-    var scope: AnyScope? { nil }
+    var scope: AnyScope? {
+        switch self {
+        case .graph: return GraphScope()
+        default: return nil
+        }
+    }
+}
+
+final class Graph {
+    let registry = StandardScopeRegistry()
+}
+
+final class GraphScope: Scope {
+    func registry(for graph: Graph) -> ScopeRegistry {
+        return graph.registry
+    }
 }

@@ -109,6 +109,6 @@ extension Container: Resolver {
     public func resolve<Descriptor, Context, Argument>(
         _ request: InstanceRequest<Descriptor, Context, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        try swinject.resolve(request)
+        try swinject.on(Graph()).resolve(request)
     }
 }

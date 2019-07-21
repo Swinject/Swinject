@@ -41,4 +41,17 @@ class ContextedResolverSpec: QuickSpec { override func spec() {
             expect(receivedRequest?.context) == "context"
         }
     }
+    describe("on context") {
+        it("passes context to dependency resolution") {
+            let binding = BindingMock()
+            binding.matchesClosure = { $0.descriptor.matches(plain(Double.self)) }
+            binding.instanceArgContextResolverReturnValue = 0.0
+            let swinject = Swinject {
+                bbind(Int.self) & provider { Int(try $0.instance() as Double) }
+                binding
+            }
+            _ = try? swinject.on(42).instance(of: Int.self)
+            expect(binding.instanceArgContextResolverReceivedArguments?.context as? Int) == 42
+        }
+    }
 } }
