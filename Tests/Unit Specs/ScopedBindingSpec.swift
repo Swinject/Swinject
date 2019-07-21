@@ -80,12 +80,12 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
                 scope.registryForReturnValue = BuilderScopeRegistry()
             }
             it("returns instance produced by maker") {
-                maker.makeInstanceArgContextResolver3ReturnValue = 42
+                maker.makeInstanceArgContextResolverReturnValue = 42
                 let instance = try? binding.instance(arg: (), context: (), resolver: DummyResolver3()) as? Int
                 expect(instance) == 42
             }
             it("rethrows error from maker") {
-                maker.makeInstanceArgContextResolver3ThrowableError = TestError()
+                maker.makeInstanceArgContextResolverThrowableError = TestError()
                 expect {
                     try binding.instance(arg: (), context: (), resolver: DummyResolver3())
                 }.to(throwError(errorType: TestError.self))
@@ -93,9 +93,9 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
             it("invokes maker with correct parameters") {
                 let resolver = DummyResolver3()
                 _ = try? binding.instance(arg: 42, context: "context", resolver: resolver)
-                expect(maker.makeInstanceArgContextResolver3ReceivedArguments?.arg as? Int) == 42
-                expect(maker.makeInstanceArgContextResolver3ReceivedArguments?.context as? String) == "context"
-                expect(maker.makeInstanceArgContextResolver3ReceivedArguments?.resolver) === resolver
+                expect(maker.makeInstanceArgContextResolverReceivedArguments?.arg as? Int) == 42
+                expect(maker.makeInstanceArgContextResolverReceivedArguments?.context as? String) == "context"
+                expect(maker.makeInstanceArgContextResolverReceivedArguments?.resolver) === resolver
             }
         }
     }

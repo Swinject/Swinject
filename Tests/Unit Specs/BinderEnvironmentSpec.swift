@@ -45,7 +45,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect { try maker.makeInstance(resolver: DummyResolver3()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let maker = provider { Person() }
+                let maker = provider { Human() }
                 let instance1 = try? maker.makeInstance(resolver: DummyResolver3())
                 let instance2 = try? maker.makeInstance(resolver: DummyResolver3())
                 expect(instance1) !== instance2
@@ -83,7 +83,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect { try maker.makeInstance(resolver: DummyResolver3()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let maker = factory { (_, _: Void) in Person() }
+                let maker = factory { (_, _: Void) in Human() }
                 let instance1 = try? maker.makeInstance(resolver: DummyResolver3())
                 let instance2 = try? maker.makeInstance(resolver: DummyResolver3())
                 expect(instance1) !== instance2
@@ -137,7 +137,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect { try maker.makeInstance(resolver: DummyResolver3()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let maker = singleton { Person() }
+                let maker = singleton { Human() }
                 let instance1 = try? maker.makeInstance(resolver: DummyResolver3())
                 let instance2 = try? maker.makeInstance(resolver: DummyResolver3())
                 expect(instance1) !== instance2
@@ -175,7 +175,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect { try maker.makeInstance(resolver: DummyResolver3()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let maker = multiton { (_, _: Void) in Person() }
+                let maker = multiton { (_, _: Void) in Human() }
                 let instance1 = try? maker.makeInstance(resolver: DummyResolver3())
                 let instance2 = try? maker.makeInstance(resolver: DummyResolver3())
                 expect(instance1) !== instance2
@@ -237,7 +237,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect { try maker.makeInstance(resolver: DummyResolver3()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let maker = environment.provider { _, _ in Person() }
+                let maker = environment.provider { _, _ in Human() }
                 let instance1 = try? maker.makeInstance(resolver: DummyResolver3())
                 let instance2 = try? maker.makeInstance(resolver: DummyResolver3())
                 expect(instance1) !== instance2
@@ -277,7 +277,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect { try maker.makeInstance(resolver: DummyResolver3()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let maker = environment.factory { (_, _, _: Void) in Person() }
+                let maker = environment.factory { (_, _, _: Void) in Human() }
                 let instance1 = try? maker.makeInstance(resolver: DummyResolver3())
                 let instance2 = try? maker.makeInstance(resolver: DummyResolver3())
                 expect(instance1) !== instance2
@@ -345,7 +345,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect { try maker.makeInstance(resolver: DummyResolver3()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let maker = environment.singleton { _, _ in Person() }
+                let maker = environment.singleton { _, _ in Human() }
                 let instance1 = try? maker.makeInstance(resolver: DummyResolver3())
                 let instance2 = try? maker.makeInstance(resolver: DummyResolver3())
                 expect(instance1) !== instance2
@@ -389,7 +389,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect { try maker.makeInstance(resolver: DummyResolver3()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let maker = environment.multiton { (_, _, _: Void) in Person() }
+                let maker = environment.multiton { (_, _, _: Void) in Human() }
                 let instance1 = try? maker.makeInstance(resolver: DummyResolver3())
                 let instance2 = try? maker.makeInstance(resolver: DummyResolver3())
                 expect(instance1) !== instance2

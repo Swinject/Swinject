@@ -55,11 +55,11 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             expect(closable[1].closeCallsCount) == 1
         }
         it("releases instance references when cleared") {
-            var person: Person? = Person()
-            weak var weakRef = person
-            _ = registry.instance(for: key[0]) { person! }
+            var human: Human? = Human()
+            weak var weakRef = human
+            _ = registry.instance(for: key[0]) { human! }
             registry.clear()
-            person = nil
+            human = nil
             expect(weakRef).to(beNil())
         }
     }
@@ -76,11 +76,11 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             expect(closable[1].closeCallsCount) == 1
         }
         it("releases instance references when closed") {
-            var person: Person? = Person()
-            weak var weakRef = person
-            _ = registry.instance(for: key[0]) { person! }
+            var human: Human? = Human()
+            weak var weakRef = human
+            _ = registry.instance(for: key[0]) { human! }
             registry.close()
-            person = nil
+            human = nil
             expect(weakRef).to(beNil())
         }
     }

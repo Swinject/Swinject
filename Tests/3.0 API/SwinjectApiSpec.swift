@@ -7,9 +7,9 @@ import Quick
 import Swinject
 
 class SwinjectApiSpec: QuickSpec { override func spec() {
-    var person = Person()
+    var human = Human()
     beforeEach {
-        person = Person()
+        human = Human()
     }
     it("returns instance if is bound") {
         let swinject = Swinject {
@@ -32,9 +32,9 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
     it("returns instance if all dependencies are bound") {
         let swinject = Swinject {
             bbind(Pet.self) & provider { Pet(owner: try $0.instance()) }
-            bbind(Person.self) & instance(person)
+            bbind(Human.self) & instance(human)
         }
-        expect { try swinject.instance(of: Pet.self).owner } === person
+        expect { try swinject.instance(of: Pet.self).owner } === human
     }
     it("throws if has multiple bindings for the same request") {
         let swinject = Swinject {
@@ -118,33 +118,33 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
             bbind(Int.self) & 42
         }
         expect { try swinject.on("context").instance() as Int } == 42
-        expect { try swinject.on(Person()).instance() as Int } == 42
+        expect { try swinject.on(Human()).instance() as Int } == 42
     }
     it("can bind singleton") {
         let swinject = Swinject {
-            bbind(Person.self) & singleton { Person() }
+            bbind(Human.self) & singleton { Human() }
         }
-        let first = try? swinject.instance() as Person
-        let second = try? swinject.instance() as Person
+        let first = try? swinject.instance() as Human
+        let second = try? swinject.instance() as Human
         expect(first) === second
     }
     it("can bind scoped singleton") {
         let scope = UnboundScope()
         let swinject = Swinject {
-            bbind(Person.self) & scoped(scope).singleton { Person() }
+            bbind(Human.self) & scoped(scope).singleton { Human() }
         }
-        let first = try? swinject.instance() as Person
-        let second = try? swinject.instance() as Person
+        let first = try? swinject.instance() as Human
+        let second = try? swinject.instance() as Human
         expect(first) === second
     }
     it("can close scopes") {
         let scope = UnboundScope()
         let swinject = Swinject {
-            bbind(Person.self) & scoped(scope).singleton { Person() }
+            bbind(Human.self) & scoped(scope).singleton { Human() }
         }
-        let first = try? swinject.instance() as Person
+        let first = try? swinject.instance() as Human
         scope.close()
-        let second = try? swinject.instance() as Person
+        let second = try? swinject.instance() as Human
         expect(first) !== second
     }
     it("notifies instances when scope is closed") {

@@ -1,39 +1,48 @@
-//
-//  Copyright © 2019 Swinject Contributors. All rights reserved.
-//
+// Generated using Sourcery 0.16.1 — https://github.com/krzysztofzablocki/Sourcery
+// DO NOT EDIT
+
 
 // swiftlint:disable line_length
 // swiftlint:disable variable_name
 
 @testable import Swinject
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 class AnyBindingKeyMock: AnyBindingKey {
     var contextType: Any.Type {
         get { return underlyingContextType }
         set(value) { underlyingContextType = value }
     }
-
     var underlyingContextType: Any.Type!
     var argumentType: Any.Type {
         get { return underlyingArgumentType }
         set(value) { underlyingArgumentType = value }
     }
-
     var underlyingArgumentType: Any.Type!
     var descriptor: AnyTypeDescriptor {
         get { return underlyingDescriptor }
         set(value) { underlyingDescriptor = value }
     }
-
     var underlyingDescriptor: AnyTypeDescriptor!
 
-    // MARK: - matches
+    //MARK: - matches
 
     var matchesCallsCount = 0
     var matchesCalled: Bool {
         return matchesCallsCount > 0
     }
-
     var matchesReceivedOther: AnyBindingKey?
     var matchesReceivedInvocations: [AnyBindingKey] = []
     var matchesReturnValue: Bool!
@@ -43,18 +52,18 @@ class AnyBindingKeyMock: AnyBindingKey {
         matchesCallsCount += 1
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)
-        return matchesClosure.map { $0(other) } ?? matchesReturnValue
+        return matchesClosure.map({ $0(other) }) ?? matchesReturnValue
     }
-}
 
+}
 class AnyBindningMakerMock: AnyBindningMaker {
-    // MARK: - makeBinding
+
+    //MARK: - makeBinding
 
     var makeBindingForCallsCount = 0
     var makeBindingForCalled: Bool {
         return makeBindingForCallsCount > 0
     }
-
     var makeBindingForReceivedDescriptor: AnyTypeDescriptor?
     var makeBindingForReceivedInvocations: [AnyTypeDescriptor] = []
     var makeBindingForReturnValue: Binding!
@@ -64,44 +73,44 @@ class AnyBindningMakerMock: AnyBindningMaker {
         makeBindingForCallsCount += 1
         makeBindingForReceivedDescriptor = descriptor
         makeBindingForReceivedInvocations.append(descriptor)
-        return makeBindingForClosure.map { $0(descriptor) } ?? makeBindingForReturnValue
+        return makeBindingForClosure.map({ $0(descriptor) }) ?? makeBindingForReturnValue
     }
+
 }
-
 class AnyInstanceMakerMock: AnyInstanceMaker {
-    // MARK: - makeInstance
 
-    var makeInstanceArgContextResolver3ThrowableError: Error?
-    var makeInstanceArgContextResolver3CallsCount = 0
-    var makeInstanceArgContextResolver3Called: Bool {
-        return makeInstanceArgContextResolver3CallsCount > 0
+    //MARK: - makeInstance
+
+    var makeInstanceArgContextResolverThrowableError: Error?
+    var makeInstanceArgContextResolverCallsCount = 0
+    var makeInstanceArgContextResolverCalled: Bool {
+        return makeInstanceArgContextResolverCallsCount > 0
     }
-
-    var makeInstanceArgContextResolver3ReceivedArguments: (arg: Any, context: Any, resolver: Resolver3)?
-    var makeInstanceArgContextResolver3ReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver3)] = []
-    var makeInstanceArgContextResolver3ReturnValue: Any!
-    var makeInstanceArgContextResolver3Closure: ((Any, Any, Resolver3) throws -> Any)?
+    var makeInstanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver3)?
+    var makeInstanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver3)] = []
+    var makeInstanceArgContextResolverReturnValue: Any!
+    var makeInstanceArgContextResolverClosure: ((Any, Any, Resolver3) throws -> Any)?
 
     func makeInstance(arg: Any, context: Any, resolver: Resolver3) throws -> Any {
-        if let error = makeInstanceArgContextResolver3ThrowableError {
+        if let error = makeInstanceArgContextResolverThrowableError {
             throw error
         }
-        makeInstanceArgContextResolver3CallsCount += 1
-        makeInstanceArgContextResolver3ReceivedArguments = (arg: arg, context: context, resolver: resolver)
-        makeInstanceArgContextResolver3ReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
-        return try makeInstanceArgContextResolver3Closure.map { try $0(arg, context, resolver) } ?? makeInstanceArgContextResolver3ReturnValue
+        makeInstanceArgContextResolverCallsCount += 1
+        makeInstanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
+        makeInstanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
+        return try makeInstanceArgContextResolverClosure.map({ try $0(arg, context, resolver) }) ?? makeInstanceArgContextResolverReturnValue
     }
-}
 
+}
 class AnyResolver3Mock: AnyResolver3 {
-    // MARK: - resolve
+
+    //MARK: - resolve
 
     var resolveThrowableError: Error?
     var resolveCallsCount = 0
     var resolveCalled: Bool {
         return resolveCallsCount > 0
     }
-
     var resolveReceivedRequest: Any?
     var resolveReceivedInvocations: [Any] = []
     var resolveReturnValue: Any!
@@ -114,18 +123,18 @@ class AnyResolver3Mock: AnyResolver3 {
         resolveCallsCount += 1
         resolveReceivedRequest = request
         resolveReceivedInvocations.append(request)
-        return try resolveClosure.map { try $0(request) } ?? resolveReturnValue
+        return try resolveClosure.map({ try $0(request) }) ?? resolveReturnValue
     }
-}
 
+}
 class AnyScopeMock: AnyScope {
-    // MARK: - registry
+
+    //MARK: - registry
 
     var registryForCallsCount = 0
     var registryForCalled: Bool {
         return registryForCallsCount > 0
     }
-
     var registryForReceivedContext: Any?
     var registryForReceivedInvocations: [Any] = []
     var registryForReturnValue: ScopeRegistry!
@@ -135,25 +144,23 @@ class AnyScopeMock: AnyScope {
         registryForCallsCount += 1
         registryForReceivedContext = context
         registryForReceivedInvocations.append(context)
-        return registryForClosure.map { $0(context) } ?? registryForReturnValue
+        return registryForClosure.map({ $0(context) }) ?? registryForReturnValue
     }
-}
 
+}
 class AnyTypeDescriptorMock: AnyTypeDescriptor {
     var hashValue: Int {
         get { return underlyingHashValue }
         set(value) { underlyingHashValue = value }
     }
-
     var underlyingHashValue: Int!
 
-    // MARK: - matches
+    //MARK: - matches
 
     var matchesCallsCount = 0
     var matchesCalled: Bool {
         return matchesCallsCount > 0
     }
-
     var matchesReceivedOther: Any?
     var matchesReceivedInvocations: [Any] = []
     var matchesReturnValue: Bool!
@@ -163,18 +170,18 @@ class AnyTypeDescriptorMock: AnyTypeDescriptor {
         matchesCallsCount += 1
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)
-        return matchesClosure.map { $0(other) } ?? matchesReturnValue
+        return matchesClosure.map({ $0(other) }) ?? matchesReturnValue
     }
-}
 
+}
 class BindingMock: Binding {
-    // MARK: - matches
+
+    //MARK: - matches
 
     var matchesCallsCount = 0
     var matchesCalled: Bool {
         return matchesCallsCount > 0
     }
-
     var matchesReceivedKey: AnyBindingKey?
     var matchesReceivedInvocations: [AnyBindingKey] = []
     var matchesReturnValue: Bool!
@@ -184,64 +191,61 @@ class BindingMock: Binding {
         matchesCallsCount += 1
         matchesReceivedKey = key
         matchesReceivedInvocations.append(key)
-        return matchesClosure.map { $0(key) } ?? matchesReturnValue
+        return matchesClosure.map({ $0(key) }) ?? matchesReturnValue
     }
 
-    // MARK: - instance
+    //MARK: - instance
 
-    var instanceArgContextResolver3ThrowableError: Error?
-    var instanceArgContextResolver3CallsCount = 0
-    var instanceArgContextResolver3Called: Bool {
-        return instanceArgContextResolver3CallsCount > 0
+    var instanceArgContextResolverThrowableError: Error?
+    var instanceArgContextResolverCallsCount = 0
+    var instanceArgContextResolverCalled: Bool {
+        return instanceArgContextResolverCallsCount > 0
     }
-
-    var instanceArgContextResolver3ReceivedArguments: (arg: Any, context: Any, resolver: Resolver3)?
-    var instanceArgContextResolver3ReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver3)] = []
-    var instanceArgContextResolver3ReturnValue: Any!
-    var instanceArgContextResolver3Closure: ((Any, Any, Resolver3) throws -> Any)?
+    var instanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver3)?
+    var instanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver3)] = []
+    var instanceArgContextResolverReturnValue: Any!
+    var instanceArgContextResolverClosure: ((Any, Any, Resolver3) throws -> Any)?
 
     func instance(arg: Any, context: Any, resolver: Resolver3) throws -> Any {
-        if let error = instanceArgContextResolver3ThrowableError {
+        if let error = instanceArgContextResolverThrowableError {
             throw error
         }
-        instanceArgContextResolver3CallsCount += 1
-        instanceArgContextResolver3ReceivedArguments = (arg: arg, context: context, resolver: resolver)
-        instanceArgContextResolver3ReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
-        return try instanceArgContextResolver3Closure.map { try $0(arg, context, resolver) } ?? instanceArgContextResolver3ReturnValue
+        instanceArgContextResolverCallsCount += 1
+        instanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
+        instanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
+        return try instanceArgContextResolverClosure.map({ try $0(arg, context, resolver) }) ?? instanceArgContextResolverReturnValue
     }
-}
 
+}
 class ClosableMock: Closable {
-    // MARK: - close
+
+    //MARK: - close
 
     var closeCallsCount = 0
     var closeCalled: Bool {
         return closeCallsCount > 0
     }
-
     var closeClosure: (() -> Void)?
 
     func close() {
         closeCallsCount += 1
         closeClosure?()
     }
-}
 
+}
 class MatchableMock: Matchable {
     var hashValue: Int {
         get { return underlyingHashValue }
         set(value) { underlyingHashValue = value }
     }
-
     var underlyingHashValue: Int!
 
-    // MARK: - matches
+    //MARK: - matches
 
     var matchesCallsCount = 0
     var matchesCalled: Bool {
         return matchesCallsCount > 0
     }
-
     var matchesReceivedOther: Any?
     var matchesReceivedInvocations: [Any] = []
     var matchesReturnValue: Bool!
@@ -251,20 +255,21 @@ class MatchableMock: Matchable {
         matchesCallsCount += 1
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)
-        return matchesClosure.map { $0(other) } ?? matchesReturnValue
+        return matchesClosure.map({ $0(other) }) ?? matchesReturnValue
     }
+
 }
+class ModuleIncludeEntryMock: ModuleIncludeEntry {
 
-class ModuleIncludeEntryMock: ModuleIncludeEntry {}
-
+}
 class StaticScopeRegistryMock: StaticScopeRegistry {
-    // MARK: - instance
+
+    //MARK: - instance
 
     var instanceKeyCallsCount = 0
     var instanceKeyCalled: Bool {
         return instanceKeyCallsCount > 0
     }
-
     var instanceKeyReceivedKey: ScopeRegistryKey?
     var instanceKeyReceivedInvocations: [ScopeRegistryKey] = []
     var instanceKeyReturnValue: Any!
@@ -274,20 +279,20 @@ class StaticScopeRegistryMock: StaticScopeRegistry {
         instanceKeyCallsCount += 1
         instanceKeyReceivedKey = key
         instanceKeyReceivedInvocations.append(key)
-        return instanceKeyClosure.map { $0(key) } ?? instanceKeyReturnValue
+        return instanceKeyClosure.map({ $0(key) }) ?? instanceKeyReturnValue
     }
 
-    // MARK: - clear
+    //MARK: - clear
 
     var clearCallsCount = 0
     var clearCalled: Bool {
         return clearCallsCount > 0
     }
-
     var clearClosure: (() -> Void)?
 
     func clear() {
         clearCallsCount += 1
         clearClosure?()
     }
+
 }
