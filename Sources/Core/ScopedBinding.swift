@@ -13,7 +13,7 @@ extension ScopedBinding: Binding {
         self.key.matches(key)
     }
 
-    public func instance(arg: Any, context: Any, resolver: Resolver3) throws -> Any {
+    public func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         try scope
             .registry(for: context)
             .instance(for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg)) {
@@ -25,9 +25,9 @@ extension ScopedBinding: Binding {
 extension ScopedBinding {
     public struct Builder<Type, AScope, Argument> where AScope: Scope {
         let scope: AScope
-        private let builder: (Resolver3, Context, Argument) throws -> Type
+        private let builder: (Resolver, Context, Argument) throws -> Type
 
-        init(_ scope: AScope, _ builder: @escaping (Resolver3, Context, Argument) throws -> Type) {
+        init(_ scope: AScope, _ builder: @escaping (Resolver, Context, Argument) throws -> Type) {
             self.scope = scope
             self.builder = builder
         }
@@ -38,7 +38,7 @@ extension ScopedBinding.Builder: InstanceMaker {
     public typealias MadeType = Type
     public typealias Context = AScope.Context
 
-    public func makeInstance(arg: Argument, context: Context, resolver: Resolver3) throws -> Type {
+    public func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
         try builder(resolver, context, arg)
     }
 }

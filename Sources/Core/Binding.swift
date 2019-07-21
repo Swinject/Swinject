@@ -5,7 +5,7 @@
 // sourcery: AutoMockable
 public protocol Binding: SwinjectEntry {
     func matches(_ key: AnyBindingKey) -> Bool
-    func instance(arg: Any, context: Any, resolver: Resolver3) throws -> Any
+    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any
 }
 
 public protocol BindingMaker {

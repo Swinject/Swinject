@@ -105,36 +105,20 @@ public final class Container {
     }
 }
 
-// MARK: - Resolver
-
-extension Container: Resolver {
-    /// Retrieves the instance with the specified service type.
-    ///
-    /// - Parameter serviceType: The service type to resolve.
-    ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type
-    ///            is found in the `Container`.
-    public func resolve<Service>(_ serviceType: Service.Type) -> Service? {
-        fatalError()
-    }
-
-    /// Retrieves the instance with the specified service type and registration name.
-    ///
-    /// - Parameters:
-    ///   - serviceType: The service type to resolve.
-    ///   - name:        The registration name.
-    ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name
-    ///            is found in the `Container`.
-    public func resolve<Service>(_: Service.Type, name: String?) -> Service? {
-        fatalError()
-    }
-}
-
 // MARK: CustomStringConvertible
 
 extension Container: CustomStringConvertible {
     public var description: String {
-        fatalError()
+        ""
+    }
+}
+
+// MARK: Resolver
+
+extension Container: Resolver {
+    public func resolve<Descriptor, Context, Argument>(
+        _ request: InstanceRequest<Descriptor, Context, Argument>
+    ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+        try swinject.resolve(request)
     }
 }

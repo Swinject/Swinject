@@ -12,16 +12,16 @@ extension SimpleBinding: Binding {
         self.key.matches(key)
     }
 
-    public func instance(arg: Any, context: Any, resolver: Resolver3) throws -> Any {
+    public func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         try maker.makeInstance(arg: arg, context: context, resolver: resolver)
     }
 }
 
 extension SimpleBinding {
     public struct Builder<Type, Context, Argument> {
-        private let builder: (Resolver3, Context, Argument) throws -> Type
+        private let builder: (Resolver, Context, Argument) throws -> Type
 
-        init(_ builder: @escaping (Resolver3, Context, Argument) throws -> Type) {
+        init(_ builder: @escaping (Resolver, Context, Argument) throws -> Type) {
             self.builder = builder
         }
     }
@@ -30,7 +30,7 @@ extension SimpleBinding {
 extension SimpleBinding.Builder: InstanceMaker {
     public typealias MadeType = Type
 
-    public func makeInstance(arg: Argument, context: Context, resolver: Resolver3) throws -> Type {
+    public func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
         try builder(resolver, context, arg)
     }
 }

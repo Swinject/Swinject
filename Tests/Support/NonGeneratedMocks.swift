@@ -4,7 +4,7 @@
 
 @testable import Swinject
 
-class DummyResolver3: Resolver3 {
+class DummyResolver: Resolver {
     func resolve<Descriptor, Context, Argument>(
         _: InstanceRequest<Descriptor, Context, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
@@ -21,17 +21,17 @@ extension AnyInstanceMakerMock: InstanceMaker {
 }
 
 class DummyMaker<Context, Argument>: InstanceMaker {
-    func makeInstance(arg _: Argument, context: Context, resolver _: Resolver3) throws -> Any {
+    func makeInstance(arg _: Argument, context: Context, resolver _: Resolver) throws -> Any {
         fatalError()
     }
 }
 
 // sourcery: AutoMockable
-protocol AnyResolver3 {
+protocol AnyResolver {
     func resolve(_ request: Any) throws -> Any
 }
 
-extension AnyResolver3Mock: Resolver3 {
+extension AnyResolverMock: Resolver {
     func resolve<Descriptor, Context, Argument>(
         _ request: InstanceRequest<Descriptor, Context, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {

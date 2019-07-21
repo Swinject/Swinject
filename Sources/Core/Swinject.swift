@@ -10,7 +10,7 @@ public struct Swinject {
     }
 }
 
-extension Swinject: Resolver3 {
+extension Swinject: Resolver {
     public func resolve<Descriptor, Context, Argument>(
         _ request: InstanceRequest<Descriptor, Context, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {

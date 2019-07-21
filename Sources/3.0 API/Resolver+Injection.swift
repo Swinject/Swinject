@@ -5,7 +5,7 @@
 // TODO: Overloads for multiple arguments & tag / notag combinations
 // swiftlint:disable line_length
 
-public extension Resolver3 {
+public extension Resolver {
     func instance<Type>(of _: Type.Type = Type.self) throws -> Type {
         try instance(tagged: NoTag(), arg: ())
     }
@@ -23,7 +23,7 @@ public extension Resolver3 {
     }
 }
 
-public extension Resolver3 {
+public extension Resolver {
     func provider<Type>(of _: Type.Type = Type.self) -> () throws -> Type {
         provider(tagged: NoTag(), arg: ())
     }
@@ -41,7 +41,7 @@ public extension Resolver3 {
     }
 }
 
-public extension Resolver3 {
+public extension Resolver {
     func factory<Type, Argument>(of _: Type.Type = Type.self) -> (Argument) throws -> Type {
         factory(tagged: NoTag())
     }

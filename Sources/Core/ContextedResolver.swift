@@ -2,12 +2,12 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-struct ContextedResolver3<Context> {
+struct ContextedResolver<Context> {
     let context: Context
-    let resolver: Resolver3
+    let resolver: Resolver
 }
 
-extension ContextedResolver3: Resolver3 {
+extension ContextedResolver: Resolver {
     func resolve<Descriptor, Ctx, Argument>(
         _ request: InstanceRequest<Descriptor, Ctx, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {

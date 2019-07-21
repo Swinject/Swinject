@@ -86,12 +86,12 @@ class AnyInstanceMakerMock: AnyInstanceMaker {
     var makeInstanceArgContextResolverCalled: Bool {
         return makeInstanceArgContextResolverCallsCount > 0
     }
-    var makeInstanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver3)?
-    var makeInstanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver3)] = []
+    var makeInstanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver)?
+    var makeInstanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver)] = []
     var makeInstanceArgContextResolverReturnValue: Any!
-    var makeInstanceArgContextResolverClosure: ((Any, Any, Resolver3) throws -> Any)?
+    var makeInstanceArgContextResolverClosure: ((Any, Any, Resolver) throws -> Any)?
 
-    func makeInstance(arg: Any, context: Any, resolver: Resolver3) throws -> Any {
+    func makeInstance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         if let error = makeInstanceArgContextResolverThrowableError {
             throw error
         }
@@ -102,7 +102,7 @@ class AnyInstanceMakerMock: AnyInstanceMaker {
     }
 
 }
-class AnyResolver3Mock: AnyResolver3 {
+class AnyResolverMock: AnyResolver {
 
     //MARK: - resolve
 
@@ -201,12 +201,12 @@ class BindingMock: Binding {
     var instanceArgContextResolverCalled: Bool {
         return instanceArgContextResolverCallsCount > 0
     }
-    var instanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver3)?
-    var instanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver3)] = []
+    var instanceArgContextResolverReceivedArguments: (arg: Any, context: Any, resolver: Resolver)?
+    var instanceArgContextResolverReceivedInvocations: [(arg: Any, context: Any, resolver: Resolver)] = []
     var instanceArgContextResolverReturnValue: Any!
-    var instanceArgContextResolverClosure: ((Any, Any, Resolver3) throws -> Any)?
+    var instanceArgContextResolverClosure: ((Any, Any, Resolver) throws -> Any)?
 
-    func instance(arg: Any, context: Any, resolver: Resolver3) throws -> Any {
+    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         if let error = instanceArgContextResolverThrowableError {
             throw error
         }
@@ -296,3 +296,9 @@ class StaticScopeRegistryMock: StaticScopeRegistry {
     }
 
 }
+
+
+
+
+
+

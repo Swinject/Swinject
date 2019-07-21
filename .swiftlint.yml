@@ -6,8 +6,8 @@ included:
   - Sources
   - Tests
 excluded:
-  - Sources/2.0 API/Container.Arguments.swift
-  - Sources/2.0 API/SynchronizedResolver.Arguments.swift
-  - Sources/2.0 API/Resolver.swift
-  - Sources/2.0 API/ServiceEntry.TypeForwarding.swift
+  - Sources/2.0 API/Container+Arguments.swift
+  - Sources/2.0 API/SynchronizedResolver+Arguments.swift
+  - Sources/2.0 API/Resolver+LegacyApi.swift
+  - Sources/2.0 API/ServiceEntry+TypeForwarding.swift
   - Tests/Support/GeneratedMocks.swift

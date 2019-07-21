@@ -22,8 +22,6 @@ public enum ObjectScope {
     case weak
 }
 
-
-
 extension ObjectScope {
     var scope: AnyScope? { nil }
 }
