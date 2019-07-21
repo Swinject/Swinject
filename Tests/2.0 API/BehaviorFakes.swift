@@ -5,7 +5,7 @@
 @testable import Swinject
 
 class BehaviorSpy: Behavior {
-    var entries = [ServiceEntryProtocol]()
+    var entries = [Any]()
     var names = [String?]()
     var types = [Any.Type]()
 

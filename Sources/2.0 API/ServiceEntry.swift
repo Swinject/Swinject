@@ -4,7 +4,9 @@
 
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
-public final class ServiceEntry<Service> {
+public struct ServiceEntry<Service> {
+    let objectScope: ObjectScope
+
     /// Specifies the object scope to resolve the service.
     ///
     /// - Parameter scope: The `ObjectScopeProtocol` value.

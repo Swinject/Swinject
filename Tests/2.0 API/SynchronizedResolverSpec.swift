@@ -52,19 +52,6 @@ class SynchronizedResolverSpec: QuickSpec {
                 runInObjectScope(.graph)
                 runInObjectScope(.container)
             }
-            it("uses distinct graph identifier") {
-                var graphs = Set<GraphIdentifier>()
-                let container = Container {
-                    $0.register(Dog.self) {
-                        graphs.insert(($0 as! Container).currentObjectGraph!)
-                        return Dog()
-                    }
-                }.synchronize()
-
-                onMultipleThreads { _ = container.resolve(Dog.self) }
-
-                expect(graphs.count) == totalThreads
-            }
         }
         describe("Nested resolve") {
             it("can make it without deadlock") {

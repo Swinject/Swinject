@@ -366,7 +366,7 @@ class ContainerSpec: QuickSpec {
         }
         describe("Default object scope") {
             it("registers services with given object scope") {
-                let container = Container(parent: nil, debugHelper: LoggingDebugHelper(), defaultObjectScope: .weak)
+                let container = Container(parent: nil, defaultObjectScope: .weak)
 
                 let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
                 expect(serviceEntry.objectScope) === ObjectScope.weak

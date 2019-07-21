@@ -61,7 +61,7 @@ final class EmploymentAssembly: Assembly {
                 providedCustomer: $0.resolve(Provider<Customer>.self)!
             )
         }.initCompleted {
-            if self.scope !== ObjectScope.transient {
+            if self.scope != ObjectScope.transient {
                 $1.employer = $0.resolve(Employer.self)
             }
         }.inObjectScope(scope)
