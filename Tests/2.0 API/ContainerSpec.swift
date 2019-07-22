@@ -187,24 +187,25 @@ class ContainerSpec: QuickSpec {
                     expect(ownersSushi === catsSushi).to(beTrue()) // Workaround for crash in Nimble.
                 }
             }
-            context("in weak scope") {
-                it("shares the object in the container") {
-                    container.register(Animal.self) { _ in Cat() }
-                        .inObjectScope(.weak)
-
-                    let cat1 = container.resolve(Animal.self) as? Cat
-                    let cat2 = container.resolve(Animal.self) as? Cat
-                    expect(cat1).notTo(beNil())
-                    expect(cat1 === cat2).to(beTrue()) // Workaround for crash in Nimble.
-                }
-                it("does not maintain a strong reference to the object") {
-                    container.register(Animal.self) { _ in Cat() }
-                        .inObjectScope(.weak)
-
-                    weak var cat = container.resolve(Animal.self) as? Cat
-                    expect(cat).to(beNil())
-                }
-            }
+            // TODO: implement weak scope
+//            context("in weak scope") {
+//                it("shares the object in the container") {
+//                    container.register(Animal.self) { _ in Cat() }
+//                        .inObjectScope(.weak)
+//
+//                    let cat1 = container.resolve(Animal.self) as? Cat
+//                    let cat2 = container.resolve(Animal.self) as? Cat
+//                    expect(cat1).notTo(beNil())
+//                    expect(cat1 === cat2).to(beTrue()) // Workaround for crash in Nimble.
+//                }
+//                it("does not maintain a strong reference to the object") {
+//                    container.register(Animal.self) { _ in Cat() }
+//                        .inObjectScope(.weak)
+//
+//                    weak var cat = container.resolve(Animal.self) as? Cat
+//                    expect(cat).to(beNil())
+//                }
+//            }
         }
         describe("Init completed event") {
             it("raises the event when a new instance is created.") {
@@ -284,61 +285,62 @@ class ContainerSpec: QuickSpec {
                 expect(owner?.pet).notTo(beNil())
             }
         }
-        describe("Value type resolution") {
-            it("resolves struct instances ignoring object scopes.") {
-                let runInObjectScope: (ObjectScope) -> Void = { scope in
-                    container.removeAll()
-                    container.register(Animal.self) { _ in Turtle(name: "Ninja") }
-                        .inObjectScope(scope)
-                    var turtle1 = container.resolve(Animal.self)!
-                    let turtle2 = container.resolve(Animal.self)!
-                    turtle1.name = "Samurai"
-                    expect(turtle1.name) == "Samurai"
-                    expect(turtle2.name) == "Ninja"
-                }
-
-                runInObjectScope(.transient)
-                runInObjectScope(.graph)
-                runInObjectScope(.container)
-            }
-            it("resolves struct instances defined in the parent container ignoring object scopes.") {
-                let runInObjectScope: (ObjectScope) -> Void = { scope in
-                    container.removeAll()
-                    container.register(Animal.self) { _ in Turtle(name: "Ninja") }
-                        .inObjectScope(scope)
-                    let childContainer = Container(parent: container)
-
-                    var turtle1 = childContainer.resolve(Animal.self)!
-                    let turtle2 = childContainer.resolve(Animal.self)!
-                    turtle1.name = "Samurai"
-                    expect(turtle1.name) == "Samurai"
-                    expect(turtle2.name) == "Ninja"
-                }
-
-                runInObjectScope(.transient)
-                runInObjectScope(.graph)
-                runInObjectScope(.container)
-            }
-            context("object scope is container or hierarchy") {
-                it("resolves only once to simulate singleton (instantiation only once).") {
-                    let runInObjectScope: (ObjectScope, Int) -> Void = { scope, expectation in
-                        var invokedCount = 0
-                        container.removeAll()
-                        container.register(Animal.self) { _ in
-                            invokedCount += 1
-                            return Turtle(name: "Ninja")
-                        }.inObjectScope(scope)
-                        _ = container.resolve(Animal.self)!
-                        _ = container.resolve(Animal.self)!
-                        expect(invokedCount) == expectation
-                    }
-
-                    runInObjectScope(.transient, 2)
-                    runInObjectScope(.graph, 2)
-                    runInObjectScope(.container, 1)
-                }
-            }
-        }
+        // TODO: Implement context translation
+//        describe("Value type resolution") {
+//            it("resolves struct instances ignoring object scopes.") {
+//                let runInObjectScope: (ObjectScope) -> Void = { scope in
+//                    container.removeAll()
+//                    container.register(Animal.self) { _ in Turtle(name: "Ninja") }
+//                        .inObjectScope(scope)
+//                    var turtle1 = container.resolve(Animal.self)!
+//                    let turtle2 = container.resolve(Animal.self)!
+//                    turtle1.name = "Samurai"
+//                    expect(turtle1.name) == "Samurai"
+//                    expect(turtle2.name) == "Ninja"
+//                }
+//
+//                runInObjectScope(.transient)
+//                runInObjectScope(.graph)
+//                runInObjectScope(.container)
+//            }
+//            it("resolves struct instances defined in the parent container ignoring object scopes.") {
+//                let runInObjectScope: (ObjectScope) -> Void = { scope in
+//                    container.removeAll()
+//                    container.register(Animal.self) { _ in Turtle(name: "Ninja") }
+//                        .inObjectScope(scope)
+//                    let childContainer = Container(parent: container)
+//
+//                    var turtle1 = childContainer.resolve(Animal.self)!
+//                    let turtle2 = childContainer.resolve(Animal.self)!
+//                    turtle1.name = "Samurai"
+//                    expect(turtle1.name) == "Samurai"
+//                    expect(turtle2.name) == "Ninja"
+//                }
+//
+//                runInObjectScope(.transient)
+//                runInObjectScope(.graph)
+//                runInObjectScope(.container)
+//            }
+//            context("object scope is container or hierarchy") {
+//                it("resolves only once to simulate singleton (instantiation only once).") {
+//                    let runInObjectScope: (ObjectScope, Int) -> Void = { scope, expectation in
+//                        var invokedCount = 0
+//                        container.removeAll()
+//                        container.register(Animal.self) { _ in
+//                            invokedCount += 1
+//                            return Turtle(name: "Ninja")
+//                        }.inObjectScope(scope)
+//                        _ = container.resolve(Animal.self)!
+//                        _ = container.resolve(Animal.self)!
+//                        expect(invokedCount) == expectation
+//                    }
+//
+//                    runInObjectScope(.transient, 2)
+//                    runInObjectScope(.graph, 2)
+//                    runInObjectScope(.container, 1)
+//                }
+//            }
+//        }
         describe("Class as a service type") {
             it("resolves a registred subclass of a service type class.") {
                 container.register(Cat.self) { _ in Siamese(name: "Siam") }
@@ -364,13 +366,14 @@ class ContainerSpec: QuickSpec {
                 expect(container.resolve(Animal.self) as? Cat).notTo(beNil())
             }
         }
-        describe("Default object scope") {
-            it("registers services with given object scope") {
-                let container = Container(parent: nil, defaultObjectScope: .weak)
-
-                let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
-                expect(serviceEntry.scope) === ObjectScope.weak.scope
-            }
-        }
+        // TODO: Implement weak scope
+//        describe("Default object scope") {
+//            it("registers services with given object scope") {
+//                let container = Container(parent: nil, defaultObjectScope: .weak)
+//
+//                let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
+//                expect(serviceEntry.scope) === ObjectScope.weak.scope
+//            }
+//        }
     }
 }

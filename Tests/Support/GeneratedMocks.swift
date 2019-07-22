@@ -77,6 +77,41 @@ class AnyBindningMakerMock: AnyBindningMaker {
     }
 
 }
+class AnyContextTranslatorMock: AnyContextTranslator {
+    var sourceType: Any.Type {
+        get { return underlyingSourceType }
+        set(value) { underlyingSourceType = value }
+    }
+    var underlyingSourceType: Any.Type!
+    var targetType: Any.Type {
+        get { return underlyingTargetType }
+        set(value) { underlyingTargetType = value }
+    }
+    var underlyingTargetType: Any.Type!
+
+    //MARK: - translate
+
+    var translateThrowableError: Error?
+    var translateCallsCount = 0
+    var translateCalled: Bool {
+        return translateCallsCount > 0
+    }
+    var translateReceivedContext: Any?
+    var translateReceivedInvocations: [Any] = []
+    var translateReturnValue: Any!
+    var translateClosure: ((Any) throws -> Any)?
+
+    func translate(_ context: Any) throws -> Any {
+        if let error = translateThrowableError {
+            throw error
+        }
+        translateCallsCount += 1
+        translateReceivedContext = context
+        translateReceivedInvocations.append(context)
+        return try translateClosure.map({ try $0(context) }) ?? translateReturnValue
+    }
+
+}
 class AnyInstanceMakerMock: AnyInstanceMaker {
 
     //MARK: - makeInstance
