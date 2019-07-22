@@ -22,6 +22,6 @@ let cat = parentContainer.resolve(Animal.self)
 print(cat == nil) // prints "true"
 ```
 
-_[Next page: Properties](Assembler.md)_
+_[Next page: Modularizing Service Registration (Assembly)](Assembler.md)_
 
 _[Table of Contents](README.md)_
