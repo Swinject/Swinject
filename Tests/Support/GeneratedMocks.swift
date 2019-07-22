@@ -163,6 +163,11 @@ class AnyResolverMock: AnyResolver {
 
 }
 class AnyScopeMock: AnyScope {
+    var contextType: Any.Type {
+        get { return underlyingContextType }
+        set(value) { underlyingContextType = value }
+    }
+    var underlyingContextType: Any.Type!
 
     //MARK: - registry
 

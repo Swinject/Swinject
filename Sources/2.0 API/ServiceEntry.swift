@@ -6,7 +6,8 @@
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public class ServiceEntry<Service> {
     let builder: (Resolver, Any, Any) -> Service
-    var key: AnyBindingKey
+    let argumentType: Any.Type
+    let name: String?
     var scope: AnyScope?
     var finalizers = [(Resolver, Service) -> Void]()
 
@@ -16,17 +17,8 @@ public class ServiceEntry<Service> {
         builder: @escaping (Resolver, Any, Argument) -> Service
     ) {
         self.builder = { builder($0, $1, $2 as! Argument) }
-        self.key = BindingKey(
-            descriptor: {
-                if let name = name {
-                    return tagged(Service.self, with: name)
-                } else {
-                    return plain(Service.self)
-                }
-            }(),
-            contextType: Any.self,
-            argumentType: Argument.self
-        )
+        self.argumentType = Argument.self
+        self.name = name
         self.scope = scope
     }
 
@@ -83,5 +75,19 @@ extension ServiceEntry: Binding {
         } else {
             return builder(resolver, context, arg)
         }
+    }
+
+    private var key: BindingKey {
+        BindingKey(
+            descriptor: {
+                if let name = name {
+                    return tagged(Service.self, with: name)
+                } else {
+                    return plain(Service.self)
+                }
+            }(),
+            contextType: scope?.contextType ?? Any.self,
+            argumentType: argumentType
+        )
     }
 }
