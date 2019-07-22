@@ -279,19 +279,20 @@ class SwinjectSpec: QuickSpec { override func spec() {
         }
         it("throws if multiple translators have correct translation") {
             bindings[0].matchesClosure = { $0.contextType == Int.self }
-            translators[1...2].forEach {
-                $0.sourceType = String.self
-                $0.targetType = Int.self
-                $0.translateReturnValue = 0
-            }
+            bindings[1].matchesClosure = { $0.contextType == Float.self }
+            translators[0].sourceType = String.self
+            translators[0].targetType = Int.self
+            translators[1].sourceType = String.self
+            translators[1].targetType = Float.self
             expect { try swinject.on("context").instance() }.to(throwError())
         }
         it("does not throw if multiple translators have correct target type but not source type") {
             bindings[0].matchesClosure = { $0.contextType == Int.self }
+            bindings[1].matchesClosure = { $0.contextType == Float.self }
             translators[0].sourceType = String.self
             translators[0].targetType = Int.self
             translators[1].sourceType = Double.self
-            translators[1].targetType = Int.self
+            translators[1].targetType = Float.self
             expect { try swinject.on("context").instance() }.notTo(throwError())
         }
         it("throws if has binding for given context and translator with correct context translation") {
@@ -315,6 +316,15 @@ class SwinjectSpec: QuickSpec { override func spec() {
             translators[0].targetType = Int.self
             _ = try? swinject.on("context").instance() as Void
             expect(translators[0].translateReceivedContext as? String) == "context"
+        }
+        it("does not throw if single binding can be used with multiple translated contexts") {
+            bindings[0].matchesReturnValue = true
+            translators[1...2].forEach {
+                $0.sourceType = String.self
+                $0.targetType = Int.self
+                $0.translateReturnValue = 0
+            }
+            expect { try swinject.on("context").instance() }.notTo(throwError())
         }
     }
 } }

@@ -33,44 +33,27 @@ extension Swinject: Resolver {
     public func resolve<Descriptor, Argument>(
         _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        try instance(
-            resolution: findResolution(for: request.descriptor, and: Argument.self),
-            context: context,
-            arg: request.argument
-        )
+        let binding = try findBinding(for: request)
+        let translator = try findTranslator(for: request, and: binding)
+        return try instance(from: binding, context: translator.translate(context), arg: request.argument)
     }
 
-    private func findResolution(for descriptor: AnyTypeDescriptor, and argumentType: Any.Type) throws -> Resolution {
-        let translators = (tree.translators + [IdentityTranslator(for: contextType)]).filter {
-            $0.sourceType == contextType
-        }
-        let keys = translators.map {
-            BindingKey(descriptor: descriptor, contextType: $0.targetType, argumentType: argumentType)
-        }
-        let bindings = keys.map {
-            try? findBinding(for: $0)
-        }
-        let resolutions = zip(bindings, translators)
-            .filter { $0.0 != nil }
-            .map { Resolution(binding: $0.0!, translator: $0.1) }
-
-        guard resolutions.count == 1 else { throw SwinjectError() }
-        return resolutions[0]
+    private func findTranslator(for request: AnyInstanceRequest, and binding: Binding) throws -> AnyContextTranslator {
+        return try (tree.translators + [IdentityTranslator(for: contextType)])
+            .filter { $0.sourceType == contextType }
+            .filter { binding.matches(request.key(forContextType: $0.targetType)) }
+            .first ?? { throw SwinjectError() }()
     }
 
-    private func findBinding(for key: AnyBindingKey) throws -> Binding {
-        let bindings = tree.bindings.filter { $0.matches(key) }
+    private func findBinding(for request: AnyInstanceRequest) throws -> Binding {
+        let bindings = tree.bindings.filter { (try? findTranslator(for: request, and: $0)) != nil }
         guard bindings.count == 1 else { throw SwinjectError() }
         return bindings[0]
     }
 
     private func instance<Type, Context, Argument>(
-        resolution: Resolution, context: Context, arg: Argument
+        from binding: Binding, context: Context, arg: Argument
     ) throws -> Type {
-        try resolution.binding.instance(
-            arg: arg,
-            context: resolution.translator.translate(context),
-            resolver: self
-        ) as? Type ?? { throw SwinjectError() }()
+        try binding.instance(arg: arg, context: context, resolver: self) as? Type ?? { throw SwinjectError() }()
     }
 }

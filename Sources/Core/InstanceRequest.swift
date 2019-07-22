@@ -2,9 +2,16 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public struct InstanceRequest<Descriptor, Argument> where Descriptor: TypeDescriptor {
-    let descriptor: Descriptor
-    let argument: Argument
+protocol AnyInstanceRequest {
+    var descriptor: AnyTypeDescriptor { get }
+    var argument: Any { get }
+    var argumentType: Any.Type { get }
+}
+
+public struct InstanceRequest<Descriptor, Argument>: AnyInstanceRequest where Descriptor: TypeDescriptor {
+    let argumentType: Any.Type = Argument.self
+    let descriptor: AnyTypeDescriptor
+    let argument: Any
 }
 
 func request<Type, Tag: Equatable, Argument>(
@@ -15,8 +22,8 @@ func request<Type, Tag: Equatable, Argument>(
     InstanceRequest(descriptor: tagged(type, with: tag), argument: arg)
 }
 
-extension InstanceRequest {
+extension AnyInstanceRequest {
     func key(forContextType contextType: Any.Type) -> BindingKey {
-        BindingKey(descriptor: descriptor, contextType: contextType, argumentType: Argument.self)
+        BindingKey(descriptor: descriptor, contextType: contextType, argumentType: argumentType)
     }
 }
