@@ -40,7 +40,7 @@ extension SimpleBinding.Builder: BindingMaker {
 
     public func makeBinding<Descriptor>(for descriptor: Descriptor) -> Binding where Descriptor: TypeDescriptor {
         SimpleBinding(
-            key: BindingKey<Descriptor, Context, Argument>(descriptor: descriptor),
+            key: BindingKey(descriptor: descriptor, contextType: Context.self, argumentType: Argument.self),
             maker: self
         )
     }

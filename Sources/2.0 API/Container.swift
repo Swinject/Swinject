@@ -106,8 +106,8 @@ extension Container: CustomStringConvertible {
 // MARK: Resolver
 
 extension Container: Resolver {
-    public func resolve<Descriptor, Context, Argument>(
-        _ request: InstanceRequest<Descriptor, Context, Argument>
+    public func resolve<Descriptor, Argument>(
+        _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
         try swinject.on(Graph()).resolve(request)
     }

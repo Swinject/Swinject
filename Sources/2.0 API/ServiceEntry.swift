@@ -19,9 +19,9 @@ public struct ServiceEntry<Service> {
     ) {
         self.builder = { builder($0, $1, $2 as! Argument) }
         if let name = name {
-            self.key = BindingKey<Tagged<Service, String>, Any, Argument>(descriptor: tagged(Service.self, with: name))
+            self.key = BindingKey(descriptor: tagged(Service.self, with: name), contextType: Any.self, argumentType: Argument.self)
         } else {
-            self.key = BindingKey<Tagged<Service, NoTag>, Any, Argument>(descriptor: plain(Service.self))
+            self.key = BindingKey(descriptor: plain(Service.self), contextType: Any.self, argumentType: Argument.self)
         }
         self.scope = scope
     }

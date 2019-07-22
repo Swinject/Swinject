@@ -4,17 +4,36 @@
 
 public struct Swinject {
     let tree: SwinjectTree
+    let context: Any
+    let contextType: Any.Type
 
     init(tree: SwinjectTree) {
+        self.init(tree: tree, context: ())
+    }
+
+    init<Context>(tree: SwinjectTree, context: Context) {
         self.tree = tree
+        self.context = context
+        self.contextType = Context.self
+    }
+}
+
+extension Swinject {
+    public func on<Context>(_ context: Context) -> Swinject {
+        return Swinject(tree: tree, context: context)
     }
 }
 
 extension Swinject: Resolver {
-    public func resolve<Descriptor, Context, Argument>(
-        _ request: InstanceRequest<Descriptor, Context, Argument>
+    public func resolve<Descriptor, Argument>(
+        _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        try instance(from: findBinding(for: request.key), context: request.context, arg: request.argument)
+        let key = BindingKey(
+            descriptor: request.descriptor,
+            contextType: contextType,
+            argumentType: Argument.self
+        )
+        return try instance(from: findBinding(for: key), context: context, arg: request.argument)
     }
 
     private func findBinding(for key: AnyBindingKey) throws -> Binding {

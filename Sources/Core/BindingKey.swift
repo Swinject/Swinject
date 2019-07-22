@@ -11,10 +11,10 @@ public protocol AnyBindingKey {
     func matches(_ other: AnyBindingKey) -> Bool
 }
 
-struct BindingKey<Descriptor, Context, Argument>: AnyBindingKey where Descriptor: TypeDescriptor {
-    let contextType: Any.Type = Context.self
-    let argumentType: Any.Type = Argument.self
+struct BindingKey: AnyBindingKey {
     let descriptor: AnyTypeDescriptor
+    let contextType: Any.Type
+    let argumentType: Any.Type
 
     func matches(_ other: AnyBindingKey) -> Bool {
         descriptor.matches(other.descriptor)

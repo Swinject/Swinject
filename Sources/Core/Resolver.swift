@@ -2,15 +2,8 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-// TODO: Rename
 public protocol Resolver {
-    func resolve<Descriptor, Context, Argument>(
-        _ request: InstanceRequest<Descriptor, Context, Argument>
+    func resolve<Descriptor, Argument>(
+        _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
-}
-
-public extension Resolver {
-    func on<Context>(_ context: Context) -> Resolver {
-        ContextedResolver(context: context, resolver: self)
-    }
 }

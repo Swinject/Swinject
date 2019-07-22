@@ -63,8 +63,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
             it("matches binding with correct key") {
                 binding.matchesReturnValue = false
                 _ = try? swinject.instance(tagged: "tag") as Int
-                let otherKey = binding.matchesReceivedKey as? BindingKey<Tagged<Int, String>, Void, Void>
-                let descriptor = otherKey?.descriptor as? Tagged<Int, String>
+                let descriptor = binding.matchesReceivedKey?.descriptor as? Tagged<Int, String>
                 expect(descriptor?.tag) == "tag"
             }
             it("matches binding with correct context") {
@@ -139,8 +138,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("matches binding with correct key") {
             binding.matchesReturnValue = true
             _ = try? swinject.provider(of: Any.self, tagged: "tag")()
-            let otherKey = binding.matchesReceivedKey as? BindingKey<Tagged<Any, String>, Void, Void>
-            let descriptor = otherKey?.descriptor as? Tagged<Any, String>
+            let descriptor = binding.matchesReceivedKey?.descriptor as? Tagged<Any, String>
             expect(descriptor?.tag) == "tag"
         }
         it("matches binding with correct context") {
@@ -151,6 +149,17 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("passes given context to the binding") {
             binding.matchesReturnValue = true
             _ = try? swinject.on("context").provider()() as Int
+            expect(binding.instanceArgContextResolverReceivedArguments?.context as? String) == "context"
+        }
+        it("passes given context to dependency binding") {
+            let binding = BindingMock()
+            binding.matchesClosure = { $0.descriptor.matches(plain(Double.self)) }
+            binding.instanceArgContextResolverReturnValue = 0.0
+            let swinject = Swinject {
+                bbind(Int.self) & provider { Int(try $0.instance() as Double) }
+                binding
+            }
+            _ = try? swinject.on("context").instance(of: Int.self)
             expect(binding.instanceArgContextResolverReceivedArguments?.context as? String) == "context"
         }
     }
@@ -199,8 +208,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         it("matches binding with correct key") {
             binding.matchesReturnValue = false
             _ = try? swinject.factory(tagged: "tag")("arg") as Int
-            let otherKey = binding.matchesReceivedKey as? BindingKey<Tagged<Int, String>, Void, String>
-            let descriptor = otherKey?.descriptor as? Tagged<Int, String>
+            let descriptor = binding.matchesReceivedKey?.descriptor as? Tagged<Int, String>
             expect(descriptor?.tag) == "tag"
         }
         it("matches binding with correct context") {
