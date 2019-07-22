@@ -369,7 +369,7 @@ class ContainerSpec: QuickSpec {
                 let container = Container(parent: nil, defaultObjectScope: .weak)
 
                 let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
-                expect(serviceEntry.objectScope) === ObjectScope.weak
+                expect(serviceEntry.scope) === ObjectScope.weak.scope
             }
         }
     }

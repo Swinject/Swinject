@@ -25,6 +25,8 @@ public final class Assembler {
     /// - parameter parentAssembler: the baseline assembler
     /// - parameter defaultObjectScope: default object scope for container
     /// - parameter behaviors: list of behaviors to be added to the container
+    ///
+    // TODO: Enable to use any scope as default
     public init(parentAssembler: Assembler?, defaultObjectScope: ObjectScope = .graph, behaviors: [Behavior] = []) {
         container = Container(
             parent: parentAssembler?.container,

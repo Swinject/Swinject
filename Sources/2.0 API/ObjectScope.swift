@@ -25,10 +25,15 @@ public enum ObjectScope {
 extension ObjectScope {
     var scope: AnyScope? {
         switch self {
-        case .graph: return GraphScope()
+        case .graph: return GraphScope.shared
+        case .container: return UnboundScope.container
         default: return nil
         }
     }
+}
+
+extension UnboundScope {
+    static let container = UnboundScope()
 }
 
 final class Graph {
@@ -36,6 +41,8 @@ final class Graph {
 }
 
 final class GraphScope: Scope {
+    static let shared = GraphScope()
+
     func registry(for graph: Graph) -> ScopeRegistry {
         return graph.registry
     }

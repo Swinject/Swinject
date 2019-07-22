@@ -20,6 +20,7 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
+    let registry: ScopeRegistry
     let parent: Container?
     let defaultScope: AnyScope?
     var bindings = [Binding]()
@@ -50,6 +51,7 @@ public final class Container {
         self.parent = parent
         self.defaultScope = defaultObjectScope.scope
         self.behaviors = behaviors
+        self.registry = parent?.registry ?? StandardScopeRegistry()
         registeringClosure(self)
     }
 

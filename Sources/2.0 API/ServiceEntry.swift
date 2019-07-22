@@ -5,12 +5,10 @@
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public class ServiceEntry<Service> {
-    private let builder: (Resolver, Any, Any) -> Service
-    private var key: AnyBindingKey
-    private var scope: AnyScope?
-    private var finalizers = [(Resolver, Service) -> Void]()
-
-    var objectScope: ObjectScope? { return nil }
+    let builder: (Resolver, Any, Any) -> Service
+    var key: AnyBindingKey
+    var scope: AnyScope?
+    var finalizers = [(Resolver, Service) -> Void]()
 
     init<Argument>(
         name: String?,
@@ -39,6 +37,7 @@ public class ServiceEntry<Service> {
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
     public func inObjectScope<ObjectScope>(_ scope: ObjectScope) -> Self where ObjectScope: Scope {
+        self.scope = scope
         return self
     }
 
@@ -51,6 +50,7 @@ public class ServiceEntry<Service> {
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
     public func inObjectScope(_ objectScope: ObjectScope) -> Self {
+        self.scope = objectScope.scope
         return self
     }
 

@@ -48,7 +48,7 @@ class AssemblerSpec: QuickSpec {
                 let container = assembler.resolver.resolve(Container.self)
                 let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
 
-                expect(serviceEntry?.objectScope) === ObjectScope.container
+                expect(serviceEntry?.scope) === ObjectScope.container.scope
             }
 
             it("uses graph scope if no default object scope is injected") {
@@ -58,7 +58,7 @@ class AssemblerSpec: QuickSpec {
                 let container = assembler.resolver.resolve(Container.self)
                 let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
 
-                expect(serviceEntry?.objectScope) === ObjectScope.graph
+                expect(serviceEntry?.scope) === ObjectScope.graph.scope
             }
 
             it("can assembly a multiple container") {
@@ -294,7 +294,7 @@ class AssemblerSpec: QuickSpec {
                 let container = childAssembler.resolver.resolve(Container.self)
                 let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
 
-                expect(serviceEntry?.objectScope) === ObjectScope.container
+                expect(serviceEntry?.scope) === ObjectScope.container.scope
             }
 
             it("has default object scope of graph type") {
@@ -306,7 +306,7 @@ class AssemblerSpec: QuickSpec {
                 let container = childAssembler.resolver.resolve(Container.self)
                 let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
 
-                expect(serviceEntry?.objectScope) === ObjectScope.graph
+                expect(serviceEntry?.scope) === ObjectScope.graph.scope
             }
 
             it("uses given list of behaviors to container") {
