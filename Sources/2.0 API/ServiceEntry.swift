@@ -4,11 +4,11 @@
 
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
-public struct ServiceEntry<Service> {
+public class ServiceEntry<Service> {
     private let builder: (Resolver, Any, Any) -> Service
     private var key: AnyBindingKey
     private var scope: AnyScope?
-    private var initCompleted = [(Resolver, Any) -> Void]()
+    private var finalizers = [(Resolver, Service) -> Void]()
 
     var objectScope: ObjectScope? { return nil }
 
@@ -18,11 +18,17 @@ public struct ServiceEntry<Service> {
         builder: @escaping (Resolver, Any, Argument) -> Service
     ) {
         self.builder = { builder($0, $1, $2 as! Argument) }
-        if let name = name {
-            self.key = BindingKey(descriptor: tagged(Service.self, with: name), contextType: Any.self, argumentType: Argument.self)
-        } else {
-            self.key = BindingKey(descriptor: plain(Service.self), contextType: Any.self, argumentType: Argument.self)
-        }
+        self.key = BindingKey(
+            descriptor: {
+                if let name = name {
+                    return tagged(Service.self, with: name)
+                } else {
+                    return plain(Service.self)
+                }
+            }(),
+            contextType: Any.self,
+            argumentType: Argument.self
+        )
         self.scope = scope
     }
 
@@ -57,6 +63,7 @@ public struct ServiceEntry<Service> {
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
     public func initCompleted(_ completed: @escaping (Resolver, Service) -> Void) -> Self {
+        finalizers.append { completed($0, $1) }
         return self
     }
 }
@@ -71,7 +78,7 @@ extension ServiceEntry: Binding {
             return scope.registry(for: context).instance(
                 for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg),
                 builder: { builder(resolver, context, arg) },
-                finalizer: { instance in initCompleted.forEach { $0(resolver, instance) } }
+                finalizer: { instance in finalizers.forEach { $0(resolver, instance as! Service) } }
             )
         } else {
             return builder(resolver, context, arg)

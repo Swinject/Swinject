@@ -29,9 +29,9 @@ public class StandardScopeRegistry: ScopeRegistry, Closable {
         try lock.sync {
             if let instance = instances[key] { return instance }
             let newInstance = try builder()
-            try finalizer(newInstance)
             if let instance = instances[key] { return instance }
             instances[key] = newInstance
+            try finalizer(newInstance)
             return newInstance
         }
     }

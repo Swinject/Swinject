@@ -69,13 +69,22 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             _ = registry.instance(for: key[1], builder: { 0 }, finalizer: countingFinalizer)
             expect(finalizerCallCount) == 2
         }
-        it("returns the last instance if the same key was used during finalization") {
+        it("returns the last instance if the same key was used from builder") {
             let instance = registry.instance(
                 for: key[0],
-                builder: { 0 },
-                finalizer: { _ in _ = registry.instance(for: key[0], builder: { 42 }) }
+                builder: {
+                    _ = registry.instance(for: key[0], builder: { 42 })
+                    return 0
+                },
+                finalizer: { _ in }
             )
             expect(instance as? Int) == 42
+        }
+        it("calls builder only once if the same key was used from finalizer") {
+            _ = registry.instance(for: key[0], builder: countingBuilder) { _ in
+                _ = registry.instance(for: key[0], builder: countingBuilder, finalizer: { _ in })
+            }
+            expect(builderCallCount) == 1
         }
     }
     describe("clear") {
