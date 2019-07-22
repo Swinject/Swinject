@@ -14,7 +14,7 @@ public struct Swinject {
     init<Context>(tree: SwinjectTree, context: Context) {
         self.tree = tree
         self.context = context
-        self.contextType = Context.self
+        contextType = Context.self
     }
 }
 

@@ -17,7 +17,7 @@ public class ServiceEntry<Service> {
         builder: @escaping (Resolver, Any, Argument) -> Service
     ) {
         self.builder = { builder($0, $1, $2 as! Argument) }
-        self.argumentType = Argument.self
+        argumentType = Argument.self
         self.name = name
         self.scope = scope
     }
@@ -42,7 +42,7 @@ public class ServiceEntry<Service> {
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
     public func inObjectScope(_ objectScope: ObjectScope) -> Self {
-        self.scope = objectScope.scope
+        scope = objectScope.scope
         return self
     }
 

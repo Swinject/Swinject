@@ -51,9 +51,9 @@ public final class Container {
         registeringClosure: (Container) -> Void = { _ in }
     ) {
         self.parent = parent
-        self.defaultScope = defaultObjectScope.scope
+        defaultScope = defaultObjectScope.scope
         self.behaviors = behaviors
-        self.registry = parent?.registry ?? StandardScopeRegistry()
+        registry = parent?.registry ?? StandardScopeRegistry()
         registeringClosure(self)
     }
 

@@ -252,7 +252,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         var translators = [AnyContextTranslatorMock]()
         var bindings = [BindingMock]()
         beforeEach {
-            translators = (1...3).map { _ in AnyContextTranslatorMock() }
+            translators = (1 ... 3).map { _ in AnyContextTranslatorMock() }
             translators.forEach {
                 $0.sourceType = Void.self
                 $0.targetType = Void.self
@@ -319,7 +319,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
         }
         it("does not throw if single binding can be used with multiple translated contexts") {
             bindings[0].matchesReturnValue = true
-            translators[1...2].forEach {
+            translators[1 ... 2].forEach {
                 $0.sourceType = String.self
                 $0.targetType = Int.self
                 $0.translateReturnValue = 0

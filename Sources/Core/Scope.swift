@@ -15,7 +15,7 @@ public protocol Scope: AnyScope {
 
 extension Scope {
     public var contextType: Any.Type { return Context.self }
-    
+
     func registry(for context: Any) -> ScopeRegistry {
         registry(for: context as! Context)
     }
