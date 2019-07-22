@@ -9,7 +9,7 @@ protocol AnyContextTranslator: SwinjectEntry {
     func translate(_ context: Any) throws -> Any
 }
 
-struct ContextTranslator<Source, Target>: AnyContextTranslator {
+public struct ContextTranslator<Source, Target>: AnyContextTranslator {
     let sourceType: Any.Type = Source.self
     let targetType: Any.Type = Target.self
     let translation: (Source) -> Target
@@ -30,4 +30,12 @@ struct IdentityTranslator: AnyContextTranslator {
     }
 
     func translate(_ context: Any) throws -> Any { context }
+}
+
+public func registerContextTranslator<Source, Target>(
+    from _: Source.Type = Source.self,
+    to _: Target.Type = Target.self,
+    using translation: @escaping (Source) -> Target
+) -> ContextTranslator<Source, Target> {
+    ContextTranslator(translation: translation)
 }
