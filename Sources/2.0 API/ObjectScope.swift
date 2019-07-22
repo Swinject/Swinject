@@ -26,18 +26,19 @@ extension ObjectScope {
     var scope: AnyScope? {
         switch self {
         case .graph: return GraphScope.shared
-        case .container: return UnboundScope.container
+        case .container: return ContainerScope.shared
         default: return nil
         }
     }
 }
 
-extension UnboundScope {
-    static let container = UnboundScope()
-}
-
 final class Graph {
     let registry = StandardScopeRegistry()
+    let container: Container
+
+    init(on container: Container) {
+        self.container = container
+    }
 }
 
 final class GraphScope: Scope {
@@ -45,5 +46,13 @@ final class GraphScope: Scope {
 
     func registry(for graph: Graph) -> ScopeRegistry {
         return graph.registry
+    }
+}
+
+final class ContainerScope: Scope {
+    static let shared = ContainerScope()
+
+    func registry(for container: Container) -> ScopeRegistry {
+        container.registry
     }
 }

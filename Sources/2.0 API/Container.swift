@@ -25,9 +25,11 @@ public final class Container {
     let defaultScope: AnyScope?
     var bindings = [Binding]()
     var behaviors = [Behavior]()
-    var swinject: Swinject {
-        Swinject(tree: SwinjectTree(bindings: allBindings, includeEntries: [], translators: []))
-    }
+    var swinject: Swinject { Swinject(tree: SwinjectTree(
+        bindings: allBindings,
+        includeEntries: [],
+        translators: [registerContextTranslator(from: Graph.self) { $0.container }]
+    )) }
     var allBindings: [Binding] {
         return bindings + (parent?.allBindings ?? [])
     }
@@ -111,6 +113,6 @@ extension Container: Resolver {
     public func resolve<Descriptor, Argument>(
         _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        try swinject.on(Graph()).resolve(request)
+        try swinject.on(Graph(on: self)).resolve(request)
     }
 }
