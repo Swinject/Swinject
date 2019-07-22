@@ -26,7 +26,7 @@ public final class Container {
     var bindings = [Binding]()
     var behaviors = [Behavior]()
     var swinject: Swinject {
-        Swinject(tree: SwinjectTree(bindings: allBindings, includeEntries: []))
+        Swinject(tree: SwinjectTree(bindings: allBindings, includeEntries: [], translators: []))
     }
     var allBindings: [Binding] {
         return bindings + (parent?.allBindings ?? [])

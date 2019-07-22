@@ -7,6 +7,7 @@ public protocol SwinjectEntry {}
 public struct SwinjectTree {
     let bindings: [Binding]
     let includeEntries: [ModuleIncludeEntry]
+    let translators: [AnyContextTranslator]
 }
 
 @_functionBuilder
@@ -34,7 +35,8 @@ public enum SwinjectTreeBuilder {
         let entries = input.flatMap(unpack)
         return SwinjectTree(
             bindings: entries.compactMap { $0 as? Binding },
-            includeEntries: entries.compactMap { $0 as? ModuleIncludeEntry }
+            includeEntries: entries.compactMap { $0 as? ModuleIncludeEntry },
+            translators: entries.compactMap { $0 as? AnyContextTranslator }
         )
         // TODO: Validate
     }

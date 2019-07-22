@@ -52,6 +52,14 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
             expect(tree.includeEntries.count) == 2
             expect(tree.bindings.count) == 3
         }
+        it("builds closure with translator entries") {
+            let tree = makeTree {
+                AnyContextTranslatorMock()
+                AnyContextTranslatorMock()
+                AnyContextTranslatorMock()
+            }
+            expect(tree.translators.count) == 3
+        }
     }
 } }
 

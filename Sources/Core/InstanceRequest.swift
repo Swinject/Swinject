@@ -14,3 +14,9 @@ func request<Type, Tag: Equatable, Argument>(
 ) -> InstanceRequest<Tagged<Type, Tag>, Argument> {
     InstanceRequest(descriptor: tagged(type, with: tag), argument: arg)
 }
+
+extension InstanceRequest {
+    func key(forContextType contextType: Any.Type) -> BindingKey {
+        BindingKey(descriptor: descriptor, contextType: contextType, argumentType: Argument.self)
+    }
+}

@@ -25,15 +25,37 @@ extension Swinject {
 }
 
 extension Swinject: Resolver {
+    struct Resolution {
+        let binding: Binding
+        let translator: AnyContextTranslator
+    }
+
     public func resolve<Descriptor, Argument>(
         _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        let key = BindingKey(
-            descriptor: request.descriptor,
-            contextType: contextType,
-            argumentType: Argument.self
+        try instance(
+            resolution: findResolution(for: request.descriptor, and: Argument.self),
+            context: context,
+            arg: request.argument
         )
-        return try instance(from: findBinding(for: key), context: context, arg: request.argument)
+    }
+
+    private func findResolution(for descriptor: AnyTypeDescriptor, and argumentType: Any.Type) throws -> Resolution {
+        let translators = (tree.translators + [IdentityTranslator(for: contextType)]).filter {
+            $0.sourceType == contextType
+        }
+        let keys = translators.map {
+            BindingKey(descriptor: descriptor, contextType: $0.targetType, argumentType: argumentType)
+        }
+        let bindings = keys.map {
+            try? findBinding(for: $0)
+        }
+        let resolutions = zip(bindings, translators)
+            .filter { $0.0 != nil }
+            .map { Resolution(binding: $0.0!, translator: $0.1) }
+
+        guard resolutions.count == 1 else { throw SwinjectError() }
+        return resolutions[0]
     }
 
     private func findBinding(for key: AnyBindingKey) throws -> Binding {
@@ -43,8 +65,12 @@ extension Swinject: Resolver {
     }
 
     private func instance<Type, Context, Argument>(
-        from binding: Binding, context: Context, arg: Argument
+        resolution: Resolution, context: Context, arg: Argument
     ) throws -> Type {
-        try binding.instance(arg: arg, context: context, resolver: self) as? Type ?? { throw SwinjectError() }()
+        try resolution.binding.instance(
+            arg: arg,
+            context: resolution.translator.translate(context),
+            resolver: self
+        ) as? Type ?? { throw SwinjectError() }()
     }
 }
