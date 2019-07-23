@@ -28,6 +28,11 @@ class TaggedTypeSpec: QuickSpec { override func spec() {
             let second = plain(Int?.self)
             expect(first.hashValue) == second.hashValue
         }
+        it("is same for the type and it's double optional") {
+            let first = plain(Int.self)
+            let second = plain(Int??.self)
+            expect(first.hashValue) == second.hashValue
+        }
     }
     describe("matches") {
         it("doesn't match if base type is different") {
@@ -48,6 +53,11 @@ class TaggedTypeSpec: QuickSpec { override func spec() {
         it("matches if second type is optional of first type") {
             let first = plain(Int.self)
             let second = plain(Int?.self)
+            expect(first.matches(second)) == true
+        }
+        it("matches if second type is double optional of first type") {
+            let first = plain(Int.self)
+            let second = plain(Int??.self)
             expect(first.matches(second)) == true
         }
     }

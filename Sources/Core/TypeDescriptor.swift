@@ -21,6 +21,9 @@ public struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
         if let other = other as? Tagged<BaseType?, Tag> {
             return tag == other.tag
         }
+        if let other = other as? Tagged<BaseType??, Tag> {
+            return tag == other.tag
+        }
         return false
     }
 
@@ -30,7 +33,11 @@ public struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
 
     private var hashedType: Any.Type {
         if let optional = BaseType.self as? OptionalProtocol.Type {
-            return optional.wrappedType
+            if let doubleOptional = optional.wrappedType as? OptionalProtocol.Type {
+                return doubleOptional.wrappedType
+            } else {
+                return optional.wrappedType
+            }
         } else {
             return BaseType.self
         }
