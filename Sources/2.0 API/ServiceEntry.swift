@@ -5,6 +5,7 @@
 /// The `ServiceEntry<Service>` class represents an entry of a registered service type.
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public class ServiceEntry<Service> {
+    weak var container: Container?
     let builder: (Resolver, Any, Any) -> Service
     let argumentType: Any.Type
     let name: String?
@@ -13,10 +14,12 @@ public class ServiceEntry<Service> {
     var forwardedDescriptors = [AnyTypeDescriptor]()
 
     init<Argument>(
+        container: Container,
         name: String?,
         scope: AnyScope?,
         builder: @escaping (Resolver, Any, Argument) -> Service
     ) {
+        self.container = container
         self.builder = { builder($0, $1, $2 as! Argument) }
         argumentType = Argument.self
         self.name = name

@@ -19,6 +19,13 @@ extension Container {
     ///     - name: A registration name, which is used to differentiate from other registrations of the same `type`
     ///     - service: ServiceEntry which should be used for resolution of `type`
     public func forward<T, S>(_ type: T.Type, name: String? = nil, to service: ServiceEntry<S>) {
-        service.implements(type, name: name)
+        if let name = name {
+            service.forwardedDescriptors.append(tagged(type, with: name))
+        } else {
+            service.forwardedDescriptors.append(plain(type))
+        }
+        behaviors.forEach {
+            $0.container(self, didRegisterType: T.self, toService: service, withName: name)
+        }
     }
 }
