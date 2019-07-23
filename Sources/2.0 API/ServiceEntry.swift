@@ -10,6 +10,7 @@ public class ServiceEntry<Service> {
     let name: String?
     var scope: AnyScope?
     var finalizers = [(Resolver, Service) -> Void]()
+    var forwardedDescriptors = [AnyTypeDescriptor]()
 
     init<Argument>(
         name: String?,
@@ -62,7 +63,10 @@ public class ServiceEntry<Service> {
 
 extension ServiceEntry: Binding {
     public func matches(_ key: AnyBindingKey) -> Bool {
-        self.key.matches(key)
+        let forwardedKeys = forwardedDescriptors.map {
+            BindingKey(descriptor: $0, contextType: scope?.contextType ?? Any.self, argumentType: argumentType)
+        }
+        return ([self.key] + forwardedKeys).contains { $0.matches(key) }
     }
 
     public func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {

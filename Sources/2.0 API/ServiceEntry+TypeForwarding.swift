@@ -12,7 +12,11 @@ extension ServiceEntry {
     ///     - name: A registration name, which is used to differentiate from other registrations of the same `type`
     @discardableResult
     public func implements<T>(_ type: T.Type, name: String? = nil) -> ServiceEntry<Service> {
-        fatalError()
+        if let name = name {
+            forwardedDescriptors.append(tagged(type, with: name))
+        } else {
+            forwardedDescriptors.append(plain(type))
+        }
         return self
     }
 
