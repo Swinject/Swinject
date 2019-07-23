@@ -54,8 +54,10 @@ func plain<Type>(_: Type.Type) -> Tagged<Type, NoTag> {
 
 protocol OptionalProtocol {
     static var wrappedType: Any.Type { get }
+    init()
 }
 
 extension Optional: OptionalProtocol {
     static var wrappedType: Any.Type { return Wrapped.self }
+    init() { self = .none }
 }

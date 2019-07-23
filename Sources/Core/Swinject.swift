@@ -33,9 +33,17 @@ extension Swinject: Resolver {
     public func resolve<Descriptor, Argument>(
         _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        let binding = try findBinding(for: request)
-        let translator = try findTranslator(for: request, and: binding)
-        return try instance(from: binding, context: translator.translate(context), arg: request.argument)
+        do {
+            let binding = try findBinding(for: request)
+            let translator = try findTranslator(for: request, and: binding)
+            return try instance(from: binding, context: translator.translate(context), arg: request.argument)
+        } catch let error as NoBindingError {
+            if let optional = Descriptor.BaseType.self as? OptionalProtocol.Type {
+                return optional.init() as! Descriptor.BaseType
+            } else {
+                throw error
+            }
+        }
     }
 
     private func findTranslator(for request: AnyInstanceRequest, and binding: Binding) throws -> AnyContextTranslator {
@@ -47,7 +55,8 @@ extension Swinject: Resolver {
 
     private func findBinding(for request: AnyInstanceRequest) throws -> Binding {
         let bindings = tree.bindings.filter { (try? findTranslator(for: request, and: $0)) != nil }
-        guard bindings.count == 1 else { throw SwinjectError() }
+        if bindings.isEmpty { throw NoBindingError() }
+        if bindings.count > 1 { throw MultipleBindingsError() }
         return bindings[0]
     }
 

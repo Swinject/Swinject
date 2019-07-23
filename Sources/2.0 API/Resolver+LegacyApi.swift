@@ -13,9 +13,9 @@ public extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no service with the name is found.
     func resolve<Service>(_ serviceType: Service.Type, name: String? = nil) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: ()))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: ()))
         }
     }
 
@@ -30,9 +30,9 @@ public extension Resolver {
     ///            1 argument and name is found.
     func resolve<Service, Arg1>(_ serviceType: Service.Type, name: String? = nil, argument: Arg1) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: argument))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: argument))
         }
     }
 
@@ -47,9 +47,9 @@ public extension Resolver {
     ///            list of 2 arguments and name is found.
     func resolve<Service, Arg1, Arg2>(_ serviceType: Service.Type, name: String? = nil, arguments arg1: Arg1, _ arg2: Arg2) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: (arg1, arg2)))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: (arg1, arg2)))
         }
     }
 
@@ -64,9 +64,9 @@ public extension Resolver {
     ///            list of 3 arguments and name is found.
     func resolve<Service, Arg1, Arg2, Arg3>(_ serviceType: Service.Type, name: String? = nil, arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: (arg1, arg2, arg3)))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: (arg1, arg2, arg3)))
         }
     }
 
@@ -81,9 +81,9 @@ public extension Resolver {
     ///            list of 4 arguments and name is found.
     func resolve<Service, Arg1, Arg2, Arg3, Arg4>(_ serviceType: Service.Type, name: String? = nil, arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: (arg1, arg2, arg3, arg4)))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: (arg1, arg2, arg3, arg4)))
         }
     }
 
@@ -98,9 +98,9 @@ public extension Resolver {
     ///            list of 5 arguments and name is found.
     func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(_ serviceType: Service.Type, name: String? = nil, arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: (arg1, arg2, arg3, arg4, arg5)))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: (arg1, arg2, arg3, arg4, arg5)))
         }
     }
 
@@ -115,9 +115,9 @@ public extension Resolver {
     ///            list of 6 arguments and name is found.
     func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(_ serviceType: Service.Type, name: String? = nil, arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: (arg1, arg2, arg3, arg4, arg5, arg6)))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: (arg1, arg2, arg3, arg4, arg5, arg6)))
         }
     }
 
@@ -132,9 +132,9 @@ public extension Resolver {
     ///            list of 7 arguments and name is found.
     func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(_ serviceType: Service.Type, name: String? = nil, arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: (arg1, arg2, arg3, arg4, arg5, arg6, arg7)))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: (arg1, arg2, arg3, arg4, arg5, arg6, arg7)))
         }
     }
 
@@ -149,9 +149,9 @@ public extension Resolver {
     ///            list of 8 arguments and name is found.
     func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(_ serviceType: Service.Type, name: String? = nil, arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)))
         }
     }
 
@@ -166,9 +166,9 @@ public extension Resolver {
     ///            list of 9 arguments and name is found.
     func resolve<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(_ serviceType: Service.Type, name: String? = nil, arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8, _ arg9: Arg9) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)))
         }
     }
 

@@ -10,9 +10,9 @@ public extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no service with the name is found.
     func resolve<Service>(_ serviceType: Service.Type, name: String? = nil) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: ()))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: ()))
         }
     }
 
@@ -34,9 +34,9 @@ public extension Resolver {
     ///            <%= arg_param_description %> and name is found.
     func resolve<Service, <%= arg_types %>>(_ serviceType: Service.Type, name: String? = nil, <%= arg_param %>) -> Service? {
         if let name = name {
-            return try? resolve(request(tag: name, arg: ()))
+            return try? resolve(request(type: serviceType, tag: name, arg: ()))
         } else {
-            return try? resolve(request(tag: NoTag(), arg: <%= arg_vars %>))
+            return try? resolve(request(type: serviceType, tag: NoTag(), arg: <%= arg_vars %>))
         }
     }
 

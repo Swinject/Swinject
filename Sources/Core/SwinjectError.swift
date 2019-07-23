@@ -2,7 +2,7 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public struct SwinjectError: Error {
+public class SwinjectError: Error {
     let file: String
     let line: Int
 
@@ -11,5 +11,8 @@ public struct SwinjectError: Error {
         self.line = line
     }
 }
+
+public class NoBindingError: SwinjectError {}
+public class MultipleBindingsError: SwinjectError {}
 
 // TODO: Debugging error description

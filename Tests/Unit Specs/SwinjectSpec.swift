@@ -71,6 +71,15 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 _ = try? swinject.on("context").instance() as Int
                 expect(binding.matchesReceivedKey?.contextType is String.Type).to(beTrue())
             }
+            it("does not throw if has no binding for optional") {
+                binding.matchesReturnValue = false
+                expect { try swinject.instance() as Int? }.notTo(throwError())
+            }
+            it("throws if has throwing binding for optional") {
+                binding.matchesReturnValue = true
+                binding.instanceArgContextResolverThrowableError = TestError()
+                expect { try swinject.instance() as Int? }.to(throwError())
+            }
         }
         context("multiple bindings") {
             var bindings = [BindingMock]()
@@ -95,6 +104,11 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 bindings[1].matchesReturnValue = true
                 bindings[1].instanceArgContextResolverReturnValue = 42
                 expect { try swinject.instance(of: Int.self) } == 42
+            }
+            it("throws if has multiple bindings for optional") {
+                bindings[0].matchesReturnValue = true
+                bindings[1].matchesReturnValue = true
+                expect { try swinject.instance() as Int? }.to(throwError())
             }
         }
     }
@@ -259,7 +273,10 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 $0.translateReturnValue = 0
             }
             bindings = Array(0 ..< 3).map { _ in BindingMock() }
-            bindings.forEach { $0.matchesReturnValue = false }
+            bindings.forEach {
+                $0.matchesReturnValue = false
+                $0.instanceArgContextResolverReturnValue = 0
+            }
             swinject = Swinject {
                 bindings[0]; bindings[1]; bindings[2]
                 translators[0]; translators[1]; translators[2]
@@ -269,13 +286,13 @@ class SwinjectSpec: QuickSpec { override func spec() {
             bindings[0].matchesClosure = { $0.contextType == Int.self }
             translators[1].sourceType = String.self
             translators[1].targetType = Int.self
-            expect { try swinject.on("context").instance() }.notTo(throwError())
+            expect { try swinject.on("context").instance() as Int }.notTo(throwError())
         }
         it("throws if translator has incorrect source type") {
             bindings[0].matchesClosure = { $0.contextType == Int.self }
             translators[1].sourceType = Double.self
             translators[1].targetType = Int.self
-            expect { try swinject.on("context").instance() }.to(throwError())
+            expect { try swinject.on("context").instance() as Int }.to(throwError())
         }
         it("throws if multiple translators have correct translation") {
             bindings[0].matchesClosure = { $0.contextType == Int.self }
@@ -284,7 +301,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
             translators[0].targetType = Int.self
             translators[1].sourceType = String.self
             translators[1].targetType = Float.self
-            expect { try swinject.on("context").instance() }.to(throwError())
+            expect { try swinject.on("context").instance() as Int }.to(throwError())
         }
         it("does not throw if multiple translators have correct target type but not source type") {
             bindings[0].matchesClosure = { $0.contextType == Int.self }
@@ -300,21 +317,21 @@ class SwinjectSpec: QuickSpec { override func spec() {
             bindings[1].matchesClosure = { $0.contextType == String.self }
             translators[0].sourceType = String.self
             translators[0].targetType = Int.self
-            expect { try swinject.on("context").instance() }.to(throwError())
+            expect { try swinject.on("context").instance() as Int }.to(throwError())
         }
         it("passes translated context to binding") {
             bindings[0].matchesClosure = { $0.contextType == Int.self }
             translators[0].sourceType = String.self
             translators[0].targetType = Int.self
             translators[0].translateReturnValue = 42
-            _ = try? swinject.on("context").instance() as Void
+            _ = try? swinject.on("context").instance() as Int
             expect(bindings[0].instanceArgContextResolverReceivedArguments?.context as? Int) == 42
         }
         it("passes original context to context resolver") {
             bindings[0].matchesClosure = { $0.contextType == Int.self }
             translators[0].sourceType = String.self
             translators[0].targetType = Int.self
-            _ = try? swinject.on("context").instance() as Void
+            _ = try? swinject.on("context").instance() as Int
             expect(translators[0].translateReceivedContext as? String) == "context"
         }
         it("does not throw if single binding can be used with multiple translated contexts") {
