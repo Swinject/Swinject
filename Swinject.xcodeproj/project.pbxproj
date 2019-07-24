@@ -255,6 +255,14 @@
 		CDF8F35722E64694008B2AF5 /* ContextTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F35522E64694008B2AF5 /* ContextTranslator.swift */; };
 		CDF8F35822E64694008B2AF5 /* ContextTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F35522E64694008B2AF5 /* ContextTranslator.swift */; };
 		CDF8F35922E64694008B2AF5 /* ContextTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F35522E64694008B2AF5 /* ContextTranslator.swift */; };
+		CDF8F36522E8D881008B2AF5 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F36422E8D881008B2AF5 /* Reference.swift */; };
+		CDF8F36622E8D881008B2AF5 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F36422E8D881008B2AF5 /* Reference.swift */; };
+		CDF8F36722E8D881008B2AF5 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F36422E8D881008B2AF5 /* Reference.swift */; };
+		CDF8F36822E8D881008B2AF5 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F36422E8D881008B2AF5 /* Reference.swift */; };
+		CDF8F36A22E8D89E008B2AF5 /* ReferenceMakerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F36922E8D89E008B2AF5 /* ReferenceMakerSpec.swift */; };
+		CDF8F36B22E8D89E008B2AF5 /* ReferenceMakerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F36922E8D89E008B2AF5 /* ReferenceMakerSpec.swift */; };
+		CDF8F36C22E8D89E008B2AF5 /* ReferenceMakerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F36922E8D89E008B2AF5 /* ReferenceMakerSpec.swift */; };
+		CDF8F36D22E8D89E008B2AF5 /* ReferenceMakerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF8F36922E8D89E008B2AF5 /* ReferenceMakerSpec.swift */; };
 		CFC3CDB46CD8FFA22EB0FADD /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0157DBBD5E1F45963BB0932 /* Swinject.framework */; };
 		D10FFA4B80F4BE6024B1DCEE /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1910A1471C3CA9EA86F350BA /* LoadAwareAssembly.swift */; };
 		D18275ADB0E56D3087894518 /* Swinject+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */; };
@@ -487,6 +495,8 @@
 		CD4D866D22E4D54D0042ACDC /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
 		CD4D866F22E4D54D0042ACDC /* ServiceEntry+TypeForwarding.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ServiceEntry+TypeForwarding.swifttemplate"; sourceTree = "<group>"; };
 		CDF8F35522E64694008B2AF5 /* ContextTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTranslator.swift; sourceTree = "<group>"; };
+		CDF8F36422E8D881008B2AF5 /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
+		CDF8F36922E8D89E008B2AF5 /* ReferenceMakerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceMakerSpec.swift; sourceTree = "<group>"; };
 		D1FA0377AF4799D42E9462FA /* BasicAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAssembly.swift; sourceTree = "<group>"; };
 		E0874A043EAEE3C7CF1EA063 /* InstanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRequest.swift; sourceTree = "<group>"; };
 		E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
@@ -547,6 +557,7 @@
 		0A05322134E988A4593B5122 /* Unit Specs */ = {
 			isa = PBXGroup;
 			children = (
+				CDF8F36922E8D89E008B2AF5 /* ReferenceMakerSpec.swift */,
 				FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */,
 				40E8C8D605989E2D208BEB5D /* BindingKeySpec.swift */,
 				0DEE0E5A14336481369A3434 /* ScopedBindingSpec.swift */,
@@ -771,6 +782,7 @@
 		FCA9C6262A4D071C8E7EEBD0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CDF8F36422E8D881008B2AF5 /* Reference.swift */,
 				0E0B580B43E1891812C97209 /* Binding.swift */,
 				A24B4E8F1CA18603DBB6884A /* BindingKey.swift */,
 				65D0BCCCD61CD9BECC29E064 /* Closable.swift */,
@@ -1226,6 +1238,7 @@
 				CD4D866622E4C8A70042ACDC /* ObjectScope.swift in Sources */,
 				828C5B0915A8D08CF98F5F4C /* Swinject.swift in Sources */,
 				EAC4EA9BAC87B34AD5BA2110 /* SwinjectError.swift in Sources */,
+				CDF8F36622E8D881008B2AF5 /* Reference.swift in Sources */,
 				94615DB1AD57F1547933D8A5 /* SwinjectModule.swift in Sources */,
 				8F48909C95AA648D056A392B /* SwinjectTree.swift in Sources */,
 				3B61931D1E9C0F7D1AAEDDF7 /* TypeBinder.swift in Sources */,
@@ -1250,6 +1263,7 @@
 				86E1845B6272AF95F1806CB4 /* ContainerSpec.Circularity.swift in Sources */,
 				93DCA2A58C4067D5E60F7ED1 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				F8DB4EDA0367BCC6832E4AA6 /* ContainerSpec.TypeForwarding.swift in Sources */,
+				CDF8F36A22E8D89E008B2AF5 /* ReferenceMakerSpec.swift in Sources */,
 				4C6D7AE29CB7E16431AACFA2 /* ContainerSpec.swift in Sources */,
 				A014793C56F8966AD2D7CC50 /* Convenience.swift in Sources */,
 				DC5C3A946BDA224C388D2438 /* EmploymentAssembly.swift in Sources */,
@@ -1292,6 +1306,7 @@
 				37FE9A9C76DB50ABB28AF9BE /* ContainerSpec.Circularity.swift in Sources */,
 				E423395FC7006DD82513F347 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				FAF8F8B75F63D43995A004E8 /* ContainerSpec.TypeForwarding.swift in Sources */,
+				CDF8F36D22E8D89E008B2AF5 /* ReferenceMakerSpec.swift in Sources */,
 				C797CCF413DF181935DAB58C /* ContainerSpec.swift in Sources */,
 				DE0A534B660AA93F73A2CB41 /* Convenience.swift in Sources */,
 				833635A5D695AA696559C250 /* EmploymentAssembly.swift in Sources */,
@@ -1351,6 +1366,7 @@
 				CD4D866822E4C8A80042ACDC /* ObjectScope.swift in Sources */,
 				B5048A00D49FD5C1C098EE01 /* Swinject.swift in Sources */,
 				439254FAE8DF567DE9659ADA /* SwinjectError.swift in Sources */,
+				CDF8F36722E8D881008B2AF5 /* Reference.swift in Sources */,
 				AA6651CFD4090465E7CB7871 /* SwinjectModule.swift in Sources */,
 				4DA000959B4D60B509859810 /* SwinjectTree.swift in Sources */,
 				5D2C492FD5088FCB2BA5CDB8 /* TypeBinder.swift in Sources */,
@@ -1375,6 +1391,7 @@
 				EAD0757CE0163D3549CB5405 /* ContainerSpec.Circularity.swift in Sources */,
 				377EE35B80E8F91543B52F0C /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				5D241BBB39F54B8FA2BFF595 /* ContainerSpec.TypeForwarding.swift in Sources */,
+				CDF8F36B22E8D89E008B2AF5 /* ReferenceMakerSpec.swift in Sources */,
 				37E07236E0E63570242CE23F /* ContainerSpec.swift in Sources */,
 				564B886D2A35AF26FC411922 /* Convenience.swift in Sources */,
 				58C9D537D453BC7C7DC5C0C1 /* EmploymentAssembly.swift in Sources */,
@@ -1417,6 +1434,7 @@
 				9B9AA902B80620568D732D7B /* ContainerSpec.Circularity.swift in Sources */,
 				E8D70420E8A3C91D01BC3B5B /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				9F1C7A652660EA87BF599126 /* ContainerSpec.TypeForwarding.swift in Sources */,
+				CDF8F36C22E8D89E008B2AF5 /* ReferenceMakerSpec.swift in Sources */,
 				E80558941BC2149C25A17495 /* ContainerSpec.swift in Sources */,
 				A1B275A2EFA22C45AC46B31E /* Convenience.swift in Sources */,
 				187BD516162B3FBB1158E015 /* EmploymentAssembly.swift in Sources */,
@@ -1476,6 +1494,7 @@
 				CD4D866522E4C8A50042ACDC /* ObjectScope.swift in Sources */,
 				9E084F679592ADFA28D3AD6D /* Swinject.swift in Sources */,
 				AAC84D757FE8F601FF053923 /* SwinjectError.swift in Sources */,
+				CDF8F36522E8D881008B2AF5 /* Reference.swift in Sources */,
 				5570E14A839D4065FFBA7EF4 /* SwinjectModule.swift in Sources */,
 				E8A89383E1D1106DEABB778B /* SwinjectTree.swift in Sources */,
 				050982D62AE0244372456440 /* TypeBinder.swift in Sources */,
@@ -1517,6 +1536,7 @@
 				CD4D866722E4C8A80042ACDC /* ObjectScope.swift in Sources */,
 				26C8D37F26408DC308A0CDA3 /* Swinject.swift in Sources */,
 				14AECF24B26ECEC8E9086FBB /* SwinjectError.swift in Sources */,
+				CDF8F36822E8D881008B2AF5 /* Reference.swift in Sources */,
 				699DB780BD90A5AAAD5B4646 /* SwinjectModule.swift in Sources */,
 				192278AA7165EC3C2C12A4C2 /* SwinjectTree.swift in Sources */,
 				D88D7841C5C84A2E34CE15FD /* TypeBinder.swift in Sources */,
