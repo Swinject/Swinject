@@ -34,17 +34,40 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             _ = registry.instance(for: key[1], builder: countingBuilder)
             expect(builderCallCount) == 2
         }
+        it("calls builder every time if reference returns nil for next value") {
+            let noRefBuilder: () -> Reference<Any> = { builderCallCount += 1; return noRef(0) }
+            _ = registry.instance(for: key[0], builder: noRefBuilder)
+            _ = registry.instance(for: key[1], builder: noRefBuilder)
+            _ = registry.instance(for: key[0], builder: noRefBuilder)
+            _ = registry.instance(for: key[1], builder: noRefBuilder)
+            expect(builderCallCount) == 4
+        }
+        it("does not call builder's nextValue before second invocation") {
+            var nextValueCalled = false
+            _ = registry.instance(for: key[0]) {
+                Reference(currentValue: 42) { nextValueCalled = true; return 0 }
+            }
+            expect(nextValueCalled) == false
+        }
+        it("does not keep reference on builder's currentValue") {
+            var human = Human() as Human?
+            weak var weakRef = human
+            _ = registry.instance(for: key[0]) { Reference(currentValue: human!, nextValue: { nil }) }
+            human = nil
+            expect(weakRef).to(beNil())
+        }
         it("rethtrows error from builder") {
             expect {
                 try registry.instance(for: key[0]) { throw TestError() }
             }.to(throwError(errorType: TestError.self))
         }
-        it("returns result of builder for first invocation") {
-            expect(registry.instance(for: key[0]) { strongRef(42) } as? Int) == 42
+        it("returns result of builder's currentValue for first invocation") {
+            let builder: () -> Reference<Any> = { Reference(currentValue: 42, nextValue: { 0 }) }
+            expect(registry.instance(for: key[0], builder: builder) as? Int) == 42
         }
-        it("returns result of builder on second invocation") {
-            _ = registry.instance(for: key[0]) { strongRef(42) }
-            _ = registry.instance(for: key[1]) { strongRef(25) }
+        it("returns result of builder's next value on second invocation") {
+            _ = registry.instance(for: key[0]) { Reference(currentValue: 0, nextValue: { 42 }) }
+            _ = registry.instance(for: key[1]) { Reference(currentValue: 0, nextValue: { 25 }) }
             expect(registry.instance(for: key[0]) { strongRef(0) } as? Int) == 42
             expect(registry.instance(for: key[1]) { strongRef(0) } as? Int) == 25
         }

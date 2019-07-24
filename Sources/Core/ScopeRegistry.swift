@@ -21,7 +21,7 @@ extension ScopeRegistry {
 
 public class StandardScopeRegistry: ScopeRegistry, Closable {
     private let lock = NSRecursiveLock()
-    private var instances = [ScopeRegistryKey: Any]()
+    private var instances = [ScopeRegistryKey: () -> Any?]()
 
     public init() {}
 
@@ -31,18 +31,18 @@ public class StandardScopeRegistry: ScopeRegistry, Closable {
         finalizer: (Any) throws -> Void
     ) rethrows -> Any {
         try lock.sync {
-            if let instance = instances[key] { return instance }
-            let newInstance = try builder().currentValue
-            if let instance = instances[key] { return instance }
-            instances[key] = newInstance
-            try finalizer(newInstance)
-            return newInstance
+            if let instance = instances[key]?() { return instance }
+            let ref = try builder()
+            if let instance = instances[key]?() { return instance }
+            instances[key] = ref.nextValue
+            try finalizer(ref.currentValue)
+            return ref.currentValue
         }
     }
 
     public func close() {
         lock.sync {
-            instances.values.forEach { ($0 as? Closable)?.close() }
+            instances.values.forEach { ($0() as? Closable)?.close() }
             instances.removeAll()
         }
     }
