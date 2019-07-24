@@ -22,4 +22,23 @@ struct StrongReference: Reference {
     }
 }
 
+struct WeakReference: Reference {
+    private weak var object: AnyObject?
+    var value: Any? {
+        guard let object = object else { return nil }
+        return object
+    }
+
+    struct Maker: ReferenceMaker {
+        func makeReference(for value: Any) -> Reference {
+            #if os(Linux)
+                return WeakReference(object: value as? AnyObject)
+            #else
+                return WeakReference(object: value as AnyObject)
+            #endif
+        }
+    }
+}
+
 public let strongRef: ReferenceMaker = StrongReference.Maker()
+public let weakRef: ReferenceMaker = WeakReference.Maker()
