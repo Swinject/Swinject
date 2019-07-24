@@ -15,11 +15,13 @@ class ReferenceMakerSpec: QuickSpec { override func spec() {
         it("returns given value") {
             let human = Human()
             let reference = maker.makeReference(for: human)
-            expect(reference.value) === human
+            expect(reference.currentValue) === human
         }
         it("persists given value") {
-            let reference = maker.makeReference(for: Human())
-            expect(reference.value).notTo(beNil())
+            var reference: Reference<Human>? = maker.makeReference(for: Human())
+            let nextValue = reference!.nextValue
+            reference = nil
+            expect(nextValue()).notTo(beNil())
         }
     }
     describe("weakRef") {
@@ -29,11 +31,13 @@ class ReferenceMakerSpec: QuickSpec { override func spec() {
         it("returns given value") {
             let human = Human()
             let reference = maker.makeReference(for: human)
-            expect(reference.value) === human
+            expect(reference.currentValue) === human
         }
         it("does not keep strong reference on value") {
-            let reference = maker.makeReference(for: Human())
-            expect(reference.value).to(beNil())
+            var reference: Reference<Human>? = maker.makeReference(for: Human())
+            let nextValue = reference!.nextValue
+            reference = nil
+            expect(nextValue()).to(beNil())
         }
     }
 } }

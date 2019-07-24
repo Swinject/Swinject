@@ -302,31 +302,6 @@ class MatchableMock: Matchable {
 class ModuleIncludeEntryMock: ModuleIncludeEntry {
 
 }
-class ReferenceMock: Reference {
-    var value: Any?
-
-}
-class ReferenceMakerMock: ReferenceMaker {
-
-    //MARK: - makeReference
-
-    var makeReferenceForCallsCount = 0
-    var makeReferenceForCalled: Bool {
-        return makeReferenceForCallsCount > 0
-    }
-    var makeReferenceForReceivedValue: Any?
-    var makeReferenceForReceivedInvocations: [Any] = []
-    var makeReferenceForReturnValue: Reference!
-    var makeReferenceForClosure: ((Any) -> Reference)?
-
-    func makeReference(for value: Any) -> Reference {
-        makeReferenceForCallsCount += 1
-        makeReferenceForReceivedValue = value
-        makeReferenceForReceivedInvocations.append(value)
-        return makeReferenceForClosure.map({ $0(value) }) ?? makeReferenceForReturnValue
-    }
-
-}
 class StaticScopeRegistryMock: StaticScopeRegistry {
 
     //MARK: - instance

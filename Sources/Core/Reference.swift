@@ -2,43 +2,27 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-// sourcery: AutoMockable
-public protocol Reference {
-    var value: Any? { get }
+public struct Reference<T> {
+    let currentValue: T
+    let nextValue: () -> T?
 }
 
-// sourcery: AutoMockable
 public protocol ReferenceMaker {
-    func makeReference(for value: Any) -> Reference
+    func makeReference<T>(for value: T) -> Reference<T>
 }
 
-struct StrongReference: Reference {
-    let value: Any?
-
-    struct Maker: ReferenceMaker {
-        func makeReference(for value: Any) -> Reference {
-            StrongReference(value: value)
-        }
+struct StrongReferenceMaker: ReferenceMaker {
+    func makeReference<T>(for value: T) -> Reference<T> {
+        Reference(currentValue: value, nextValue: { value })
     }
 }
 
-struct WeakReference: Reference {
-    private weak var object: AnyObject?
-    var value: Any? {
-        guard let object = object else { return nil }
-        return object
-    }
-
-    struct Maker: ReferenceMaker {
-        func makeReference(for value: Any) -> Reference {
-            #if os(Linux)
-                return WeakReference(object: value as? AnyObject)
-            #else
-                return WeakReference(object: value as AnyObject)
-            #endif
-        }
+struct WeakReferenceMaker: ReferenceMaker {
+    func makeReference<T>(for value: T) -> Reference<T> {
+        weak var weakValue: AnyObject? = value as AnyObject?
+        return Reference(currentValue: value, nextValue: { weakValue as? T })
     }
 }
 
-public let strongRef: ReferenceMaker = StrongReference.Maker()
-public let weakRef: ReferenceMaker = WeakReference.Maker()
+public let strongRef: ReferenceMaker = StrongReferenceMaker()
+public let weakRef: ReferenceMaker = WeakReferenceMaker()
