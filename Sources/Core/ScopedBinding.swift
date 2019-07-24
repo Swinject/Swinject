@@ -17,7 +17,7 @@ extension ScopedBinding: Binding {
         try scope
             .registry(for: context)
             .instance(for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg)) {
-                try maker.makeInstance(arg: arg, context: context, resolver: resolver)
+                noRef(try maker.makeInstance(arg: arg, context: context, resolver: resolver))
             }
     }
 }

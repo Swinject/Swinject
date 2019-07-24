@@ -69,7 +69,7 @@ protocol StaticScopeRegistry {
 extension StaticScopeRegistryMock: ScopeRegistry {
     func instance(
         for key: ScopeRegistryKey,
-        builder _: () throws -> Any,
+        builder _: () throws -> Reference<Any>,
         finalizer: (Any) throws -> Void
     ) rethrows -> Any {
         instance(key: key)
@@ -77,8 +77,12 @@ extension StaticScopeRegistryMock: ScopeRegistry {
 }
 
 struct BuilderScopeRegistry: ScopeRegistry {
-    func instance(for _: ScopeRegistryKey, builder: () throws -> Any, finalizer: (Any) throws -> Void) rethrows -> Any {
-        try builder()
+    func instance(
+        for _: ScopeRegistryKey,
+        builder: () throws -> Reference<Any>,
+        finalizer: (Any) throws -> Void
+    ) rethrows -> Any {
+        try builder().currentValue
     }
 
     func clear() {}

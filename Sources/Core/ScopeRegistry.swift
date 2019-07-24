@@ -5,12 +5,16 @@
 import Foundation
 
 public protocol ScopeRegistry {
-    func instance(for key: ScopeRegistryKey, builder: () throws -> Any, finalizer: (Any) throws -> Void) rethrows -> Any
+    func instance(
+        for key: ScopeRegistryKey,
+        builder: () throws -> Reference<Any>,
+        finalizer: (Any) throws -> Void
+    ) rethrows -> Any
     func clear()
 }
 
 extension ScopeRegistry {
-    func instance(for key: ScopeRegistryKey, builder: () throws -> Any) rethrows -> Any {
+    func instance(for key: ScopeRegistryKey, builder: () throws -> Reference<Any>) rethrows -> Any {
         try instance(for: key, builder: builder, finalizer: { _ in })
     }
 }
@@ -23,12 +27,12 @@ public class StandardScopeRegistry: ScopeRegistry, Closable {
 
     public func instance(
         for key: ScopeRegistryKey,
-        builder: () throws -> Any,
+        builder: () throws -> Reference<Any>,
         finalizer: (Any) throws -> Void
     ) rethrows -> Any {
         try lock.sync {
             if let instance = instances[key] { return instance }
-            let newInstance = try builder()
+            let newInstance = try builder().currentValue
             if let instance = instances[key] { return instance }
             instances[key] = newInstance
             try finalizer(newInstance)

@@ -76,7 +76,7 @@ extension ServiceEntry: Binding {
         if let scope = scope {
             return scope.registry(for: context).instance(
                 for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg),
-                builder: { builder(resolver, context, arg) },
+                builder: { strongRef(builder(resolver, context, arg)) },
                 finalizer: { instance in finalizers.forEach { $0(resolver, instance as! Service) } }
             )
         } else {
