@@ -46,6 +46,7 @@ public final class Assembler {
             assemblies,
             parent: parent,
             defaultScope: defaultObjectScope.scope,
+            defaultMakeRef: defaultObjectScope.makeRef,
             behaviors: behaviors
         )
     }
@@ -60,9 +61,15 @@ public final class Assembler {
         _ assemblies: [Assembly] = [],
         parent: Assembler? = nil,
         defaultScope: AnyScope?,
+        defaultMakeRef: @escaping ReferenceMaker<Any>,
         behaviors: [Behavior] = []
     ) {
-        container = Container(parent: parent?.container, defaultScope: defaultScope, behaviors: behaviors)
+        container = Container(
+            parent: parent?.container,
+            defaultScope: defaultScope,
+            defaultMakeRef: defaultMakeRef,
+            behaviors: behaviors
+        )
         run(assemblies: assemblies)
     }
 

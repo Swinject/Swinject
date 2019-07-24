@@ -10,6 +10,7 @@ public class ServiceEntry<Service> {
     let argumentType: Any.Type
     let name: String?
     var scope: AnyScope?
+    var makeRef: ReferenceMaker<Any>
     var finalizers = [(Resolver, Service) -> Void]()
     var forwardedDescriptors = [AnyTypeDescriptor]()
 
@@ -17,13 +18,15 @@ public class ServiceEntry<Service> {
         container: Container,
         name: String?,
         scope: AnyScope?,
+        makeRef: @escaping ReferenceMaker<Any>,
         builder: @escaping (Resolver, Any, Argument) -> Service
     ) {
         self.container = container
-        self.builder = { builder($0, $1, $2 as! Argument) }
-        argumentType = Argument.self
         self.name = name
         self.scope = scope
+        self.makeRef = makeRef
+        self.builder = { builder($0, $1, $2 as! Argument) }
+        argumentType = Argument.self
     }
 
     /// Specifies the object scope to resolve the service.
@@ -47,6 +50,7 @@ public class ServiceEntry<Service> {
     @discardableResult
     public func inObjectScope(_ objectScope: ObjectScope) -> Self {
         scope = objectScope.scope
+        makeRef = objectScope.makeRef
         return self
     }
 
@@ -76,7 +80,7 @@ extension ServiceEntry: Binding {
         if let scope = scope {
             return scope.registry(for: context).instance(
                 for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg),
-                builder: { strongRef(builder(resolver, context, arg)) },
+                builder: { makeRef(builder(resolver, context, arg)) },
                 finalizer: { instance in finalizers.forEach { $0(resolver, instance as! Service) } }
             )
         } else {

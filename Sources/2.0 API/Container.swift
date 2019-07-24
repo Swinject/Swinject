@@ -23,6 +23,7 @@ public final class Container {
     let registry: ScopeRegistry
     let parent: Container?
     let defaultScope: AnyScope?
+    let defaultMakeRef: ReferenceMaker<Any>
     var bindings = [Binding]()
     var behaviors = [Behavior]()
     var swinject: Swinject { Swinject(tree: SwinjectTree(
@@ -47,11 +48,13 @@ public final class Container {
     public init(
         parent: Container? = nil,
         defaultScope: AnyScope?,
+        defaultMakeRef: @escaping ReferenceMaker<Any>,
         behaviors: [Behavior] = [],
         registeringClosure: (Container) -> Void = { _ in }
     ) {
         self.parent = parent
         self.defaultScope = defaultScope
+        self.defaultMakeRef = defaultMakeRef
         self.behaviors = behaviors
         registry = parent?.registry ?? StandardScopeRegistry()
         registeringClosure(self)
@@ -76,6 +79,7 @@ public final class Container {
         self.init(
             parent: parent,
             defaultScope: defaultObjectScope.scope,
+            defaultMakeRef: defaultObjectScope.makeRef,
             behaviors: behaviors,
             registeringClosure: registeringClosure
         )

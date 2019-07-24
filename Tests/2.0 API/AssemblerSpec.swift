@@ -53,7 +53,7 @@ class AssemblerSpec: QuickSpec {
 
             it("uses injected default custom scope") {
                 let scope = UnboundScope()
-                let assembler = Assembler(parent: nil, defaultScope: scope)
+                let assembler = Assembler(parent: nil, defaultScope: scope, defaultMakeRef: strongRef)
 
                 assembler.apply(assembly: ContainerSpyAssembly())
                 let container = assembler.resolver.resolve(Container.self)

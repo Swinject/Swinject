@@ -27,7 +27,17 @@ extension ObjectScope {
         switch self {
         case .graph: return GraphScope.shared
         case .container: return ContainerScope.shared
-        default: return nil
+        case .weak: return ContainerScope.shared
+        case .transient: return nil
+        }
+    }
+
+    var makeRef: ReferenceMaker<Any> {
+        switch self {
+        case .graph: return strongRef
+        case .container: return strongRef
+        case .weak: return weakRef
+        case .transient: return noRef
         }
     }
 }
