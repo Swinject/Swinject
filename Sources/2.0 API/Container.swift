@@ -38,7 +38,7 @@ public final class Container {
     ///
     /// - Parameters
     ///     - parent: The optional parent `Container`.
-    ///     - defaultObjectScope: Default object scope (graph if no scope is injected)
+    ///     - defaultScope: Default  scope
     ///     - behaviors: List of behaviors to be added to the container
     ///     - registeringClosure: The closure registering services to the new container instance.
     ///
@@ -46,15 +46,39 @@ public final class Container {
     ///           Use `init()` or `init(parent:)` instead.
     public init(
         parent: Container? = nil,
-        defaultObjectScope: ObjectScope = .graph,
+        defaultScope: AnyScope?,
         behaviors: [Behavior] = [],
         registeringClosure: (Container) -> Void = { _ in }
     ) {
         self.parent = parent
-        defaultScope = defaultObjectScope.scope
+        self.defaultScope = defaultScope
         self.behaviors = behaviors
         registry = parent?.registry ?? StandardScopeRegistry()
         registeringClosure(self)
+    }
+
+    /// Instantiates a `Container`
+    ///
+    /// - Parameters
+    ///     - parent: The optional parent `Container`.
+    ///     - defaultObjectScope: Default object scope (graph if no scope is injected)
+    ///     - behaviors: List of behaviors to be added to the container
+    ///     - registeringClosure: The closure registering services to the new container instance.
+    ///
+    /// - Remark: Compile time may be long if you pass a long closure to this initializer.
+    ///           Use `init()` or `init(parent:)` instead.
+    public convenience init(
+        parent: Container? = nil,
+        defaultObjectScope: ObjectScope = .graph,
+        behaviors: [Behavior] = [],
+        registeringClosure: (Container) -> Void = { _ in }
+    ) {
+        self.init(
+            parent: parent,
+            defaultScope: defaultObjectScope.scope,
+            behaviors: behaviors,
+            registeringClosure: registeringClosure
+        )
     }
 
     /// Removes all registrations in the container.

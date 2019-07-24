@@ -23,7 +23,7 @@ class AssemblerSpec: QuickSpec {
             }
 
             it("can assembly a container with nil parent") {
-                let assembler = Assembler(parentAssembler: nil)
+                let assembler = Assembler(parent: nil)
 
                 let sushi = assembler.resolver.resolve(Food.self)
                 expect(sushi).to(beNil())
@@ -49,6 +49,17 @@ class AssemblerSpec: QuickSpec {
                 let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
 
                 expect(serviceEntry?.scope) === ObjectScope.container.scope
+            }
+
+            it("uses injected default custom scope") {
+                let scope = UnboundScope()
+                let assembler = Assembler(parent: nil, defaultScope: scope)
+
+                assembler.apply(assembly: ContainerSpyAssembly())
+                let container = assembler.resolver.resolve(Container.self)
+                let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
+
+                expect(serviceEntry?.scope) === scope
             }
 
             it("uses graph scope if no default object scope is injected") {
@@ -256,7 +267,7 @@ class AssemblerSpec: QuickSpec {
                     AnimalAssembly(),
                 ])
 
-                let childAssembler = Assembler(parentAssembler: assembler)
+                let childAssembler = Assembler(parent: assembler)
 
                 let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
@@ -287,7 +298,7 @@ class AssemblerSpec: QuickSpec {
             it("uses injected default object scope") {
                 let parentContainer = Container()
                 let parentAssembler = Assembler(container: parentContainer)
-                let childAssembler = Assembler(parentAssembler: parentAssembler,
+                let childAssembler = Assembler(parent: parentAssembler,
                                                defaultObjectScope: ObjectScope.container)
 
                 childAssembler.apply(assembly: ContainerSpyAssembly())
@@ -300,7 +311,7 @@ class AssemblerSpec: QuickSpec {
             it("has default object scope of graph type") {
                 let parentContainer = Container()
                 let parentAssembler = Assembler(container: parentContainer)
-                let childAssembler = Assembler(parentAssembler: parentAssembler)
+                let childAssembler = Assembler(parent: parentAssembler)
 
                 childAssembler.apply(assembly: ContainerSpyAssembly())
                 let container = childAssembler.resolver.resolve(Container.self)
@@ -311,7 +322,7 @@ class AssemblerSpec: QuickSpec {
 
             it("uses given list of behaviors to container") {
                 let spy = BehaviorSpy()
-                let assembler = Assembler(parentAssembler: Assembler(), behaviors: [spy])
+                let assembler = Assembler(parent: Assembler(), behaviors: [spy])
 
                 assembler.apply(assembly: ContainerSpyAssembly())
 

@@ -365,14 +365,20 @@ class ContainerSpec: QuickSpec {
                 expect(container.resolve(Animal.self) as? Cat).notTo(beNil())
             }
         }
-        // TODO: Implement weak scope
-//        describe("Default object scope") {
-//            it("registers services with given object scope") {
-//                let container = Container(parent: nil, defaultObjectScope: .weak)
-//
-//                let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
-//                expect(serviceEntry.scope) === ObjectScope.weak.scope
-//            }
-//        }
+        describe("Default scope") {
+            it("registers services with given object scope") {
+                let container = Container(parent: nil, defaultObjectScope: .container)
+
+                let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
+                expect(serviceEntry.scope) === ObjectScope.container.scope
+            }
+            it("registers services with given custom scope") {
+                let scope = UnboundScope()
+                let container = Container(parent: nil, defaultScope: scope)
+
+                let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
+                expect(serviceEntry.scope) === scope
+            }
+        }
     }
 }
