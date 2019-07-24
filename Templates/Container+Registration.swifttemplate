@@ -15,7 +15,7 @@ extension Container {
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
-    public func register<Service>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service> {
+    public func register<Service>(_: Service.Type, name: String? = nil, factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(container: self, name: name, scope: defaultScope) { (r, _, _: Void) in factory(r) }
         addEntry(entry, with: name)
         return entry
@@ -40,7 +40,7 @@ extension Container {
     ///
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
-    public func register<Service, <%= arg_types %>>(_ serviceType: Service.Type, name: String? = nil, factory: @escaping (Resolver, <%= arg_types %>) -> Service) -> ServiceEntry<Service> {
+    public func register<Service, <%= arg_types %>>(_: Service.Type, name: String? = nil, factory: @escaping (Resolver, <%= arg_types %>) -> Service) -> ServiceEntry<Service> {
         let entry = ServiceEntry<Service>(container: self, name: name, scope: defaultScope) { (r, _, a: <%= arg_closure_type %>) in factory(r, <%= arg_vars %>) }
         addEntry(entry, with: name)
         return entry

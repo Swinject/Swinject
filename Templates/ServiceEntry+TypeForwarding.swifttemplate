@@ -24,9 +24,9 @@ extension ServiceEntry {
     ///     - types: List of <%= i %> types resolution of which should be forwarded
     @discardableResult
     public func implements<<%= types %>>(<%= params %>) -> ServiceEntry<Service> {
-        return self<% (1...i).forEach { %>.implements(type<%= $0 %>)<% } %>
+        return <%= (1...i).map { "implements(type\($0))" }.joined(separator: ".") %>
     }
-    
-<% } %>
+
+<%_ } -%>
 }
 // sourcery:end

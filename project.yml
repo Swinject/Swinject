@@ -28,12 +28,20 @@ targets:
         name: Sourcery
     postCompileScripts:
       - script: >
+          if which swiftformat >/dev/null; then
+            swiftformat .
+          else
+            echo "warning: SwiftLint not installed, download from https://github.com/nicklockwood/SwiftFormat"
+          fi
+        name: SwiftFormat
+      - script: >
           if which swiftlint >/dev/null; then
+            swiftlint autocorrect
             swiftlint
           else
             echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
           fi
-        name: Swiftlint
+        name: SwiftLint
   SwinjectTests:
     type: bundle.unit-test
     platform: [macOS, iOS, tvOS, watchOS]

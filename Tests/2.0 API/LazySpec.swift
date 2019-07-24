@@ -7,7 +7,7 @@ import Quick
 import Swinject
 
 // TODO: Enable Lazy injection
-//class LazySpec: QuickSpec {
+// class LazySpec: QuickSpec {
 //    override func spec() {
 //        var container: Container!
 //        beforeEach {
@@ -106,4 +106,4 @@ import Swinject
 //            }
 //        }
 //    }
-//}
+// }

@@ -7,7 +7,7 @@ import Quick
 @testable import Swinject
 
 // TODO: Implement debug description
-//class ContainerSpec_CustomStringConvertible: QuickSpec {
+// class ContainerSpec_CustomStringConvertible: QuickSpec {
 //    override func spec() {
 //        var container: Container!
 //        beforeEach {
@@ -71,4 +71,4 @@ import Quick
 //                + "]"
 //        }
 //    }
-//}
+// }

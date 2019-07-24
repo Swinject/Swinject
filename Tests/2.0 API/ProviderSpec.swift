@@ -7,7 +7,7 @@ import Quick
 import Swinject
 
 // TODO: Enable Provider injection
-//class ProviderSpec: QuickSpec {
+// class ProviderSpec: QuickSpec {
 //    override func spec() {
 //        var container: Container!
 //        beforeEach {
@@ -111,4 +111,4 @@ import Swinject
 //            }
 //        }
 //    }
-//}
+// }
