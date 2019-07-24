@@ -16,7 +16,7 @@ public func strongRef<T>(_ value: T) -> Reference<T> {
 public func weakRef<T>(_ value: T) -> Reference<T> {
     weak var weakValue: AnyObject? = value as AnyObject?
     return Reference(currentValue: value) {
-        if let value = weakValue as? T { return value } else { return nil }
+        if let value = weakValue { return value as? T } else { return nil }
     }
 }
 

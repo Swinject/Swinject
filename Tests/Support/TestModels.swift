@@ -2,7 +2,9 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-class Human {
+protocol Mammal {}
+
+class Human: Mammal {
     var age = 0
     var height = 0.0
     var name = ""

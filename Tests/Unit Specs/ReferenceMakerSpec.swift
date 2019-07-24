@@ -32,5 +32,10 @@ class ReferenceMakerSpec: QuickSpec { override func spec() {
             reference = nil
             expect(nextValue()).to(beNil())
         }
+        it("works with type erasure") {
+            let human: Mammal = Human()
+            let nextValue = { weakRef(human).nextValue() as Any? }
+            expect(nextValue() is Mammal) == true
+        }
     }
 } }
