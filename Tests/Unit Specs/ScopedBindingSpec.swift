@@ -10,11 +10,11 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
     describe("binding builder") {
         let descriptor = AnyTypeDescriptorMock()
         let scope = DummyScope<String>()
-        let makeRef: ReferenceMaker<Any> = { _ in noRef(42) }
-        let builder = ScopedBinding.Builder<Void, DummyScope<String>, Int>(scope, makeRef) { _, _, _ in }
+        let makeRef: ReferenceMaker<Int> = { _ in noRef(42) }
+        let builder = ScopedBinding.Builder<Int, DummyScope<String>, Int>(scope, makeRef) { _, _, _ in 0 }
         it("makes binding with self as maker") {
             let binding = builder.makeBinding(for: descriptor) as? ScopedBinding
-            expect(binding?.maker is ScopedBinding.Builder<Void, DummyScope<String>, Int>).to(beTrue())
+            expect(binding?.maker is ScopedBinding.Builder<Int, DummyScope<String>, Int>).to(beTrue())
         }
         it("makes binding with correct key") {
             let binding = builder.makeBinding(for: descriptor) as? ScopedBinding

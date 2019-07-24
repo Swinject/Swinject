@@ -7,7 +7,7 @@ public struct Reference<T> {
     let nextValue: () -> T?
 }
 
-typealias ReferenceMaker<T> = (T) -> Reference<T>
+public typealias ReferenceMaker<T> = (T) -> Reference<T>
 
 public func strongRef<T>(_ value: T) -> Reference<T> {
     Reference(currentValue: value, nextValue: { value })

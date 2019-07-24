@@ -113,30 +113,30 @@ public func factory<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(_ builder: @escaping (Re
     SimpleBinding.Builder { try builder($0, $2.0, $2.1, $2.2, $2.3, $2.4) }
 }
 
-public func singleton<Type>(_ builder: @escaping () throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, Void> {
-    .init(.root, strongRef) { _, _, _ in try builder() }
+public func singleton<Type>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping () throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, Void> {
+    .init(.root, ref) { _, _, _ in try builder() }
 }
 
-public func singleton<Type>(_ builder: @escaping (Resolver) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, Void> {
-    .init(.root, strongRef) { r, _, _ in try builder(r) }
+public func singleton<Type>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, Void> {
+    .init(.root, ref) { r, _, _ in try builder(r) }
 }
 
-public func multiton<Type, Arg1>(_ builder: @escaping (Resolver, Arg1) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, Arg1> {
-    .init(.root, strongRef) { try builder($0, $2) }
+public func multiton<Type, Arg1>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Arg1) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, Arg1> {
+    .init(.root, ref) { try builder($0, $2) }
 }
 
-public func multiton<Type, Arg1, Arg2>(_ builder: @escaping (Resolver, Arg1, Arg2) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, (Arg1, Arg2)> {
-    .init(.root, strongRef) { try builder($0, $2.0, $2.1) }
+public func multiton<Type, Arg1, Arg2>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Arg1, Arg2) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, (Arg1, Arg2)> {
+    .init(.root, ref) { try builder($0, $2.0, $2.1) }
 }
 
-public func multiton<Type, Arg1, Arg2, Arg3>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, (Arg1, Arg2, Arg3)> {
-    .init(.root, strongRef) { try builder($0, $2.0, $2.1, $2.2) }
+public func multiton<Type, Arg1, Arg2, Arg3>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Arg1, Arg2, Arg3) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, (Arg1, Arg2, Arg3)> {
+    .init(.root, ref) { try builder($0, $2.0, $2.1, $2.2) }
 }
 
-public func multiton<Type, Arg1, Arg2, Arg3, Arg4>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, (Arg1, Arg2, Arg3, Arg4)> {
-    .init(.root, strongRef) { try builder($0, $2.0, $2.1, $2.2, $2.3) }
+public func multiton<Type, Arg1, Arg2, Arg3, Arg4>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, (Arg1, Arg2, Arg3, Arg4)> {
+    .init(.root, ref) { try builder($0, $2.0, $2.1, $2.2, $2.3) }
 }
 
-public func multiton<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(_ builder: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, (Arg1, Arg2, Arg3, Arg4, Arg5)> {
-    .init(.root, strongRef) { try builder($0, $2.0, $2.1, $2.2, $2.3, $2.4) }
+public func multiton<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, (Arg1, Arg2, Arg3, Arg4, Arg5)> {
+    .init(.root, ref) { try builder($0, $2.0, $2.1, $2.2, $2.3, $2.4) }
 }

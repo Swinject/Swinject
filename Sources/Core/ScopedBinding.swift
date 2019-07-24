@@ -31,10 +31,13 @@ extension ScopedBinding {
 
         init(
             _ scope: AScope,
-            _ makeRef: @escaping ReferenceMaker<Any>,
+            _ makeRef: @escaping ReferenceMaker<Type>,
             _ builder: @escaping (Resolver, Context, Argument) throws -> Type
         ) {
-            self.makeRef = makeRef
+            self.makeRef = {
+                let ref = makeRef($0 as! Type)
+                return Reference(currentValue: ref.currentValue, nextValue: { ref.nextValue() })
+            }
             self.scope = scope
             self.builder = builder
         }

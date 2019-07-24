@@ -113,8 +113,13 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         }
         describe("singleton") {
             it("has correct scope") {
-                let maker = singleton { 42 }
+                let maker = singleton { 0 }
                 expect(maker.scope) === UnboundScope.root
+            }
+            it("has correct reference maker") {
+                let makeRef: ReferenceMaker<Int> = { _ in noRef(42) }
+                let maker = singleton(ref: makeRef) { 0 }
+                expect(maker.makeRef(0).currentValue as? Int) == 42
             }
             it("returns instance made by builder") {
                 let maker = singleton { 42 }
@@ -147,6 +152,11 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
             it("has correct scope") {
                 let maker = multiton { (_, _: Void) in 42 }
                 expect(maker.scope) === UnboundScope.root
+            }
+            it("has correct reference maker") {
+                let makeRef: ReferenceMaker<Int> = { _ in noRef(42) }
+                let maker = singleton(ref: makeRef) { 0 }
+                expect(maker.makeRef(0).currentValue as? Int) == 42
             }
             it("returns instance made by builder method") {
                 let maker = multiton { (_, _: Void) in 42 }
