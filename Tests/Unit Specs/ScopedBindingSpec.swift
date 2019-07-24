@@ -10,7 +10,8 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
     describe("binding builder") {
         let descriptor = AnyTypeDescriptorMock()
         let scope = DummyScope<String>()
-        let builder = ScopedBinding.Builder<Void, DummyScope<String>, Int>(scope) { _, _, _ in }
+        let makeRef: ReferenceMaker<Any> = { _ in noRef(42) }
+        let builder = ScopedBinding.Builder<Void, DummyScope<String>, Int>(scope, makeRef) { _, _, _ in }
         it("makes binding with self as maker") {
             let binding = builder.makeBinding(for: descriptor) as? ScopedBinding
             expect(binding?.maker is ScopedBinding.Builder<Void, DummyScope<String>, Int>).to(beTrue())
@@ -25,6 +26,10 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
             let binding = builder.makeBinding(for: descriptor) as? ScopedBinding
             expect(binding?.scope) === scope
         }
+        it("makes binding with correct reference maker") {
+            let binding = builder.makeBinding(for: descriptor) as? ScopedBinding
+            expect(binding?.makeRef(0).currentValue as? Int) == 42
+        }
     }
     describe("matching") {
         var key = AnyBindingKeyMock()
@@ -34,7 +39,9 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
             key = AnyBindingKeyMock()
             bindingKey = AnyBindingKeyMock()
             bindingKey.matchesReturnValue = false
-            binding = ScopedBinding(key: bindingKey, maker: AnyInstanceMakerMock(), scope: AnyScopeMock())
+            binding = ScopedBinding(
+                key: bindingKey, maker: AnyInstanceMakerMock(), scope: AnyScopeMock(), makeRef: noRef
+            )
         }
         it("passes the input key to the binding key") {
             _ = binding.matches(key)
@@ -62,7 +69,7 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
             maker = AnyInstanceMakerMock()
             key = AnyBindingKeyMock()
             key.descriptor = AnyTypeDescriptorMock()
-            binding = ScopedBinding(key: key, maker: maker, scope: scope)
+            binding = ScopedBinding(key: key, maker: maker, scope: scope, makeRef: noRef)
         }
         it("retrieves registry using passed context") {
             _ = try? binding.instance(arg: (), context: "context", resolver: DummyResolver())
@@ -79,18 +86,29 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
             beforeEach {
                 scope.registryForReturnValue = BuilderScopeRegistry()
             }
-            it("returns instance produced by maker") {
-                maker.makeInstanceArgContextResolverReturnValue = 42
+            it("returns instance produced by reference maker") {
+                binding = ScopedBinding(key: key, maker: maker, scope: scope) { _ in
+                    Reference(currentValue: 42, nextValue: { 42 })
+                }
                 let instance = try? binding.instance(arg: (), context: (), resolver: DummyResolver()) as? Int
                 expect(instance) == 42
             }
-            it("rethrows error from maker") {
+            it("invokes reference maker with the instance from the instance maker") {
+                var makeRefInput: Any?
+                maker.makeInstanceArgContextResolverReturnValue = 42
+                binding = ScopedBinding(key: key, maker: maker, scope: scope) {
+                    makeRefInput = $0; return noRef($0)
+                }
+                _ = try? binding.instance(arg: 0, context: (), resolver: DummyResolver())
+                expect(makeRefInput as? Int) == 42
+            }
+            it("rethrows error from instance maker") {
                 maker.makeInstanceArgContextResolverThrowableError = TestError()
                 expect {
                     try binding.instance(arg: (), context: (), resolver: DummyResolver())
                 }.to(throwError(errorType: TestError.self))
             }
-            it("invokes maker with correct parameters") {
+            it("invokes instance maker with correct parameters") {
                 let resolver = DummyResolver()
                 _ = try? binding.instance(arg: 42, context: "context", resolver: resolver)
                 expect(maker.makeInstanceArgContextResolverReceivedArguments?.arg as? Int) == 42

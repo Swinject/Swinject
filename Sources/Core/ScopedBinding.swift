@@ -6,6 +6,7 @@ public struct ScopedBinding {
     let key: AnyBindingKey
     let maker: AnyInstanceMaker
     let scope: AnyScope
+    let makeRef: ReferenceMaker<Any>
 }
 
 extension ScopedBinding: Binding {
@@ -17,7 +18,7 @@ extension ScopedBinding: Binding {
         try scope
             .registry(for: context)
             .instance(for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg)) {
-                noRef(try maker.makeInstance(arg: arg, context: context, resolver: resolver))
+                makeRef(try maker.makeInstance(arg: arg, context: context, resolver: resolver))
             }
     }
 }
@@ -25,9 +26,15 @@ extension ScopedBinding: Binding {
 extension ScopedBinding {
     public struct Builder<Type, AScope, Argument> where AScope: Scope {
         let scope: AScope
+        let makeRef: ReferenceMaker<Any>
         private let builder: (Resolver, Context, Argument) throws -> Type
 
-        init(_ scope: AScope, _ builder: @escaping (Resolver, Context, Argument) throws -> Type) {
+        init(
+            _ scope: AScope,
+            _ makeRef: @escaping ReferenceMaker<Any>,
+            _ builder: @escaping (Resolver, Context, Argument) throws -> Type
+        ) {
+            self.makeRef = makeRef
             self.scope = scope
             self.builder = builder
         }
@@ -50,7 +57,8 @@ extension ScopedBinding.Builder: BindingMaker {
         ScopedBinding(
             key: BindingKey(descriptor: descriptor, contextType: Context.self, argumentType: Argument.self),
             maker: self,
-            scope: scope
+            scope: scope,
+            makeRef: makeRef
         )
     }
 }
