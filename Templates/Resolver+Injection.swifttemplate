@@ -1,0 +1,50 @@
+<% let arg_count = 5 %>
+// sourcery:inline:ResolverInjectionApi
+public extension Resolver {
+    func instance<Type>(of _: Type.Type = Type.self) throws -> Type {
+        try resolve(request(tag: NoTag(), arg: ()))
+    }
+
+    func instance<Type, Tag: Hashable>(of _: Type.Type = Type.self, tagged tag: Tag) throws -> Type {
+        try resolve(request(tag: tag, arg: ()))
+    }
+<%_ (1...arg_count).forEach { i in
+    let arg_types = (1...i).map { "Arg\($0)" }.joined(separator: ", ")
+    let arg_vars = (1...i).map { "arg\($0)" }.joined(separator: ", ")
+    let arg_params = (1...i).map { "arg\($0): Arg\($0)" }.joined(separator: ", _ ")
+-%>
+
+    func instance<Type, <%= arg_types %>>(of _: Type.Type = Type.self, arg <%= arg_params %>) throws -> Type {
+        try resolve(request(tag: NoTag(), arg: (<%= arg_vars %>)))
+    }
+
+    func instance<Type, Tag: Hashable, <%= arg_types %>>(of _: Type.Type = Type.self, tagged tag: Tag, arg <%= arg_params %>) throws -> Type {
+        try resolve(request(tag: tag, arg: (<%= arg_vars %>)))
+    }
+<%_ } -%>
+}
+
+public extension Resolver {
+    func provider<Type>(of _: Type.Type = Type.self) -> () throws -> Type {
+        return { try self.resolve(request(tag: NoTag(), arg: ())) }
+    }
+
+    func provider<Type, Tag: Hashable>(of _: Type.Type = Type.self, tagged tag: Tag) -> () throws -> Type {
+        return { try self.resolve(request(tag: tag, arg: ())) }
+    }
+<%_ (1...arg_count).forEach { i in
+    let arg_types = (1...i).map { "Arg\($0)" }.joined(separator: ", ")
+    let arg_vars = (1...i).map { "arg\($0)" }.joined(separator: ", ")
+    let arg_params = (1...i).map { "arg\($0): Arg\($0)" }.joined(separator: ", _ ")
+-%>
+
+    func provider<Type, <%= arg_types %>>(of _: Type.Type = Type.self, arg <%= arg_params %>) -> () throws -> Type {
+        return { try self.resolve(request(tag: NoTag(), arg: (<%= arg_vars %>))) }
+    }
+
+    func provider<Type, Tag: Hashable, <%= arg_types %>>(of _: Type.Type = Type.self, tagged tag: Tag, arg <%= arg_params %>) -> () throws -> Type {
+        return { try self.resolve(request(tag: tag, arg: (<%= arg_vars %>))) }
+    }
+<%_ } -%>
+}
+// sourcery:end
