@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "355230D3CD8E06586137C04B"
+               BlueprintIdentifier = "36C7878AD0EB9515CC0F84FD"
                BuildableName = "Swinject.framework"
-               BlueprintName = "Swinject_iOS"
+               BlueprintName = "Swinject-watchOS"
                ReferencedContainer = "container:Swinject.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B110F3EA9C67B2F4D235E794"
+               BlueprintIdentifier = "978D2C823AE8C4BC19CF6644"
                BuildableName = "SwinjectTests.xctest"
-               BlueprintName = "SwinjectTests_iOS"
+               BlueprintName = "SwinjectTests-watchOS"
                ReferencedContainer = "container:Swinject.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "355230D3CD8E06586137C04B"
+            BlueprintIdentifier = "36C7878AD0EB9515CC0F84FD"
             BuildableName = "Swinject.framework"
-            BlueprintName = "Swinject_iOS"
+            BlueprintName = "Swinject-watchOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -68,9 +68,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "355230D3CD8E06586137C04B"
+            BlueprintIdentifier = "36C7878AD0EB9515CC0F84FD"
             BuildableName = "Swinject.framework"
-            BlueprintName = "Swinject_iOS"
+            BlueprintName = "Swinject-watchOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -89,9 +89,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "355230D3CD8E06586137C04B"
+            BlueprintIdentifier = "36C7878AD0EB9515CC0F84FD"
             BuildableName = "Swinject.framework"
-            BlueprintName = "Swinject_iOS"
+            BlueprintName = "Swinject-watchOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

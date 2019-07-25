@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A5E1D80D1650A7C76D9177E0"
+               BlueprintIdentifier = "E7478BD32F27B1303B4CC0CE"
                BuildableName = "SwinjectTests.xctest"
-               BlueprintName = "SwinjectTests_watchOS"
+               BlueprintName = "SwinjectTests-iOS"
                ReferencedContainer = "container:Swinject.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A5E1D80D1650A7C76D9177E0"
+            BlueprintIdentifier = "E7478BD32F27B1303B4CC0CE"
             BuildableName = "SwinjectTests.xctest"
-            BlueprintName = "SwinjectTests_watchOS"
+            BlueprintName = "SwinjectTests-iOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -59,9 +59,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A5E1D80D1650A7C76D9177E0"
+            BlueprintIdentifier = "E7478BD32F27B1303B4CC0CE"
             BuildableName = "SwinjectTests.xctest"
-            BlueprintName = "SwinjectTests_watchOS"
+            BlueprintName = "SwinjectTests-iOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -80,9 +80,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A5E1D80D1650A7C76D9177E0"
+            BlueprintIdentifier = "E7478BD32F27B1303B4CC0CE"
             BuildableName = "SwinjectTests.xctest"
-            BlueprintName = "SwinjectTests_watchOS"
+            BlueprintName = "SwinjectTests-iOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
