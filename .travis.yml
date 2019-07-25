@@ -20,6 +20,7 @@ matrix:
         - swift test
     - env: JOB="POD_LINT"
       osx_image: xcode10.2
+      before_install:
       script:
         - pod lib lint
     - env: JOB="XCODE" DEST="OS=9.3,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
