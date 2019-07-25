@@ -7,7 +7,7 @@ git:
   submodules: false
 matrix:
   include:
-    - env: JOB="LINUX_SPM"
+    - env: JOB="LINUX_SPM" SWIFT_VERSION="5.0"
       os: linux
       language: generic
       sudo: required
