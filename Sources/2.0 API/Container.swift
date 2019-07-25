@@ -20,7 +20,7 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
-    let registry: ScopeRegistry
+    let registry = StandardScopeRegistry()
     let parent: Container?
     let defaultScope: AnyScope?
     let defaultMakeRef: ReferenceMaker<Any>
@@ -56,7 +56,6 @@ public final class Container {
         self.defaultScope = defaultScope
         self.defaultMakeRef = defaultMakeRef
         self.behaviors = behaviors
-        registry = parent?.registry ?? StandardScopeRegistry()
         registeringClosure(self)
     }
 
@@ -88,6 +87,7 @@ public final class Container {
     /// Removes all registrations in the container.
     public func removeAll() {
         bindings = []
+        registry.clear()
     }
 
     /// Discards instances for services registered in the given `ObjectsScopeProtocol`.
@@ -97,9 +97,7 @@ public final class Container {
     ///
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
-    public func resetObjectScope(_ objectScope: ObjectScope) {
-        (objectScope.scope as? Closable)?.close()
-    }
+    public func resetObjectScope(_: ObjectScope) {}
 
     /// Returns a synchronized view of the container for thread safety.
     /// The returned container is `Resolver` type. Call this method after you finish all service registrations
