@@ -23,11 +23,11 @@ matrix:
       before_install:
       script:
         - pod lib lint
-    - env: JOB="XCODE" DEST="OS=9.3,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
+    - env: JOB="XCODE" DEST="OS=10.0,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
       osx_image: xcode10.2
     - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-macOS" SDK="macosx" ACTION="test" PLATFORM="OSX"
       osx_image: xcode10.2
-    - env: JOB="XCODE" DEST="OS=9.2,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test" PLATFORM="tvOS"
+    - env: JOB="XCODE" DEST="OS=10.0,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test" PLATFORM="tvOS"
       osx_image: xcode10.2
     - env: JOB="XCODE" DEST="OS=2.2,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build" PLATFORM="watchOS"
       osx_image: xcode10.2
