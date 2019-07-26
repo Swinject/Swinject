@@ -17,6 +17,6 @@ func bbind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<Tagged<Type, 
     bind(Type.self, tagged: tag)
 }
 
-func bbind<Descriptor>(_ descriptor: Descriptor) -> TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
-    bind(descriptor)
+func bbind<Descriptor>(descriptor: Descriptor) -> TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
+    bind(descriptor: descriptor)
 }

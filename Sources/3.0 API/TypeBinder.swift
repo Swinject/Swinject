@@ -7,14 +7,17 @@ public struct TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
 }
 
 public func bind<Type>(_: Type.Type) -> TypeBinder<Tagged<Type, NoTag>> {
-    bind(plain(Type.self))
+    TypeBinder(descriptor: plain(Type.self))
 }
 
 public func bind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<Tagged<Type, Tag>> where Tag: Equatable {
-    bind(tagged(Type.self, with: tag))
+    TypeBinder(descriptor: tagged(Type.self, with: tag))
 }
 
-public func bind<Descriptor>(_ descriptor: Descriptor) -> TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
+// TODO: Compiler Bug?
+// omitting `decriptor` param name here causes compiler to incorrectly infer types when using bind<Type>(), e.g.:
+// bind(CustomStringConvertible.self).with(provider { 42 })
+public func bind<Descriptor>(descriptor: Descriptor) -> TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
     TypeBinder(descriptor: descriptor)
 }
 

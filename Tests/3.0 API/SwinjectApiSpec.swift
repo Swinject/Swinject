@@ -59,13 +59,12 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         expect { try swinject.instance(of: String.self) } == "Plain"
         expect { try swinject.instance(of: String.self, tagged: "Tag") } == "Tagged"
     }
-    // FIXME: Binding Protocol to Implementation does not work
-//    it("can bind protocol to implementation") {
-//        let swinject = Swinject {
-//            bbind(Mammal.self).with(provider { Human() })
-//        }
-//        expect(try? swinject.instance(of: Mammal.self) is Human) == true
-//    }
+    it("can bind protocol to implementation") {
+        let swinject = Swinject {
+            bbind(Mammal.self).with(provider { Human() })
+        }
+        expect(try? swinject.instance(of: Mammal.self) is Human) == true
+    }
     it("can inject optionals") {
         let swinject = Swinject {
             bbind(Int.self) & 42

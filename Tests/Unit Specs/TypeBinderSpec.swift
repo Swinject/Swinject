@@ -20,37 +20,37 @@ class TypeBinderSpec: QuickSpec { override func spec() {
             expect(descriptor.tag) == "Foo"
         }
         it("descriptor is used if given as parameter") {
-            let request = bbind(descriptor)
+            let request = bbind(descriptor: descriptor)
             expect(request.descriptor) === descriptor
         }
     }
     describe("`with` method") {
         it("passes descriptor to maker") {
-            _ = bbind(descriptor).with(maker)
+            _ = bbind(descriptor: descriptor).with(maker)
             expect(maker.makeBindingForReceivedDescriptor) === descriptor
         }
         it("returns binding from maker") {
             let binding = BindingMock()
             maker.makeBindingForReturnValue = binding
-            expect(bbind(descriptor).with(maker)) === binding
+            expect(bbind(descriptor: descriptor).with(maker)) === binding
         }
         it("works with passing instance directly") {
-            let binding = bbind(descriptor).with(42)
+            let binding = bbind(descriptor: descriptor).with(42)
             expect { try binding.instance(arg: (), context: (), resolver: DummyResolver()) as? Int } == 42
         }
     }
     describe("`&` method") {
         it("passes descriptor to maker") {
-            _ = bbind(descriptor) & maker
+            _ = bbind(descriptor: descriptor) & maker
             expect(maker.makeBindingForReceivedDescriptor) === descriptor
         }
         it("returns binding from maker") {
             let binding = BindingMock()
             maker.makeBindingForReturnValue = binding
-            expect(bbind(descriptor) & maker) === binding
+            expect(bbind(descriptor: descriptor) & maker) === binding
         }
         it("works with passing instance directly") {
-            let binding = bbind(descriptor) & 42
+            let binding = bbind(descriptor: descriptor) & 42
             expect { try binding.instance(arg: (), context: (), resolver: DummyResolver()) as? Int } == 42
         }
     }
