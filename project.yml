@@ -20,6 +20,8 @@ targets:
     sources:
       - path: Sources
         excludes: ["**/*.erb"]
+      - path: Templates
+        buildPhase: none
     preBuildScripts:
       - script: >
           if which sourcery >/dev/null; then
