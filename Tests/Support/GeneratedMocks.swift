@@ -189,11 +189,6 @@ class AnyScopeMock: AnyScope {
 
 }
 class AnyTypeDescriptorMock: AnyTypeDescriptor {
-    var hashValue: Int {
-        get { return underlyingHashValue }
-        set(value) { underlyingHashValue = value }
-    }
-    var underlyingHashValue: Int!
 
     //MARK: - matches
 
@@ -211,6 +206,23 @@ class AnyTypeDescriptorMock: AnyTypeDescriptor {
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)
         return matchesClosure.map({ $0(other) }) ?? matchesReturnValue
+    }
+
+    //MARK: - hash
+
+    var hashIntoCallsCount = 0
+    var hashIntoCalled: Bool {
+        return hashIntoCallsCount > 0
+    }
+    var hashIntoReceivedHasher: Hasher?
+    var hashIntoReceivedInvocations: [Hasher] = []
+    var hashIntoClosure: ((inout Hasher) -> Void)?
+
+    func hash(into hasher: inout Hasher) {
+        hashIntoCallsCount += 1
+        hashIntoReceivedHasher = hasher
+        hashIntoReceivedInvocations.append(hasher)
+        hashIntoClosure?(&hasher)
     }
 
 }
@@ -274,11 +286,6 @@ class ClosableMock: Closable {
 
 }
 class MatchableMock: Matchable {
-    var hashValue: Int {
-        get { return underlyingHashValue }
-        set(value) { underlyingHashValue = value }
-    }
-    var underlyingHashValue: Int!
 
     //MARK: - matches
 
@@ -296,6 +303,23 @@ class MatchableMock: Matchable {
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)
         return matchesClosure.map({ $0(other) }) ?? matchesReturnValue
+    }
+
+    //MARK: - hash
+
+    var hashIntoCallsCount = 0
+    var hashIntoCalled: Bool {
+        return hashIntoCallsCount > 0
+    }
+    var hashIntoReceivedHasher: Hasher?
+    var hashIntoReceivedInvocations: [Hasher] = []
+    var hashIntoClosure: ((inout Hasher) -> Void)?
+
+    func hash(into hasher: inout Hasher) {
+        hashIntoCallsCount += 1
+        hashIntoReceivedHasher = hasher
+        hashIntoReceivedInvocations.append(hasher)
+        hashIntoClosure?(&hasher)
     }
 
 }

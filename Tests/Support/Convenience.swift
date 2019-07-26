@@ -33,3 +33,11 @@ func concurrentPerform(iterations: Int, action: () -> Void) {
         if finished == iterations { done() }
     }
 }
+
+extension Matchable {
+    var hashValue: Int { // swiftlint:disable:this legacy_hashing
+        var hasher = Hasher()
+        hash(into: &hasher)
+        return hasher.finalize()
+    }
+}

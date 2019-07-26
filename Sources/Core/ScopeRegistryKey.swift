@@ -28,7 +28,7 @@ extension ScopeRegistryKey: Hashable {
     }
 
     public func hash(into hasher: inout Hasher) {
-        descriptor.hashValue.hash(into: &hasher)
-        (argument as? Matchable)?.hashValue.hash(into: &hasher)
+        descriptor.hash(into: &hasher)
+        (argument as? Matchable)?.hash(into: &hasher)
     }
 }

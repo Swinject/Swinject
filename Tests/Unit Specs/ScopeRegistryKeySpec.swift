@@ -16,16 +16,12 @@ class ScopeRegistryKeySpec: QuickSpec { override func spec() {
     beforeEach {
         descriptor1 = AnyTypeDescriptorMock()
         descriptor1.matchesReturnValue = true
-        descriptor1.hashValue = 0
         argument1 = MatchableMock()
         argument1.matchesReturnValue = true
-        argument1.hashValue = 0
         descriptor2 = AnyTypeDescriptorMock()
         descriptor2.matchesReturnValue = true
-        descriptor2.hashValue = 0
         argument2 = MatchableMock()
         argument2.matchesReturnValue = true
-        argument2.hashValue = 0
         key1 = ScopeRegistryKey(descriptor: descriptor1, argument: argument1)
         key2 = ScopeRegistryKey(descriptor: descriptor2, argument: argument2)
     }
@@ -79,25 +75,25 @@ class ScopeRegistryKeySpec: QuickSpec { override func spec() {
     describe("hash") {
         describe("hashes descriptor") {
             it("does not equal if descriptor hashes are different") {
-                descriptor1.hashValue = 1
-                descriptor2.hashValue = 2
+                descriptor1.hashIntoClosure = { $0.combine(1) }
+                descriptor2.hashIntoClosure = { $0.combine(2) }
                 expect(key1.hashValue) != key2.hashValue
             }
             it("equals if descriptor hashes are the same") {
-                descriptor1.hashValue = 1
-                descriptor2.hashValue = 1
+                descriptor1.hashIntoClosure = { $0.combine(1) }
+                descriptor2.hashIntoClosure = { $0.combine(1) }
                 expect(key1.hashValue) == key2.hashValue
             }
         }
         describe("hashes matchable argument") {
             it("does not equal if argument hashes are different") {
-                argument1.hashValue = 1
-                argument2.hashValue = 2
+                argument1.hashIntoClosure = { $0.combine(1) }
+                argument2.hashIntoClosure = { $0.combine(2) }
                 expect(key1.hashValue) != key2.hashValue
             }
             it("equals if argument hashes are the same") {
-                argument1.hashValue = 1
-                argument2.hashValue = 1
+                argument1.hashIntoClosure = { $0.combine(1) }
+                argument2.hashIntoClosure = { $0.combine(1) }
                 expect(key1.hashValue) == key2.hashValue
             }
         }

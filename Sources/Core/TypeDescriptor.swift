@@ -27,8 +27,9 @@ public struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
         return false
     }
 
-    public var hashValue: Int {
-        String(describing: hashedType).hashValue ^ tag.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(String(describing: hashedType))
+        hasher.combine(tag)
     }
 
     private var hashedType: Any.Type {
