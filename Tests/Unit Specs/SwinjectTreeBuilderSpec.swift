@@ -25,21 +25,21 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
         // FIXME: Test coverage enabled build segfaults on this
 //        it("builds closure with if statement") {
 //            let tree = makeTree {
-//                if true { AnyBindingMock() }
+//                if true { BindingMock() }
 //            }
-//            expect(tree.makerEntries.count) == 1
+//            expect(tree.bindings.count) == 1
 //        }
 //        it("builds closure with nested if statement") {
 //            let tree = makeTree {
-//                if true { AnyBindingMock(); if true { AnyBindingMock() } }
+//                if true { BindingMock(); if true { BindingMock() } }
 //            }
-//            expect(tree.makerEntries.count) == 2
+//            expect(tree.bindings.count) == 2
 //        }
 //        it("builds closure with if else statement") {
 //            let tree = makeTree {
-//                if false {} else { AnyBindingMock(); AnyBindingMock() }
+//                if false {} else { BindingMock(); BindingMock() }
 //            }
-//            expect(tree.makerEntries.count) == 2
+//            expect(tree.bindings.count) == 2
 //        }
         it("builds closure with maker & include entries") {
             let tree = makeTree {
