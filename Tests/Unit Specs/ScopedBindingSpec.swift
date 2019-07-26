@@ -76,9 +76,11 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
         var binding: ScopedBinding!
         beforeEach {
             registry = StaticScopeRegistryMock()
+            registry.instanceKeyReturnValue = 0
             scope = AnyScopeMock()
             scope.registryForReturnValue = registry
             maker = AnyInstanceMakerMock()
+            maker.makeInstanceArgContextResolverReturnValue = 0
             key = AnyBindingKeyMock()
             key.descriptor = AnyTypeDescriptorMock()
             binding = ScopedBinding(key: key, maker: maker, scope: scope, makeRef: noRef)

@@ -11,6 +11,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
     var binding = BindingMock()
     beforeEach {
         binding = BindingMock()
+        binding.instanceArgContextResolverReturnValue = 0
         swinject = Swinject { binding }
     }
     describe("instance injection") {
@@ -85,7 +86,10 @@ class SwinjectSpec: QuickSpec { override func spec() {
             var bindings = [BindingMock]()
             beforeEach {
                 bindings = Array(0 ..< 3).map { _ in BindingMock() }
-                bindings.forEach { $0.matchesReturnValue = false }
+                bindings.forEach {
+                    $0.matchesReturnValue = false
+                    $0.instanceArgContextResolverReturnValue = 0
+                }
                 swinject = Swinject {
                     bindings[0]
                     bindings[1]

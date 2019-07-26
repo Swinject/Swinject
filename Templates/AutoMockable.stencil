@@ -76,7 +76,7 @@
         {% if method.returnTypeName.isVoid %}
         {% if method.throws %}try {% endif %}{% call methodClosureName method %}?({% call methodClosureCallParameters method %})
         {% else %}
-        return {{ 'try ' if method.throws }}{% call methodClosureName method %}.map({ {{ 'try ' if method.throws }}$0({% call methodClosureCallParameters method %}) }) ?? {% call swiftifyMethodName method.selectorName %}ReturnValue
+        return {{ 'try ' if method.throws }}{% call methodClosureName method %}.map({ {{ 'try ' if method.throws }}$0({% call methodClosureCallParameters method %}) }) ?? {% call swiftifyMethodName method.selectorName %}ReturnValue!
         {% endif %}
     }
 

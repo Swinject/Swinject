@@ -52,7 +52,7 @@ class AnyBindingKeyMock: AnyBindingKey {
         matchesCallsCount += 1
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)
-        return matchesClosure.map({ $0(other) }) ?? matchesReturnValue
+        return matchesClosure.map({ $0(other) }) ?? matchesReturnValue!
     }
 
 }
@@ -73,7 +73,7 @@ class AnyBindningMakerMock: AnyBindningMaker {
         makeBindingForCallsCount += 1
         makeBindingForReceivedDescriptor = descriptor
         makeBindingForReceivedInvocations.append(descriptor)
-        return makeBindingForClosure.map({ $0(descriptor) }) ?? makeBindingForReturnValue
+        return makeBindingForClosure.map({ $0(descriptor) }) ?? makeBindingForReturnValue!
     }
 
 }
@@ -108,7 +108,7 @@ class AnyContextTranslatorMock: AnyContextTranslator {
         translateCallsCount += 1
         translateReceivedContext = context
         translateReceivedInvocations.append(context)
-        return try translateClosure.map({ try $0(context) }) ?? translateReturnValue
+        return try translateClosure.map({ try $0(context) }) ?? translateReturnValue!
     }
 
 }
@@ -133,7 +133,7 @@ class AnyInstanceMakerMock: AnyInstanceMaker {
         makeInstanceArgContextResolverCallsCount += 1
         makeInstanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
         makeInstanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
-        return try makeInstanceArgContextResolverClosure.map({ try $0(arg, context, resolver) }) ?? makeInstanceArgContextResolverReturnValue
+        return try makeInstanceArgContextResolverClosure.map({ try $0(arg, context, resolver) }) ?? makeInstanceArgContextResolverReturnValue!
     }
 
 }
@@ -158,7 +158,7 @@ class AnyResolverMock: AnyResolver {
         resolveCallsCount += 1
         resolveReceivedRequest = request
         resolveReceivedInvocations.append(request)
-        return try resolveClosure.map({ try $0(request) }) ?? resolveReturnValue
+        return try resolveClosure.map({ try $0(request) }) ?? resolveReturnValue!
     }
 
 }
@@ -184,7 +184,7 @@ class AnyScopeMock: AnyScope {
         registryForCallsCount += 1
         registryForReceivedContext = context
         registryForReceivedInvocations.append(context)
-        return registryForClosure.map({ $0(context) }) ?? registryForReturnValue
+        return registryForClosure.map({ $0(context) }) ?? registryForReturnValue!
     }
 
 }
@@ -205,7 +205,7 @@ class AnyTypeDescriptorMock: AnyTypeDescriptor {
         matchesCallsCount += 1
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)
-        return matchesClosure.map({ $0(other) }) ?? matchesReturnValue
+        return matchesClosure.map({ $0(other) }) ?? matchesReturnValue!
     }
 
     //MARK: - hash
@@ -243,7 +243,7 @@ class BindingMock: Binding {
         matchesCallsCount += 1
         matchesReceivedKey = key
         matchesReceivedInvocations.append(key)
-        return matchesClosure.map({ $0(key) }) ?? matchesReturnValue
+        return matchesClosure.map({ $0(key) }) ?? matchesReturnValue!
     }
 
     //MARK: - instance
@@ -265,7 +265,7 @@ class BindingMock: Binding {
         instanceArgContextResolverCallsCount += 1
         instanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
         instanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
-        return try instanceArgContextResolverClosure.map({ try $0(arg, context, resolver) }) ?? instanceArgContextResolverReturnValue
+        return try instanceArgContextResolverClosure.map({ try $0(arg, context, resolver) }) ?? instanceArgContextResolverReturnValue!
     }
 
 }
@@ -302,7 +302,7 @@ class MatchableMock: Matchable {
         matchesCallsCount += 1
         matchesReceivedOther = other
         matchesReceivedInvocations.append(other)
-        return matchesClosure.map({ $0(other) }) ?? matchesReturnValue
+        return matchesClosure.map({ $0(other) }) ?? matchesReturnValue!
     }
 
     //MARK: - hash
@@ -343,7 +343,7 @@ class StaticScopeRegistryMock: StaticScopeRegistry {
         instanceKeyCallsCount += 1
         instanceKeyReceivedKey = key
         instanceKeyReceivedInvocations.append(key)
-        return instanceKeyClosure.map({ $0(key) }) ?? instanceKeyReturnValue
+        return instanceKeyClosure.map({ $0(key) }) ?? instanceKeyReturnValue!
     }
 
     //MARK: - clear
