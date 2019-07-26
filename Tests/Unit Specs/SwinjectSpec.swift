@@ -208,7 +208,7 @@ class SwinjectSpec: QuickSpec { override func spec() {
             binding.matchesReturnValue = true
             binding.instanceArgContextResolverReturnValue = 42
             _ = try? swinject.factory(of: Int.self)("arg")
-            expect(binding.instanceArgContextResolverReceivedArguments?.arg as? String) == "arg"
+            expect(binding.instanceArgContextResolverReceivedArguments?.arg as? ArgumentBox1<String>) == box("arg")
         }
         it("matches binding with correct key") {
             binding.matchesReturnValue = false

@@ -4,8 +4,19 @@
     let arg_types = (1...i).map { "Arg\($0)" }.joined(separator: ", ")
     let arg_hashables = (1...i).map { "Arg\($0): Hashable" }.joined(separator: ", ")
 -%>
-struct ArgumentBox<%= i %><<%= arg_types %>>: Hashable, Matchable where <%= arg_hashables %>{
+public struct ArgumentBox<%= i %><<%= arg_types %>>: Hashable, Matchable where <%= arg_hashables %>{
     <%= (1...i).map { "let arg\($0): Arg\($0)" }.joined(separator: "\n    ") %>
+}
+
+<%_ } -%>
+<%_ (1...arg_count).forEach { i in
+    let arg_types = (1...i).map { "Arg\($0)" }.joined(separator: ", ")
+    let arg_hashables = (1...i).map { "Arg\($0): Hashable" }.joined(separator: ", ")
+    let arg_params = (1...i).map { "_ arg\($0): Arg\($0)" }.joined(separator: ", ")
+    let arg_call_params = (1...i).map { "arg\($0): arg\($0)" }.joined(separator: ", ")
+-%>
+func box<<%= arg_types %>>(<%= arg_params %>) -> ArgumentBox<%= i %><<%= arg_types %>> where <%= arg_hashables %> {
+    ArgumentBox<%= i %>(<%= arg_call_params %>)
 }
 
 <%_ } -%>

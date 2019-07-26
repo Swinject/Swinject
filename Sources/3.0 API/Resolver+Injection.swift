@@ -2,6 +2,20 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
+public extension Resolver {
+    func instance<Type, Arg1: Hashable>(of _: Type.Type = Type.self, arg arg1: Arg1) throws -> Type {
+        try resolve(request(tag: NoTag(), arg: box(arg1)))
+    }
+
+    func provider<Type, Arg1: Hashable>(of _: Type.Type = Type.self, arg arg1: Arg1) -> () throws -> Type {
+        return { try self.resolve(request(tag: NoTag(), arg: box(arg1))) }
+    }
+
+    func factory<Type, Arg1: Hashable>(of _: Type.Type = Type.self) -> (Arg1) throws -> Type {
+        return { try self.resolve(request(tag: NoTag(), arg: box($0))) }
+    }
+}
+
 // swiftlint:disable line_length
 // swiftlint:disable function_parameter_count
 // sourcery:inline:ResolverInjectionApi
