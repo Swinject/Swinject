@@ -50,7 +50,7 @@ public class ServiceEntry<Service> {
     @discardableResult
     public func inObjectScope(_ objectScope: ObjectScope) -> Self {
         scope = objectScope.scope
-        makeRef = objectScope.makeRef
+        makeRef = container.map(objectScope.makeRef) ?? noRef
         return self
     }
 

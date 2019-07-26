@@ -20,10 +20,13 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
-    let registry = StandardScopeRegistry()
+    private class Handle {}
+    var referenceHandle: AnyObject = Handle()
+
+    let registry: StandardScopeRegistry
     let parent: Container?
-    let defaultScope: AnyScope?
-    let defaultMakeRef: ReferenceMaker<Any>
+    // TODO: Enable arbitrary scope as default
+    let defaultObjectScope: ObjectScope
     var bindings = [Binding]()
     var behaviors = [Behavior]()
     var swinject: Swinject { Swinject(tree: SwinjectTree(
@@ -39,7 +42,7 @@ public final class Container {
     ///
     /// - Parameters
     ///     - parent: The optional parent `Container`.
-    ///     - defaultScope: Default  scope
+    ///     - defaultObjectScope: Default object scope (graph if no scope is injected)
     ///     - behaviors: List of behaviors to be added to the container
     ///     - registeringClosure: The closure registering services to the new container instance.
     ///
@@ -47,47 +50,21 @@ public final class Container {
     ///           Use `init()` or `init(parent:)` instead.
     public init(
         parent: Container? = nil,
-        defaultScope: AnyScope?,
-        defaultMakeRef: @escaping ReferenceMaker<Any>,
-        behaviors: [Behavior] = [],
-        registeringClosure: (Container) -> Void = { _ in }
-    ) {
-        self.parent = parent
-        self.defaultScope = defaultScope
-        self.defaultMakeRef = defaultMakeRef
-        self.behaviors = behaviors
-        registeringClosure(self)
-    }
-
-    /// Instantiates a `Container`
-    ///
-    /// - Parameters
-    ///     - parent: The optional parent `Container`.
-    ///     - defaultObjectScope: Default object scope (graph if no scope is injected)
-    ///     - behaviors: List of behaviors to be added to the container
-    ///     - registeringClosure: The closure registering services to the new container instance.
-    ///
-    /// - Remark: Compile time may be long if you pass a long closure to this initializer.
-    ///           Use `init()` or `init(parent:)` instead.
-    public convenience init(
-        parent: Container? = nil,
         defaultObjectScope: ObjectScope = .graph,
         behaviors: [Behavior] = [],
         registeringClosure: (Container) -> Void = { _ in }
     ) {
-        self.init(
-            parent: parent,
-            defaultScope: defaultObjectScope.scope,
-            defaultMakeRef: defaultObjectScope.makeRef,
-            behaviors: behaviors,
-            registeringClosure: registeringClosure
-        )
+        self.parent = parent
+        self.defaultObjectScope = defaultObjectScope
+        self.behaviors = behaviors
+        registry = parent?.registry ?? StandardScopeRegistry()
+        registeringClosure(self)
     }
 
     /// Removes all registrations in the container.
     public func removeAll() {
         bindings = []
-        registry.clear()
+        referenceHandle = Handle()
     }
 
     /// Discards instances for services registered in the given `ObjectsScopeProtocol`.
@@ -97,7 +74,12 @@ public final class Container {
     ///
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
-    public func resetObjectScope(_: ObjectScope) {}
+    public func resetObjectScope(_ scope: ObjectScope) {
+        switch scope {
+        case .container, .weak: referenceHandle = Handle()
+        case .graph, .transient: break
+        }
+    }
 
     /// Returns a synchronized view of the container for thread safety.
     /// The returned container is `Resolver` type. Call this method after you finish all service registrations

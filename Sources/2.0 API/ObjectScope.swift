@@ -32,10 +32,16 @@ extension ObjectScope {
         }
     }
 
-    var makeRef: ReferenceMaker<Any> {
+    func makeRef(in container: Container?) -> ReferenceMaker<Any> {
+        weak var container = container
+        func containerRef(_ value: Any) -> Reference<Any> {
+            Reference(currentValue: value) { [weak handle = container?.referenceHandle] in
+                handle == nil ? nil : value
+            }
+        }
         switch self {
-        case .graph: return strongRef
-        case .container: return strongRef
+        case .graph: return containerRef
+        case .container: return containerRef
         case .weak: return weakRef
         case .transient: return noRef
         }

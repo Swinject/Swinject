@@ -51,17 +51,6 @@ class AssemblerSpec: QuickSpec {
                 expect(serviceEntry?.scope) === ObjectScope.container.scope
             }
 
-            it("uses injected default custom scope") {
-                let scope = UnboundScope()
-                let assembler = Assembler(parent: nil, defaultScope: scope, defaultMakeRef: strongRef)
-
-                assembler.apply(assembly: ContainerSpyAssembly())
-                let container = assembler.resolver.resolve(Container.self)
-                let serviceEntry = container?.register(Animal.self) { _ in Siamese(name: "Siam") }
-
-                expect(serviceEntry?.scope) === scope
-            }
-
             it("uses graph scope if no default object scope is injected") {
                 let assembler = Assembler([], parent: nil)
 

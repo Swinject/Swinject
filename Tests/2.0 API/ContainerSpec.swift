@@ -169,48 +169,69 @@ class ContainerSpec: QuickSpec {
 
                     expect(cat1) !== cat2
                 }
-                // TODO: Implement resetting object scope
-//                it("releases instance after reseting scope") {
-//                    container.register(Animal.self) { _ in Cat() }
-//                        .inObjectScope(.container)
-//
-//                    let cat1 = container.resolve(Animal.self) as? Cat
-//                    container.resetObjectScope(.container)
-//                    let cat2 = container.resolve(Animal.self) as? Cat
-//
-//                    expect(cat1) !== cat2
-//                }
-                // TODO: Implement subscopes
-//                it("shares an object from a parent container to its child.") {
-//                    let parent = Container()
-//                    parent.register(Animal.self) { _ in Cat() }
-//                        .inObjectScope(.container)
-//                    parent.register(Animal.self, name: "dog") { _ in Dog() }
-//                        .inObjectScope(.container)
-//                    let child = Container(parent: parent)
-//
-//                    // Case resolving on the parent first.
-//                    let cat1 = parent.resolve(Animal.self) as? Cat
-//                    let cat2 = child.resolve(Animal.self) as? Cat
-//                    expect(cat1 === cat2).to(beTrue()) // Workaround for crash in Nimble.
-//
-//                    // Case resolving on the child first.
-//                    let dog1 = child.resolve(Animal.self, name: "dog") as? Dog
-//                    let dog2 = parent.resolve(Animal.self, name: "dog") as? Dog
-//                    expect(dog1 === dog2).to(beTrue()) // Workaround for crash in Nimble.
-//                }
-//                it("resolves a service in the parent container to the same object in a graph") {
-//                    let parent = Container()
-//                    parent.register(Food.self) { _ in Sushi() }
-//                        .inObjectScope(.container)
-//                    let child = Container(parent: parent)
-//                    registerCatAndPetOwnerDependingOnFood(child)
-//
-//                    let owner = child.resolve(Person.self) as? PetOwner
-//                    let ownersSushi = owner?.favoriteFood as? Sushi
-//                    let catsSushi = (owner?.pet as? Cat)?.favoriteFood as? Sushi
-//                    expect(ownersSushi === catsSushi).to(beTrue()) // Workaround for crash in Nimble.
-//                }
+                it("releases instance after reseting scope") {
+                    container.register(Animal.self) { _ in Cat() }
+                        .inObjectScope(.container)
+
+                    let cat1 = container.resolve(Animal.self) as? Cat
+                    container.resetObjectScope(.container)
+                    let cat2 = container.resolve(Animal.self) as? Cat
+
+                    expect(cat1) !== cat2
+                }
+                it("shares an object from a parent container to its child.") {
+                    let parent = Container()
+                    parent.register(Animal.self) { _ in Cat() }
+                        .inObjectScope(.container)
+                    parent.register(Animal.self, name: "dog") { _ in Dog() }
+                        .inObjectScope(.container)
+                    let child = Container(parent: parent)
+
+                    // Case resolving on the parent first.
+                    let cat1 = parent.resolve(Animal.self) as? Cat
+                    let cat2 = child.resolve(Animal.self) as? Cat
+                    expect(cat1 === cat2).to(beTrue()) // Workaround for crash in Nimble.
+
+                    // Case resolving on the child first.
+                    let dog1 = child.resolve(Animal.self, name: "dog") as? Dog
+                    let dog2 = parent.resolve(Animal.self, name: "dog") as? Dog
+                    expect(dog1 === dog2).to(beTrue()) // Workaround for crash in Nimble.
+                }
+                it("resolves a service in the parent container to the same object in a graph") {
+                    let parent = Container()
+                    parent.register(Food.self) { _ in Sushi() }
+                        .inObjectScope(.container)
+                    let child = Container(parent: parent)
+                    registerCatAndPetOwnerDependingOnFood(child)
+
+                    let owner = child.resolve(Person.self) as? PetOwner
+                    let ownersSushi = owner?.favoriteFood as? Sushi
+                    let catsSushi = (owner?.pet as? Cat)?.favoriteFood as? Sushi
+                    expect(ownersSushi === catsSushi).to(beTrue()) // Workaround for crash in Nimble.
+                }
+                it("after resetting child it resolves child type to the different instance") {
+                    let parent = Container()
+                    let child = Container(parent: parent)
+                    child.register(Animal.self, factory: { _ in Cat() }).inObjectScope(.container)
+                    let first = child.resolve(Animal.self)
+
+                    child.removeAll()
+                    child.register(Animal.self, factory: { _ in Cat() }).inObjectScope(.container)
+                    let second = child.resolve(Animal.self)
+
+                    expect(first) !== second
+                }
+                it("after resetting child it resolves parent type to the same instance") {
+                    let parent = Container()
+                    let child = Container(parent: parent)
+                    parent.register(Animal.self, factory: { _ in Cat() }).inObjectScope(.container)
+
+                    let first = child.resolve(Animal.self)
+                    child.removeAll()
+                    let second = child.resolve(Animal.self)
+
+                    expect(first) === second
+                }
             }
             context("in weak scope") {
                 it("shares the object in the container") {
@@ -395,13 +416,6 @@ class ContainerSpec: QuickSpec {
 
                 let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
                 expect(serviceEntry.scope) === ObjectScope.container.scope
-            }
-            it("registers services with given custom scope") {
-                let scope = UnboundScope()
-                let container = Container(parent: nil, defaultScope: scope, defaultMakeRef: strongRef)
-
-                let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
-                expect(serviceEntry.scope) === scope
             }
         }
     }

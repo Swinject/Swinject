@@ -36,38 +36,16 @@ public final class Assembler {
     /// - parameter parent:             the baseline assembler
     /// - parameter defaultObjectScope: default object scope for container
     /// - parameter behaviors:          list of behaviors to be added to the container
-    public convenience init(
-        _ assemblies: [Assembly] = [],
-        parent: Assembler? = nil,
-        defaultObjectScope: ObjectScope = .graph,
-        behaviors: [Behavior] = []
-    ) {
-        self.init(
-            assemblies,
-            parent: parent,
-            defaultScope: defaultObjectScope.scope,
-            defaultMakeRef: defaultObjectScope.makeRef,
-            behaviors: behaviors
-        )
-    }
-
-    /// Will create a new `Assembler` with the given `Assembly` instances to build a `Container`
-    ///
-    /// - parameter assemblies:         the list of assemblies to build the container from
-    /// - parameter parent:             the baseline assembler
-    /// - parameter defaultScope:       default object scope for container
-    /// - parameter behaviors:          list of behaviors to be added to the container
     public init(
         _ assemblies: [Assembly] = [],
         parent: Assembler? = nil,
-        defaultScope: AnyScope?,
-        defaultMakeRef: @escaping ReferenceMaker<Any>,
+        // TODO: Enable arbitrary default scope
+        defaultObjectScope: ObjectScope = .graph,
         behaviors: [Behavior] = []
     ) {
         container = Container(
             parent: parent?.container,
-            defaultScope: defaultScope,
-            defaultMakeRef: defaultMakeRef,
+            defaultObjectScope: defaultObjectScope,
             behaviors: behaviors
         )
         run(assemblies: assemblies)
