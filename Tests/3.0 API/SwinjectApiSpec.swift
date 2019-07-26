@@ -59,6 +59,13 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         expect { try swinject.instance(of: String.self) } == "Plain"
         expect { try swinject.instance(of: String.self, tagged: "Tag") } == "Tagged"
     }
+    // FIXME: Binding Protocol to Implementation does not work
+//    it("can bind protocol to implementation") {
+//        let swinject = Swinject {
+//            bbind(Mammal.self).with(provider { Human() })
+//        }
+//        expect(try? swinject.instance(of: Mammal.self) is Human) == true
+//    }
     it("can inject optionals") {
         let swinject = Swinject {
             bbind(Int.self) & 42
@@ -169,5 +176,13 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         scope.close()
         expect(closable?.closeCalled) == true
     }
-    // FIXME: Binding Protocol to Implementation does not work
+    it("can bind weakly referenced singleton") {
+        let scope = UnboundScope()
+        let swinject = Swinject {
+            bbind(Human.self) & scoped(scope).singleton(ref: weakRef) { Human() }
+        }
+        weak var first = try? swinject.instance() as Human
+        expect(first).to(beNil())
+    }
+
 } }

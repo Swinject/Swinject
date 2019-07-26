@@ -107,7 +107,6 @@ public extension Resolver {
 
 // sourcery:end
 
-
 // TODO: Generate
 public extension Resolver {
     func factory<Type, Argument>(of _: Type.Type = Type.self) -> (Argument) throws -> Type {

@@ -8,10 +8,14 @@ import Quick
 
 class ScopedBindingSpec: QuickSpec { override func spec() {
     describe("binding builder") {
+        var bag = [Any]()
         let descriptor = AnyTypeDescriptorMock()
         let scope = DummyScope<String>()
         let makeRef: ReferenceMaker<Int> = { _ in noRef(42) }
         let builder = ScopedBinding.Builder<Int, DummyScope<String>, Int>(scope, makeRef) { _, _, _ in 0 }
+        beforeEach {
+            bag.removeAll()
+        }
         it("makes binding with self as maker") {
             let binding = builder.makeBinding(for: descriptor) as? ScopedBinding
             expect(binding?.maker is ScopedBinding.Builder<Int, DummyScope<String>, Int>).to(beTrue())
@@ -29,6 +33,14 @@ class ScopedBindingSpec: QuickSpec { override func spec() {
         it("makes binding with correct reference maker") {
             let binding = builder.makeBinding(for: descriptor) as? ScopedBinding
             expect(binding?.makeRef(0).currentValue as? Int) == 42
+        }
+        it("does not hold on to made reference") {
+            var human = Human() as Human?
+            weak var weakHuman = human
+            let builder = ScopedBinding.Builder<Human, DummyScope<String>, Int>(scope, noRef) { _, _, _ in Human() }
+            bag.append(builder.makeRef(human!).nextValue)
+            human = nil
+            expect(weakHuman).to(beNil())
         }
     }
     describe("matching") {

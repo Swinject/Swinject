@@ -46,38 +46,38 @@ public extension BinderEnvironment where AScope == Void {
 }
 
 public extension BinderEnvironment where AScope: Scope, Context == AScope.Context {
-    func singleton<Type>(_ builder: @escaping () throws -> Type) -> ScopedBinding.Builder<Type, AScope, Void> {
-        .init(scope, strongRef) { _, _, _ in try builder() }
+    func singleton<Type>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping () throws -> Type) -> ScopedBinding.Builder<Type, AScope, Void> {
+        .init(scope, ref) { _, _, _ in try builder() }
     }
 
-    func singleton<Type>(_ builder: @escaping (Resolver) throws -> Type) -> ScopedBinding.Builder<Type, AScope, Void> {
-        .init(scope, strongRef) { r, _, _ in try builder(r) }
+    func singleton<Type>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver) throws -> Type) -> ScopedBinding.Builder<Type, AScope, Void> {
+        .init(scope, ref) { r, _, _ in try builder(r) }
     }
 
-    func singleton<Type>(_ builder: @escaping (Resolver, Context) throws -> Type) -> ScopedBinding.Builder<Type, AScope, Void> {
-        .init(scope, strongRef) { r, c, _ in try builder(r, c) }
+    func singleton<Type>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Context) throws -> Type) -> ScopedBinding.Builder<Type, AScope, Void> {
+        .init(scope, ref) { r, c, _ in try builder(r, c) }
     }
 }
 
 public extension BinderEnvironment where AScope: Scope, Context == AScope.Context {
-    func multiton<Type, Arg1>(_ builder: @escaping (Resolver, Context, Arg1) throws -> Type) -> ScopedBinding.Builder<Type, AScope, Arg1> {
-        .init(scope, strongRef, builder)
+    func multiton<Type, Arg1>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Context, Arg1) throws -> Type) -> ScopedBinding.Builder<Type, AScope, Arg1> {
+        .init(scope, ref, builder)
     }
 
-    func multiton<Type, Arg1, Arg2>(_ builder: @escaping (Resolver, Context, Arg1, Arg2) throws -> Type) -> ScopedBinding.Builder<Type, AScope, (Arg1, Arg2)> {
-        .init(scope, strongRef) { try builder($0, $1, $2.0, $2.1) }
+    func multiton<Type, Arg1, Arg2>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Context, Arg1, Arg2) throws -> Type) -> ScopedBinding.Builder<Type, AScope, (Arg1, Arg2)> {
+        .init(scope, ref) { try builder($0, $1, $2.0, $2.1) }
     }
 
-    func multiton<Type, Arg1, Arg2, Arg3>(_ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3) throws -> Type) -> ScopedBinding.Builder<Type, AScope, (Arg1, Arg2, Arg3)> {
-        .init(scope, strongRef) { try builder($0, $1, $2.0, $2.1, $2.2) }
+    func multiton<Type, Arg1, Arg2, Arg3>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3) throws -> Type) -> ScopedBinding.Builder<Type, AScope, (Arg1, Arg2, Arg3)> {
+        .init(scope, ref) { try builder($0, $1, $2.0, $2.1, $2.2) }
     }
 
-    func multiton<Type, Arg1, Arg2, Arg3, Arg4>(_ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3, Arg4) throws -> Type) -> ScopedBinding.Builder<Type, AScope, (Arg1, Arg2, Arg3, Arg4)> {
-        .init(scope, strongRef) { try builder($0, $1, $2.0, $2.1, $2.2, $2.3) }
+    func multiton<Type, Arg1, Arg2, Arg3, Arg4>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3, Arg4) throws -> Type) -> ScopedBinding.Builder<Type, AScope, (Arg1, Arg2, Arg3, Arg4)> {
+        .init(scope, ref) { try builder($0, $1, $2.0, $2.1, $2.2, $2.3) }
     }
 
-    func multiton<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(_ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3, Arg4, Arg5) throws -> Type) -> ScopedBinding.Builder<Type, AScope, (Arg1, Arg2, Arg3, Arg4, Arg5)> {
-        .init(scope, strongRef) { try builder($0, $1, $2.0, $2.1, $2.2, $2.3, $2.4) }
+    func multiton<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Context, Arg1, Arg2, Arg3, Arg4, Arg5) throws -> Type) -> ScopedBinding.Builder<Type, AScope, (Arg1, Arg2, Arg3, Arg4, Arg5)> {
+        .init(scope, ref) { try builder($0, $1, $2.0, $2.1, $2.2, $2.3, $2.4) }
     }
 }
 

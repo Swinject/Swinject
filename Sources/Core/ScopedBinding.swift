@@ -36,7 +36,8 @@ extension ScopedBinding {
         ) {
             self.makeRef = {
                 let ref = makeRef($0 as! Type)
-                return Reference(currentValue: ref.currentValue, nextValue: { ref.nextValue() })
+                let nextValue = ref.nextValue
+                return Reference(currentValue: ref.currentValue, nextValue: { nextValue() })
             }
             self.scope = scope
             self.builder = builder
