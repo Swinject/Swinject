@@ -1,22 +1,18 @@
 //
-//  Circularity.swift
-//  Swinject
-//
-//  Created by Yoichi Tagaya on 7/28/15.
-//  Copyright (c) 2015 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 import Foundation
 
 // MARK: Circular dependency of two objects
-internal protocol ParentProtocol: AnyObject { }
-internal protocol ChildProtocol: AnyObject { }
+
+internal protocol ParentProtocol: AnyObject {}
+internal protocol ChildProtocol: AnyObject {}
 
 internal class Parent: ParentProtocol {
     var child: ChildProtocol?
 
-    init() {
-    }
+    init() {}
 
     init(child: ChildProtocol) {
         self.child = child
@@ -28,16 +24,16 @@ internal class Child: ChildProtocol {
 }
 
 // MARK: - Circular dependency of more than two objects
-internal protocol A: AnyObject { }
-internal protocol B: AnyObject { }
-internal protocol C: AnyObject { }
-internal protocol D: AnyObject { }
+
+internal protocol A: AnyObject {}
+internal protocol B: AnyObject {}
+internal protocol C: AnyObject {}
+internal protocol D: AnyObject {}
 
 internal class ADependingOnB: A {
     var b: B?
 
-    init() {
-    }
+    init() {}
 
     init(b: B) {
         self.b = b
@@ -47,8 +43,7 @@ internal class ADependingOnB: A {
 internal class BDependingOnC: B {
     var c: C?
 
-    init() {
-    }
+    init() {}
 
     init(c: C) {
         self.c = c
@@ -59,8 +54,7 @@ internal class CDependingOnAD: C {
     weak var a: A?
     var d: D?
 
-    init() {
-    }
+    init() {}
 
     init(d: D) {
         self.d = d

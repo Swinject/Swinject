@@ -1,14 +1,10 @@
 //
-//  SynchronizedResolverSpec.swift
-//  Swinject
-//
-//  Created by Yoichi Tagaya on 11/23/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 import Dispatch
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 class SynchronizedResolverSpec: QuickSpec {
@@ -44,11 +40,12 @@ class SynchronizedResolverSpec: QuickSpec {
                     }
                     let parentResolver = parentContainer.synchronize()
                     let childResolver = Container(parent: parentContainer).synchronize()
-
+                    // swiftlint:disable opening_brace
                     onMultipleThreads(actions: [
-                        { _ = parentResolver.resolve(Animal.self) as! Cat },    // swiftlint:disable:this opening_brace
-                        { _ = childResolver.resolve(Animal.self) as! Cat }
+                        { _ = parentResolver.resolve(Animal.self) as! Cat },
+                        { _ = childResolver.resolve(Animal.self) as! Cat },
                     ])
+                    // swiftlint:enable opening_brace
                 }
 
                 runInObjectScope(.transient)
@@ -73,7 +70,7 @@ class SynchronizedResolverSpec: QuickSpec {
             it("can make it without deadlock") {
                 let container = Container()
                 let threadSafeResolver = container.synchronize()
-                container.register(ChildProtocol.self) { _ in  Child() }
+                container.register(ChildProtocol.self) { _ in Child() }
                 container.register(ParentProtocol.self) { _ in
                     Parent(child: threadSafeResolver.resolve(ChildProtocol.self)!)
                 }
@@ -92,7 +89,7 @@ class SynchronizedResolverSpec: QuickSpec {
     }
 }
 
-fileprivate final class Counter {
+private final class Counter {
     enum Status {
         case underMax, reachedMax
     }
@@ -131,7 +128,7 @@ private func onMultipleThreads(actions: [() -> Void]) {
             attributes: .concurrent
         )
         let counter = Counter(max: actions.count * totalThreads)
-        for _ in 0..<totalThreads {
+        for _ in 0 ..< totalThreads {
             actions.forEach { action in
                 queue.async {
                     action()

@@ -1,13 +1,9 @@
 //
-//  ProviderSpec.swift
-//  Swinject
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
-//  Created by Jakub Vaňo on 07/03/2018.
-//  Copyright © 2018 Swinject Contributors. All rights reserved.
-// swiftlint:disable function_body_length
 
-import Quick
 import Nimble
+import Quick
 import Swinject
 
 class ProviderSpec: QuickSpec {
@@ -80,7 +76,7 @@ class ProviderSpec: QuickSpec {
         }
         describe("complex registrations") {
             it("resolves provider with arguments") {
-                container.register(Dog.self) { (_, name, _: Int) in  Dog(name: name) }
+                container.register(Dog.self) { (_, name, _: Int) in Dog(name: name) }
                 let provider = container.resolve(Provider<Dog>.self, arguments: "Hachi", 42)
                 expect(provider?.instance.name) == "Hachi"
             }

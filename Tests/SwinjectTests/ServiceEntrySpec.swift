@@ -1,19 +1,15 @@
 //
-//  ServiceEntrySpec.swift
-//  Swinject
-//
-//  Created by Yoichi Tagaya on 7/29/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 class ServiceEntrySpec: QuickSpec {
     override func spec() {
         it("has ObjectScope.graph as a default value of scope property.") {
-            let entry = ServiceEntry(serviceType: Int.self, argumentsType: Any.self, factory: { return 0 })
+            let entry = ServiceEntry(serviceType: Int.self, argumentsType: Any.self, factory: { 0 })
             expect(entry.objectScope) === ObjectScope.graph
         }
 
@@ -21,7 +17,7 @@ class ServiceEntrySpec: QuickSpec {
             let entry = ServiceEntry(
                 serviceType: Int.self,
                 argumentsType: Any.self,
-                factory: { return 0 },
+                factory: { 0 },
                 objectScope: .weak
             )
             expect(entry.objectScope) === ObjectScope.weak

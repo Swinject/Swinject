@@ -1,0 +1,40 @@
+name: Swinject
+options:
+  usesTabs: false
+  indentWidth: 4
+  tabWidth: 4
+  deploymentTarget:
+    macOS: '10.10'
+    tvOS: '9.0'
+    iOS: '8.0'
+    watchOS: '2.0'
+targets:
+  Swinject:
+    type: framework
+    platform: [macOS, iOS, tvOS, watchOS]
+    platformSuffix: -${platform}
+    scheme:
+      testTargets:
+        - SwinjectTests-${platform}
+    sources:
+      - path: Sources
+        excludes: ["*.erb"]
+    postCompileScripts:
+      - script: >
+          if which swiftlint >/dev/null; then
+            swiftlint
+          else
+            echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
+          fi
+        name: Swiftlint
+  SwinjectTests:
+    type: bundle.unit-test
+    platform: [macOS, iOS, tvOS, watchOS]
+    platformSuffix: -${platform}
+    scheme: {}
+    sources:
+      - Tests/SwinjectTests
+    dependencies:
+      - target: Swinject-${platform}
+      - carthage: Quick
+      - carthage: Nimble

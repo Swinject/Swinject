@@ -7,7 +7,7 @@ git:
   submodules: false
 matrix:
   include:
-    - env: JOB="LINUX_SPM"
+    - env: JOB="LINUX_SPM" SWIFT_VERSION="5.0"
       os: linux
       language: generic
       sudo: required
@@ -15,43 +15,28 @@ matrix:
       before_install:
         - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
       script:
-        - mv .Package.test.swift Package.swift
+        - mv .Package.Test.swift Package.swift
         - swift build
         - swift test
     - env: JOB="POD_LINT"
-      osx_image: xcode10
+      osx_image: xcode10.2
+      before_install:
       script:
-        - bundle exec pod lib lint
-    - env: JOB="XCODE" DEST="OS=9.3,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
-      osx_image: xcode10
-    - env: JOB="XCODE" DEST="OS=10.3.1,name=iPhone 7 Plus" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
-      osx_image: xcode10
-    - env: JOB="XCODE" DEST="OS=11.2,name=iPhone 8 Plus" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
-      osx_image: xcode10
-    - env: JOB="XCODE" DEST="OS=12.2,name=iPhone X" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test"
+        - pod lib lint
+    - env: JOB="XCODE" DEST="OS=10.0,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
       osx_image: xcode10.2
-    - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-OSX" SDK="macosx" ACTION="test"
-      osx_image: xcode10
-    - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-OSX" SDK="macosx" ACTION="test"
+    - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-macOS" SDK="macosx" ACTION="test" PLATFORM="OSX"
       osx_image: xcode10.2
-    - env: JOB="XCODE" DEST="OS=9.2,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test"
-      osx_image: xcode10
-    - env: JOB="XCODE" DEST="OS=10.2,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test"
-      osx_image: xcode10
-    - env: JOB="XCODE" DEST="OS=11.0,name=Apple TV 4K" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test"
-      osx_image: xcode10
-    - env: JOB="XCODE" DEST="OS=2.2,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build"
-      osx_image: xcode10
-    - env: JOB="XCODE" DEST="OS=3.2,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build"
-      osx_image: xcode10
-    - env: JOB="XCODE" DEST="OS=4.0,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build"
-      osx_image: xcode10
+    - env: JOB="XCODE" DEST="OS=10.0,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test" PLATFORM="tvOS"
+      osx_image: xcode10.2
+    - env: JOB="XCODE" DEST="OS=2.2,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build" PLATFORM="watchOS"
+      osx_image: xcode10.2
 
 before_install:
-  - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.28.0/Carthage.pkg
+  - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.33.0/Carthage.pkg
   - sudo installer -pkg Carthage.pkg -target /
   - rm Carthage.pkg
-  - carthage bootstrap --verbose
+  - carthage bootstrap --verbose --platform $PLATFORM
 script:
   - set -o pipefail
   - xcodebuild "$ACTION" -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DEST" -configuration Release ENABLE_TESTABILITY=YES | xcpretty

@@ -1,0 +1,4 @@
+--swiftversion 5.0
+--exclude .Package.Test.swift
+--exclude Package.swift
+--header "\n Copyright © {created.year} Swinject Contributors. All rights reserved.\n"

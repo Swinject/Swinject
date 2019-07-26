@@ -1,9 +1,5 @@
 //
-//  InstanceStorage.swift
-//  Swinject
-//
-//  Created by Jakub Vaňo on 11/11/16.
-//  Copyright © 2016 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 /// Storage provided by `ObjectScope`. It is used by `Container` to persist resolved instances.
@@ -54,7 +50,7 @@ public final class PermanentStorage: InstanceStorage {
 public final class TransientStorage: InstanceStorage {
     public var instance: Any? {
         get { return nil }
-        set {}
+        set {} // swiftlint:disable:this unused_setter_value
     }
 
     public init() {}
@@ -70,7 +66,7 @@ public final class WeakStorage: InstanceStorage {
         set { _instance.value = newValue }
     }
 
-    public init () {}
+    public init() {}
 }
 
 /// Combines the behavior of multiple instance storages.
@@ -81,9 +77,9 @@ public final class CompositeStorage: InstanceStorage {
     public var instance: Any? {
         get {
             #if swift(>=4.1)
-                return components.compactMap { $0.instance } .first
+                return components.compactMap { $0.instance }.first
             #else
-                return components.flatMap { $0.instance } .first
+                return components.flatMap { $0.instance }.first
             #endif
         }
         set { components.forEach { $0.instance = newValue } }
@@ -103,9 +99,9 @@ public final class CompositeStorage: InstanceStorage {
 
     public func instance(inGraph graph: GraphIdentifier) -> Any? {
         #if swift(>=4.1)
-            return components.compactMap { $0.instance(inGraph: graph) } .first
+            return components.compactMap { $0.instance(inGraph: graph) }.first
         #else
-            return components.flatMap { $0.instance(inGraph: graph) } .first
+            return components.flatMap { $0.instance(inGraph: graph) }.first
         #endif
     }
 }
@@ -113,21 +109,22 @@ public final class CompositeStorage: InstanceStorage {
 private class Weak<Wrapped> {
     private weak var object: AnyObject?
 
-#if os(Linux)
-    var value: Wrapped? {
-        get {
-            guard let object = object else { return nil }
-            return object as? Wrapped
+    #if os(Linux)
+        var value: Wrapped? {
+            get {
+                guard let object = object else { return nil }
+                return object as? Wrapped
+            }
+            set { object = newValue.flatMap { $0 as? AnyObject } }
         }
-        set { object = newValue.flatMap { $0 as? AnyObject } }
-    }
-#else
-    var value: Wrapped? {
-        get {
-            guard let object = object else { return nil }
-            return object as? Wrapped
+
+    #else
+        var value: Wrapped? {
+            get {
+                guard let object = object else { return nil }
+                return object as? Wrapped
+            }
+            set { object = newValue as AnyObject? }
         }
-        set { object = newValue as AnyObject? }
-    }
-#endif
+    #endif
 }

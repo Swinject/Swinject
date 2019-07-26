@@ -1,15 +1,10 @@
 //
-//  ObjectScope.swift
-//  Swinject
-//
-//  Created by Yoichi Tagaya on 7/24/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 /// A configuration how an instance provided by a `Container` is shared in the system.
 /// The configuration is ignored if it is applied to a value type.
 public protocol ObjectScopeProtocol: AnyObject {
-
     /// Used to create `InstanceStorage` to persist an instance for single service.
     /// Will be invoked once for each service registered in given scope.
     func makeStorage() -> InstanceStorage
@@ -17,7 +12,6 @@ public protocol ObjectScopeProtocol: AnyObject {
 
 /// Basic implementation of `ObjectScopeProtocol`.
 public class ObjectScope: ObjectScopeProtocol, CustomStringConvertible {
-
     public private(set) var description: String
     private var storageFactory: () -> InstanceStorage
     private let parent: ObjectScopeProtocol?

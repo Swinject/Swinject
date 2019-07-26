@@ -1,14 +1,9 @@
 //
-//  ContainerSpec.CustomStringConvertible.swift
-//  Swinject
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
-//  Created by Jakub Vaňo on 13/06/2017.
-//  Copyright © 2017 Swinject Contributors. All rights reserved.
-//
-// swiftlint:disable function_body_length
 
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 class ContainerSpec_CustomStringConvertible: QuickSpec {

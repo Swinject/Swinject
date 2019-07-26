@@ -1,14 +1,9 @@
 //
-//  ContainerSpec.TypeForwarding.swift
-//  Swinject
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
-//  Created by Jakub Vaňo on 15/02/2018.
-//  Copyright © 2018 Swinject Contributors. All rights reserved.
-//
-// swiftlint:disable function_body_length
 
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 class ContainerSpec_TypeForwarding: QuickSpec {

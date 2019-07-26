@@ -1,9 +1,5 @@
 //
-//  Container.TypeForwarding.swift
-//  Swinject
-//
-//  Created by Jakub Vaňo on 15/02/2018.
-//  Copyright © 2018 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 extension Container {

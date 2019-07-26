@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "98689C7E1BBFC7A50005C6D3"
+               BlueprintIdentifier = "FFB12C2BA1D9FE458CAE83D0"
                BuildableName = "Swinject.framework"
                BlueprintName = "Swinject-tvOS"
                ReferencedContainer = "container:Swinject.xcodeproj">
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "98689C871BBFC7A60005C6D3"
+               BlueprintIdentifier = "A79AFABFABCB5B9F43418836"
                BuildableName = "SwinjectTests.xctest"
-               BlueprintName = "Swinject-tvOSTests"
+               BlueprintName = "SwinjectTests-tvOS"
                ReferencedContainer = "container:Swinject.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,14 +42,18 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98689C7E1BBFC7A50005C6D3"
+            BlueprintIdentifier = "FFB12C2BA1D9FE458CAE83D0"
             BuildableName = "Swinject.framework"
             BlueprintName = "Swinject-tvOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <CommandLineArguments>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
+      <CodeCoverageTargets>
+      </CodeCoverageTargets>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -64,12 +68,14 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98689C7E1BBFC7A50005C6D3"
+            BlueprintIdentifier = "FFB12C2BA1D9FE458CAE83D0"
             BuildableName = "Swinject.framework"
             BlueprintName = "Swinject-tvOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <CommandLineArguments>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -79,15 +85,18 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98689C7E1BBFC7A50005C6D3"
+            BlueprintIdentifier = "FFB12C2BA1D9FE458CAE83D0"
             BuildableName = "Swinject.framework"
             BlueprintName = "Swinject-tvOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
+      <CommandLineArguments>
+      </CommandLineArguments>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

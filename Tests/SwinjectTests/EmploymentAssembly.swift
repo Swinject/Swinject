@@ -1,9 +1,5 @@
 //
-//  Employment.swift
-//  Swinject
-//
-//  Created by Jakub Vaňo on 14/03/2018.
-//  Copyright © 2018 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 import Swinject

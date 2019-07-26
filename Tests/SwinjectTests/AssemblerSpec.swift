@@ -1,25 +1,18 @@
 //
-//  AssemblerSpec.swift
-//  Swinject
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
-//  Created by mike.owens on 12/9/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
-//
-// swiftlint:disable function_body_length
-// swiftlint:disable type_body_length
 
 import Foundation
-import Quick
 import Nimble
+import Quick
 @testable import Swinject
 
 class AssemblerSpec: QuickSpec {
     override func spec() {
-
         describe("Assembler basic init") {
             it("can assembly a single container") {
                 let assembler = Assembler([
-                    AnimalAssembly()
+                    AnimalAssembly(),
                 ])
                 let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
@@ -38,7 +31,7 @@ class AssemblerSpec: QuickSpec {
 
             it("can assembly a container with nil parent and assemblies") {
                 let assembler = Assembler([
-                    AnimalAssembly()
+                    AnimalAssembly(),
                 ], parent: nil)
                 let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
@@ -71,7 +64,7 @@ class AssemblerSpec: QuickSpec {
             it("can assembly a multiple container") {
                 let assembler = Assembler([
                     AnimalAssembly(),
-                    FoodAssembly()
+                    FoodAssembly(),
                 ])
                 let cat = assembler.resolver.resolve(Animal.self)
                 expect(cat).toNot(beNil())
@@ -86,7 +79,7 @@ class AssemblerSpec: QuickSpec {
                 let assembler = Assembler([
                     AnimalAssembly(),
                     FoodAssembly(),
-                    PersonAssembly()
+                    PersonAssembly(),
                 ])
                 let petOwner = assembler.resolver.resolve(PetOwner.self)
                 expect(petOwner).toNot(beNil())
@@ -104,7 +97,7 @@ class AssemblerSpec: QuickSpec {
                 let assembler = Assembler([
                     PersonAssembly(),
                     AnimalAssembly(),
-                    FoodAssembly()
+                    FoodAssembly(),
                 ])
                 let petOwner = assembler.resolver.resolve(PetOwner.self)
                 expect(petOwner).toNot(beNil())
@@ -185,7 +178,7 @@ class AssemblerSpec: QuickSpec {
 
                 assembler.apply(assemblies: [
                     AnimalAssembly(),
-                    FoodAssembly()
+                    FoodAssembly(),
                 ])
 
                 cat = assembler.resolver.resolve(Animal.self)
@@ -207,7 +200,7 @@ class AssemblerSpec: QuickSpec {
 
                 expect(loadAwareAssembly.loaded) == false
                 let assembler = Assembler([
-                    loadAwareAssembly
+                    loadAwareAssembly,
                 ])
                 expect(loadAwareAssembly.loaded) == true
 
@@ -229,7 +222,7 @@ class AssemblerSpec: QuickSpec {
                 expect(loadAwareAssembly.loaded) == false
                 let assembler = Assembler([
                     loadAwareAssembly,
-                    FoodAssembly()
+                    FoodAssembly(),
                 ])
                 expect(loadAwareAssembly.loaded) == true
 
@@ -260,7 +253,7 @@ class AssemblerSpec: QuickSpec {
         describe("Child Assembler") {
             it("can be empty") {
                 let assembler = Assembler([
-                    AnimalAssembly()
+                    AnimalAssembly(),
                 ])
 
                 let childAssembler = Assembler(parentAssembler: assembler)
@@ -281,7 +274,7 @@ class AssemblerSpec: QuickSpec {
             it("can't give entities to parent") {
                 let assembler = Assembler()
                 let childAssembler = Assembler([
-                    AnimalAssembly()
+                    AnimalAssembly(),
                 ], parent: assembler)
 
                 let cat = assembler.resolver.resolve(Animal.self)

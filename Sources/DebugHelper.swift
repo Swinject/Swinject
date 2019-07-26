@@ -1,9 +1,5 @@
 //
-//  DebugHelper.swift
-//  Swinject
-//
-//  Created by Jakub Vaňo on 26/09/16.
-//  Copyright © 2016 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 internal protocol DebugHelper {
@@ -15,7 +11,6 @@ internal protocol DebugHelper {
 }
 
 internal final class LoggingDebugHelper: DebugHelper {
-
     func resolutionFailed<Service>(
         serviceType: Service.Type,
         key: ServiceKey,
@@ -24,7 +19,7 @@ internal final class LoggingDebugHelper: DebugHelper {
         var output = [
             "Swinject: Resolution failed. Expected registration:",
             "\t{ \(description(serviceType: serviceType, serviceKey: key)) }",
-            "Available registrations:"
+            "Available registrations:",
         ]
         output += availableRegistrations
             .filter { $0.1 is ServiceEntry<Service> }

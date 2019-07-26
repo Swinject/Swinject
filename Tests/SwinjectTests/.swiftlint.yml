@@ -1,0 +1,10 @@
+exclued:
+  - SwinjectTests
+disabled_rules:
+  - force_cast
+  - type_name
+  - trailing_comma
+  - function_body_length
+  - type_body_length
+  - identifier_name
+
