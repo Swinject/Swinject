@@ -5,10 +5,12 @@
 import Nimble
 import Quick
 import Swinject
+@testable import class Swinject.UnboundScope
 
 class SwinjectApiSpec: QuickSpec { override func spec() {
     var human = Human()
     beforeEach {
+        UnboundScope.root.close()
         human = Human()
     }
     it("returns instance if is bound") {
@@ -176,9 +178,8 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         expect(closable?.closeCalled) == true
     }
     it("can bind weakly referenced singleton") {
-        let scope = UnboundScope()
         let swinject = Swinject {
-            bbind(Human.self) & scoped(scope).singleton(ref: weakRef) { Human() }
+            bbind(Human.self) & singleton(ref: weakRef) { Human() }
         }
         weak var first = try? swinject.instance() as Human
         expect(first).to(beNil())
