@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6CB7C69696321C41B2E5402"
-               BuildableName = "SwinjectTests.xctest"
-               BlueprintName = "SwinjectTests_tvOS"
+               BlueprintIdentifier = "D89E5CC45F90DF6490FB29BE"
+               BuildableName = "Swinject.framework"
+               BlueprintName = "Swinject-macOS"
                ReferencedContainer = "container:Swinject.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,13 +28,23 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "19003555F5BD009DD25F895B"
+               BuildableName = "SwinjectTests.xctest"
+               BlueprintName = "SwinjectTests-macOS"
+               ReferencedContainer = "container:Swinject.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E6CB7C69696321C41B2E5402"
-            BuildableName = "SwinjectTests.xctest"
-            BlueprintName = "SwinjectTests_tvOS"
+            BlueprintIdentifier = "D89E5CC45F90DF6490FB29BE"
+            BuildableName = "Swinject.framework"
+            BlueprintName = "Swinject-macOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,16 +65,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E6CB7C69696321C41B2E5402"
-            BuildableName = "SwinjectTests.xctest"
-            BlueprintName = "SwinjectTests_tvOS"
+            BlueprintIdentifier = "D89E5CC45F90DF6490FB29BE"
+            BuildableName = "Swinject.framework"
+            BlueprintName = "Swinject-macOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <CommandLineArguments>
       </CommandLineArguments>
       <AdditionalOptions>
@@ -80,9 +89,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E6CB7C69696321C41B2E5402"
-            BuildableName = "SwinjectTests.xctest"
-            BlueprintName = "SwinjectTests_tvOS"
+            BlueprintIdentifier = "D89E5CC45F90DF6490FB29BE"
+            BuildableName = "Swinject.framework"
+            BlueprintName = "Swinject-macOS"
             ReferencedContainer = "container:Swinject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

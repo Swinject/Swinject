@@ -1,4 +1,3 @@
-// swiftformat:disable fileHeader
 // swift-tools-version:5.0
 
 import PackageDescription
