@@ -208,7 +208,8 @@ class SwinjectSpec: QuickSpec { override func spec() {
             binding.matchesReturnValue = true
             binding.instanceArgContextResolverReturnValue = 42
             _ = try? swinject.factory(of: Int.self)("arg")
-            expect(binding.instanceArgContextResolverReceivedArguments?.arg as? ArgumentBox1<String>) == box("arg")
+            let argument = binding.instanceArgContextResolverReceivedArguments?.arg as? ArgumentBox1<String>
+            expect(argument?.arg1) == "arg"
         }
         it("matches binding with correct key") {
             binding.matchesReturnValue = false
@@ -233,36 +234,36 @@ class SwinjectSpec: QuickSpec { override func spec() {
             }
             it("can curry 2-tuple as 0 / 2 argument") {
                 _ = try? swinject.factory()("arg1", "arg2") as Int
-                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, String)
-                expect(receivedArg?.0) == "arg1"
-                expect(receivedArg?.1) == "arg2"
+                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? ArgumentBox2<String, String>
+                expect(receivedArg?.arg1) == "arg1"
+                expect(receivedArg?.arg2) == "arg2"
             }
             it("can curry 2-tuple as 1 / 1 argument") {
                 _ = try? swinject.factory(arg: "arg1")("arg2") as Int
-                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, String)
-                expect(receivedArg?.0) == "arg1"
-                expect(receivedArg?.1) == "arg2"
+                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? ArgumentBox2<String, String>
+                expect(receivedArg?.arg1) == "arg1"
+                expect(receivedArg?.arg2) == "arg2"
             }
             it("can curry 3-tuple as 0 / 3 argument") {
                 _ = try? swinject.factory()("arg1", 2, "arg3") as Int
-                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, Int, String)
-                expect(receivedArg?.0) == "arg1"
-                expect(receivedArg?.1) == 2
-                expect(receivedArg?.2) == "arg3"
+                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? ArgumentBox3<String, Int, String>
+                expect(receivedArg?.arg1) == "arg1"
+                expect(receivedArg?.arg2) == 2
+                expect(receivedArg?.arg3) == "arg3"
             }
             it("can curry 3-tuple as 1 / 2 argument") {
                 _ = try? swinject.factory(arg: "arg1")(2, "arg3") as Int
-                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, Int, String)
-                expect(receivedArg?.0) == "arg1"
-                expect(receivedArg?.1) == 2
-                expect(receivedArg?.2) == "arg3"
+                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? ArgumentBox3<String, Int, String>
+                expect(receivedArg?.arg1) == "arg1"
+                expect(receivedArg?.arg2) == 2
+                expect(receivedArg?.arg3) == "arg3"
             }
             it("can curry 3-tuple as 2 / 1 argument") {
-                _ = try? swinject.factory(args: "arg1", 2)("arg3") as Int
-                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? (String, Int, String)
-                expect(receivedArg?.0) == "arg1"
-                expect(receivedArg?.1) == 2
-                expect(receivedArg?.2) == "arg3"
+                _ = try? swinject.factory(arg: pack("arg1", 2))("arg3") as Int
+                let receivedArg = binding.instanceArgContextResolverReceivedArguments?.arg as? ArgumentBox3<String, Int, String>
+                expect(receivedArg?.arg1) == "arg1"
+                expect(receivedArg?.arg2) == 2
+                expect(receivedArg?.arg3) == "arg3"
             }
         }
     }

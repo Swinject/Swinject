@@ -1,50 +1,88 @@
-<% let arg_count = 5 %>
-// sourcery:inline:ResolverInjectionApi
-public extension Resolver {
-    func instance<Type>(of _: Type.Type = Type.self) throws -> Type {
-        try resolve(request(tag: NoTag(), arg: ()))
+<%_
+let maxArgs = 5
+
+struct Variation {
+    let isTagged: Bool
+    let paramArgs: Int
+    let factoryArgs: Int
+    let isMatchable: Bool
+
+    var args: Int { return paramArgs + factoryArgs }
+
+    static let simpleCases = [false, true]
+        .flatMap { b in [0, 1].map { (b, $0) } }
+        .flatMap { t in [false, true].map { (t.0, t.1, $0) } }
+        .filter { $0.1 == 1 || $0.2 }
+        .map { Variation(isTagged: $0.0, paramArgs: $0.1, factoryArgs: 0, isMatchable: $0.2) }
+
+    static let factoryCases = [false, true]
+           .flatMap { b in (1...maxArgs).map { (b, $0) } }
+           .flatMap { t in (0..<t.1).map { (t.0, $0, t.1 - $0) } }
+           .flatMap { t in [false, true].map { (t.0, t.1, t.2, $0) } }
+           .map { Variation(isTagged: $0.0, paramArgs: $0.1, factoryArgs: $0.2, isMatchable: $0.3)  }
+}
+
+extension Variation {
+    var genericTypes: String {[
+        "Type",
+        isTagged ? "Tag" : nil,
+        args > 0 ? (1...args).map { "Arg\($0)" }.joined(separator: ", ") : nil
+    ].compactMap { $0 }.joined(separator: ", ") }
+
+    var params: String {[
+        "of _: Type.Type = Type.self",
+        isTagged ? "tagged tag: Tag" : nil,
+        paramArgs == 1 ? "arg: Arg1" : nil,
+        paramArgs > 1  && !isMatchable ? ("arg: (" + (1...paramArgs).map { "Arg\($0)" }.joined(separator: ", ") + ")") : nil,
+        paramArgs > 1  && isMatchable ? ("arg: ArgumentBox\(paramArgs)<" + (1...paramArgs).map { "Arg\($0)" }.joined(separator: ", ") + ">") : nil
+    ].compactMap { $0 }.joined(separator: ", ") }
+
+    var factoryInputs: String {
+        (1...factoryArgs).map { "Arg\($0 + paramArgs)" }.joined(separator: ", ")
     }
 
-    func instance<Type, Tag: Hashable>(of _: Type.Type = Type.self, tagged tag: Tag) throws -> Type {
-        try resolve(request(tag: tag, arg: ()))
+    var constraints: String {[
+        isTagged ? "Tag: Hashable" : nil,
+        isMatchable && args > 0 ? (1...args).map { "Arg\($0): Hashable" }.joined(separator: ", ") : nil
+    ].compactMap { $0 }.joined(separator: ", ") }
+
+    var whereClause: String { constraints.isEmpty ? "" : "where " + constraints }
+
+    var requestParams: String {
+        let paramVars = paramArgs == 1 ? ["arg"] : (0..<paramArgs).map { isMatchable ? "arg.arg\($0+1)" : "arg.\($0)" }
+        let factoryVars = (0..<factoryArgs).map { "$\($0)" }
+        return [
+            isTagged ? "tag: tag" : "tag: NoTag()",
+            args == 0 ? "arg: ()" : "arg: pack(\((paramVars + factoryVars).joined(separator: ", ")))",
+        ].compactMap { $0 }.joined(separator: ", ")
     }
-<%_ (1...arg_count).forEach { i in
-    let arg_types = (1...i).map { "Arg\($0)" }.joined(separator: ", ")
-    let arg_vars = (1...i).map { "arg\($0)" }.joined(separator: ", ")
-    let arg_params = (1...i).map { "arg\($0): Arg\($0)" }.joined(separator: ", _ ")
+}
 -%>
-
-    func instance<Type, <%= arg_types %>>(of _: Type.Type = Type.self, arg <%= arg_params %>) throws -> Type {
-        try resolve(request(tag: NoTag(), arg: (<%= arg_vars %>)))
+// sourcery:inline:ResolverInjectionApi
+extension Resolver {
+<%_ Variation.simpleCases.forEach { v in -%>
+    func instance<<%= v.genericTypes %>>(<%= v.params %>) throws -> Type <%= v.whereClause %>{
+        try resolve(request(<%= v.requestParams %>))
     }
 
-    func instance<Type, Tag: Hashable, <%= arg_types %>>(of _: Type.Type = Type.self, tagged tag: Tag, arg <%= arg_params %>) throws -> Type {
-        try resolve(request(tag: tag, arg: (<%= arg_vars %>)))
-    }
 <%_ } -%>
 }
 
-public extension Resolver {
-    func provider<Type>(of _: Type.Type = Type.self) -> () throws -> Type {
-        return { try self.resolve(request(tag: NoTag(), arg: ())) }
+extension Resolver {
+<%_ Variation.simpleCases.forEach { v in -%>
+    func provider<<%= v.genericTypes %>>(<%= v.params %>) -> () throws -> Type <%= v.whereClause %>{
+        return { try self.resolve(request(<%= v.requestParams %>)) }
     }
 
-    func provider<Type, Tag: Hashable>(of _: Type.Type = Type.self, tagged tag: Tag) -> () throws -> Type {
-        return { try self.resolve(request(tag: tag, arg: ())) }
-    }
-<%_ (1...arg_count).forEach { i in
-    let arg_types = (1...i).map { "Arg\($0)" }.joined(separator: ", ")
-    let arg_vars = (1...i).map { "arg\($0)" }.joined(separator: ", ")
-    let arg_params = (1...i).map { "arg\($0): Arg\($0)" }.joined(separator: ", _ ")
--%>
+<%_ } -%>
+}
 
-    func provider<Type, <%= arg_types %>>(of _: Type.Type = Type.self, arg <%= arg_params %>) -> () throws -> Type {
-        return { try self.resolve(request(tag: NoTag(), arg: (<%= arg_vars %>))) }
+extension Resolver {
+<%_ Variation.factoryCases.forEach { v in -%>
+    func factory<<%= v.genericTypes %>>(<%= v.params %>) -> (<%= v.factoryInputs %>) throws -> Type <%= v.whereClause %>{
+        return { try self.resolve(request(<%= v.requestParams %>)) }
     }
 
-    func provider<Type, Tag: Hashable, <%= arg_types %>>(of _: Type.Type = Type.self, tagged tag: Tag, arg <%= arg_params %>) -> () throws -> Type {
-        return { try self.resolve(request(tag: tag, arg: (<%= arg_vars %>))) }
-    }
 <%_ } -%>
 }
 // sourcery:end

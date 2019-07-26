@@ -106,7 +106,7 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         }
         expect { try swinject.factory(of: Int.self)(11, 14.0, "17") } == 42
         expect { try swinject.factory(of: Int.self, arg: 11)(14.0, "17") } == 42
-        expect { try swinject.factory(of: Int.self, args: 11, 14.0)("17") } == 42
+        expect { try swinject.factory(of: Int.self, arg: pack(11, 14.0))("17") } == 42
     }
     it("can pass context to the bindings") {
         // FIXME: compiler segfaults if declaring these providers inside function builder
