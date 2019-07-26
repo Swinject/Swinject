@@ -8,7 +8,7 @@ import Quick
 
 class StandardScopeRegistrySpec: QuickSpec { override func spec() {
     var registry: StandardScopeRegistry!
-    let key = (1 ... 5).map { ScopeRegistryKey(descriptor: plain(Int.self), argument: AnyMatchable($0)) }
+    let key = (1 ... 5).map { ScopeRegistryKey(descriptor: tagged(Int.self, with: $0), argument: ()) }
     var closable = [ClosableMock]()
     beforeEach {
         closable = (1 ... 3).map { _ in ClosableMock() }

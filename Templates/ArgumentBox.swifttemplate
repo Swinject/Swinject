@@ -1,0 +1,12 @@
+<% let arg_count = 5 %>
+// sourcery:inline:ArgumentBox
+<%_ (1...arg_count).forEach { i in
+    let arg_types = (1...i).map { "Arg\($0)" }.joined(separator: ", ")
+    let arg_hashables = (1...i).map { "Arg\($0): Hashable" }.joined(separator: ", ")
+-%>
+struct ArgumentBox<%= i %><<%= arg_types %>>: Hashable, Matchable where <%= arg_hashables %>{
+    <%= (1...i).map { "let arg\($0): Arg\($0)" }.joined(separator: "\n    ") %>
+}
+
+<%_ } -%>
+// sourcery:end

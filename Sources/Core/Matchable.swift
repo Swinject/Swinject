@@ -8,31 +8,42 @@ public protocol Matchable {
     func hash(into hasher: inout Hasher)
 }
 
-// TODO: Box / Unbox internally all the arguments
-struct AnyMatchable: Matchable, Hashable {
-    let value: Any
-    private let matchesValue: (Any) -> Bool
-    private let hashValueInto: (inout Hasher) -> Void
-
-    init<T: Hashable>(_ value: T) {
-        self.value = value
-        matchesValue = { $0 as? T == value }
-        hashValueInto = { value.hash(into: &$0) }
-    }
-
+public extension Matchable where Self: Equatable {
     func matches(_ other: Any) -> Bool {
-        if let other = other as? AnyMatchable {
-            return matchesValue(other.value)
-        } else {
-            return false
-        }
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hashValueInto(&hasher)
-    }
-
-    static func == (lhs: AnyMatchable, rhs: AnyMatchable) -> Bool {
-        lhs.matches(rhs.value)
+        self == (other as? Self)
     }
 }
+
+// swiftlint:disable line_length
+// sourcery:inline:ArgumentBox
+struct ArgumentBox1<Arg1>: Hashable, Matchable where Arg1: Hashable {
+    let arg1: Arg1
+}
+
+struct ArgumentBox2<Arg1, Arg2>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable {
+    let arg1: Arg1
+    let arg2: Arg2
+}
+
+struct ArgumentBox3<Arg1, Arg2, Arg3>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable {
+    let arg1: Arg1
+    let arg2: Arg2
+    let arg3: Arg3
+}
+
+struct ArgumentBox4<Arg1, Arg2, Arg3, Arg4>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable {
+    let arg1: Arg1
+    let arg2: Arg2
+    let arg3: Arg3
+    let arg4: Arg4
+}
+
+struct ArgumentBox5<Arg1, Arg2, Arg3, Arg4, Arg5>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable, Arg5: Hashable {
+    let arg1: Arg1
+    let arg2: Arg2
+    let arg3: Arg3
+    let arg4: Arg4
+    let arg5: Arg5
+}
+
+// sourcery:end
