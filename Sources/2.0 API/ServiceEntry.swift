@@ -89,7 +89,7 @@ extension ServiceEntry: Binding {
     }
 
     private var key: BindingKey {
-        BindingKey(
+        return BindingKey(
             descriptor: {
                 if let name = name {
                     return tagged(Service.self, with: name)

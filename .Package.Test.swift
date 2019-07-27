@@ -26,7 +26,9 @@ let package = Package(
                 "Quick",
                 "Nimble",
                 "Swinject",
-            ]
+            ],
+            path: "Tests",
+            exclude: ["LinuxMain.swift"]
         ),
     ]
 )

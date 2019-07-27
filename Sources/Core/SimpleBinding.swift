@@ -9,11 +9,11 @@ struct SimpleBinding {
 
 extension SimpleBinding: Binding {
     func matches(_ key: AnyBindingKey) -> Bool {
-        self.key.matches(key)
+        return self.key.matches(key)
     }
 
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
-        try maker.makeInstance(arg: arg, context: context, resolver: resolver)
+        return try maker.makeInstance(arg: arg, context: context, resolver: resolver)
     }
 }
 
@@ -31,7 +31,7 @@ extension SimpleBinding.Builder: InstanceMaker {
     typealias MadeType = Type
 
     func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
-        try builder(resolver, context, arg)
+        return try builder(resolver, context, arg)
     }
 }
 
@@ -39,7 +39,7 @@ extension SimpleBinding.Builder: BindingMaker {
     typealias BoundType = Type
 
     func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
-        SimpleBinding(
+        return SimpleBinding(
             key: BindingKey(descriptor: descriptor, contextType: Context.self, argumentType: Argument.self),
             maker: self
         )

@@ -29,7 +29,7 @@ struct IdentityTranslator: AnyContextTranslator {
         targetType = contextType
     }
 
-    func translate(_ context: Any) throws -> Any { context }
+    func translate(_ context: Any) throws -> Any { return context }
 }
 
 public func registerContextTranslator<Source, Target>(
@@ -37,5 +37,5 @@ public func registerContextTranslator<Source, Target>(
     to _: Target.Type = Target.self,
     using translation: @escaping (Source) -> Target
 ) -> ContextTranslator<Source, Target> {
-    ContextTranslator(translation: translation)
+    return ContextTranslator(translation: translation)
 }

@@ -10,7 +10,7 @@ public protocol Matchable {
 
 public extension Matchable where Self: Equatable {
     func matches(_ other: Any) -> Bool {
-        self == (other as? Self)
+        return self == (other as? Self)
     }
 }
 
@@ -48,43 +48,43 @@ struct MatchableBox5<Arg1, Arg2, Arg3, Arg4, Arg5>: Hashable, Matchable where Ar
 }
 
 func box<Arg1>(_ arg1: Arg1) -> Arg1 {
-    arg1
+    return arg1
 }
 
 func box<Arg1>(_ arg1: Arg1) -> MatchableBox1<Arg1> where Arg1: Hashable {
-    MatchableBox1(arg1: arg1)
+    return MatchableBox1(arg1: arg1)
 }
 
 func box<Arg1, Arg2>(_ arg1: Arg1, _ arg2: Arg2) -> (Arg1, Arg2) {
-    (arg1, arg2)
+    return (arg1, arg2)
 }
 
 func box<Arg1, Arg2>(_ arg1: Arg1, _ arg2: Arg2) -> MatchableBox2<Arg1, Arg2> where Arg1: Hashable, Arg2: Hashable {
-    MatchableBox2(arg1: arg1, arg2: arg2)
+    return MatchableBox2(arg1: arg1, arg2: arg2)
 }
 
 func box<Arg1, Arg2, Arg3>(_ arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> (Arg1, Arg2, Arg3) {
-    (arg1, arg2, arg3)
+    return (arg1, arg2, arg3)
 }
 
 func box<Arg1, Arg2, Arg3>(_ arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) -> MatchableBox3<Arg1, Arg2, Arg3> where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable {
-    MatchableBox3(arg1: arg1, arg2: arg2, arg3: arg3)
+    return MatchableBox3(arg1: arg1, arg2: arg2, arg3: arg3)
 }
 
 func box<Arg1, Arg2, Arg3, Arg4>(_ arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) -> (Arg1, Arg2, Arg3, Arg4) {
-    (arg1, arg2, arg3, arg4)
+    return (arg1, arg2, arg3, arg4)
 }
 
 func box<Arg1, Arg2, Arg3, Arg4>(_ arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) -> MatchableBox4<Arg1, Arg2, Arg3, Arg4> where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable {
-    MatchableBox4(arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4)
+    return MatchableBox4(arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4)
 }
 
 func box<Arg1, Arg2, Arg3, Arg4, Arg5>(_ arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) -> (Arg1, Arg2, Arg3, Arg4, Arg5) {
-    (arg1, arg2, arg3, arg4, arg5)
+    return (arg1, arg2, arg3, arg4, arg5)
 }
 
 func box<Arg1, Arg2, Arg3, Arg4, Arg5>(_ arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) -> MatchableBox5<Arg1, Arg2, Arg3, Arg4, Arg5> where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable, Arg5: Hashable {
-    MatchableBox5(arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5)
+    return MatchableBox5(arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4, arg5: arg5)
 }
 
 // sourcery:end

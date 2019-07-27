@@ -14,7 +14,7 @@ extension InjectionVariation {
     var args: Int { return paramArgs + factoryArgs }
 
     var genericTypes: String {
-        join(
+        return join(
             "Type",
             isTagged ? "Tag" : nil,
             args > 0 ? join((1 ... args).map { "Arg\($0)" }) : nil
@@ -22,7 +22,7 @@ extension InjectionVariation {
     }
 
     var params: String {
-        join(
+        return join(
             "of _: Type.Type = Type.self",
             isTagged ? "tagged tag: Tag" : nil,
             paramArgs >= 1 ? "arg " + join(separator: ", _ ", (1 ... paramArgs).map { "arg\($0): Arg\($0)" }) : nil
@@ -30,18 +30,18 @@ extension InjectionVariation {
     }
 
     var factoryInputs: String {
-        join((1 ..< factoryArgs + 1).map { "Arg\($0 + paramArgs)" })
+        return join((1 ..< factoryArgs + 1).map { "Arg\($0 + paramArgs)" })
     }
 
     var constraints: String {
-        join(
+        return join(
             isTagged ? "Tag: Hashable" : nil,
             isMatchable && args > 0 ? join((1 ... args).map { "Arg\($0): Hashable" }) : nil
         )
     }
 
     var whereClause: String? {
-        constraints.isEmpty ? nil : "where " + constraints
+        return constraints.isEmpty ? nil : "where " + constraints
     }
 
     var requestParams: String {
@@ -68,14 +68,14 @@ extension InjectionVariation {
     }
 
     var returnDescription: String {
-        join(separator: " ", returnType, whereClause)
+        return join(separator: " ", returnType, whereClause)
     }
 
     var returnStatement: String {
         if isDelayed {
             return "return { try self.resolve(request(\(requestParams))) }"
         } else {
-            return "try resolve(request(\(requestParams)))"
+            return "return try resolve(request(\(requestParams)))"
         }
     }
 }
@@ -103,7 +103,7 @@ extension InjectionVariation {
 
 extension InjectionVariation {
     func render() -> String {
-        """
+        return """
             func \(functionName)<\(genericTypes)>(\(params)) \(returnDescription) {
                 \(returnStatement)
             }

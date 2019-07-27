@@ -9,13 +9,13 @@ import protocol Swinject.TypeDescriptor
 
 // Original Swinject functions conflict with QuickSpec's instance methods
 func bbind<Type>(_: Type.Type) -> TypeBinder<SomeTypeDescriptor<Type>> {
-    bind(Type.self)
+    return bind(Type.self)
 }
 
 func bbind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<SomeTypeDescriptor<Type>> where Tag: Hashable {
-    bind(Type.self, tagged: tag)
+    return bind(Type.self, tagged: tag)
 }
 
 func bbind<Descriptor>(descriptor: Descriptor) -> TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
-    bind(descriptor: descriptor)
+    return bind(descriptor: descriptor)
 }

@@ -10,7 +10,7 @@ public struct Reference<T> {
 public typealias ReferenceMaker<T> = (T) -> Reference<T>
 
 public func strongRef<T>(_ value: T) -> Reference<T> {
-    Reference(currentValue: value, nextValue: { value })
+    return Reference(currentValue: value, nextValue: { value })
 }
 
 public func weakRef<T>(_ value: T) -> Reference<T> {
@@ -21,5 +21,5 @@ public func weakRef<T>(_ value: T) -> Reference<T> {
 }
 
 func noRef<T>(_ value: T) -> Reference<T> {
-    Reference(currentValue: value, nextValue: { nil })
+    return Reference(currentValue: value, nextValue: { nil })
 }

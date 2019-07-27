@@ -15,7 +15,7 @@ public protocol ScopeRegistry {
 
 extension ScopeRegistry {
     func instance(for key: ScopeRegistryKey, builder: () throws -> Reference<Any>) rethrows -> Any {
-        try instance(for: key, builder: builder, finalizer: { _ in })
+        return try instance(for: key, builder: builder, finalizer: { _ in })
     }
 }
 
@@ -30,7 +30,7 @@ public class StandardScopeRegistry: ScopeRegistry, Closable {
         builder: () throws -> Reference<Any>,
         finalizer: (Any) throws -> Void
     ) rethrows -> Any {
-        try lock.sync {
+        return try lock.sync {
             if let instance = instances[key]?() { return instance }
             let ref = try builder()
             if let instance = instances[key]?() { return instance }

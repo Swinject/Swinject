@@ -17,7 +17,7 @@ struct BindingKey: AnyBindingKey {
     let argumentType: Any.Type
 
     func matches(_ other: AnyBindingKey) -> Bool {
-        descriptor.matches(other.descriptor)
+        return descriptor.matches(other.descriptor)
             && (contextType == other.contextType || contextType == Any.self)
             && argumentType == other.argumentType
     }

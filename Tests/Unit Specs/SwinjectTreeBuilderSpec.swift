@@ -6,7 +6,7 @@ import Nimble
 import Quick
 @testable import Swinject
 
-class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
+class SwinjectTreeBuilderSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     describe("allowed syntax") {
         it("builds empty closure") {
             let tree = makeTree {}
@@ -61,17 +61,20 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() {
             expect(tree.translators.count) == 3
         }
     }
+    #endif
 } }
 
-// TODO: Return SwinjectTree directly from builder once full support for @functionBuilder is available
-func makeTree(@SwinjectTreeBuilder builder: () -> [SwinjectEntry]) -> SwinjectTree {
-    SwinjectTreeBuilder.buildFunction(builder())
-}
+#if swift(>=5.1)
+    // TODO: Return SwinjectTree directly from builder once full support for @functionBuilder is available
+    func makeTree(@SwinjectTreeBuilder builder: () -> [SwinjectEntry]) -> SwinjectTree {
+        SwinjectTreeBuilder.buildFunction(builder())
+    }
 
-func makeTree(@SwinjectTreeBuilder builder: () -> SwinjectEntry) -> SwinjectTree {
-    SwinjectTreeBuilder.buildFunction([builder()])
-}
+    func makeTree(@SwinjectTreeBuilder builder: () -> SwinjectEntry) -> SwinjectTree {
+        SwinjectTreeBuilder.buildFunction([builder()])
+    }
 
-func makeTree(@SwinjectTreeBuilder _: () -> Void) -> SwinjectTree {
-    SwinjectTreeBuilder.buildFunction([])
-}
+    func makeTree(@SwinjectTreeBuilder _: () -> Void) -> SwinjectTree {
+        SwinjectTreeBuilder.buildFunction([])
+    }
+#endif

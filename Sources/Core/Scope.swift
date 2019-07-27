@@ -17,7 +17,7 @@ extension Scope {
     public var contextType: Any.Type { return Context.self }
 
     func registry(for context: Any) -> ScopeRegistry {
-        registry(for: context as! Context)
+        return registry(for: context as! Context)
     }
 }
 
@@ -31,7 +31,7 @@ public class UnboundScope: Scope, Closable {
     }
 
     public func registry(for _: Any) -> ScopeRegistry {
-        _registry
+        return _registry
     }
 
     public func close() {

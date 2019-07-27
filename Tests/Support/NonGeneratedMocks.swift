@@ -35,7 +35,7 @@ extension AnyResolverMock: Resolver {
     func resolve<Descriptor, Argument>(
         _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        try resolve(request as Any) as! Descriptor.BaseType
+        return try resolve(request as Any) as! Descriptor.BaseType
     }
 }
 
@@ -63,7 +63,7 @@ extension StaticScopeRegistryMock: ScopeRegistry {
         builder _: () throws -> Reference<Any>,
         finalizer: (Any) throws -> Void
     ) rethrows -> Any {
-        instance(key: key)
+        return instance(key: key)
     }
 }
 
@@ -73,7 +73,7 @@ struct BuilderScopeRegistry: ScopeRegistry {
         builder: () throws -> Reference<Any>,
         finalizer: (Any) throws -> Void
     ) rethrows -> Any {
-        try builder().currentValue
+        return try builder().currentValue
     }
 
     func clear() {}
@@ -82,6 +82,6 @@ struct BuilderScopeRegistry: ScopeRegistry {
 extension BindingMock {
     // swiftlint:disable large_tuple
     var instanceReceivedArguments: (arg: Any, context: Any, resolver: Resolver)? {
-        instanceArgContextResolverReceivedArguments
+        return instanceArgContextResolverReceivedArguments
     }
 }

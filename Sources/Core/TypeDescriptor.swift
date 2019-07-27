@@ -26,7 +26,7 @@ public struct SomeTypeDescriptor<BaseType>: TypeDescriptor, Opaque {
 }
 
 public extension TypeDescriptor {
-    var opaque: SomeTypeDescriptor<BaseType> { SomeTypeDescriptor(actual: self) }
+    var opaque: SomeTypeDescriptor<BaseType> { return SomeTypeDescriptor(actual: self) }
 }
 
 struct NoTag: Hashable {}
@@ -66,11 +66,11 @@ struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
 }
 
 func tagged<Type, Tag>(_: Type.Type, with tag: Tag) -> Tagged<Type, Tag> where Tag: Hashable {
-    Tagged(tag: tag)
+    return Tagged(tag: tag)
 }
 
 func plain<Type>(_: Type.Type) -> Tagged<Type, NoTag> {
-    Tagged(tag: NoTag())
+    return Tagged(tag: NoTag())
 }
 
 protocol OptionalProtocol {

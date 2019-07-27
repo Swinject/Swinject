@@ -3,9 +3,9 @@
 //
 
 func join(separator: String = ", ", _ strings: String? ...) -> String {
-    join(separator: separator, strings)
+    return join(separator: separator, strings)
 }
 
 func join(separator: String = ", ", _ strings: [String?]) -> String {
-    strings.compactMap { $0 }.joined(separator: separator)
+    return strings.compactMap { $0 }.joined(separator: separator)
 }

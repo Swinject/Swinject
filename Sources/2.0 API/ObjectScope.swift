@@ -35,7 +35,7 @@ extension ObjectScope {
     func makeRef(in container: Container?) -> ReferenceMaker<Any> {
         weak var container = container
         func containerRef(_ value: Any) -> Reference<Any> {
-            Reference(currentValue: value) { [weak handle = container?.referenceHandle] in
+            return Reference(currentValue: value) { [weak handle = container?.referenceHandle] in
                 handle == nil ? nil : value
             }
         }
@@ -69,6 +69,6 @@ final class ContainerScope: Scope {
     static let shared = ContainerScope()
 
     func registry(for container: Container) -> ScopeRegistry {
-        container.registry
+        return container.registry
     }
 }

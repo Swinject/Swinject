@@ -66,5 +66,5 @@ private func makeKey(
     contextType: Any.Type = Void.self,
     argumentType: Any.Type = Void.self
 ) -> BindingKey {
-    BindingKey(descriptor: descriptor, contextType: contextType, argumentType: argumentType)
+    return BindingKey(descriptor: descriptor, contextType: contextType, argumentType: argumentType)
 }

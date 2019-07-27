@@ -2,6 +2,7 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
+import Foundation
 import Nimble
 @testable import Swinject
 

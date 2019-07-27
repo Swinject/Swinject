@@ -8,91 +8,91 @@
 // sourcery:inline:ResolverInjectionApi
 public extension Resolver {
     func instance<Type>(of _: Type.Type = Type.self) throws -> Type {
-        try resolve(request(tag: NoTag(), arg: ()))
+        return try resolve(request(tag: NoTag(), arg: ()))
     }
 
     func instance<Type, Tag>(of _: Type.Type = Type.self, tagged tag: Tag) throws -> Type where Tag: Hashable {
-        try resolve(request(tag: tag, arg: ()))
+        return try resolve(request(tag: tag, arg: ()))
     }
 
     func instance<Type, Arg1>(of _: Type.Type = Type.self, arg arg1: Arg1) throws -> Type {
-        try resolve(request(tag: NoTag(), arg: box(arg1)))
+        return try resolve(request(tag: NoTag(), arg: box(arg1)))
     }
 
     func instance<Type, Arg1>(of _: Type.Type = Type.self, arg arg1: Arg1) throws -> Type where Arg1: Hashable {
-        try resolve(request(tag: NoTag(), arg: box(arg1)))
+        return try resolve(request(tag: NoTag(), arg: box(arg1)))
     }
 
     func instance<Type, Tag, Arg1>(of _: Type.Type = Type.self, tagged tag: Tag, arg arg1: Arg1) throws -> Type where Tag: Hashable {
-        try resolve(request(tag: tag, arg: box(arg1)))
+        return try resolve(request(tag: tag, arg: box(arg1)))
     }
 
     func instance<Type, Tag, Arg1>(of _: Type.Type = Type.self, tagged tag: Tag, arg arg1: Arg1) throws -> Type where Tag: Hashable, Arg1: Hashable {
-        try resolve(request(tag: tag, arg: box(arg1)))
+        return try resolve(request(tag: tag, arg: box(arg1)))
     }
 
     func instance<Type, Arg1, Arg2>(of _: Type.Type = Type.self, arg arg1: Arg1, _ arg2: Arg2) throws -> Type {
-        try resolve(request(tag: NoTag(), arg: box(arg1, arg2)))
+        return try resolve(request(tag: NoTag(), arg: box(arg1, arg2)))
     }
 
     func instance<Type, Arg1, Arg2>(of _: Type.Type = Type.self, arg arg1: Arg1, _ arg2: Arg2) throws -> Type where Arg1: Hashable, Arg2: Hashable {
-        try resolve(request(tag: NoTag(), arg: box(arg1, arg2)))
+        return try resolve(request(tag: NoTag(), arg: box(arg1, arg2)))
     }
 
     func instance<Type, Tag, Arg1, Arg2>(of _: Type.Type = Type.self, tagged tag: Tag, arg arg1: Arg1, _ arg2: Arg2) throws -> Type where Tag: Hashable {
-        try resolve(request(tag: tag, arg: box(arg1, arg2)))
+        return try resolve(request(tag: tag, arg: box(arg1, arg2)))
     }
 
     func instance<Type, Tag, Arg1, Arg2>(of _: Type.Type = Type.self, tagged tag: Tag, arg arg1: Arg1, _ arg2: Arg2) throws -> Type where Tag: Hashable, Arg1: Hashable, Arg2: Hashable {
-        try resolve(request(tag: tag, arg: box(arg1, arg2)))
+        return try resolve(request(tag: tag, arg: box(arg1, arg2)))
     }
 
     func instance<Type, Arg1, Arg2, Arg3>(of _: Type.Type = Type.self, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) throws -> Type {
-        try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3)))
+        return try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3)))
     }
 
     func instance<Type, Arg1, Arg2, Arg3>(of _: Type.Type = Type.self, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) throws -> Type where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable {
-        try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3)))
+        return try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3)))
     }
 
     func instance<Type, Tag, Arg1, Arg2, Arg3>(of _: Type.Type = Type.self, tagged tag: Tag, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) throws -> Type where Tag: Hashable {
-        try resolve(request(tag: tag, arg: box(arg1, arg2, arg3)))
+        return try resolve(request(tag: tag, arg: box(arg1, arg2, arg3)))
     }
 
     func instance<Type, Tag, Arg1, Arg2, Arg3>(of _: Type.Type = Type.self, tagged tag: Tag, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3) throws -> Type where Tag: Hashable, Arg1: Hashable, Arg2: Hashable, Arg3: Hashable {
-        try resolve(request(tag: tag, arg: box(arg1, arg2, arg3)))
+        return try resolve(request(tag: tag, arg: box(arg1, arg2, arg3)))
     }
 
     func instance<Type, Arg1, Arg2, Arg3, Arg4>(of _: Type.Type = Type.self, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) throws -> Type {
-        try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3, arg4)))
+        return try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3, arg4)))
     }
 
     func instance<Type, Arg1, Arg2, Arg3, Arg4>(of _: Type.Type = Type.self, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) throws -> Type where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable {
-        try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3, arg4)))
+        return try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3, arg4)))
     }
 
     func instance<Type, Tag, Arg1, Arg2, Arg3, Arg4>(of _: Type.Type = Type.self, tagged tag: Tag, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) throws -> Type where Tag: Hashable {
-        try resolve(request(tag: tag, arg: box(arg1, arg2, arg3, arg4)))
+        return try resolve(request(tag: tag, arg: box(arg1, arg2, arg3, arg4)))
     }
 
     func instance<Type, Tag, Arg1, Arg2, Arg3, Arg4>(of _: Type.Type = Type.self, tagged tag: Tag, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4) throws -> Type where Tag: Hashable, Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable {
-        try resolve(request(tag: tag, arg: box(arg1, arg2, arg3, arg4)))
+        return try resolve(request(tag: tag, arg: box(arg1, arg2, arg3, arg4)))
     }
 
     func instance<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(of _: Type.Type = Type.self, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) throws -> Type {
-        try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3, arg4, arg5)))
+        return try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3, arg4, arg5)))
     }
 
     func instance<Type, Arg1, Arg2, Arg3, Arg4, Arg5>(of _: Type.Type = Type.self, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) throws -> Type where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable, Arg5: Hashable {
-        try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3, arg4, arg5)))
+        return try resolve(request(tag: NoTag(), arg: box(arg1, arg2, arg3, arg4, arg5)))
     }
 
     func instance<Type, Tag, Arg1, Arg2, Arg3, Arg4, Arg5>(of _: Type.Type = Type.self, tagged tag: Tag, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) throws -> Type where Tag: Hashable {
-        try resolve(request(tag: tag, arg: box(arg1, arg2, arg3, arg4, arg5)))
+        return try resolve(request(tag: tag, arg: box(arg1, arg2, arg3, arg4, arg5)))
     }
 
     func instance<Type, Tag, Arg1, Arg2, Arg3, Arg4, Arg5>(of _: Type.Type = Type.self, tagged tag: Tag, arg arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5) throws -> Type where Tag: Hashable, Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable, Arg5: Hashable {
-        try resolve(request(tag: tag, arg: box(arg1, arg2, arg3, arg4, arg5)))
+        return try resolve(request(tag: tag, arg: box(arg1, arg2, arg3, arg4, arg5)))
     }
 }
 

@@ -435,21 +435,21 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
 } }
 
 private extension SomeBindingMaker {
-    var actual: AnyInstanceMaker { anyActual as! AnyInstanceMaker }
+    var actual: AnyInstanceMaker { return anyActual as! AnyInstanceMaker }
 
     func makeInstance(resolver: Resolver) throws -> BoundType {
-        try actual.makeInstance(arg: (), context: (), resolver: resolver) as! BoundType
+        return try actual.makeInstance(arg: (), context: (), resolver: resolver) as! BoundType
     }
 
     func makeInstance(context: Any, resolver: Resolver) throws -> BoundType {
-        try actual.makeInstance(arg: (), context: context, resolver: resolver) as! BoundType
+        return try actual.makeInstance(arg: (), context: context, resolver: resolver) as! BoundType
     }
 
     func makeInstance(arg: Any, resolver: Resolver) throws -> BoundType {
-        try actual.makeInstance(arg: arg, context: (), resolver: resolver) as! BoundType
+        return try actual.makeInstance(arg: arg, context: (), resolver: resolver) as! BoundType
     }
 
     func makeInstance(arg: Any, context: Any, resolver: Resolver) throws -> BoundType {
-        try actual.makeInstance(arg: arg, context: context, resolver: resolver) as! BoundType
+        return try actual.makeInstance(arg: arg, context: context, resolver: resolver) as! BoundType
     }
 }

@@ -19,11 +19,11 @@ func request<Type, Tag: Equatable, Argument>(
     tag: Tag,
     arg: Argument
 ) -> InstanceRequest<Tagged<Type, Tag>, Argument> {
-    InstanceRequest(descriptor: tagged(type, with: tag), argument: arg)
+    return InstanceRequest(descriptor: tagged(type, with: tag), argument: arg)
 }
 
 extension AnyInstanceRequest {
     func key(forContextType contextType: Any.Type) -> BindingKey {
-        BindingKey(descriptor: descriptor, contextType: contextType, argumentType: argumentType)
+        return BindingKey(descriptor: descriptor, contextType: contextType, argumentType: argumentType)
     }
 }

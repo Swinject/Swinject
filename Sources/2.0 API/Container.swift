@@ -29,7 +29,7 @@ public final class Container {
     let defaultObjectScope: ObjectScope
     var bindings = [Binding]()
     var behaviors = [Behavior]()
-    var swinject: Swinject { Swinject(tree: SwinjectTree(
+    var swinject: Swinject { return Swinject(tree: SwinjectTree(
         bindings: allBindings,
         includeEntries: [],
         translators: [registerContextTranslator(from: Graph.self) { $0.container }]
@@ -87,7 +87,7 @@ public final class Container {
     ///
     /// - Returns: A synchronized container as `Resolver`.
     public func synchronize() -> Resolver {
-        self
+        return self
     }
 
     /// Adds behavior to the container. `Behavior.container(_:didRegisterService:withName:)` will be invoked for
@@ -111,7 +111,7 @@ public final class Container {
 
 extension Container: CustomStringConvertible {
     public var description: String {
-        ""
+        return ""
     }
 }
 
@@ -121,6 +121,6 @@ extension Container: Resolver {
     public func resolve<Descriptor, Argument>(
         _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        try swinject.on(Graph(on: self)).resolve(request)
+        return try swinject.on(Graph(on: self)).resolve(request)
     }
 }

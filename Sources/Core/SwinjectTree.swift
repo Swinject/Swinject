@@ -10,24 +10,30 @@ public struct SwinjectTree {
     let translators: [AnyContextTranslator]
 }
 
-@_functionBuilder
-public enum SwinjectTreeBuilder {
+#if swift(>=5.1)
+    @_functionBuilder
+    public enum SwinjectTreeBuilder {}
+#else
+    public enum SwinjectTreeBuilder {}
+#endif
+
+extension SwinjectTreeBuilder {
     public static func buildBlock() {}
 
     public static func buildBlock(_ input: SwinjectEntry ...) -> [SwinjectEntry] {
-        input.flatMap(unpack)
+        return input.flatMap(unpack)
     }
 
     public static func buildIf(_ input: [SwinjectEntry]?) -> SwinjectEntry {
-        Composed(parts: input ?? [])
+        return Composed(parts: input ?? [])
     }
 
     public static func buildEither(first input: [SwinjectEntry]) -> SwinjectEntry {
-        Composed(parts: input)
+        return Composed(parts: input)
     }
 
     public static func buildEither(second input: [SwinjectEntry]) -> SwinjectEntry {
-        Composed(parts: input)
+        return Composed(parts: input)
     }
 
     // This is not used by compiler implicitly yet

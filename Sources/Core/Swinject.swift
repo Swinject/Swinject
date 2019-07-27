@@ -63,6 +63,6 @@ extension Swinject: Resolver {
     private func instance<Type, Context, Argument>(
         from binding: Binding, context: Context, arg: Argument
     ) throws -> Type {
-        try binding.instance(arg: arg, context: context, resolver: self) as? Type ?? { throw SwinjectError() }()
+        return try binding.instance(arg: arg, context: context, resolver: self) as? Type ?? { throw SwinjectError() }()
     }
 }

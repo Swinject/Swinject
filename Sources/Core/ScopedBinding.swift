@@ -11,11 +11,11 @@ struct ScopedBinding {
 
 extension ScopedBinding: Binding {
     func matches(_ key: AnyBindingKey) -> Bool {
-        self.key.matches(key)
+        return self.key.matches(key)
     }
 
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
-        try scope
+        return try scope
             .registry(for: context)
             .instance(for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg)) {
                 makeRef(try maker.makeInstance(arg: arg, context: context, resolver: resolver))
@@ -50,7 +50,7 @@ extension ScopedBinding.Builder: InstanceMaker {
     typealias Context = AScope.Context
 
     func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
-        try builder(resolver, context, arg)
+        return try builder(resolver, context, arg)
     }
 }
 
@@ -58,7 +58,7 @@ extension ScopedBinding.Builder: BindingMaker {
     typealias BoundType = Type
 
     func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
-        ScopedBinding(
+        return ScopedBinding(
             key: BindingKey(descriptor: descriptor, contextType: Context.self, argumentType: Argument.self),
             maker: self,
             scope: scope,

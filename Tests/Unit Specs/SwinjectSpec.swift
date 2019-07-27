@@ -12,12 +12,12 @@ class SwinjectSpec: QuickSpec { override func spec() {
     beforeEach {
         binding = BindingMock()
         binding.instanceArgContextResolverReturnValue = 0
-        swinject = Swinject { binding }
+        swinject = Swinject(binding)
     }
     describe("instance injection") {
         context("no bindings") {
             it("throws") {
-                let swinject = Swinject {}
+                let swinject = Swinject()
                 expect { try swinject.instance(of: Int.self) }.to(throwError())
             }
         }
@@ -90,11 +90,11 @@ class SwinjectSpec: QuickSpec { override func spec() {
                     $0.matchesReturnValue = false
                     $0.instanceArgContextResolverReturnValue = 0
                 }
-                swinject = Swinject {
-                    bindings[0]
-                    bindings[1]
+                swinject = Swinject(
+                    bindings[0],
+                    bindings[1],
                     bindings[2]
-                }
+                )
             }
             it("throws if multiple bindings match requested type") {
                 bindings.forEach { $0.matchesReturnValue = true }
@@ -166,10 +166,10 @@ class SwinjectSpec: QuickSpec { override func spec() {
             let binding = BindingMock()
             binding.matchesClosure = { $0.descriptor.matches(plain(Double.self)) }
             binding.instanceArgContextResolverReturnValue = 0.0
-            let swinject = Swinject {
-                bbind(Int.self) & provider { Int(try $0.instance() as Double) }
+            let swinject = Swinject(
+                bbind(Int.self) & provider { Int(try $0.instance() as Double) },
                 binding
-            }
+            )
             _ = try? swinject.on("context").instance(of: Int.self)
             expect(binding.instanceReceivedArguments?.context as? String) == "context"
         }
@@ -282,10 +282,10 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 $0.matchesReturnValue = false
                 $0.instanceArgContextResolverReturnValue = 0
             }
-            swinject = Swinject {
-                bindings[0]; bindings[1]; bindings[2]
-                translators[0]; translators[1]; translators[2]
-            }
+            swinject = Swinject(
+                bindings[0], bindings[1], bindings[2],
+                translators[0], translators[1], translators[2]
+            )
         }
         it("does not throw if one of context translators has correct context translation") {
             bindings[0].matchesClosure = { $0.contextType == Int.self }

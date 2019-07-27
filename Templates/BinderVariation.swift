@@ -13,19 +13,19 @@ struct BinderVariation {
 
 extension BinderVariation {
     var argTypes: String {
-        join((1 ..< args + 1).map { "Arg\($0)" })
+        return join((1 ..< args + 1).map { "Arg\($0)" })
     }
 
     var argTypesOrNil: String? {
-        argTypes.isEmpty ? nil : argTypes
+        return argTypes.isEmpty ? nil : argTypes
     }
 
     var genericTypes: String {
-        join("Type", argTypesOrNil)
+        return join("Type", argTypesOrNil)
     }
 
     var builderInputTypes: String {
-        join(
+        return join(
             hasResolver ? "Resolver" : nil,
             hasContext ? "Context" : nil,
             argTypesOrNil
@@ -33,22 +33,22 @@ extension BinderVariation {
     }
 
     var params: String {
-        join(
+        return join(
             isScoped ? "ref: @escaping ReferenceMaker<Type> = strongRef" : nil,
             "_ builder: @escaping (\(builderInputTypes)) throws -> Type"
         )
     }
 
     var scopeType: String {
-        isContexted ? "AScope" : "UnboundScope"
+        return isContexted ? "AScope" : "UnboundScope"
     }
 
     var scopeVar: String {
-        isContexted ? "scope" : ".root"
+        return isContexted ? "scope" : ".root"
     }
 
     var contextType: String {
-        isContexted ? "Context" : "Any"
+        return isContexted ? "Context" : "Any"
     }
 
     var argReturnType: String {
@@ -72,11 +72,11 @@ extension BinderVariation {
     }
 
     var hashableArgTypes: String {
-        join((1 ..< args + 1).map { "Arg\($0): Hashable" })
+        return join((1 ..< args + 1).map { "Arg\($0): Hashable" })
     }
 
     var constraints: String {
-        isMatchable && args > 0 ? "where \(hashableArgTypes) " : ""
+        return isMatchable && args > 0 ? "where \(hashableArgTypes) " : ""
     }
 
     var functionName: String {
@@ -89,7 +89,7 @@ extension BinderVariation {
     }
 
     var initVars: String {
-        isScoped ? "(\(join(scopeVar, "ref")))" : ""
+        return isScoped ? "(\(join(scopeVar, "ref")))" : ""
     }
 
     var argVarsOrNil: String? {
@@ -101,7 +101,7 @@ extension BinderVariation {
     }
 
     var builderInputs: String {
-        join(
+        return join(
             hasResolver ? "r" : "_",
             hasContext ? "c" : "_",
             args > 0 ? "a" : "_"
@@ -109,7 +109,7 @@ extension BinderVariation {
     }
 
     var builderVars: String {
-        join(
+        return join(
             hasResolver ? "r" : nil,
             hasContext ? "c" : nil,
             argVarsOrNil
@@ -148,7 +148,7 @@ extension BinderVariation {
         let prefix = indent ? "    " : ""
         return """
         \(prefix)public func \(functionName)<\(genericTypes)>(\(params)) -> \(returnType) \(constraints){
-        \(prefix)    \(actualReturnType)\(initVars) { \(builderInputs) in try builder(\(builderVars)) }.opaque
+        \(prefix)    return \(actualReturnType)\(initVars) { \(builderInputs) in try builder(\(builderVars)) }.opaque
         \(prefix)}
         """
     }

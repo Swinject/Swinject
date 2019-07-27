@@ -19,12 +19,12 @@ public struct SomeBindingMaker<BoundType>: BindingMaker, AnyOpaque {
     fileprivate let _makeBinding: (AnyTypeDescriptor) -> Binding
 
     public func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
-        _makeBinding(descriptor)
+        return _makeBinding(descriptor)
     }
 }
 
 public extension BindingMaker {
     var opaque: SomeBindingMaker<BoundType> {
-        SomeBindingMaker(anyActual: self) { self.makeBinding(for: $0) }
+        return SomeBindingMaker(anyActual: self) { self.makeBinding(for: $0) }
     }
 }

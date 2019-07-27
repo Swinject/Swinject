@@ -5,7 +5,7 @@ env:
     - PROJECT=Swinject.xcodeproj
 matrix:
   include:
-    - env: JOB="LINUX_SPM" SWIFT_VERSION="5.1"
+    - env: JOB="LINUX_SPM" SWIFT_VERSION="5.0"
       os: linux
       language: generic
       sudo: required
@@ -17,18 +17,20 @@ matrix:
         - swift build
         - swift test
     - env: JOB="POD_LINT"
-      osx_image: xcode11
+      osx_image: xcode10.2
       before_install:
       script:
         - pod lib lint
     - env: JOB="XCODE" DEST="OS=10.0,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
-      osx_image: xcode11
+      osx_image: xcode10.2
+    - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-macOS" SDK="macosx" ACTION="test" PLATFORM="OSX"
+      osx_image: xcode10.2
     - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-macOS" SDK="macosx" ACTION="test" PLATFORM="OSX"
       osx_image: xcode11
     - env: JOB="XCODE" DEST="OS=10.0,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test" PLATFORM="tvOS"
-      osx_image: xcode11
+      osx_image: xcode10.2
     - env: JOB="XCODE" DEST="OS=2.2,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build" PLATFORM="watchOS"
-      osx_image: xcode11
+      osx_image: xcode10.2
 
 before_install:
   - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.33.0/Carthage.pkg

@@ -12,5 +12,5 @@ protocol Opaque: AnyOpaque {
 }
 
 extension Opaque {
-    var anyActual: Any { actual }
+    var anyActual: Any { return actual }
 }
