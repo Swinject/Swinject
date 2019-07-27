@@ -1,64 +1,7 @@
-<%_
-let maxArgs = 5
-
-struct Variation {
-    let isTagged: Bool
-    let paramArgs: Int
-    let factoryArgs: Int
-    let isMatchable: Bool
-    var args: Int { return paramArgs + factoryArgs }
-}
-
-extension Variation {
-    var genericTypes: String {[
-        "Type",
-        isTagged ? "Tag" : nil,
-        args > 0 ? (1...args).map { "Arg\($0)" }.joined(separator: ", ") : nil
-    ].compactMap { $0 }.joined(separator: ", ") }
-
-    var params: String {[
-        "of _: Type.Type = Type.self",
-        isTagged ? "tagged tag: Tag" : nil,
-        paramArgs >= 1 ? "arg " + (1...paramArgs).map { "arg\($0): Arg\($0)" }.joined(separator: ", _ ") : nil
-    ].compactMap { $0 }.joined(separator: ", ") }
-
-    var factoryInputs: String {
-        (1...factoryArgs).map { "Arg\($0 + paramArgs)" }.joined(separator: ", ")
-    }
-
-    var constraints: String {[
-        isTagged ? "Tag: Hashable" : nil,
-        isMatchable && args > 0 ? (1...args).map { "Arg\($0): Hashable" }.joined(separator: ", ") : nil
-    ].compactMap { $0 }.joined(separator: ", ") }
-
-    var whereClause: String { constraints.isEmpty ? "" : "where " + constraints }
-
-    var requestParams: String {
-        let paramVars = (0..<paramArgs).map { "arg\($0+1)" }
-        let factoryVars = (0..<factoryArgs).map { "$\($0)" }
-        return [
-            isTagged ? "tag: tag" : "tag: NoTag()",
-            args == 0 ? "arg: ()" : "arg: box(\((paramVars + factoryVars).joined(separator: ", ")))",
-        ].compactMap { $0 }.joined(separator: ", ")
-    }
-}
-extension Variation {
-    static let simpleCases = (0...maxArgs)
-        .flatMap { a in [false, true].map { ($0, a) } }
-        .flatMap { t in [false, true].map { (t.0, t.1, 0, $0) } }
-        .map { Variation(isTagged: $0.0, paramArgs: $0.1, factoryArgs: $0.2, isMatchable: $0.3) }
-        .filter { $0.paramArgs > 0 || $0.isMatchable }
-
-    static let factoryCases = (1...maxArgs)
-        .flatMap { a in [false, true].map { ($0, a) } }
-        .flatMap { t in [false, true].map { (t.0, t.1, $0) } }
-        .flatMap { t in (0..<t.1).map { (t.0, $0, t.1 - $0, t.2) } }
-        .map { Variation(isTagged: $0.0, paramArgs: $0.1, factoryArgs: $0.2, isMatchable: $0.3)  }
-}
--%>
+<%- include("SwiftCode") %>
 // sourcery:inline:ResolverInjectionApi
 extension Resolver {
-<%_ Variation.simpleCases.forEach { v in -%>
+<%_ InjectionVariation.simpleCases.forEach { v in -%>
     func instance<<%= v.genericTypes %>>(<%= v.params %>) throws -> Type <%= v.whereClause %>{
         try resolve(request(<%= v.requestParams %>))
     }
@@ -67,7 +10,7 @@ extension Resolver {
 }
 
 extension Resolver {
-<%_ Variation.simpleCases.forEach { v in -%>
+<%_ InjectionVariation.simpleCases.forEach { v in -%>
     func provider<<%= v.genericTypes %>>(<%= v.params %>) -> () throws -> Type <%= v.whereClause %>{
         return { try self.resolve(request(<%= v.requestParams %>)) }
     }
@@ -76,7 +19,7 @@ extension Resolver {
 }
 
 extension Resolver {
-<%_ Variation.factoryCases.forEach { v in -%>
+<%_ InjectionVariation.factoryCases.forEach { v in -%>
     func factory<<%= v.genericTypes %>>(<%= v.params %>) -> (<%= v.factoryInputs %>) throws -> Type <%= v.whereClause %>{
         return { try self.resolve(request(<%= v.requestParams %>)) }
     }

@@ -22,6 +22,9 @@ targets:
         excludes: ["**/*.erb"]
       - path: Templates
         buildPhase: none
+    dependencies:
+      - target: Templates
+        link: false
     preBuildScripts:
       - script: >
           if which sourcery >/dev/null; then
@@ -50,7 +53,6 @@ targets:
     type: bundle.unit-test
     platform: [macOS, iOS, tvOS, watchOS]
     platformSuffix: -${platform}
-    scheme: {}
     sources:
       - path: Tests
         excludes: [LinuxMain.swift]
@@ -58,3 +60,20 @@ targets:
       - target: Swinject-${platform}
       - carthage: Quick
       - carthage: Nimble
+  Templates:
+    type: framework
+    platform: macOS
+    sources: Templates
+    postCompileScripts:
+      - script: >
+          OUTPUT="Templates/SwiftCode.swifttemplate"
+
+          echo "<%" > $OUTPUT
+          
+          for FILE in $(find Templates -name "*.swift"); do
+            cat $FILE >> $OUTPUT
+          done
+          
+          echo "%>" >> $OUTPUT
+        name: Generate SwiftCode.swifttemplate
+
