@@ -44,8 +44,7 @@ extension Container {
         let entry = ServiceEntry<Service>(container: self, name: name, scope: defaultObjectScope.scope, makeRef: defaultObjectScope.makeRef(in: self)) { (r, _, a: <%= arg_closure_type %>) in factory(r, <%= arg_vars %>) }
         addEntry(entry, with: name)
         return entry
-    }
-
+    }<%= i < arg_count ? "\n" : "" %>
 <%_ } -%>
 }
 // sourcery:end

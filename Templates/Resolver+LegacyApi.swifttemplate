@@ -38,8 +38,7 @@ public extension Resolver {
         } else {
             return try? resolve(request(type: serviceType, tag: NoTag(), arg: <%= arg_vars %>))
         }
-    }
-
+    }<%= i < arg_count ? "\n" : "" %>
 <%_ } -%>
 }
 // sourcery:end

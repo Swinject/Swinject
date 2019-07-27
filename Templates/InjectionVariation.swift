@@ -1,58 +1,112 @@
-// swiftformat:disable fileHeader
-let maxArgs = 5
+//
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
+//
 
 struct InjectionVariation {
-    let isTagged: Bool
     let paramArgs: Int
     let factoryArgs: Int
+    let isTagged: Bool
     let isMatchable: Bool
-    var args: Int { return paramArgs + factoryArgs }
+    let isDelayed: Bool
 }
 
 extension InjectionVariation {
-    var genericTypes: String { [
-        "Type",
-        isTagged ? "Tag" : nil,
-        args > 0 ? (1 ... args).map { "Arg\($0)" }.joined(separator: ", ") : nil,
-    ].compactMap { $0 }.joined(separator: ", ") }
+    var args: Int { return paramArgs + factoryArgs }
 
-    var params: String { [
-        "of _: Type.Type = Type.self",
-        isTagged ? "tagged tag: Tag" : nil,
-        paramArgs >= 1 ? "arg " + (1 ... paramArgs).map { "arg\($0): Arg\($0)" }.joined(separator: ", _ ") : nil,
-    ].compactMap { $0 }.joined(separator: ", ") }
-
-    var factoryInputs: String {
-        (1 ... factoryArgs).map { "Arg\($0 + paramArgs)" }.joined(separator: ", ")
+    var genericTypes: String {
+        join(
+            "Type",
+            isTagged ? "Tag" : nil,
+            args > 0 ? join((1 ... args).map { "Arg\($0)" }) : nil
+        )
     }
 
-    var constraints: String { [
-        isTagged ? "Tag: Hashable" : nil,
-        isMatchable && args > 0 ? (1 ... args).map { "Arg\($0): Hashable" }.joined(separator: ", ") : nil,
-    ].compactMap { $0 }.joined(separator: ", ") }
+    var params: String {
+        join(
+            "of _: Type.Type = Type.self",
+            isTagged ? "tagged tag: Tag" : nil,
+            paramArgs >= 1 ? "arg " + join(separator: ", _ ", (1 ... paramArgs).map { "arg\($0): Arg\($0)" }) : nil
+        )
+    }
 
-    var whereClause: String { constraints.isEmpty ? "" : "where " + constraints }
+    var factoryInputs: String {
+        join((1 ..< factoryArgs + 1).map { "Arg\($0 + paramArgs)" })
+    }
+
+    var constraints: String {
+        join(
+            isTagged ? "Tag: Hashable" : nil,
+            isMatchable && args > 0 ? join((1 ... args).map { "Arg\($0): Hashable" }) : nil
+        )
+    }
+
+    var whereClause: String? {
+        constraints.isEmpty ? nil : "where " + constraints
+    }
 
     var requestParams: String {
         let paramVars = (0 ..< paramArgs).map { "arg\($0 + 1)" }
         let factoryVars = (0 ..< factoryArgs).map { "$\($0)" }
-        return [
+        return join(
             isTagged ? "tag: tag" : "tag: NoTag()",
-            args == 0 ? "arg: ()" : "arg: box(\((paramVars + factoryVars).joined(separator: ", ")))",
-        ].compactMap { $0 }.joined(separator: ", ")
+            args == 0 ? "arg: ()" : "arg: box(\(join(paramVars + factoryVars)))"
+        )
+    }
+
+    var functionName: String {
+        if !isDelayed { return "instance" }
+        else if factoryArgs == 0 { return "provider" }
+        else { return "factory" }
+    }
+
+    var returnType: String {
+        if !isDelayed {
+            return "throws -> Type"
+        } else {
+            return "-> (\(factoryInputs)) throws -> Type"
+        }
+    }
+
+    var returnDescription: String {
+        join(separator: " ", returnType, whereClause)
+    }
+
+    var returnStatement: String {
+        if isDelayed {
+            return "return { try self.resolve(request(\(requestParams))) }"
+        } else {
+            return "try resolve(request(\(requestParams)))"
+        }
     }
 }
 
 extension InjectionVariation {
-    static let simpleCases = (0 ... maxArgs)
-        .flatMap { a in [false, true].map { ($0, a) } }
-        .flatMap { t in [false, true].map { (t.0, t.1, 0, $0) } }
-        .map { InjectionVariation(isTagged: $0.0, paramArgs: $0.1, factoryArgs: $0.2, isMatchable: $0.3) }
-        .filter { $0.paramArgs > 0 || $0.isMatchable }
+    static let maxArgs = 5
 
-    static let factoryCases = (1 ... maxArgs)
-        .flatMap { a in [false, true].map { ($0, a) } }
+    static let allCases = (0 ... maxArgs)
+        .flatMap { t in (t ... maxArgs).map { (t, maxArgs - $0) } }
         .flatMap { t in [false, true].map { (t.0, t.1, $0) } }
-        .flatMap { t in (0 ..< t.1).map { (t.0, $0, t.1 - $0, t.2) } }
-        .map { InjectionVariation(isTagged: $0.0, paramArgs: $0.1, factoryArgs: $0.2, isMatchable: $0.3) }
+        .flatMap { t in [false, true].map { (t.0, t.1, t.2, $0) } }
+        .flatMap { t in [false, true].map { (t.0, t.1, t.2, t.3, $0) } }
+        .map(InjectionVariation.init)
+
+    static let sortedCases = allCases.sorted { [
+        $0.args < $1.args,
+        !$0.isTagged && $1.isTagged && $0.args == $1.args,
+        !$0.isMatchable && $1.isMatchable && $0.args == $1.args && $0.isTagged == $1.isTagged,
+    ].contains(true) }
+
+    static let publicCases = sortedCases
+        .filter { !($0.args == 0 && !$0.isMatchable) }
+        .filter { !($0.factoryArgs > 0 && !$0.isDelayed) }
+}
+
+extension InjectionVariation {
+    func render() -> String {
+        """
+            func \(functionName)<\(genericTypes)>(\(params)) \(returnDescription) {
+                \(returnStatement)
+            }
+        """
+    }
 }

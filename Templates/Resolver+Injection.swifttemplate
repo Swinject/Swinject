@@ -1,29 +1,14 @@
 <%- include("SwiftCode") %>
 // sourcery:inline:ResolverInjectionApi
 extension Resolver {
-<%_ InjectionVariation.simpleCases.forEach { v in -%>
-    func instance<<%= v.genericTypes %>>(<%= v.params %>) throws -> Type <%= v.whereClause %>{
-        try resolve(request(<%= v.requestParams %>))
-    }
-
-<%_ } -%>
+<%= InjectionVariation.publicCases.filter { $0.functionName == "instance" }.map { $0.render() }.joined(separator: "\n\n") %>
 }
 
 extension Resolver {
-<%_ InjectionVariation.simpleCases.forEach { v in -%>
-    func provider<<%= v.genericTypes %>>(<%= v.params %>) -> () throws -> Type <%= v.whereClause %>{
-        return { try self.resolve(request(<%= v.requestParams %>)) }
-    }
-
-<%_ } -%>
+<%= InjectionVariation.publicCases.filter { $0.functionName == "provider" }.map { $0.render() }.joined(separator: "\n\n") %>
 }
 
 extension Resolver {
-<%_ InjectionVariation.factoryCases.forEach { v in -%>
-    func factory<<%= v.genericTypes %>>(<%= v.params %>) -> (<%= v.factoryInputs %>) throws -> Type <%= v.whereClause %>{
-        return { try self.resolve(request(<%= v.requestParams %>)) }
-    }
-
-<%_ } -%>
+<%= InjectionVariation.publicCases.filter { $0.functionName == "factory" }.map { $0.render() }.joined(separator: "\n\n") %>
 }
 // sourcery:end

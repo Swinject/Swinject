@@ -91,22 +91,22 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
             describe("multiple arguments") {
                 it("works with 2 arguments") {
                     let maker = factory { (_, _: Int, _: Double) in 42 }
-                    let arguments = (1, 1.0)
+                    let arguments = box(1, 1.0)
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 3 arguments") {
                     let maker = factory { (_, _: Int, _: Double, _: String) in 42 }
-                    let arguments = (1, 1.0, "")
+                    let arguments = box(1, 1.0, "")
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 4 arguments") {
                     let maker = factory { (_, _: Int, _: Double, _: String, _: Float) in 42 }
-                    let arguments = (1, 1.0, "", Float(1.0))
+                    let arguments = box(1, 1.0, "", Float(1.0))
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 5 arguments") {
                     let maker = factory { (_, _: Int, _: Double, _: String, _: Float, _: Int) in 42 }
-                    let arguments = (1, 1.0, "", Float(1.0), 5)
+                    let arguments = box(1, 1.0, "", Float(1.0), 5)
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
             }
@@ -193,22 +193,22 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
             describe("multiple arguments") {
                 it("works with 2 arguments") {
                     let maker = multiton { (_, _: Int, _: Double) in 42 }
-                    let arguments = (1, 1.0)
+                    let arguments = box(1, 1.0)
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 3 arguments") {
                     let maker = multiton { (_, _: Int, _: Double, _: String) in 42 }
-                    let arguments = (1, 1.0, "")
+                    let arguments = box(1, 1.0, "")
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 4 arguments") {
                     let maker = multiton { (_, _: Int, _: Double, _: String, _: Float) in 42 }
-                    let arguments = (1, 1.0, "", Float(1.0))
+                    let arguments = box(1, 1.0, "", Float(1.0))
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 5 arguments") {
                     let maker = multiton { (_, _: Int, _: Double, _: String, _: Float, _: Int) in 42 }
-                    let arguments = (1, 1.0, "", Float(1.0), 5)
+                    let arguments = box(1, 1.0, "", Float(1.0), 5)
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
             }
@@ -279,7 +279,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
             it("calls builder with given argument") {
                 var passedArgument: Int?
                 let maker = environment.factory { (_, _, arg: Int) in passedArgument = arg }
-                _ = try? maker.makeInstance(arg: 42, resolver: DummyResolver())
+                _ = try? maker.makeInstance(arg: box(42), resolver: DummyResolver())
                 expect(passedArgument) == 42
             }
             it("rethrows error from builder") {
@@ -295,22 +295,22 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
             describe("multiple arguments") {
                 it("works with 2 arguments") {
                     let maker = environment.factory { (_, _, _: Int, _: Double) in 42 }
-                    let arguments = (1, 1.0)
+                    let arguments = box(1, 1.0)
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 3 arguments") {
                     let maker = environment.factory { (_, _, _: Int, _: Double, _: String) in 42 }
-                    let arguments = (1, 1.0, "")
+                    let arguments = box(1, 1.0, "")
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 4 arguments") {
                     let maker = environment.factory { (_, _, _: Int, _: Double, _: String, _: Float) in 42 }
-                    let arguments = (1, 1.0, "", Float(1.0))
+                    let arguments = box(1, 1.0, "", Float(1.0))
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 5 arguments") {
                     let maker = environment.factory { (_, _, _: Int, _: Double, _: String, _: Float, _: Int) in 42 }
-                    let arguments = (1, 1.0, "", Float(1.0), 5)
+                    let arguments = box(1, 1.0, "", Float(1.0), 5)
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
             }
@@ -391,7 +391,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
             it("calls builder with given argument") {
                 var passedArgument: Int?
                 let maker = environment.multiton { (_, _, arg: Int) in passedArgument = arg }
-                _ = try? maker.makeInstance(arg: 42, resolver: DummyResolver())
+                _ = try? maker.makeInstance(arg: box(42), resolver: DummyResolver())
                 expect(passedArgument) == 42
             }
             it("rethrows error from builder") {
@@ -407,22 +407,22 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
             describe("multiple arguments") {
                 it("works with 2 arguments") {
                     let maker = environment.multiton { (_, _, _: Int, _: Double) in 42 }
-                    let arguments = (1, 1.0)
+                    let arguments = box(1, 1.0)
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 3 arguments") {
                     let maker = environment.multiton { (_, _, _: Int, _: Double, _: String) in 42 }
-                    let arguments = (1, 1.0, "")
+                    let arguments = box(1, 1.0, "")
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 4 arguments") {
                     let maker = environment.multiton { (_, _, _: Int, _: Double, _: String, _: Float) in 42 }
-                    let arguments = (1, 1.0, "", Float(1.0))
+                    let arguments = box(1, 1.0, "", Float(1.0))
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
                 it("works with 5 arguments") {
                     let maker = environment.multiton { (_, _, _: Int, _: Double, _: String, _: Float, _: Int) in 42 }
-                    let arguments = (1, 1.0, "", Float(1.0), 5)
+                    let arguments = box(1, 1.0, "", Float(1.0), 5)
                     expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
                 }
             }
