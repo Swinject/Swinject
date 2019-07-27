@@ -3,17 +3,16 @@
 //
 
 import func Swinject.bind
-import struct Swinject.NoTag
-import struct Swinject.Tagged
+import struct Swinject.SomeTypeDescriptor
 import struct Swinject.TypeBinder
 import protocol Swinject.TypeDescriptor
 
 // Original Swinject functions conflict with QuickSpec's instance methods
-func bbind<Type>(_: Type.Type) -> TypeBinder<Tagged<Type, NoTag>> {
+func bbind<Type>(_: Type.Type) -> TypeBinder<SomeTypeDescriptor<Type>> {
     bind(Type.self)
 }
 
-func bbind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<Tagged<Type, Tag>> where Tag: Equatable {
+func bbind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<SomeTypeDescriptor<Type>> where Tag: Hashable {
     bind(Type.self, tagged: tag)
 }
 

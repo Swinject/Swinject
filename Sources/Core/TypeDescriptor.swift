@@ -9,12 +9,32 @@ public protocol TypeDescriptor: AnyTypeDescriptor {
     associatedtype BaseType
 }
 
-public struct NoTag: Hashable {}
-
-public struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
-    let tag: Tag
+public struct SomeTypeDescriptor<BaseType>: TypeDescriptor, Opaque {
+    let actual: AnyTypeDescriptor
 
     public func matches(_ other: Any) -> Bool {
+        if let other = other as? AnyOpaque {
+            return actual.matches(other.anyActual)
+        } else {
+            return actual.matches(other)
+        }
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        actual.hash(into: &hasher)
+    }
+}
+
+extension TypeDescriptor {
+    var opaque: SomeTypeDescriptor<BaseType> { SomeTypeDescriptor(actual: self) }
+}
+
+struct NoTag: Hashable {}
+
+struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
+    let tag: Tag
+
+    func matches(_ other: Any) -> Bool {
         if let other = other as? Tagged<BaseType, Tag> {
             return tag == other.tag
         }
@@ -27,12 +47,12 @@ public struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
         return false
     }
 
-    public func hash(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(String(describing: hashedType))
         hasher.combine(tag)
     }
 
-    private var hashedType: Any.Type {
+    var hashedType: Any.Type {
         if let optional = BaseType.self as? OptionalProtocol.Type {
             if let doubleOptional = optional.wrappedType as? OptionalProtocol.Type {
                 return doubleOptional.wrappedType

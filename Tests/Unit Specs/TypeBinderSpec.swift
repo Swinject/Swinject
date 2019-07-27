@@ -16,8 +16,8 @@ class TypeBinderSpec: QuickSpec { override func spec() {
     }
     describe("bind") {
         it("descriptor has correct tag for tagged type") {
-            let descriptor = bbind(Int.self, tagged: "Foo").descriptor
-            expect(descriptor.tag) == "Foo"
+            let descriptor = bbind(Int.self, tagged: "Foo").descriptor.actual as? Tagged<Int, String>
+            expect(descriptor?.tag) == "Foo"
         }
         it("descriptor is used if given as parameter") {
             let request = bbind(descriptor: descriptor)

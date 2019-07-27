@@ -6,12 +6,12 @@ public struct TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
     let descriptor: Descriptor
 }
 
-public func bind<Type>(_: Type.Type) -> TypeBinder<Tagged<Type, NoTag>> {
-    TypeBinder(descriptor: plain(Type.self))
+public func bind<Type>(_: Type.Type) -> TypeBinder<SomeTypeDescriptor<Type>> {
+    TypeBinder(descriptor: plain(Type.self).opaque)
 }
 
-public func bind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<Tagged<Type, Tag>> where Tag: Equatable {
-    TypeBinder(descriptor: tagged(Type.self, with: tag))
+public func bind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<SomeTypeDescriptor<Type>> where Tag: Hashable {
+    TypeBinder(descriptor: tagged(Type.self, with: tag).opaque)
 }
 
 // TODO: Compiler Bug?
