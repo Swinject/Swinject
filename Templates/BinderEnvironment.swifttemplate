@@ -1,10 +1,10 @@
 <%- include("SwiftCode") %>
 // sourcery:inline:BindingBuilders
-extension BinderEnvironment where AScope == Void {
+extension ContextedEnvironment {
 <%= BinderVariation.publicCases.filter { $0.isContexted && !$0.isScoped }.map { $0.render(true) }.joined(separator: "\n\n") %>
 }
 
-extension BinderEnvironment where AScope: Scope, Context == AScope.Context {
+extension ScopedEnvironment {
 <%= BinderVariation.publicCases.filter { $0.isContexted && $0.isScoped }.map { $0.render(true) }.joined(separator: "\n\n") %>
 }
 

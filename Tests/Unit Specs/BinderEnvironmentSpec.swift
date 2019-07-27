@@ -217,7 +217,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         }
     }
     describe("contexted") {
-        var environment: BinderEnvironment<Void, Any>!
+        var environment: ContextedEnvironment<Any>!
         beforeEach {
             environment = contexted(Any.self)
         }
@@ -320,7 +320,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
     }
     describe("scoped") {
         var scope = AnyScopeMock()
-        var environment: BinderEnvironment<AnyScopeMock, AnyScopeMock.Context>!
+        var environment: ScopedEnvironment<AnyScopeMock>!
         beforeEach {
             scope = AnyScopeMock()
             environment = scoped(scope)

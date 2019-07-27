@@ -2,19 +2,21 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public struct BinderEnvironment<AScope, Context> {
+public struct ScopedEnvironment<AScope> where AScope: Scope {
+    public typealias Context = AScope.Context
     let scope: AScope
 }
 
-public func contexted<Context>(_: Context.Type = Context.self) -> BinderEnvironment<Void, Context> {
-    BinderEnvironment(scope: ())
+public struct ContextedEnvironment<Context> {}
+
+public func contexted<Context>(_: Context.Type) -> ContextedEnvironment<Context> {
+    ContextedEnvironment()
 }
 
-public func scoped<AScope>(_ scope: AScope) -> BinderEnvironment<AScope, AScope.Context> where AScope: Scope {
-    BinderEnvironment(scope: scope)
+public func scoped<AScope>(_ scope: AScope) -> ScopedEnvironment<AScope> where AScope: Scope {
+    ScopedEnvironment(scope: scope)
 }
 
-// swiftlint:disable large_tuple
 // swiftlint:disable line_length
 // swiftlint:disable identifier_name
 
@@ -23,7 +25,7 @@ public func instance<Type>(_ instance: Type) -> SomeBindingMaker<Type> {
 }
 
 // sourcery:inline:BindingBuilders
-extension BinderEnvironment where AScope == Void {
+extension ContextedEnvironment {
     public func provider<Type>(_ builder: @escaping () throws -> Type) -> SomeBindingMaker<Type> {
         SimpleBinding.Builder<Type, Context, Void> { _, _, _ in try builder() }.opaque
     }
@@ -77,7 +79,7 @@ extension BinderEnvironment where AScope == Void {
     }
 }
 
-extension BinderEnvironment where AScope: Scope, Context == AScope.Context {
+extension ScopedEnvironment {
     public func singleton<Type>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping () throws -> Type) -> SomeBindingMaker<Type> {
         ScopedBinding.Builder<Type, AScope, Void>(scope, ref) { _, _, _ in try builder() }.opaque
     }
