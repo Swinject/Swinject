@@ -323,9 +323,6 @@ class MatchableMock: Matchable {
     }
 
 }
-class ModuleIncludeEntryMock: ModuleIncludeEntry {
-
-}
 class StaticScopeRegistryMock: StaticScopeRegistry {
 
     //MARK: - instance

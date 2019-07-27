@@ -22,3 +22,24 @@ public extension Swinject { #if swift(>=5.1)
     }
 #endif
 }
+
+public extension Swinject.Module {
+    init(_ name: String, _ entries: SwinjectEntry ...) {
+        self.init(name: name, tree: SwinjectTreeBuilder.buildFunction(entries))
+    }
+}
+
+public extension Swinject.Module { #if swift(>=5.1)
+    init(_ name: String, @SwinjectTreeBuilder builder: () -> [SwinjectEntry]) {
+        self.init(name: name, tree: SwinjectTreeBuilder.buildFunction(builder()))
+    }
+
+    init(_ name: String, @SwinjectTreeBuilder builder: () -> SwinjectEntry) {
+        self.init(name: name, tree: SwinjectTreeBuilder.buildFunction([builder()]))
+    }
+
+    init(_ name: String, @SwinjectTreeBuilder _: () -> Void) {
+        self.init(name: name, tree: SwinjectTreeBuilder.buildFunction([]))
+    }
+#endif
+}

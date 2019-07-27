@@ -2,12 +2,27 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public protocol SwinjectEntry {}
-
 public struct SwinjectTree {
     let bindings: [Binding]
-    let includeEntries: [ModuleIncludeEntry]
+    let modules: [Swinject.Module]
     let translators: [AnyContextTranslator]
+}
+
+extension SwinjectTree {
+    var allBindings: [Binding] {
+        return bindings + modules.flatMap { $0.tree.allBindings }
+    }
+
+    var allModules: [Swinject.Module] {
+        return modules + modules.flatMap { $0.tree.allModules }
+    }
+}
+
+extension SwinjectTree {
+    func assertValid() {
+        let allModuleNames = allModules.map { $0.name }
+        assert(allModuleNames.count == Set(allModuleNames).count)
+    }
 }
 
 #if swift(>=5.1)
@@ -16,6 +31,8 @@ public struct SwinjectTree {
 #else
     public enum SwinjectTreeBuilder {}
 #endif
+
+public protocol SwinjectEntry {}
 
 extension SwinjectTreeBuilder {
     public static func buildBlock() {}
@@ -39,12 +56,13 @@ extension SwinjectTreeBuilder {
     // This is not used by compiler implicitly yet
     public static func buildFunction(_ input: [SwinjectEntry]) -> SwinjectTree {
         let entries = input.flatMap(unpack)
-        return SwinjectTree(
+        let tree = SwinjectTree(
             bindings: entries.compactMap { $0 as? Binding },
-            includeEntries: entries.compactMap { $0 as? ModuleIncludeEntry },
+            modules: entries.compactMap { $0 as? Swinject.Module },
             translators: entries.compactMap { $0 as? AnyContextTranslator }
         )
-        // TODO: Validate
+        tree.assertValid()
+        return tree
     }
 }
 

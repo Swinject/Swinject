@@ -25,11 +25,6 @@ extension Swinject {
 }
 
 extension Swinject: Resolver {
-    struct Resolution {
-        let binding: Binding
-        let translator: AnyContextTranslator
-    }
-
     public func resolve<Descriptor, Argument>(
         _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
@@ -54,7 +49,7 @@ extension Swinject: Resolver {
     }
 
     private func findBinding(for request: AnyInstanceRequest) throws -> Binding {
-        let bindings = tree.bindings.filter { (try? findTranslator(for: request, and: $0)) != nil }
+        let bindings = tree.allBindings.filter { (try? findTranslator(for: request, and: $0)) != nil }
         if bindings.isEmpty { throw NoBindingError() }
         if bindings.count > 1 { throw MultipleBindingsError() }
         return bindings[0]

@@ -43,13 +43,13 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() { #if swift(>=5.
 //        }
         it("builds closure with maker & include entries") {
             let tree = makeTree {
-                ModuleIncludeEntryMock()
-                ModuleIncludeEntryMock()
+                Swinject.Module("1")
+                Swinject.Module("2")
                 BindingMock()
                 BindingMock()
                 BindingMock()
             }
-            expect(tree.includeEntries.count) == 2
+            expect(tree.modules.count) == 2
             expect(tree.bindings.count) == 3
         }
         it("builds closure with translator entries") {

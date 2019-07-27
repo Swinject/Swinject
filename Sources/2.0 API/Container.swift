@@ -31,7 +31,7 @@ public final class Container {
     var behaviors = [Behavior]()
     var swinject: Swinject { return Swinject(tree: SwinjectTree(
         bindings: allBindings,
-        includeEntries: [],
+        modules: [],
         translators: [registerContextTranslator(from: Graph.self) { $0.container }]
     )) }
     var allBindings: [Binding] {
