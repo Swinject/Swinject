@@ -87,3 +87,10 @@ struct BuilderScopeRegistry: ScopeRegistry {
 
     func clear() {}
 }
+
+extension BindingMock {
+    // swiftlint:disable large_tuple
+    var instanceReceivedArguments: (arg: Any, context: Any, resolver: Resolver)? {
+        instanceArgContextResolverReceivedArguments
+    }
+}

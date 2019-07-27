@@ -150,7 +150,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         }
         describe("multiton") {
             it("has correct scope") {
-                let maker = multiton { (_, _: Void) in 42 }
+                let maker = multiton { (_, _: String) in 42 }
                 expect(maker.scope) === UnboundScope.root
             }
             it("has correct reference maker") {
@@ -159,19 +159,19 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect(maker.makeRef(0).currentValue as? Int) == 42
             }
             it("returns instance made by builder method") {
-                let maker = multiton { (_, _: Void) in 42 }
-                expect { try maker.makeInstance(resolver: DummyResolver()) } == 42
+                let maker = multiton { (_, _: String) in 42 }
+                expect { try maker.makeInstance(arg: box(""), resolver: DummyResolver()) } == 42
             }
             it("does not call builder until instance is requested") {
                 var called = false
-                _ = multiton { (_, _: Void) in called = true }
+                _ = multiton { (_, _: String) in called = true }
                 expect(called).to(beFalse())
             }
             it("calls builder with given resolver") {
                 var passedResolver: Resolver?
                 let resolver = DummyResolver()
-                let maker = multiton { (r, _: Void) in passedResolver = r }
-                _ = try? maker.makeInstance(resolver: resolver)
+                let maker = multiton { (r, _: String) in passedResolver = r }
+                _ = try? maker.makeInstance(arg: box(""), resolver: resolver)
                 expect(passedResolver) === resolver
             }
             it("calls builder with given argument") {
@@ -181,13 +181,13 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect(passedArgument) == 42
             }
             it("rethrows error from builder") {
-                let maker = multiton { (_, _: Void) in throw SwinjectError() }
-                expect { try maker.makeInstance(resolver: DummyResolver()) }.to(throwError())
+                let maker = multiton { (_, _: String) in throw SwinjectError() }
+                expect { try maker.makeInstance(arg: box(""), resolver: DummyResolver()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let maker = multiton { (_, _: Void) in Human() }
-                let instance1 = try? maker.makeInstance(resolver: DummyResolver())
-                let instance2 = try? maker.makeInstance(resolver: DummyResolver())
+                let maker = multiton { (_, _: String) in Human() }
+                let instance1 = try? maker.makeInstance(arg: box(""), resolver: DummyResolver())
+                let instance2 = try? maker.makeInstance(arg: box(""), resolver: DummyResolver())
                 expect(instance1) !== instance2
             }
             describe("multiple arguments") {
@@ -363,29 +363,29 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         }
         describe("multiton") {
             it("has correct scope") {
-                let maker = environment.multiton { (_, _, _: Void) in 42 }
+                let maker = environment.multiton { (_, _, _: String) in 42 }
                 expect(maker.scope) === scope
             }
             it("returns instance made by builder method") {
-                let maker = environment.multiton { (_, _, _: Void) in 42 }
-                expect { try maker.makeInstance(resolver: DummyResolver()) } == 42
+                let maker = environment.multiton { (_, _, _: String) in 42 }
+                expect { try maker.makeInstance(arg: box(""), resolver: DummyResolver()) } == 42
             }
             it("does not call builder until instance is requested") {
                 var called = false
-                _ = environment.multiton { (_, _, _: Void) in called = true }
+                _ = environment.multiton { (_, _, _: String) in called = true }
                 expect(called).to(beFalse())
             }
             it("calls builder with given resolver") {
                 var passedResolver: Resolver?
                 let resolver = DummyResolver()
-                let maker = environment.multiton { (r, _, _: Void) in passedResolver = r }
-                _ = try? maker.makeInstance(resolver: resolver)
+                let maker = environment.multiton { (r, _, _: String) in passedResolver = r }
+                _ = try? maker.makeInstance(arg: box(""), resolver: resolver)
                 expect(passedResolver) === resolver
             }
             it("calls builder with given context") {
                 var passedContext: Any?
-                let maker = environment.multiton { (_, c, _: Void) in passedContext = c }
-                _ = try? maker.makeInstance(context: "context", resolver: DummyResolver())
+                let maker = environment.multiton { (_, c, _: String) in passedContext = c }
+                _ = try? maker.makeInstance(arg: box(""), context: "context", resolver: DummyResolver())
                 expect(passedContext as? String) == "context"
             }
             it("calls builder with given argument") {
@@ -395,13 +395,13 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 expect(passedArgument) == 42
             }
             it("rethrows error from builder") {
-                let maker = environment.multiton { (_, _, _: Void) in throw SwinjectError() }
-                expect { try maker.makeInstance(resolver: DummyResolver()) }.to(throwError())
+                let maker = environment.multiton { (_, _, _: String) in throw SwinjectError() }
+                expect { try maker.makeInstance(arg: box(""), resolver: DummyResolver()) }.to(throwError())
             }
             it("does not reuse instance") {
-                let maker = environment.multiton { (_, _, _: Void) in Human() }
-                let instance1 = try? maker.makeInstance(resolver: DummyResolver())
-                let instance2 = try? maker.makeInstance(resolver: DummyResolver())
+                let maker = environment.multiton { (_, _, _: String) in Human() }
+                let instance1 = try? maker.makeInstance(arg: box(""), resolver: DummyResolver())
+                let instance2 = try? maker.makeInstance(arg: box(""), resolver: DummyResolver())
                 expect(instance1) !== instance2
             }
             describe("multiple arguments") {

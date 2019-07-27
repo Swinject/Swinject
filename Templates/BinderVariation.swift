@@ -136,6 +136,7 @@ extension BinderVariation {
         .filter { !($0.args == 0 && !$0.isMatchable) }
         .filter { !($0.args > 0 && !$0.hasResolver) }
         .filter { !($0.args > 0 && $0.isContexted && !$0.hasContext) }
+        .filter { !($0.isScoped && !$0.isMatchable) }
 }
 
 extension BinderVariation {
