@@ -4,7 +4,7 @@
 
 /// A configuration how an instance provided by a `Container` is shared in the system.
 /// The configuration is ignored if it is applied to a value type.
-public enum ObjectScope {
+public enum ObjectScope: String, CaseIterable {
     /// A new instance is always created by the `Container` when a type is resolved.
     /// The instance is not shared.
     case transient
@@ -26,8 +26,8 @@ extension ObjectScope {
     var scope: AnyScope? {
         switch self {
         case .graph: return GraphScope.shared
-        case .container: return ContainerScope.shared
-        case .weak: return ContainerScope.shared
+        case .container: return ContainerScope.container
+        case .weak: return ContainerScope.weak
         case .transient: return nil
         }
     }
@@ -57,16 +57,24 @@ final class Graph {
     }
 }
 
-final class GraphScope: Scope {
+final class GraphScope: Scope, CustomStringConvertible {
     static let shared = GraphScope()
+    let description = "graph"
 
     func registry(for graph: Graph) -> ScopeRegistry {
         return graph.registry
     }
 }
 
-final class ContainerScope: Scope {
-    static let shared = ContainerScope()
+final class ContainerScope: Scope, CustomStringConvertible {
+    static let container = ContainerScope("container")
+    static let weak = ContainerScope("weak")
+
+    let description: String
+
+    init(_ description: String) {
+        self.description = description
+    }
 
     func registry(for container: Container) -> ScopeRegistry {
         return container.registry

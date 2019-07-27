@@ -102,3 +102,32 @@ extension ServiceEntry: Binding {
         )
     }
 }
+
+extension ServiceEntry: CustomStringConvertible {
+    public var description: String {
+        return [
+            "Service: \(Service.self)",
+            name.map { "Name: \"\($0)\"" },
+            "Factory: (\(factoryInputs)) -> Animal",
+            "ObjectScope: \(scopeDescription)",
+            finalizers.isEmpty ? nil : "InitCompleted: Specified \(finalizers.count) closures",
+        ].compactMap { $0 }.joined(separator: ", ")
+    }
+
+    private var factoryInputs: String {
+        return ["Resolver", argumentTypes].compactMap { $0 }.joined(separator: ", ")
+    }
+
+    private var argumentTypes: String? {
+        var result = "\(argumentType)"
+        if result.hasPrefix("("), result.hasSuffix(")") {
+            result = String(result.dropFirst().dropLast())
+        }
+        return result.isEmpty ? nil : result
+    }
+
+    private var scopeDescription: String {
+        guard let scope = scope else { return "transient" }
+        return String(describing: scope)
+    }
+}

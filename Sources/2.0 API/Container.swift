@@ -27,7 +27,7 @@ public final class Container {
     let parent: Container?
     // TODO: Enable arbitrary scope as default
     let defaultObjectScope: ObjectScope
-    var bindings = [Binding]()
+    var bindings = [Binding & CustomStringConvertible]()
     var behaviors = [Behavior]()
     var swinject: Swinject { return Swinject(tree: SwinjectTree(
         bindings: allBindings,
@@ -111,7 +111,9 @@ public final class Container {
 
 extension Container: CustomStringConvertible {
     public var description: String {
-        return ""
+        return "["
+            + bindings.map { "\n    { \($0.description) }" }.sorted().joined(separator: ",")
+            + "\n]"
     }
 }
 
