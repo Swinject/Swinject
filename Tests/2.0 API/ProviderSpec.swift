@@ -6,8 +6,8 @@ import Nimble
 import Quick
 import Swinject
 
-// TODO: Enable Provider injection
-// class ProviderSpec: QuickSpec {
+class ProviderSpec: QuickSpec {
+    // TODO: Enable Provider injection
 //    override func spec() {
 //        var container: Container!
 //        beforeEach {
@@ -111,4 +111,4 @@ import Swinject
 //            }
 //        }
 //    }
-// }
+}

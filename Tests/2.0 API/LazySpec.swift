@@ -6,8 +6,8 @@ import Nimble
 import Quick
 import Swinject
 
-// TODO: Enable Lazy injection
-// class LazySpec: QuickSpec {
+class LazySpec: QuickSpec {
+    // TODO: Enable Lazy injection
 //    override func spec() {
 //        var container: Container!
 //        beforeEach {
@@ -106,4 +106,4 @@ import Swinject
 //            }
 //        }
 //    }
-// }
+}

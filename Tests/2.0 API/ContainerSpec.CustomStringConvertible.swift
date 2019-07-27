@@ -6,8 +6,8 @@ import Nimble
 import Quick
 @testable import Swinject
 
-// TODO: Implement debug description
-// class ContainerSpec_CustomStringConvertible: QuickSpec {
+class ContainerSpec_CustomStringConvertible: QuickSpec {
+    // TODO: Implement debug description
 //    override func spec() {
 //        var container: Container!
 //        beforeEach {
@@ -71,4 +71,4 @@ import Quick
 //                + "]"
 //        }
 //    }
-// }
+}
