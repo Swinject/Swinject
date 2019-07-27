@@ -97,7 +97,7 @@ public func factory<Type, Arg1>(_ builder: @escaping (Resolver, Arg1) throws -> 
     .init { try builder($0, $2) }
 }
 
-public func factory<Type, Arg1: Hashable>(_ builder: @escaping (Resolver, Arg1) throws -> Type) -> SimpleBinding.Builder<Type, Any, ArgumentBox1<Arg1>> {
+public func factory<Type, Arg1: Hashable>(_ builder: @escaping (Resolver, Arg1) throws -> Type) -> SimpleBinding.Builder<Type, Any, MatchableBox1<Arg1>> {
     .init { try builder($0, $2.arg1) }
 }
 
@@ -129,7 +129,7 @@ public func multiton<Type, Arg1>(ref: @escaping ReferenceMaker<Type> = strongRef
     .init(.root, ref) { try builder($0, $2) }
 }
 
-public func multiton<Type, Arg1: Hashable>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Arg1) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, ArgumentBox1<Arg1>> {
+public func multiton<Type, Arg1: Hashable>(ref: @escaping ReferenceMaker<Type> = strongRef, _ builder: @escaping (Resolver, Arg1) throws -> Type) -> ScopedBinding.Builder<Type, UnboundScope, MatchableBox1<Arg1>> {
     .init(.root, ref) { try builder($0, $2.arg1) }
 }
 

@@ -75,7 +75,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
             it("calls builder with given argument") {
                 var passedArgument: Int?
                 let maker = factory { (_, arg: Int) in passedArgument = arg }
-                _ = try? maker.makeInstance(arg: pack(42), resolver: DummyResolver())
+                _ = try? maker.makeInstance(arg: box(42), resolver: DummyResolver())
                 expect(passedArgument) == 42
             }
             it("rethrows error from builder") {
@@ -177,7 +177,7 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
             it("calls builder with given argument") {
                 var passedArgument: Int?
                 let maker = multiton { (_, arg: Int) in passedArgument = arg }
-                _ = try? maker.makeInstance(arg: pack(42), resolver: DummyResolver())
+                _ = try? maker.makeInstance(arg: box(42), resolver: DummyResolver())
                 expect(passedArgument) == 42
             }
             it("rethrows error from builder") {

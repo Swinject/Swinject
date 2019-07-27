@@ -498,7 +498,8 @@
 		CADDB3E9E363310028AA5920 /* InstanceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceMaker.swift; sourceTree = "<group>"; };
 		CC85CB215058F95C0BC190B1 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		CDA78290D6D60BD0B808571F /* Container+Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Logging.swift"; sourceTree = "<group>"; };
-		CDCF3FCB22EB8F960025E2BD /* ArgumentBox.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = ArgumentBox.swifttemplate; sourceTree = "<group>"; };
+		CDCF3FCB22EB8F960025E2BD /* MatchableBoxes.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = MatchableBoxes.swifttemplate; sourceTree = "<group>"; };
+		CDCF3FCC22EC16430025E2BD /* BinderEnvironment.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = BinderEnvironment.swifttemplate; sourceTree = "<group>"; };
 		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
 		E0874A043EAEE3C7CF1EA063 /* InstanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRequest.swift; sourceTree = "<group>"; };
 		E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
@@ -559,9 +560,10 @@
 			isa = PBXGroup;
 			children = (
 				4286F98133270A36F19E5CD0 /* AutoMockable.stencil */,
-				CDCF3FCB22EB8F960025E2BD /* ArgumentBox.swifttemplate */,
+				CDCF3FCB22EB8F960025E2BD /* MatchableBoxes.swifttemplate */,
 				CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */,
 				01DEC4D20CE554C9DFBD0A8D /* Resolver+Injection.swifttemplate */,
+				CDCF3FCC22EC16430025E2BD /* BinderEnvironment.swifttemplate */,
 				FE0EA1AA356CC46F4AB8AA3F /* Resolver+LegacyApi.swifttemplate */,
 				BD6E47826E8E3D3744E91ADC /* ServiceEntry+TypeForwarding.swifttemplate */,
 			);

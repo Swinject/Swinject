@@ -6,20 +6,7 @@ struct Variation {
     let paramArgs: Int
     let factoryArgs: Int
     let isMatchable: Bool
-
     var args: Int { return paramArgs + factoryArgs }
-
-    static let simpleCases = [false, true]
-        .flatMap { b in [0, 1].map { (b, $0) } }
-        .flatMap { t in [false, true].map { (t.0, t.1, $0) } }
-        .filter { $0.1 == 1 || $0.2 }
-        .map { Variation(isTagged: $0.0, paramArgs: $0.1, factoryArgs: 0, isMatchable: $0.2) }
-
-    static let factoryCases = [false, true]
-           .flatMap { b in (1...maxArgs).map { (b, $0) } }
-           .flatMap { t in (0..<t.1).map { (t.0, $0, t.1 - $0) } }
-           .flatMap { t in [false, true].map { (t.0, t.1, t.2, $0) } }
-           .map { Variation(isTagged: $0.0, paramArgs: $0.1, factoryArgs: $0.2, isMatchable: $0.3)  }
 }
 
 extension Variation {
@@ -32,9 +19,7 @@ extension Variation {
     var params: String {[
         "of _: Type.Type = Type.self",
         isTagged ? "tagged tag: Tag" : nil,
-        paramArgs == 1 ? "arg: Arg1" : nil,
-        paramArgs > 1  && !isMatchable ? ("arg: (" + (1...paramArgs).map { "Arg\($0)" }.joined(separator: ", ") + ")") : nil,
-        paramArgs > 1  && isMatchable ? ("arg: ArgumentBox\(paramArgs)<" + (1...paramArgs).map { "Arg\($0)" }.joined(separator: ", ") + ">") : nil
+        paramArgs >= 1 ? "arg " + (1...paramArgs).map { "arg\($0): Arg\($0)" }.joined(separator: ", _ ") : nil
     ].compactMap { $0 }.joined(separator: ", ") }
 
     var factoryInputs: String {
@@ -49,13 +34,26 @@ extension Variation {
     var whereClause: String { constraints.isEmpty ? "" : "where " + constraints }
 
     var requestParams: String {
-        let paramVars = paramArgs == 1 ? ["arg"] : (0..<paramArgs).map { isMatchable ? "arg.arg\($0+1)" : "arg.\($0)" }
+        let paramVars = (0..<paramArgs).map { "arg\($0+1)" }
         let factoryVars = (0..<factoryArgs).map { "$\($0)" }
         return [
             isTagged ? "tag: tag" : "tag: NoTag()",
-            args == 0 ? "arg: ()" : "arg: pack(\((paramVars + factoryVars).joined(separator: ", ")))",
+            args == 0 ? "arg: ()" : "arg: box(\((paramVars + factoryVars).joined(separator: ", ")))",
         ].compactMap { $0 }.joined(separator: ", ")
     }
+}
+extension Variation {
+    static let simpleCases = (0...maxArgs)
+        .flatMap { a in [false, true].map { ($0, a) } }
+        .flatMap { t in [false, true].map { (t.0, t.1, 0, $0) } }
+        .map { Variation(isTagged: $0.0, paramArgs: $0.1, factoryArgs: $0.2, isMatchable: $0.3) }
+        .filter { $0.paramArgs > 0 || $0.isMatchable }
+
+    static let factoryCases = (1...maxArgs)
+        .flatMap { a in [false, true].map { ($0, a) } }
+        .flatMap { t in [false, true].map { (t.0, t.1, $0) } }
+        .flatMap { t in (0..<t.1).map { (t.0, $0, t.1 - $0, t.2) } }
+        .map { Variation(isTagged: $0.0, paramArgs: $0.1, factoryArgs: $0.2, isMatchable: $0.3)  }
 }
 -%>
 // sourcery:inline:ResolverInjectionApi

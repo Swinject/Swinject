@@ -1,21 +1,12 @@
 <% let arg_count = 5 %>
-// sourcery:inline:ArgumentBox
+// sourcery:inline:MatchableBoxes
 <%_ (1...arg_count).forEach { i in
     let arg_types = (1...i).map { "Arg\($0)" }.joined(separator: ", ")
     let arg_hashables = (1...i).map { "Arg\($0): Hashable" }.joined(separator: ", ")
-    let type_name = "ArgumentBox\(i)<\(arg_types)>"
+    let type_name = "MatchableBox\(i)<\(arg_types)>"
 -%>
-public struct <%= type_name %>: Matchable where <%= arg_hashables %>{
+public struct <%= type_name %>: Hashable, Matchable where <%= arg_hashables %>{
     <%= (1...i).map { "let arg\($0): Arg\($0)" }.joined(separator: "\n    ") %>
-
-    public func matches(_ other: Any) -> Bool {
-        guard let other = other as? <%= type_name %> else { return false }
-        return <%= (1...i).map { "arg\($0) == other.arg\($0)" }.joined(separator: " && ") %>
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        <%= (1...i).map { "hasher.combine(arg\($0))" }.joined(separator: "\n        ") %>
-    }
 }
 
 <%_ } -%>
@@ -26,12 +17,12 @@ public struct <%= type_name %>: Matchable where <%= arg_hashables %>{
     let arg_call_params = (1...i).map { "arg\($0): arg\($0)" }.joined(separator: ", ")
     let tuple_params = (1...i).map { "arg\($0)" }.joined(separator: ", ")
 -%>
-func pack<<%= arg_types %>>(<%= arg_params %>) -> <%= i == 1 ? arg_types : "(\(arg_types))" %> {
+func box<<%= arg_types %>>(<%= arg_params %>) -> <%= i == 1 ? arg_types : "(\(arg_types))" %> {
     <%= i == 1 ? tuple_params : "(\(tuple_params))" %>
 }
 
-func pack<<%= arg_types %>>(<%= arg_params %>) -> ArgumentBox<%= i %><<%= arg_types %>> where <%= arg_hashables %> {
-    ArgumentBox<%= i %>(<%= arg_call_params %>)
+func box<<%= arg_types %>>(<%= arg_params %>) -> MatchableBox<%= i %><<%= arg_types %>> where <%= arg_hashables %> {
+    MatchableBox<%= i %>(<%= arg_call_params %>)
 }
 
 <%_ } -%>
