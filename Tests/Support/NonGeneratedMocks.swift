@@ -47,17 +47,8 @@ class DummyScope<Context>: Scope {
     func registry(for _: Context) -> ScopeRegistry { fatalError() }
 }
 
-// sourcery: AutoMockable
-protocol AnyBindningMaker {
-    func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding
-}
-
-extension AnyBindningMakerMock: BindingMaker {
+extension BindingMakerMock {
     typealias BoundType = Any
-
-    func makeBinding<Descriptor>(for descriptor: Descriptor) -> Binding where Descriptor: TypeDescriptor {
-        makeBinding(for: descriptor as AnyTypeDescriptor)
-    }
 }
 
 // sourcery: AutoMockable

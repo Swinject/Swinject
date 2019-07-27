@@ -56,27 +56,6 @@ class AnyBindingKeyMock: AnyBindingKey {
     }
 
 }
-class AnyBindningMakerMock: AnyBindningMaker {
-
-    //MARK: - makeBinding
-
-    var makeBindingForCallsCount = 0
-    var makeBindingForCalled: Bool {
-        return makeBindingForCallsCount > 0
-    }
-    var makeBindingForReceivedDescriptor: AnyTypeDescriptor?
-    var makeBindingForReceivedInvocations: [AnyTypeDescriptor] = []
-    var makeBindingForReturnValue: Binding!
-    var makeBindingForClosure: ((AnyTypeDescriptor) -> Binding)?
-
-    func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
-        makeBindingForCallsCount += 1
-        makeBindingForReceivedDescriptor = descriptor
-        makeBindingForReceivedInvocations.append(descriptor)
-        return makeBindingForClosure.map({ $0(descriptor) }) ?? makeBindingForReturnValue!
-    }
-
-}
 class AnyContextTranslatorMock: AnyContextTranslator {
     var sourceType: Any.Type {
         get { return underlyingSourceType }
@@ -266,6 +245,27 @@ class BindingMock: Binding {
         instanceArgContextResolverReceivedArguments = (arg: arg, context: context, resolver: resolver)
         instanceArgContextResolverReceivedInvocations.append((arg: arg, context: context, resolver: resolver))
         return try instanceArgContextResolverClosure.map({ try $0(arg, context, resolver) }) ?? instanceArgContextResolverReturnValue!
+    }
+
+}
+class BindingMakerMock: BindingMaker {
+
+    //MARK: - makeBinding
+
+    var makeBindingForCallsCount = 0
+    var makeBindingForCalled: Bool {
+        return makeBindingForCallsCount > 0
+    }
+    var makeBindingForReceivedDescriptor: AnyTypeDescriptor?
+    var makeBindingForReceivedInvocations: [AnyTypeDescriptor] = []
+    var makeBindingForReturnValue: Binding!
+    var makeBindingForClosure: ((AnyTypeDescriptor) -> Binding)?
+
+    func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
+        makeBindingForCallsCount += 1
+        makeBindingForReceivedDescriptor = descriptor
+        makeBindingForReceivedInvocations.append(descriptor)
+        return makeBindingForClosure.map({ $0(descriptor) }) ?? makeBindingForReturnValue!
     }
 
 }

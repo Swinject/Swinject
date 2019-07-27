@@ -8,10 +8,10 @@ import Quick
 
 class TypeBinderSpec: QuickSpec { override func spec() {
     var descriptor = AnyTypeDescriptorMock()
-    var maker = AnyBindningMakerMock()
+    var maker = BindingMakerMock()
     beforeEach {
         descriptor = AnyTypeDescriptorMock()
-        maker = AnyBindningMakerMock()
+        maker = BindingMakerMock()
         maker.makeBindingForReturnValue = BindingMock()
     }
     describe("bind") {

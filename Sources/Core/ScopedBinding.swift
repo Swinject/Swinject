@@ -57,7 +57,7 @@ extension ScopedBinding.Builder: InstanceMaker {
 extension ScopedBinding.Builder: BindingMaker {
     public typealias BoundType = Type
 
-    public func makeBinding<Descriptor>(for descriptor: Descriptor) -> Binding where Descriptor: TypeDescriptor {
+    public func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
         ScopedBinding(
             key: BindingKey(descriptor: descriptor, contextType: Context.self, argumentType: Argument.self),
             maker: self,

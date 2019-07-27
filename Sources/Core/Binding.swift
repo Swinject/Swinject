@@ -8,7 +8,8 @@ public protocol Binding: SwinjectEntry {
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any
 }
 
+// sourcery: AutoMockable
 public protocol BindingMaker {
     associatedtype BoundType
-    func makeBinding<Descriptor>(for descriptor: Descriptor) -> Binding where Descriptor: TypeDescriptor
+    func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding
 }
