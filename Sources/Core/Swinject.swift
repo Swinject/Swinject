@@ -28,10 +28,10 @@ extension Swinject: Resolver {
     public func resolve<Descriptor, Argument>(
         _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+        var binding: Binding!
+        // FIXME: Refactor this
         do {
-            let binding = try findBinding(for: request)
-            let translator = try findTranslator(for: request, and: binding)
-            return try instance(from: binding, context: translator.translate(context), arg: request.argument)
+            binding = try findBinding(for: request)
         } catch let error as NoBindingError {
             if let optional = Descriptor.BaseType.self as? OptionalProtocol.Type {
                 return optional.init() as! Descriptor.BaseType
@@ -39,6 +39,8 @@ extension Swinject: Resolver {
                 throw error
             }
         }
+        let translator = try findTranslator(for: request, and: binding)
+        return try instance(from: binding, context: translator.translate(context), arg: request.argument)
     }
 
     private func findTranslator(for request: AnyInstanceRequest, and binding: Binding) throws -> AnyContextTranslator {

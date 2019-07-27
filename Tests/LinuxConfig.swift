@@ -18,8 +18,10 @@ let allSpecs: [QuickSpec.Type] = [
     SynchronizedResolverSpec.self,
     // 3.0 Api
     SwinjectApiSpec.self,
+    BindingSpec.self,
     ModulesSpec.self,
     ScopesSpec.self,
+    OptionalsSpec.self,
     // Unit Specs
     BinderEnvironmentSpec.self,
     BindingKeySpec.self,
@@ -31,5 +33,4 @@ let allSpecs: [QuickSpec.Type] = [
     SwinjectSpec.self,
     SwinjectTreeBuilderSpec.self,
     TaggedTypeSpec.self,
-    TypeBinderSpec.self,
 ]

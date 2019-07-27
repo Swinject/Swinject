@@ -70,7 +70,6 @@
 		335CE53CEC2360DC86D58F07 /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EE5DDBE705B47AFC9A6986 /* LoadAwareAssembly.swift */; };
 		3575DE21531F7365B713B64B /* ScopedBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEE0E5A14336481369A3434 /* ScopedBindingSpec.swift */; };
 		36A706F87ED2E88F3390C6C2 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38615FC8EEB466C5C1EAD21C /* ServiceEntry.swift */; };
-		36F20E1EEAD43361A98713E0 /* TypeBinderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA62EEBC79ED2639C93A76B /* TypeBinderSpec.swift */; };
 		372F0061E762BF8FFF05457F /* SwinjectTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47018AC89CBE8254E17C4639 /* SwinjectTree.swift */; };
 		3753FB83A1FB4B83891AA5C8 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFF4BA99493C54260878C4 /* ObjectScope.swift */; };
 		389C54E04DD794DA4F648571 /* InstanceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3031083A039CCD929CD12 /* InstanceWrapper.swift */; };
@@ -109,7 +108,6 @@
 		56B2AD6054B63420DD025EC6 /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D83ADB41363D1E38087B4 /* NonGeneratedMocks.swift */; };
 		56D43738C09AA7355F6D529D /* BinderEnvironmentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */; };
 		57BFBA2077E70DC1C2FE796C /* InstanceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3031083A039CCD929CD12 /* InstanceWrapper.swift */; };
-		57FCCFC6C6747DAB2F141A52 /* TypeBinderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA62EEBC79ED2639C93A76B /* TypeBinderSpec.swift */; };
 		58ABEE0321A3061048B65EA2 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42490D1D0C395951243F5CFF /* Container.swift */; };
 		590B861A863A056A0B7FA368 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1541ABC1365DFD7E3377F /* Food.swift */; };
 		593B93BA2EE3FE4418A1C579 /* ScopeRegistryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A8DD30D81D1A4223A5EBC9 /* ScopeRegistryKey.swift */; };
@@ -210,7 +208,6 @@
 		A59C6C434288333EDAF951C4 /* EmploymentAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433BC87EE5B310B8B9F54156 /* EmploymentAssembly.swift */; };
 		A5A7F3C866C17F071C5D976C /* BindingKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8C8D605989E2D208BEB5D /* BindingKeySpec.swift */; };
 		A5E4C79F89E1A8AB3A4D8D6E /* Container+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A3946B59EB4D787CCE9F2 /* Container+Registration.swift */; };
-		A6CAAC13E97BAE1168B7933F /* TypeBinderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA62EEBC79ED2639C93A76B /* TypeBinderSpec.swift */; };
 		A6EECC339FA54CA0BBFF4146 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC5108ED11A3A3084D864CC /* Animal.swift */; };
 		A70936B898139A6C5F83F616 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AEDF723BDD949B59E6D1C5 /* ContainerSpec.Arguments.swift */; };
 		A75BAA10EC6F738EBC2C5BE8 /* ServiceEntry+TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D8665C3D7F020BDA1ACB /* ServiceEntry+TypeForwarding.swift */; };
@@ -281,6 +278,14 @@
 		CD77892922ECF9C700560AB7 /* ScopesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77892722ECF9C700560AB7 /* ScopesSpec.swift */; };
 		CD77892A22ECF9C700560AB7 /* ScopesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77892722ECF9C700560AB7 /* ScopesSpec.swift */; };
 		CD77892B22ECF9C700560AB7 /* ScopesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77892722ECF9C700560AB7 /* ScopesSpec.swift */; };
+		CD77892D22ED009C00560AB7 /* BindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77892C22ED009C00560AB7 /* BindingSpec.swift */; };
+		CD77892E22ED009C00560AB7 /* BindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77892C22ED009C00560AB7 /* BindingSpec.swift */; };
+		CD77892F22ED009C00560AB7 /* BindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77892C22ED009C00560AB7 /* BindingSpec.swift */; };
+		CD77893022ED009C00560AB7 /* BindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77892C22ED009C00560AB7 /* BindingSpec.swift */; };
+		CD77893222ED05C500560AB7 /* OptionalsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77893122ED05C500560AB7 /* OptionalsSpec.swift */; };
+		CD77893322ED05C500560AB7 /* OptionalsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77893122ED05C500560AB7 /* OptionalsSpec.swift */; };
+		CD77893422ED05C500560AB7 /* OptionalsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77893122ED05C500560AB7 /* OptionalsSpec.swift */; };
+		CD77893522ED05C500560AB7 /* OptionalsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77893122ED05C500560AB7 /* OptionalsSpec.swift */; };
 		CD92116422ECC05600211BF0 /* LinuxConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD92116322ECC05600211BF0 /* LinuxConfig.swift */; };
 		CD92116522ECC05600211BF0 /* LinuxConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD92116322ECC05600211BF0 /* LinuxConfig.swift */; };
 		CD92116622ECC05600211BF0 /* LinuxConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD92116322ECC05600211BF0 /* LinuxConfig.swift */; };
@@ -331,7 +336,6 @@
 		EEAD7E215908DF939ECCDCC9 /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB605ED0F735221D0EB1D5F /* Convenience.swift */; };
 		EF79F0B3D497215D4BBBC038 /* TypeBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B8E618A08408404FB2A7A /* TypeBinder.swift */; };
 		EFD2F695B86E74C77F46B7D1 /* Swinject+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */; };
-		F050175A7FB08DE1F97DC11C /* TypeBinderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA62EEBC79ED2639C93A76B /* TypeBinderSpec.swift */; };
 		F06DEB671A4B85ABB0E96E51 /* ContextTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83EC4390A34D207245D9C9 /* ContextTranslator.swift */; };
 		F270DC6FF3901F58C76F3872 /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B0E1B8963622CA872FA45B /* ContainerSpec.swift */; };
 		F37DA7FC70E254616DBD1BD7 /* ReferenceMakerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388605A438343F7BB80D521E /* ReferenceMakerSpec.swift */; };
@@ -557,12 +561,13 @@
 		CC85CB215058F95C0BC190B1 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		CD77892122ECF8F100560AB7 /* ModulesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesSpec.swift; sourceTree = "<group>"; };
 		CD77892722ECF9C700560AB7 /* ScopesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopesSpec.swift; sourceTree = "<group>"; };
+		CD77892C22ED009C00560AB7 /* BindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingSpec.swift; sourceTree = "<group>"; };
+		CD77893122ED05C500560AB7 /* OptionalsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalsSpec.swift; sourceTree = "<group>"; };
 		CD92116322ECC05600211BF0 /* LinuxConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinuxConfig.swift; sourceTree = "<group>"; };
 		CDA78290D6D60BD0B808571F /* Container+Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Logging.swift"; sourceTree = "<group>"; };
 		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
 		E0874A043EAEE3C7CF1EA063 /* InstanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRequest.swift; sourceTree = "<group>"; };
 		E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
-		EDA62EEBC79ED2639C93A76B /* TypeBinderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinderSpec.swift; sourceTree = "<group>"; };
 		F290F6B1207A0557A528220B /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		F446D6BD4C44E16A1D608BFB /* Container+TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+TypeForwarding.swift"; sourceTree = "<group>"; };
 		F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.TypeForwarding.swift; sourceTree = "<group>"; };
@@ -646,7 +651,6 @@
 				9527A4CA5BCBA7AFA3596757 /* SwinjectSpec.swift */,
 				8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */,
 				3AC3AF9B0B132A8597D6F3FD /* TaggedTypeSpec.swift */,
-				EDA62EEBC79ED2639C93A76B /* TypeBinderSpec.swift */,
 			);
 			path = "Unit Specs";
 			sourceTree = "<group>";
@@ -772,6 +776,8 @@
 			isa = PBXGroup;
 			children = (
 				C5FB515A9B4B929026438A90 /* SwinjectApiSpec.swift */,
+				CD77892C22ED009C00560AB7 /* BindingSpec.swift */,
+				CD77893122ED05C500560AB7 /* OptionalsSpec.swift */,
 				CD77892122ECF8F100560AB7 /* ModulesSpec.swift */,
 				CD77892722ECF9C700560AB7 /* ScopesSpec.swift */,
 			);
@@ -1466,6 +1472,7 @@
 				BD08D3E155AFD841CFECA0AD /* Animal.swift in Sources */,
 				02410BD4FB357F4C6B521608 /* AssemblerSpec.swift in Sources */,
 				DD29D2E60DA979D61F32A39A /* BasicAssembly.swift in Sources */,
+				CD77893222ED05C500560AB7 /* OptionalsSpec.swift in Sources */,
 				3129A37CDC1653C11800E24A /* BehaviorFakes.swift in Sources */,
 				216D6360147B43F5F47C9EA2 /* BinderEnvironmentSpec.swift in Sources */,
 				0BCA618354F1B2867A7FB261 /* BindingKeySpec.swift in Sources */,
@@ -1483,6 +1490,7 @@
 				9A8164D6696C87BFEC7325C3 /* GeneratedMocks.swift in Sources */,
 				AE6EAB8CC32ED5E1789D55B7 /* LazySpec.swift in Sources */,
 				B0B139FADA6AE07C79847EBA /* LoadAwareAssembly.swift in Sources */,
+				CD77892D22ED009C00560AB7 /* BindingSpec.swift in Sources */,
 				2C1BD6D785E310B6F8A3CAC9 /* NonGeneratedMocks.swift in Sources */,
 				628EBFBA0031B1FA2E29F583 /* Person.swift in Sources */,
 				708E1C453CBC76ED26FA2FCB /* ProviderSpec.swift in Sources */,
@@ -1499,7 +1507,6 @@
 				778D9AB6470D4280254AC140 /* TestModels.swift in Sources */,
 				CD77892822ECF9C700560AB7 /* ScopesSpec.swift in Sources */,
 				CD77892222ECF8F100560AB7 /* ModulesSpec.swift in Sources */,
-				A6CAAC13E97BAE1168B7933F /* TypeBinderSpec.swift in Sources */,
 				CD92116422ECC05600211BF0 /* LinuxConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1511,6 +1518,7 @@
 				A6EECC339FA54CA0BBFF4146 /* Animal.swift in Sources */,
 				CBBE28990E0EA82AD8D5E3AF /* AssemblerSpec.swift in Sources */,
 				401592294E5D528379BE1AB2 /* BasicAssembly.swift in Sources */,
+				CD77893322ED05C500560AB7 /* OptionalsSpec.swift in Sources */,
 				A3BFFED76688F149FBAF7C53 /* BehaviorFakes.swift in Sources */,
 				56D43738C09AA7355F6D529D /* BinderEnvironmentSpec.swift in Sources */,
 				6203E6494C12ECE21323F512 /* BindingKeySpec.swift in Sources */,
@@ -1528,6 +1536,7 @@
 				9C12EB42EC058994805E93A6 /* GeneratedMocks.swift in Sources */,
 				979518E078B187549E11DF48 /* LazySpec.swift in Sources */,
 				335CE53CEC2360DC86D58F07 /* LoadAwareAssembly.swift in Sources */,
+				CD77892E22ED009C00560AB7 /* BindingSpec.swift in Sources */,
 				56B2AD6054B63420DD025EC6 /* NonGeneratedMocks.swift in Sources */,
 				EB3420214A9E68A0247D0F2C /* Person.swift in Sources */,
 				CF9535A0DCAFF23F4D62F871 /* ProviderSpec.swift in Sources */,
@@ -1545,7 +1554,6 @@
 				CD77892922ECF9C700560AB7 /* ScopesSpec.swift in Sources */,
 				CD77892322ECF8F100560AB7 /* ModulesSpec.swift in Sources */,
 				CD92116522ECC05600211BF0 /* LinuxConfig.swift in Sources */,
-				F050175A7FB08DE1F97DC11C /* TypeBinderSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1556,6 +1564,7 @@
 				A53B5A8E2188F8C4A3F29C2E /* Animal.swift in Sources */,
 				CF4516872D3DA7118DB2B90B /* AssemblerSpec.swift in Sources */,
 				03122D1B2EA65C89ADC78EC7 /* BasicAssembly.swift in Sources */,
+				CD77893522ED05C500560AB7 /* OptionalsSpec.swift in Sources */,
 				1CA5DF3F93203B226A6FA059 /* BehaviorFakes.swift in Sources */,
 				3F704A98C01C84BDBD0A52B3 /* BinderEnvironmentSpec.swift in Sources */,
 				1927B730A0F0E141BFC1773E /* BindingKeySpec.swift in Sources */,
@@ -1573,6 +1582,7 @@
 				CB06DC3BC4A32776BBD90DDF /* GeneratedMocks.swift in Sources */,
 				6A0FD11468B3852E48B682BE /* LazySpec.swift in Sources */,
 				ED6CB3935B15F30A182ED6D0 /* LoadAwareAssembly.swift in Sources */,
+				CD77893022ED009C00560AB7 /* BindingSpec.swift in Sources */,
 				7AE3FF1C0B4860942D90B68B /* NonGeneratedMocks.swift in Sources */,
 				C76374CAFE7C2BCCE52F1BB1 /* Person.swift in Sources */,
 				4954CBB07E38E98752AC3347 /* ProviderSpec.swift in Sources */,
@@ -1589,7 +1599,6 @@
 				CB9E8D16D7A0620A1F7A32A3 /* TestModels.swift in Sources */,
 				CD77892B22ECF9C700560AB7 /* ScopesSpec.swift in Sources */,
 				CD77892522ECF8F100560AB7 /* ModulesSpec.swift in Sources */,
-				57FCCFC6C6747DAB2F141A52 /* TypeBinderSpec.swift in Sources */,
 				CD92116722ECC05600211BF0 /* LinuxConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1601,6 +1610,7 @@
 				D13208E63523A97A0B840283 /* Animal.swift in Sources */,
 				2AA60B7E6EBA9EC6BE92D7CB /* AssemblerSpec.swift in Sources */,
 				599C7F009F954CDA522244B3 /* BasicAssembly.swift in Sources */,
+				CD77893422ED05C500560AB7 /* OptionalsSpec.swift in Sources */,
 				8E1E051646BBD6E38F4199C2 /* BehaviorFakes.swift in Sources */,
 				4A977D2B639B8098AA508389 /* BinderEnvironmentSpec.swift in Sources */,
 				A5A7F3C866C17F071C5D976C /* BindingKeySpec.swift in Sources */,
@@ -1618,6 +1628,7 @@
 				B703A24C1A963C6BAC95B9A5 /* GeneratedMocks.swift in Sources */,
 				0CD787EACEBFD1051D358E7D /* LazySpec.swift in Sources */,
 				A2D3B18BE38948A427B60BC5 /* LoadAwareAssembly.swift in Sources */,
+				CD77892F22ED009C00560AB7 /* BindingSpec.swift in Sources */,
 				C4E9DC50A2FDAE4D36A925D9 /* NonGeneratedMocks.swift in Sources */,
 				BEEFBE87EB17D56BA8D47358 /* Person.swift in Sources */,
 				48F40377D116C6B1B786C329 /* ProviderSpec.swift in Sources */,
@@ -1634,7 +1645,6 @@
 				6034CF5459D96497AF36E4B6 /* TestModels.swift in Sources */,
 				CD77892A22ECF9C700560AB7 /* ScopesSpec.swift in Sources */,
 				CD77892422ECF8F100560AB7 /* ModulesSpec.swift in Sources */,
-				36F20E1EEAD43361A98713E0 /* TypeBinderSpec.swift in Sources */,
 				CD92116622ECC05600211BF0 /* LinuxConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -72,15 +72,6 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 _ = try? swinject.on("context").instance() as Int
                 expect(binding.matchesReceivedKey?.contextType is String.Type).to(beTrue())
             }
-            it("does not throw if has no binding for optional") {
-                binding.matchesReturnValue = false
-                expect { try swinject.instance() as Int? }.notTo(throwError())
-            }
-            it("throws if has throwing binding for optional") {
-                binding.matchesReturnValue = true
-                binding.instanceArgContextResolverThrowableError = TestError()
-                expect { try swinject.instance() as Int? }.to(throwError())
-            }
         }
         context("multiple bindings") {
             var bindings = [BindingMock]()
@@ -108,11 +99,6 @@ class SwinjectSpec: QuickSpec { override func spec() {
                 bindings[1].matchesReturnValue = true
                 bindings[1].instanceArgContextResolverReturnValue = 42
                 expect { try swinject.instance(of: Int.self) } == 42
-            }
-            it("throws if has multiple bindings for optional") {
-                bindings[0].matchesReturnValue = true
-                bindings[1].matchesReturnValue = true
-                expect { try swinject.instance() as Int? }.to(throwError())
             }
         }
     }

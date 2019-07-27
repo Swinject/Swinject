@@ -15,7 +15,3 @@ func bbind<Type>(_: Type.Type) -> TypeBinder<SomeTypeDescriptor<Type>> {
 func bbind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<SomeTypeDescriptor<Type>> where Tag: Hashable {
     return bind(Type.self, tagged: tag)
 }
-
-func bbind<Descriptor>(descriptor: Descriptor) -> TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
-    return bind(descriptor: descriptor)
-}

@@ -13,18 +13,6 @@ class SwinjectApiSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         UnboundScope.root.close()
         human = Human()
     }
-    it("returns instance if is bound") {
-        let swinject = Swinject {
-            bbind(Int.self).with(42)
-        }
-        expect { try swinject.instance(of: Int.self) } == 42
-    }
-    it("can infer the requested type") {
-        let swinject = Swinject {
-            bbind(Int.self) & 42
-        }
-        expect { try swinject.instance() as Int } == 42
-    }
     it("throws if providing type with missing dependency") {
         let swinject = Swinject {
             bbind(Pet.self) & provider { Pet(owner: try $0.instance()) }
@@ -37,41 +25,6 @@ class SwinjectApiSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             bbind(Human.self) & instance(human)
         }
         expect { try swinject.instance(of: Pet.self).owner } === human
-    }
-    it("throws if has multiple bindings for the same request") {
-        let swinject = Swinject {
-            bbind(Int.self) & 42
-            bbind(Int.self) & provider { 17 + 25 }
-        }
-        expect { try swinject.instance(of: Int.self) }.to(throwError())
-    }
-    it("throws if requesting instance with wrong tag") {
-        let swinject = Swinject {
-            bbind(Int.self, tagged: "Tag") & 42
-        }
-        expect { try swinject.instance(of: Int.self) }.to(throwError())
-        expect { try swinject.instance(of: Int.self, tagged: 42) }.to(throwError())
-        expect { try swinject.instance(of: Int.self, tagged: "OtherTag") }.to(throwError())
-    }
-    it("returns instance with correct tag") {
-        let swinject = Swinject {
-            bbind(String.self) & "Plain"
-            bbind(String.self, tagged: "Tag") & "Tagged"
-        }
-        expect { try swinject.instance(of: String.self) } == "Plain"
-        expect { try swinject.instance(of: String.self, tagged: "Tag") } == "Tagged"
-    }
-    it("can bind protocol to implementation") {
-        let swinject = Swinject {
-            bbind(Mammal.self).with(provider { Human() })
-        }
-        expect(try? swinject.instance(of: Mammal.self) is Human) == true
-    }
-    it("can inject optionals") {
-        let swinject = Swinject {
-            bbind(Int.self) & 42
-        }
-        expect { try swinject.instance() as Int? } == 42
     }
     it("can inject instance provider") {
         let swinject = Swinject {

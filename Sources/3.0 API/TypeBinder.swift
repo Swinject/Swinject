@@ -14,13 +14,6 @@ public func bind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<SomeTyp
     return TypeBinder(descriptor: tagged(Type.self, with: tag).opaque)
 }
 
-// TODO: Compiler Bug?
-// omitting `decriptor` param name here causes compiler to incorrectly infer types when using bind<Type>(), e.g.:
-// bind(CustomStringConvertible.self).with(provider { 42 })
-public func bind<Descriptor>(descriptor: Descriptor) -> TypeBinder<Descriptor> where Descriptor: TypeDescriptor {
-    return TypeBinder(descriptor: descriptor)
-}
-
 public extension TypeBinder {
     func with<Maker>(_ maker: Maker) -> Binding where Maker: BindingMaker, Maker.BoundType == Descriptor.BaseType {
         return maker.makeBinding(for: descriptor)
