@@ -61,13 +61,12 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         expect { try swinject.instance(of: String.self) } == "Plain"
         expect { try swinject.instance(of: String.self, tagged: "Tag") } == "Tagged"
     }
-    // FIXME:
-//    it("can bind protocol to implementation") {
-//        let swinject = Swinject(
-//            bbind(Mammal.self).with(provider { Human() })
-//        )
-//        expect(try? swinject.instance(of: Mammal.self) is Human) == true
-//    }
+    it("can bind protocol to implementation") {
+        let swinject = Swinject(
+            bbind(Mammal.self).with(provider { Human() })
+        )
+        expect(try? swinject.instance(of: Mammal.self) is Human) == true
+    }
     it("can inject optionals") {
         let swinject = Swinject(
             bbind(Int.self) & 42
@@ -82,11 +81,11 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         expect { try provider() } == 42
     }
     it("can inject instance factory") {
-        // FIXME: compiler segfaults if declaring this factory inside function builder
-        let intFactory = factory { (r, arg: Int) in Int(try r.instance() as Double) + 5 * arg }
         let swinject = Swinject(
             bbind(Double.self) & 17.0,
-            bbind(Int.self) & intFactory
+            bbind(Int.self) & factory { (r, arg: Int) in
+                Int(try r.instance() as Double) + 5 * arg
+            }
         )
         let factory = swinject.factory() as (Int) throws -> Int
         expect { try factory(5) } == 42
@@ -110,12 +109,9 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         expect { try swinject.factory(of: Int.self, arg: 11, 14.0)("17") } == 42
     }
     it("can pass context to the bindings") {
-        // FIXME: compiler segfaults if declaring these providers inside function builder
-        let intProvider = contexted(String.self).provider { _, string in Int(string)! }
-        let doubleProvider = contexted(String.self).provider { _, string in Double(string)! }
         let swinject = Swinject(
-            bbind(Int.self) & intProvider,
-            bbind(Double.self) & doubleProvider
+            bbind(Int.self) & contexted(String.self).provider { _, string in Int(string)! },
+            bbind(Double.self) & contexted(String.self).provider { _, string in Double(string)! }
         )
         let contexted = swinject.on("42")
         expect { try contexted.instance(of: Int.self) } == 42
@@ -130,12 +126,9 @@ class SwinjectApiSpec: QuickSpec { override func spec() {
         expect { try swinject.on(Human()).instance() as Int } == 42
     }
     it("can translate contexts") {
-        // FIXME: compiler segfaults if declaring these providers inside function builder
-        let intProvider = contexted(String.self).provider { _, string in Int(string)! }
-        let doubleProvider = contexted(Int.self).provider { _, int in Double(int) }
         let swinject = Swinject(
-            bbind(Int.self) & intProvider,
-            bbind(Double.self) & doubleProvider,
+            bbind(Int.self) & contexted(String.self).provider { _, string in Int(string)! },
+            bbind(Double.self) & contexted(Int.self).provider { _, int in Double(int) },
             registerContextTranslator(from: String.self) { Int($0)! }
         )
         let contexted = swinject.on("42")
