@@ -149,34 +149,6 @@ class SwinjectApiSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let second = try? swinject.instance() as Human
         expect(first) === second
     }
-    it("can bind scoped singleton") {
-        let scope = UnboundScope()
-        let swinject = Swinject {
-            bbind(Human.self) & scoped(scope).singleton { Human() }
-        }
-        let first = try? swinject.instance() as Human
-        let second = try? swinject.instance() as Human
-        expect(first) === second
-    }
-    it("can close scopes") {
-        let scope = UnboundScope()
-        let swinject = Swinject {
-            bbind(Human.self) & scoped(scope).singleton { Human() }
-        }
-        let first = try? swinject.instance() as Human
-        scope.close()
-        let second = try? swinject.instance() as Human
-        expect(first) !== second
-    }
-    it("notifies instances when scope is closed") {
-        let scope = UnboundScope()
-        let swinject = Swinject {
-            bbind(ClosableMock.self) & scoped(scope).singleton { ClosableMock() }
-        }
-        let closable = try? swinject.instance() as ClosableMock
-        scope.close()
-        expect(closable?.closeCalled) == true
-    }
     it("can bind weakly referenced singleton") {
         let swinject = Swinject {
             bbind(Human.self) & singleton(ref: weakRef) { Human() }
