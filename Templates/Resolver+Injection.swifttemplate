@@ -1,14 +1,14 @@
 <%- include("SwiftCode") %>
 // sourcery:inline:ResolverInjectionApi
-extension Resolver {
+public extension Resolver {
 <%= InjectionVariation.publicCases.filter { $0.functionName == "instance" }.map { $0.render() }.joined(separator: "\n\n") %>
 }
 
-extension Resolver {
+public extension Resolver {
 <%= InjectionVariation.publicCases.filter { $0.functionName == "provider" }.map { $0.render() }.joined(separator: "\n\n") %>
 }
 
-extension Resolver {
+public extension Resolver {
 <%= InjectionVariation.publicCases.filter { $0.functionName == "factory" }.map { $0.render() }.joined(separator: "\n\n") %>
 }
 // sourcery:end

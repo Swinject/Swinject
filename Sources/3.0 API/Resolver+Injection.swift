@@ -6,7 +6,7 @@
 // swiftlint:disable function_parameter_count
 // swiftlint:disable file_length
 // sourcery:inline:ResolverInjectionApi
-extension Resolver {
+public extension Resolver {
     func instance<Type>(of _: Type.Type = Type.self) throws -> Type {
         try resolve(request(tag: NoTag(), arg: ()))
     }
@@ -96,7 +96,7 @@ extension Resolver {
     }
 }
 
-extension Resolver {
+public extension Resolver {
     func provider<Type>(of _: Type.Type = Type.self) -> () throws -> Type {
         return { try self.resolve(request(tag: NoTag(), arg: ())) }
     }
@@ -186,7 +186,7 @@ extension Resolver {
     }
 }
 
-extension Resolver {
+public extension Resolver {
     func factory<Type, Arg1>(of _: Type.Type = Type.self) -> (Arg1) throws -> Type {
         return { try self.resolve(request(tag: NoTag(), arg: box($0))) }
     }
