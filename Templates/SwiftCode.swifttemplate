@@ -61,6 +61,10 @@ extension BinderVariation {
     }
 
     var returnType: String {
+        return "SomeBindingMaker<Type>"
+    }
+
+    var actualReturnType: String {
         if isScoped {
             return "ScopedBinding.Builder<Type, \(scopeType), \(argReturnType)>"
         } else {
@@ -145,7 +149,7 @@ extension BinderVariation {
         let prefix = indent ? "    " : ""
         return """
         \(prefix)public func \(functionName)<\(genericTypes)>(\(params)) -> \(returnType) \(constraints){
-        \(prefix)    .init\(initVars) { \(builderInputs) in try builder(\(builderVars)) }
+        \(prefix)    \(actualReturnType)\(initVars) { \(builderInputs) in try builder(\(builderVars)) }.opaque
         \(prefix)}
         """
     }

@@ -11,8 +11,8 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
     describe("implicit") {
         describe("instance") {
             it("produces maker with correct type signature") {
-                let maker = instance(42) as Any
-                expect(maker is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
+                let maker = instance(42)
+                expect(maker.actual is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
             }
             it("returns given instance") {
                 let maker = instance(42)
@@ -21,8 +21,8 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         }
         describe("provider") {
             it("produces maker with correct type signature") {
-                let maker = provider { 42 } as Any
-                expect(maker is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
+                let maker = provider { 42 }
+                expect(maker.actual is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
             }
             it("returns instance made by provider method") {
                 let maker = provider { 42 }
@@ -53,8 +53,8 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         }
         describe("factory") {
             it("produces maker with correct type signature") {
-                let maker = factory { (_, _: Void) in 42 } as Any
-                expect(maker is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
+                let maker = factory { (_, _: Void) in 42 }
+                expect(maker.actual is SimpleBinding.Builder<Int, Any, Void>).to(beTrue())
             }
             it("returns instance made by builder method") {
                 let maker = factory { (_, _: Void) in 42 }
@@ -113,13 +113,13 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         }
         describe("singleton") {
             it("has correct scope") {
-                let maker = singleton { 0 }
-                expect(maker.scope) === UnboundScope.root
+                let maker = singleton { 0 }.actual as? ScopedBinding.Builder<Int, UnboundScope, Void>
+                expect(maker?.scope) === UnboundScope.root
             }
             it("has correct reference maker") {
                 let makeRef: ReferenceMaker<Int> = { _ in noRef(42) }
-                let maker = singleton(ref: makeRef) { 0 }
-                expect(maker.makeRef(0).currentValue as? Int) == 42
+                let maker = singleton(ref: makeRef) { 0 }.actual as? ScopedBinding.Builder<Int, UnboundScope, Void>
+                expect(maker?.makeRef(0).currentValue as? Int) == 42
             }
             it("returns instance made by builder") {
                 let maker = singleton { 42 }
@@ -151,12 +151,14 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         describe("multiton") {
             it("has correct scope") {
                 let maker = multiton { (_, _: String) in 42 }
-                expect(maker.scope) === UnboundScope.root
+                let actualMaker = maker.actual as? ScopedBinding.Builder<Int, UnboundScope, MatchableBox1<String>>
+                expect(actualMaker?.scope) === UnboundScope.root
             }
             it("has correct reference maker") {
                 let makeRef: ReferenceMaker<Int> = { _ in noRef(42) }
-                let maker = singleton(ref: makeRef) { 0 }
-                expect(maker.makeRef(0).currentValue as? Int) == 42
+                let maker = multiton(ref: makeRef) { (_, _: String) in 42 }
+                let actualMaker = maker.actual as? ScopedBinding.Builder<Int, UnboundScope, MatchableBox1<String>>
+                expect(actualMaker?.makeRef(0).currentValue as? Int) == 42
             }
             it("returns instance made by builder method") {
                 let maker = multiton { (_, _: String) in 42 }
@@ -326,7 +328,8 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         describe("singleton") {
             it("has correct scope") {
                 let maker = environment.singleton { 42 }
-                expect(maker.scope) === scope
+                let actualMaker = maker.actual as? ScopedBinding.Builder<Int, AnyScopeMock, Void>
+                expect(actualMaker?.scope) === scope
             }
             it("returns instance made by builder") {
                 let maker = environment.singleton { 42 }
@@ -364,7 +367,8 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         describe("multiton") {
             it("has correct scope") {
                 let maker = environment.multiton { (_, _, _: String) in 42 }
-                expect(maker.scope) === scope
+                let actualMaker = maker.actual as? ScopedBinding.Builder<Int, AnyScopeMock, MatchableBox1<String>>
+                expect(actualMaker?.scope) === scope
             }
             it("returns instance made by builder method") {
                 let maker = environment.multiton { (_, _, _: String) in 42 }
@@ -429,3 +433,23 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
         }
     }
 } }
+
+private extension SomeBindingMaker {
+    var actual: AnyInstanceMaker { anyActual as! AnyInstanceMaker }
+
+    func makeInstance(resolver: Resolver) throws -> BoundType {
+        try actual.makeInstance(arg: (), context: (), resolver: resolver) as! BoundType
+    }
+
+    func makeInstance(context: Any, resolver: Resolver) throws -> BoundType {
+        try actual.makeInstance(arg: (), context: context, resolver: resolver) as! BoundType
+    }
+
+    func makeInstance(arg: Any, resolver: Resolver) throws -> BoundType {
+        try actual.makeInstance(arg: arg, context: (), resolver: resolver) as! BoundType
+    }
+
+    func makeInstance(arg: Any, context: Any, resolver: Resolver) throws -> BoundType {
+        try actual.makeInstance(arg: arg, context: context, resolver: resolver) as! BoundType
+    }
+}

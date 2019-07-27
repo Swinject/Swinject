@@ -25,7 +25,7 @@ public struct SomeTypeDescriptor<BaseType>: TypeDescriptor, Opaque {
     }
 }
 
-extension TypeDescriptor {
+public extension TypeDescriptor {
     var opaque: SomeTypeDescriptor<BaseType> { SomeTypeDescriptor(actual: self) }
 }
 

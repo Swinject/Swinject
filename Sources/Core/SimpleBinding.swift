@@ -2,23 +2,23 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public struct SimpleBinding {
+struct SimpleBinding {
     let key: AnyBindingKey
     let maker: AnyInstanceMaker
 }
 
 extension SimpleBinding: Binding {
-    public func matches(_ key: AnyBindingKey) -> Bool {
+    func matches(_ key: AnyBindingKey) -> Bool {
         self.key.matches(key)
     }
 
-    public func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
+    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         try maker.makeInstance(arg: arg, context: context, resolver: resolver)
     }
 }
 
 extension SimpleBinding {
-    public struct Builder<Type, Context, Argument> {
+    struct Builder<Type, Context, Argument> {
         private let builder: (Resolver, Context, Argument) throws -> Type
 
         init(_ builder: @escaping (Resolver, Context, Argument) throws -> Type) {
@@ -28,17 +28,17 @@ extension SimpleBinding {
 }
 
 extension SimpleBinding.Builder: InstanceMaker {
-    public typealias MadeType = Type
+    typealias MadeType = Type
 
-    public func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
+    func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
         try builder(resolver, context, arg)
     }
 }
 
 extension SimpleBinding.Builder: BindingMaker {
-    public typealias BoundType = Type
+    typealias BoundType = Type
 
-    public func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
+    func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
         SimpleBinding(
             key: BindingKey(descriptor: descriptor, contextType: Context.self, argumentType: Argument.self),
             maker: self
