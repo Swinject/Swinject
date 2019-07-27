@@ -18,6 +18,7 @@ let allSpecs: [QuickSpec.Type] = [
     SynchronizedResolverSpec.self,
     // 3.0 Api
     SwinjectApiSpec.self,
+    ModulesSpec.self
     // Unit Specs
     BinderEnvironmentSpec.self,
     BindingKeySpec.self,
