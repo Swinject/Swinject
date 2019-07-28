@@ -14,15 +14,6 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 let maker = singleton { 0 }.actual as? ScopedBinding.Builder<Int, UnboundScope, Void>
                 expect(maker?.scope) === UnboundScope.root
             }
-            it("has correct reference maker") {
-                let makeRef: ReferenceMaker<Int> = { _ in noRef(42) }
-                let maker = singleton(ref: makeRef) { 0 }.actual as? ScopedBinding.Builder<Int, UnboundScope, Void>
-                expect(maker?.makeRef(0).currentValue as? Int) == 42
-            }
-            it("returns instance made by builder") {
-                let maker = singleton { 42 }
-                expect { try maker.makeInstance(resolver: DummyResolver()) } == 42
-            }
             it("does not call builder until instance is requested") {
                 var called = false
                 _ = singleton { called = true }
@@ -39,33 +30,12 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 let maker = singleton { throw SwinjectError() }
                 expect { try maker.makeInstance(resolver: DummyResolver()) }.to(throwError())
             }
-            it("does not reuse instance") {
-                let maker = singleton { Human() }
-                let instance1 = try? maker.makeInstance(resolver: DummyResolver())
-                let instance2 = try? maker.makeInstance(resolver: DummyResolver())
-                expect(instance1) !== instance2
-            }
         }
         describe("multiton") {
             it("has correct scope") {
                 let maker = multiton { (_, _: String) in 42 }
                 let actualMaker = maker.actual as? ScopedBinding.Builder<Int, UnboundScope, MatchableBox1<String>>
                 expect(actualMaker?.scope) === UnboundScope.root
-            }
-            it("has correct reference maker") {
-                let makeRef: ReferenceMaker<Int> = { _ in noRef(42) }
-                let maker = multiton(ref: makeRef) { (_, _: String) in 42 }
-                let actualMaker = maker.actual as? ScopedBinding.Builder<Int, UnboundScope, MatchableBox1<String>>
-                expect(actualMaker?.makeRef(0).currentValue as? Int) == 42
-            }
-            it("returns instance made by builder method") {
-                let maker = multiton { (_, _: String) in 42 }
-                expect { try maker.makeInstance(arg: box(""), resolver: DummyResolver()) } == 42
-            }
-            it("does not call builder until instance is requested") {
-                var called = false
-                _ = multiton { (_, _: String) in called = true }
-                expect(called).to(beFalse())
             }
             it("calls builder with given resolver") {
                 var passedResolver: Resolver?
@@ -74,43 +44,9 @@ class BinderEnvironmentSpec: QuickSpec { override func spec() {
                 _ = try? maker.makeInstance(arg: box(""), resolver: resolver)
                 expect(passedResolver) === resolver
             }
-            it("calls builder with given argument") {
-                var passedArgument: Int?
-                let maker = multiton { (_, arg: Int) in passedArgument = arg }
-                _ = try? maker.makeInstance(arg: box(42), resolver: DummyResolver())
-                expect(passedArgument) == 42
-            }
             it("rethrows error from builder") {
                 let maker = multiton { (_, _: String) in throw SwinjectError() }
                 expect { try maker.makeInstance(arg: box(""), resolver: DummyResolver()) }.to(throwError())
-            }
-            it("does not reuse instance") {
-                let maker = multiton { (_, _: String) in Human() }
-                let instance1 = try? maker.makeInstance(arg: box(""), resolver: DummyResolver())
-                let instance2 = try? maker.makeInstance(arg: box(""), resolver: DummyResolver())
-                expect(instance1) !== instance2
-            }
-            describe("multiple arguments") {
-                it("works with 2 arguments") {
-                    let maker = multiton { (_, _: Int, _: Double) in 42 }
-                    let arguments = box(1, 1.0)
-                    expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
-                }
-                it("works with 3 arguments") {
-                    let maker = multiton { (_, _: Int, _: Double, _: String) in 42 }
-                    let arguments = box(1, 1.0, "")
-                    expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
-                }
-                it("works with 4 arguments") {
-                    let maker = multiton { (_, _: Int, _: Double, _: String, _: Float) in 42 }
-                    let arguments = box(1, 1.0, "", Float(1.0))
-                    expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
-                }
-                it("works with 5 arguments") {
-                    let maker = multiton { (_, _: Int, _: Double, _: String, _: Float, _: Int) in 42 }
-                    let arguments = box(1, 1.0, "", Float(1.0), 5)
-                    expect { try maker.makeInstance(arg: arguments, resolver: DummyResolver()) } == 42
-                }
             }
         }
     }

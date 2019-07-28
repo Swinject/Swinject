@@ -10,21 +10,13 @@ class Human: Mammal {
     var name = ""
 }
 
-struct Pet {
+class Pet {
     let name: String
     let owner: Human
 
     init(name: String = "", owner: Human) {
         self.name = name
         self.owner = owner
-    }
-}
-
-class Building {
-    let floors: Int
-
-    init(floors: Int) {
-        self.floors = floors
     }
 }
 

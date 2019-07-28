@@ -36,5 +36,13 @@ class OptionalsSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         }
         expect { try swinject.instance() as Int? }.to(throwError())
     }
+    it("injects same singleton instance for type and it's optional") {
+        let swinject = Swinject {
+            bbind(Human.self) & singleton { Human() }
+        }
+        let direct = try? swinject.instance(of: Human.self)
+        let optional = try? swinject.instance(of: Human?.self)
+        expect(direct) === optional
+    }
     #endif
 } }

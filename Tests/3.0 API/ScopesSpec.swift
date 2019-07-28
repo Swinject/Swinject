@@ -5,7 +5,6 @@
 import Nimble
 import Quick
 import Swinject
-@testable import class Swinject.UnboundScope
 
 class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     it("can bind scoped singleton") {
