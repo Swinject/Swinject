@@ -21,6 +21,7 @@ let allSpecs: [QuickSpec.Type] = [
     BindingSpec.self,
     InjectionSpec.self,
     ModulesSpec.self,
+    ContextSpec.self,
     ScopesSpec.self,
     OptionalsSpec.self,
     // Unit Specs
@@ -31,7 +32,6 @@ let allSpecs: [QuickSpec.Type] = [
     ScopeRegistryKeySpec.self,
     SimpleBindingSpec.self,
     StandardScopeRegistrySpec.self,
-    SwinjectSpec.self,
     SwinjectTreeBuilderSpec.self,
     TaggedTypeSpec.self,
 ]
