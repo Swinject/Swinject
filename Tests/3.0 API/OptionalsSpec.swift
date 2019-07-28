@@ -44,5 +44,12 @@ class OptionalsSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let optional = try? swinject.instance(of: Human?.self)
         expect(direct) === optional
     }
+    // TODO: Optional contexts
+//    it("injects instance on the optional of a binding's context") {
+//        let swinject = Swinject {
+//            bbind(Int.self) & contexted(String.self).provider { (_, c: String) in Int(c)! }
+//        }
+//        expect { try swinject.on("42" as String?).instance(of: Int.self) } == 42
+//    }
     #endif
 } }

@@ -13,8 +13,8 @@ public protocol Scope: AnyScope {
     func registry(for context: Context) -> ScopeRegistry
 }
 
-extension Scope {
-    public var contextType: Any.Type { return Context.self }
+public extension Scope {
+    var contextType: Any.Type { return Context.self }
 
     func registry(for context: Any) -> ScopeRegistry {
         return registry(for: context as! Context)

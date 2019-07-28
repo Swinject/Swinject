@@ -42,7 +42,6 @@
 		1ED6BD68D92F4FE60978EF22 /* Container+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA78290D6D60BD0B808571F /* Container+Logging.swift */; };
 		1EF3807EB529346903DFA2A1 /* BindingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B4E8F1CA18603DBB6884A /* BindingKey.swift */; };
 		21285CED416F1317E993397A /* Container+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A3946B59EB4D787CCE9F2 /* Container+Registration.swift */; };
-		216D6360147B43F5F47C9EA2 /* BinderEnvironmentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */; };
 		233F3E25FF0B51A3E6611F58 /* SwinjectTreeBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */; };
 		24114725AE1A834C6E3118F7 /* TaggedTypeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC3AF9B0B132A8597D6F3FD /* TaggedTypeSpec.swift */; };
 		2615FC1C92B7E381116B9E57 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CAC1761180366DE75A4A6 /* TestModels.swift */; };
@@ -77,7 +76,6 @@
 		3C270A77DE4F1E6BC2F8E863 /* ContainerSpec.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */; };
 		3CEF021295AD9AF9BF26B71E /* SwinjectTreeBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */; };
 		3DEFB7CA42D9EFF0B4FBC0F4 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38BCCF3F950869BD1891F7A8 /* Swinject.framework */; };
-		3F704A98C01C84BDBD0A52B3 /* BinderEnvironmentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */; };
 		3F8F5645D6D37FCEC1D89393 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0B580B43E1891812C97209 /* Binding.swift */; };
 		401592294E5D528379BE1AB2 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62682D6ED38742996624B041 /* BasicAssembly.swift */; };
 		41C7340BFD2EB66359772733 /* Resolver+LegacyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A784E2DEC7691D14DDBECD8 /* Resolver+LegacyApi.swift */; };
@@ -91,7 +89,6 @@
 		4954CBB07E38E98752AC3347 /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AA2AA587975747596C157 /* ProviderSpec.swift */; };
 		49685AB40BEE856C62005C87 /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */; };
 		49D71F6CC12C12FE7B6A097A /* ContextSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */; };
-		4A977D2B639B8098AA508389 /* BinderEnvironmentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */; };
 		4B9811CF0604946CCF323ED2 /* TypeBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B8E618A08408404FB2A7A /* TypeBinder.swift */; };
 		4DC8A58B6607898BAF6504A3 /* Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E612D299FB31D27FF9BDCE6 /* Circularity.swift */; };
 		4DF3DC1CDD3C4948F9BDD3DF /* SwinjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3586A4987B7C7C8122D674E /* SwinjectError.swift */; };
@@ -104,7 +101,6 @@
 		55CA3AA3F28B7CC221ABEC83 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D54F152C11C966ECFC55ECB /* Swinject.framework */; };
 		55F2E72EA8C3564130F66946 /* ModulesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BE3AE3E30DFE42A919D825 /* ModulesSpec.swift */; };
 		56B2AD6054B63420DD025EC6 /* NonGeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D83ADB41363D1E38087B4 /* NonGeneratedMocks.swift */; };
-		56D43738C09AA7355F6D529D /* BinderEnvironmentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */; };
 		57BFBA2077E70DC1C2FE796C /* InstanceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3031083A039CCD929CD12 /* InstanceWrapper.swift */; };
 		58ABEE0321A3061048B65EA2 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42490D1D0C395951243F5CFF /* Container.swift */; };
 		590B861A863A056A0B7FA368 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1541ABC1365DFD7E3377F /* Food.swift */; };
@@ -552,7 +548,6 @@
 		F290F6B1207A0557A528220B /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		F446D6BD4C44E16A1D608BFB /* Container+TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+TypeForwarding.swift"; sourceTree = "<group>"; };
 		F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.TypeForwarding.swift; sourceTree = "<group>"; };
-		FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinderEnvironmentSpec.swift; sourceTree = "<group>"; };
 		FE0EA1AA356CC46F4AB8AA3F /* Resolver+LegacyApi.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resolver+LegacyApi.swifttemplate"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -621,7 +616,6 @@
 		0A05322134E988A4593B5122 /* Unit Specs */ = {
 			isa = PBXGroup;
 			children = (
-				FD372C51962DAACD1FAF2269 /* BinderEnvironmentSpec.swift */,
 				BAF68BC7EEE11B52D4D6FB94 /* StandardScopeRegistrySpec.swift */,
 				8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */,
 				3AC3AF9B0B132A8597D6F3FD /* TaggedTypeSpec.swift */,
@@ -1449,7 +1443,6 @@
 				02410BD4FB357F4C6B521608 /* AssemblerSpec.swift in Sources */,
 				DD29D2E60DA979D61F32A39A /* BasicAssembly.swift in Sources */,
 				3129A37CDC1653C11800E24A /* BehaviorFakes.swift in Sources */,
-				216D6360147B43F5F47C9EA2 /* BinderEnvironmentSpec.swift in Sources */,
 				9A2A6978519F2BBA97DA6EA6 /* BindingSpec.swift in Sources */,
 				89E2997CB8B90368A15A91CE /* Bridge.swift in Sources */,
 				0946D0D940D38828FD0DFBAD /* Circularity.swift in Sources */,
@@ -1491,7 +1484,6 @@
 				CBBE28990E0EA82AD8D5E3AF /* AssemblerSpec.swift in Sources */,
 				401592294E5D528379BE1AB2 /* BasicAssembly.swift in Sources */,
 				A3BFFED76688F149FBAF7C53 /* BehaviorFakes.swift in Sources */,
-				56D43738C09AA7355F6D529D /* BinderEnvironmentSpec.swift in Sources */,
 				BB77A5D81C58392964D07233 /* BindingSpec.swift in Sources */,
 				13CDEC7A6C8E43B58D5CBE3D /* Bridge.swift in Sources */,
 				2B88BFD81C226C858E0AE2B6 /* Circularity.swift in Sources */,
@@ -1533,7 +1525,6 @@
 				CF4516872D3DA7118DB2B90B /* AssemblerSpec.swift in Sources */,
 				03122D1B2EA65C89ADC78EC7 /* BasicAssembly.swift in Sources */,
 				1CA5DF3F93203B226A6FA059 /* BehaviorFakes.swift in Sources */,
-				3F704A98C01C84BDBD0A52B3 /* BinderEnvironmentSpec.swift in Sources */,
 				CAA5241DAA201FBB5818C803 /* BindingSpec.swift in Sources */,
 				E4CE31B7B9616EFC93C69341 /* Bridge.swift in Sources */,
 				4DC8A58B6607898BAF6504A3 /* Circularity.swift in Sources */,
@@ -1575,7 +1566,6 @@
 				2AA60B7E6EBA9EC6BE92D7CB /* AssemblerSpec.swift in Sources */,
 				599C7F009F954CDA522244B3 /* BasicAssembly.swift in Sources */,
 				8E1E051646BBD6E38F4199C2 /* BehaviorFakes.swift in Sources */,
-				4A977D2B639B8098AA508389 /* BinderEnvironmentSpec.swift in Sources */,
 				0207493E1CEE8456E91E3DAE /* BindingSpec.swift in Sources */,
 				43A74237D8933572BAA0F3B4 /* Bridge.swift in Sources */,
 				C177D9C6969ADA38C1094F6D /* Circularity.swift in Sources */,
