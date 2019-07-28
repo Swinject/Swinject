@@ -45,5 +45,36 @@ class BindingSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         }
         expect(try? swinject.instance(of: Mammal.self) is Human) == true
     }
+    it("can use up to 5 arguments in factory binding") {
+        let swinject = Swinject {
+            bbind(Int.self) & factory { (_, a1: Int) in a1 }
+            bbind(Int.self) & factory { (_, a1: Int, a2: Int) in a1 + a2 }
+            bbind(Int.self) & factory { (_, a1: Int, a2: Int, a3: Int) in a1 + a2 + a3 }
+            bbind(Int.self) & factory { (_, a1: Int, a2: Int, a3: Int, a4: Int) in a1 + a2 + a3 + a4 }
+            bbind(Int.self) & factory { (_, a1: Int, a2: Int, a3: Int, a4: Int, a5: Int) in a1 + a2 + a3 + a4 + a5 }
+        }
+        expect { try swinject.instance(of: Int.self, arg: 1) } == 1
+        expect { try swinject.instance(of: Int.self, arg: 1, 2) } == 3
+        expect { try swinject.instance(of: Int.self, arg: 1, 2, 3) } == 6
+        expect { try swinject.instance(of: Int.self, arg: 1, 2, 3, 4) } == 10
+        expect { try swinject.instance(of: Int.self, arg: 1, 2, 3, 4, 5) } == 15
+    }
+    it("does not invoke binding until instance is required") {
+        var invoked = false
+        let swinject = Swinject {
+            bbind(Int.self) & provider { invoked = true; return 42 }
+        }
+        _ = swinject.provider(of: Int.self)
+        expect(invoked) == false
+    }
+    it("does not invoke unnecessary bindings") {
+        var invoked = false
+        let swinject = Swinject {
+            bbind(Int.self) & provider { invoked = true; return 42 }
+            bbind(Int.self, tagged: "tag") & 42
+        }
+        _ = try? swinject.instance(of: Int.self, tagged: "tag")
+        expect(invoked) == false
+    }
     #endif
 } }

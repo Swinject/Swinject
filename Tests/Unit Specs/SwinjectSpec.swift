@@ -16,15 +16,6 @@ class SwinjectSpec: QuickSpec { override func spec() {
     }
     describe("instance injection") {
         context("single binding") {
-            it("does not request instance from matching binding until instance is required") {
-                binding.matchesReturnValue = true
-                expect(binding.instanceArgContextResolverCallsCount) == 0
-            }
-            it("only requests instance from matching binding") {
-                binding.matchesReturnValue = false
-                _ = try? swinject.instance(of: Any.self)
-                expect(binding.instanceArgContextResolverCallsCount) == 0
-            }
             it("matches binding with correct context") {
                 binding.matchesReturnValue = false
                 _ = try? swinject.on("context").instance() as Int
@@ -33,12 +24,6 @@ class SwinjectSpec: QuickSpec { override func spec() {
         }
     }
     describe("provider injection") {
-        it("does not request provided type until provider is called") {
-            binding.matchesReturnValue = true
-            binding.instanceArgContextResolverReturnValue = 42
-            _ = swinject.provider(of: Int.self)
-            expect(binding.instanceArgContextResolverCallsCount) == 0
-        }
         it("matches binding with correct context") {
             binding.matchesReturnValue = false
             _ = try? swinject.on("context").provider()() as Int
@@ -62,12 +47,6 @@ class SwinjectSpec: QuickSpec { override func spec() {
         }
     }
     describe("factory injection") {
-        it("does not request created type until factory is called") {
-            binding.matchesReturnValue = true
-            binding.instanceArgContextResolverReturnValue = 42
-            _ = swinject.factory() as (String) throws -> Int
-            expect(binding.instanceArgContextResolverCallsCount) == 0
-        }
         it("matches binding with correct context") {
             binding.matchesReturnValue = false
             _ = try? swinject.on("context").factory()("arg") as Int
