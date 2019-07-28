@@ -21,15 +21,15 @@ matrix:
       before_install:
       script:
         - pod lib lint
-    - env: JOB="XCODE" DEST="OS=10.0,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
+    - env: JOB="XCODE" DEST="OS=10.0,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS" CONFIG="Release"
       osx_image: xcode10.2
-    - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-macOS" SDK="macosx" ACTION="test" PLATFORM="OSX"
+    - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-macOS" SDK="macosx" ACTION="test" PLATFORM="OSX" CONFIG="Release"
       osx_image: xcode10.2
-    - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-macOS" SDK="macosx" ACTION="test" PLATFORM="OSX"
+    - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-macOS" SDK="macosx" ACTION="test" PLATFORM="OSX" CONFIG="Release"
       osx_image: xcode11
-    - env: JOB="XCODE" DEST="OS=10.0,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test" PLATFORM="tvOS"
+    - env: JOB="XCODE" DEST="OS=10.0,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test" PLATFORM="tvOS" CONFIG="Debug"
       osx_image: xcode10.2
-    - env: JOB="XCODE" DEST="OS=2.2,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build" PLATFORM="watchOS"
+    - env: JOB="XCODE" DEST="OS=2.2,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build" PLATFORM="watchOS" CONFIG="Release"
       osx_image: xcode10.2
 
 before_install:
@@ -39,7 +39,7 @@ before_install:
   - carthage bootstrap --verbose --platform $PLATFORM
 script:
   - set -o pipefail
-  - xcodebuild "$ACTION" -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DEST" -configuration Release ENABLE_TESTABILITY=YES | xcpretty
+  - xcodebuild "$ACTION" -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DEST" -configuration "$CONFIG" ENABLE_TESTABILITY=YES | xcpretty
 notifications:
   email:
     on_success: never
