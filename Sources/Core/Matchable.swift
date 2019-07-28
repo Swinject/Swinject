@@ -2,7 +2,6 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-// sourcery: AutoMockable
 public protocol Matchable {
     func matches(_ other: Any) -> Bool
     func hash(into hasher: inout Hasher)

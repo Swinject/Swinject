@@ -2,7 +2,6 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-// sourcery: AutoMockable
 protocol AnyContextTranslator: SwinjectEntry {
     var sourceType: Any.Type { get }
     var targetType: Any.Type { get }

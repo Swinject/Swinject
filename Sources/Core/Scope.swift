@@ -2,7 +2,6 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-// sourcery: AutoMockable
 public protocol AnyScope {
     var contextType: Any.Type { get }
     func registry(for context: Any) -> ScopeRegistry

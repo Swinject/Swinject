@@ -65,5 +65,8 @@ fastlane/screenshots
 ## Mac
 .DS_Store
 
+## Sourcery
+.sourcery.dump
+
 ## Swinject
 Swinject.framework.zip

@@ -2,6 +2,8 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
+import Swinject
+
 protocol Mammal {}
 
 class Human: Mammal {
@@ -21,3 +23,14 @@ class Pet {
 }
 
 struct TestError: Error, Equatable {}
+
+class Door: Closable {
+    var closeCount = 0
+    var isClosed: Bool { return closeCount > 0 }
+    var whenClosed: () -> Void = {}
+
+    func close() {
+        closeCount += 1
+        whenClosed()
+    }
+}

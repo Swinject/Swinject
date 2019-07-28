@@ -13,50 +13,59 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() { #if swift(>=5.
             expect(tree.bindings).to(beEmpty())
         }
         it("builds closure with single entry") {
-            let tree = makeTree { BindingMock() }
+            let tree = makeTree { bbind(Int.self).with(42) }
             expect(tree.bindings.count) == 1
         }
         it("builds closure with multiple entries") {
             let tree = makeTree {
-                BindingMock(); BindingMock(); BindingMock(); BindingMock(); BindingMock()
+                bbind(Int.self).with(42)
+                bbind(UInt.self).with(42)
+                bbind(Float.self).with(42)
+                bbind(Double.self).with(42)
+                bbind(Int32.self).with(42)
             }
             expect(tree.bindings.count) == 5
         }
-        // FIXME: Test coverage enabled build segfaults on this
-//        it("builds closure with if statement") {
-//            let tree = makeTree {
-//                if true { BindingMock() }
-//            }
-//            expect(tree.bindings.count) == 1
-//        }
-//        it("builds closure with nested if statement") {
-//            let tree = makeTree {
-//                if true { BindingMock(); if true { BindingMock() } }
-//            }
-//            expect(tree.bindings.count) == 2
-//        }
-//        it("builds closure with if else statement") {
-//            let tree = makeTree {
-//                if false {} else { BindingMock(); BindingMock() }
-//            }
-//            expect(tree.bindings.count) == 2
-//        }
+        it("builds closure with if statement") {
+            let tree = makeTree {
+                if true { bbind(Int.self).with(42) }
+            }
+            expect(tree.bindings.count) == 1
+        }
+        it("builds closure with nested if statement") {
+            let tree = makeTree {
+                if true {
+                    bbind(Int.self).with(42)
+                    if true { bbind(UInt.self).with(42) }
+                }
+            }
+            expect(tree.bindings.count) == 2
+        }
+        it("builds closure with if else statement") {
+            let tree = makeTree {
+                if false {} else {
+                    bbind(Int.self).with(42)
+                    bbind(UInt.self).with(42)
+                }
+            }
+            expect(tree.bindings.count) == 2
+        }
         it("builds closure with maker & include entries") {
             let tree = makeTree {
                 Swinject.Module("1")
                 Swinject.Module("2")
-                BindingMock()
-                BindingMock()
-                BindingMock()
+                bbind(Int.self).with(42)
+                bbind(UInt.self).with(42)
+                bbind(Float.self).with(42)
             }
             expect(tree.modules.count) == 2
             expect(tree.bindings.count) == 3
         }
         it("builds closure with translator entries") {
             let tree = makeTree {
-                AnyContextTranslatorMock()
-                AnyContextTranslatorMock()
-                AnyContextTranslatorMock()
+                registerContextTranslator(from: Int.self) { Double($0) }
+                registerContextTranslator(from: Float.self) { Double($0) }
+                registerContextTranslator(from: UInt.self) { Double($0) }
             }
             expect(tree.translators.count) == 3
         }

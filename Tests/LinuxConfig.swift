@@ -25,7 +25,6 @@ let allSpecs: [QuickSpec.Type] = [
     ScopesSpec.self,
     OptionalsSpec.self,
     // Unit Specs
-    BinderEnvironmentSpec.self,
     StandardScopeRegistrySpec.self,
     SwinjectTreeBuilderSpec.self,
     TaggedTypeSpec.self,

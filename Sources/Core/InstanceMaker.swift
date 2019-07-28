@@ -2,7 +2,6 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-// sourcery: AutoMockable
 protocol AnyInstanceMaker {
     func makeInstance(arg: Any, context: Any, resolver: Resolver) throws -> Any
 }

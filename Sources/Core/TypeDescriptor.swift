@@ -2,7 +2,6 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-// sourcery: AutoMockable
 public protocol AnyTypeDescriptor: Matchable {}
 
 public protocol TypeDescriptor: AnyTypeDescriptor {

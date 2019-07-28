@@ -2,7 +2,6 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-// sourcery: AutoMockable
 public protocol AnyBindingKey {
     var contextType: Any.Type { get }
     var argumentType: Any.Type { get }

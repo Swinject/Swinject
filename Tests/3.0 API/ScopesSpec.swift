@@ -58,25 +58,25 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         it("notifies instances when scope is closed") {
             let scope = UnboundScope()
             let swinject = Swinject {
-                bbind(ClosableMock.self) & scoped(scope).singleton { ClosableMock() }
+                bbind(Door.self) & scoped(scope).singleton { Door() }
             }
-            let closable = try? swinject.instance() as ClosableMock
+            let door = try? swinject.instance() as Door
 
             scope.close()
 
-            expect(closable?.closeCalled) == true
+            expect(door?.isClosed) == true
         }
         it("closes scoped instances when context expires") {
             let scope = SessionScope()
             var session = Session() as Session?
             let swinject = Swinject {
-                bbind(ClosableMock.self) & scoped(scope).singleton { ClosableMock() }
+                bbind(Door.self) & scoped(scope).singleton { Door() }
             }
-            let closable = try? swinject.on(session!).instance(of: ClosableMock.self)
+            let door = try? swinject.on(session!).instance(of: Door.self)
 
             session = nil
 
-            expect(closable?.closeCalled) == true
+            expect(door?.isClosed) == true
         }
         it("releases scoped instances when context expires") {
             let scope = SessionScope()

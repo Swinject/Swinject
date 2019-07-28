@@ -10,9 +10,9 @@ import Quick
 class StandardScopeRegistrySpec: QuickSpec { override func spec() {
     var registry: StandardScopeRegistry!
     let key = (1 ... 5).map { ScopeRegistryKey(descriptor: tagged(Int.self, with: $0), argument: ()) }
-    var closable = [ClosableMock]()
+    var doors = [Door]()
     beforeEach {
-        closable = (1 ... 3).map { _ in ClosableMock() }
+        doors = (1 ... 3).map { _ in Door() }
         registry = StandardScopeRegistry()
     }
     describe("instance") {
@@ -113,11 +113,11 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
     }
     describe("clear") {
         it("closes instances when cleared") {
-            _ = registry.instance(for: key[0]) { strongRef(closable[0]) }
-            _ = registry.instance(for: key[1]) { strongRef(closable[1]) }
+            _ = registry.instance(for: key[0]) { strongRef(doors[0]) }
+            _ = registry.instance(for: key[1]) { strongRef(doors[1]) }
             registry.clear()
-            expect(closable[0].closeCallsCount) == 1
-            expect(closable[1].closeCallsCount) == 1
+            expect(doors[0].closeCount) == 1
+            expect(doors[1].closeCount) == 1
         }
         it("releases instance references when cleared") {
             var human: Human? = Human()
@@ -130,15 +130,15 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
     }
     describe("closable") {
         it("does not close instance by default") {
-            _ = registry.instance(for: key[0]) { strongRef(closable[0]) }
-            expect(closable[0].closeCallsCount) == 0
+            _ = registry.instance(for: key[0]) { strongRef(doors[0]) }
+            expect(doors[0].isClosed) == false
         }
         it("closes instances when closed") {
-            _ = registry.instance(for: key[0]) { strongRef(closable[0]) }
-            _ = registry.instance(for: key[1]) { strongRef(closable[1]) }
+            _ = registry.instance(for: key[0]) { strongRef(doors[0]) }
+            _ = registry.instance(for: key[1]) { strongRef(doors[1]) }
             registry.close()
-            expect(closable[0].closeCallsCount) == 1
-            expect(closable[1].closeCallsCount) == 1
+            expect(doors[0].closeCount) == 1
+            expect(doors[1].closeCount) == 1
         }
         it("releases instance references when closed") {
             var human: Human? = Human()
@@ -151,11 +151,11 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
     }
     describe("deinit") {
         it("closes instances on deinit") {
-            _ = registry.instance(for: key[0]) { strongRef(closable[0]) }
-            _ = registry.instance(for: key[1]) { strongRef(closable[1]) }
+            _ = registry.instance(for: key[0]) { strongRef(doors[0]) }
+            _ = registry.instance(for: key[1]) { strongRef(doors[1]) }
             registry = nil
-            expect(closable[0].closeCallsCount) == 1
-            expect(closable[1].closeCallsCount) == 1
+            expect(doors[0].closeCount) == 1
+            expect(doors[1].closeCount) == 1
         }
     }
     describe("concurrency") {
@@ -171,11 +171,11 @@ class StandardScopeRegistrySpec: QuickSpec { override func spec() {
             expect(builderCallCount) == 1
         }
         it("closes instance only once when closed concurrently multiple times") {
-            let closable = ClosableMock()
-            closable.closeClosure = { Thread.sleep(forTimeInterval: 0.1) }
-            _ = registry.instance(for: key[0]) { strongRef(closable) }
+            let door = Door()
+            door.whenClosed = { Thread.sleep(forTimeInterval: 0.1) }
+            _ = registry.instance(for: key[0]) { strongRef(door) }
             concurrentPerform(iterations: 5, action: registry.close)
-            expect(closable.closeCallsCount) == 1
+            expect(door.closeCount) == 1
         }
         it("does not deadlock if invoked inside builder") {
             waitUntil { done in
