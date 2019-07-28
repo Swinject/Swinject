@@ -4,7 +4,7 @@
 
 struct ScopedBinding {
     let key: AnyBindingKey
-    let maker: AnyInstanceMaker
+    let builder: AnyInstanceBuilder
     let scope: AnyScope
     let makeRef: ReferenceMaker<Any>
 }
@@ -18,7 +18,7 @@ extension ScopedBinding: Binding {
         return try scope
             .registry(for: context)
             .instance(for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg)) {
-                makeRef(try maker.makeInstance(arg: arg, context: context, resolver: resolver))
+                makeRef(try builder.makeInstance(arg: arg, context: context, resolver: resolver))
             }
     }
 }
@@ -45,7 +45,7 @@ extension ScopedBinding {
     }
 }
 
-extension ScopedBinding.Builder: InstanceMaker {
+extension ScopedBinding.Builder: InstanceBuilder {
     typealias MadeType = Type
     typealias Context = AScope.Context
 
@@ -54,13 +54,13 @@ extension ScopedBinding.Builder: InstanceMaker {
     }
 }
 
-extension ScopedBinding.Builder: BindingMaker {
+extension ScopedBinding.Builder: BindingBuilder {
     typealias BoundType = Type
 
     func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
         return ScopedBinding(
             key: BindingKey(descriptor: descriptor, contextType: Context.self, argumentType: Argument.self),
-            maker: self,
+            builder: self,
             scope: scope,
             makeRef: makeRef
         )

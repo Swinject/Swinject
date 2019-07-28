@@ -15,8 +15,8 @@ public func bind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<SomeTyp
 }
 
 public extension TypeBinder {
-    func with<Maker>(_ maker: Maker) -> Binding where Maker: BindingMaker, Maker.BoundType == Descriptor.BaseType {
-        return maker.makeBinding(for: descriptor)
+    func with<Builder>(_ builder: Builder) -> Binding where Builder: BindingBuilder, Builder.BoundType == Descriptor.BaseType {
+        return builder.makeBinding(for: descriptor)
     }
 
     func with(_ value: Descriptor.BaseType) -> Binding {
@@ -24,9 +24,9 @@ public extension TypeBinder {
     }
 }
 
-public func & <Descriptor, Maker>(
-    lhs: TypeBinder<Descriptor>, rhs: Maker
-) -> Binding where Maker: BindingMaker, Maker.BoundType == Descriptor.BaseType {
+public func & <Descriptor, Builder>(
+    lhs: TypeBinder<Descriptor>, rhs: Builder
+) -> Binding where Builder: BindingBuilder, Builder.BoundType == Descriptor.BaseType {
     return lhs.with(rhs)
 }
 

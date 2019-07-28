@@ -7,12 +7,12 @@ public protocol Binding: SwinjectEntry {
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any
 }
 
-public protocol BindingMaker {
+public protocol BindingBuilder {
     associatedtype BoundType
     func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding
 }
 
-public struct SomeBindingMaker<BoundType>: BindingMaker, AnyOpaque {
+public struct SomeBindingBuilder<BoundType>: BindingBuilder, AnyOpaque {
     let anyActual: Any
     fileprivate let _makeBinding: (AnyTypeDescriptor) -> Binding
 
@@ -21,8 +21,8 @@ public struct SomeBindingMaker<BoundType>: BindingMaker, AnyOpaque {
     }
 }
 
-public extension BindingMaker {
-    var opaque: SomeBindingMaker<BoundType> {
-        return SomeBindingMaker(anyActual: self) { self.makeBinding(for: $0) }
+public extension BindingBuilder {
+    var opaque: SomeBindingBuilder<BoundType> {
+        return SomeBindingBuilder(anyActual: self) { self.makeBinding(for: $0) }
     }
 }

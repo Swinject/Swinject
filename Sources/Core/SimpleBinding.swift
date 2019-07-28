@@ -4,7 +4,7 @@
 
 struct SimpleBinding {
     let key: AnyBindingKey
-    let maker: AnyInstanceMaker
+    let builder: AnyInstanceBuilder
 }
 
 extension SimpleBinding: Binding {
@@ -13,7 +13,7 @@ extension SimpleBinding: Binding {
     }
 
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
-        return try maker.makeInstance(arg: arg, context: context, resolver: resolver)
+        return try builder.makeInstance(arg: arg, context: context, resolver: resolver)
     }
 }
 
@@ -27,7 +27,7 @@ extension SimpleBinding {
     }
 }
 
-extension SimpleBinding.Builder: InstanceMaker {
+extension SimpleBinding.Builder: InstanceBuilder {
     typealias MadeType = Type
 
     func makeInstance(arg: Argument, context: Context, resolver: Resolver) throws -> Type {
@@ -35,13 +35,13 @@ extension SimpleBinding.Builder: InstanceMaker {
     }
 }
 
-extension SimpleBinding.Builder: BindingMaker {
+extension SimpleBinding.Builder: BindingBuilder {
     typealias BoundType = Type
 
     func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
         return SimpleBinding(
             key: BindingKey(descriptor: descriptor, contextType: Context.self, argumentType: Argument.self),
-            maker: self
+            builder: self
         )
     }
 }
