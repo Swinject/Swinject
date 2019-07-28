@@ -20,6 +20,10 @@ public extension Scope {
     }
 }
 
+public protocol Closable {
+    func close()
+}
+
 public class UnboundScope: Scope, Closable {
     public typealias Context = Any
 

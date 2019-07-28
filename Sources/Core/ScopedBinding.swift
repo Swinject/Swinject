@@ -3,14 +3,14 @@
 //
 
 struct ScopedBinding {
-    let key: AnyBindingKey
+    let key: BindingKey
     let builder: AnyInstanceBuilder
     let scope: AnyScope
     let makeRef: ReferenceMaker<Any>
 }
 
 extension ScopedBinding: Binding {
-    func matches(_ key: AnyBindingKey) -> Bool {
+    func matches(_ key: BindingKey) -> Bool {
         return self.key.matches(key)
     }
 

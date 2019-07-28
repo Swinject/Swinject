@@ -2,8 +2,20 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
+public struct BindingKey {
+    let descriptor: AnyTypeDescriptor
+    let contextType: Any.Type
+    let argumentType: Any.Type
+
+    func matches(_ other: BindingKey) -> Bool {
+        return descriptor.matches(other.descriptor)
+            && (contextType == other.contextType || contextType == Any.self)
+            && argumentType == other.argumentType
+    }
+}
+
 public protocol Binding: SwinjectEntry {
-    func matches(_ key: AnyBindingKey) -> Bool
+    func matches(_ key: BindingKey) -> Bool
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any
 }
 

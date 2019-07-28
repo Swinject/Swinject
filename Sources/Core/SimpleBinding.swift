@@ -3,12 +3,12 @@
 //
 
 struct SimpleBinding {
-    let key: AnyBindingKey
+    let key: BindingKey
     let builder: AnyInstanceBuilder
 }
 
 extension SimpleBinding: Binding {
-    func matches(_ key: AnyBindingKey) -> Bool {
+    func matches(_ key: BindingKey) -> Bool {
         return self.key.matches(key)
     }
 
