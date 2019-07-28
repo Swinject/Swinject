@@ -17,13 +17,13 @@
 		0509EE8D41BF354EB91ACC80 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B4B777290FF5D38A8914CC /* Reference.swift */; };
 		0622539110A7430776A307C7 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42490D1D0C395951243F5CFF /* Container.swift */; };
 		06363AE7650CA288BDF6CB73 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34AFFAC41BA9D02A38BDB7A3 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06CD85528AABB15BDFBF3166 /* RetrievalSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B3342E2AC3236F12072F5 /* RetrievalSpec.swift */; };
 		06F4CAB352B4F623FF7BD885 /* ScopeRegistryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A8DD30D81D1A4223A5EBC9 /* ScopeRegistryKey.swift */; };
 		0720BEA814AD514378380ACB /* StandardScopeRegistrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF68BC7EEE11B52D4D6FB94 /* StandardScopeRegistrySpec.swift */; };
 		0781579818FC4A2CA1CD3CAE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 10E8C7E53982E88175FD04A7 /* .swiftlint.yml */; };
 		0946D0D940D38828FD0DFBAD /* Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E612D299FB31D27FF9BDCE6 /* Circularity.swift */; };
 		09470890A74A5DDE7114891B /* TaggedTypeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC3AF9B0B132A8597D6F3FD /* TaggedTypeSpec.swift */; };
 		0B61DC733616A8ED4ED77FA7 /* StandardScopeRegistrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF68BC7EEE11B52D4D6FB94 /* StandardScopeRegistrySpec.swift */; };
-		0BA8216CFBC61A93F4948ABE /* InstanceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDB3E9E363310028AA5920 /* InstanceBuilder.swift */; };
 		0CD787EACEBFD1051D358E7D /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13513FA012659ADE699A3608 /* LazySpec.swift */; };
 		0CE1126436F680F9684837E4 /* SwinjectTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47018AC89CBE8254E17C4639 /* SwinjectTree.swift */; };
 		0CE158916595980A7C8272D3 /* SingletonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F05CC591903E2B04B6D8ED /* SingletonSpec.swift */; };
@@ -35,6 +35,7 @@
 		196338EA802A39E205C33B43 /* ContainerSpec.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */; };
 		19EBB651BD06BD0C03C1ACB5 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59111BE319C59E4CD6CF68CD /* Assembler.swift */; };
 		1A40A26942A65246D7DD268E /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ADC44E9312C3B974AFD8F07B /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A68A8D05D9974002BF34CF8 /* RetrievalSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B3342E2AC3236F12072F5 /* RetrievalSpec.swift */; };
 		1C62135FAE3D64DC7BFBF861 /* ContextSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */; };
 		1C82BFD00FCC384DB3AE6A89 /* MatchableBoxes.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 808C1063CA90CC593C7E0E9C /* MatchableBoxes.swifttemplate */; };
 		1CA5DF3F93203B226A6FA059 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA566CD336DB8343ADFAF9B /* BehaviorFakes.swift */; };
@@ -56,6 +57,7 @@
 		2CB057F2A16DA462E0517AAB /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECCBCAAEAB77D77D1910B0 /* Behavior.swift */; };
 		2D020C6391A4F6A2118585B8 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B4B777290FF5D38A8914CC /* Reference.swift */; };
 		2DD6F290740EA69B3E73E0EA /* BinderEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B843C72AD5C4094F7D6EBCF7 /* BinderEnvironment.swift */; };
+		2F664F8534CA1D92ED2F81E2 /* RetrievalSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B3342E2AC3236F12072F5 /* RetrievalSpec.swift */; };
 		3099172980F9E9143C0A1C20 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290F6B1207A0557A528220B /* Assembly.swift */; };
 		30D247E8083858C233B92908 /* SingletonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F05CC591903E2B04B6D8ED /* SingletonSpec.swift */; };
 		3129A37CDC1653C11800E24A /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA566CD336DB8343ADFAF9B /* BehaviorFakes.swift */; };
@@ -111,7 +113,6 @@
 		5ED8A7D19F21FA686215F72C /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DC5DE630207F56B6CD9EF /* Matchable.swift */; };
 		5FCE2A2AE5DD0DBECA4A9953 /* ServiceEntry+TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D8665C3D7F020BDA1ACB /* ServiceEntry+TypeForwarding.swift */; };
 		6034CF5459D96497AF36E4B6 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CAC1761180366DE75A4A6 /* TestModels.swift */; };
-		62307C8E22EC65E5E85AA08A /* InstanceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDB3E9E363310028AA5920 /* InstanceBuilder.swift */; };
 		628EBFBA0031B1FA2E29F583 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351C4221896DDB8572BD6CB5 /* Person.swift */; };
 		63528D45A548DD58D748D54C /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620155728133F451B31C0AD /* Swinject.swift */; };
 		640F7A55D9A671FA112C8083 /* SwinjectTreeBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */; };
@@ -125,6 +126,7 @@
 		6A0FD11468B3852E48B682BE /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13513FA012659ADE699A3608 /* LazySpec.swift */; };
 		6BB1E24C1CE55C9F6EA6CC28 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C765B92B00C0AC8625BB4AC9 /* Quick.framework */; };
 		6C01E868DE44BD396D94858B /* Swinject+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */; };
+		6C4D29A3FB54416D5E4D4C89 /* InstanceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED41A352529A5B2950F39D8F /* InstanceBuilder.swift */; };
 		6DA49F84E2592B32F81F268B /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFF4BA99493C54260878C4 /* ObjectScope.swift */; };
 		6F6FAD0EEF84580DD53BB755 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C58FC14EEA170B0DC079DE4 /* Quick.framework */; };
 		6FCCBA9D2E4C2A225CB1A152 /* BinderEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B843C72AD5C4094F7D6EBCF7 /* BinderEnvironment.swift */; };
@@ -147,6 +149,7 @@
 		7D0683F36CE56228AC2CD489 /* SimpleBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074BAC560F277E806146C60 /* SimpleBinding.swift */; };
 		7D6F664091C70BABBFB61D53 /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74118B5030E790B24C0F44AF /* ContainerSpec.CustomStringConvertible.swift */; };
 		7E3C3E6FD07F3BD76024770A /* InjectionVariation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C516EFA0CA22D19F07B27E /* InjectionVariation.swift */; };
+		7F9686F3669BF35E5AC970B3 /* InstanceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED41A352529A5B2950F39D8F /* InstanceBuilder.swift */; };
 		8016512839FE61EC3127E489 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5583CF2602DDFB5E8A7D2DE /* Resolver.swift */; };
 		811BA1018E9BF86A7DEB728F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 10E8C7E53982E88175FD04A7 /* .swiftlint.yml */; };
 		818DF17D671EA1022CE59A2A /* InjectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670DB253ECD5CE1468A7F2E3 /* InjectionSpec.swift */; };
@@ -177,7 +180,6 @@
 		97C2EA47D7623AFD723AFE93 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5583CF2602DDFB5E8A7D2DE /* Resolver.swift */; };
 		980FED1DBC62B65597E2828B /* SingletonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F05CC591903E2B04B6D8ED /* SingletonSpec.swift */; };
 		98322F9371E1A8461BC614D1 /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2DC5DE630207F56B6CD9EF /* Matchable.swift */; };
-		9885175B6062254D54CFE4D4 /* InstanceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDB3E9E363310028AA5920 /* InstanceBuilder.swift */; };
 		98ACB1A09194572A946CA90D /* InstanceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA3031083A039CCD929CD12 /* InstanceWrapper.swift */; };
 		996CCFE825834C7D3236E742 /* Container+TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F446D6BD4C44E16A1D608BFB /* Container+TypeForwarding.swift */; };
 		999AF7221D3F2E1F83C3ACB1 /* Container+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA78290D6D60BD0B808571F /* Container+Logging.swift */; };
@@ -220,7 +222,6 @@
 		B06306286CC5EA66C88F24D1 /* Swinject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 38BCCF3F950869BD1891F7A8 /* Swinject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B0B139FADA6AE07C79847EBA /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EE5DDBE705B47AFC9A6986 /* LoadAwareAssembly.swift */; };
 		B293894FEB67831DDA5F000E /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B4B777290FF5D38A8914CC /* Reference.swift */; };
-		B2E998C200979E513C70D7E3 /* InstanceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDB3E9E363310028AA5920 /* InstanceBuilder.swift */; };
 		B2FAD41F7726502822AF913B /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42490D1D0C395951243F5CFF /* Container.swift */; };
 		B3062AB22373AD23052B61DF /* ContainerSpec.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74118B5030E790B24C0F44AF /* ContainerSpec.CustomStringConvertible.swift */; };
 		B42331BF00B482369B908BB8 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFF4BA99493C54260878C4 /* ObjectScope.swift */; };
@@ -229,6 +230,7 @@
 		B65DE0B0562540CC8CEC48F3 /* SingletonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F05CC591903E2B04B6D8ED /* SingletonSpec.swift */; };
 		B7653A6427A5E284E9A1D6D3 /* ServiceEntry+TypeForwarding.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = BD6E47826E8E3D3744E91ADC /* ServiceEntry+TypeForwarding.swifttemplate */; };
 		B84167AC8C6BEB57C4D0695A /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5057BAB33984E3E33469452B /* Scope.swift */; };
+		B90EA5A6764CEFA2BCB6C4D9 /* InstanceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED41A352529A5B2950F39D8F /* InstanceBuilder.swift */; };
 		B9550BE2BA6FA5731BEC87FD /* Swinject+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */; };
 		B96A6370D549AAC383360ABC /* LinuxConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938425B216B78A06EC10504A /* LinuxConfig.swift */; };
 		BB571B9A78FC53231A18E18C /* ScopeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3B73B11CA8650972E1175 /* ScopeRegistry.swift */; };
@@ -280,6 +282,7 @@
 		D9C5E21A1B6F43FA4C9DAD3C /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 683A1FB7D7F4E9508D57E936 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D9F132E4A6F6BC2BDD5DFCAA /* ModulesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BE3AE3E30DFE42A919D825 /* ModulesSpec.swift */; };
 		DB74F17CDFF4886B9C38AD14 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42490D1D0C395951243F5CFF /* Container.swift */; };
+		DBEFC5C6A51FCEBF9E4F70EE /* InstanceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED41A352529A5B2950F39D8F /* InstanceBuilder.swift */; };
 		DC5B169FD525CC1C01518312 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59111BE319C59E4CD6CF68CD /* Assembler.swift */; };
 		DCB7C4BF24782862BE9DB135 /* Swinject+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */; };
 		DD29D2E60DA979D61F32A39A /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62682D6ED38742996624B041 /* BasicAssembly.swift */; };
@@ -287,6 +290,7 @@
 		E01D0D443FBA4DB82A6EC298 /* ContainerSpec.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */; };
 		E177D354B1F410129D921C69 /* Resolver+LegacyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A784E2DEC7691D14DDBECD8 /* Resolver+LegacyApi.swift */; };
 		E1B95D3EEA5BB989CCFFE70D /* ScopedBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10187BB3A994165E7FC1528 /* ScopedBinding.swift */; };
+		E227D08034E08AA0909BC043 /* RetrievalSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B3342E2AC3236F12072F5 /* RetrievalSpec.swift */; };
 		E3EABE098DBFB561A20632E3 /* TypeDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */; };
 		E4CE31B7B9616EFC93C69341 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC85CB215058F95C0BC190B1 /* Bridge.swift */; };
 		E5880DBBB91CC5F8F47FBF73 /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB24A17D2ECAA4869AE1DD0 /* ContainerSpec.Circularity.swift */; };
@@ -430,14 +434,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		01DEC4D20CE554C9DFBD0A8D /* Resolver+Injection.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resolver+Injection.swifttemplate"; sourceTree = "<group>"; };
+		01DEC4D20CE554C9DFBD0A8D /* Resolver+Injection.swifttemplate */ = {isa = PBXFileReference; path = "Resolver+Injection.swifttemplate"; sourceTree = "<group>"; };
 		05B0E1B8963622CA872FA45B /* ContainerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.swift; sourceTree = "<group>"; };
 		09FC792715B1658721F76885 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA449690AE00F6300DE8ACA /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D8B3342E2AC3236F12072F5 /* RetrievalSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievalSpec.swift; sourceTree = "<group>"; };
 		0DC67CB109091002AB433A46 /* SwinjectTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E0B580B43E1891812C97209 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		10480F2154EAA0414D4C1F55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10E8C7E53982E88175FD04A7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		10E8C7E53982E88175FD04A7 /* .swiftlint.yml */ = {isa = PBXFileReference; path = .swiftlint.yml; sourceTree = "<group>"; };
 		11BC689CB98FD2079AC0B410 /* SynchronizedResolverSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedResolverSpec.swift; sourceTree = "<group>"; };
 		13513FA012659ADE699A3608 /* LazySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazySpec.swift; sourceTree = "<group>"; };
 		1A006CC804F9AB8ACC121029 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -446,7 +451,7 @@
 		1E612D299FB31D27FF9BDCE6 /* Circularity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circularity.swift; sourceTree = "<group>"; };
 		20ECCBCAAEAB77D77D1910B0 /* Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behavior.swift; sourceTree = "<group>"; };
 		21AEDF723BDD949B59E6D1C5 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
-		26EEC28683E4A26B3092E8BA /* BinderEnvironment.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = BinderEnvironment.swifttemplate; sourceTree = "<group>"; };
+		26EEC28683E4A26B3092E8BA /* BinderEnvironment.swifttemplate */ = {isa = PBXFileReference; path = BinderEnvironment.swifttemplate; sourceTree = "<group>"; };
 		273FB7A6277E0841E1570990 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
 		2E0C3E4D518BC1FEF3EF8D33 /* BinderVariation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinderVariation.swift; sourceTree = "<group>"; };
 		30EDBFDB23A7FB3DA7758DD0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
@@ -489,11 +494,11 @@
 		78F0D8665C3D7F020BDA1ACB /* ServiceEntry+TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceEntry+TypeForwarding.swift"; sourceTree = "<group>"; };
 		7C83EC4390A34D207245D9C9 /* ContextTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTranslator.swift; sourceTree = "<group>"; };
 		7DB3B73B11CA8650972E1175 /* ScopeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeRegistry.swift; sourceTree = "<group>"; };
-		808C1063CA90CC593C7E0E9C /* MatchableBoxes.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = MatchableBoxes.swifttemplate; sourceTree = "<group>"; };
+		808C1063CA90CC593C7E0E9C /* MatchableBoxes.swifttemplate */ = {isa = PBXFileReference; path = MatchableBoxes.swifttemplate; sourceTree = "<group>"; };
 		823617F3B8A9192F56B13331 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		8B9785AAE94A5447FA307242 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTreeBuilderSpec.swift; sourceTree = "<group>"; };
-		90191C25A2D66E07C4E9CD73 /* SwiftCode.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftCode.swifttemplate; sourceTree = "<group>"; };
+		90191C25A2D66E07C4E9CD73 /* SwiftCode.swifttemplate */ = {isa = PBXFileReference; path = SwiftCode.swifttemplate; sourceTree = "<group>"; };
 		938425B216B78A06EC10504A /* LinuxConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinuxConfig.swift; sourceTree = "<group>"; };
 		9620155728133F451B31C0AD /* Swinject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinject.swift; sourceTree = "<group>"; };
 		98A8DD30D81D1A4223A5EBC9 /* ScopeRegistryKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeRegistryKey.swift; sourceTree = "<group>"; };
@@ -509,24 +514,24 @@
 		B843C72AD5C4094F7D6EBCF7 /* BinderEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinderEnvironment.swift; sourceTree = "<group>"; };
 		B92B8E618A08408404FB2A7A /* TypeBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinder.swift; sourceTree = "<group>"; };
 		BAF68BC7EEE11B52D4D6FB94 /* StandardScopeRegistrySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardScopeRegistrySpec.swift; sourceTree = "<group>"; };
-		BD6E47826E8E3D3744E91ADC /* ServiceEntry+TypeForwarding.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ServiceEntry+TypeForwarding.swifttemplate"; sourceTree = "<group>"; };
+		BD6E47826E8E3D3744E91ADC /* ServiceEntry+TypeForwarding.swifttemplate */ = {isa = PBXFileReference; path = "ServiceEntry+TypeForwarding.swifttemplate"; sourceTree = "<group>"; };
 		BEFFEE7870660D8AB209459D /* ContainerSpec.Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Behavior.swift; sourceTree = "<group>"; };
 		C074BAC560F277E806146C60 /* SimpleBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBinding.swift; sourceTree = "<group>"; };
 		C1E726A651C3AFE92C19608B /* SwinjectModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectModule.swift; sourceTree = "<group>"; };
 		C3C516EFA0CA22D19F07B27E /* InjectionVariation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionVariation.swift; sourceTree = "<group>"; };
 		C68B98C653ABDED9C3D17DB3 /* Opaque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opaque.swift; sourceTree = "<group>"; };
 		C765B92B00C0AC8625BB4AC9 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
-		CADDB3E9E363310028AA5920 /* InstanceBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceBuilder.swift; sourceTree = "<group>"; };
 		CC85CB215058F95C0BC190B1 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		CDA78290D6D60BD0B808571F /* Container+Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Logging.swift"; sourceTree = "<group>"; };
-		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
+		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
 		DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextSpec.swift; sourceTree = "<group>"; };
 		E0874A043EAEE3C7CF1EA063 /* InstanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRequest.swift; sourceTree = "<group>"; };
 		E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
+		ED41A352529A5B2950F39D8F /* InstanceBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceBuilder.swift; sourceTree = "<group>"; };
 		F290F6B1207A0557A528220B /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		F446D6BD4C44E16A1D608BFB /* Container+TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+TypeForwarding.swift"; sourceTree = "<group>"; };
 		F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.TypeForwarding.swift; sourceTree = "<group>"; };
-		FE0EA1AA356CC46F4AB8AA3F /* Resolver+LegacyApi.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resolver+LegacyApi.swifttemplate"; sourceTree = "<group>"; };
+		FE0EA1AA356CC46F4AB8AA3F /* Resolver+LegacyApi.swifttemplate */ = {isa = PBXFileReference; path = "Resolver+LegacyApi.swifttemplate"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -723,6 +728,7 @@
 				670DB253ECD5CE1468A7F2E3 /* InjectionSpec.swift */,
 				75BE3AE3E30DFE42A919D825 /* ModulesSpec.swift */,
 				50D6F2639990DD5BAD9578B0 /* OptionalsSpec.swift */,
+				0D8B3342E2AC3236F12072F5 /* RetrievalSpec.swift */,
 				1D3C59E84B5FD0C13F487838 /* ScopesSpec.swift */,
 				46F05CC591903E2B04B6D8ED /* SingletonSpec.swift */,
 			);
@@ -804,7 +810,7 @@
 			children = (
 				0E0B580B43E1891812C97209 /* Binding.swift */,
 				7C83EC4390A34D207245D9C9 /* ContextTranslator.swift */,
-				CADDB3E9E363310028AA5920 /* InstanceBuilder.swift */,
+				ED41A352529A5B2950F39D8F /* InstanceBuilder.swift */,
 				E0874A043EAEE3C7CF1EA063 /* InstanceRequest.swift */,
 				5E2DC5DE630207F56B6CD9EF /* Matchable.swift */,
 				C68B98C653ABDED9C3D17DB3 /* Opaque.swift */,
@@ -1368,7 +1374,7 @@
 				996CCFE825834C7D3236E742 /* Container+TypeForwarding.swift in Sources */,
 				B2FAD41F7726502822AF913B /* Container.swift in Sources */,
 				8B5927517B567B1DFAB5B935 /* ContextTranslator.swift in Sources */,
-				62307C8E22EC65E5E85AA08A /* InstanceBuilder.swift in Sources */,
+				6C4D29A3FB54416D5E4D4C89 /* InstanceBuilder.swift in Sources */,
 				53EBF7A46EF65F2A8DAADC7A /* InstanceRequest.swift in Sources */,
 				A91EDAFBC3606EDFBD739899 /* InstanceWrapper.swift in Sources */,
 				98322F9371E1A8461BC614D1 /* Matchable.swift in Sources */,
@@ -1434,6 +1440,7 @@
 				72F09FC92FFB0F7C32D8E2A5 /* OptionalsSpec.swift in Sources */,
 				628EBFBA0031B1FA2E29F583 /* Person.swift in Sources */,
 				708E1C453CBC76ED26FA2FCB /* ProviderSpec.swift in Sources */,
+				E227D08034E08AA0909BC043 /* RetrievalSpec.swift in Sources */,
 				33B86F2D33219879731CDDF0 /* ScopesSpec.swift in Sources */,
 				30D247E8083858C233B92908 /* SingletonSpec.swift in Sources */,
 				72217E47D83C3CA6D97640B9 /* StandardScopeRegistrySpec.swift in Sources */,
@@ -1473,6 +1480,7 @@
 				D941D81F59900A52805D6B4A /* OptionalsSpec.swift in Sources */,
 				EB3420214A9E68A0247D0F2C /* Person.swift in Sources */,
 				CF9535A0DCAFF23F4D62F871 /* ProviderSpec.swift in Sources */,
+				1A68A8D05D9974002BF34CF8 /* RetrievalSpec.swift in Sources */,
 				0068DAA4AA322F00AF53731F /* ScopesSpec.swift in Sources */,
 				B65DE0B0562540CC8CEC48F3 /* SingletonSpec.swift in Sources */,
 				C952D5869D87743297968E9A /* StandardScopeRegistrySpec.swift in Sources */,
@@ -1512,6 +1520,7 @@
 				A453A5A7E0EC0FE161AA34D5 /* OptionalsSpec.swift in Sources */,
 				C76374CAFE7C2BCCE52F1BB1 /* Person.swift in Sources */,
 				4954CBB07E38E98752AC3347 /* ProviderSpec.swift in Sources */,
+				2F664F8534CA1D92ED2F81E2 /* RetrievalSpec.swift in Sources */,
 				31729A1E5F50EF30FDD427AD /* ScopesSpec.swift in Sources */,
 				0CE158916595980A7C8272D3 /* SingletonSpec.swift in Sources */,
 				0720BEA814AD514378380ACB /* StandardScopeRegistrySpec.swift in Sources */,
@@ -1551,6 +1560,7 @@
 				F6EEF5F7B57DC0E44EF569A4 /* OptionalsSpec.swift in Sources */,
 				BEEFBE87EB17D56BA8D47358 /* Person.swift in Sources */,
 				48F40377D116C6B1B786C329 /* ProviderSpec.swift in Sources */,
+				06CD85528AABB15BDFBF3166 /* RetrievalSpec.swift in Sources */,
 				EA0D19F7DF0355C774B0F40B /* ScopesSpec.swift in Sources */,
 				980FED1DBC62B65597E2828B /* SingletonSpec.swift in Sources */,
 				0B61DC733616A8ED4ED77FA7 /* StandardScopeRegistrySpec.swift in Sources */,
@@ -1575,7 +1585,7 @@
 				BD9B57E26722C80B7EF990DB /* Container+TypeForwarding.swift in Sources */,
 				DB74F17CDFF4886B9C38AD14 /* Container.swift in Sources */,
 				DD5E3AF2B5FCE5E81EBDF606 /* ContextTranslator.swift in Sources */,
-				B2E998C200979E513C70D7E3 /* InstanceBuilder.swift in Sources */,
+				7F9686F3669BF35E5AC970B3 /* InstanceBuilder.swift in Sources */,
 				9DEAC620F2F00D0DDD3B5D3E /* InstanceRequest.swift in Sources */,
 				57BFBA2077E70DC1C2FE796C /* InstanceWrapper.swift in Sources */,
 				293985649250DF270DC89135 /* Matchable.swift in Sources */,
@@ -1616,7 +1626,7 @@
 				283C77045DA55C2134EC9C48 /* Container+TypeForwarding.swift in Sources */,
 				58ABEE0321A3061048B65EA2 /* Container.swift in Sources */,
 				F06DEB671A4B85ABB0E96E51 /* ContextTranslator.swift in Sources */,
-				0BA8216CFBC61A93F4948ABE /* InstanceBuilder.swift in Sources */,
+				DBEFC5C6A51FCEBF9E4F70EE /* InstanceBuilder.swift in Sources */,
 				CECF5BD14BCDF5248771A06A /* InstanceRequest.swift in Sources */,
 				389C54E04DD794DA4F648571 /* InstanceWrapper.swift in Sources */,
 				87FEAEF562B99522083CB87D /* Matchable.swift in Sources */,
@@ -1657,7 +1667,7 @@
 				3A0B409E840B44B281DB3C54 /* Container+TypeForwarding.swift in Sources */,
 				0622539110A7430776A307C7 /* Container.swift in Sources */,
 				D1DF4740A9D86362B63104B8 /* ContextTranslator.swift in Sources */,
-				9885175B6062254D54CFE4D4 /* InstanceBuilder.swift in Sources */,
+				B90EA5A6764CEFA2BCB6C4D9 /* InstanceBuilder.swift in Sources */,
 				128913D570B4A8BBF40866BE /* InstanceRequest.swift in Sources */,
 				98ACB1A09194572A946CA90D /* InstanceWrapper.swift in Sources */,
 				5ED8A7D19F21FA686215F72C /* Matchable.swift in Sources */,
@@ -1801,11 +1811,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1843,10 +1849,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Swinject;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1863,11 +1866,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1885,10 +1884,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Swinject;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1906,11 +1902,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1927,11 +1919,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = macosx;
 			};
@@ -2021,10 +2009,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Swinject;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -2042,11 +2027,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2065,10 +2046,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2086,10 +2064,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Swinject;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2107,11 +2082,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2129,11 +2100,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = macosx;
 			};
@@ -2148,11 +2115,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -2170,10 +2133,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2192,10 +2152,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Swinject;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2214,10 +2171,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Swinject;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
