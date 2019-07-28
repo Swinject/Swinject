@@ -11,7 +11,13 @@ class Human: Mammal {
 }
 
 struct Pet {
+    let name: String
     let owner: Human
+
+    init(name: String = "", owner: Human) {
+        self.name = name
+        self.owner = owner
+    }
 }
 
 class Building {

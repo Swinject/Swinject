@@ -270,6 +270,10 @@
 		CB9E8D16D7A0620A1F7A32A3 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CAC1761180366DE75A4A6 /* TestModels.swift */; };
 		CBBE28990E0EA82AD8D5E3AF /* AssemblerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C926D1E315E596E450D7D6 /* AssemblerSpec.swift */; };
 		CBE63031F33303F3E503CEF2 /* Resolver+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583B00ADF411CA422E1BE6FA /* Resolver+Injection.swift */; };
+		CD1BEB4F22ED8BDD009168AE /* InjectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1BEB4E22ED8BDD009168AE /* InjectionSpec.swift */; };
+		CD1BEB5022ED8BDD009168AE /* InjectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1BEB4E22ED8BDD009168AE /* InjectionSpec.swift */; };
+		CD1BEB5122ED8BDD009168AE /* InjectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1BEB4E22ED8BDD009168AE /* InjectionSpec.swift */; };
+		CD1BEB5222ED8BDD009168AE /* InjectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1BEB4E22ED8BDD009168AE /* InjectionSpec.swift */; };
 		CD77892222ECF8F100560AB7 /* ModulesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77892122ECF8F100560AB7 /* ModulesSpec.swift */; };
 		CD77892322ECF8F100560AB7 /* ModulesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77892122ECF8F100560AB7 /* ModulesSpec.swift */; };
 		CD77892422ECF8F100560AB7 /* ModulesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77892122ECF8F100560AB7 /* ModulesSpec.swift */; };
@@ -559,6 +563,7 @@
 		C765B92B00C0AC8625BB4AC9 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		CADDB3E9E363310028AA5920 /* InstanceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceMaker.swift; sourceTree = "<group>"; };
 		CC85CB215058F95C0BC190B1 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
+		CD1BEB4E22ED8BDD009168AE /* InjectionSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionSpec.swift; sourceTree = "<group>"; };
 		CD77892122ECF8F100560AB7 /* ModulesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesSpec.swift; sourceTree = "<group>"; };
 		CD77892722ECF9C700560AB7 /* ScopesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopesSpec.swift; sourceTree = "<group>"; };
 		CD77892C22ED009C00560AB7 /* BindingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingSpec.swift; sourceTree = "<group>"; };
@@ -777,6 +782,7 @@
 			children = (
 				C5FB515A9B4B929026438A90 /* SwinjectApiSpec.swift */,
 				CD77892C22ED009C00560AB7 /* BindingSpec.swift */,
+				CD1BEB4E22ED8BDD009168AE /* InjectionSpec.swift */,
 				CD77893122ED05C500560AB7 /* OptionalsSpec.swift */,
 				CD77892122ECF8F100560AB7 /* ModulesSpec.swift */,
 				CD77892722ECF9C700560AB7 /* ScopesSpec.swift */,
@@ -1489,6 +1495,7 @@
 				180DB4397B4C05E26F819C85 /* Food.swift in Sources */,
 				9A8164D6696C87BFEC7325C3 /* GeneratedMocks.swift in Sources */,
 				AE6EAB8CC32ED5E1789D55B7 /* LazySpec.swift in Sources */,
+				CD1BEB4F22ED8BDD009168AE /* InjectionSpec.swift in Sources */,
 				B0B139FADA6AE07C79847EBA /* LoadAwareAssembly.swift in Sources */,
 				CD77892D22ED009C00560AB7 /* BindingSpec.swift in Sources */,
 				2C1BD6D785E310B6F8A3CAC9 /* NonGeneratedMocks.swift in Sources */,
@@ -1535,6 +1542,7 @@
 				590B861A863A056A0B7FA368 /* Food.swift in Sources */,
 				9C12EB42EC058994805E93A6 /* GeneratedMocks.swift in Sources */,
 				979518E078B187549E11DF48 /* LazySpec.swift in Sources */,
+				CD1BEB5022ED8BDD009168AE /* InjectionSpec.swift in Sources */,
 				335CE53CEC2360DC86D58F07 /* LoadAwareAssembly.swift in Sources */,
 				CD77892E22ED009C00560AB7 /* BindingSpec.swift in Sources */,
 				56B2AD6054B63420DD025EC6 /* NonGeneratedMocks.swift in Sources */,
@@ -1581,6 +1589,7 @@
 				BE6C13A3492E3CFC08E231B0 /* Food.swift in Sources */,
 				CB06DC3BC4A32776BBD90DDF /* GeneratedMocks.swift in Sources */,
 				6A0FD11468B3852E48B682BE /* LazySpec.swift in Sources */,
+				CD1BEB5222ED8BDD009168AE /* InjectionSpec.swift in Sources */,
 				ED6CB3935B15F30A182ED6D0 /* LoadAwareAssembly.swift in Sources */,
 				CD77893022ED009C00560AB7 /* BindingSpec.swift in Sources */,
 				7AE3FF1C0B4860942D90B68B /* NonGeneratedMocks.swift in Sources */,
@@ -1627,6 +1636,7 @@
 				C38A2EBF4D1904E7D6989989 /* Food.swift in Sources */,
 				B703A24C1A963C6BAC95B9A5 /* GeneratedMocks.swift in Sources */,
 				0CD787EACEBFD1051D358E7D /* LazySpec.swift in Sources */,
+				CD1BEB5122ED8BDD009168AE /* InjectionSpec.swift in Sources */,
 				A2D3B18BE38948A427B60BC5 /* LoadAwareAssembly.swift in Sources */,
 				CD77892F22ED009C00560AB7 /* BindingSpec.swift in Sources */,
 				C4E9DC50A2FDAE4D36A925D9 /* NonGeneratedMocks.swift in Sources */,

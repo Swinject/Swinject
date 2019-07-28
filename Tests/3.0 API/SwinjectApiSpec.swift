@@ -8,58 +8,8 @@ import Swinject
 @testable import class Swinject.UnboundScope
 
 class SwinjectApiSpec: QuickSpec { override func spec() { #if swift(>=5.1)
-    var human = Human()
     beforeEach {
         UnboundScope.root.close()
-        human = Human()
-    }
-    it("throws if providing type with missing dependency") {
-        let swinject = Swinject {
-            bbind(Pet.self) & provider { Pet(owner: try $0.instance()) }
-        }
-        expect { try swinject.instance(of: Pet.self) }.to(throwError())
-    }
-    it("returns instance if all dependencies are bound") {
-        let swinject = Swinject {
-            bbind(Pet.self) & provider { Pet(owner: try $0.instance()) }
-            bbind(Human.self) & instance(human)
-        }
-        expect { try swinject.instance(of: Pet.self).owner } === human
-    }
-    it("can inject instance provider") {
-        let swinject = Swinject {
-            bbind(Int.self, tagged: "tag") & 42
-        }
-        let provider = swinject.provider(of: Int.self, tagged: "tag")
-        expect { try provider() } == 42
-    }
-    it("can inject instance factory") {
-        // FIXME: compiler segfaults if declaring this factory inside function builder
-        let intFactory = factory { (r, arg: Int) in Int(try r.instance() as Double) + 5 * arg }
-        let swinject = Swinject {
-            bbind(Double.self) & 17.0
-            bbind(Int.self) & intFactory
-        }
-        let factory = swinject.factory() as (Int) throws -> Int
-        expect { try factory(5) } == 42
-    }
-    it("can inject factory binding as provider or instance") {
-        let swinject = Swinject {
-            bbind(Double.self) & 17.0
-            bbind(Int.self) & factory { Int(try $0.instance() as Double) + 5 * $1 }
-        }
-        expect { try swinject.provider(of: Int.self, arg: 5)() } == 42
-        expect { try swinject.instance(of: Int.self, arg: 5) } == 42
-    }
-    it("can curry factory's arguments") {
-        let swinject = Swinject {
-            bbind(Int.self) & factory { (_, a1: Int, a2: Double, a3: String) in
-                a1 + Int(a2) + Int(a3)!
-            }
-        }
-        expect { try swinject.factory(of: Int.self)(11, 14.0, "17") } == 42
-        expect { try swinject.factory(of: Int.self, arg: 11)(14.0, "17") } == 42
-        expect { try swinject.factory(of: Int.self, arg: 11, 14.0)("17") } == 42
     }
     it("can pass context to the bindings") {
         // FIXME: compiler segfaults if declaring these providers inside function builder

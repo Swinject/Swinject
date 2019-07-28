@@ -19,6 +19,7 @@ let allSpecs: [QuickSpec.Type] = [
     // 3.0 Api
     SwinjectApiSpec.self,
     BindingSpec.self,
+    InjectionSpec.self,
     ModulesSpec.self,
     ScopesSpec.self,
     OptionalsSpec.self,
