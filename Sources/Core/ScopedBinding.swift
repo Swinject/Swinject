@@ -4,6 +4,7 @@
 
 struct ScopedBinding {
     let key: BindingKey
+    let properties: BindingProperties
     let builder: AnyInstanceBuilder
     let scope: AnyScope
     let makeRef: ReferenceMaker<Any>
@@ -57,9 +58,10 @@ extension ScopedBinding.Builder: InstanceBuilder {
 extension ScopedBinding.Builder: BindingBuilder {
     typealias BoundType = Type
 
-    func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
+    func makeBinding(with properties: BindingProperties) -> Binding {
         return ScopedBinding(
-            key: BindingKey(descriptor: descriptor, contextType: Context.self, argumentType: Argument.self),
+            key: BindingKey(descriptor: properties.descriptor, contextType: Context.self, argumentType: Argument.self),
+            properties: properties,
             builder: self,
             scope: scope,
             makeRef: makeRef

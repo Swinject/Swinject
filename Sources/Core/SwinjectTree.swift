@@ -8,24 +8,6 @@ public struct SwinjectTree {
     let translators: [AnyContextTranslator]
 }
 
-extension SwinjectTree {
-    var allBindings: [Binding] {
-        return bindings + modules.flatMap { $0.tree.allBindings }
-    }
-
-    var allModules: [Swinject.Module] {
-        return modules + modules.flatMap { $0.tree.allModules }
-    }
-}
-
-extension SwinjectTree {
-    func assertValid() {
-        let allModuleNames = allModules.map { $0.name }
-        assert(allModuleNames.count == Set(allModuleNames).count)
-        assert(allBindings.count == Set(allBindings.map { $0.key }).count)
-    }
-}
-
 #if swift(>=5.1)
     @_functionBuilder
     public enum SwinjectTreeBuilder {}
@@ -57,13 +39,11 @@ extension SwinjectTreeBuilder {
     // This is not used by compiler implicitly yet
     public static func buildFunction(_ input: [SwinjectEntry]) -> SwinjectTree {
         let entries = input.flatMap(unpack)
-        let tree = SwinjectTree(
+        return SwinjectTree(
             bindings: entries.compactMap { $0 as? Binding },
             modules: entries.compactMap { $0 as? Swinject.Module },
             translators: entries.compactMap { $0 as? AnyContextTranslator }
         )
-        tree.assertValid()
-        return tree
     }
 }
 

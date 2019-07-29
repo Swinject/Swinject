@@ -4,6 +4,7 @@
 
 struct SimpleBinding {
     let key: BindingKey
+    let properties: BindingProperties
     let builder: AnyInstanceBuilder
 }
 
@@ -38,9 +39,10 @@ extension SimpleBinding.Builder: InstanceBuilder {
 extension SimpleBinding.Builder: BindingBuilder {
     typealias BoundType = Type
 
-    func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
+    func makeBinding(with properties: BindingProperties) -> Binding {
         return SimpleBinding(
-            key: BindingKey(descriptor: descriptor, contextType: Context.self, argumentType: Argument.self),
+            key: BindingKey(descriptor: properties.descriptor, contextType: Context.self, argumentType: Argument.self),
+            properties: properties,
             builder: self
         )
     }

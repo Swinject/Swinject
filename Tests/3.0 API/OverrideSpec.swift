@@ -34,5 +34,35 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             }
         }.ifDebugTo(throwAssertion())
     }
+    it("can declare that binding overrides previous binding for the same type") {
+        let swinject = Swinject {
+            bbind(Int.self) & 0
+            bbind(Int.self, overrides: true) & 42
+        }
+        expect { try swinject.instance(of: Int.self) } == 42
+    }
+    it("uses the last overriding binding for the injection") {
+        let swinject = Swinject {
+            bbind(Int.self) & 1
+            bbind(Int.self, overrides: true) & 2
+            bbind(Int.self, overrides: true) & 42
+        }
+        expect { try swinject.instance(of: Int.self) } == 42
+    }
+    it("must declare overriding binding after the overriden one") {
+        expect {
+            _ = Swinject {
+                bbind(Int.self, overrides: true) & 42
+                bbind(Int.self) & 0
+            }
+        }.ifDebugTo(throwAssertion())
+    }
+    it("does not allow overriding binding if there is nothing to override") {
+        expect {
+            _ = Swinject {
+                bbind(Int.self, overrides: true) & 42
+            }
+        }.ifDebugTo(throwAssertion())
+    }
     #endif
 } }

@@ -69,6 +69,13 @@ public class ServiceEntry<Service> {
 }
 
 extension ServiceEntry: Binding {
+    public var properties: BindingProperties {
+        return BindingProperties(
+            descriptor: key.descriptor,
+            overrides: false
+        )
+    }
+
     public func matches(_ key: BindingKey) -> Bool {
         let forwardedKeys = forwardedDescriptors.map {
             BindingKey(descriptor: $0, contextType: scope?.contextType ?? Any.self, argumentType: argumentType)

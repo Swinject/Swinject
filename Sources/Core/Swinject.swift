@@ -4,15 +4,21 @@
 
 public struct Swinject {
     let tree: SwinjectTree
+    let container: Container
     let context: Any
     let contextType: Any.Type
 
     init(tree: SwinjectTree) {
-        self.init(tree: tree, context: ())
+        self.init(
+            tree: tree,
+            container: .makeContainer(with: tree),
+            context: ()
+        )
     }
 
-    init<Context>(tree: SwinjectTree, context: Context) {
+    private init<Context>(tree: SwinjectTree, container: Swinject.Container, context: Context) {
         self.tree = tree
+        self.container = container
         self.context = context
         contextType = Context.self
     }
@@ -20,7 +26,7 @@ public struct Swinject {
 
 extension Swinject {
     public func on<Context>(_ context: Context) -> Swinject {
-        return Swinject(tree: tree, context: context)
+        return Swinject(tree: tree, container: container, context: context)
     }
 }
 
@@ -44,14 +50,14 @@ extension Swinject: Resolver {
     }
 
     private func findTranslator(for request: AnyInstanceRequest, and binding: Binding) throws -> AnyContextTranslator {
-        return try (tree.translators + [IdentityTranslator(for: contextType)])
+        return try (container.translators + [IdentityTranslator(for: contextType)])
             .filter { $0.sourceType == contextType }
             .filter { binding.matches(request.key(forContextType: $0.targetType)) }
             .first ?? { throw SwinjectError() }()
     }
 
     private func findBinding(for request: AnyInstanceRequest) throws -> Binding {
-        let bindings = tree.allBindings.filter { (try? findTranslator(for: request, and: $0)) != nil }
+        let bindings = container.bindings.filter { (try? findTranslator(for: request, and: $0)) != nil }
         if bindings.isEmpty { throw NoBindingError() }
         if bindings.count > 1 { throw MultipleBindingsError() }
         return bindings[0]

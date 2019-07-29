@@ -26,26 +26,27 @@ public struct BindingKey: Hashable {
 
 public protocol Binding: SwinjectEntry {
     var key: BindingKey { get }
+    var properties: BindingProperties { get }
     func matches(_ key: BindingKey) -> Bool
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any
 }
 
 public protocol BindingBuilder {
     associatedtype BoundType
-    func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding
+    func makeBinding(with properties: BindingProperties) -> Binding
 }
 
 public struct SomeBindingBuilder<BoundType>: BindingBuilder, AnyOpaque {
     let anyActual: Any
-    fileprivate let _makeBinding: (AnyTypeDescriptor) -> Binding
+    fileprivate let _makeBinding: (BindingProperties) -> Binding
 
-    public func makeBinding(for descriptor: AnyTypeDescriptor) -> Binding {
-        return _makeBinding(descriptor)
+    public func makeBinding(with properties: BindingProperties) -> Binding {
+        return _makeBinding(properties)
     }
 }
 
 public extension BindingBuilder {
     var opaque: SomeBindingBuilder<BoundType> {
-        return SomeBindingBuilder(anyActual: self) { self.makeBinding(for: $0) }
+        return SomeBindingBuilder(anyActual: self) { self.makeBinding(with: $0) }
     }
 }

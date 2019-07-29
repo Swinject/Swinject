@@ -8,10 +8,17 @@ import struct Swinject.TypeBinder
 import protocol Swinject.TypeDescriptor
 
 // Original Swinject functions conflict with QuickSpec's instance methods
-func bbind<Type>(_: Type.Type) -> TypeBinder<SomeTypeDescriptor<Type>> {
-    return bind(Type.self)
+func bbind<Type>(
+    _: Type.Type,
+    overrides: Bool = false
+) -> TypeBinder<Type> {
+    return bind(Type.self, overrides: overrides)
 }
 
-func bbind<Type, Tag>(_: Type.Type, tagged tag: Tag) -> TypeBinder<SomeTypeDescriptor<Type>> where Tag: Hashable {
-    return bind(Type.self, tagged: tag)
+func bbind<Type, Tag>(
+    _: Type.Type,
+    tagged tag: Tag,
+    overrides: Bool = false
+) -> TypeBinder<Type> where Tag: Hashable {
+    return bind(Type.self, tagged: tag, overrides: overrides)
 }

@@ -265,6 +265,10 @@
 		CD03917522EF610800DE44C4 /* OverrideSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03917322EF610800DE44C4 /* OverrideSpec.swift */; };
 		CD03917622EF610800DE44C4 /* OverrideSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03917322EF610800DE44C4 /* OverrideSpec.swift */; };
 		CD03917722EF610800DE44C4 /* OverrideSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03917322EF610800DE44C4 /* OverrideSpec.swift */; };
+		CD367C0E22EF8A83008B3E82 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */; };
+		CD367C0F22EF8A83008B3E82 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */; };
+		CD367C1022EF8A83008B3E82 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */; };
+		CD367C1122EF8A83008B3E82 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */; };
 		CE5AFED22F04B96713ED76D7 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADC44E9312C3B974AFD8F07B /* Nimble.framework */; };
 		CECF5BD14BCDF5248771A06A /* InstanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0874A043EAEE3C7CF1EA063 /* InstanceRequest.swift */; };
 		CEE763218A90832454A6E2DE /* ServiceEntry+TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D8665C3D7F020BDA1ACB /* ServiceEntry+TypeForwarding.swift */; };
@@ -527,6 +531,7 @@
 		C765B92B00C0AC8625BB4AC9 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		CC85CB215058F95C0BC190B1 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		CD03917322EF610800DE44C4 /* OverrideSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideSpec.swift; sourceTree = "<group>"; };
+		CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectContainer.swift; sourceTree = "<group>"; };
 		CDA78290D6D60BD0B808571F /* Container+Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Logging.swift"; sourceTree = "<group>"; };
 		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
 		DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextSpec.swift; sourceTree = "<group>"; };
@@ -830,6 +835,7 @@
 				9620155728133F451B31C0AD /* Swinject.swift */,
 				A3586A4987B7C7C8122D674E /* SwinjectError.swift */,
 				C1E726A651C3AFE92C19608B /* SwinjectModule.swift */,
+				CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */,
 				47018AC89CBE8254E17C4639 /* SwinjectTree.swift */,
 				E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */,
 			);
@@ -1400,6 +1406,7 @@
 				B9550BE2BA6FA5731BEC87FD /* Swinject+Builder.swift in Sources */,
 				33391EBA040E82DFB0A37015 /* Swinject.swift in Sources */,
 				020DA1718FCC68D889FB5A5F /* SwinjectError.swift in Sources */,
+				CD367C0F22EF8A83008B3E82 /* SwinjectContainer.swift in Sources */,
 				CF4EBB60C21F8C503BCD7A29 /* SwinjectModule.swift in Sources */,
 				0D5C4A278A16AB3A163148AF /* SwinjectTree.swift in Sources */,
 				AB864E029E996492ED4A3A52 /* TypeBinder.swift in Sources */,
@@ -1615,6 +1622,7 @@
 				EFD2F695B86E74C77F46B7D1 /* Swinject+Builder.swift in Sources */,
 				63528D45A548DD58D748D54C /* Swinject.swift in Sources */,
 				91E435894038C42335086FA8 /* SwinjectError.swift in Sources */,
+				CD367C1022EF8A83008B3E82 /* SwinjectContainer.swift in Sources */,
 				C637E97E193BB1DADDDC6C21 /* SwinjectModule.swift in Sources */,
 				0CE1126436F680F9684837E4 /* SwinjectTree.swift in Sources */,
 				4B9811CF0604946CCF323ED2 /* TypeBinder.swift in Sources */,
@@ -1656,6 +1664,7 @@
 				DCB7C4BF24782862BE9DB135 /* Swinject+Builder.swift in Sources */,
 				75D74C8C25EDACF5A7A75A5C /* Swinject.swift in Sources */,
 				4DF3DC1CDD3C4948F9BDD3DF /* SwinjectError.swift in Sources */,
+				CD367C1122EF8A83008B3E82 /* SwinjectContainer.swift in Sources */,
 				82299769BC637A14E7827DB0 /* SwinjectModule.swift in Sources */,
 				372F0061E762BF8FFF05457F /* SwinjectTree.swift in Sources */,
 				9425887520AC2DBDCBACB252 /* TypeBinder.swift in Sources */,
@@ -1697,6 +1706,7 @@
 				6C01E868DE44BD396D94858B /* Swinject+Builder.swift in Sources */,
 				4EC94A51037C79DE0C5C8CB1 /* Swinject.swift in Sources */,
 				820307073A53AED47AC99B8D /* SwinjectError.swift in Sources */,
+				CD367C0E22EF8A83008B3E82 /* SwinjectContainer.swift in Sources */,
 				8E77B56EE7F90BF723600DDF /* SwinjectModule.swift in Sources */,
 				6922AE734E84B515C94D9480 /* SwinjectTree.swift in Sources */,
 				EF79F0B3D497215D4BBBC038 /* TypeBinder.swift in Sources */,
