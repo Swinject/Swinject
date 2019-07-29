@@ -13,6 +13,19 @@ class OptionalsSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         }
         expect { try swinject.instance() as Int? } == 42
     }
+    // TODO: Maybe nice to have?
+//    it("can use a binding of the injected type's optional") {
+//        let swinject = Swinject {
+//            bbind(Int?.self) & 42
+//        }
+//        expect { try swinject.instance() as Int } == 42
+//    }
+    it("throws if binding of the type's optional produces nil") {
+        let swinject = Swinject {
+            bbind(Int?.self) & nil
+        }
+        expect { try swinject.instance() as Int }.to(throwError())
+    }
     it("can use a binding for bound type's double optional") {
         let swinject = Swinject {
             bbind(Int.self) & 42
@@ -26,13 +39,6 @@ class OptionalsSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     it("throws if has an incomplete binding for the optional") {
         let swinject = Swinject {
             bbind(Int.self) & provider { Int(try $0.instance() as Double) }
-        }
-        expect { try swinject.instance() as Int? }.to(throwError())
-    }
-    it("throws if has multiple bindings for optional") {
-        let swinject = Swinject {
-            bbind(Int.self) & 42
-            bbind(Int.self) & 25
         }
         expect { try swinject.instance() as Int? }.to(throwError())
     }

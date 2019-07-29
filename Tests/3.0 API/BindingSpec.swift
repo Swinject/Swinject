@@ -15,13 +15,6 @@ class BindingSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         expect { try swinject.instance() as Int } == 42
         expect { try swinject.instance() as Double } == 42
     }
-    it("does not allow multiple bindings for the same type") {
-        let swinject = Swinject {
-            bbind(Int.self).with(42)
-            bbind(Int.self) & 27
-        }
-        expect { try swinject.instance() as Int }.to(throwError())
-    }
     it("can bind the same type with different tags") {
         let swinject = Swinject {
             bbind(String.self) & "Plain"

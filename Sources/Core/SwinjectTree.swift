@@ -22,6 +22,7 @@ extension SwinjectTree {
     func assertValid() {
         let allModuleNames = allModules.map { $0.name }
         assert(allModuleNames.count == Set(allModuleNames).count)
+        assert(allBindings.count == Set(allBindings.map { $0.key }).count)
     }
 }
 
