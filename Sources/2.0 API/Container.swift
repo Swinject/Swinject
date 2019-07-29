@@ -29,11 +29,14 @@ public final class Container {
     let defaultObjectScope: ObjectScope
     var bindings = [Binding & CustomStringConvertible]()
     var behaviors = [Behavior]()
-    var swinject: Swinject { return Swinject(tree: SwinjectTree(
-        bindings: allBindings,
-        modules: [],
-        translators: [registerContextTranslator(from: Graph.self) { $0.container }]
-    )) }
+    var swinject: Swinject { return Swinject(
+        tree: SwinjectTree(
+            bindings: allBindings,
+            modules: [],
+            translators: [registerContextTranslator(from: Graph.self) { $0.container }]
+        ),
+        allowsSilentOverride: true
+    ) }
     var allBindings: [Binding] {
         return bindings + (parent?.allBindings ?? [])
     }

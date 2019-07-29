@@ -4,7 +4,7 @@
 
 public struct SwinjectTree {
     let bindings: [Binding]
-    let modules: [Swinject.Module]
+    let modules: [ModuleInclusion]
     let translators: [AnyContextTranslator]
 }
 
@@ -41,7 +41,7 @@ extension SwinjectTreeBuilder {
         let entries = input.flatMap(unpack)
         return SwinjectTree(
             bindings: entries.compactMap { $0 as? Binding },
-            modules: entries.compactMap { $0 as? Swinject.Module },
+            modules: entries.compactMap { $0 as? ModuleInclusion },
             translators: entries.compactMap { $0 as? AnyContextTranslator }
         )
     }

@@ -8,10 +8,10 @@ public struct Swinject {
     let context: Any
     let contextType: Any.Type
 
-    init(tree: SwinjectTree) {
+    init(tree: SwinjectTree, allowsSilentOverride: Bool) {
         self.init(
             tree: tree,
-            container: .makeContainer(with: tree),
+            container: .makeContainer(with: tree, allowsSilentOverride),
             context: ()
         )
     }

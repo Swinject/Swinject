@@ -52,8 +52,8 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() { #if swift(>=5.
         }
         it("builds closure with maker & include entries") {
             let tree = makeTree {
-                Swinject.Module("1")
-                Swinject.Module("2")
+                include(Swinject.Module("1"))
+                include(Swinject.Module("2"))
                 bbind(Int.self).with(42)
                 bbind(UInt.self).with(42)
                 bbind(Float.self).with(42)
