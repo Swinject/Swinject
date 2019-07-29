@@ -19,6 +19,7 @@ extension Swinject.Container {
     }
 
     // TODO: Create throwing version for testing convenience
+    // TODO: Cleanup implementation
     static func makeContainer(with tree: SwinjectTree, _ allowsSilentOverride: Bool) -> Swinject.Container {
         let allModuleNames = makeModules(with: tree).map { $0.name }
         assert(allModuleNames.count == Set(allModuleNames).count)

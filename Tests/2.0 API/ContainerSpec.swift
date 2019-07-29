@@ -45,6 +45,12 @@ class ContainerSpec: QuickSpec {
                 expect(mew?.name) == "Mew"
                 expect(noname?.name).to(beNil())
             }
+            it("resolves the last one registered") {
+                container.register(Animal.self) { _ in Cat(name: "Mimi") }
+                container.register(Animal.self) { _ in Cat(name: "Mew") }
+                let cat = container.resolve(Animal.self) as? Cat
+                expect(cat?.name) == "Mew"
+            }
         }
         describe("Removal of registered services") {
             it("can remove all registered services.") {

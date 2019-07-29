@@ -15,7 +15,7 @@ public struct ModuleInclusion: SwinjectEntry {
     let canOverride: Bool
 }
 
-// TODO: This should only be allowed on top level
+// TODO: `allowToOverride` should only be allowed on top level include
 public func include(_ module: Swinject.Module, allowToOverride: Bool = false) -> ModuleInclusion {
     return ModuleInclusion(
         module: module,
