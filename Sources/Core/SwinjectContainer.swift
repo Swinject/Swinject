@@ -56,10 +56,14 @@ extension SwinjectContainer.Builder {
     }
 
     private func checkOverrideRules(for entry: BindingEntry, beingAddedTo dict: [BindingKey: Binding]) throws {
-        if entry.properties.overrides, !entry.canOverride { throw OverrideNotAllowed() }
-        if !entry.canOverrideSilently {
-            if dict[entry.key] == nil, entry.properties.overrides { throw NothingToOverride() }
-            if dict[entry.key] != nil, !entry.properties.overrides { throw SilentOverrideNotAllowed() }
+        if !entry.canOverride, entry.properties.overrides {
+            throw OverrideNotAllowed()
+        }
+        if dict[entry.key] == nil, entry.properties.overrides {
+            throw NothingToOverride()
+        }
+        if dict[entry.key] != nil, !entry.properties.overrides, !entry.canOverrideSilently {
+            throw SilentOverrideNotAllowed()
         }
     }
 
