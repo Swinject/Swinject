@@ -16,7 +16,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service>(_: Service.Type, name: String? = nil, factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service> {
-        let entry = ServiceEntry<Service>(container: self, name: name, scope: defaultObjectScope.scope, makeRef: defaultObjectScope.makeRef(in: self)) { (r, _, _: Void) in factory(r) }
+        let entry = ServiceEntry<Service>(container: self, name: name, scope: defaultObjectScope.scope, makeRef: defaultObjectScope.makeRef) { (r, _, _: Void) in factory(r) }
         addEntry(entry, with: name)
         return entry
     }
@@ -41,7 +41,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service, <%= arg_types %>>(_: Service.Type, name: String? = nil, factory: @escaping (Resolver, <%= arg_types %>) -> Service) -> ServiceEntry<Service> {
-        let entry = ServiceEntry<Service>(container: self, name: name, scope: defaultObjectScope.scope, makeRef: defaultObjectScope.makeRef(in: self)) { (r, _, a: <%= arg_closure_type %>) in factory(r, <%= arg_vars %>) }
+        let entry = ServiceEntry<Service>(container: self, name: name, scope: defaultObjectScope.scope, makeRef: defaultObjectScope.makeRef) { (r, _, a: <%= arg_closure_type %>) in factory(r, <%= arg_vars %>) }
         addEntry(entry, with: name)
         return entry
     }<%= i < arg_count ? "\n" : "" %>

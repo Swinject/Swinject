@@ -20,10 +20,7 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
-    private class Handle {}
-    var referenceHandle: AnyObject = Handle()
-
-    let registry: StandardScopeRegistry
+    let registry = StandardScopeRegistry()
     let parent: Container?
     // TODO: Enable arbitrary scope as default
     let defaultObjectScope: ObjectScope
@@ -60,14 +57,13 @@ public final class Container {
         self.parent = parent
         self.defaultObjectScope = defaultObjectScope
         self.behaviors = behaviors
-        registry = parent?.registry ?? StandardScopeRegistry()
         registeringClosure(self)
     }
 
     /// Removes all registrations in the container.
     public func removeAll() {
         bindings = []
-        referenceHandle = Handle()
+        registry.clear()
     }
 
     /// Discards instances for services registered in the given `ObjectsScopeProtocol`.
@@ -79,7 +75,7 @@ public final class Container {
     ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
     public func resetObjectScope(_ scope: ObjectScope) {
         switch scope {
-        case .container, .weak: referenceHandle = Handle()
+        case .container, .weak: registry.clear()
         case .graph, .transient: break
         }
     }

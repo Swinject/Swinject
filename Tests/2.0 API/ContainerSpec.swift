@@ -227,6 +227,17 @@ class ContainerSpec: QuickSpec {
 
                     expect(first) !== second
                 }
+                it("releases instance after releasing child container") {
+                    let parent = Container()
+                    var container = Container(parent: parent) as Container?
+                    container?.register(Animal.self) { _ in Cat() }
+                        .inObjectScope(.container)
+                    weak var cat = container?.resolve(Animal.self) as? Cat
+
+                    container = nil
+
+                    expect(cat).to(beNil())
+                }
                 it("after resetting child it resolves parent type to the same instance") {
                     let parent = Container()
                     let child = Container(parent: parent)

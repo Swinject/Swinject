@@ -50,7 +50,7 @@ public class ServiceEntry<Service> {
     @discardableResult
     public func inObjectScope(_ objectScope: ObjectScope) -> Self {
         scope = objectScope.scope
-        makeRef = container.map(objectScope.makeRef) ?? noRef
+        makeRef = objectScope.makeRef
         return self
     }
 
@@ -85,13 +85,21 @@ extension ServiceEntry: Binding {
 
     public func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         if let scope = scope {
-            return scope.registry(for: context).instance(
+            return getRegistry(scope: scope, context: context).instance(
                 for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg),
                 builder: { makeRef(builder(resolver, context, arg)) },
                 finalizer: { instance in finalizers.forEach { $0(resolver, instance as! Service) } }
             )
         } else {
             return builder(resolver, context, arg)
+        }
+    }
+
+    private func getRegistry(scope: AnyScope, context: Any) -> ScopeRegistry {
+        if scope is ContainerScope, let container = container {
+            return scope.registry(for: container)
+        } else {
+            return scope.registry(for: context)
         }
     }
 
