@@ -2,15 +2,43 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-extension Swinject {
-    struct Container {
-        let bindings: [Binding]
-        let translators: [AnyContextTranslator]
+struct SwinjectContainer {
+    let bindings: [Binding]
+    let translators: [AnyContextTranslator]
+
+    struct Builder {
+        let tree: SwinjectTree
+        let allowsSilentOverride: Bool
     }
 }
 
-extension Swinject.Container {
-    struct BindingEntry {
+extension SwinjectContainer.Builder {
+    func makeContainer() -> SwinjectContainer {
+        do { return try makeContainerOrThrow() } catch { fatalError("\(error)") }
+    }
+
+    private func makeContainerOrThrow() throws -> SwinjectContainer {
+        try checkDuplicitModules()
+        return try SwinjectContainer(
+            bindings: collectBindings(),
+            translators: tree.translators
+        )
+    }
+}
+
+extension SwinjectContainer.Builder {
+    private func checkDuplicitModules() throws {
+        let names = collectModules(from: tree).map { $0.name }
+        if names.containsDuplicates { throw DuplicateModules() }
+    }
+
+    private func collectModules(from tree: SwinjectTree) -> [Swinject.Module] {
+        return tree.modules.map { $0.module } + tree.modules.flatMap { collectModules(from: $0.module.tree) }
+    }
+}
+
+extension SwinjectContainer.Builder {
+    private struct BindingEntry {
         let binding: Binding
         let key: BindingKey
         let properties: BindingProperties
@@ -18,32 +46,25 @@ extension Swinject.Container {
         let canOverrideSilently: Bool
     }
 
-    // TODO: Create throwing version for testing convenience
-    // TODO: Cleanup implementation
-    static func makeContainer(with tree: SwinjectTree, _ allowsSilentOverride: Bool) -> Swinject.Container {
-        let allModuleNames = makeModules(with: tree).map { $0.name }
-        assert(allModuleNames.count == Set(allModuleNames).count)
-
-        let allBindings = makeBindings(with: tree, canOverrideSilently: allowsSilentOverride)
+    private func collectBindings() throws -> [Binding] {
+        return try collectBindingEntries(from: tree, canOverrideSilently: allowsSilentOverride)
             .reduce(into: [BindingKey: Binding]()) { dict, entry in
-                assert(entry.canOverride || !entry.properties.overrides)
-                assert((dict[entry.key] == nil) != entry.properties.overrides || entry.canOverrideSilently)
+                try checkOverrideRules(for: entry, beingAddedTo: dict)
                 dict[entry.key] = entry.binding
             }
             .map { $0.value }
-
-        return .init(
-            bindings: allBindings,
-            translators: tree.translators
-        )
     }
 
-    static func makeModules(with tree: SwinjectTree) -> [Swinject.Module] {
-        return tree.modules.map { $0.module } + tree.modules.flatMap { makeModules(with: $0.module.tree) }
+    private func checkOverrideRules(for entry: BindingEntry, beingAddedTo dict: [BindingKey: Binding]) throws {
+        if entry.properties.overrides, !entry.canOverride { throw OverrideNotAllowed() }
+        if !entry.canOverrideSilently {
+            if dict[entry.key] == nil, entry.properties.overrides { throw NothingToOverride() }
+            if dict[entry.key] != nil, !entry.properties.overrides { throw SilentOverrideNotAllowed() }
+        }
     }
 
-    static func makeBindings(
-        with tree: SwinjectTree,
+    private func collectBindingEntries(
+        from tree: SwinjectTree,
         canOverride: Bool? = nil,
         canOverrideSilently: Bool
     ) -> [BindingEntry] {
@@ -55,10 +76,16 @@ extension Swinject.Container {
                 canOverride: canOverride ?? true,
                 canOverrideSilently: canOverrideSilently
             ) }
-            + tree.modules.flatMap { makeBindings(
-                with: $0.module.tree,
+            + tree.modules.flatMap { collectBindingEntries(
+                from: $0.module.tree,
                 canOverride: canOverride ?? $0.canOverride,
                 canOverrideSilently: $0.module.allowsSilentOverride
             ) }
+    }
+}
+
+private extension Array where Element: Hashable {
+    var containsDuplicates: Bool {
+        return count != Set(self).count
     }
 }

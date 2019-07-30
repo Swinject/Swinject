@@ -12,7 +12,11 @@ public class SwinjectError: Error {
     }
 }
 
-public class NoBindingError: SwinjectError {}
-public class MultipleBindingsError: SwinjectError {}
+public class NoBinding: SwinjectError {}
+public class MultipleBindings: SwinjectError {}
+public class DuplicateModules: SwinjectError {}
+public class OverrideNotAllowed: SwinjectError {}
+public class NothingToOverride: SwinjectError {}
+public class SilentOverrideNotAllowed: SwinjectError {}
 
 // TODO: Debugging error description

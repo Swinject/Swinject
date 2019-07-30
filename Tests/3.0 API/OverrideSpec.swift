@@ -13,7 +13,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 bbind(Int.self) & 42
                 bbind(Int.self) & provider { 25 + 17 }
             }
-        }.ifDebugTo(throwAssertion())
+        }.to(throwAssertion())
     }
     it("does not allow bindings for type and it's optional") {
         expect {
@@ -21,7 +21,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 bbind(Int?.self) & 42
                 bbind(Int.self) & provider { 25 + 17 }
             }
-        }.ifDebugTo(throwAssertion())
+        }.to(throwAssertion())
     }
     it("does not allow multiple bindings for the same type in a module hierarchy") {
         let firstModule = Swinject.Module("first") {
@@ -32,7 +32,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 include(firstModule)
                 bbind(Int.self) & provider { 25 + 17 }
             }
-        }.ifDebugTo(throwAssertion())
+        }.to(throwAssertion())
     }
     it("can declare that binding overrides previous binding for the same type") {
         let swinject = Swinject {
@@ -55,14 +55,14 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 bbind(Int.self, overrides: true) & 42
                 bbind(Int.self) & 0
             }
-        }.ifDebugTo(throwAssertion())
+        }.to(throwAssertion())
     }
     it("does not allow overriding binding if there is nothing to override") {
         expect {
             _ = Swinject {
                 bbind(Int.self, overrides: true) & 42
             }
-        }.ifDebugTo(throwAssertion())
+        }.to(throwAssertion())
     }
     it("does not allow overriding bindings in modules by default") {
         let firstModule = Swinject.Module("first") {
@@ -76,7 +76,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 include(firstModule)
                 include(secondModule)
             }
-        }.ifDebugTo(throwAssertion())
+        }.to(throwAssertion())
     }
     it("can allow module to have overriding bindings when including it") {
         let firstModule = Swinject.Module("first") {
@@ -135,7 +135,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 include(firstModule)
                 include(thirdModule)
             }
-        }.ifDebugTo(throwAssertion())
+        }.to(throwAssertion())
     }
     it("can allow silent override on the Swinject declaration") {
         let swinject = Swinject(allowsSilentOverride: true) {

@@ -24,13 +24,3 @@ extension Matchable {
         return hasher.finalize()
     }
 }
-
-extension Expectation {
-    public func ifDebugTo(_ predicate: Predicate<T>, description: String? = nil) {
-        #if DEBUG
-            to(predicate, description: description)
-        #else
-            toNot(predicate, description: description)
-        #endif
-    }
-}

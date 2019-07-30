@@ -4,19 +4,21 @@
 
 public struct Swinject {
     let tree: SwinjectTree
-    let container: Container
+    let container: SwinjectContainer
     let context: Any
     let contextType: Any.Type
 
     init(tree: SwinjectTree, allowsSilentOverride: Bool) {
         self.init(
             tree: tree,
-            container: .makeContainer(with: tree, allowsSilentOverride),
+            container: SwinjectContainer
+                .Builder(tree: tree, allowsSilentOverride: allowsSilentOverride)
+                .makeContainer(),
             context: ()
         )
     }
 
-    private init<Context>(tree: SwinjectTree, container: Swinject.Container, context: Context) {
+    private init<Context>(tree: SwinjectTree, container: SwinjectContainer, context: Context) {
         self.tree = tree
         self.container = container
         self.context = context
@@ -38,7 +40,7 @@ extension Swinject: Resolver {
         // FIXME: Refactor this
         do {
             binding = try findBinding(for: request)
-        } catch let error as NoBindingError {
+        } catch let error as NoBinding {
             if let optional = Descriptor.BaseType.self as? OptionalProtocol.Type {
                 return optional.init() as! Descriptor.BaseType
             } else {
@@ -58,8 +60,8 @@ extension Swinject: Resolver {
 
     private func findBinding(for request: AnyInstanceRequest) throws -> Binding {
         let bindings = container.bindings.filter { (try? findTranslator(for: request, and: $0)) != nil }
-        if bindings.isEmpty { throw NoBindingError() }
-        if bindings.count > 1 { throw MultipleBindingsError() }
+        if bindings.isEmpty { throw NoBinding() }
+        if bindings.count > 1 { throw MultipleBindings() }
         return bindings[0]
     }
 

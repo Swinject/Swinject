@@ -43,7 +43,7 @@ class ModulesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 include(firstModule)
                 include(secondModule)
             }
-        }.ifDebugTo(throwAssertion())
+        }.to(throwAssertion())
     }
     it("fails if module is included multiple times") {
         let firstModule = Swinject.Module("first")
@@ -58,7 +58,7 @@ class ModulesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 include(secondModule)
                 include(thirdModule)
             }
-        }.ifDebugTo(throwAssertion())
+        }.to(throwAssertion())
     }
     #endif
 } }
