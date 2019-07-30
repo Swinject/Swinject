@@ -22,8 +22,8 @@ import Foundation
 public final class Container {
     let registry = StandardScopeRegistry()
     let parent: Container?
-    // TODO: Enable arbitrary scope as default
-    let defaultObjectScope: ObjectScope
+    let defaultScope: AnyScope?
+    let defaultMakeRef: ReferenceMaker<Any>
     var bindings = [Binding & CustomStringConvertible]()
     var behaviors = [Behavior]()
     var swinject: Swinject { return Swinject(
@@ -48,14 +48,42 @@ public final class Container {
     ///
     /// - Remark: Compile time may be long if you pass a long closure to this initializer.
     ///           Use `init()` or `init(parent:)` instead.
-    public init(
+    public convenience init(
         parent: Container? = nil,
         defaultObjectScope: ObjectScope = .graph,
         behaviors: [Behavior] = [],
         registeringClosure: (Container) -> Void = { _ in }
     ) {
+        self.init(
+            parent: parent,
+            defaultScope: defaultObjectScope.scope,
+            defaultMakeRef: defaultObjectScope.makeRef,
+            behaviors: behaviors,
+            registeringClosure: registeringClosure
+        )
+    }
+
+    /// Instantiates a `Container`
+    ///
+    /// - Parameters
+    ///     - parent: The optional parent `Container`.
+    ///     - defaultScope: Default scope
+    ///     - defaultMakeRef: Default reference maker (`strongRef` by default)
+    ///     - behaviors: List of behaviors to be added to the container
+    ///     - registeringClosure: The closure registering services to the new container instance.
+    ///
+    /// - Remark: Compile time may be long if you pass a long closure to this initializer.
+    ///           Use `init()` or `init(parent:)` instead.
+    public init(
+        parent: Container? = nil,
+        defaultScope: AnyScope?,
+        defaultMakeRef: @escaping ReferenceMaker<Any> = strongRef,
+        behaviors: [Behavior] = [],
+        registeringClosure: (Container) -> Void = { _ in }
+    ) {
         self.parent = parent
-        self.defaultObjectScope = defaultObjectScope
+        self.defaultScope = defaultScope
+        self.defaultMakeRef = defaultMakeRef
         self.behaviors = behaviors
         registeringClosure(self)
     }

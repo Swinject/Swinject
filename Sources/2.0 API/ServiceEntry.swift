@@ -29,29 +29,30 @@ public class ServiceEntry<Service> {
         argumentType = Argument.self
     }
 
-    /// Specifies the object scope to resolve the service.
+    /// Specifies a custom scope & reference maker to use for the service.
     ///
-    /// - Parameter scope: The `ObjectScopeProtocol` value.
+    /// - Parameter scope: A custom scope to be used with entry.
+    /// - Parameter makeRef: A reference maker, `strongRef` by default
     ///
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
-    public func inObjectScope<ObjectScope>(_ scope: ObjectScope) -> Self where ObjectScope: Scope {
+    public func inObjectScope(
+        _ scope: AnyScope?,
+        makeRef: @escaping ReferenceMaker<Any> = strongRef
+    ) -> Self {
         self.scope = scope
+        self.makeRef = makeRef
         return self
     }
 
-    /// Specifies the object scope to resolve the service.
-    /// Performs the same functionality as `inObjectScope(_: ObjectScopeProtocol) -> Self`,
-    /// but provides more convenient usage syntax.
+    /// Specifies the object scope to use for the service.
     ///
     /// - Parameter scope: The `ObjectScope` value.
     ///
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
     public func inObjectScope(_ objectScope: ObjectScope) -> Self {
-        scope = objectScope.scope
-        makeRef = objectScope.makeRef
-        return self
+        return inObjectScope(objectScope.scope, makeRef: objectScope.makeRef)
     }
 
     /// Adds the callback to setup the instance after its `init` completes.
