@@ -18,7 +18,7 @@ public struct Swinject {
         )
     }
 
-    private init<Context>(tree: SwinjectTree, container: SwinjectContainer, context: Context) {
+    init<Context>(tree: SwinjectTree, container: SwinjectContainer, context: Context) {
         self.tree = tree
         self.container = container
         self.context = context
@@ -51,10 +51,10 @@ extension Swinject: Resolver {
         return try instance(from: binding, context: translator.translate(context), arg: request.argument)
     }
 
-    private func findTranslator(for request: AnyInstanceRequest, and binding: Binding) throws -> AnyContextTranslator {
+    private func findTranslator(for _: AnyInstanceRequest, and binding: Binding) throws -> AnyContextTranslator {
         return try (container.translators + [IdentityTranslator(for: contextType), ToAnyTranslator(for: contextType)])
             .filter { $0.sourceType == contextType }
-            .filter { binding.key == request.key(forContextType: $0.targetType) }
+            .filter { binding.key.contextType == Any.self || binding.key.contextType == $0.targetType }
             .first ?? { throw SwinjectError() }()
     }
 

@@ -24,18 +24,18 @@ public final class Container {
     let parent: Container?
     let defaultScope: AnyScope?
     let defaultMakeRef: ReferenceMaker<Any>
-    var bindings = [Binding & CustomStringConvertible]()
+    var bindings = [BindingKey: Binding]()
     var behaviors = [Behavior]()
     var swinject: Swinject { return Swinject(
-        tree: SwinjectTree(
+        tree: SwinjectTree(bindings: [], modules: [], translators: []),
+        container: SwinjectContainer(
             bindings: allBindings,
-            modules: [],
             translators: [registerContextTranslator(from: Graph.self) { $0.container }]
         ),
-        allowsSilentOverride: true
+        context: ()
     ) }
-    var allBindings: [Binding] {
-        return bindings + (parent?.allBindings ?? [])
+    var allBindings: [BindingKey: Binding] {
+        return bindings.merging(parent?.allBindings ?? [:]) { mine, _ in mine }
     }
 
     /// Instantiates a `Container`
@@ -90,7 +90,7 @@ public final class Container {
 
     /// Removes all registrations in the container.
     public func removeAll() {
-        bindings = []
+        bindings = [:]
         registry.clear()
     }
 
@@ -127,9 +127,13 @@ public final class Container {
     }
 
     func addEntry<Service>(_ entry: ServiceEntry<Service>, with name: String?) {
-        bindings.append(entry)
+        addBinding(type: Service.self, key: entry.key, name: name, entry: entry)
+    }
+
+    func addBinding<T, S>(type _: T.Type, key: BindingKey, name: String?, entry: ServiceEntry<S>) {
+        bindings[key] = entry
         behaviors.forEach {
-            $0.container(self, didRegisterType: Service.self, toService: entry, withName: name)
+            $0.container(self, didRegisterType: T.self, toService: entry, withName: name)
         }
     }
 }
@@ -139,7 +143,7 @@ public final class Container {
 extension Container: CustomStringConvertible {
     public var description: String {
         return "["
-            + bindings.map { "\n    { \($0.description) }" }.sorted().joined(separator: ",")
+            + bindings.values.map { "\n    { \($0) }" }.sorted().joined(separator: ",")
             + "\n]"
     }
 }
@@ -150,6 +154,11 @@ extension Container: Resolver {
     public func resolve<Descriptor, Argument>(
         _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        return try swinject.on(Graph(on: self)).resolve(request)
+        do {
+            return try swinject.on(Graph(on: self)).resolve(request)
+        } catch {
+            print(error)
+            throw error
+        }
     }
 }

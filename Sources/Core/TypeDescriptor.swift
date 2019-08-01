@@ -72,6 +72,14 @@ func plain<Type>(_: Type.Type) -> Tagged<Type, NoTag> {
     return Tagged(tag: NoTag())
 }
 
+func named<Type>(_: Type.Type, name: String?) -> AnyTypeDescriptor {
+    if let name = name {
+        return tagged(Type.self, with: name)
+    } else {
+        return plain(Type.self)
+    }
+}
+
 protocol OptionalProtocol {
     static var wrappedType: Any.Type { get }
     init()

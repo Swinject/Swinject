@@ -99,13 +99,7 @@ extension ServiceEntry: Binding {
 
     public var key: BindingKey {
         return BindingKey(
-            descriptor: {
-                if let name = name {
-                    return tagged(Service.self, with: name)
-                } else {
-                    return plain(Service.self)
-                }
-            }(),
+            descriptor: named(Service.self, name: name),
             contextType: scope?.contextType ?? Any.self,
             argumentType: argumentType
         )
@@ -117,7 +111,7 @@ extension ServiceEntry: CustomStringConvertible {
         return [
             "Service: \(Service.self)",
             name.map { "Name: \"\($0)\"" },
-            "Factory: (\(factoryInputs)) -> Animal",
+            "Factory: (\(factoryInputs)) -> \(Service.self)",
             "ObjectScope: \(scopeDescription)",
             finalizers.isEmpty ? nil : "InitCompleted: Specified \(finalizers.count) closures",
         ].compactMap { $0 }.joined(separator: ", ")
