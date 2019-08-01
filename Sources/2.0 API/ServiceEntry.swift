@@ -77,13 +77,6 @@ extension ServiceEntry: Binding {
         )
     }
 
-    public func matches(_ key: BindingKey) -> Bool {
-        let forwardedKeys = forwardedDescriptors.map {
-            BindingKey(descriptor: $0, contextType: scope?.contextType ?? Any.self, argumentType: argumentType)
-        }
-        return ([self.key] + forwardedKeys).contains { $0.matches(key) }
-    }
-
     public func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         if let scope = scope {
             return getRegistry(scope: scope, context: context).instance(

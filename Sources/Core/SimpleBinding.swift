@@ -9,10 +9,6 @@ struct SimpleBinding {
 }
 
 extension SimpleBinding: Binding {
-    func matches(_ key: BindingKey) -> Bool {
-        return self.key.matches(key)
-    }
-
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         return try builder.makeInstance(arg: arg, context: context, resolver: resolver)
     }

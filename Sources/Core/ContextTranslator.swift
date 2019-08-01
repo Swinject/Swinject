@@ -31,6 +31,17 @@ struct IdentityTranslator: AnyContextTranslator {
     func translate(_ context: Any) throws -> Any { return context }
 }
 
+struct ToAnyTranslator: AnyContextTranslator {
+    let sourceType: Any.Type
+    let targetType: Any.Type = Any.self
+
+    init(for contextType: Any.Type) {
+        sourceType = contextType
+    }
+
+    func translate(_ context: Any) throws -> Any { return context }
+}
+
 public func registerContextTranslator<Source, Target>(
     from _: Source.Type = Source.self,
     to _: Target.Type = Target.self,

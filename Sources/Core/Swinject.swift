@@ -52,14 +52,20 @@ extension Swinject: Resolver {
     }
 
     private func findTranslator(for request: AnyInstanceRequest, and binding: Binding) throws -> AnyContextTranslator {
-        return try (container.translators + [IdentityTranslator(for: contextType)])
+        return try (container.translators + [IdentityTranslator(for: contextType), ToAnyTranslator(for: contextType)])
             .filter { $0.sourceType == contextType }
-            .filter { binding.matches(request.key(forContextType: $0.targetType)) }
+            .filter { binding.key == request.key(forContextType: $0.targetType) }
             .first ?? { throw SwinjectError() }()
     }
 
+    private func translatableKeys(for request: AnyInstanceRequest) -> [BindingKey] {
+        return (container.translators + [IdentityTranslator(for: contextType), ToAnyTranslator(for: contextType)])
+            .filter { $0.sourceType == contextType }
+            .map { request.key(forContextType: $0.targetType) }
+    }
+
     private func findBinding(for request: AnyInstanceRequest) throws -> Binding {
-        let bindings = container.bindings.filter { (try? findTranslator(for: request, and: $0)) != nil }
+        let bindings = translatableKeys(for: request).compactMap { container.bindings[$0] }
         if bindings.isEmpty { throw NoBinding() }
         if bindings.count > 1 { throw MultipleBindings() }
         return bindings[0]

@@ -11,10 +11,6 @@ struct ScopedBinding {
 }
 
 extension ScopedBinding: Binding {
-    func matches(_ key: BindingKey) -> Bool {
-        return self.key.matches(key)
-    }
-
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         return try scope
             .registry(for: context)

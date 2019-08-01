@@ -9,7 +9,7 @@ public struct BindingKey: Hashable {
 
     func matches(_ other: BindingKey) -> Bool {
         return descriptor.matches(other.descriptor)
-            && (contextType == other.contextType || contextType == Any.self)
+            && contextType == other.contextType
             && argumentType == other.argumentType
     }
 
@@ -27,7 +27,6 @@ public struct BindingKey: Hashable {
 public protocol Binding: SwinjectEntry {
     var key: BindingKey { get }
     var properties: BindingProperties { get }
-    func matches(_ key: BindingKey) -> Bool
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any
 }
 

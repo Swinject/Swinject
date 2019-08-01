@@ -3,7 +3,7 @@
 //
 
 struct SwinjectContainer {
-    let bindings: [Binding]
+    let bindings: [BindingKey: Binding]
     let translators: [AnyContextTranslator]
 
     struct Builder {
@@ -46,13 +46,12 @@ extension SwinjectContainer.Builder {
         let canOverrideSilently: Bool
     }
 
-    private func collectBindings() throws -> [Binding] {
+    private func collectBindings() throws -> [BindingKey: Binding] {
         return try collectBindingEntries(from: tree, canOverrideSilently: allowsSilentOverride)
             .reduce(into: [BindingKey: Binding]()) { dict, entry in
                 try checkOverrideRules(for: entry, beingAddedTo: dict)
                 dict[entry.key] = entry.binding
             }
-            .map { $0.value }
     }
 
     private func checkOverrideRules(for entry: BindingEntry, beingAddedTo dict: [BindingKey: Binding]) throws {
