@@ -28,5 +28,4 @@ let allSpecs: [QuickSpec.Type] = [
     // Unit Specs
     StandardScopeRegistrySpec.self,
     SwinjectTreeBuilderSpec.self,
-    TaggedTypeSpec.self,
 ]

@@ -9,11 +9,7 @@ public struct ScopeRegistryKey {
 
 extension ScopeRegistryKey: Hashable {
     public static func == (lhs: ScopeRegistryKey, rhs: ScopeRegistryKey) -> Bool {
-        return areDescriptorsEqual(lhs.descriptor, rhs.descriptor) && areArgumentsEqual(lhs.argument, rhs.argument)
-    }
-
-    private static func areDescriptorsEqual(_ lhs: AnyTypeDescriptor, _ rhs: AnyTypeDescriptor) -> Bool {
-        return lhs.matches(rhs) && rhs.matches(lhs)
+        return lhs.descriptor.isEqual(to: rhs.descriptor) && areArgumentsEqual(lhs.argument, rhs.argument)
     }
 
     private static func areArgumentsEqual(_ lhs: Any, _ rhs: Any) -> Bool {

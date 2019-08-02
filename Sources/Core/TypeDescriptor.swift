@@ -2,7 +2,12 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public protocol AnyTypeDescriptor: Matchable {}
+public protocol AnyTypeDescriptor {
+    var anyTag: Any { get }
+    var rootType: Any.Type { get }
+    func isEqual(to other: AnyTypeDescriptor) -> Bool
+    func hash(into hasher: inout Hasher)
+}
 
 public protocol TypeDescriptor: AnyTypeDescriptor {
     associatedtype BaseType
@@ -11,12 +16,16 @@ public protocol TypeDescriptor: AnyTypeDescriptor {
 public struct SomeTypeDescriptor<BaseType>: TypeDescriptor, Opaque {
     let actual: AnyTypeDescriptor
 
-    public func matches(_ other: Any) -> Bool {
-        if let other = other as? AnyOpaque {
-            return actual.matches(other.anyActual)
-        } else {
-            return actual.matches(other)
-        }
+    public var anyTag: Any {
+        return actual.anyTag
+    }
+
+    public var rootType: Any.Type {
+        return actual.rootType
+    }
+
+    public func isEqual(to other: AnyTypeDescriptor) -> Bool {
+        return actual.isEqual(to: other)
     }
 
     public func hash(into hasher: inout Hasher) {
@@ -32,44 +41,37 @@ struct NoTag: Hashable {}
 
 struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
     let tag: Tag
+    let rootType: Any.Type
 
-    func matches(_ other: Any) -> Bool {
-        if let other = other as? Tagged<BaseType, Tag> {
-            return tag == other.tag
-        }
-        if let other = other as? Tagged<BaseType?, Tag> {
-            return tag == other.tag
-        }
-        if let other = other as? Tagged<BaseType??, Tag> {
-            return tag == other.tag
+    var anyTag: Any { return tag }
+
+    func isEqual(to other: AnyTypeDescriptor) -> Bool {
+        if let otherTag = other.anyTag as? Tag {
+            return rootType == other.rootType && tag == otherTag
         }
         return false
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(hashedType))
+        hasher.combine(ObjectIdentifier(rootType))
         hasher.combine(tag)
-    }
-
-    var hashedType: Any.Type {
-        if let optional = BaseType.self as? OptionalProtocol.Type {
-            if let doubleOptional = optional.wrappedType as? OptionalProtocol.Type {
-                return doubleOptional.wrappedType
-            } else {
-                return optional.wrappedType
-            }
-        } else {
-            return BaseType.self
-        }
     }
 }
 
 func tagged<Type, Tag>(_: Type.Type, with tag: Tag) -> Tagged<Type, Tag> where Tag: Hashable {
-    return Tagged(tag: tag)
+    return Tagged(tag: tag, rootType: {
+        if let optional = Type.self as? OptionalProtocol.Type {
+            if let doubleOptional = optional.wrappedType as? OptionalProtocol.Type {
+                return doubleOptional.wrappedType
+            }
+            return optional.wrappedType
+        }
+        return Type.self
+    }())
 }
 
 func plain<Type>(_: Type.Type) -> Tagged<Type, NoTag> {
-    return Tagged(tag: NoTag())
+    return tagged(Type.self, with: NoTag())
 }
 
 func named<Type>(_: Type.Type, name: String?) -> AnyTypeDescriptor {

@@ -7,12 +7,6 @@ public struct BindingKey: Hashable {
     let contextType: Any.Type
     let argumentType: Any.Type
 
-    func matches(_ other: BindingKey) -> Bool {
-        return descriptor.matches(other.descriptor)
-            && contextType == other.contextType
-            && argumentType == other.argumentType
-    }
-
     public func hash(into hasher: inout Hasher) {
         descriptor.hash(into: &hasher)
         ObjectIdentifier(contextType).hash(into: &hasher)
@@ -20,7 +14,9 @@ public struct BindingKey: Hashable {
     }
 
     public static func == (lhs: BindingKey, rhs: BindingKey) -> Bool {
-        return lhs.matches(rhs) || rhs.matches(lhs)
+        return lhs.descriptor.isEqual(to: rhs.descriptor)
+            && lhs.contextType == rhs.contextType
+            && lhs.argumentType == rhs.argumentType
     }
 }
 

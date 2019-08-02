@@ -154,11 +154,6 @@ extension Container: Resolver {
     public func resolve<Descriptor, Argument>(
         _ request: InstanceRequest<Descriptor, Argument>
     ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
-        do {
-            return try swinject.on(Graph(on: self)).resolve(request)
-        } catch {
-            print(error)
-            throw error
-        }
+        return try swinject.on(Graph(on: self)).resolve(request)
     }
 }
