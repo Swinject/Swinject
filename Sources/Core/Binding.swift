@@ -15,8 +15,8 @@ public struct BindingKey: Hashable {
 
     public func hash(into hasher: inout Hasher) {
         descriptor.hash(into: &hasher)
-        String(describing: contextType).hash(into: &hasher)
-        String(describing: argumentType).hash(into: &hasher)
+        ObjectIdentifier(contextType).hash(into: &hasher)
+        ObjectIdentifier(argumentType).hash(into: &hasher)
     }
 
     public static func == (lhs: BindingKey, rhs: BindingKey) -> Bool {

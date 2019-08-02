@@ -47,7 +47,7 @@ struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(String(describing: hashedType))
+        hasher.combine(ObjectIdentifier(hashedType))
         hasher.combine(tag)
     }
 
