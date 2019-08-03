@@ -8,17 +8,17 @@ protocol AnyInstanceRequest {
     var argumentType: Any.Type { get }
 }
 
-public struct InstanceRequest<Descriptor, Argument>: AnyInstanceRequest where Descriptor: TypeDescriptor {
+public struct InstanceRequest<Type, Argument>: AnyInstanceRequest {
     let argumentType: Any.Type = Argument.self
     let descriptor: AnyTypeDescriptor
     let argument: Any
 }
 
-func request<Type, Tag: Equatable, Argument>(
+func request<Type, Tag: Hashable, Argument>(
     type: Type.Type = Type.self,
     tag: Tag,
     arg: Argument
-) -> InstanceRequest<Tagged<Type, Tag>, Argument> {
+) -> InstanceRequest<Type, Argument> {
     return InstanceRequest(descriptor: tagged(type, with: tag), argument: arg)
 }
 

@@ -3,19 +3,15 @@
 //
 
 public protocol Resolver {
-    func resolve<Descriptor, Argument>(
-        _ request: InstanceRequest<Descriptor, Argument>
-    ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor
+    func resolve<Type, Argument>(_ request: InstanceRequest<Type, Argument>) throws -> Type
 }
 
 public protocol SwinjectAware: Resolver {
     var swinject: Resolver { get }
 }
 
-extension SwinjectAware {
-    public func resolve<Descriptor, Argument>(
-        _ request: InstanceRequest<Descriptor, Argument>
-    ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+public extension SwinjectAware {
+    func resolve<Type, Argument>(_ request: InstanceRequest<Type, Argument>) throws -> Type {
         return try swinject.resolve(request)
     }
 }

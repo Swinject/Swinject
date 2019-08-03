@@ -33,16 +33,14 @@ extension Swinject {
 }
 
 extension Swinject: Resolver {
-    public func resolve<Descriptor, Argument>(
-        _ request: InstanceRequest<Descriptor, Argument>
-    ) throws -> Descriptor.BaseType where Descriptor: TypeDescriptor {
+    public func resolve<Type, Argument>(_ request: InstanceRequest<Type, Argument>) throws -> Type {
         var binding: Binding!
         // FIXME: Refactor this
         do {
             binding = try findBinding(for: request)
         } catch let error as NoBinding {
-            if let optional = Descriptor.BaseType.self as? OptionalProtocol.Type {
-                return optional.init() as! Descriptor.BaseType
+            if let optional = Type.self as? OptionalProtocol.Type {
+                return optional.init() as! Type
             } else {
                 throw error
             }

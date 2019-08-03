@@ -9,37 +9,9 @@ public protocol AnyTypeDescriptor {
     func hash(into hasher: inout Hasher)
 }
 
-public protocol TypeDescriptor: AnyTypeDescriptor {
-    associatedtype BaseType
-}
-
-public struct SomeTypeDescriptor<BaseType>: TypeDescriptor, Opaque {
-    let actual: AnyTypeDescriptor
-
-    public var anyTag: Any {
-        return actual.anyTag
-    }
-
-    public var rootType: Any.Type {
-        return actual.rootType
-    }
-
-    public func isEqual(to other: AnyTypeDescriptor) -> Bool {
-        return actual.isEqual(to: other)
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        actual.hash(into: &hasher)
-    }
-}
-
-public extension TypeDescriptor {
-    var opaque: SomeTypeDescriptor<BaseType> { return SomeTypeDescriptor(actual: self) }
-}
-
 struct NoTag: Hashable {}
 
-struct Tagged<BaseType, Tag>: TypeDescriptor where Tag: Hashable {
+struct Tagged<Type, Tag>: AnyTypeDescriptor where Tag: Hashable {
     let tag: Tag
     let rootType: Any.Type
 
