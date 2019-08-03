@@ -622,6 +622,7 @@
 		1F06930A1A2C8BA94D6875BA /* Legacy */ = {
 			isa = PBXGroup;
 			children = (
+				1E612D299FB31D27FF9BDCE6 /* Circularity.swift */,
 				4BC5108ED11A3A3084D864CC /* Animal.swift */,
 				62682D6ED38742996624B041 /* BasicAssembly.swift */,
 				5EA566CD336DB8343ADFAF9B /* BehaviorFakes.swift */,
@@ -807,7 +808,6 @@
 			isa = PBXGroup;
 			children = (
 				B0C926D1E315E596E450D7D6 /* AssemblerSpec.swift */,
-				1E612D299FB31D27FF9BDCE6 /* Circularity.swift */,
 				21AEDF723BDD949B59E6D1C5 /* ContainerSpec.Arguments.swift */,
 				BEFFEE7870660D8AB209459D /* ContainerSpec.Behavior.swift */,
 				ABB24A17D2ECAA4869AE1DD0 /* ContainerSpec.Circularity.swift */,

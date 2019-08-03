@@ -32,28 +32,3 @@ extension PropertyWrapper {
         }
     }
 }
-
-@propertyWrapper public enum Lazy<Value>: PropertyWrapper {
-    case uninitialized(() -> Value)
-    case initialized(Value)
-
-    public init(wrappedValue: @autoclosure @escaping () -> Value) {
-        self = .uninitialized(wrappedValue)
-    }
-
-    public var wrappedValue: Value {
-        mutating get {
-            switch self {
-            case let .uninitialized(initializer):
-                let value = initializer()
-                self = .initialized(value)
-                return value
-            case let .initialized(value):
-                return value
-            }
-        }
-        set {
-            self = .initialized(newValue)
-        }
-    }
-}

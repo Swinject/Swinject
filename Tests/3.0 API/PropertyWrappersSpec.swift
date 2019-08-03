@@ -60,19 +60,5 @@ class PropertyWrappersSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             expect { doubleWrappedInt?.wrappedValue.wrappedValue } == 42
         }
     }
-    describe("lazy") {
-        it("does not invoke value builder until lazy value is accessed") {
-            var invoked = false
-            struct IntHolder {
-                @Lazy var int: Int
-            }
-            let swinject = Swinject {
-                bbind(Int.self) & provider { invoked = true; return 42 }
-                bbind(IntHolder.self) & provider { IntHolder(int: try $0.instance()) }
-            }
-            _ = try? swinject.instance(of: IntHolder.self)
-            expect(invoked) == false
-        }
-    }
     #endif
 } }

@@ -12,7 +12,6 @@ class LazySpec: QuickSpec {
         beforeEach {
             container = Container()
         }
-
         describe("instance production") {
             it("provides instance from container") {
                 container.register(Animal.self) { _ in Dog() }
