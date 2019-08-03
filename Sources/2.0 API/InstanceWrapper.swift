@@ -39,7 +39,7 @@
 /// Wrapper to enable delayed dependency instantiation.
 /// `Provider<Type>` does not need to be explicitly registered into the `Container` - resolution will work
 /// as long as there is a registration for the `Type`.
-public struct Provider<Type>: PropertyWrapper {
+@propertyWrapper public struct Provider<Type>: PropertyWrapper {
     /// Getter for the wrapped object.
     /// New instance will be resolved from the `Container` every time it is accessed.
     public var instance: Type {

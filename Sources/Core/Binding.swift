@@ -14,7 +14,7 @@ public struct BindingKey: Hashable {
     }
 
     public static func == (lhs: BindingKey, rhs: BindingKey) -> Bool {
-        return lhs.descriptor.isEqual(to: rhs.descriptor)
+        return lhs.descriptor == rhs.descriptor
             && lhs.contextType == rhs.contextType
             && lhs.argumentType == rhs.argumentType
     }
