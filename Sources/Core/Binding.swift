@@ -3,7 +3,7 @@
 //
 
 public struct BindingKey: Hashable {
-    let descriptor: AnyTypeDescriptor
+    let descriptor: TypeDescriptor
     let contextType: Any.Type
     let argumentType: Any.Type
 

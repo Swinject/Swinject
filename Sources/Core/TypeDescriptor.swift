@@ -2,36 +2,24 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public protocol AnyTypeDescriptor {
-    var anyTag: Any { get }
-    var rootType: Any.Type { get }
-    func isEqual(to other: AnyTypeDescriptor) -> Bool
-    func hash(into hasher: inout Hasher)
+public struct TypeDescriptor {
+    let tag: Matchable
+    let rootType: Any.Type
+
+    func isEqual(to other: TypeDescriptor) -> Bool {
+        return rootType == other.rootType && tag.matches(other.tag)
+    }
+
+    func hash(into hasher: inout Hasher) {
+        ObjectIdentifier(rootType).hash(into: &hasher)
+        tag.hash(into: &hasher)
+    }
 }
 
 struct NoTag: Hashable {}
 
-struct Tagged<Type, Tag>: AnyTypeDescriptor where Tag: Hashable {
-    let tag: Tag
-    let rootType: Any.Type
-
-    var anyTag: Any { return tag }
-
-    func isEqual(to other: AnyTypeDescriptor) -> Bool {
-        if let otherTag = other.anyTag as? Tag {
-            return rootType == other.rootType && tag == otherTag
-        }
-        return false
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(rootType))
-        hasher.combine(tag)
-    }
-}
-
-func tagged<Type, Tag>(_: Type.Type, with tag: Tag) -> Tagged<Type, Tag> where Tag: Hashable {
-    return Tagged(tag: tag, rootType: {
+func tagged<Type, Tag>(_: Type.Type, with tag: Tag) -> TypeDescriptor where Tag: Hashable {
+    return TypeDescriptor(tag: box(tag), rootType: {
         if let optional = Type.self as? OptionalProtocol.Type {
             if let doubleOptional = optional.wrappedType as? OptionalProtocol.Type {
                 return doubleOptional.wrappedType
@@ -42,11 +30,11 @@ func tagged<Type, Tag>(_: Type.Type, with tag: Tag) -> Tagged<Type, Tag> where T
     }())
 }
 
-func plain<Type>(_: Type.Type) -> Tagged<Type, NoTag> {
+func plain<Type>(_: Type.Type) -> TypeDescriptor {
     return tagged(Type.self, with: NoTag())
 }
 
-func named<Type>(_: Type.Type, name: String?) -> AnyTypeDescriptor {
+func named<Type>(_: Type.Type, name: String?) -> TypeDescriptor {
     if let name = name {
         return tagged(Type.self, with: name)
     } else {

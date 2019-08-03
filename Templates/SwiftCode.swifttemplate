@@ -204,6 +204,7 @@ extension InjectionVariation {
         let paramVars = (0 ..< paramArgs).map { "arg\($0 + 1)" }
         let factoryVars = (0 ..< factoryArgs).map { "$\($0)" }
         return join(
+            "type: Type.self",
             isTagged ? "tag: tag" : "tag: NoTag()",
             args == 0 ? "arg: ()" : "arg: box(\(join(paramVars + factoryVars)))"
         )

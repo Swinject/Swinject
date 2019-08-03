@@ -3,7 +3,7 @@
 //
 
 public protocol Resolver {
-    func resolve<Type, Tag, Argument>(_ request: InstanceRequest<Type, Tag, Argument>) throws -> Type
+    func resolve<Type>(_ request: InjectionRequest) throws -> Type
 }
 
 public protocol SwinjectAware: Resolver {
@@ -11,7 +11,7 @@ public protocol SwinjectAware: Resolver {
 }
 
 public extension SwinjectAware {
-    func resolve<Type, Tag, Argument>(_ request: InstanceRequest<Type, Tag, Argument>) throws -> Type {
+    func resolve<Type>(_ request: InjectionRequest) throws -> Type {
         return try swinject.resolve(request)
     }
 }

@@ -3,7 +3,7 @@
 //
 
 public struct ScopeRegistryKey {
-    let descriptor: AnyTypeDescriptor
+    let descriptor: TypeDescriptor
     let argument: Any
 }
 

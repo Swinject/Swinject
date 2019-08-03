@@ -33,18 +33,21 @@ extension Swinject {
 }
 
 extension Swinject: Resolver {
-    public func resolve<Type, Tag, Argument>(_ request: InstanceRequest<Type, Tag, Argument>) throws -> Type {
+    public func resolve<Type>(_ request: InjectionRequest) throws -> Type {
         var binding: Binding
         // FIXME: Refactor this
+        // TODO: Can we unify Optional handling with Custom resolvable?
         do {
             binding = try findBinding(for: request)
         } catch let error as NoBinding {
             if let optional = Type.self as? OptionalProtocol.Type {
                 return optional.init() as! Type
             }
-            if let provider = Type.self as? AnyPropertyWrapper.Type {
-                _ = try findBinding(for: provider.transform(request))
-                return provider.init(resolver: self, request: request) as! Type
+            if let custom = Type.self as? CustomResolvable.Type {
+                if let requiredRequest = custom.requiredRequest(for: request) {
+                    _ = try findBinding(for: requiredRequest)
+                }
+                return custom.init(resolver: self, request: request) as! Type
             }
             throw error
         }
@@ -52,20 +55,20 @@ extension Swinject: Resolver {
         return try instance(from: binding, context: translator.translate(context), arg: request.argument)
     }
 
-    private func findTranslator(for _: AnyInstanceRequest, and binding: Binding) throws -> AnyContextTranslator {
+    private func findTranslator(for _: InjectionRequest, and binding: Binding) throws -> AnyContextTranslator {
         return try (container.translators + [IdentityTranslator(for: contextType), ToAnyTranslator(for: contextType)])
             .filter { $0.sourceType == contextType }
             .filter { binding.key.contextType == Any.self || binding.key.contextType == $0.targetType }
             .first ?? { throw SwinjectError() }()
     }
 
-    private func translatableKeys(for request: AnyInstanceRequest) -> [BindingKey] {
+    private func translatableKeys(for request: InjectionRequest) -> [BindingKey] {
         return (container.translators + [IdentityTranslator(for: contextType), ToAnyTranslator(for: contextType)])
             .filter { $0.sourceType == contextType }
             .map { request.key(forContextType: $0.targetType) }
     }
 
-    private func findBinding(for request: AnyInstanceRequest) throws -> Binding {
+    private func findBinding(for request: InjectionRequest) throws -> Binding {
         let bindings = translatableKeys(for: request).compactMap { container.bindings[$0] }
         if bindings.isEmpty { throw NoBinding() }
         if bindings.count > 1 { throw MultipleBindings() }

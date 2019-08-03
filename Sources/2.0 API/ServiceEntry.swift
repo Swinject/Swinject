@@ -12,7 +12,7 @@ public class ServiceEntry<Service> {
     var scope: AnyScope?
     var makeRef: ReferenceMaker<Any>
     var finalizers = [(Resolver, Service) -> Void]()
-    var forwardedDescriptors = [AnyTypeDescriptor]()
+    var forwardedDescriptors = [TypeDescriptor]()
 
     init<Argument>(
         container: Container,

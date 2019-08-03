@@ -3,7 +3,7 @@
 //
 
 public struct BindingProperties {
-    let descriptor: AnyTypeDescriptor
+    let descriptor: TypeDescriptor
     let overrides: Bool
 }
 
@@ -11,10 +11,7 @@ public struct TypeBinder<BoundType> {
     let properties: BindingProperties
 }
 
-public func bind<Type>(
-    _: Type.Type,
-    overrides: Bool = false
-) -> TypeBinder<Type> {
+public func bind<Type>(_: Type.Type, overrides: Bool = false) -> TypeBinder<Type> {
     return TypeBinder(properties: BindingProperties(
         descriptor: plain(Type.self),
         overrides: overrides
@@ -22,9 +19,7 @@ public func bind<Type>(
 }
 
 public func bind<Type, Tag>(
-    _: Type.Type,
-    tagged tag: Tag,
-    overrides: Bool = false
+    _: Type.Type, tagged tag: Tag, overrides: Bool = false
 ) -> TypeBinder<Type> where Tag: Hashable {
     return TypeBinder(properties: BindingProperties(
         descriptor: tagged(Type.self, with: tag),

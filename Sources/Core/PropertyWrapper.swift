@@ -2,33 +2,40 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-protocol AnyPropertyWrapper {
-    init<Type, Tag, Argument>(resolver: Resolver, request: InstanceRequest<Type, Tag, Argument>)
-    static func transform<Type, Tag, Argument>(_ request: InstanceRequest<Type, Tag, Argument>) -> AnyInstanceRequest
+protocol CustomResolvable {
+    init(resolver: Resolver, request: InjectionRequest)
+    static func requiredRequest(for request: InjectionRequest) -> InjectionRequest?
 }
 
-protocol PropertyWrapper: AnyPropertyWrapper {
+protocol PropertyWrapper: CustomResolvable {
     associatedtype Value
     init(wrappedValue: @autoclosure @escaping () -> Value)
 }
 
 extension PropertyWrapper {
-    init<Type, Tag, Argument>(resolver: Resolver, request: InstanceRequest<Type, Tag, Argument>) {
-        self.init(wrappedValue: try! resolver.instance( // swiftlint:disable:this force_try
-            tagged: request.descriptor.anyTag as! Tag,
-            arg: request.argument as! Argument
-        ))
+    init(resolver: Resolver, request: InjectionRequest) {
+        // swiftlint:disable:next force_try
+        self.init(wrappedValue: try! resolver.resolve(request.replacingType(with: Value.self)))
     }
 
-    static func transform<Type, Tag, Argument>(_ aRequest: InstanceRequest<Type, Tag, Argument>) -> AnyInstanceRequest {
-        if let wrapper = Value.self as? AnyPropertyWrapper.Type {
-            return wrapper.transform(aRequest)
+    static func requiredRequest(for request: InjectionRequest) -> InjectionRequest? {
+        if let wrapper = Value.self as? CustomResolvable.Type {
+            return wrapper.requiredRequest(for: request)
         } else {
-            return request(
-                type: Value.self,
-                tag: aRequest.descriptor.anyTag as! Tag,
-                arg: aRequest.argument as! Argument
-            )
+            return request.replacingType(with: Value.self)
         }
+    }
+}
+
+private extension InjectionRequest {
+    func replacingType<Type>(with _: Type.Type) -> InjectionRequest {
+        InjectionRequest(
+            descriptor: TypeDescriptor(
+                tag: descriptor.tag,
+                rootType: Type.self
+            ),
+            argument: argument,
+            argumentType: argumentType
+        )
     }
 }
