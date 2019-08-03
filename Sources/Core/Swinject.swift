@@ -42,7 +42,7 @@ extension Swinject: Resolver {
             if let optional = Type.self as? OptionalProtocol.Type {
                 return optional.init() as! Type
             }
-            if let provider = Type.self as? InstanceProvider.Type {
+            if let provider = Type.self as? AnyPropertyWrapper.Type {
                 _ = try findBinding(for: provider.transform(request))
                 return provider.init(resolver: self, request: request) as! Type
             }

@@ -230,14 +230,14 @@
 		CD367C0F22EF8A83008B3E82 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */; };
 		CD367C1022EF8A83008B3E82 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */; };
 		CD367C1122EF8A83008B3E82 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */; };
-		CD68676022F5C60800F7D9E3 /* InstanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68675F22F5C60800F7D9E3 /* InstanceProvider.swift */; };
-		CD68676122F5C85B00F7D9E3 /* InstanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68675F22F5C60800F7D9E3 /* InstanceProvider.swift */; };
-		CD68676222F5C85B00F7D9E3 /* InstanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68675F22F5C60800F7D9E3 /* InstanceProvider.swift */; };
-		CD68676322F5C85B00F7D9E3 /* InstanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68675F22F5C60800F7D9E3 /* InstanceProvider.swift */; };
-		CD68676522F5CA5D00F7D9E3 /* InstanceProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68676422F5CA5D00F7D9E3 /* InstanceProviderSpec.swift */; };
-		CD68676622F5CA5D00F7D9E3 /* InstanceProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68676422F5CA5D00F7D9E3 /* InstanceProviderSpec.swift */; };
-		CD68676722F5CA5D00F7D9E3 /* InstanceProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68676422F5CA5D00F7D9E3 /* InstanceProviderSpec.swift */; };
-		CD68676822F5CA5D00F7D9E3 /* InstanceProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68676422F5CA5D00F7D9E3 /* InstanceProviderSpec.swift */; };
+		CD68676022F5C60800F7D9E3 /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68675F22F5C60800F7D9E3 /* PropertyWrapper.swift */; };
+		CD68676122F5C85B00F7D9E3 /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68675F22F5C60800F7D9E3 /* PropertyWrapper.swift */; };
+		CD68676222F5C85B00F7D9E3 /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68675F22F5C60800F7D9E3 /* PropertyWrapper.swift */; };
+		CD68676322F5C85B00F7D9E3 /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68675F22F5C60800F7D9E3 /* PropertyWrapper.swift */; };
+		CD68676522F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68676422F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift */; };
+		CD68676622F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68676422F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift */; };
+		CD68676722F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68676422F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift */; };
+		CD68676822F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD68676422F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift */; };
 		CD73B9AB22F239A4004BB84E /* AssemblerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C926D1E315E596E450D7D6 /* AssemblerSpec.swift */; };
 		CD73B9AC22F239A4004BB84E /* Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E612D299FB31D27FF9BDCE6 /* Circularity.swift */; };
 		CD73B9AD22F239A4004BB84E /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AEDF723BDD949B59E6D1C5 /* ContainerSpec.Arguments.swift */; };
@@ -535,8 +535,8 @@
 		CC85CB215058F95C0BC190B1 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		CD03917322EF610800DE44C4 /* OverrideSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideSpec.swift; sourceTree = "<group>"; };
 		CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectContainer.swift; sourceTree = "<group>"; };
-		CD68675F22F5C60800F7D9E3 /* InstanceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceProvider.swift; sourceTree = "<group>"; };
-		CD68676422F5CA5D00F7D9E3 /* InstanceProviderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceProviderSpec.swift; sourceTree = "<group>"; };
+		CD68675F22F5C60800F7D9E3 /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
+		CD68676422F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrappersSpec.swift; sourceTree = "<group>"; };
 		CDA78290D6D60BD0B808571F /* Container+Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Logging.swift"; sourceTree = "<group>"; };
 		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
 		DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextSpec.swift; sourceTree = "<group>"; };
@@ -746,7 +746,7 @@
 				1D3C59E84B5FD0C13F487838 /* ScopesSpec.swift */,
 				46F05CC591903E2B04B6D8ED /* SingletonSpec.swift */,
 				CD03917322EF610800DE44C4 /* OverrideSpec.swift */,
-				CD68676422F5CA5D00F7D9E3 /* InstanceProviderSpec.swift */,
+				CD68676422F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift */,
 			);
 			path = "3.0 API";
 			sourceTree = "<group>";
@@ -843,7 +843,7 @@
 				CD367C0D22EF8A83008B3E82 /* SwinjectContainer.swift */,
 				47018AC89CBE8254E17C4639 /* SwinjectTree.swift */,
 				E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */,
-				CD68675F22F5C60800F7D9E3 /* InstanceProvider.swift */,
+				CD68675F22F5C60800F7D9E3 /* PropertyWrapper.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1391,7 +1391,7 @@
 				AAD8D0551B8A26A9B22AECEC /* Container+Registration.swift in Sources */,
 				996CCFE825834C7D3236E742 /* Container+TypeForwarding.swift in Sources */,
 				B2FAD41F7726502822AF913B /* Container.swift in Sources */,
-				CD68676122F5C85B00F7D9E3 /* InstanceProvider.swift in Sources */,
+				CD68676122F5C85B00F7D9E3 /* PropertyWrapper.swift in Sources */,
 				8B5927517B567B1DFAB5B935 /* ContextTranslator.swift in Sources */,
 				6C4D29A3FB54416D5E4D4C89 /* InstanceBuilder.swift in Sources */,
 				53EBF7A46EF65F2A8DAADC7A /* InstanceRequest.swift in Sources */,
@@ -1435,7 +1435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD68676522F5CA5D00F7D9E3 /* InstanceProviderSpec.swift in Sources */,
+				CD68676522F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift in Sources */,
 				BD08D3E155AFD841CFECA0AD /* Animal.swift in Sources */,
 				CD73B9AF22F239A4004BB84E /* ContainerSpec.Circularity.swift in Sources */,
 				DD29D2E60DA979D61F32A39A /* BasicAssembly.swift in Sources */,
@@ -1476,7 +1476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD68676622F5CA5D00F7D9E3 /* InstanceProviderSpec.swift in Sources */,
+				CD68676622F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift in Sources */,
 				A6EECC339FA54CA0BBFF4146 /* Animal.swift in Sources */,
 				CD73B9C522F239A5004BB84E /* ContainerSpec.Circularity.swift in Sources */,
 				401592294E5D528379BE1AB2 /* BasicAssembly.swift in Sources */,
@@ -1517,7 +1517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD68676822F5CA5D00F7D9E3 /* InstanceProviderSpec.swift in Sources */,
+				CD68676822F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift in Sources */,
 				A53B5A8E2188F8C4A3F29C2E /* Animal.swift in Sources */,
 				CD73B9D022F239A6004BB84E /* ContainerSpec.Circularity.swift in Sources */,
 				03122D1B2EA65C89ADC78EC7 /* BasicAssembly.swift in Sources */,
@@ -1558,7 +1558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD68676722F5CA5D00F7D9E3 /* InstanceProviderSpec.swift in Sources */,
+				CD68676722F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift in Sources */,
 				D13208E63523A97A0B840283 /* Animal.swift in Sources */,
 				CD73B9BA22F239A4004BB84E /* ContainerSpec.Circularity.swift in Sources */,
 				599C7F009F954CDA522244B3 /* BasicAssembly.swift in Sources */,
@@ -1608,7 +1608,7 @@
 				A5E4C79F89E1A8AB3A4D8D6E /* Container+Registration.swift in Sources */,
 				BD9B57E26722C80B7EF990DB /* Container+TypeForwarding.swift in Sources */,
 				DB74F17CDFF4886B9C38AD14 /* Container.swift in Sources */,
-				CD68676222F5C85B00F7D9E3 /* InstanceProvider.swift in Sources */,
+				CD68676222F5C85B00F7D9E3 /* PropertyWrapper.swift in Sources */,
 				DD5E3AF2B5FCE5E81EBDF606 /* ContextTranslator.swift in Sources */,
 				7F9686F3669BF35E5AC970B3 /* InstanceBuilder.swift in Sources */,
 				9DEAC620F2F00D0DDD3B5D3E /* InstanceRequest.swift in Sources */,
@@ -1651,7 +1651,7 @@
 				CB0B308F3D3A831A28127462 /* Container+Registration.swift in Sources */,
 				283C77045DA55C2134EC9C48 /* Container+TypeForwarding.swift in Sources */,
 				58ABEE0321A3061048B65EA2 /* Container.swift in Sources */,
-				CD68676322F5C85B00F7D9E3 /* InstanceProvider.swift in Sources */,
+				CD68676322F5C85B00F7D9E3 /* PropertyWrapper.swift in Sources */,
 				F06DEB671A4B85ABB0E96E51 /* ContextTranslator.swift in Sources */,
 				DBEFC5C6A51FCEBF9E4F70EE /* InstanceBuilder.swift in Sources */,
 				CECF5BD14BCDF5248771A06A /* InstanceRequest.swift in Sources */,
@@ -1703,7 +1703,7 @@
 				658C98B4AA17C58E8556E0AC /* Opaque.swift in Sources */,
 				0509EE8D41BF354EB91ACC80 /* Reference.swift in Sources */,
 				CBE63031F33303F3E503CEF2 /* Resolver+Injection.swift in Sources */,
-				CD68676022F5C60800F7D9E3 /* InstanceProvider.swift in Sources */,
+				CD68676022F5C60800F7D9E3 /* PropertyWrapper.swift in Sources */,
 				41C7340BFD2EB66359772733 /* Resolver+LegacyApi.swift in Sources */,
 				BE94EF7BCF976A703F961389 /* Resolver.swift in Sources */,
 				96EA0A5DF33F025EBE0B67D2 /* Scope.swift in Sources */,

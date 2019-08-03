@@ -2,12 +2,30 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-protocol InstanceProvider {
+protocol AnyPropertyWrapper {
     init<Type, Tag, Argument>(resolver: Resolver, request: InstanceRequest<Type, Tag, Argument>)
     static func transform<Type, Tag, Argument>(_ request: InstanceRequest<Type, Tag, Argument>) -> AnyInstanceRequest
 }
 
-@propertyWrapper public enum Lazy<Value> {
+protocol PropertyWrapper: AnyPropertyWrapper {
+    associatedtype Value
+    init(wrappedValue: @autoclosure @escaping () -> Value)
+}
+
+extension PropertyWrapper {
+    init<Type, Tag, Argument>(resolver: Resolver, request: InstanceRequest<Type, Tag, Argument>) {
+        self.init(wrappedValue: try! resolver.instance( // swiftlint:disable:this force_try
+            tagged: request.descriptor.anyTag as! Tag,
+            arg: request.argument as! Argument
+        ))
+    }
+
+    static func transform<Type, Tag, Argument>(_ aRequest: InstanceRequest<Type, Tag, Argument>) -> AnyInstanceRequest {
+        return request(type: Value.self, tag: aRequest.descriptor.anyTag as! Tag, arg: aRequest.argument as! Argument)
+    }
+}
+
+@propertyWrapper public enum Lazy<Value>: PropertyWrapper {
     case uninitialized(() -> Value)
     case initialized(Value)
 
@@ -29,18 +47,5 @@ protocol InstanceProvider {
         set {
             self = .initialized(newValue)
         }
-    }
-}
-
-extension Lazy: InstanceProvider {
-    init<Type, Tag, Argument>(resolver: Resolver, request: InstanceRequest<Type, Tag, Argument>) {
-        self.init(wrappedValue: try! resolver.instance( // swiftlint:disable:this force_try
-            tagged: request.descriptor.anyTag as! Tag,
-            arg: request.argument as! Argument
-        ))
-    }
-
-    static func transform<Type, Tag, Argument>(_ aRequest: InstanceRequest<Type, Tag, Argument>) -> AnyInstanceRequest {
-        return request(type: Value.self, tag: aRequest.descriptor.anyTag as! Tag, arg: aRequest.argument as! Argument)
     }
 }
