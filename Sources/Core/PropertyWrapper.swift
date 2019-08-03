@@ -21,7 +21,15 @@ extension PropertyWrapper {
     }
 
     static func transform<Type, Tag, Argument>(_ aRequest: InstanceRequest<Type, Tag, Argument>) -> AnyInstanceRequest {
-        return request(type: Value.self, tag: aRequest.descriptor.anyTag as! Tag, arg: aRequest.argument as! Argument)
+        if let wrapper = Value.self as? AnyPropertyWrapper.Type {
+            return wrapper.transform(aRequest)
+        } else {
+            return request(
+                type: Value.self,
+                tag: aRequest.descriptor.anyTag as! Tag,
+                arg: aRequest.argument as! Argument
+            )
+        }
     }
 }
 

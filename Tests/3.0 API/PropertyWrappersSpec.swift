@@ -52,6 +52,13 @@ class PropertyWrappersSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             let wrappedInt = try? swinject.instance(tagged: "tag") as Wrapped<Int>
             expect { wrappedInt?.wrappedValue } == 42
         }
+        it("can inject nested property wrappers") {
+            let swinject = Swinject {
+                bbind(Int.self) & 42
+            }
+            let doubleWrappedInt = try? swinject.instance() as Wrapped<Wrapped<Int>>
+            expect { doubleWrappedInt?.wrappedValue.wrappedValue } == 42
+        }
     }
     describe("lazy") {
         it("does not invoke value builder until lazy value is accessed") {

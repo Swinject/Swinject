@@ -34,7 +34,7 @@ extension Swinject {
 
 extension Swinject: Resolver {
     public func resolve<Type, Tag, Argument>(_ request: InstanceRequest<Type, Tag, Argument>) throws -> Type {
-        var binding: Binding!
+        var binding: Binding
         // FIXME: Refactor this
         do {
             binding = try findBinding(for: request)
