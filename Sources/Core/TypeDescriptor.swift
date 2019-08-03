@@ -44,10 +44,8 @@ func named<Type>(_: Type.Type, name: String?) -> TypeDescriptor {
 
 protocol OptionalProtocol {
     static var wrappedType: Any.Type { get }
-    init()
 }
 
 extension Optional: OptionalProtocol {
     static var wrappedType: Any.Type { return Wrapped.self }
-    init() { self = .none }
 }

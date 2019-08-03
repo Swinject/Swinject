@@ -39,3 +39,13 @@ private extension InjectionRequest {
         )
     }
 }
+
+extension Optional: CustomResolvable {
+    init(resolver _: Resolver, request _: InjectionRequest) {
+        self = nil
+    }
+
+    static func requiredRequest(for _: InjectionRequest) -> InjectionRequest? {
+        return nil
+    }
+}

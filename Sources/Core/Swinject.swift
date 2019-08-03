@@ -34,38 +34,46 @@ extension Swinject {
 
 extension Swinject: Resolver {
     public func resolve<Type>(_ request: InjectionRequest) throws -> Type {
-        var binding: Binding
-        // FIXME: Refactor this
-        // TODO: Can we unify Optional handling with Custom resolvable?
+        let binding: Binding
         do {
             binding = try findBinding(for: request)
         } catch let error as NoBinding {
-            if let optional = Type.self as? OptionalProtocol.Type {
-                return optional.init() as! Type
-            }
-            if let custom = Type.self as? CustomResolvable.Type {
-                if let requiredRequest = custom.requiredRequest(for: request) {
-                    _ = try findBinding(for: requiredRequest)
-                }
-                return custom.init(resolver: self, request: request) as! Type
-            }
+            if let custom = resolve(request, asCustom: Type.self) { return custom }
             throw error
         }
-        let translator = try findTranslator(for: request, and: binding)
-        return try instance(from: binding, context: translator.translate(context), arg: request.argument)
+        return try instance(
+            from: binding,
+            context: findTranslator(for: binding).translate(context),
+            arg: request.argument
+        )
     }
 
-    private func findTranslator(for _: InjectionRequest, and binding: Binding) throws -> AnyContextTranslator {
-        return try (container.translators + [IdentityTranslator(for: contextType), ToAnyTranslator(for: contextType)])
-            .filter { $0.sourceType == contextType }
+    private func resolve<Type>(_ request: InjectionRequest, asCustom _: Type.Type) -> Type? {
+        guard let custom = Type.self as? CustomResolvable.Type else { return nil }
+        if let request = custom.requiredRequest(for: request), !hasBinding(for: request) { return nil }
+        return custom.init(resolver: self, request: request) as? Type
+    }
+
+    private func findTranslator(for binding: Binding) throws -> AnyContextTranslator {
+        return try allTranslators
             .filter { binding.key.contextType == Any.self || binding.key.contextType == $0.targetType }
             .first ?? { throw SwinjectError() }()
     }
 
     private func translatableKeys(for request: InjectionRequest) -> [BindingKey] {
-        return (container.translators + [IdentityTranslator(for: contextType), ToAnyTranslator(for: contextType)])
-            .filter { $0.sourceType == contextType }
-            .map { request.key(forContextType: $0.targetType) }
+        return allTranslators.map { request.key(forContextType: $0.targetType) }
+    }
+
+    private var allTranslators: [AnyContextTranslator] {
+        return container.translators.filter { $0.sourceType == contextType } + defaultTranslators
+    }
+
+    private var defaultTranslators: [AnyContextTranslator] {
+        return [IdentityTranslator(for: contextType), ToAnyTranslator(for: contextType)]
+    }
+
+    private func hasBinding(for request: InjectionRequest) -> Bool {
+        return (try? findBinding(for: request)) != nil
     }
 
     private func findBinding(for request: InjectionRequest) throws -> Binding {
