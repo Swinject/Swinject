@@ -33,7 +33,7 @@ extension Swinject {
 }
 
 extension Swinject: Resolver {
-    public func resolve<Type, Argument>(_ request: InstanceRequest<Type, Argument>) throws -> Type {
+    public func resolve<Type, Tag, Argument>(_ request: InstanceRequest<Type, Tag, Argument>) throws -> Type {
         var binding: Binding!
         // FIXME: Refactor this
         do {
@@ -41,9 +41,12 @@ extension Swinject: Resolver {
         } catch let error as NoBinding {
             if let optional = Type.self as? OptionalProtocol.Type {
                 return optional.init() as! Type
-            } else {
-                throw error
             }
+            if let provider = Type.self as? InstanceProvider.Type {
+                _ = try findBinding(for: provider.transform(request))
+                return provider.init(resolver: self, request: request) as! Type
+            }
+            throw error
         }
         let translator = try findTranslator(for: request, and: binding)
         return try instance(from: binding, context: translator.translate(context), arg: request.argument)

@@ -151,7 +151,7 @@ extension Container: CustomStringConvertible {
 // MARK: Resolver
 
 extension Container: Resolver {
-    public func resolve<Type, Argument>(_ request: InstanceRequest<Type, Argument>) throws -> Type {
+    public func resolve<Type, Tag, Argument>(_ request: InstanceRequest<Type, Tag, Argument>) throws -> Type {
         return try swinject.on(Graph(on: self)).resolve(request)
     }
 }
