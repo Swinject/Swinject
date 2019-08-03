@@ -14,12 +14,9 @@ extension ScopeRegistryKey: Hashable {
 
     private static func areArgumentsEqual(_ lhs: Any, _ rhs: Any) -> Bool {
         switch (lhs, rhs) {
-        case is (Void, Void):
-            return true
-        case let (lhs as Matchable, rhs as Matchable):
-            return lhs.matches(rhs) && rhs.matches(lhs)
-        default:
-            return false
+        case let (lhs as Matchable, _): return lhs.matches(rhs)
+        case let (_, rhs as Matchable): return rhs.matches(lhs)
+        default: return true
         }
     }
 
