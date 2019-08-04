@@ -5,21 +5,27 @@
 /// Wrapper to enable delayed dependency instantiation.
 /// `Lazy<Type>` does not need to be explicitly registered into the `Container` - resolution will work
 /// as long as there is a registration for the `Type`.
-@propertyWrapper public enum Lazy<Value>: PropertyWrapper {
+#if swift(>=5.1)
+    @propertyWrapper public enum Lazy<Value>: PropertyWrapper {
+        case uninitialized(() -> Value)
+        case initialized(Value)
+
+        public var wrappedValue: Value {
+            mutating get { instance }
+        }
+    }
+
+#else
+    public enum Lazy<Value>: PropertyWrapper {
+        case uninitialized(() -> Value)
+        case initialized(Value)
+    }
+#endif
+
+public extension Lazy {
     /// Getter for the wrapped object.
     /// It will be resolved from the `Container` when first accessed, all other calls will return the same instance.
-    public var instance: Value {
-        mutating get { return wrappedValue }
-    }
-
-    case uninitialized(() -> Value)
-    case initialized(Value)
-
-    public init(wrappedValue: @autoclosure @escaping () -> Value) {
-        self = .uninitialized(wrappedValue)
-    }
-
-    public var wrappedValue: Value {
+    var instance: Value {
         mutating get {
             switch self {
             case let .uninitialized(initializer):
@@ -34,25 +40,38 @@
             self = .initialized(newValue)
         }
     }
+
+    init(wrappedValue: @autoclosure @escaping () -> Value) {
+        self = .uninitialized(wrappedValue)
+    }
 }
 
 /// Wrapper to enable delayed dependency instantiation.
 /// `Provider<Type>` does not need to be explicitly registered into the `Container` - resolution will work
 /// as long as there is a registration for the `Type`.
-@propertyWrapper public struct Provider<Type>: PropertyWrapper {
+#if swift(>=5.1)
+    @propertyWrapper public struct Provider<Type>: PropertyWrapper {
+        private let provider: () -> Type
+
+        public var wrappedValue: Type {
+            return instance
+        }
+    }
+
+#else
+    public struct Provider<Type>: PropertyWrapper {
+        private let provider: () -> Type
+    }
+#endif
+
+public extension Provider {
     /// Getter for the wrapped object.
     /// New instance will be resolved from the `Container` every time it is accessed.
-    public var instance: Type {
-        return wrappedValue
-    }
-
-    private let provider: () -> Type
-
-    public init(wrappedValue: @autoclosure @escaping () -> Type) {
-        provider = wrappedValue
-    }
-
-    public var wrappedValue: Type {
+    var instance: Type {
         return provider()
+    }
+
+    init(wrappedValue: @autoclosure @escaping () -> Type) {
+        provider = wrappedValue
     }
 }

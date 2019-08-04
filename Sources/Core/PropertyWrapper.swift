@@ -29,7 +29,7 @@ extension PropertyWrapper {
 
 private extension InjectionRequest {
     func replacingType<Type>(with _: Type.Type) -> InjectionRequest {
-        InjectionRequest(
+        return InjectionRequest(
             descriptor: TypeDescriptor(
                 tag: descriptor.tag,
                 rootType: Type.self
