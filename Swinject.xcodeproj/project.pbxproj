@@ -282,6 +282,11 @@
 		CD73B9D422F239A6004BB84E /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13513FA012659ADE699A3608 /* LazySpec.swift */; };
 		CD73B9D522F239A6004BB84E /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AA2AA587975747596C157 /* ProviderSpec.swift */; };
 		CD73B9D622F239A6004BB84E /* SynchronizedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BC689CB98FD2079AC0B410 /* SynchronizedResolverSpec.swift */; };
+		CDE303DC22F6DDA900846EFA /* Resolver+FunctionCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */; };
+		CDE303DD22F6DDA900846EFA /* Resolver+FunctionCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */; };
+		CDE303DE22F6DDA900846EFA /* Resolver+FunctionCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */; };
+		CDE303DF22F6DDA900846EFA /* Resolver+FunctionCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */; };
+		CDE303E122F6DF7500846EFA /* Resolver+FunctionCallApi.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = CDE303E022F6DF7500846EFA /* Resolver+FunctionCallApi.swifttemplate */; };
 		CE5AFED22F04B96713ED76D7 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADC44E9312C3B974AFD8F07B /* Nimble.framework */; };
 		CECF5BD14BCDF5248771A06A /* InjectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0874A043EAEE3C7CF1EA063 /* InjectionRequest.swift */; };
 		CEE763218A90832454A6E2DE /* ServiceEntry+TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D8665C3D7F020BDA1ACB /* ServiceEntry+TypeForwarding.swift */; };
@@ -538,6 +543,8 @@
 		CD68675F22F5C60800F7D9E3 /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		CD68676422F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrappersSpec.swift; sourceTree = "<group>"; };
 		CDA78290D6D60BD0B808571F /* Container+Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Logging.swift"; sourceTree = "<group>"; };
+		CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+FunctionCall.swift"; sourceTree = "<group>"; };
+		CDE303E022F6DF7500846EFA /* Resolver+FunctionCallApi.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resolver+FunctionCallApi.swifttemplate"; sourceTree = "<group>"; };
 		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
 		DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextSpec.swift; sourceTree = "<group>"; };
 		E0874A043EAEE3C7CF1EA063 /* InjectionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionRequest.swift; sourceTree = "<group>"; };
@@ -606,6 +613,7 @@
 				BD6E47826E8E3D3744E91ADC /* ServiceEntry+TypeForwarding.swifttemplate */,
 				90191C25A2D66E07C4E9CD73 /* SwiftCode.swifttemplate */,
 				1A006CC804F9AB8ACC121029 /* Utils.swift */,
+				CDE303E022F6DF7500846EFA /* Resolver+FunctionCallApi.swifttemplate */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -648,6 +656,7 @@
 			children = (
 				B843C72AD5C4094F7D6EBCF7 /* BinderEnvironment.swift */,
 				583B00ADF411CA422E1BE6FA /* Resolver+Injection.swift */,
+				CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */,
 				3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */,
 				B92B8E618A08408404FB2A7A /* TypeBinder.swift */,
 			);
@@ -1129,6 +1138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEFFC7B36FE5810169C81B97 /* BinderEnvironment.swifttemplate in Resources */,
+				CDE303E122F6DF7500846EFA /* Resolver+FunctionCallApi.swifttemplate in Resources */,
 				BFE22F9F2E88F177302E9D19 /* Container+Registration.swifttemplate in Resources */,
 				1C82BFD00FCC384DB3AE6A89 /* MatchableBoxes.swifttemplate in Resources */,
 				71895EBC0803EEE3BFCD7001 /* Resolver+Injection.swifttemplate in Resources */,
@@ -1391,6 +1401,7 @@
 				AAD8D0551B8A26A9B22AECEC /* Container+Registration.swift in Sources */,
 				996CCFE825834C7D3236E742 /* Container+TypeForwarding.swift in Sources */,
 				B2FAD41F7726502822AF913B /* Container.swift in Sources */,
+				CDE303DD22F6DDA900846EFA /* Resolver+FunctionCall.swift in Sources */,
 				CD68676122F5C85B00F7D9E3 /* PropertyWrapper.swift in Sources */,
 				8B5927517B567B1DFAB5B935 /* ContextTranslator.swift in Sources */,
 				6C4D29A3FB54416D5E4D4C89 /* InstanceBuilder.swift in Sources */,
@@ -1608,6 +1619,7 @@
 				A5E4C79F89E1A8AB3A4D8D6E /* Container+Registration.swift in Sources */,
 				BD9B57E26722C80B7EF990DB /* Container+TypeForwarding.swift in Sources */,
 				DB74F17CDFF4886B9C38AD14 /* Container.swift in Sources */,
+				CDE303DE22F6DDA900846EFA /* Resolver+FunctionCall.swift in Sources */,
 				CD68676222F5C85B00F7D9E3 /* PropertyWrapper.swift in Sources */,
 				DD5E3AF2B5FCE5E81EBDF606 /* ContextTranslator.swift in Sources */,
 				7F9686F3669BF35E5AC970B3 /* InstanceBuilder.swift in Sources */,
@@ -1651,6 +1663,7 @@
 				CB0B308F3D3A831A28127462 /* Container+Registration.swift in Sources */,
 				283C77045DA55C2134EC9C48 /* Container+TypeForwarding.swift in Sources */,
 				58ABEE0321A3061048B65EA2 /* Container.swift in Sources */,
+				CDE303DF22F6DDA900846EFA /* Resolver+FunctionCall.swift in Sources */,
 				CD68676322F5C85B00F7D9E3 /* PropertyWrapper.swift in Sources */,
 				F06DEB671A4B85ABB0E96E51 /* ContextTranslator.swift in Sources */,
 				DBEFC5C6A51FCEBF9E4F70EE /* InstanceBuilder.swift in Sources */,
@@ -1694,6 +1707,7 @@
 				21285CED416F1317E993397A /* Container+Registration.swift in Sources */,
 				3A0B409E840B44B281DB3C54 /* Container+TypeForwarding.swift in Sources */,
 				0622539110A7430776A307C7 /* Container.swift in Sources */,
+				CDE303DC22F6DDA900846EFA /* Resolver+FunctionCall.swift in Sources */,
 				D1DF4740A9D86362B63104B8 /* ContextTranslator.swift in Sources */,
 				B90EA5A6764CEFA2BCB6C4D9 /* InstanceBuilder.swift in Sources */,
 				128913D570B4A8BBF40866BE /* InjectionRequest.swift in Sources */,

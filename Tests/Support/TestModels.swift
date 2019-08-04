@@ -10,6 +10,12 @@ class Human: Mammal {
     var age = 0
     var height = 0.0
     var name = ""
+
+    func injectProperties(age: Int, height: Double, name: String) {
+        self.age = age
+        self.height = height
+        self.name = name
+    }
 }
 
 class Pet {

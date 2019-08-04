@@ -105,5 +105,50 @@ class InjectionSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             expect { try swinject.instance(arg: 11, 14.0, "17") as Int } == 42
         }
     }
+    describe("function call") {
+        it("can inject parameter to the function") {
+            func echo(int: Int) -> Int {
+                return int
+            }
+            let swinject = Swinject {
+                bbind(Int.self) & 42
+            }
+            expect { try swinject.call1(echo) } == 42
+        }
+        it("can inject multiple parameters to the function") {
+            func sum(int: Int, double: Double, string: String) -> Int {
+                return int + Int(double) + Int(string)!
+            }
+            let swinject = Swinject {
+                bbind(Int.self) & 17
+                bbind(Double.self) & 14.0
+                bbind(String.self) & "11"
+            }
+            expect { try swinject.call(sum) } == 42
+        }
+        it("can call initializer when declaring bindings") {
+            let john = Human()
+            let swinject = Swinject {
+                bbind(String.self) & "mimi"
+                bbind(Human.self) & john
+                bbind(Pet.self) & provider { try $0.call(Pet.init) }
+            }
+            let pet = try? swinject.instance(of: Pet.self)
+            expect(pet?.name) == "mimi"
+            expect(pet?.owner) === john
+        }
+        it("can be used for property injection") {
+            let swinject = Swinject {
+                bbind(Int.self) & 42
+                bbind(Double.self) & 124
+                bbind(String.self) & "john"
+            }
+            let john = Human()
+            try? swinject.call(john.injectProperties)
+            expect(john.age) == 42
+            expect(john.height) == 124
+            expect(john.name) == "john"
+        }
+    }
     #endif
 } }
