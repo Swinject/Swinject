@@ -54,8 +54,8 @@ extension Swinject: Resolver {
 
     private func findTranslator(for binding: Binding) throws -> AnyContextTranslator {
         return try allTranslators
-            .filter { binding.key.contextType == Any.self || binding.key.contextType == $0.targetType }
-            .first ?? { throw SwinjectError() }()
+            .filter { binding.key.matches(contextType: $0.targetType) }
+            .first ?? { throw NoContextTranslator() }()
     }
 
     private func translatableKeys(for request: InjectionRequest) -> [BindingKey] {

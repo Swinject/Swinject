@@ -32,7 +32,7 @@ extension InjectionRequest {
         return InjectionRequest(
             descriptor: TypeDescriptor(
                 tag: descriptor.tag,
-                rootType: Type.self
+                type: Type.self
             ),
             argument: argument,
             argumentType: argumentType

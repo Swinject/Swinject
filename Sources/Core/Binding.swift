@@ -7,6 +7,12 @@ public struct BindingKey: Hashable {
     let contextType: Any.Type
     let argumentType: Any.Type
 
+    init(descriptor: TypeDescriptor, contextType: Any.Type, argumentType: Any.Type) {
+        self.descriptor = descriptor
+        self.contextType = unwrapOptionals(contextType)
+        self.argumentType = argumentType
+    }
+
     public func hash(into hasher: inout Hasher) {
         descriptor.hash(into: &hasher)
         ObjectIdentifier(contextType).hash(into: &hasher)
@@ -17,6 +23,12 @@ public struct BindingKey: Hashable {
         return lhs.descriptor == rhs.descriptor
             && lhs.contextType == rhs.contextType
             && lhs.argumentType == rhs.argumentType
+    }
+}
+
+extension BindingKey {
+    func matches(contextType: Any.Type) -> Bool {
+        return self.contextType == Any.self || self.contextType == unwrapOptionals(contextType)
     }
 }
 

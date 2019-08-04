@@ -13,13 +13,12 @@ class OptionalsSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         }
         expect { try swinject.instance() as Int? } == 42
     }
-    // TODO: Maybe nice to have?
-//    it("can use a binding of the injected type's optional") {
-//        let swinject = Swinject {
-//            bbind(Int?.self) & 42
-//        }
-//        expect { try swinject.instance() as Int } == 42
-//    }
+    it("can use a binding of the injected type's optional") {
+        let swinject = Swinject {
+            bbind(Int?.self) & 42
+        }
+        expect { try swinject.instance() as Int } == 42
+    }
     it("throws if binding of the type's optional produces nil") {
         let swinject = Swinject {
             bbind(Int?.self) & nil
@@ -50,12 +49,11 @@ class OptionalsSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let optional = try? swinject.instance(of: Human?.self)
         expect(direct) === optional
     }
-    // TODO: Optional contexts
-//    it("injects instance on the optional of a binding's context") {
-//        let swinject = Swinject {
-//            bbind(Int.self) & contexted(String.self).provider { (_, c: String) in Int(c)! }
-//        }
-//        expect { try swinject.on("42" as String?).instance(of: Int.self) } == 42
-//    }
+    it("injects instance on the optional of a binding's context") {
+        let swinject = Swinject {
+            bbind(Int.self) & contexted(String.self).provider { (_, c: String) in Int(c)! }
+        }
+        expect { try swinject.on("42" as String?).instance(of: Int.self) } == 42
+    }
     #endif
 } }

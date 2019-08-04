@@ -18,5 +18,6 @@ public class DuplicateModules: SwinjectError {}
 public class OverrideNotAllowed: SwinjectError {}
 public class NothingToOverride: SwinjectError {}
 public class SilentOverrideNotAllowed: SwinjectError {}
+public class NoContextTranslator: SwinjectError {}
 
 // TODO: Debugging error description
