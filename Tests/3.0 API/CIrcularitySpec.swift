@@ -57,7 +57,7 @@ class CircularitySpec: QuickSpec { override func spec() { #if swift(>=5.1)
             init(_ bar: Bar) { self.bar = bar }
         }
         class Bar {
-            @Lazy<Weak<Foo>> @Weak<Foo> var foo: Foo?
+            @Lazy @Weak var foo = nil as Foo?
             init(_ foo: Lazy<Weak<Foo>>) { _foo = foo }
         }
         let swinject = Swinject {
@@ -73,7 +73,7 @@ class CircularitySpec: QuickSpec { override func spec() { #if swift(>=5.1)
             init(_ bar: Bar) { self.bar = bar }
         }
         class Bar {
-            @Lazy<Weak<Foo>> @Weak<Foo> var foo: Foo?
+            @Lazy @Weak var foo = nil as Foo?
             init(_ foo: Lazy<Weak<Foo>>) { _foo = foo }
         }
         let swinject = Swinject {

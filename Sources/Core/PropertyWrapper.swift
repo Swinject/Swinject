@@ -9,13 +9,13 @@ protocol CustomResolvable {
 
 protocol PropertyWrapper: CustomResolvable {
     associatedtype Value
-    init(wrappedValue: @autoclosure @escaping () -> Value)
+    init(initialValue: @autoclosure @escaping () -> Value)
 }
 
 extension PropertyWrapper {
     init(resolver: Resolver, request: InjectionRequest) {
         // swiftlint:disable:next force_try
-        self.init(wrappedValue: try! resolver.resolve(request.replacingType(with: Value.self)))
+        self.init(initialValue: try! resolver.resolve(request.replacingType(with: Value.self)))
     }
 
     static func requiredRequest(for request: InjectionRequest) -> InjectionRequest? {
@@ -41,8 +41,8 @@ extension InjectionRequest {
 }
 
 extension Optional: CustomResolvable {
-    init(resolver _: Resolver, request _: InjectionRequest) {
-        self = nil
+    init(resolver: Resolver, request: InjectionRequest) {
+        self = try? resolver.resolve(request.replacingType(with: Wrapped.self)) as Wrapped
     }
 
     static func requiredRequest(for _: InjectionRequest) -> InjectionRequest? {

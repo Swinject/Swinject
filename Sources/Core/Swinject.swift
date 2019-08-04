@@ -83,6 +83,7 @@ extension Swinject: Resolver {
     private func resolve<Type>(_ request: InjectionRequest, asCustom _: Type.Type) -> Type? {
         guard let custom = Type.self as? CustomResolvable.Type else { return nil }
         if let request = custom.requiredRequest(for: request), !hasBinding(for: request) { return nil }
+        // TODO: We should reset tracking only for "delayed" custom resolutions
         return custom.init(resolver: withTrackingReset(), request: request) as? Type
     }
 

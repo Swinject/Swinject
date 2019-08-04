@@ -291,10 +291,10 @@
 		CDE303F722F7009B00846EFA /* CIrcularitySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303F122F7008600846EFA /* CIrcularitySpec.swift */; };
 		CDE303F822F7009C00846EFA /* CIrcularitySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303F122F7008600846EFA /* CIrcularitySpec.swift */; };
 		CDE303F922F7009C00846EFA /* CIrcularitySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303F122F7008600846EFA /* CIrcularitySpec.swift */; };
-		CDE303FB22F70A2500846EFA /* WeakWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303FA22F70A2500846EFA /* WeakWrapper.swift */; };
-		CDE303FC22F70A2500846EFA /* WeakWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303FA22F70A2500846EFA /* WeakWrapper.swift */; };
-		CDE303FD22F70A2500846EFA /* WeakWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303FA22F70A2500846EFA /* WeakWrapper.swift */; };
-		CDE303FE22F70A2500846EFA /* WeakWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303FA22F70A2500846EFA /* WeakWrapper.swift */; };
+		CDE303FB22F70A2500846EFA /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303FA22F70A2500846EFA /* Weak.swift */; };
+		CDE303FC22F70A2500846EFA /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303FA22F70A2500846EFA /* Weak.swift */; };
+		CDE303FD22F70A2500846EFA /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303FA22F70A2500846EFA /* Weak.swift */; };
+		CDE303FE22F70A2500846EFA /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303FA22F70A2500846EFA /* Weak.swift */; };
 		CE5AFED22F04B96713ED76D7 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADC44E9312C3B974AFD8F07B /* Nimble.framework */; };
 		CECF5BD14BCDF5248771A06A /* InjectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0874A043EAEE3C7CF1EA063 /* InjectionRequest.swift */; };
 		CEE763218A90832454A6E2DE /* ServiceEntry+TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D8665C3D7F020BDA1ACB /* ServiceEntry+TypeForwarding.swift */; };
@@ -554,7 +554,7 @@
 		CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+FunctionCall.swift"; sourceTree = "<group>"; };
 		CDE303E022F6DF7500846EFA /* Resolver+FunctionCallApi.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resolver+FunctionCallApi.swifttemplate"; sourceTree = "<group>"; };
 		CDE303F122F7008600846EFA /* CIrcularitySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIrcularitySpec.swift; sourceTree = "<group>"; };
-		CDE303FA22F70A2500846EFA /* WeakWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakWrapper.swift; sourceTree = "<group>"; };
+		CDE303FA22F70A2500846EFA /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
 		DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextSpec.swift; sourceTree = "<group>"; };
 		E0874A043EAEE3C7CF1EA063 /* InjectionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionRequest.swift; sourceTree = "<group>"; };
@@ -669,7 +669,7 @@
 				CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */,
 				3874152C14D0A7F8C5151779 /* Swinject+Builder.swift */,
 				B92B8E618A08408404FB2A7A /* TypeBinder.swift */,
-				CDE303FA22F70A2500846EFA /* WeakWrapper.swift */,
+				CDE303FA22F70A2500846EFA /* Weak.swift */,
 			);
 			path = "3.0 API";
 			sourceTree = "<group>";
@@ -1429,7 +1429,7 @@
 				68C95FCB0D345CA3BA24D320 /* Scope.swift in Sources */,
 				BB571B9A78FC53231A18E18C /* ScopeRegistry.swift in Sources */,
 				593B93BA2EE3FE4418A1C579 /* ScopeRegistryKey.swift in Sources */,
-				CDE303FC22F70A2500846EFA /* WeakWrapper.swift in Sources */,
+				CDE303FC22F70A2500846EFA /* Weak.swift in Sources */,
 				C3FDE105B08336F26CC95BAA /* ScopedBinding.swift in Sources */,
 				AD3E7135985F1046E35C39DE /* ServiceEntry+TypeForwarding.swift in Sources */,
 				93BCD12CEFB88BAD49BEA431 /* ServiceEntry.swift in Sources */,
@@ -1652,7 +1652,7 @@
 				B84167AC8C6BEB57C4D0695A /* Scope.swift in Sources */,
 				E7D1045D25FAB592401DCAF0 /* ScopeRegistry.swift in Sources */,
 				4347EE17D0C0ED574C899D85 /* ScopeRegistryKey.swift in Sources */,
-				CDE303FD22F70A2500846EFA /* WeakWrapper.swift in Sources */,
+				CDE303FD22F70A2500846EFA /* Weak.swift in Sources */,
 				8228FEB1DF3C41DEDCE0FB1D /* ScopedBinding.swift in Sources */,
 				5FCE2A2AE5DD0DBECA4A9953 /* ServiceEntry+TypeForwarding.swift in Sources */,
 				D98BB7F59E98FC197D1C97A2 /* ServiceEntry.swift in Sources */,
@@ -1697,7 +1697,7 @@
 				2C352AAD1AC7D82A4A059046 /* Scope.swift in Sources */,
 				02556F149C9AAEF5CE353AC1 /* ScopeRegistry.swift in Sources */,
 				06F4CAB352B4F623FF7BD885 /* ScopeRegistryKey.swift in Sources */,
-				CDE303FE22F70A2500846EFA /* WeakWrapper.swift in Sources */,
+				CDE303FE22F70A2500846EFA /* Weak.swift in Sources */,
 				A193BF10196FBDE32833E292 /* ScopedBinding.swift in Sources */,
 				A75BAA10EC6F738EBC2C5BE8 /* ServiceEntry+TypeForwarding.swift in Sources */,
 				59FD1167CD4A913E04D3EAFD /* ServiceEntry.swift in Sources */,
@@ -1742,7 +1742,7 @@
 				96EA0A5DF33F025EBE0B67D2 /* Scope.swift in Sources */,
 				D861595482464ED95CF81922 /* ScopeRegistry.swift in Sources */,
 				920DE2CAB9895D10FAE48FBA /* ScopeRegistryKey.swift in Sources */,
-				CDE303FB22F70A2500846EFA /* WeakWrapper.swift in Sources */,
+				CDE303FB22F70A2500846EFA /* Weak.swift in Sources */,
 				E1B95D3EEA5BB989CCFFE70D /* ScopedBinding.swift in Sources */,
 				CEE763218A90832454A6E2DE /* ServiceEntry+TypeForwarding.swift in Sources */,
 				36A706F87ED2E88F3390C6C2 /* ServiceEntry.swift in Sources */,

@@ -41,8 +41,8 @@ public extension Lazy {
         }
     }
 
-    init(wrappedValue: @autoclosure @escaping () -> Value) {
-        self = .uninitialized(wrappedValue)
+    init(initialValue: @autoclosure @escaping () -> Value) {
+        self = .uninitialized(initialValue)
     }
 }
 
@@ -71,12 +71,12 @@ public extension Provider {
         return provider()
     }
 
-    init(wrappedValue: @autoclosure @escaping () -> Type) {
-        provider = wrappedValue
+    init(initialValue: @autoclosure @escaping () -> Type) {
+        provider = initialValue
     }
 
     init(resolver: Resolver, request: InjectionRequest) {
         // swiftlint:disable:next force_try
-        self.init(wrappedValue: try! resolver.on(Graph()).resolve(request.replacingType(with: Value.self)))
+        self.init(initialValue: try! resolver.on(Graph()).resolve(request.replacingType(with: Value.self)))
     }
 }
