@@ -55,10 +55,8 @@ class ContextSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     describe("translators") {
         it("can translate contexts") {
             let john = Human()
-            // FIXME: compiler segfaults if declaring this provider in functionBuilder
-            let petProvider = contexted(Human.self).provider { Pet(owner: $1) }
             let swinject = Swinject {
-                bbind(Pet.self) & petProvider
+                bbind(Pet.self) & contexted(Human.self).provider { Pet(owner: $1) }
                 registerContextTranslator(from: String.self) { $0 == "john" ? john : Human() }
             }
             let pet = try? swinject.on("john").instance(of: Pet.self)
