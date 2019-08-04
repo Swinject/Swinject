@@ -26,8 +26,8 @@ extension ObjectScope {
     var scope: AnyScope? {
         switch self {
         case .graph: return GraphScope.shared
-        case .container: return ContainerScope.container
-        case .weak: return ContainerScope.weak
+        case .container: return ContainerScope.shared
+        case .weak: return WeakScope.shared
         case .transient: return nil
         }
     }
@@ -56,16 +56,40 @@ final class GraphScope: Scope, CustomStringConvertible {
 }
 
 final class ContainerScope: Scope, CustomStringConvertible {
-    static let container = ContainerScope("container")
-    static let weak = ContainerScope("weak")
-
-    let description: String
-
-    init(_ description: String) {
-        self.description = description
-    }
+    static let shared = ContainerScope()
+    let description = "container"
 
     func registry(for context: Any) -> ScopeRegistry {
         return (context as! Container).registry
+    }
+}
+
+final class WeakScope: Scope, CustomStringConvertible {
+    static let shared = WeakScope()
+    let description = "weak"
+
+    func registry(for context: Any) -> ScopeRegistry {
+        let (container, graph) = context as! (Container, Graph)
+        return ComposedRegistry(
+            primary: container.registry,
+            backup: graph.registry
+        )
+    }
+}
+
+struct ComposedRegistry: ScopeRegistry {
+    let primary: ScopeRegistry
+    let backup: ScopeRegistry
+
+    func instance(
+        for key: ScopeRegistryKey, builder: () throws -> Reference<Any>, finalizer: (Any) throws -> Void
+    ) rethrows -> Any {
+        let instance = try primary.instance(for: key, builder: builder, finalizer: finalizer)
+        _ = backup.instance(for: key) { strongRef(instance) }
+        return instance
+    }
+
+    func clear() {
+        primary.clear()
     }
 }

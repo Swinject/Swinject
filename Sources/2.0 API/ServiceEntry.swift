@@ -92,9 +92,11 @@ extension ServiceEntry: Binding {
     private func getRegistry(scope: AnyScope, context: Any) -> ScopeRegistry {
         if scope is ContainerScope, let container = container {
             return scope.registry(for: container)
-        } else {
-            return scope.registry(for: context)
         }
+        if scope is WeakScope, let container = container, let graph = context as? Graph {
+            return scope.registry(for: (container, graph))
+        }
+        return scope.registry(for: context)
     }
 
     public var key: BindingKey {
