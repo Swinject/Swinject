@@ -5,11 +5,7 @@
 import func Swinject.bind
 import struct Swinject.TypeBinder
 
-// Original Swinject functions conflict with QuickSpec's instance methods
-func bbind<Type>(_: Type.Type, overrides: Bool = false) -> TypeBinder<Type> {
-    return bind(Type.self, overrides: overrides)
-}
-
-func bbind<Type, Tag>(_: Type.Type, tagged tag: Tag, overrides: Bool = false) -> TypeBinder<Type> where Tag: Hashable {
+// Original Swinject `bind` function conflicts with QuickSpec's instance methods
+func bbind<Type>(_: Type.Type, tagged tag: String? = nil, overrides: Bool = false) -> TypeBinder<Type> {
     return bind(Type.self, tagged: tag, overrides: overrides)
 }

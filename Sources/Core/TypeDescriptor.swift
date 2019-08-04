@@ -3,7 +3,7 @@
 //
 
 public struct TypeDescriptor: Hashable {
-    let tag: Matchable
+    let tag: String?
     let type: Any.Type
 
     public func hash(into hasher: inout Hasher) {
@@ -12,26 +12,12 @@ public struct TypeDescriptor: Hashable {
     }
 
     public static func == (lhs: TypeDescriptor, rhs: TypeDescriptor) -> Bool {
-        return lhs.type == rhs.type && lhs.tag.matches(rhs.tag)
+        return lhs.type == rhs.type && lhs.tag == rhs.tag
     }
 }
 
-struct NoTag: Hashable {}
-
-func tagged<Type, Tag>(_: Type.Type, with tag: Tag) -> TypeDescriptor where Tag: Hashable {
-    return TypeDescriptor(tag: box(tag), type: unwrapOptionals(Type.self))
-}
-
-func plain<Type>(_: Type.Type) -> TypeDescriptor {
-    return tagged(Type.self, with: NoTag())
-}
-
-func named<Type>(_: Type.Type, name: String?) -> TypeDescriptor {
-    if let name = name {
-        return tagged(Type.self, with: name)
-    } else {
-        return plain(Type.self)
-    }
+func tagged<Type>(_: Type.Type, with tag: String?) -> TypeDescriptor {
+    return TypeDescriptor(tag: tag, type: unwrapOptionals(Type.self))
 }
 
 func unwrapOptionals(_ type: Any.Type) -> Any.Type {

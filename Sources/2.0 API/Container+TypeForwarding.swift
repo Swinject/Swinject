@@ -22,7 +22,7 @@ extension Container {
         addBinding(
             type: type,
             key: BindingKey(
-                descriptor: named(T.self, name: name),
+                descriptor: tagged(T.self, with: name),
                 contextType: service.key.contextType,
                 argumentType: service.key.argumentType
             ),

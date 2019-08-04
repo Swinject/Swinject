@@ -9,11 +9,7 @@ public extension Resolver {
     ///
     /// - Returns: The resolved service type instance, or nil if no service with the name is found.
     func resolve<Service>(_ serviceType: Service.Type, name: String? = nil) -> Service? {
-        if let name = name {
-            return try? resolve(request(type: serviceType, tag: name, arg: ())) as Service
-        } else {
-            return try? resolve(request(type: serviceType, tag: NoTag(), arg: ())) as Service
-        }
+        return try? resolve(request(type: serviceType, tag: name, arg: ())) as Service
     }
 
 <%_ (1...arg_count).forEach { i in
@@ -33,11 +29,7 @@ public extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            <%= arg_param_description %> and name is found.
     func resolve<Service, <%= arg_types %>>(_ serviceType: Service.Type, name: String? = nil, <%= arg_param %>) -> Service? {
-        if let name = name {
-            return try? resolve(request(type: serviceType, tag: name, arg: ())) as Service
-        } else {
-            return try? resolve(request(type: serviceType, tag: NoTag(), arg: <%= arg_vars %>)) as Service
-        }
+        return try? resolve(request(type: serviceType, tag: name, arg: <%= arg_vars %>)) as Service
     }<%= i < arg_count ? "\n" : "" %>
 <%_ } -%>
 }

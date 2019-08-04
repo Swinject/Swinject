@@ -19,11 +19,9 @@ class BindingSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let swinject = Swinject {
             bbind(String.self) & "Plain"
             bbind(String.self, tagged: "Tag") & "Tagged"
-            bbind(String.self, tagged: 42) & "42"
         }
         expect { try swinject.instance(of: String.self) } == "Plain"
         expect { try swinject.instance(of: String.self, tagged: "Tag") } == "Tagged"
-        expect { try swinject.instance(of: String.self, tagged: 42) } == "42"
     }
     it("throws if has no binding with given tag") {
         let swinject = Swinject {

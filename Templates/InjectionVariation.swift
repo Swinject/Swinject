@@ -5,7 +5,6 @@
 struct InjectionVariation {
     let paramArgs: Int
     let factoryArgs: Int
-    let isTagged: Bool
     let isMatchable: Bool
     let isDelayed: Bool
 }
@@ -16,7 +15,6 @@ extension InjectionVariation {
     var genericTypes: String {
         return join(
             "Type",
-            isTagged ? "Tag" : nil,
             args > 0 ? join((1 ... args).map { "Arg\($0)" }) : nil
         )
     }
@@ -24,7 +22,7 @@ extension InjectionVariation {
     var params: String {
         return join(
             "of _: Type.Type = Type.self",
-            isTagged ? "tagged tag: Tag" : nil,
+            "tagged tag: String? = nil",
             paramArgs >= 1 ? "arg " + join(separator: ", _ ", (1 ... paramArgs).map { "arg\($0): Arg\($0)" }) : nil
         )
     }
@@ -35,7 +33,6 @@ extension InjectionVariation {
 
     var constraints: String {
         return join(
-            isTagged ? "Tag: Hashable" : nil,
             isMatchable && args > 0 ? join((1 ... args).map { "Arg\($0): Hashable" }) : nil
         )
     }
@@ -49,7 +46,7 @@ extension InjectionVariation {
         let factoryVars = (0 ..< factoryArgs).map { "$\($0)" }
         return join(
             "type: Type.self",
-            isTagged ? "tag: tag" : "tag: NoTag()",
+            "tag: tag",
             args == 0 ? "arg: ()" : "arg: box(\(join(paramVars + factoryVars)))"
         )
     }
@@ -88,13 +85,11 @@ extension InjectionVariation {
         .flatMap { t in (t ... maxArgs).map { (t, maxArgs - $0) } }
         .flatMap { t in [false, true].map { (t.0, t.1, $0) } }
         .flatMap { t in [false, true].map { (t.0, t.1, t.2, $0) } }
-        .flatMap { t in [false, true].map { (t.0, t.1, t.2, t.3, $0) } }
         .map(InjectionVariation.init)
 
     static let sortedCases = allCases.sorted { [
         $0.args < $1.args,
-        !$0.isTagged && $1.isTagged && $0.args == $1.args,
-        !$0.isMatchable && $1.isMatchable && $0.args == $1.args && $0.isTagged == $1.isTagged,
+        !$0.isMatchable && $1.isMatchable && $0.args == $1.args,
     ].contains(true) }
 
     static let publicCases = sortedCases

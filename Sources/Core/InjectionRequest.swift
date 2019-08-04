@@ -8,9 +8,9 @@ public struct InjectionRequest {
     let argumentType: Any.Type
 }
 
-func request<Type, Tag: Hashable, Argument>(
+func request<Type, Argument>(
     type: Type.Type = Type.self,
-    tag: Tag,
+    tag: String?,
     arg: Argument
 ) -> InjectionRequest {
     return InjectionRequest(descriptor: tagged(type, with: tag), argument: arg, argumentType: Argument.self)

@@ -101,7 +101,7 @@ extension ServiceEntry: Binding {
 
     public var key: BindingKey {
         return BindingKey(
-            descriptor: named(Service.self, name: name),
+            descriptor: tagged(Service.self, with: name),
             contextType: scope?.contextType ?? Any.self,
             argumentType: argumentType
         )
