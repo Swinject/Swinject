@@ -7,22 +7,51 @@ public struct Swinject {
     let container: SwinjectContainer
     let context: Any
     let contextType: Any.Type
+    let requestStack: [InjectionRequest]
+    let detectsCircularDependencies: Bool
 
-    init(tree: SwinjectTree, allowsSilentOverride: Bool) {
+    // TODO: Improve properties management / construction
+    init(tree: SwinjectTree, allowsSilentOverride: Bool, detectsCircularDependencies: Bool) {
         self.init(
             tree: tree,
             container: SwinjectContainer
                 .Builder(tree: tree, allowsSilentOverride: allowsSilentOverride)
                 .makeContainer(),
-            context: ()
+            context: (),
+            detectsCircularDependencies: detectsCircularDependencies
         )
     }
 
-    init<Context>(tree: SwinjectTree, container: SwinjectContainer, context: Context) {
+    init<Context>(
+        tree: SwinjectTree,
+        container: SwinjectContainer,
+        context: Context,
+        detectsCircularDependencies: Bool
+    ) {
+        self.init(
+            tree: tree,
+            container: container,
+            context: context,
+            contextType: Context.self,
+            requestStack: [],
+            detectsCircularDependencies: detectsCircularDependencies
+        )
+    }
+
+    private init(
+        tree: SwinjectTree,
+        container: SwinjectContainer,
+        context: Any,
+        contextType: Any.Type,
+        requestStack: [InjectionRequest],
+        detectsCircularDependencies: Bool
+    ) {
         self.tree = tree
         self.container = container
         self.context = context
-        contextType = Context.self
+        self.contextType = contextType
+        self.requestStack = requestStack
+        self.detectsCircularDependencies = detectsCircularDependencies
     }
 }
 
@@ -35,7 +64,7 @@ extension Swinject: Resolver {
             if let custom = resolve(request, asCustom: Type.self) { return custom }
             throw error
         }
-        return try instance(
+        return try whileTracking(request).instance(
             from: binding,
             context: findTranslator(for: binding).translate(context),
             arg: request.argument
@@ -43,7 +72,12 @@ extension Swinject: Resolver {
     }
 
     public func on<Context>(_ context: Context) -> Resolver {
-        return Swinject(tree: tree, container: container, context: context)
+        return Swinject(
+            tree: tree,
+            container: container,
+            context: context,
+            detectsCircularDependencies: detectsCircularDependencies
+        )
     }
 
     private func resolve<Type>(_ request: InjectionRequest, asCustom _: Type.Type) -> Type? {
@@ -85,5 +119,20 @@ extension Swinject: Resolver {
         from binding: Binding, context: Context, arg: Argument
     ) throws -> Type {
         return try binding.instance(arg: arg, context: context, resolver: self) as? Type ?? { throw SwinjectError() }()
+    }
+}
+
+extension Swinject {
+    func whileTracking(_ request: InjectionRequest) throws -> Swinject {
+        guard detectsCircularDependencies else { return self }
+        guard !requestStack.contains(request) else { throw CircularDependency() }
+        return Swinject(
+            tree: tree,
+            container: container,
+            context: context,
+            contextType: contextType,
+            requestStack: requestStack + [request],
+            detectsCircularDependencies: detectsCircularDependencies
+        )
     }
 }

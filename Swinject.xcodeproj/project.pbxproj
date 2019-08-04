@@ -287,6 +287,10 @@
 		CDE303DE22F6DDA900846EFA /* Resolver+FunctionCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */; };
 		CDE303DF22F6DDA900846EFA /* Resolver+FunctionCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */; };
 		CDE303E122F6DF7500846EFA /* Resolver+FunctionCallApi.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = CDE303E022F6DF7500846EFA /* Resolver+FunctionCallApi.swifttemplate */; };
+		CDE303F622F7009B00846EFA /* CIrcularitySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303F122F7008600846EFA /* CIrcularitySpec.swift */; };
+		CDE303F722F7009B00846EFA /* CIrcularitySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303F122F7008600846EFA /* CIrcularitySpec.swift */; };
+		CDE303F822F7009C00846EFA /* CIrcularitySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303F122F7008600846EFA /* CIrcularitySpec.swift */; };
+		CDE303F922F7009C00846EFA /* CIrcularitySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE303F122F7008600846EFA /* CIrcularitySpec.swift */; };
 		CE5AFED22F04B96713ED76D7 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADC44E9312C3B974AFD8F07B /* Nimble.framework */; };
 		CECF5BD14BCDF5248771A06A /* InjectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0874A043EAEE3C7CF1EA063 /* InjectionRequest.swift */; };
 		CEE763218A90832454A6E2DE /* ServiceEntry+TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D8665C3D7F020BDA1ACB /* ServiceEntry+TypeForwarding.swift */; };
@@ -545,6 +549,7 @@
 		CDA78290D6D60BD0B808571F /* Container+Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Logging.swift"; sourceTree = "<group>"; };
 		CDE303DB22F6DDA900846EFA /* Resolver+FunctionCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+FunctionCall.swift"; sourceTree = "<group>"; };
 		CDE303E022F6DF7500846EFA /* Resolver+FunctionCallApi.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resolver+FunctionCallApi.swifttemplate"; sourceTree = "<group>"; };
+		CDE303F122F7008600846EFA /* CIrcularitySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIrcularitySpec.swift; sourceTree = "<group>"; };
 		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
 		DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextSpec.swift; sourceTree = "<group>"; };
 		E0874A043EAEE3C7CF1EA063 /* InjectionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionRequest.swift; sourceTree = "<group>"; };
@@ -757,6 +762,7 @@
 				46F05CC591903E2B04B6D8ED /* SingletonSpec.swift */,
 				CD03917322EF610800DE44C4 /* OverrideSpec.swift */,
 				CD68676422F5CA5D00F7D9E3 /* PropertyWrappersSpec.swift */,
+				CDE303F122F7008600846EFA /* CIrcularitySpec.swift */,
 			);
 			path = "3.0 API";
 			sourceTree = "<group>";
@@ -1474,6 +1480,7 @@
 				E227D08034E08AA0909BC043 /* RetrievalSpec.swift in Sources */,
 				CD73B9B422F239A4004BB84E /* ProviderSpec.swift in Sources */,
 				CD73B9B522F239A4004BB84E /* SynchronizedResolverSpec.swift in Sources */,
+				CDE303F622F7009B00846EFA /* CIrcularitySpec.swift in Sources */,
 				CD73B9B222F239A4004BB84E /* ContainerSpec.TypeForwarding.swift in Sources */,
 				33B86F2D33219879731CDDF0 /* ScopesSpec.swift in Sources */,
 				30D247E8083858C233B92908 /* SingletonSpec.swift in Sources */,
@@ -1515,6 +1522,7 @@
 				1A68A8D05D9974002BF34CF8 /* RetrievalSpec.swift in Sources */,
 				CD73B9CA22F239A5004BB84E /* ProviderSpec.swift in Sources */,
 				CD73B9CB22F239A5004BB84E /* SynchronizedResolverSpec.swift in Sources */,
+				CDE303F722F7009B00846EFA /* CIrcularitySpec.swift in Sources */,
 				CD73B9C822F239A5004BB84E /* ContainerSpec.TypeForwarding.swift in Sources */,
 				0068DAA4AA322F00AF53731F /* ScopesSpec.swift in Sources */,
 				B65DE0B0562540CC8CEC48F3 /* SingletonSpec.swift in Sources */,
@@ -1556,6 +1564,7 @@
 				2F664F8534CA1D92ED2F81E2 /* RetrievalSpec.swift in Sources */,
 				CD73B9D522F239A6004BB84E /* ProviderSpec.swift in Sources */,
 				CD73B9D622F239A6004BB84E /* SynchronizedResolverSpec.swift in Sources */,
+				CDE303F922F7009C00846EFA /* CIrcularitySpec.swift in Sources */,
 				CD73B9D322F239A6004BB84E /* ContainerSpec.TypeForwarding.swift in Sources */,
 				31729A1E5F50EF30FDD427AD /* ScopesSpec.swift in Sources */,
 				0CE158916595980A7C8272D3 /* SingletonSpec.swift in Sources */,
@@ -1597,6 +1606,7 @@
 				06CD85528AABB15BDFBF3166 /* RetrievalSpec.swift in Sources */,
 				CD73B9BF22F239A4004BB84E /* ProviderSpec.swift in Sources */,
 				CD73B9C022F239A4004BB84E /* SynchronizedResolverSpec.swift in Sources */,
+				CDE303F822F7009C00846EFA /* CIrcularitySpec.swift in Sources */,
 				CD73B9BD22F239A4004BB84E /* ContainerSpec.TypeForwarding.swift in Sources */,
 				EA0D19F7DF0355C774B0F40B /* ScopesSpec.swift in Sources */,
 				980FED1DBC62B65597E2828B /* SingletonSpec.swift in Sources */,

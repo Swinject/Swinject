@@ -150,7 +150,8 @@ extension Container: SwinjectAware {
                 bindings: allBindings,
                 translators: []
             ),
-            context: Graph()
+            context: Graph(),
+            detectsCircularDependencies: false
         )
     }
 }

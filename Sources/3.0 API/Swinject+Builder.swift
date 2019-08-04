@@ -3,33 +3,53 @@
 //
 
 public extension Swinject {
-    init(allowsSilentOverride: Bool = false, _ entries: SwinjectEntry ...) {
+    init(
+        allowsSilentOverride: Bool = false,
+        detectsCircularDependencies: Bool = true,
+        _ entries: SwinjectEntry ...
+    ) {
         self.init(
             tree: SwinjectTreeBuilder.buildFunction(entries),
-            allowsSilentOverride: allowsSilentOverride
+            allowsSilentOverride: allowsSilentOverride,
+            detectsCircularDependencies: detectsCircularDependencies
         )
     }
 }
 
 public extension Swinject { #if swift(>=5.1)
-    init(allowsSilentOverride: Bool = false, @SwinjectTreeBuilder builder: () -> [SwinjectEntry]) {
+    init(
+        allowsSilentOverride: Bool = false,
+        detectsCircularDependencies: Bool = true,
+        @SwinjectTreeBuilder builder: () -> [SwinjectEntry]
+    ) {
         self.init(
             tree: SwinjectTreeBuilder.buildFunction(builder()),
-            allowsSilentOverride: allowsSilentOverride
+            allowsSilentOverride: allowsSilentOverride,
+            detectsCircularDependencies: detectsCircularDependencies
         )
     }
 
-    init(allowsSilentOverride: Bool = false, @SwinjectTreeBuilder builder: () -> SwinjectEntry) {
+    init(
+        allowsSilentOverride: Bool = false,
+        detectsCircularDependencies: Bool = true,
+        @SwinjectTreeBuilder builder: () -> SwinjectEntry
+    ) {
         self.init(
             tree: SwinjectTreeBuilder.buildFunction([builder()]),
-            allowsSilentOverride: allowsSilentOverride
+            allowsSilentOverride: allowsSilentOverride,
+            detectsCircularDependencies: detectsCircularDependencies
         )
     }
 
-    init(allowsSilentOverride: Bool = false, @SwinjectTreeBuilder _: () -> Void) {
+    init(
+        allowsSilentOverride: Bool = false,
+        detectsCircularDependencies: Bool = true,
+        @SwinjectTreeBuilder _: () -> Void
+    ) {
         self.init(
             tree: SwinjectTreeBuilder.buildFunction([]),
-            allowsSilentOverride: allowsSilentOverride
+            allowsSilentOverride: allowsSilentOverride,
+            detectsCircularDependencies: detectsCircularDependencies
         )
     }
 #endif
