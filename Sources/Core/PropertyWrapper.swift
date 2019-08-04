@@ -27,7 +27,7 @@ extension PropertyWrapper {
     }
 }
 
-private extension InjectionRequest {
+extension InjectionRequest {
     func replacingType<Type>(with _: Type.Type) -> InjectionRequest {
         return InjectionRequest(
             descriptor: TypeDescriptor(

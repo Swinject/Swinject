@@ -4,6 +4,7 @@
 
 public protocol Resolver {
     func resolve<Type>(_ request: InjectionRequest) throws -> Type
+    func on<Context>(_ context: Context) -> Resolver
 }
 
 public protocol SwinjectAware: Resolver {
@@ -13,5 +14,9 @@ public protocol SwinjectAware: Resolver {
 public extension SwinjectAware {
     func resolve<Type>(_ request: InjectionRequest) throws -> Type {
         return try swinject.resolve(request)
+    }
+
+    func on<Context>(_ context: Context) -> Resolver {
+        return swinject.on(context)
     }
 }

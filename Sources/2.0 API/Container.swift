@@ -26,14 +26,6 @@ public final class Container {
     let defaultMakeRef: ReferenceMaker<Any>
     var bindings = [BindingKey: Binding]()
     var behaviors = [Behavior]()
-    var swinject: Swinject { return Swinject(
-        tree: SwinjectTree(bindings: [], modules: [], translators: []),
-        container: SwinjectContainer(
-            bindings: allBindings,
-            translators: [registerContextTranslator(from: Graph.self) { $0.container }]
-        ),
-        context: ()
-    ) }
     var allBindings: [BindingKey: Binding] {
         return bindings.merging(parent?.allBindings ?? [:]) { mine, _ in mine }
     }
@@ -148,10 +140,17 @@ extension Container: CustomStringConvertible {
     }
 }
 
-// MARK: Resolver
+// MARK: Swinject Aware
 
-extension Container: Resolver {
-    public func resolve<Type>(_ request: InjectionRequest) throws -> Type {
-        return try swinject.on(Graph(on: self)).resolve(request)
+extension Container: SwinjectAware {
+    public var swinject: Resolver {
+        return Swinject(
+            tree: SwinjectTree(bindings: [], modules: [], translators: []),
+            container: SwinjectContainer(
+                bindings: allBindings,
+                translators: []
+            ),
+            context: Graph()
+        )
     }
 }

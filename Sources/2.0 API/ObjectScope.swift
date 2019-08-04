@@ -44,11 +44,6 @@ extension ObjectScope {
 
 final class Graph {
     let registry = StandardScopeRegistry()
-    let container: Container
-
-    init(on container: Container) {
-        self.container = container
-    }
 }
 
 final class GraphScope: Scope, CustomStringConvertible {
@@ -70,7 +65,7 @@ final class ContainerScope: Scope, CustomStringConvertible {
         self.description = description
     }
 
-    func registry(for container: Container) -> ScopeRegistry {
-        return container.registry
+    func registry(for context: Any) -> ScopeRegistry {
+        return (context as! Container).registry
     }
 }

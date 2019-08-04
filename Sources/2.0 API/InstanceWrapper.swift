@@ -74,4 +74,9 @@ public extension Provider {
     init(wrappedValue: @autoclosure @escaping () -> Type) {
         provider = wrappedValue
     }
+
+    init(resolver: Resolver, request: InjectionRequest) {
+        // swiftlint:disable:next force_try
+        self.init(wrappedValue: try! resolver.on(Graph()).resolve(request.replacingType(with: Value.self)))
+    }
 }

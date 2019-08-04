@@ -26,12 +26,6 @@ public struct Swinject {
     }
 }
 
-extension Swinject {
-    public func on<Context>(_ context: Context) -> Swinject {
-        return Swinject(tree: tree, container: container, context: context)
-    }
-}
-
 extension Swinject: Resolver {
     public func resolve<Type>(_ request: InjectionRequest) throws -> Type {
         let binding: Binding
@@ -46,6 +40,10 @@ extension Swinject: Resolver {
             context: findTranslator(for: binding).translate(context),
             arg: request.argument
         )
+    }
+
+    public func on<Context>(_ context: Context) -> Resolver {
+        return Swinject(tree: tree, container: container, context: context)
     }
 
     private func resolve<Type>(_ request: InjectionRequest, asCustom _: Type.Type) -> Type? {
