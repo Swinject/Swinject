@@ -37,23 +37,3 @@ public protocol Binding: SwinjectEntry {
     var properties: BindingProperties { get }
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any
 }
-
-public protocol BindingBuilder {
-    associatedtype BoundType
-    func makeBinding(with properties: BindingProperties) -> Binding
-}
-
-public struct SomeBindingBuilder<BoundType>: BindingBuilder, AnyOpaque {
-    let anyActual: Any
-    fileprivate let _makeBinding: (BindingProperties) -> Binding
-
-    public func makeBinding(with properties: BindingProperties) -> Binding {
-        return _makeBinding(properties)
-    }
-}
-
-public extension BindingBuilder {
-    var opaque: SomeBindingBuilder<BoundType> {
-        return SomeBindingBuilder(anyActual: self) { self.makeBinding(with: $0) }
-    }
-}
