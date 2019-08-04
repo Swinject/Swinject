@@ -8,7 +8,7 @@ struct SwinjectContainer {
 
     struct Builder {
         let tree: SwinjectTree
-        let allowsSilentOverride: Bool
+        let properties: Swinject.Properties
     }
 }
 
@@ -47,7 +47,7 @@ extension SwinjectContainer.Builder {
     }
 
     private func collectBindings() throws -> [BindingKey: Binding] {
-        return try collectBindingEntries(from: tree, canOverrideSilently: allowsSilentOverride)
+        return try collectBindingEntries(from: tree, canOverrideSilently: properties.allowsSilentOverride)
             .reduce(into: [BindingKey: Binding]()) { dict, entry in
                 try checkOverrideRules(for: entry, beingAddedTo: dict)
                 dict[entry.key] = entry.binding

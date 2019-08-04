@@ -146,12 +146,14 @@ extension Container: SwinjectAware {
     public var swinject: Resolver {
         return Swinject(
             tree: SwinjectTree(bindings: [], modules: [], translators: []),
-            container: SwinjectContainer(
-                bindings: allBindings,
-                translators: []
-            ),
+            container: SwinjectContainer(bindings: allBindings, translators: []),
             context: Graph(),
-            detectsCircularDependencies: false
+            contextType: Graph.self,
+            stack: [],
+            properties: Swinject.Properties(
+                allowsSilentOverride: true,
+                detectsCircularDependencies: false
+            )
         )
     }
 }
