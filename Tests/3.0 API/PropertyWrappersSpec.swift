@@ -59,6 +59,16 @@ class PropertyWrappersSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             let doubleWrappedInt = try? swinject.instance() as Wrapped<Wrapped<Int>>
             expect { doubleWrappedInt?.wrappedValue.wrappedValue } == 42
         }
+        it("can inject attributed properties") {
+            struct IntHolder {
+                @Wrapped var int: Int
+            }
+            let swinject = Swinject {
+                bbind(Int.self) & 42
+                bbind(IntHolder.self) & provider { try IntHolder(int: $0.instance()) }
+            }
+            expect { try swinject.instance(of: IntHolder.self).int } == 42
+        }
     }
     #endif
 } }
