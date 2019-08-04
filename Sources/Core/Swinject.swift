@@ -83,7 +83,7 @@ extension Swinject: Resolver {
     private func resolve<Type>(_ request: InjectionRequest, asCustom _: Type.Type) -> Type? {
         guard let custom = Type.self as? CustomResolvable.Type else { return nil }
         if let request = custom.requiredRequest(for: request), !hasBinding(for: request) { return nil }
-        return custom.init(resolver: self, request: request) as? Type
+        return custom.init(resolver: withTrackingReset(), request: request) as? Type
     }
 
     private func findTranslator(for binding: Binding) throws -> AnyContextTranslator {
@@ -132,6 +132,17 @@ extension Swinject {
             context: context,
             contextType: contextType,
             requestStack: requestStack + [request],
+            detectsCircularDependencies: detectsCircularDependencies
+        )
+    }
+
+    func withTrackingReset() -> Swinject {
+        return Swinject(
+            tree: tree,
+            container: container,
+            context: context,
+            contextType: contextType,
+            requestStack: [],
             detectsCircularDependencies: detectsCircularDependencies
         )
     }
