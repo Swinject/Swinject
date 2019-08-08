@@ -21,3 +21,15 @@ public extension BindingBuilder {
         return SomeBindingBuilder(anyActual: self) { self.makeBinding(with: $0) }
     }
 }
+
+public protocol AnyBindingBuilder: SwinjectEntry {
+    func makeBinding() -> Binding
+}
+
+struct FinalBindingBuilder: AnyBindingBuilder {
+    let binidngFactory: () -> Binding
+
+    func makeBinding() -> Binding {
+        return binidngFactory()
+    }
+}

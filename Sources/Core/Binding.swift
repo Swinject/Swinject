@@ -32,7 +32,7 @@ extension BindingKey {
     }
 }
 
-public protocol Binding: SwinjectEntry {
+public protocol Binding {
     var key: BindingKey { get }
     var properties: BindingProperties { get }
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any
