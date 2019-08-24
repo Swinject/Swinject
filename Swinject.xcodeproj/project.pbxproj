@@ -160,20 +160,16 @@
 		751F545653B0F1E30341C312 /* OverrideSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C18DDD83715886DF7F1818 /* OverrideSpec.swift */; };
 		75D74C8C25EDACF5A7A75A5C /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620155728133F451B31C0AD /* Swinject.swift */; };
 		76FB9AFE299316E7F3F4C3BB /* InstanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4D977AC4289A6145383C9 /* InstanceRequest.swift */; };
-		773BE491231124AD000AA1A9 /* SomeBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* SomeBinding.swift */; };
-		773C6DDC23111956007A40BF /* SomeBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* SomeBinding.swift */; };
-		773C6DDD23111956007A40BF /* SomeBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* SomeBinding.swift */; };
-		773C6DDE23111956007A40BF /* SomeBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* SomeBinding.swift */; };
+		773BE491231124AD000AA1A9 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* Binding.swift */; };
+		773C6DDC23111956007A40BF /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* Binding.swift */; };
+		773C6DDD23111956007A40BF /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* Binding.swift */; };
+		773C6DDE23111956007A40BF /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* Binding.swift */; };
 		778D9AB6470D4280254AC140 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CAC1761180366DE75A4A6 /* TestModels.swift */; };
 		77BF219EAB4FC8475943CECC /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D434EB4C13CF9D9FA6D80CB /* Swinject.framework */; };
 		77ED80052311221600AC48F9 /* ValueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED80042311221600AC48F9 /* ValueRequest.swift */; };
 		77ED80062311221600AC48F9 /* ValueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED80042311221600AC48F9 /* ValueRequest.swift */; };
 		77ED80072311221600AC48F9 /* ValueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED80042311221600AC48F9 /* ValueRequest.swift */; };
 		77ED80082311221600AC48F9 /* ValueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED80042311221600AC48F9 /* ValueRequest.swift */; };
-		77ED800A2311231500AC48F9 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED80092311231500AC48F9 /* Arguments.swift */; };
-		77ED800B2311231500AC48F9 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED80092311231500AC48F9 /* Arguments.swift */; };
-		77ED800C2311231500AC48F9 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED80092311231500AC48F9 /* Arguments.swift */; };
-		77ED800D2311231500AC48F9 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED80092311231500AC48F9 /* Arguments.swift */; };
 		789BF74652A2424EB8F7EF47 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 30EDBFDB23A7FB3DA7758DD0 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A7032384E07DAD308D4F70A /* Swinject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9785AAE94A5447FA307242 /* Swinject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A956FAB419F74D7EB9CAD0B /* Opaque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7DC2C5AA87B18BD465EB77 /* Opaque.swift */; };
@@ -543,9 +539,8 @@
 		74118B5030E790B24C0F44AF /* ContainerSpec.CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.CustomStringConvertible.swift; sourceTree = "<group>"; };
 		74DE57FB3E8228904E6FE0D7 /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		75BE3AE3E30DFE42A919D825 /* ModulesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesSpec.swift; sourceTree = "<group>"; };
-		773C6DDB23111956007A40BF /* SomeBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeBinding.swift; sourceTree = "<group>"; };
+		773C6DDB23111956007A40BF /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		77ED80042311221600AC48F9 /* ValueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueRequest.swift; sourceTree = "<group>"; };
-		77ED80092311231500AC48F9 /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
 		78F0D8665C3D7F020BDA1ACB /* ServiceEntry+TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceEntry+TypeForwarding.swift"; sourceTree = "<group>"; };
 		7C83EC4390A34D207245D9C9 /* ContextTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTranslator.swift; sourceTree = "<group>"; };
 		7DB3B73B11CA8650972E1175 /* ScopeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeRegistry.swift; sourceTree = "<group>"; };
@@ -756,9 +751,8 @@
 		773C6DDA23111910007A40BF /* 3.1 API */ = {
 			isa = PBXGroup;
 			children = (
-				773C6DDB23111956007A40BF /* SomeBinding.swift */,
+				773C6DDB23111956007A40BF /* Binding.swift */,
 				77ED80042311221600AC48F9 /* ValueRequest.swift */,
-				77ED80092311231500AC48F9 /* Arguments.swift */,
 			);
 			path = "3.1 API";
 			sourceTree = "<group>";
@@ -1466,7 +1460,7 @@
 				D9084C826F7A798508CD66F5 /* Resolver+Injection.swift in Sources */,
 				D4936DC1A47A8C85325FB52E /* Resolver+LegacyApi.swift in Sources */,
 				8016512839FE61EC3127E489 /* Resolver.swift in Sources */,
-				773C6DDD23111956007A40BF /* SomeBinding.swift in Sources */,
+				773C6DDD23111956007A40BF /* Binding.swift in Sources */,
 				68C95FCB0D345CA3BA24D320 /* Scope.swift in Sources */,
 				BB571B9A78FC53231A18E18C /* ScopeRegistry.swift in Sources */,
 				593B93BA2EE3FE4418A1C579 /* ScopeRegistryKey.swift in Sources */,
@@ -1479,7 +1473,6 @@
 				3328937B7BBFA77FA3CD303E /* SwinjectContainer.swift in Sources */,
 				020DA1718FCC68D889FB5A5F /* SwinjectError.swift in Sources */,
 				CF4EBB60C21F8C503BCD7A29 /* SwinjectModule.swift in Sources */,
-				77ED800B2311231500AC48F9 /* Arguments.swift in Sources */,
 				0D5C4A278A16AB3A163148AF /* SwinjectTree.swift in Sources */,
 				AB864E029E996492ED4A3A52 /* TypeBinder.swift in Sources */,
 				49685AB40BEE856C62005C87 /* TypeDescriptor.swift in Sources */,
@@ -1687,7 +1680,7 @@
 				293985649250DF270DC89135 /* Matchable.swift in Sources */,
 				77ED80072311221600AC48F9 /* ValueRequest.swift in Sources */,
 				B4B66D7251BDDE25D6D7FB3C /* ObjectScope.swift in Sources */,
-				773BE491231124AD000AA1A9 /* SomeBinding.swift in Sources */,
+				773BE491231124AD000AA1A9 /* Binding.swift in Sources */,
 				5365FDFB2DDA6491F3049654 /* Opaque.swift in Sources */,
 				6A967AE5710606998C2BE070 /* PropertyWrapper.swift in Sources */,
 				B293894FEB67831DDA5F000E /* Reference.swift in Sources */,
@@ -1708,7 +1701,6 @@
 				91E435894038C42335086FA8 /* SwinjectError.swift in Sources */,
 				C637E97E193BB1DADDDC6C21 /* SwinjectModule.swift in Sources */,
 				0CE1126436F680F9684837E4 /* SwinjectTree.swift in Sources */,
-				77ED800C2311231500AC48F9 /* Arguments.swift in Sources */,
 				4B9811CF0604946CCF323ED2 /* TypeBinder.swift in Sources */,
 				9CEE20BD42795D5E5F39BF20 /* TypeDescriptor.swift in Sources */,
 				8B711CBE6A5B86DC2D6CABDC /* UnboundScope.swift in Sources */,
@@ -1744,7 +1736,7 @@
 				C6D60E2AEC381998223145B2 /* Resolver+Injection.swift in Sources */,
 				FD7B2663F2F931B78EB330EE /* Resolver+LegacyApi.swift in Sources */,
 				97C2EA47D7623AFD723AFE93 /* Resolver.swift in Sources */,
-				773C6DDE23111956007A40BF /* SomeBinding.swift in Sources */,
+				773C6DDE23111956007A40BF /* Binding.swift in Sources */,
 				2C352AAD1AC7D82A4A059046 /* Scope.swift in Sources */,
 				02556F149C9AAEF5CE353AC1 /* ScopeRegistry.swift in Sources */,
 				06F4CAB352B4F623FF7BD885 /* ScopeRegistryKey.swift in Sources */,
@@ -1757,7 +1749,6 @@
 				4D86550CC5C281A58B4A6F61 /* SwinjectContainer.swift in Sources */,
 				4DF3DC1CDD3C4948F9BDD3DF /* SwinjectError.swift in Sources */,
 				82299769BC637A14E7827DB0 /* SwinjectModule.swift in Sources */,
-				77ED800D2311231500AC48F9 /* Arguments.swift in Sources */,
 				372F0061E762BF8FFF05457F /* SwinjectTree.swift in Sources */,
 				9425887520AC2DBDCBACB252 /* TypeBinder.swift in Sources */,
 				AC470B4322599B0A076DD3FF /* TypeDescriptor.swift in Sources */,
@@ -1794,7 +1785,7 @@
 				CBE63031F33303F3E503CEF2 /* Resolver+Injection.swift in Sources */,
 				41C7340BFD2EB66359772733 /* Resolver+LegacyApi.swift in Sources */,
 				BE94EF7BCF976A703F961389 /* Resolver.swift in Sources */,
-				773C6DDC23111956007A40BF /* SomeBinding.swift in Sources */,
+				773C6DDC23111956007A40BF /* Binding.swift in Sources */,
 				96EA0A5DF33F025EBE0B67D2 /* Scope.swift in Sources */,
 				D861595482464ED95CF81922 /* ScopeRegistry.swift in Sources */,
 				920DE2CAB9895D10FAE48FBA /* ScopeRegistryKey.swift in Sources */,
@@ -1807,7 +1798,6 @@
 				A6721BA534AD082E1E7C1D08 /* SwinjectContainer.swift in Sources */,
 				820307073A53AED47AC99B8D /* SwinjectError.swift in Sources */,
 				8E77B56EE7F90BF723600DDF /* SwinjectModule.swift in Sources */,
-				77ED800A2311231500AC48F9 /* Arguments.swift in Sources */,
 				6922AE734E84B515C94D9480 /* SwinjectTree.swift in Sources */,
 				EF79F0B3D497215D4BBBC038 /* TypeBinder.swift in Sources */,
 				E3EABE098DBFB561A20632E3 /* TypeDescriptor.swift in Sources */,
