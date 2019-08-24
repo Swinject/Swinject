@@ -467,7 +467,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		01DEC4D20CE554C9DFBD0A8D /* Resolver+Injection.swifttemplate */ = {isa = PBXFileReference; path = "Resolver+Injection.swifttemplate"; sourceTree = "<group>"; };
+		01DEC4D20CE554C9DFBD0A8D /* Resolver+Injection.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resolver+Injection.swifttemplate"; sourceTree = "<group>"; };
 		05B0E1B8963622CA872FA45B /* ContainerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.swift; sourceTree = "<group>"; };
 		09FC792715B1658721F76885 /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA449690AE00F6300DE8ACA /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -476,17 +476,17 @@
 		0E0B580B43E1891812C97209 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		0E7DC2C5AA87B18BD465EB77 /* Opaque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opaque.swift; sourceTree = "<group>"; };
 		10480F2154EAA0414D4C1F55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10E8C7E53982E88175FD04A7 /* .swiftlint.yml */ = {isa = PBXFileReference; path = .swiftlint.yml; sourceTree = "<group>"; };
+		10E8C7E53982E88175FD04A7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		118ABC654C4144496848AD74 /* CIrcularitySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIrcularitySpec.swift; sourceTree = "<group>"; };
 		11BC689CB98FD2079AC0B410 /* SynchronizedResolverSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedResolverSpec.swift; sourceTree = "<group>"; };
 		13513FA012659ADE699A3608 /* LazySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazySpec.swift; sourceTree = "<group>"; };
-		176824B29DD1A0DAA5CBD241 /* Resolver+FunctionCallApi.swifttemplate */ = {isa = PBXFileReference; path = "Resolver+FunctionCallApi.swifttemplate"; sourceTree = "<group>"; };
+		176824B29DD1A0DAA5CBD241 /* Resolver+FunctionCallApi.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resolver+FunctionCallApi.swifttemplate"; sourceTree = "<group>"; };
 		1A006CC804F9AB8ACC121029 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1C58FC14EEA170B0DC079DE4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		1D3C59E84B5FD0C13F487838 /* ScopesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopesSpec.swift; sourceTree = "<group>"; };
 		20ECCBCAAEAB77D77D1910B0 /* Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behavior.swift; sourceTree = "<group>"; };
 		21AEDF723BDD949B59E6D1C5 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
-		26EEC28683E4A26B3092E8BA /* BinderEnvironment.swifttemplate */ = {isa = PBXFileReference; path = BinderEnvironment.swifttemplate; sourceTree = "<group>"; };
+		26EEC28683E4A26B3092E8BA /* BinderEnvironment.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = BinderEnvironment.swifttemplate; sourceTree = "<group>"; };
 		273FB7A6277E0841E1570990 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
 		2E0C3E4D518BC1FEF3EF8D33 /* BinderVariation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinderVariation.swift; sourceTree = "<group>"; };
 		30EDBFDB23A7FB3DA7758DD0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
@@ -534,13 +534,13 @@
 		78F0D8665C3D7F020BDA1ACB /* ServiceEntry+TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceEntry+TypeForwarding.swift"; sourceTree = "<group>"; };
 		7C83EC4390A34D207245D9C9 /* ContextTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTranslator.swift; sourceTree = "<group>"; };
 		7DB3B73B11CA8650972E1175 /* ScopeRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeRegistry.swift; sourceTree = "<group>"; };
-		808C1063CA90CC593C7E0E9C /* MatchableBoxes.swifttemplate */ = {isa = PBXFileReference; path = MatchableBoxes.swifttemplate; sourceTree = "<group>"; };
+		808C1063CA90CC593C7E0E9C /* MatchableBoxes.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = MatchableBoxes.swifttemplate; sourceTree = "<group>"; };
 		823617F3B8A9192F56B13331 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		86C18DDD83715886DF7F1818 /* OverrideSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideSpec.swift; sourceTree = "<group>"; };
 		8B9785AAE94A5447FA307242 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C4916168E81D76536892122 /* SwinjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectContainer.swift; sourceTree = "<group>"; };
 		8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectTreeBuilderSpec.swift; sourceTree = "<group>"; };
-		90191C25A2D66E07C4E9CD73 /* SwiftCode.swifttemplate */ = {isa = PBXFileReference; path = SwiftCode.swifttemplate; sourceTree = "<group>"; };
+		90191C25A2D66E07C4E9CD73 /* SwiftCode.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftCode.swifttemplate; sourceTree = "<group>"; };
 		938425B216B78A06EC10504A /* LinuxConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinuxConfig.swift; sourceTree = "<group>"; };
 		9620155728133F451B31C0AD /* Swinject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinject.swift; sourceTree = "<group>"; };
 		96AEC72A42A227A50CF9845B /* Circularity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circularity.swift; sourceTree = "<group>"; };
@@ -558,14 +558,14 @@
 		B92B8E618A08408404FB2A7A /* TypeBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBinder.swift; sourceTree = "<group>"; };
 		B9F626B9D3E547621787E4D7 /* Resolver+FunctionCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+FunctionCall.swift"; sourceTree = "<group>"; };
 		BAF68BC7EEE11B52D4D6FB94 /* StandardScopeRegistrySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardScopeRegistrySpec.swift; sourceTree = "<group>"; };
-		BD6E47826E8E3D3744E91ADC /* ServiceEntry+TypeForwarding.swifttemplate */ = {isa = PBXFileReference; path = "ServiceEntry+TypeForwarding.swifttemplate"; sourceTree = "<group>"; };
+		BD6E47826E8E3D3744E91ADC /* ServiceEntry+TypeForwarding.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ServiceEntry+TypeForwarding.swifttemplate"; sourceTree = "<group>"; };
 		BEFFEE7870660D8AB209459D /* ContainerSpec.Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Behavior.swift; sourceTree = "<group>"; };
 		C1E726A651C3AFE92C19608B /* SwinjectModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectModule.swift; sourceTree = "<group>"; };
 		C3C516EFA0CA22D19F07B27E /* InjectionVariation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionVariation.swift; sourceTree = "<group>"; };
 		C765B92B00C0AC8625BB4AC9 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		CC85CB215058F95C0BC190B1 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		CDA78290D6D60BD0B808571F /* Container+Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Logging.swift"; sourceTree = "<group>"; };
-		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
+		CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Container+Registration.swifttemplate"; sourceTree = "<group>"; };
 		D7D394F381E60F6E6E92E7DB /* SimpleBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBinding.swift; sourceTree = "<group>"; };
 		DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextSpec.swift; sourceTree = "<group>"; };
 		E4E2DEB50E8526344B904B3C /* TypeDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDescriptor.swift; sourceTree = "<group>"; };
@@ -573,7 +573,7 @@
 		F2E291E30E191A1E202A013A /* ScopedBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopedBinding.swift; sourceTree = "<group>"; };
 		F446D6BD4C44E16A1D608BFB /* Container+TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+TypeForwarding.swift"; sourceTree = "<group>"; };
 		F86EE3DDCF0BD65D4EDEA615 /* ContainerSpec.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.TypeForwarding.swift; sourceTree = "<group>"; };
-		FE0EA1AA356CC46F4AB8AA3F /* Resolver+LegacyApi.swifttemplate */ = {isa = PBXFileReference; path = "Resolver+LegacyApi.swifttemplate"; sourceTree = "<group>"; };
+		FE0EA1AA356CC46F4AB8AA3F /* Resolver+LegacyApi.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resolver+LegacyApi.swifttemplate"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -674,10 +674,10 @@
 		2D9982F0E5050BAE1832702E /* 3.0 API */ = {
 			isa = PBXGroup;
 			children = (
+				0E7DC2C5AA87B18BD465EB77 /* Opaque.swift */,
 				B843C72AD5C4094F7D6EBCF7 /* BinderEnvironment.swift */,
 				A367B4D6F7E5331620430ECF /* BindingBuilder.swift */,
 				419FB96A1F4B72278B9A6665 /* InstanceBuilder.swift */,
-				0E7DC2C5AA87B18BD465EB77 /* Opaque.swift */,
 				B9F626B9D3E547621787E4D7 /* Resolver+FunctionCall.swift */,
 				583B00ADF411CA422E1BE6FA /* Resolver+Injection.swift */,
 				F2E291E30E191A1E202A013A /* ScopedBinding.swift */,
@@ -1895,7 +1895,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1933,7 +1937,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_NAME = Swinject;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1950,7 +1957,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1968,7 +1979,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_NAME = Swinject;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1986,7 +2000,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2003,7 +2021,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = macosx;
 			};
@@ -2093,7 +2115,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_NAME = Swinject;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -2111,7 +2136,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2130,7 +2159,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2148,7 +2180,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_NAME = Swinject;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2166,7 +2201,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -2184,7 +2223,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = macosx;
 			};
@@ -2199,7 +2242,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = SwinjectTests;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -2217,7 +2264,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2236,7 +2286,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_NAME = Swinject;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2255,7 +2308,10 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_NAME = Swinject;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
