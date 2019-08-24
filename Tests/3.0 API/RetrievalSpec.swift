@@ -5,21 +5,26 @@
 import Nimble
 import Quick
 import Swinject
-// swiftlint:disable force_try
 
 class RetrievalSpec: QuickSpec { override func spec() { #if swift(>=5.1)
-    // TODO: Better support
     it("can retrieve bound types") {
-        struct IntHolder: SwinjectAware {
+        class NumberHolder: SwinjectAware {
+            @Injected var int: Int
+
+            @Injected(instance(tagged: "tag", arg: 42))
+            var double: Double
+
             let swinject: Resolver
-            lazy var int: Int = try! instance().from(swinject)
+            init(swinject: Resolver) { self.swinject = swinject }
         }
         let swinject = Swinject {
-            register().factory { IntHolder(swinject: $0) }
+            register().factory { NumberHolder(swinject: $0) }
             register().constant(42)
+            register().factory(tag: "tag") { Double($1 as Int) }
         }
-        var holder = try? instance().from(swinject) as IntHolder
+        let holder = try? instance(of: NumberHolder.self).from(swinject)
         expect(holder?.int) == 42
+        expect(holder?.double) == 42
     }
     #endif
 } }

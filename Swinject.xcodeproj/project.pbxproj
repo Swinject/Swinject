@@ -149,6 +149,10 @@
 		77316673231176B50002655B /* InstanceRequest+APi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7731666F231176B20002655B /* InstanceRequest+APi.swift */; };
 		77316675231177580002655B /* InstanceRequestVariation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77316674231177580002655B /* InstanceRequestVariation.swift */; };
 		773166772311787D0002655B /* InstanceRequest+Api.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 773166762311787D0002655B /* InstanceRequest+Api.swifttemplate */; };
+		773166792311854B0002655B /* Retrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773166782311854B0002655B /* Retrieval.swift */; };
+		7731667A231187470002655B /* Retrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773166782311854B0002655B /* Retrieval.swift */; };
+		7731667B231187480002655B /* Retrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773166782311854B0002655B /* Retrieval.swift */; };
+		7731667C231187480002655B /* Retrieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773166782311854B0002655B /* Retrieval.swift */; };
 		773BE491231124AD000AA1A9 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* Binding.swift */; };
 		773C6DDC23111956007A40BF /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* Binding.swift */; };
 		773C6DDD23111956007A40BF /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* Binding.swift */; };
@@ -512,6 +516,7 @@
 		7731666F231176B20002655B /* InstanceRequest+APi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstanceRequest+APi.swift"; sourceTree = "<group>"; };
 		77316674231177580002655B /* InstanceRequestVariation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRequestVariation.swift; sourceTree = "<group>"; };
 		773166762311787D0002655B /* InstanceRequest+Api.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "InstanceRequest+Api.swifttemplate"; sourceTree = "<group>"; };
+		773166782311854B0002655B /* Retrieval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retrieval.swift; sourceTree = "<group>"; };
 		773C6DDB23111956007A40BF /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		77B87F3B23112DB100321C08 /* Binding+Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Api.swift"; sourceTree = "<group>"; };
 		77B87F3D231153D200321C08 /* FactoryVariation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryVariation.swift; sourceTree = "<group>"; };
@@ -663,6 +668,7 @@
 				667B13B528642272FC0794B6 /* UnboundScope.swift */,
 				57A7E35B2B22650208F904B8 /* Weak.swift */,
 				7731666F231176B20002655B /* InstanceRequest+APi.swift */,
+				773166782311854B0002655B /* Retrieval.swift */,
 			);
 			path = "3.0 API";
 			sourceTree = "<group>";
@@ -1402,6 +1408,7 @@
 				AAD8D0551B8A26A9B22AECEC /* Container+Registration.swift in Sources */,
 				996CCFE825834C7D3236E742 /* Container+TypeForwarding.swift in Sources */,
 				B2FAD41F7726502822AF913B /* Container.swift in Sources */,
+				7731667C231187480002655B /* Retrieval.swift in Sources */,
 				8B5927517B567B1DFAB5B935 /* ContextTranslator.swift in Sources */,
 				77B87F492311580600321C08 /* Binding+Api.swift in Sources */,
 				1D17DBC27F25717BF7A87AF3 /* InstanceRequest.swift in Sources */,
@@ -1620,6 +1627,7 @@
 				BD9B57E26722C80B7EF990DB /* Container+TypeForwarding.swift in Sources */,
 				DB74F17CDFF4886B9C38AD14 /* Container.swift in Sources */,
 				DD5E3AF2B5FCE5E81EBDF606 /* ContextTranslator.swift in Sources */,
+				7731667B231187480002655B /* Retrieval.swift in Sources */,
 				76FB9AFE299316E7F3F4C3BB /* InstanceRequest.swift in Sources */,
 				77B87F482311580600321C08 /* Binding+Api.swift in Sources */,
 				57BFBA2077E70DC1C2FE796C /* InstanceWrapper.swift in Sources */,
@@ -1664,6 +1672,7 @@
 				CB0B308F3D3A831A28127462 /* Container+Registration.swift in Sources */,
 				283C77045DA55C2134EC9C48 /* Container+TypeForwarding.swift in Sources */,
 				58ABEE0321A3061048B65EA2 /* Container.swift in Sources */,
+				7731667A231187470002655B /* Retrieval.swift in Sources */,
 				F06DEB671A4B85ABB0E96E51 /* ContextTranslator.swift in Sources */,
 				77B87F472311580500321C08 /* Binding+Api.swift in Sources */,
 				027015812E961322FE3D942B /* InstanceRequest.swift in Sources */,
@@ -1708,6 +1717,7 @@
 				21285CED416F1317E993397A /* Container+Registration.swift in Sources */,
 				3A0B409E840B44B281DB3C54 /* Container+TypeForwarding.swift in Sources */,
 				0622539110A7430776A307C7 /* Container.swift in Sources */,
+				773166792311854B0002655B /* Retrieval.swift in Sources */,
 				D1DF4740A9D86362B63104B8 /* ContextTranslator.swift in Sources */,
 				826D63FA91E370F0061768B0 /* InstanceRequest.swift in Sources */,
 				77B87F43231157E900321C08 /* Binding+Factory.swift in Sources */,
