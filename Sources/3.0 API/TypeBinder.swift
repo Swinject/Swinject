@@ -21,7 +21,7 @@ public func bind<Type>(_: Type.Type, tagged tag: String? = nil, overrides: Bool 
 public extension TypeBinder {
     func with<Builder>(
         _ builder: Builder
-    ) -> AnyBindingBuilder where Builder: BindingBuilder, Builder.BoundType == BoundType {
+    ) -> AnyBindingBuilder where Builder: PartialBindingBuilder, Builder.BoundType == BoundType {
         return FinalBindingBuilder { builder.makeBinding(with: self.properties) }
     }
 
@@ -32,7 +32,7 @@ public extension TypeBinder {
 
 public func & <BoundType, Builder>(
     lhs: TypeBinder<BoundType>, rhs: Builder
-) -> AnyBindingBuilder where Builder: BindingBuilder, Builder.BoundType == BoundType {
+) -> AnyBindingBuilder where Builder: PartialBindingBuilder, Builder.BoundType == BoundType {
     return lhs.with(rhs)
 }
 

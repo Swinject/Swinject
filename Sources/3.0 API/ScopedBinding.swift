@@ -51,7 +51,7 @@ extension ScopedBinding.Builder: InstanceBuilder {
     }
 }
 
-extension ScopedBinding.Builder: BindingBuilder {
+extension ScopedBinding.Builder: PartialBindingBuilder {
     typealias BoundType = Type
 
     func makeBinding(with properties: BindingProperties) -> Binding {

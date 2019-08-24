@@ -32,7 +32,7 @@ extension SimpleBinding.Builder: InstanceBuilder {
     }
 }
 
-extension SimpleBinding.Builder: BindingBuilder {
+extension SimpleBinding.Builder: PartialBindingBuilder {
     typealias BoundType = Type
 
     func makeBinding(with properties: BindingProperties) -> Binding {

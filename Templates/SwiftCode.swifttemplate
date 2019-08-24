@@ -61,7 +61,7 @@ extension BinderVariation {
     }
 
     var returnType: String {
-        return "SomeBindingBuilder<Type>"
+        return "SomePartialBindingBuilder<Type>"
     }
 
     var actualReturnType: String {
