@@ -5,7 +5,7 @@
     let arg_hashables = (1...i).map { "Arg\($0): Hashable" }.joined(separator: ", ")
     let type_name = "MatchableBox\(i)<\(arg_types)>"
 -%>
-struct <%= type_name %>: Hashable, Matchable where <%= arg_hashables %> {
+public struct <%= type_name %>: Hashable, Matchable where <%= arg_hashables %> {
     <%= (1...i).map { "let arg\($0): Arg\($0)" }.joined(separator: "\n    ") %>
 }
 

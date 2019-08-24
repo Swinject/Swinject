@@ -24,7 +24,7 @@ public func instance<Type>(_ instance: Type) -> SomeBindingBuilder<Type> {
     return SimpleBinding.Builder<Type, Any, Void> { _, _, _ in instance }.opaque
 }
 
-// sourcery:inline:BindingBuilders
+// sourcery:inline:SomeBindingBuilders
 extension ContextedEnvironment {
     public func provider<Type>(_ builder: @escaping () throws -> Type) -> SomeBindingBuilder<Type> {
         return SimpleBinding.Builder<Type, Context, Void> { _, _, _ in try builder() }.opaque

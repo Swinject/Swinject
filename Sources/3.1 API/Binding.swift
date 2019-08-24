@@ -2,7 +2,7 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-struct BindingProperties {
+public struct BindingProperties {
     var overrides: Bool
     var reference: ReferenceMaker<Any>
 
@@ -16,37 +16,7 @@ enum BindingDependencies {
     static let none = BindingDependencies.requests([])
 }
 
-protocol Binding: AnyBinding {
-    associatedtype Instance
-    associatedtype AScope
-    associatedtype Context
-    associatedtype Argument
-
-    var products: [TypeDescriptor] { get }
-    var dependencies: BindingDependencies { get }
-    var factory: (ContextedResolver<Context>, Argument) throws -> Instance { get }
-    var properties: BindingProperties { get }
-    var scope: AScope { get }
-}
-
-extension Binding {
-    var keys: [BindingKey] {
-        return products.map { BindingKey(descriptor: $0, contextType: Context.self, argumentType: Argument.self) }
-    }
-
-    public var key: BindingKey { return keys.first! } // FIXME: enable multiple keys in AnyBinding
-    public var overrides: Bool { return properties.overrides }
-}
-
-extension Binding {
-    // TODO: swap param order
-    public func instance(arg: Any, resolver: Resolver) throws -> Any {
-        // TODO: scope handling
-        return try factory(resolver.contexted(), arg as! Argument)
-    }
-}
-
-public struct SomeBinding<Instance, AScope, Context, Argument>: Binding {
+public struct Binding<Instance, AScope, Context, Argument> {
     var products: [TypeDescriptor]
     var dependencies: BindingDependencies
     var factory: (ContextedResolver<Context>, Argument) throws -> Instance
@@ -55,8 +25,41 @@ public struct SomeBinding<Instance, AScope, Context, Argument>: Binding {
 }
 
 extension Binding {
-    func opaque() -> SomeBinding<Instance, AScope, Context, Argument> {
-        return SomeBinding(
+    var keys: [BindingKey] {
+        return products.map { BindingKey(descriptor: $0, contextType: Context.self, argumentType: Argument.self) }
+    }
+}
+
+extension Binding: AnyBinding {
+    public var key: BindingKey { return keys.first! } // FIXME: enable multiple keys in AnyBinding
+    public var overrides: Bool { return properties.overrides }
+}
+
+extension Binding {
+    public func instance(arg: Any, resolver: Resolver) throws -> Any {
+        if let scope = scope as? AnyScope {
+            return try scopedInstance(resolver: resolver, scope: scope, arg: arg)
+        } else {
+            return try simpleInstance(resolver: resolver, arg: arg)
+        }
+    }
+
+    private func scopedInstance(resolver: Resolver, scope: AnyScope, arg: Any) throws -> Any {
+        return try scope
+            .registry(for: resolver.context(as: Context.self))
+            .instance(for: ScopeRegistryKey(descriptor: products.first!, argument: arg)) {
+                try properties.reference(simpleInstance(resolver: resolver, arg: arg))
+            }
+    }
+
+    private func simpleInstance(resolver: Resolver, arg: Any) throws -> Any {
+        return try factory(resolver.contexted(), arg as! Argument)
+    }
+}
+
+extension Binding {
+    func opaque() -> Binding<Instance, AScope, Context, Argument> {
+        return Binding(
             products: products, dependencies: dependencies, factory: factory, properties: properties, scope: scope
         )
     }
@@ -71,8 +74,8 @@ extension Binding {
 
     func updatedFactory<NewInstance, NewArgument>(
         factory: @escaping (ContextedResolver<Context>, NewArgument) throws -> NewInstance
-    ) -> SomeBinding<NewInstance, AScope, Context, NewArgument> {
-        return SomeBinding(
+    ) -> Binding<NewInstance, AScope, Context, NewArgument> {
+        return Binding<NewInstance, AScope, Context, NewArgument>(
             products: products, dependencies: dependencies, factory: factory, properties: properties, scope: scope
         )
     }

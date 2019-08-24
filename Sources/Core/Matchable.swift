@@ -13,32 +13,33 @@ public extension Matchable where Self: Equatable {
     }
 }
 
+// TODO: Can we make boxes internal?
 // swiftlint:disable line_length
 // swiftlint:disable large_tuple
 // sourcery:inline:MatchableBoxes
-struct MatchableBox1<Arg1>: Hashable, Matchable where Arg1: Hashable {
+public struct MatchableBox1<Arg1>: Hashable, Matchable where Arg1: Hashable {
     let arg1: Arg1
 }
 
-struct MatchableBox2<Arg1, Arg2>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable {
+public struct MatchableBox2<Arg1, Arg2>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable {
     let arg1: Arg1
     let arg2: Arg2
 }
 
-struct MatchableBox3<Arg1, Arg2, Arg3>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable {
+public struct MatchableBox3<Arg1, Arg2, Arg3>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable {
     let arg1: Arg1
     let arg2: Arg2
     let arg3: Arg3
 }
 
-struct MatchableBox4<Arg1, Arg2, Arg3, Arg4>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable {
+public struct MatchableBox4<Arg1, Arg2, Arg3, Arg4>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable {
     let arg1: Arg1
     let arg2: Arg2
     let arg3: Arg3
     let arg4: Arg4
 }
 
-struct MatchableBox5<Arg1, Arg2, Arg3, Arg4, Arg5>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable, Arg5: Hashable {
+public struct MatchableBox5<Arg1, Arg2, Arg3, Arg4, Arg5>: Hashable, Matchable where Arg1: Hashable, Arg2: Hashable, Arg3: Hashable, Arg4: Hashable, Arg5: Hashable {
     let arg1: Arg1
     let arg2: Arg2
     let arg3: Arg3

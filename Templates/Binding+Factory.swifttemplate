@@ -1,0 +1,6 @@
+<%- include("SwiftCode") %>
+// sourcery:inline:BindingFactoryApi
+public extension Binding {
+<%= FactoryVariation.publicCases.map { $0.render() }.joined(separator: "\n\n") %>
+}
+// sourcery:end

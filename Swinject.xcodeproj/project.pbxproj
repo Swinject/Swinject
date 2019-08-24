@@ -166,6 +166,15 @@
 		773C6DDE23111956007A40BF /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* Binding.swift */; };
 		778D9AB6470D4280254AC140 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CAC1761180366DE75A4A6 /* TestModels.swift */; };
 		77B87F3C23112DB100321C08 /* Binding+Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B87F3B23112DB100321C08 /* Binding+Api.swift */; };
+		77B87F3E231153D200321C08 /* FactoryVariation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B87F3D231153D200321C08 /* FactoryVariation.swift */; };
+		77B87F40231155B300321C08 /* Binding+Factory.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 77B87F3F231155B300321C08 /* Binding+Factory.swifttemplate */; };
+		77B87F43231157E900321C08 /* Binding+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B87F41231157B200321C08 /* Binding+Factory.swift */; };
+		77B87F44231157E900321C08 /* Binding+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B87F41231157B200321C08 /* Binding+Factory.swift */; };
+		77B87F45231157EA00321C08 /* Binding+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B87F41231157B200321C08 /* Binding+Factory.swift */; };
+		77B87F46231157EA00321C08 /* Binding+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B87F41231157B200321C08 /* Binding+Factory.swift */; };
+		77B87F472311580500321C08 /* Binding+Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B87F3B23112DB100321C08 /* Binding+Api.swift */; };
+		77B87F482311580600321C08 /* Binding+Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B87F3B23112DB100321C08 /* Binding+Api.swift */; };
+		77B87F492311580600321C08 /* Binding+Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B87F3B23112DB100321C08 /* Binding+Api.swift */; };
 		77BF219EAB4FC8475943CECC /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D434EB4C13CF9D9FA6D80CB /* Swinject.framework */; };
 		77ED80052311221600AC48F9 /* ValueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED80042311221600AC48F9 /* ValueRequest.swift */; };
 		77ED80062311221600AC48F9 /* ValueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ED80042311221600AC48F9 /* ValueRequest.swift */; };
@@ -542,6 +551,9 @@
 		75BE3AE3E30DFE42A919D825 /* ModulesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesSpec.swift; sourceTree = "<group>"; };
 		773C6DDB23111956007A40BF /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		77B87F3B23112DB100321C08 /* Binding+Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Api.swift"; sourceTree = "<group>"; };
+		77B87F3D231153D200321C08 /* FactoryVariation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryVariation.swift; sourceTree = "<group>"; };
+		77B87F3F231155B300321C08 /* Binding+Factory.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Binding+Factory.swifttemplate"; sourceTree = "<group>"; };
+		77B87F41231157B200321C08 /* Binding+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Factory.swift"; sourceTree = "<group>"; };
 		77ED80042311221600AC48F9 /* ValueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueRequest.swift; sourceTree = "<group>"; };
 		78F0D8665C3D7F020BDA1ACB /* ServiceEntry+TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceEntry+TypeForwarding.swift"; sourceTree = "<group>"; };
 		7C83EC4390A34D207245D9C9 /* ContextTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTranslator.swift; sourceTree = "<group>"; };
@@ -637,6 +649,8 @@
 			children = (
 				26EEC28683E4A26B3092E8BA /* BinderEnvironment.swifttemplate */,
 				2E0C3E4D518BC1FEF3EF8D33 /* BinderVariation.swift */,
+				77B87F3D231153D200321C08 /* FactoryVariation.swift */,
+				77B87F3F231155B300321C08 /* Binding+Factory.swifttemplate */,
 				CDF0639C00CFE55484D487CE /* Container+Registration.swifttemplate */,
 				C3C516EFA0CA22D19F07B27E /* InjectionVariation.swift */,
 				808C1063CA90CC593C7E0E9C /* MatchableBoxes.swifttemplate */,
@@ -756,6 +770,7 @@
 				773C6DDB23111956007A40BF /* Binding.swift */,
 				77ED80042311221600AC48F9 /* ValueRequest.swift */,
 				77B87F3B23112DB100321C08 /* Binding+Api.swift */,
+				77B87F41231157B200321C08 /* Binding+Factory.swift */,
 			);
 			path = "3.1 API";
 			sourceTree = "<group>";
@@ -1190,6 +1205,7 @@
 				3EC8383BEAC339595CF7F927 /* Resolver+FunctionCallApi.swifttemplate in Resources */,
 				71895EBC0803EEE3BFCD7001 /* Resolver+Injection.swifttemplate in Resources */,
 				F568382FB877060127790413 /* Resolver+LegacyApi.swifttemplate in Resources */,
+				77B87F40231155B300321C08 /* Binding+Factory.swifttemplate in Resources */,
 				B7653A6427A5E284E9A1D6D3 /* ServiceEntry+TypeForwarding.swifttemplate in Resources */,
 				EBC64A1515C868E410C83451 /* SwiftCode.swifttemplate in Resources */,
 			);
@@ -1451,12 +1467,14 @@
 				996CCFE825834C7D3236E742 /* Container+TypeForwarding.swift in Sources */,
 				B2FAD41F7726502822AF913B /* Container.swift in Sources */,
 				8B5927517B567B1DFAB5B935 /* ContextTranslator.swift in Sources */,
+				77B87F492311580600321C08 /* Binding+Api.swift in Sources */,
 				1D17DBC27F25717BF7A87AF3 /* InstanceRequest.swift in Sources */,
 				36D0B5EFA3B4AB4D464C9260 /* InstanceBuilder.swift in Sources */,
 				A91EDAFBC3606EDFBD739899 /* InstanceWrapper.swift in Sources */,
 				98322F9371E1A8461BC614D1 /* Matchable.swift in Sources */,
 				3753FB83A1FB4B83891AA5C8 /* ObjectScope.swift in Sources */,
 				7A956FAB419F74D7EB9CAD0B /* Opaque.swift in Sources */,
+				77B87F44231157E900321C08 /* Binding+Factory.swift in Sources */,
 				5393E5DE21B568A88498E454 /* PropertyWrapper.swift in Sources */,
 				3BD6055555A5C30DABDC8ED2 /* Reference.swift in Sources */,
 				A9112F7CF871475B94A077D7 /* Resolver+FunctionCall.swift in Sources */,
@@ -1490,6 +1508,7 @@
 			files = (
 				44F458F61B21D78A91664160 /* BinderVariation.swift in Sources */,
 				7E3C3E6FD07F3BD76024770A /* InjectionVariation.swift in Sources */,
+				77B87F3E231153D200321C08 /* FactoryVariation.swift in Sources */,
 				70BAF056528B2B33B3A65E9D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1678,12 +1697,14 @@
 				DB74F17CDFF4886B9C38AD14 /* Container.swift in Sources */,
 				DD5E3AF2B5FCE5E81EBDF606 /* ContextTranslator.swift in Sources */,
 				76FB9AFE299316E7F3F4C3BB /* InstanceRequest.swift in Sources */,
+				77B87F482311580600321C08 /* Binding+Api.swift in Sources */,
 				157A967F9BAD0B8DAFAC2A36 /* InstanceBuilder.swift in Sources */,
 				57BFBA2077E70DC1C2FE796C /* InstanceWrapper.swift in Sources */,
 				293985649250DF270DC89135 /* Matchable.swift in Sources */,
 				77ED80072311221600AC48F9 /* ValueRequest.swift in Sources */,
 				B4B66D7251BDDE25D6D7FB3C /* ObjectScope.swift in Sources */,
 				773BE491231124AD000AA1A9 /* Binding.swift in Sources */,
+				77B87F45231157EA00321C08 /* Binding+Factory.swift in Sources */,
 				5365FDFB2DDA6491F3049654 /* Opaque.swift in Sources */,
 				6A967AE5710606998C2BE070 /* PropertyWrapper.swift in Sources */,
 				B293894FEB67831DDA5F000E /* Reference.swift in Sources */,
@@ -1727,12 +1748,14 @@
 				283C77045DA55C2134EC9C48 /* Container+TypeForwarding.swift in Sources */,
 				58ABEE0321A3061048B65EA2 /* Container.swift in Sources */,
 				F06DEB671A4B85ABB0E96E51 /* ContextTranslator.swift in Sources */,
+				77B87F472311580500321C08 /* Binding+Api.swift in Sources */,
 				027015812E961322FE3D942B /* InstanceRequest.swift in Sources */,
 				C6E443EAD892B0B69DA61144 /* InstanceBuilder.swift in Sources */,
 				389C54E04DD794DA4F648571 /* InstanceWrapper.swift in Sources */,
 				87FEAEF562B99522083CB87D /* Matchable.swift in Sources */,
 				6DA49F84E2592B32F81F268B /* ObjectScope.swift in Sources */,
 				6251955691663E4495DE310D /* Opaque.swift in Sources */,
+				77B87F46231157EA00321C08 /* Binding+Factory.swift in Sources */,
 				5F1647DCC0D437A782647372 /* PropertyWrapper.swift in Sources */,
 				2D020C6391A4F6A2118585B8 /* Reference.swift in Sources */,
 				1AC00BCB4DB26B078203DAD8 /* Resolver+FunctionCall.swift in Sources */,
@@ -1778,6 +1801,7 @@
 				D1DF4740A9D86362B63104B8 /* ContextTranslator.swift in Sources */,
 				826D63FA91E370F0061768B0 /* InstanceRequest.swift in Sources */,
 				16393BD60FDDD38B5A977C55 /* InstanceBuilder.swift in Sources */,
+				77B87F43231157E900321C08 /* Binding+Factory.swift in Sources */,
 				98ACB1A09194572A946CA90D /* InstanceWrapper.swift in Sources */,
 				5ED8A7D19F21FA686215F72C /* Matchable.swift in Sources */,
 				B42331BF00B482369B908BB8 /* ObjectScope.swift in Sources */,

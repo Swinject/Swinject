@@ -1,5 +1,5 @@
 <%- include("SwiftCode") %>
-// sourcery:inline:BindingBuilders
+// sourcery:inline:SomeBindingBuilders
 extension ContextedEnvironment {
 <%= BinderVariation.publicCases.filter { $0.isContexted && !$0.isScoped }.map { $0.render(true) }.joined(separator: "\n\n") %>
 }
