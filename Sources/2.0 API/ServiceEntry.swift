@@ -70,12 +70,7 @@ public class ServiceEntry<Service> {
 }
 
 extension ServiceEntry: AnyBinding {
-    public var properties: BindingProperties {
-        return BindingProperties(
-            descriptor: key.descriptor,
-            overrides: false
-        )
-    }
+    public var overrides: Bool { return false }
 
     public func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         if let scope = scope {

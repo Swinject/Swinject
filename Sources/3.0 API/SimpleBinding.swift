@@ -4,7 +4,7 @@
 
 struct SimpleBinding {
     let key: BindingKey
-    let properties: BindingProperties
+    let overrides: Bool
     let builder: AnyInstanceBuilder
 }
 
@@ -35,10 +35,10 @@ extension SimpleBinding.Builder: InstanceBuilder {
 extension SimpleBinding.Builder: BindingBuilder {
     typealias BoundType = Type
 
-    func makeBinding(with properties: BindingProperties) -> AnyBinding {
+    func makeBinding(with properties: TypeBinderProperties) -> AnyBinding {
         return SimpleBinding(
             key: BindingKey(descriptor: properties.descriptor, contextType: Context.self, argumentType: Argument.self),
-            properties: properties,
+            overrides: properties.overrides,
             builder: self
         )
     }

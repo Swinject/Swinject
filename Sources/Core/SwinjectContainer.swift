@@ -41,7 +41,7 @@ extension SwinjectContainer.Builder {
     private struct BindingEntry {
         let binding: AnyBinding
         let key: BindingKey
-        let properties: BindingProperties
+        let overrides: Bool
         let canOverride: Bool
         let canOverrideSilently: Bool
     }
@@ -55,13 +55,13 @@ extension SwinjectContainer.Builder {
     }
 
     private func checkOverrideRules(for entry: BindingEntry, beingAddedTo dict: [BindingKey: AnyBinding]) throws {
-        if !entry.canOverride, entry.properties.overrides {
+        if !entry.canOverride, entry.overrides {
             throw OverrideNotAllowed()
         }
-        if dict[entry.key] == nil, entry.properties.overrides {
+        if dict[entry.key] == nil, entry.overrides {
             throw NothingToOverride()
         }
-        if dict[entry.key] != nil, !entry.properties.overrides, !entry.canOverrideSilently {
+        if dict[entry.key] != nil, !entry.overrides, !entry.canOverrideSilently {
             throw SilentOverrideNotAllowed()
         }
     }
@@ -75,7 +75,7 @@ extension SwinjectContainer.Builder {
             .map { BindingEntry(
                 binding: $0,
                 key: $0.key,
-                properties: $0.properties,
+                overrides: $0.overrides,
                 canOverride: canOverride ?? true,
                 canOverrideSilently: canOverrideSilently
             ) }

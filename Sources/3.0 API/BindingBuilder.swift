@@ -4,14 +4,14 @@
 
 public protocol BindingBuilder {
     associatedtype BoundType
-    func makeBinding(with properties: BindingProperties) -> AnyBinding
+    func makeBinding(with properties: TypeBinderProperties) -> AnyBinding
 }
 
 public struct SomeBindingBuilder<BoundType>: BindingBuilder, AnyOpaque {
     let anyActual: Any
-    fileprivate let _makeBinding: (BindingProperties) -> AnyBinding
+    fileprivate let _makeBinding: (TypeBinderProperties) -> AnyBinding
 
-    public func makeBinding(with properties: BindingProperties) -> AnyBinding {
+    public func makeBinding(with properties: TypeBinderProperties) -> AnyBinding {
         return _makeBinding(properties)
     }
 }

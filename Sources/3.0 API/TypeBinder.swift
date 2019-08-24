@@ -2,17 +2,17 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public struct BindingProperties {
+public struct TypeBinderProperties {
     let descriptor: TypeDescriptor
     let overrides: Bool
 }
 
 public struct TypeBinder<BoundType> {
-    let properties: BindingProperties
+    let properties: TypeBinderProperties
 }
 
 public func bind<Type>(_: Type.Type, tagged tag: String? = nil, overrides: Bool = false) -> TypeBinder<Type> {
-    return TypeBinder(properties: BindingProperties(
+    return TypeBinder(properties: TypeBinderProperties(
         descriptor: tagged(Type.self, with: tag),
         overrides: overrides
     ))
