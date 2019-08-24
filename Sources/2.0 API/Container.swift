@@ -147,7 +147,7 @@ extension Container: SwinjectAware {
         return Swinject(
             tree: SwinjectTree(bindings: [], modules: [], translators: []),
             container: SwinjectContainer(bindings: allBindings, translators: []),
-            context: Graph(),
+            anyContext: Graph(),
             contextType: Graph.self,
             stack: [],
             properties: Swinject.Properties(

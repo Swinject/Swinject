@@ -11,7 +11,8 @@ struct ScopedBinding {
 }
 
 extension ScopedBinding: AnyBinding {
-    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
+    func instance(arg: Any, resolver: Resolver) throws -> Any {
+        let context = try resolver.context(as: key.contextType)
         return try scope
             .registry(for: context)
             .instance(for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg)) {

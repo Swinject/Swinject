@@ -9,7 +9,8 @@ struct SimpleBinding {
 }
 
 extension SimpleBinding: AnyBinding {
-    func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
+    func instance(arg: Any, resolver: Resolver) throws -> Any {
+        let context = try resolver.context(as: key.contextType)
         return try builder.makeInstance(arg: arg, context: context, resolver: resolver)
     }
 }

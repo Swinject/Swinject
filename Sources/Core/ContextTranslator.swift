@@ -9,8 +9,8 @@ protocol AnyContextTranslator: SwinjectEntry {
 }
 
 public struct ContextTranslator<Source, Target>: AnyContextTranslator {
-    let sourceType: Any.Type = Source.self
-    let targetType: Any.Type = Target.self
+    let sourceType: Any.Type = unwrapOptionals(Source.self)
+    let targetType: Any.Type = unwrapOptionals(Target.self)
     let translation: (Source) -> Target
 
     func translate(_ context: Any) throws -> Any {
@@ -24,8 +24,8 @@ struct IdentityTranslator: AnyContextTranslator {
     let targetType: Any.Type
 
     init(for contextType: Any.Type) {
-        sourceType = contextType
-        targetType = contextType
+        sourceType = unwrapOptionals(contextType)
+        targetType = unwrapOptionals(contextType)
     }
 
     func translate(_ context: Any) throws -> Any { return context }
@@ -36,7 +36,7 @@ struct ToAnyTranslator: AnyContextTranslator {
     let targetType: Any.Type = Any.self
 
     init(for contextType: Any.Type) {
-        sourceType = contextType
+        sourceType = unwrapOptionals(contextType)
     }
 
     func translate(_ context: Any) throws -> Any { return context }

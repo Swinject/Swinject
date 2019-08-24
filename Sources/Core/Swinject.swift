@@ -10,7 +10,7 @@ public struct Swinject {
 
     let tree: SwinjectTree
     let container: SwinjectContainer
-    let context: Any
+    let anyContext: Any
     let contextType: Any.Type
     let stack: [AnyInstanceRequest]
     let properties: Properties
@@ -25,15 +25,18 @@ extension Swinject: Resolver {
             if let custom = resolve(request, asCustom: Type.self) { return custom }
             throw error
         }
-        return try tracking(request).makeInstance(
-            from: binding,
-            context: findTranslator(for: binding).translate(context),
-            arg: request.argument
-        )
+        return try tracking(request).makeInstance(from: binding, arg: request.argument)
     }
 
     public func on<Context>(_ context: Context) -> Resolver {
-        return with(context: context, contextType: Context.self)
+        return with(context: context, contextType: unwrapOptionals(Context.self))
+    }
+
+    public func context(as resultType: Any.Type) throws -> Any {
+        return try allTranslators
+            .filter { $0.sourceType == contextType && $0.targetType == resultType }
+            .compactMap { try $0.translate(anyContext) }
+            .first ?? { throw NoContextTranslator() }()
     }
 }
 
@@ -43,12 +46,6 @@ extension Swinject {
         if let request = custom.requiredRequest(for: request), !hasBinding(for: request) { return nil }
         // TODO: We should reset tracking only for "delayed" custom resolutions
         return custom.init(resolver: with(stack: []), request: request) as? Type
-    }
-
-    private func findTranslator(for binding: AnyBinding) throws -> AnyContextTranslator {
-        return try allTranslators
-            .filter { binding.key.matches(contextType: $0.targetType) }
-            .first ?? { throw NoContextTranslator() }()
     }
 
     private func tracking(_ request: AnyInstanceRequest) throws -> Swinject {
@@ -80,10 +77,8 @@ extension Swinject {
         return bindings[0]
     }
 
-    private func makeInstance<Type, Context, Argument>(
-        from binding: AnyBinding, context: Context, arg: Argument
-    ) throws -> Type {
-        return try binding.instance(arg: arg, context: context, resolver: self) as? Type ?? { throw SwinjectError() }()
+    private func makeInstance<Type, Argument>(from binding: AnyBinding, arg: Argument) throws -> Type {
+        return try binding.instance(arg: arg, resolver: self) as? Type ?? { throw SwinjectError() }()
     }
 }
 
@@ -92,7 +87,7 @@ extension Swinject {
         self.init(
             tree: tree,
             container: SwinjectContainer.Builder(tree: tree, properties: properties).makeContainer(),
-            context: (),
+            anyContext: (),
             contextType: Void.self,
             stack: [],
             properties: properties
@@ -107,7 +102,7 @@ extension Swinject {
         return Swinject(
             tree: tree,
             container: container,
-            context: context ?? self.context,
+            anyContext: context ?? anyContext,
             contextType: contextType ?? self.contextType,
             stack: stack ?? self.stack,
             properties: properties
