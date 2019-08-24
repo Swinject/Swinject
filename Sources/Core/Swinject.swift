@@ -78,7 +78,7 @@ extension Swinject {
     }
 
     private func makeInstance<Type, Argument>(from binding: AnyBinding, arg: Argument) throws -> Type {
-        return try binding.instance(arg: arg, resolver: self) as? Type ?? { throw SwinjectError() }()
+        return try binding.makeInstance(resolver: self, arg: arg) as? Type ?? { throw SwinjectError() }()
     }
 }
 

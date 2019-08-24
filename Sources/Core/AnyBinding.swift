@@ -32,9 +32,8 @@ extension BindingKey {
     }
 }
 
-// TODO: Can We make this internal?
 public protocol AnyBinding: SwinjectEntry {
     var key: BindingKey { get }
     var overrides: Bool { get }
-    func instance(arg: Any, resolver: Resolver) throws -> Any
+    func makeInstance(resolver: Resolver, arg: Any) throws -> Any
 }

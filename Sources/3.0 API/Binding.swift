@@ -16,28 +16,27 @@ enum BindingDependencies {
     static let none = BindingDependencies.requests([])
 }
 
-public struct Binding<Instance, AScope, Context, Argument> {
+public struct Binding<Instance, Context> {
     var products: [TypeDescriptor]
     var dependencies: BindingDependencies
-    var factory: (ContextedResolver<Context>, Argument) throws -> Instance
+    var factory: (ContextedResolver<Context>, Any) throws -> Instance
     var properties: BindingProperties
-    var scope: AScope
+    let scope: AnyScope?
+    let argumentType: Any.Type
 }
 
 extension Binding {
     var keys: [BindingKey] {
-        return products.map { BindingKey(descriptor: $0, contextType: Context.self, argumentType: Argument.self) }
+        return products.map { BindingKey(descriptor: $0, contextType: Context.self, argumentType: argumentType) }
     }
 }
 
 extension Binding: AnyBinding {
     public var key: BindingKey { return keys.first! } // FIXME: enable multiple keys in AnyBinding
     public var overrides: Bool { return properties.overrides }
-}
 
-extension Binding {
-    public func instance(arg: Any, resolver: Resolver) throws -> Any {
-        if let scope = scope as? AnyScope {
+    public func makeInstance(resolver: Resolver, arg: Any) throws -> Any {
+        if let scope = scope {
             return try scopedInstance(resolver: resolver, scope: scope, arg: arg)
         } else {
             return try simpleInstance(resolver: resolver, arg: arg)
@@ -53,7 +52,7 @@ extension Binding {
     }
 
     private func simpleInstance(resolver: Resolver, arg: Any) throws -> Any {
-        return try factory(resolver.contexted(), arg as! Argument)
+        return try factory(resolver.contexted(), arg)
     }
 }
 
@@ -66,9 +65,14 @@ extension Binding {
 
     func updatedFactory<NewInstance, NewArgument>(
         factory: @escaping (ContextedResolver<Context>, NewArgument) throws -> NewInstance
-    ) -> Binding<NewInstance, AScope, Context, NewArgument> {
-        return Binding<NewInstance, AScope, Context, NewArgument>(
-            products: products, dependencies: dependencies, factory: factory, properties: properties, scope: scope
+    ) -> Binding<NewInstance, Context> {
+        return Binding<NewInstance, Context>(
+            products: products,
+            dependencies: dependencies,
+            factory: { try factory($0, $1 as! NewArgument) },
+            properties: properties,
+            scope: scope,
+            argumentType: NewArgument.self
         )
     }
 }

@@ -37,16 +37,16 @@ extension FactoryVariation {
         )
     }
 
-    var argReturnType: String {
+    var argInputType: String {
         switch args {
-        case 0: return "NoArgument"
+        case 0: return "Void"
         case 1: return isMatchable ? "MatchableBox1<Arg1>" : "Arg1"
         default: return isMatchable ? "MatchableBox\(args)<\(argTypes)>" : "(\(argTypes))"
         }
     }
 
     var returnType: String {
-        return "Binding<NewInstance, AScope, Context, \(argReturnType)>"
+        return "Binding<NewInstance, Context>"
     }
 
     var hashableArgTypes: String {
@@ -68,7 +68,7 @@ extension FactoryVariation {
     var factoryInputs: String {
         return join(
             hasResolver ? "r" : "_",
-            args > 0 ? "a" : "_"
+            (args > 0 ? "a" : "_") + ": \(argInputType)"
         )
     }
 
@@ -102,7 +102,7 @@ extension FactoryVariation {
     func render() -> String {
         return """
             func factory<\(genericTypes)>(\(params)) -> \(returnType) \(constraints){
-                return updatedFactory { \(factoryInputs) in try factory(\(factoryVars)) }.updated {
+                return updatedFactory { (\(factoryInputs)) in try factory(\(factoryVars)) }.updated {
                     $0.products = [tagged(NewInstance.self, with: tag)]
                     $0.dependencies = .undefined
                 }

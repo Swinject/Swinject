@@ -72,7 +72,7 @@ public class ServiceEntry<Service> {
 extension ServiceEntry: AnyBinding {
     public var overrides: Bool { return false }
 
-    public func instance(arg: Any, resolver: Resolver) throws -> Any {
+    public func makeInstance(resolver: Resolver, arg: Any) throws -> Any {
         let context = try resolver.context(as: key.contextType)
         if let scope = scope {
             return getRegistry(scope: scope, context: context).instance(

@@ -2,29 +2,39 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public typealias AnyContext = Any
-public typealias NoArgument = Void
-public typealias NoScope = Void
-
-public func register<Context>(inContextOf _: Context.Type) -> Binding<Void, NoScope, Context, NoArgument> {
-    return Binding(products: [], dependencies: .none, factory: { _, _ in }, properties: .default, scope: ())
+public func register<Context>(inContextOf _: Context.Type) -> Binding<Void, Context> {
+    return Binding(
+        products: [],
+        dependencies: .none,
+        factory: { _, _ in },
+        properties: .default,
+        scope: nil,
+        argumentType: Void.self
+    )
 }
 
-public func register() -> Binding<Void, NoScope, AnyContext, NoArgument> {
+public func register() -> Binding<Void, Any> {
     return register(inContextOf: Any.self)
 }
 
-public func registerSingle<AScope: Scope>(in scope: AScope) -> Binding<Void, AScope, AScope.Context, NoArgument> {
-    return Binding(products: [], dependencies: .none, factory: { _, _ in }, properties: .default, scope: scope)
+public func registerSingle<AScope: Scope>(in scope: AScope) -> Binding<Void, AScope.Context> {
+    return Binding(
+        products: [],
+        dependencies: .none,
+        factory: { _, _ in },
+        properties: .default,
+        scope: scope,
+        argumentType: Void.self
+    )
 }
 
-public func registerSingle() -> Binding<Void, UnboundScope, AnyContext, NoArgument> {
-    return registerSingle(in: .root)
+public func registerSingle() -> Binding<Void, UnboundScope.Context> {
+    return registerSingle(in: UnboundScope.root)
 }
 
 public extension Binding where Instance == Void {
-    func constant<Value>(_ value: Value, tag: String? = nil) -> Binding<Value, AScope, Context, NoArgument> {
-        return updatedFactory { _, _ in value }.updated {
+    func constant<Value>(_ value: Value, tag: String? = nil) -> Binding<Value, Context> {
+        return updatedFactory { (_, _: Void) in value }.updated {
             $0.products = [tagged(Value.self, with: tag)]
             $0.dependencies = .none
         }
