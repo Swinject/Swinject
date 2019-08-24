@@ -10,7 +10,7 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     it("can bind singleton on a scope without context") {
         let scope = UnboundScope()
         let swinject = Swinject {
-            bbind(Human.self) & scoped(scope).singleton { Human() }
+            registerSingle(in: scope).factory { Human() }
         }
         let first = try? swinject.instance(of: Human.self)
         let second = try? swinject.instance(of: Human.self)
@@ -20,7 +20,7 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let scope = SessionScope()
         let session = Session()
         let swinject = Swinject {
-            bbind(Human.self) & scoped(scope).singleton { Human() }
+            registerSingle(in: scope).factory { Human() }
         }
         let first = try? swinject.on(session).instance(of: Human.self)
         let second = try? swinject.on(session).instance(of: Human.self)
@@ -29,14 +29,14 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     it("throws if injecting scoped singleton without context") {
         let scope = SessionScope()
         let swinject = Swinject {
-            bbind(Human.self) & scoped(scope).singleton { Human() }
+            registerSingle(in: scope).factory { Human() }
         }
         expect { try swinject.instance(of: Human.self) }.to(throwError())
     }
     it("injects different intances on different contexts") {
         let scope = SessionScope()
         let swinject = Swinject {
-            bbind(Human.self) & scoped(scope).singleton { Human() }
+            registerSingle(in: scope).factory { Human() }
         }
         let first = try? swinject.on(Session()).instance(of: Human.self)
         let second = try? swinject.on(Session()).instance(of: Human.self)
@@ -46,7 +46,7 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         it("can close (some) scopes") {
             let scope = UnboundScope()
             let swinject = Swinject {
-                bbind(Human.self) & scoped(scope).singleton { Human() }
+                registerSingle(in: scope).factory { Human() }
             }
 
             let first = try? swinject.instance(of: Human.self)
@@ -58,7 +58,7 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         it("notifies instances when scope is closed") {
             let scope = UnboundScope()
             let swinject = Swinject {
-                bbind(Door.self) & scoped(scope).singleton { Door() }
+                registerSingle(in: scope).factory { Door() }
             }
             let door = try? swinject.instance() as Door
 
@@ -70,7 +70,7 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             let scope = SessionScope()
             var session = Session() as Session?
             let swinject = Swinject {
-                bbind(Door.self) & scoped(scope).singleton { Door() }
+                registerSingle(in: scope).factory { Door() }
             }
             let door = try? swinject.on(session!).instance(of: Door.self)
 
@@ -82,7 +82,7 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             let scope = SessionScope()
             var session = Session() as Session?
             let swinject = Swinject {
-                bbind(Human.self) & scoped(scope).singleton { Human() }
+                registerSingle(in: scope).factory { Human() }
             }
             weak var instance = try? swinject.on(session!).instance(of: Human.self)
 
