@@ -23,9 +23,7 @@ public func registerSingle() -> Binding<Void, UnboundScope, AnyContext, NoArgume
 }
 
 public extension Binding where Instance == Void {
-    func constant<Value>(
-        _ value: Value, as _: Value.Type = Value.self, tag: String? = nil
-    ) -> Binding<Value, AScope, Context, NoArgument> {
+    func constant<Value>(_ value: Value, tag: String? = nil) -> Binding<Value, AScope, Context, NoArgument> {
         return updatedFactory { _, _ in value }.updated {
             $0.products = [tagged(Value.self, with: tag)]
             $0.dependencies = .none

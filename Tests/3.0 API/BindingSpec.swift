@@ -10,7 +10,7 @@ class BindingSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     it("can define a binding for a type") {
         let swinject = Swinject {
             register().constant(42)
-            register().constant(42, as: Double.self)
+            register().constant(42 as Double)
         }
         expect { try swinject.instance() as Int } == 42
         expect { try swinject.instance() as Double } == 42

@@ -18,7 +18,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     it("does not allow bindings for type and it's optional") {
         expect {
             _ = Swinject {
-                register().constant(42, as: Int?.self)
+                register().constant(42 as Int?)
                 register().factory { 25 + 17 }
             }
         }.to(throwAssertion())

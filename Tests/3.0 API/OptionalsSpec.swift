@@ -9,25 +9,25 @@ import Swinject
 class OptionalsSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     it("can use a binding for bound type's optional") {
         let swinject = Swinject {
-            bbind(Int.self) & 42
+            register().constant(42)
         }
         expect { try swinject.instance() as Int? } == 42
     }
     it("can use a binding of the injected type's optional") {
         let swinject = Swinject {
-            bbind(Int?.self) & 42
+            register().constant(42 as Int?)
         }
         expect { try swinject.instance() as Int } == 42
     }
     it("throws if binding of the type's optional produces nil") {
         let swinject = Swinject {
-            bbind(Int?.self) & nil
+            register().constant(nil as Int?)
         }
         expect { try swinject.instance() as Int }.to(throwError())
     }
     it("can use a binding for bound type's double optional") {
         let swinject = Swinject {
-            bbind(Int.self) & 42
+            register().constant(42)
         }
         expect { try swinject.instance() as Int?? } == 42
     }
@@ -37,13 +37,13 @@ class OptionalsSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     }
     it("throws if has an incomplete binding for the optional") {
         let swinject = Swinject {
-            bbind(Int.self) & provider { Int(try $0.instance() as Double) }
+            register().factory { Int(try $0.instance() as Double) }
         }
         expect { try swinject.instance() as Int? }.to(throwError())
     }
     it("injects same singleton instance for type and it's optional") {
         let swinject = Swinject {
-            bbind(Human.self) & singleton { Human() }
+            registerSingle().factory { Human() }
         }
         let direct = try? swinject.instance(of: Human.self)
         let optional = try? swinject.instance(of: Human?.self)
@@ -51,7 +51,7 @@ class OptionalsSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     }
     it("injects instance on the optional of a binding's context") {
         let swinject = Swinject {
-            bbind(Int.self) & contexted(String.self).provider { (_, c: String) in Int(c)! }
+            register(inContextOf: String.self).factory { try Int($0.context())! }
         }
         expect { try swinject.on("42" as String?).instance(of: Int.self) } == 42
     }
