@@ -34,12 +34,20 @@ public extension Binding where Instance == Void {
 }
 
 public extension Binding {
-    func toUse<OtherInstance>(_: (Instance) -> OtherInstance, tag: String? = nil) -> Self {
+    func toUse<OtherInstance>(_: (Instance) -> OtherInstance, tag: String?) -> Self {
         return updated { $0.products = [tagged(OtherInstance.self, with: tag)] }
+    }
+
+    func toUse<OtherInstance>(_ typeCheck: (Instance) -> OtherInstance) -> Self {
+        return toUse(typeCheck, tag: nil)
     }
 
     func alsoUse<OtherInstance>(_: (Instance) -> OtherInstance, tag: String? = nil) -> Self {
         return updated { $0.products.append(tagged(OtherInstance.self, with: tag)) }
+    }
+
+    func alsoUse<OtherInstance>(_ typeCheck: (Instance) -> OtherInstance) -> Self {
+        return alsoUse(typeCheck, tag: nil)
     }
 }
 

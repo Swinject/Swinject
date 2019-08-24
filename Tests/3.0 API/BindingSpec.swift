@@ -36,6 +36,7 @@ class BindingSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         }
         expect(try? swinject.instance(of: Mammal.self) is Human) == true
     }
+    // TODO: type forwarding
     it("can use up to 5 arguments in factory binding") {
         let swinject = Swinject {
             register().factory { (_, a1: Int) in a1 }
