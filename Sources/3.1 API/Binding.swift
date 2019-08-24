@@ -3,8 +3,8 @@
 //
 
 public struct BindingProperties {
-    var overrides: Bool
-    var reference: ReferenceMaker<Any>
+    public var overrides: Bool
+    public var reference: ReferenceMaker<Any>
 
     static let `default` = BindingProperties(overrides: false, reference: strongRef)
 }
