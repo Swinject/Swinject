@@ -28,7 +28,7 @@ class PropertyWrappersSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         }
         it("throws if provided type is bound with different arguments") {
             let swinject = Swinject {
-                bbind(Int.self) & 42
+                register().constant(42)
             }
             expect { try swinject.instance(arg: "arg") as Wrapped<Int> }.to(throwError())
         }

@@ -13,30 +13,30 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() { #if swift(>=5.
             expect(tree.bindings).to(beEmpty())
         }
         it("builds closure with single entry") {
-            let tree = makeTree { bbind(Int.self).with(42) }
+            let tree = makeTree { register().constant(42) }
             expect(tree.bindings.count) == 1
         }
         it("builds closure with multiple entries") {
             let tree = makeTree {
-                bbind(Int.self).with(42)
-                bbind(UInt.self).with(42)
-                bbind(Float.self).with(42)
-                bbind(Double.self).with(42)
-                bbind(Int32.self).with(42)
+                register().constant(42 as Int)
+                register().constant(42 as UInt)
+                register().constant(42 as Float)
+                register().constant(42 as Double)
+                register().constant(42 as Int32)
             }
             expect(tree.bindings.count) == 5
         }
         it("builds closure with if statement") {
             let tree = makeTree {
-                if true { bbind(Int.self).with(42) }
+                if true { register().constant(42) }
             }
             expect(tree.bindings.count) == 1
         }
         it("builds closure with nested if statement") {
             let tree = makeTree {
                 if true {
-                    bbind(Int.self).with(42)
-                    if true { bbind(UInt.self).with(42) }
+                    register().constant(42)
+                    if true { register().constant(42 as UInt) }
                 }
             }
             expect(tree.bindings.count) == 2
@@ -44,8 +44,8 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() { #if swift(>=5.
         it("builds closure with if else statement") {
             let tree = makeTree {
                 if false {} else {
-                    bbind(Int.self).with(42)
-                    bbind(UInt.self).with(42)
+                    register().constant(42)
+                    register().constant(42 as UInt)
                 }
             }
             expect(tree.bindings.count) == 2
@@ -54,9 +54,9 @@ class SwinjectTreeBuilderSpec: QuickSpec { override func spec() { #if swift(>=5.
             let tree = makeTree {
                 include(Swinject.Module("1"))
                 include(Swinject.Module("2"))
-                bbind(Int.self).with(42)
-                bbind(UInt.self).with(42)
-                bbind(Float.self).with(42)
+                register().constant(42)
+                register().constant(42 as UInt)
+                register().constant(42 as Float)
             }
             expect(tree.modules.count) == 2
             expect(tree.bindings.count) == 3

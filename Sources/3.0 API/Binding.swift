@@ -58,14 +58,6 @@ extension Binding {
 }
 
 extension Binding {
-    func opaque() -> Binding<Instance, AScope, Context, Argument> {
-        return Binding(
-            products: products, dependencies: dependencies, factory: factory, properties: properties, scope: scope
-        )
-    }
-}
-
-extension Binding {
     func updated(_ update: (inout Self) -> Void) -> Self {
         var copy = self
         update(&copy)
