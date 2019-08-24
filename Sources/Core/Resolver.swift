@@ -3,7 +3,7 @@
 //
 
 public protocol Resolver {
-    func resolve<Type>(_ request: InjectionRequest) throws -> Type
+    func resolve<Type>(_ request: InstanceRequest<Type>) throws -> Type
     func on<Context>(_ context: Context) -> Resolver
 }
 
@@ -12,7 +12,7 @@ public protocol SwinjectAware: Resolver {
 }
 
 public extension SwinjectAware {
-    func resolve<Type>(_ request: InjectionRequest) throws -> Type {
+    func resolve<Type>(_ request: InstanceRequest<Type>) throws -> Type {
         return try swinject.resolve(request)
     }
 

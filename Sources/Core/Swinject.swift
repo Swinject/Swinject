@@ -12,12 +12,12 @@ public struct Swinject {
     let container: SwinjectContainer
     let context: Any
     let contextType: Any.Type
-    let stack: [InjectionRequest]
+    let stack: [AnyInstanceRequest]
     let properties: Properties
 }
 
 extension Swinject: Resolver {
-    public func resolve<Type>(_ request: InjectionRequest) throws -> Type {
+    public func resolve<Type>(_ request: InstanceRequest<Type>) throws -> Type {
         let binding: Binding
         do {
             binding = try findBinding(for: request)
@@ -38,7 +38,7 @@ extension Swinject: Resolver {
 }
 
 extension Swinject {
-    private func resolve<Type>(_ request: InjectionRequest, asCustom _: Type.Type) -> Type? {
+    private func resolve<Type>(_ request: InstanceRequest<Type>, asCustom _: Type.Type) -> Type? {
         guard let custom = Type.self as? CustomResolvable.Type else { return nil }
         if let request = custom.requiredRequest(for: request), !hasBinding(for: request) { return nil }
         // TODO: We should reset tracking only for "delayed" custom resolutions
@@ -51,13 +51,13 @@ extension Swinject {
             .first ?? { throw NoContextTranslator() }()
     }
 
-    private func tracking(_ request: InjectionRequest) throws -> Swinject {
+    private func tracking(_ request: AnyInstanceRequest) throws -> Swinject {
         guard properties.detectsCircularDependencies else { return self }
-        guard !stack.contains(request) else { throw CircularDependency() }
+        guard !stack.contains(where: { request.matches($0) }) else { throw CircularDependency() }
         return with(stack: stack + [request])
     }
 
-    private func translatableKeys(for request: InjectionRequest) -> [BindingKey] {
+    private func translatableKeys(for request: AnyInstanceRequest) -> [BindingKey] {
         return allTranslators.map { request.key(forContextType: $0.targetType) }
     }
 
@@ -69,11 +69,11 @@ extension Swinject {
         return [IdentityTranslator(for: contextType), ToAnyTranslator(for: contextType)]
     }
 
-    private func hasBinding(for request: InjectionRequest) -> Bool {
+    private func hasBinding(for request: AnyInstanceRequest) -> Bool {
         return (try? findBinding(for: request)) != nil
     }
 
-    private func findBinding(for request: InjectionRequest) throws -> Binding {
+    private func findBinding(for request: AnyInstanceRequest) throws -> Binding {
         let bindings = translatableKeys(for: request).compactMap { container.bindings[$0] }
         if bindings.isEmpty { throw NoBinding() }
         if bindings.count > 1 { throw MultipleBindings() }
@@ -102,7 +102,7 @@ extension Swinject {
     func with(
         context: Any? = nil,
         contextType: Any.Type? = nil,
-        stack: [InjectionRequest]? = nil
+        stack: [AnyInstanceRequest]? = nil
     ) -> Swinject {
         return Swinject(
             tree: tree,

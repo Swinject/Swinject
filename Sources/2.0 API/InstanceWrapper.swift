@@ -70,12 +70,14 @@ public extension Provider {
     var instance: Type {
         return provider()
     }
+}
 
+extension Provider {
     init(initialValue: @autoclosure @escaping () -> Type) {
         provider = initialValue
     }
 
-    init(resolver: Resolver, request: InjectionRequest) {
+    init(resolver: Resolver, request: AnyInstanceRequest) {
         // swiftlint:disable:next force_try
         self.init(initialValue: try! resolver.on(Graph()).resolve(request.replacingType(with: Value.self)))
     }

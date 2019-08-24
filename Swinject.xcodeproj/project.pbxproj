@@ -13,7 +13,7 @@
 		020DA1718FCC68D889FB5A5F /* SwinjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3586A4987B7C7C8122D674E /* SwinjectError.swift */; };
 		02410BD4FB357F4C6B521608 /* AssemblerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C926D1E315E596E450D7D6 /* AssemblerSpec.swift */; };
 		02556F149C9AAEF5CE353AC1 /* ScopeRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3B73B11CA8650972E1175 /* ScopeRegistry.swift */; };
-		027015812E961322FE3D942B /* InjectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4D977AC4289A6145383C9 /* InjectionRequest.swift */; };
+		027015812E961322FE3D942B /* InstanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4D977AC4289A6145383C9 /* InstanceRequest.swift */; };
 		03122D1B2EA65C89ADC78EC7 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62682D6ED38742996624B041 /* BasicAssembly.swift */; };
 		0509EE8D41BF354EB91ACC80 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B4B777290FF5D38A8914CC /* Reference.swift */; };
 		0622539110A7430776A307C7 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42490D1D0C395951243F5CFF /* Container.swift */; };
@@ -44,7 +44,7 @@
 		1C62135FAE3D64DC7BFBF861 /* ContextSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */; };
 		1C82BFD00FCC384DB3AE6A89 /* MatchableBoxes.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 808C1063CA90CC593C7E0E9C /* MatchableBoxes.swifttemplate */; };
 		1CA5DF3F93203B226A6FA059 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA566CD336DB8343ADFAF9B /* BehaviorFakes.swift */; };
-		1D17DBC27F25717BF7A87AF3 /* InjectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4D977AC4289A6145383C9 /* InjectionRequest.swift */; };
+		1D17DBC27F25717BF7A87AF3 /* InstanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4D977AC4289A6145383C9 /* InstanceRequest.swift */; };
 		1ED6BD68D92F4FE60978EF22 /* Container+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA78290D6D60BD0B808571F /* Container+Logging.swift */; };
 		21285CED416F1317E993397A /* Container+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A3946B59EB4D787CCE9F2 /* Container+Registration.swift */; };
 		233F3E25FF0B51A3E6611F58 /* SwinjectTreeBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABCE76AA0EF1BD720F65E0 /* SwinjectTreeBuilderSpec.swift */; };
@@ -159,7 +159,7 @@
 		74E1FC692A27C56510363364 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F290F6B1207A0557A528220B /* Assembly.swift */; };
 		751F545653B0F1E30341C312 /* OverrideSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C18DDD83715886DF7F1818 /* OverrideSpec.swift */; };
 		75D74C8C25EDACF5A7A75A5C /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620155728133F451B31C0AD /* Swinject.swift */; };
-		76FB9AFE299316E7F3F4C3BB /* InjectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4D977AC4289A6145383C9 /* InjectionRequest.swift */; };
+		76FB9AFE299316E7F3F4C3BB /* InstanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4D977AC4289A6145383C9 /* InstanceRequest.swift */; };
 		773C6DDC23111956007A40BF /* BindingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* BindingBuilder.swift */; };
 		773C6DDD23111956007A40BF /* BindingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* BindingBuilder.swift */; };
 		773C6DDE23111956007A40BF /* BindingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C6DDB23111956007A40BF /* BindingBuilder.swift */; };
@@ -176,7 +176,7 @@
 		818DF17D671EA1022CE59A2A /* InjectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670DB253ECD5CE1468A7F2E3 /* InjectionSpec.swift */; };
 		820307073A53AED47AC99B8D /* SwinjectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3586A4987B7C7C8122D674E /* SwinjectError.swift */; };
 		82299769BC637A14E7827DB0 /* SwinjectModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E726A651C3AFE92C19608B /* SwinjectModule.swift */; };
-		826D63FA91E370F0061768B0 /* InjectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4D977AC4289A6145383C9 /* InjectionRequest.swift */; };
+		826D63FA91E370F0061768B0 /* InstanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F4D977AC4289A6145383C9 /* InstanceRequest.swift */; };
 		829853126CDB7464599AFC85 /* ContainerSpec.Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFFEE7870660D8AB209459D /* ContainerSpec.Behavior.swift */; };
 		832C9ABB8DCF5340D796F5F8 /* ContextSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2E1DF87A61DDC9110D91B2 /* ContextSpec.swift */; };
 		83464EDC08380F5CE2190F30 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AEDF723BDD949B59E6D1C5 /* ContainerSpec.Arguments.swift */; };
@@ -513,7 +513,7 @@
 		5057BAB33984E3E33469452B /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
 		50D6F2639990DD5BAD9578B0 /* OptionalsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalsSpec.swift; sourceTree = "<group>"; };
 		57A7E35B2B22650208F904B8 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
-		57F4D977AC4289A6145383C9 /* InjectionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionRequest.swift; sourceTree = "<group>"; };
+		57F4D977AC4289A6145383C9 /* InstanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRequest.swift; sourceTree = "<group>"; };
 		583B00ADF411CA422E1BE6FA /* Resolver+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Injection.swift"; sourceTree = "<group>"; };
 		59111BE319C59E4CD6CF68CD /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		5AB605ED0F735221D0EB1D5F /* Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
@@ -876,7 +876,7 @@
 			children = (
 				0E0B580B43E1891812C97209 /* Binding.swift */,
 				7C83EC4390A34D207245D9C9 /* ContextTranslator.swift */,
-				57F4D977AC4289A6145383C9 /* InjectionRequest.swift */,
+				57F4D977AC4289A6145383C9 /* InstanceRequest.swift */,
 				5E2DC5DE630207F56B6CD9EF /* Matchable.swift */,
 				424C647FF08FCB7C2A54E085 /* PropertyWrapper.swift */,
 				73B4B777290FF5D38A8914CC /* Reference.swift */,
@@ -1440,7 +1440,7 @@
 				996CCFE825834C7D3236E742 /* Container+TypeForwarding.swift in Sources */,
 				B2FAD41F7726502822AF913B /* Container.swift in Sources */,
 				8B5927517B567B1DFAB5B935 /* ContextTranslator.swift in Sources */,
-				1D17DBC27F25717BF7A87AF3 /* InjectionRequest.swift in Sources */,
+				1D17DBC27F25717BF7A87AF3 /* InstanceRequest.swift in Sources */,
 				36D0B5EFA3B4AB4D464C9260 /* InstanceBuilder.swift in Sources */,
 				A91EDAFBC3606EDFBD739899 /* InstanceWrapper.swift in Sources */,
 				98322F9371E1A8461BC614D1 /* Matchable.swift in Sources */,
@@ -1666,7 +1666,7 @@
 				BD9B57E26722C80B7EF990DB /* Container+TypeForwarding.swift in Sources */,
 				DB74F17CDFF4886B9C38AD14 /* Container.swift in Sources */,
 				DD5E3AF2B5FCE5E81EBDF606 /* ContextTranslator.swift in Sources */,
-				76FB9AFE299316E7F3F4C3BB /* InjectionRequest.swift in Sources */,
+				76FB9AFE299316E7F3F4C3BB /* InstanceRequest.swift in Sources */,
 				157A967F9BAD0B8DAFAC2A36 /* InstanceBuilder.swift in Sources */,
 				57BFBA2077E70DC1C2FE796C /* InstanceWrapper.swift in Sources */,
 				293985649250DF270DC89135 /* Matchable.swift in Sources */,
@@ -1713,7 +1713,7 @@
 				283C77045DA55C2134EC9C48 /* Container+TypeForwarding.swift in Sources */,
 				58ABEE0321A3061048B65EA2 /* Container.swift in Sources */,
 				F06DEB671A4B85ABB0E96E51 /* ContextTranslator.swift in Sources */,
-				027015812E961322FE3D942B /* InjectionRequest.swift in Sources */,
+				027015812E961322FE3D942B /* InstanceRequest.swift in Sources */,
 				C6E443EAD892B0B69DA61144 /* InstanceBuilder.swift in Sources */,
 				389C54E04DD794DA4F648571 /* InstanceWrapper.swift in Sources */,
 				87FEAEF562B99522083CB87D /* Matchable.swift in Sources */,
@@ -1761,7 +1761,7 @@
 				3A0B409E840B44B281DB3C54 /* Container+TypeForwarding.swift in Sources */,
 				0622539110A7430776A307C7 /* Container.swift in Sources */,
 				D1DF4740A9D86362B63104B8 /* ContextTranslator.swift in Sources */,
-				826D63FA91E370F0061768B0 /* InjectionRequest.swift in Sources */,
+				826D63FA91E370F0061768B0 /* InstanceRequest.swift in Sources */,
 				16393BD60FDDD38B5A977C55 /* InstanceBuilder.swift in Sources */,
 				98ACB1A09194572A946CA90D /* InstanceWrapper.swift in Sources */,
 				5ED8A7D19F21FA686215F72C /* Matchable.swift in Sources */,

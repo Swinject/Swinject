@@ -3,8 +3,8 @@
 //
 
 protocol CustomResolvable {
-    init(resolver: Resolver, request: InjectionRequest)
-    static func requiredRequest(for request: InjectionRequest) -> InjectionRequest?
+    init(resolver: Resolver, request: AnyInstanceRequest)
+    static func requiredRequest(for request: AnyInstanceRequest) -> AnyInstanceRequest?
 }
 
 protocol PropertyWrapper: CustomResolvable {
@@ -13,12 +13,12 @@ protocol PropertyWrapper: CustomResolvable {
 }
 
 extension PropertyWrapper {
-    init(resolver: Resolver, request: InjectionRequest) {
+    init(resolver: Resolver, request: AnyInstanceRequest) {
         // swiftlint:disable:next force_try
         self.init(initialValue: try! resolver.resolve(request.replacingType(with: Value.self)))
     }
 
-    static func requiredRequest(for request: InjectionRequest) -> InjectionRequest? {
+    static func requiredRequest(for request: AnyInstanceRequest) -> AnyInstanceRequest? {
         if let wrapper = Value.self as? CustomResolvable.Type {
             return wrapper.requiredRequest(for: request)
         } else {
@@ -27,9 +27,9 @@ extension PropertyWrapper {
     }
 }
 
-extension InjectionRequest {
-    func replacingType<Type>(with _: Type.Type) -> InjectionRequest {
-        return InjectionRequest(
+extension AnyInstanceRequest {
+    func replacingType<Type>(with _: Type.Type) -> InstanceRequest<Type> {
+        return InstanceRequest(
             descriptor: TypeDescriptor(
                 tag: descriptor.tag,
                 type: Type.self
@@ -41,11 +41,11 @@ extension InjectionRequest {
 }
 
 extension Optional: CustomResolvable {
-    init(resolver: Resolver, request: InjectionRequest) {
+    init(resolver: Resolver, request: AnyInstanceRequest) {
         self = try? resolver.resolve(request.replacingType(with: Wrapped.self)) as Wrapped
     }
 
-    static func requiredRequest(for _: InjectionRequest) -> InjectionRequest? {
+    static func requiredRequest(for _: AnyInstanceRequest) -> AnyInstanceRequest? {
         return nil
     }
 }
