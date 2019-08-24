@@ -9,13 +9,13 @@ protocol CustomResolvable {
 
 protocol PropertyWrapper: CustomResolvable {
     associatedtype Value
-    init(initialValue: @autoclosure @escaping () -> Value)
+    init(wrappedValue: @autoclosure @escaping () -> Value)
 }
 
 extension PropertyWrapper {
     init(resolver: Resolver, request: AnyInstanceRequest) {
         // swiftlint:disable:next force_try
-        self.init(initialValue: try! resolver.resolve(request.replacingType(with: Value.self)))
+        self.init(wrappedValue: try! resolver.resolve(request.replacingType(with: Value.self)))
     }
 
     static func requiredRequest(for request: AnyInstanceRequest) -> AnyInstanceRequest? {
