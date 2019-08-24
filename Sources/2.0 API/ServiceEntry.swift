@@ -69,7 +69,7 @@ public class ServiceEntry<Service> {
     }
 }
 
-extension ServiceEntry: Binding {
+extension ServiceEntry: AnyBinding {
     public var properties: BindingProperties {
         return BindingProperties(
             descriptor: key.descriptor,

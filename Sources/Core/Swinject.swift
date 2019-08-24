@@ -18,7 +18,7 @@ public struct Swinject {
 
 extension Swinject: Resolver {
     public func resolve<Type>(_ request: InstanceRequest<Type>) throws -> Type {
-        let binding: Binding
+        let binding: AnyBinding
         do {
             binding = try findBinding(for: request)
         } catch let error as NoBinding {
@@ -45,7 +45,7 @@ extension Swinject {
         return custom.init(resolver: with(stack: []), request: request) as? Type
     }
 
-    private func findTranslator(for binding: Binding) throws -> AnyContextTranslator {
+    private func findTranslator(for binding: AnyBinding) throws -> AnyContextTranslator {
         return try allTranslators
             .filter { binding.key.matches(contextType: $0.targetType) }
             .first ?? { throw NoContextTranslator() }()
@@ -73,7 +73,7 @@ extension Swinject {
         return (try? findBinding(for: request)) != nil
     }
 
-    private func findBinding(for request: AnyInstanceRequest) throws -> Binding {
+    private func findBinding(for request: AnyInstanceRequest) throws -> AnyBinding {
         let bindings = translatableKeys(for: request).compactMap { container.bindings[$0] }
         if bindings.isEmpty { throw NoBinding() }
         if bindings.count > 1 { throw MultipleBindings() }
@@ -81,7 +81,7 @@ extension Swinject {
     }
 
     private func makeInstance<Type, Context, Argument>(
-        from binding: Binding, context: Context, arg: Argument
+        from binding: AnyBinding, context: Context, arg: Argument
     ) throws -> Type {
         return try binding.instance(arg: arg, context: context, resolver: self) as? Type ?? { throw SwinjectError() }()
     }

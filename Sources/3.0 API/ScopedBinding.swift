@@ -10,7 +10,7 @@ struct ScopedBinding {
     let makeRef: ReferenceMaker<Any>
 }
 
-extension ScopedBinding: Binding {
+extension ScopedBinding: AnyBinding {
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         return try scope
             .registry(for: context)
@@ -51,10 +51,10 @@ extension ScopedBinding.Builder: InstanceBuilder {
     }
 }
 
-extension ScopedBinding.Builder: PartialBindingBuilder {
+extension ScopedBinding.Builder: BindingBuilder {
     typealias BoundType = Type
 
-    func makeBinding(with properties: BindingProperties) -> Binding {
+    func makeBinding(with properties: BindingProperties) -> AnyBinding {
         return ScopedBinding(
             key: BindingKey(descriptor: properties.descriptor, contextType: Context.self, argumentType: Argument.self),
             properties: properties,

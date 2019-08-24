@@ -24,9 +24,9 @@ public final class Container {
     let parent: Container?
     let defaultScope: AnyScope?
     let defaultMakeRef: ReferenceMaker<Any>
-    var bindings = [BindingKey: Binding]()
+    var bindings = [BindingKey: AnyBinding]()
     var behaviors = [Behavior]()
-    var allBindings: [BindingKey: Binding] {
+    var allBindings: [BindingKey: AnyBinding] {
         return bindings.merging(parent?.allBindings ?? [:]) { mine, _ in mine }
     }
 

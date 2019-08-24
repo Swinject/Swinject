@@ -8,7 +8,7 @@ struct SimpleBinding {
     let builder: AnyInstanceBuilder
 }
 
-extension SimpleBinding: Binding {
+extension SimpleBinding: AnyBinding {
     func instance(arg: Any, context: Any, resolver: Resolver) throws -> Any {
         return try builder.makeInstance(arg: arg, context: context, resolver: resolver)
     }
@@ -32,10 +32,10 @@ extension SimpleBinding.Builder: InstanceBuilder {
     }
 }
 
-extension SimpleBinding.Builder: PartialBindingBuilder {
+extension SimpleBinding.Builder: BindingBuilder {
     typealias BoundType = Type
 
-    func makeBinding(with properties: BindingProperties) -> Binding {
+    func makeBinding(with properties: BindingProperties) -> AnyBinding {
         return SimpleBinding(
             key: BindingKey(descriptor: properties.descriptor, contextType: Context.self, argumentType: Argument.self),
             properties: properties,

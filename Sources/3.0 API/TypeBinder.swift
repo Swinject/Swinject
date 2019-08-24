@@ -21,21 +21,21 @@ public func bind<Type>(_: Type.Type, tagged tag: String? = nil, overrides: Bool 
 public extension TypeBinder {
     func with<Builder>(
         _ builder: Builder
-    ) -> AnyBindingBuilder where Builder: PartialBindingBuilder, Builder.BoundType == BoundType {
-        return FinalBindingBuilder { builder.makeBinding(with: self.properties) }
+    ) -> AnyBinding where Builder: BindingBuilder, Builder.BoundType == BoundType {
+        return builder.makeBinding(with: properties)
     }
 
-    func with(_ value: BoundType) -> AnyBindingBuilder {
-        return FinalBindingBuilder { instance(value).makeBinding(with: self.properties) }
+    func with(_ value: BoundType) -> AnyBinding {
+        return instance(value).makeBinding(with: properties)
     }
 }
 
 public func & <BoundType, Builder>(
     lhs: TypeBinder<BoundType>, rhs: Builder
-) -> AnyBindingBuilder where Builder: PartialBindingBuilder, Builder.BoundType == BoundType {
+) -> AnyBinding where Builder: BindingBuilder, Builder.BoundType == BoundType {
     return lhs.with(rhs)
 }
 
-public func & <BoundType>(lhs: TypeBinder<BoundType>, rhs: BoundType) -> AnyBindingBuilder {
+public func & <BoundType>(lhs: TypeBinder<BoundType>, rhs: BoundType) -> AnyBinding {
     return lhs.with(rhs)
 }
