@@ -29,6 +29,12 @@ class InjectionSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             expect { try instance().from(swinject) as Int }.to(throwError())
             expect { try instance(arg: 42.0).from(swinject) as Int }.to(throwError())
         }
+        it("rethrows error from the type's factory") {
+            let swinject = Swinject {
+                register().factory(for: Int.self) { throw TestError() }
+            }
+            expect { try instance(of: Int.self).from(swinject) }.to(throwError(errorType: TestError.self))
+        }
     }
     // TODO: Refactor
     describe("function call") {
