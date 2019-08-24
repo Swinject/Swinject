@@ -42,25 +42,25 @@ public extension Binding where Instance == Void {
 }
 
 public extension Binding {
-    func toUse<OtherInstance>(_: (Instance) -> OtherInstance, tag: String?) -> Self {
+    func toUse<OtherInstance>(_: (Instance) -> OtherInstance, tag: String?) -> Binding<Instance, Context> {
         return updated { $0.products = [tagged(OtherInstance.self, with: tag)] }
     }
 
-    func toUse<OtherInstance>(_ typeCheck: (Instance) -> OtherInstance) -> Self {
+    func toUse<OtherInstance>(_ typeCheck: (Instance) -> OtherInstance) -> Binding<Instance, Context> {
         return toUse(typeCheck, tag: nil)
     }
 
-    func alsoUse<OtherInstance>(_: (Instance) -> OtherInstance, tag: String? = nil) -> Self {
+    func alsoUse<OtherInstance>(_: (Instance) -> OtherInstance, tag: String? = nil) -> Binding<Instance, Context> {
         return updated { $0.products.append(tagged(OtherInstance.self, with: tag)) }
     }
 
-    func alsoUse<OtherInstance>(_ typeCheck: (Instance) -> OtherInstance) -> Self {
+    func alsoUse<OtherInstance>(_ typeCheck: (Instance) -> OtherInstance) -> Binding<Instance, Context> {
         return alsoUse(typeCheck, tag: nil)
     }
 }
 
 public extension Binding {
-    func withProperties(_ update: (inout BindingProperties) -> Void) -> Self {
+    func withProperties(_ update: (inout BindingProperties) -> Void) -> Binding<Instance, Context> {
         return updated { update(&$0.properties) }
     }
 }

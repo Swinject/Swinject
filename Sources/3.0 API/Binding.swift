@@ -54,7 +54,7 @@ extension Binding: AnyBinding {
 }
 
 extension Binding {
-    func updated(_ update: (inout Self) -> Void) -> Self {
+    func updated(_ update: (inout Binding<Instance, Context>) -> Void) -> Binding<Instance, Context> {
         var copy = self
         update(&copy)
         return copy
