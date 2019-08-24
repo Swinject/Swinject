@@ -15,16 +15,16 @@ class SingletonSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let swinject = Swinject {
             register().factory { Human() }
         }
-        let first = try? swinject.instance(of: Human.self)
-        let second = try? swinject.instance(of: Human.self)
+        let first = try? instance(of: Human.self).from(swinject)
+        let second = try? instance(of: Human.self).from(swinject)
         expect(first) !== second
     }
     it("injects the same instance from a singleton binding") {
         let swinject = Swinject {
             registerSingle().factory { Human() }
         }
-        let first = try? swinject.instance(of: Human.self)
-        let second = try? swinject.instance(of: Human.self)
+        let first = try? instance(of: Human.self).from(swinject)
+        let second = try? instance(of: Human.self).from(swinject)
         expect(first) === second
     }
     it("injects the same instance for types bound to the same implementation") {
@@ -33,8 +33,8 @@ class SingletonSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 .factory { Human() }
                 .alsoUse { $0 as Mammal }
         }
-        let human = try? swinject.instance() as Human
-        let mammal = try? swinject.instance() as Mammal
+        let human = try? instance().from(swinject) as Human
+        let mammal = try? instance().from(swinject) as Mammal
         expect(human) === mammal
     }
     it("does not reuse singleton instances for different tags") {
@@ -42,26 +42,26 @@ class SingletonSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             registerSingle().factory(tag: "john") { Human() }
             registerSingle().factory(tag: "rick") { Human() }
         }
-        let john = try? swinject.instance(of: Human.self, tagged: "john")
-        let rick = try? swinject.instance(of: Human.self, tagged: "rick")
+        let john = try? instance(of: Human.self, tagged: "john").from(swinject)
+        let rick = try? instance(of: Human.self, tagged: "rick").from(swinject)
         expect(john) !== rick
     }
     it("injects the same instance from multiton binding when using the same argument") {
         let swinject = Swinject {
             register().factory { Human() }
-            registerSingle().factory { Pet(name: $1, owner: try $0.instance()) }
+            registerSingle().factory { Pet(name: $1, owner: try instance().from($0)) }
         }
-        let first = try? swinject.instance(of: Pet.self, arg: "mimi")
-        let second = try? swinject.instance(of: Pet.self, arg: "mimi")
+        let first = try? instance(of: Pet.self, arg: "mimi").from(swinject)
+        let second = try? instance(of: Pet.self, arg: "mimi").from(swinject)
         expect(first) === second
     }
     it("injects a different instance from multiton binding when using a different argument") {
         let swinject = Swinject {
             register().factory { Human() }
-            registerSingle().factory { Pet(name: $1, owner: try $0.instance()) }
+            registerSingle().factory { Pet(name: $1, owner: try instance().from($0)) }
         }
-        let mimi = try? swinject.instance(of: Pet.self, arg: "mimi")
-        let riff = try? swinject.instance(of: Pet.self, arg: "riff")
+        let mimi = try? instance(of: Pet.self, arg: "mimi").from(swinject)
+        let riff = try? instance(of: Pet.self, arg: "riff").from(swinject)
         expect(mimi) !== riff
     }
     describe("weak reference") {
@@ -71,7 +71,7 @@ class SingletonSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                     .factory { Human() }
                     .withProperties { $0.reference = weakRef }
             }
-            weak var first = try? swinject.instance() as Human
+            weak var first = try? instance().from(swinject) as Human
             expect(first).to(beNil())
         }
         it("injects the same instance while it is used") {
@@ -80,8 +80,8 @@ class SingletonSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                     .factory { Human() }
                     .withProperties { $0.reference = weakRef }
             }
-            let first = try? swinject.instance(of: Human.self)
-            let second = try? swinject.instance(of: Human.self)
+            let first = try? instance(of: Human.self).from(swinject)
+            let second = try? instance(of: Human.self).from(swinject)
             expect(first) === second
         }
     }

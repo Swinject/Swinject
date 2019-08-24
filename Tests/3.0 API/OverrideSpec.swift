@@ -39,7 +39,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             register().constant(0)
             register().constant(42).withProperties { $0.overrides = true }
         }
-        expect { try swinject.instance(of: Int.self) } == 42
+        expect { try instance(of: Int.self).from(swinject) } == 42
     }
     it("uses the last overriding binding for the injection") {
         let swinject = Swinject {
@@ -47,7 +47,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             register().constant(2).withProperties { $0.overrides = true }
             register().constant(3).withProperties { $0.overrides = true }
         }
-        expect { try swinject.instance(of: Int.self) } == 3
+        expect { try instance(of: Int.self).from(swinject) } == 3
     }
     it("must declare overriding binding after the overriden one") {
         expect {
@@ -89,7 +89,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             include(firstModule)
             include(secondModule, allowToOverride: true)
         }
-        expect { try swinject.instance(of: Int.self) } == 42
+        expect { try instance(of: Int.self).from(swinject) } == 42
     }
     it("allows overriding bindings in the entire included module tree") {
         let firstModule = Swinject.Module("first") {
@@ -105,7 +105,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             include(firstModule)
             include(thirdModule, allowToOverride: true)
         }
-        expect { try swinject.instance(of: Int.self) } == 42
+        expect { try instance(of: Int.self).from(swinject) } == 42
     }
     it("can allow silent overrides in a module") {
         let firstModule = Swinject.Module("first") {
@@ -118,7 +118,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             include(firstModule)
             include(secondModule)
         }
-        expect { try swinject.instance(of: Int.self) } == 42
+        expect { try instance(of: Int.self).from(swinject) } == 42
     }
     it("does not apply silent override transitively") {
         let firstModule = Swinject.Module("first") {
@@ -142,7 +142,7 @@ class OverrideSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             register().constant(0)
             register().constant(42)
         }
-        expect { try swinject.instance(of: Int.self) } == 42
+        expect { try instance(of: Int.self).from(swinject) } == 42
     }
     #endif
 } }

@@ -140,10 +140,10 @@ extension Container: CustomStringConvertible {
     }
 }
 
-// MARK: Swinject Aware
+// MARK: Resolver
 
-extension Container: SwinjectAware {
-    public var swinject: Resolver {
+extension Container: Resolver {
+    private var swinject: Resolver {
         return Swinject(
             tree: SwinjectTree(bindings: [], modules: [], translators: []),
             container: SwinjectContainer(bindings: allBindings, translators: []),
@@ -155,5 +155,17 @@ extension Container: SwinjectAware {
                 detectsCircularDependencies: false
             )
         )
+    }
+
+    public func resolve<Type>(_ request: InstanceRequest<Type>) throws -> Type {
+        return try swinject.resolve(request)
+    }
+
+    public func on<Context>(_ context: Context) -> Resolver {
+        return swinject.on(context)
+    }
+
+    public func context(as contextType: Any.Type) throws -> Any {
+        return try swinject.context(as: contextType)
     }
 }

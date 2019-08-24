@@ -8,22 +8,8 @@ public protocol Resolver {
     func context(as contextType: Any.Type) throws -> Any // TODO: Ideally this should be internal
 }
 
-public protocol SwinjectAware: Resolver {
+public protocol SwinjectAware {
     var swinject: Resolver { get }
-}
-
-public extension SwinjectAware {
-    func resolve<Type>(_ request: InstanceRequest<Type>) throws -> Type {
-        return try swinject.resolve(request)
-    }
-
-    func on<Context>(_ context: Context) -> Resolver {
-        return swinject.on(context)
-    }
-
-    func context(as contextType: Any.Type) throws -> Any {
-        return try swinject.context(as: contextType)
-    }
 }
 
 public struct ContextedResolver<Context>: Resolver {

@@ -18,8 +18,8 @@ class ModulesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             include(intModule)
             include(doubleModule)
         }
-        expect { try swinject.instance() as Int } == 42
-        expect { try swinject.instance() as Double } == 42.0
+        expect { try instance().from(swinject) as Int } == 42
+        expect { try instance().from(swinject) as Double } == 42.0
     }
     it("can handle module hierarchies") {
         let intModule = Swinject.Module("Int") {
@@ -32,8 +32,8 @@ class ModulesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let swinject = Swinject {
             include(numbersModule)
         }
-        expect { try swinject.instance() as Int } == 42
-        expect { try swinject.instance() as Double } == 42.0
+        expect { try instance().from(swinject) as Int } == 42
+        expect { try instance().from(swinject) as Double } == 42.0
     }
     it("does not allow modules with the same name") {
         let firstModule = Swinject.Module("name")

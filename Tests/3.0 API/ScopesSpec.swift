@@ -12,8 +12,8 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let swinject = Swinject {
             registerSingle(in: scope).factory { Human() }
         }
-        let first = try? swinject.instance(of: Human.self)
-        let second = try? swinject.instance(of: Human.self)
+        let first = try? instance(of: Human.self).from(swinject)
+        let second = try? instance(of: Human.self).from(swinject)
         expect(first) === second
     }
     it("can bind singleton on a scope with context") {
@@ -22,8 +22,8 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let swinject = Swinject {
             registerSingle(in: scope).factory { Human() }
         }
-        let first = try? swinject.on(session).instance(of: Human.self)
-        let second = try? swinject.on(session).instance(of: Human.self)
+        let first = try? instance(of: Human.self).from(swinject.on(session))
+        let second = try? instance(of: Human.self).from(swinject.on(session))
         expect(first) === second
     }
     it("throws if injecting scoped singleton without context") {
@@ -31,15 +31,15 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let swinject = Swinject {
             registerSingle(in: scope).factory { Human() }
         }
-        expect { try swinject.instance(of: Human.self) }.to(throwError())
+        expect { try instance(of: Human.self).from(swinject) }.to(throwError())
     }
     it("injects different intances on different contexts") {
         let scope = SessionScope()
         let swinject = Swinject {
             registerSingle(in: scope).factory { Human() }
         }
-        let first = try? swinject.on(Session()).instance(of: Human.self)
-        let second = try? swinject.on(Session()).instance(of: Human.self)
+        let first = try? instance(of: Human.self).from(swinject.on(Session()))
+        let second = try? instance(of: Human.self).from(swinject.on(Session()))
         expect(first) !== second
     }
     describe("closable") {
@@ -49,9 +49,9 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 registerSingle(in: scope).factory { Human() }
             }
 
-            let first = try? swinject.instance(of: Human.self)
+            let first = try? instance(of: Human.self).from(swinject)
             scope.close()
-            let second = try? swinject.instance(of: Human.self)
+            let second = try? instance(of: Human.self).from(swinject)
 
             expect(first) !== second
         }
@@ -60,7 +60,7 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             let swinject = Swinject {
                 registerSingle(in: scope).factory { Door() }
             }
-            let door = try? swinject.instance() as Door
+            let door = try? instance().from(swinject) as Door
 
             scope.close()
 
@@ -72,7 +72,7 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             let swinject = Swinject {
                 registerSingle(in: scope).factory { Door() }
             }
-            let door = try? swinject.on(session!).instance(of: Door.self)
+            let door = try? instance(of: Door.self).from(swinject.on(session!))
 
             session = nil
 
@@ -84,11 +84,11 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             let swinject = Swinject {
                 registerSingle(in: scope).factory { Human() }
             }
-            weak var instance = try? swinject.on(session!).instance(of: Human.self)
+            weak var weakInstance = try? instance(of: Human.self).from(swinject.on(session!))
 
             session = nil
 
-            expect(instance).to(beNil())
+            expect(weakInstance).to(beNil())
         }
     }
     #endif
