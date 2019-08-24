@@ -9,10 +9,10 @@ import Swinject
 class ModulesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     it("can separate bindings into modules") {
         let intModule = Swinject.Module("Int") {
-            bbind(Int.self) & 42
+            register().constant(42)
         }
         let doubleModule = Swinject.Module("Double") {
-            bbind(Double.self) & provider { 25 + 17 }
+            register().factory { 25 + 17 as Double }
         }
         let swinject = Swinject {
             include(intModule)
@@ -23,11 +23,11 @@ class ModulesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     }
     it("can handle module hierarchies") {
         let intModule = Swinject.Module("Int") {
-            bbind(Int.self) & 42
+            register().constant(42)
         }
         let numbersModule = Swinject.Module("Double") {
             include(intModule)
-            bbind(Double.self) & provider { 25 + 17 }
+            register().factory { 25 + 17 as Double }
         }
         let swinject = Swinject {
             include(numbersModule)
