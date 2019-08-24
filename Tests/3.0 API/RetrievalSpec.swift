@@ -14,8 +14,8 @@ class RetrievalSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             lazy var int: Int = try! instance()
         }
         let swinject = Swinject {
-            bbind(IntHolder.self) & provider { IntHolder(swinject: $0) }
-            bbind(Int.self) & 42
+            register().factory { IntHolder(swinject: $0) }
+            register().constant(42)
         }
         var holder = try? swinject.instance() as IntHolder
         expect(holder?.int) == 42
