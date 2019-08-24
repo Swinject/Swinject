@@ -72,13 +72,15 @@ extension SwinjectContainer.Builder {
         canOverrideSilently: Bool
     ) -> [BindingEntry] {
         return tree.bindings
-            .map { BindingEntry(
-                binding: $0,
-                key: $0.key,
-                overrides: $0.overrides,
-                canOverride: canOverride ?? true,
-                canOverrideSilently: canOverrideSilently
-            ) }
+            .flatMap { binding in binding.keys.map { key in
+                BindingEntry(
+                    binding: binding,
+                    key: key,
+                    overrides: binding.overrides,
+                    canOverride: canOverride ?? true,
+                    canOverrideSilently: canOverrideSilently
+                )
+            } }
             + tree.modules.flatMap { collectBindingEntries(
                 from: $0.module.tree,
                 canOverride: canOverride ?? $0.canOverride,

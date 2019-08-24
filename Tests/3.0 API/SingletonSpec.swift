@@ -27,6 +27,16 @@ class SingletonSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         let second = try? swinject.instance(of: Human.self)
         expect(first) === second
     }
+    it("injects the same instance for types bound to the same implementation") {
+        let swinject = Swinject {
+            registerSingle()
+                .factory { Human() }
+                .alsoUse { $0 as Mammal }
+        }
+        let human = try? swinject.instance() as Human
+        let mammal = try? swinject.instance() as Mammal
+        expect(human) === mammal
+    }
     it("does not reuse singleton instances for different tags") {
         let swinject = Swinject {
             registerSingle().factory(tag: "john") { Human() }

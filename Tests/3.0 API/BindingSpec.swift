@@ -36,7 +36,16 @@ class BindingSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         }
         expect(try? swinject.instance(of: Mammal.self) is Human) == true
     }
-    // TODO: type forwarding
+    it("can bind an implementation to multiple types") {
+        let swinject = Swinject {
+            register().factory { Human() }
+                .alsoUse { $0 as Mammal }
+                .alsoUse({ $0 as AnyObject }, tag: "human")
+        }
+        expect { try swinject.instance(of: Human.self) }.notTo(throwError())
+        expect { try swinject.instance(of: Mammal.self) }.notTo(throwError())
+        expect { try swinject.instance(of: AnyObject.self, tagged: "human") }.notTo(throwError())
+    }
     it("can use up to 5 arguments in factory binding") {
         let swinject = Swinject {
             register().factory { (_, a1: Int) in a1 }

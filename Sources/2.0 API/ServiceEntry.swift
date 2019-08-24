@@ -95,13 +95,15 @@ extension ServiceEntry: AnyBinding {
         return scope.registry(for: context)
     }
 
-    public var key: BindingKey {
+    var key: BindingKey {
         return BindingKey(
             descriptor: tagged(Service.self, with: name),
             contextType: scope?.contextType ?? Any.self,
             argumentType: argumentType
         )
     }
+
+    public var keys: [BindingKey] { return [key] }
 }
 
 extension ServiceEntry: CustomStringConvertible {

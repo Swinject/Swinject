@@ -33,7 +33,7 @@ extension BindingKey {
 }
 
 public protocol AnyBinding: SwinjectEntry {
-    var key: BindingKey { get }
+    var keys: [BindingKey] { get }
     var overrides: Bool { get }
     func makeInstance(resolver: Resolver, arg: Any) throws -> Any
 }

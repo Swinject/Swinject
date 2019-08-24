@@ -25,14 +25,11 @@ public struct Binding<Instance, Context> {
     let argumentType: Any.Type
 }
 
-extension Binding {
-    var keys: [BindingKey] {
+extension Binding: AnyBinding {
+    public var keys: [BindingKey] {
         return products.map { BindingKey(descriptor: $0, contextType: Context.self, argumentType: argumentType) }
     }
-}
 
-extension Binding: AnyBinding {
-    public var key: BindingKey { return keys.first! } // FIXME: enable multiple keys in AnyBinding
     public var overrides: Bool { return properties.overrides }
 
     public func makeInstance(resolver: Resolver, arg: Any) throws -> Any {
