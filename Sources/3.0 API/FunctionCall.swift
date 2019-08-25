@@ -17,10 +17,6 @@ public postfix func ^ <Result>(function: @escaping () throws -> Result) -> Funct
     return function^()
 }
 
-public postfix func ^ <Result, I1>(function: @escaping (I1) throws -> Result) -> FunctionCall<Result> {
-    return function^(instance())
-}
-
 public postfix func ^ <Result, I1, I2>(function: @escaping (I1, I2) throws -> Result) -> FunctionCall<Result> {
     return function^(instance(), instance())
 }

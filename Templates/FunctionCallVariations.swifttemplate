@@ -1,6 +1,7 @@
 <% let maxParams = 20 %>
 // sourcery:inline:FunctionCallVariations
 <%_ for n in 0 ... maxParams {
+    if n == 1 { continue }
     let inputTypes = (0 ..< n).map { "I\($0+1)" }.joined(separator: ", ")
     let genericParams = n == 0 ? "Result" : "Result, \(inputTypes)"
     let requests = (0 ..< n).map { _ in "instance()" }.joined(separator: ", ")
