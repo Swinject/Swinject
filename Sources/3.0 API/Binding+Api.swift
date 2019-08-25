@@ -40,6 +40,21 @@ public extension Binding where Instance == Void {
             $0.arguments = []
         }
     }
+
+    func resultOf<NewInstance>(
+        _ call: FunctionCall<NewInstance>,
+        as _: NewInstance.Type = NewInstance.self,
+        tag: String? = nil
+    ) -> Binding<NewInstance, Context> {
+        return updatedFactory(factory: call.execute).updated {
+            // TODO: assert context type
+            $0.products = [tagged(NewInstance.self, with: tag)]
+            $0.dependencies = .list(call.inputs.map { $0.asDependency })
+            $0.arguments = Arguments.Descriptor(types: call.inputs.compactMap {
+                if case let .argument(type) = $0.asDependency { return type } else { return nil }
+            })
+        }
+    }
 }
 
 public extension Binding {

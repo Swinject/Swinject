@@ -10,18 +10,11 @@ public enum PartialDependency {
 
 public protocol AnyPartialRequest {
     var asDependency: PartialDependency { get }
-    func fulfill(with resolver: Resolver, and arguments: Arguments) throws -> Any
 }
 
-protocol PartialRequest: AnyPartialRequest {
+public protocol PartialRequest: AnyPartialRequest {
     associatedtype Result
     func fulfill(with resolver: Resolver, and arguments: Arguments) throws -> Result
-}
-
-extension PartialRequest {
-    public func fulfill(with resolver: Resolver, and arguments: Arguments) throws -> Any {
-        return try fulfill(with: resolver, and: arguments) as Result
-    }
 }
 
 public struct ContextRequest<Type> {}
@@ -41,7 +34,7 @@ public func argument<Type>(_ index: Int, as _: Type.Type = Type.self) -> Argumen
 extension InstanceRequest: PartialRequest {
     public var asDependency: PartialDependency { return .instance(type, arguments.descriptor) }
 
-    func fulfill(with resolver: Resolver, and _: Arguments) throws -> Type {
+    public func fulfill(with resolver: Resolver, and _: Arguments) throws -> Type {
         return try resolver.resolve(self)
     }
 }
@@ -49,7 +42,7 @@ extension InstanceRequest: PartialRequest {
 extension ArgumentRequest: PartialRequest {
     public var asDependency: PartialDependency { return .argument(Type.self) }
 
-    func fulfill(with _: Resolver, and arguments: Arguments) throws -> Type {
+    public func fulfill(with _: Resolver, and arguments: Arguments) throws -> Type {
         return try arguments.arg(index)
     }
 }
@@ -57,7 +50,7 @@ extension ArgumentRequest: PartialRequest {
 extension ContextRequest: PartialRequest {
     public var asDependency: PartialDependency { return .context(Type.self) }
 
-    func fulfill(with resolver: Resolver, and _: Arguments) throws -> Type {
+    public func fulfill(with resolver: Resolver, and _: Arguments) throws -> Type {
         return try resolver.contexted().context()
     }
 }
