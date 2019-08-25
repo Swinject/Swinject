@@ -22,5 +22,6 @@ public class NoContextTranslator: SwinjectError {}
 public class CircularDependency: SwinjectError {}
 public class MissingArgument: SwinjectError {}
 public class ArgumentMismatch: SwinjectError {}
+public class MissingDependency: SwinjectError {}
 
 // TODO: Debugging error description

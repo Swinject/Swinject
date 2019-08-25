@@ -9,16 +9,9 @@ public struct BindingProperties {
     static let `default` = BindingProperties(overrides: false, reference: strongRef)
 }
 
-enum BindingDependencies {
-    case undefined
-    case list([PartialDependency])
-
-    static let none = BindingDependencies.list([])
-}
-
 public struct Binding<Instance, Context> {
     var products: [TypeDescriptor]
-    var dependencies: BindingDependencies
+    public var dependencies: [BindingDependency]
     var factory: (ContextedResolver<Context>, Arguments) throws -> Instance
     var properties: BindingProperties
     let scope: AnyScope?

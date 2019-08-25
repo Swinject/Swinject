@@ -2,14 +2,8 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-public enum PartialDependency {
-    case instance(TypeDescriptor, Arguments.Descriptor)
-    case argument(Any.Type)
-    case context(Any.Type)
-}
-
 public protocol AnyPartialRequest {
-    var asDependency: PartialDependency { get }
+    var asDependency: BindingDependency { get }
 }
 
 public protocol PartialRequest: AnyPartialRequest {
@@ -32,7 +26,7 @@ public func argument<Type>(_ index: Int, as _: Type.Type = Type.self) -> Argumen
 }
 
 extension InstanceRequest: PartialRequest {
-    public var asDependency: PartialDependency { return .instance(type, arguments.descriptor) }
+    public var asDependency: BindingDependency { return .instance(type, arguments.descriptor) }
 
     public func fulfill(with resolver: Resolver, and _: Arguments) throws -> Type {
         return try resolver.resolve(self)
@@ -40,7 +34,7 @@ extension InstanceRequest: PartialRequest {
 }
 
 extension ArgumentRequest: PartialRequest {
-    public var asDependency: PartialDependency { return .argument(Type.self) }
+    public var asDependency: BindingDependency { return .argument(Type.self) }
 
     public func fulfill(with _: Resolver, and arguments: Arguments) throws -> Type {
         return try arguments.arg(index)
@@ -48,7 +42,7 @@ extension ArgumentRequest: PartialRequest {
 }
 
 extension ContextRequest: PartialRequest {
-    public var asDependency: PartialDependency { return .context(Type.self) }
+    public var asDependency: BindingDependency { return .context(Type.self) }
 
     public func fulfill(with resolver: Resolver, and _: Arguments) throws -> Type {
         return try resolver.contexted().context()

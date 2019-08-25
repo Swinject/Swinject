@@ -32,8 +32,15 @@ extension BindingKey {
     }
 }
 
+public enum BindingDependency {
+    case instance(TypeDescriptor, Arguments.Descriptor)
+    case argument(Any.Type)
+    case context(Any.Type)
+}
+
 public protocol AnyBinding: SwinjectEntry {
     var keys: [BindingKey] { get }
     var overrides: Bool { get }
+    var dependencies: [BindingDependency] { get }
     func makeInstance(resolver: Resolver, arguments: Arguments) throws -> Any
 }

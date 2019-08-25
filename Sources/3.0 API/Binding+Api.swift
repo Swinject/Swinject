@@ -5,7 +5,7 @@
 public func register<Context>(inContextOf _: Context.Type) -> Binding<Void, Context> {
     return Binding(
         products: [],
-        dependencies: .none,
+        dependencies: [],
         factory: { _, _ in },
         properties: .default,
         scope: nil,
@@ -20,7 +20,7 @@ public func register() -> Binding<Void, Any> {
 public func registerSingle<AScope: Scope>(in scope: AScope) -> Binding<Void, AScope.Context> {
     return Binding(
         products: [],
-        dependencies: .none,
+        dependencies: [],
         factory: { _, _ in },
         properties: .default,
         scope: scope,
@@ -36,7 +36,7 @@ public extension Binding where Instance == Void {
     func constant<Value>(_ value: Value, tag: String? = nil) -> Binding<Value, Context> {
         return updatedFactory { _, _ in value }.updated {
             $0.products = [tagged(Value.self, with: tag)]
-            $0.dependencies = .none
+            $0.dependencies = []
             $0.arguments = []
         }
     }
@@ -49,7 +49,7 @@ public extension Binding where Instance == Void {
         return updatedFactory(factory: call.execute).updated {
             // TODO: assert context type
             $0.products = [tagged(NewInstance.self, with: tag)]
-            $0.dependencies = .list(call.inputs.map { $0.asDependency })
+            $0.dependencies = call.inputs.map { $0.asDependency }
             $0.arguments = Arguments.Descriptor(types: call.inputs.compactMap {
                 if case let .argument(type) = $0.asDependency { return type } else { return nil }
             })

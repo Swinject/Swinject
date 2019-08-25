@@ -8,8 +8,8 @@ import Swinject
 
 // swiftformat:disable spaceAroundOperators
 class DependencyCheckSpec: QuickSpec { override func spec() { #if swift(>=5.1)
+    let john = Human()
     describe("checked binding") {
-        let john = Human()
         it("can declaratively specify binding's factory") {
             let swinject = Swinject {
                 register().constant("mimi")
@@ -52,6 +52,33 @@ class DependencyCheckSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             let pet = try? instance(of: Pet.self).from(swinject.on(john))
             expect(pet?.name) == "mimi"
             expect(pet?.owner) === john
+        }
+    }
+    describe("dependency check") {
+        it("fails if checked binding has missing dependency") {
+            expect {
+                _ = Swinject {
+                    register().resultOf(Pet.init^)
+                }
+            }.to(throwAssertion())
+        }
+        it("fails if checked binding's dependency is registerd with wrong tag") {
+            expect {
+                _ = Swinject {
+                    register().constant(john)
+                    register().constant("mimi", tag: "name")
+                    register().resultOf(Pet.init^)
+                }
+            }.to(throwAssertion())
+        }
+        it("fails if checked binding's dependency is registerd with wrong arguments") {
+            expect {
+                _ = Swinject {
+                    register().factory { $1 == "john" ? john : Human() }
+                    register().constant("mimi")
+                    register().resultOf(Pet.init^)
+                }
+            }.to(throwAssertion())
         }
     }
     #endif
