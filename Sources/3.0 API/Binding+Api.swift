@@ -9,7 +9,7 @@ public func register<Context>(inContextOf _: Context.Type) -> Binding<Void, Cont
         factory: { _, _ in },
         properties: .default,
         scope: nil,
-        argumentType: Void.self
+        arguments: []
     )
 }
 
@@ -24,7 +24,7 @@ public func registerSingle<AScope: Scope>(in scope: AScope) -> Binding<Void, ASc
         factory: { _, _ in },
         properties: .default,
         scope: scope,
-        argumentType: Void.self
+        arguments: []
     )
 }
 
@@ -34,9 +34,10 @@ public func registerSingle() -> Binding<Void, UnboundScope.Context> {
 
 public extension Binding where Instance == Void {
     func constant<Value>(_ value: Value, tag: String? = nil) -> Binding<Value, Context> {
-        return updatedFactory { (_, _: Void) in value }.updated {
+        return updatedFactory { _, _ in value }.updated {
             $0.products = [tagged(Value.self, with: tag)]
             $0.dependencies = .none
+            $0.arguments = []
         }
     }
 }

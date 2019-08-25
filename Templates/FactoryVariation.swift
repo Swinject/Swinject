@@ -36,12 +36,8 @@ extension FactoryVariation {
         )
     }
 
-    var argInputType: String {
-        switch args {
-        case 0: return "Void"
-        case 1: return isMatchable ? "MatchableBox1<Arg1>" : "Arg1"
-        default: return isMatchable ? "MatchableBox\(args)<\(argTypes)>" : "(\(argTypes))"
-        }
+    var argDescriptorTypes: String {
+        return join((1 ..< args + 1).map { "Arg\($0).self" })
     }
 
     var returnType: String {
@@ -59,15 +55,14 @@ extension FactoryVariation {
     var argVarsOrNil: String? {
         switch args {
         case 0: return nil
-        case 1: return isMatchable ? "a.arg1" : "a"
-        default: return join((1 ... args).map { isMatchable ? "a.arg\($0)" : "a.\($0 - 1)" })
+        default: return join((0 ..< args).map { "a.arg(\($0))" })
         }
     }
 
     var factoryInputs: String {
         return join(
             hasResolver ? "r" : "_",
-            (args > 0 ? "a" : "_") + ": \(argInputType)"
+            args > 0 ? "a" : "_"
         )
     }
 
@@ -101,9 +96,10 @@ extension FactoryVariation {
     func render() -> String {
         return """
             func factory<\(genericTypes)>(\(params)) -> \(returnType) \(constraints){
-                return updatedFactory { (\(factoryInputs)) in try factory(\(factoryVars)) }.updated {
+                return updatedFactory { \(factoryInputs) in try factory(\(factoryVars)) }.updated {
                     $0.products = [tagged(NewInstance.self, with: tag)]
                     $0.dependencies = .undefined
+                    $0.arguments = [\(argDescriptorTypes)]
                 }
             }
         """

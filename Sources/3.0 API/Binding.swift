@@ -19,37 +19,37 @@ enum BindingDependencies {
 public struct Binding<Instance, Context> {
     var products: [TypeDescriptor]
     var dependencies: BindingDependencies
-    var factory: (ContextedResolver<Context>, Any) throws -> Instance
+    var factory: (ContextedResolver<Context>, Arguments) throws -> Instance
     var properties: BindingProperties
     let scope: AnyScope?
-    let argumentType: Any.Type
+    var arguments: Arguments.Descriptor
 }
 
 extension Binding: AnyBinding {
     public var keys: [BindingKey] {
-        return products.map { BindingKey(descriptor: $0, contextType: Context.self, argumentType: argumentType) }
+        return products.map { BindingKey(type: $0, contextType: Context.self, arguments: arguments) }
     }
 
     public var overrides: Bool { return properties.overrides }
 
-    public func makeInstance(resolver: Resolver, arg: Any) throws -> Any {
+    public func makeInstance(resolver: Resolver, arguments: Arguments) throws -> Any {
         if let scope = scope {
-            return try scopedInstance(resolver: resolver, scope: scope, arg: arg)
+            return try scopedInstance(resolver: resolver, scope: scope, arguments: arguments)
         } else {
-            return try simpleInstance(resolver: resolver, arg: arg)
+            return try simpleInstance(resolver: resolver, arguments: arguments)
         }
     }
 
-    private func scopedInstance(resolver: Resolver, scope: AnyScope, arg: Any) throws -> Any {
+    private func scopedInstance(resolver: Resolver, scope: AnyScope, arguments: Arguments) throws -> Any {
         return try scope
             .registry(for: resolver.context(as: Context.self))
-            .instance(for: ScopeRegistryKey(descriptor: products.first!, argument: arg)) {
-                try properties.reference(simpleInstance(resolver: resolver, arg: arg))
+            .instance(for: ScopeRegistryKey(descriptor: products.first!, arguments: arguments)) {
+                try properties.reference(simpleInstance(resolver: resolver, arguments: arguments))
             }
     }
 
-    private func simpleInstance(resolver: Resolver, arg: Any) throws -> Any {
-        return try factory(resolver.contexted(), arg)
+    private func simpleInstance(resolver: Resolver, arguments: Arguments) throws -> Any {
+        return try factory(resolver.contexted(), arguments)
     }
 }
 
@@ -60,16 +60,16 @@ extension Binding {
         return copy
     }
 
-    func updatedFactory<NewInstance, NewArgument>(
-        factory: @escaping (ContextedResolver<Context>, NewArgument) throws -> NewInstance
+    func updatedFactory<NewInstance>(
+        factory: @escaping (ContextedResolver<Context>, Arguments) throws -> NewInstance
     ) -> Binding<NewInstance, Context> {
         return Binding<NewInstance, Context>(
             products: products,
             dependencies: dependencies,
-            factory: { try factory($0, $1 as! NewArgument) },
+            factory: factory,
             properties: properties,
             scope: scope,
-            argumentType: NewArgument.self
+            arguments: arguments
         )
     }
 }

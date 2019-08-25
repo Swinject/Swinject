@@ -20,5 +20,7 @@ public class NothingToOverride: SwinjectError {}
 public class SilentOverrideNotAllowed: SwinjectError {}
 public class NoContextTranslator: SwinjectError {}
 public class CircularDependency: SwinjectError {}
+public class MissingArgument: SwinjectError {}
+public class ArgumentMismatch: SwinjectError {}
 
 // TODO: Debugging error description

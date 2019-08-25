@@ -9,7 +9,7 @@ public extension Resolver {
     ///
     /// - Returns: The resolved service type instance, or nil if no service with the name is found.
     func resolve<Service>(_ serviceType: Service.Type, name: String? = nil) -> Service? {
-        return try? resolve(request(type: serviceType, tag: name, arg: ())) as Service
+        return try? resolve(request(type: serviceType, tag: name, arg: Arguments())) as Service
     }
 
 <%_ (1...arg_count).forEach { i in
@@ -17,7 +17,7 @@ public extension Resolver {
     let arg_param = i == 1 ? "argument: Arg1" : "arguments arg1: Arg1, " + (2...i).map{ "_ arg\($0): Arg\($0)" }.joined(separator: ", ")
     let arg_param_name = i == 1 ? "argument" : "arguments"
     let arg_param_description = i == 1 ? "\(i) argument" : "list of \(i) arguments"
-    let arg_vars = i == 1 ? "argument" : ("(" + (1...i).map { "arg\($0)" }.joined(separator: ", ") + ")")
+    let arg_vars = i == 1 ? "argument" : (1...i).map { "arg\($0)" }.joined(separator: ", ")
 -%>
     /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
     ///
@@ -29,7 +29,7 @@ public extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            <%= arg_param_description %> and name is found.
     func resolve<Service, <%= arg_types %>>(_ serviceType: Service.Type, name: String? = nil, <%= arg_param %>) -> Service? {
-        return try? resolve(request(type: serviceType, tag: name, arg: <%= arg_vars %>)) as Service
+        return try? resolve(request(type: serviceType, tag: name, arg: Arguments(<%= arg_vars %>))) as Service
     }<%= i < arg_count ? "\n" : "" %>
 <%_ } -%>
 }

@@ -6,27 +6,28 @@
 /// As a returned instance from a `register` method of a `Container`, some configurations can be added.
 public class ServiceEntry<Service> {
     weak var container: Container?
-    let builder: (Resolver, Any, Any) -> Service
-    let argumentType: Any.Type
+    let builder: (Resolver, Arguments) -> Service
+    let argumentDescriptor: Arguments.Descriptor
     let name: String?
     var scope: AnyScope?
     var makeRef: ReferenceMaker<Any>
     var finalizers = [(Resolver, Service) -> Void]()
     var forwardedDescriptors = [TypeDescriptor]()
 
-    init<Argument>(
+    init(
         container: Container,
         name: String?,
         scope: AnyScope?,
         makeRef: @escaping ReferenceMaker<Any>,
-        builder: @escaping (Resolver, Any, Argument) -> Service
+        argumentDescriptor: Arguments.Descriptor,
+        builder: @escaping (Resolver, Arguments) -> Service
     ) {
         self.container = container
         self.name = name
         self.scope = scope
         self.makeRef = makeRef
-        self.builder = { builder($0, $1, $2 as! Argument) }
-        argumentType = Argument.self
+        self.builder = builder
+        self.argumentDescriptor = argumentDescriptor
     }
 
     /// Specifies a custom scope & reference maker to use for the service.
@@ -72,16 +73,16 @@ public class ServiceEntry<Service> {
 extension ServiceEntry: AnyBinding {
     public var overrides: Bool { return false }
 
-    public func makeInstance(resolver: Resolver, arg: Any) throws -> Any {
+    public func makeInstance(resolver: Resolver, arguments: Arguments) throws -> Any {
         let context = try resolver.context(as: key.contextType)
         if let scope = scope {
             return getRegistry(scope: scope, context: context).instance(
-                for: ScopeRegistryKey(descriptor: key.descriptor, argument: arg),
-                builder: { makeRef(builder(resolver, context, arg)) },
+                for: ScopeRegistryKey(descriptor: key.type, arguments: arguments),
+                builder: { makeRef(builder(resolver, arguments)) },
                 finalizer: { instance in finalizers.forEach { $0(resolver, instance as! Service) } }
             )
         } else {
-            return builder(resolver, context, arg)
+            return builder(resolver, arguments)
         }
     }
 
@@ -97,9 +98,9 @@ extension ServiceEntry: AnyBinding {
 
     var key: BindingKey {
         return BindingKey(
-            descriptor: tagged(Service.self, with: name),
+            type: tagged(Service.self, with: name),
             contextType: scope?.contextType ?? Any.self,
-            argumentType: argumentType
+            arguments: argumentDescriptor
         )
     }
 
@@ -122,10 +123,7 @@ extension ServiceEntry: CustomStringConvertible {
     }
 
     private var argumentTypes: String? {
-        var result = "\(argumentType)"
-        if result.hasPrefix("("), result.hasSuffix(")") {
-            result = String(result.dropFirst().dropLast())
-        }
+        let result = argumentDescriptor.types.map { "\($0)" }.joined(separator: ", ")
         return result.isEmpty ? nil : result
     }
 

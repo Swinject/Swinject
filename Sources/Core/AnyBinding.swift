@@ -3,26 +3,26 @@
 //
 
 public struct BindingKey: Hashable {
-    let descriptor: TypeDescriptor
+    let type: TypeDescriptor
     let contextType: Any.Type
-    let argumentType: Any.Type
+    let arguments: Arguments.Descriptor
 
-    init(descriptor: TypeDescriptor, contextType: Any.Type, argumentType: Any.Type) {
-        self.descriptor = descriptor
+    init(type: TypeDescriptor, contextType: Any.Type, arguments: Arguments.Descriptor) {
+        self.type = type
         self.contextType = unwrapOptionals(contextType)
-        self.argumentType = argumentType
+        self.arguments = arguments
     }
 
     public func hash(into hasher: inout Hasher) {
-        descriptor.hash(into: &hasher)
+        type.hash(into: &hasher)
         ObjectIdentifier(contextType).hash(into: &hasher)
-        ObjectIdentifier(argumentType).hash(into: &hasher)
+        arguments.hash(into: &hasher)
     }
 
     public static func == (lhs: BindingKey, rhs: BindingKey) -> Bool {
-        return lhs.descriptor == rhs.descriptor
+        return lhs.type == rhs.type
             && lhs.contextType == rhs.contextType
-            && lhs.argumentType == rhs.argumentType
+            && lhs.arguments == rhs.arguments
     }
 }
 
@@ -35,5 +35,5 @@ extension BindingKey {
 public protocol AnyBinding: SwinjectEntry {
     var keys: [BindingKey] { get }
     var overrides: Bool { get }
-    func makeInstance(resolver: Resolver, arg: Any) throws -> Any
+    func makeInstance(resolver: Resolver, arguments: Arguments) throws -> Any
 }

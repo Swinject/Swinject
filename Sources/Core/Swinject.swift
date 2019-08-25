@@ -25,7 +25,7 @@ extension Swinject: Resolver {
             if let custom = resolve(request, asCustom: Type.self) { return custom }
             throw error
         }
-        return try tracking(request).makeInstance(from: binding, arg: request.argument)
+        return try tracking(request).makeInstance(from: binding, with: request.arguments)
     }
 
     public func on<Context>(_ context: Context) -> Resolver {
@@ -77,8 +77,8 @@ extension Swinject {
         return bindings[0]
     }
 
-    private func makeInstance<Type, Argument>(from binding: AnyBinding, arg: Argument) throws -> Type {
-        return try binding.makeInstance(resolver: self, arg: arg) as? Type ?? { throw SwinjectError() }()
+    private func makeInstance<Type>(from binding: AnyBinding, with arguments: Arguments) throws -> Type {
+        return try binding.makeInstance(resolver: self, arguments: arguments) as? Type ?? { throw SwinjectError() }()
     }
 }
 

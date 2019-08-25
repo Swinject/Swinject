@@ -9,7 +9,7 @@ import Quick
 
 class StandardScopeRegistrySpec: QuickSpec { override func spec() {
     var registry: StandardScopeRegistry!
-    let key = (1 ... 5).map { ScopeRegistryKey(descriptor: tagged(Int.self, with: "\($0)"), argument: ()) }
+    let key = (1 ... 5).map { ScopeRegistryKey(descriptor: tagged(Int.self, with: "\($0)"), arguments: Arguments()) }
     var doors = [Door]()
     beforeEach {
         doors = (1 ... 3).map { _ in Door() }

@@ -38,7 +38,7 @@ extension InstanceRequestVariation {
         return join(
             "type: Type.self",
             "tag: tag",
-            args == 0 ? "arg: ()" : "arg: box(\(argVars))"
+            "arg: Arguments(\(argVars))"
         )
     }
 

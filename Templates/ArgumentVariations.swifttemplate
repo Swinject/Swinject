@@ -1,0 +1,19 @@
+<% let arg_count = 9 %>
+// sourcery:inline:ArgumentVariations
+<%_ (1...arg_count).forEach { i in
+    let arg_types = (1...i).map { "Arg\($0)" }.joined(separator: ", ")
+    let arg_hashables = (1...i).map { "Arg\($0): Hashable" }.joined(separator: ", ")
+    let arg_params = (1...i).map { "_ arg\($0): Arg\($0)" }.joined(separator: ", ")
+-%>
+init<<%= arg_types %>>(<%= arg_params %>) {
+    values = [<%= (1...i).map { "arg\($0)" }.joined(separator: ", ") %>]
+    descriptor = [<%= (1...i).map { "Arg\($0).self" }.joined(separator: ", ") %>]
+}
+
+init<<%= arg_types %>>(<%= arg_params %>) where <%= arg_hashables %> {
+    values = [<%= (1...i).map { "MatchBox(arg\($0))" }.joined(separator: ", ") %>]
+    descriptor = [<%= (1...i).map { "Arg\($0).self" }.joined(separator: ", ") %>]
+}
+
+<%_ } -%>
+// sourcery:end

@@ -30,12 +30,11 @@ extension PropertyWrapper {
 extension AnyInstanceRequest {
     func replacingType<Type>(with _: Type.Type) -> InstanceRequest<Type> {
         return InstanceRequest(
-            descriptor: TypeDescriptor(
-                tag: descriptor.tag,
+            type: TypeDescriptor(
+                tag: type.tag,
                 type: Type.self
             ),
-            argument: argument,
-            argumentType: argumentType
+            arguments: arguments
         )
     }
 }
