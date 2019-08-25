@@ -5,7 +5,7 @@
 public func register<Context>(inContextOf _: Context.Type) -> Binding<Void, Context> {
     return Binding(
         products: [],
-        dependencies: .none,
+        dependencies: [],
         factory: { _, _ in },
         properties: .default,
         scope: nil,
@@ -20,7 +20,7 @@ public func register() -> Binding<Void, Any> {
 public func registerSingle<AScope: Scope>(in scope: AScope) -> Binding<Void, AScope.Context> {
     return Binding(
         products: [],
-        dependencies: .none,
+        dependencies: [],
         factory: { _, _ in },
         properties: .default,
         scope: scope,
@@ -36,8 +36,35 @@ public extension Binding where Instance == Void {
     func constant<Value>(_ value: Value, tag: String? = nil) -> Binding<Value, Context> {
         return updatedFactory { _, _ in value }.updated {
             $0.products = [tagged(Value.self, with: tag)]
-            $0.dependencies = .none
+            $0.dependencies = []
             $0.arguments = []
+        }
+    }
+
+    func resultOf<NewInstance>(
+        _ call: FunctionCall<NewInstance>,
+        as _: NewInstance.Type = NewInstance.self,
+        tag: String? = nil
+    ) -> Binding<NewInstance, Context> {
+        return updatedFactory(factory: call.execute).updated {
+            // TODO: assert context type
+            $0.products = [tagged(NewInstance.self, with: tag)]
+            $0.dependencies = call.inputs.map { $0.asDependency }
+            $0.arguments.types = call.inputs.compactMap { $0.asArgumentDependency }
+        }
+    }
+}
+
+public extension Binding {
+    func injectedBy(_ injections: InjectionRequest<Instance> ...) -> Binding<Instance, Context> {
+        return updated {
+            $0.factory = { resolver, arguments in
+                var instance = try self.factory(resolver, arguments)
+                try injections.forEach { try $0.execute(resolver, arguments, &instance) }
+                return instance
+            }
+            $0.dependencies += injections.flatMap { $0.inputs }.map { $0.asDependency }
+            $0.arguments.types += injections.flatMap { $0.inputs }.compactMap { $0.asArgumentDependency }
         }
     }
 }

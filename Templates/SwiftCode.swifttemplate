@@ -185,7 +185,7 @@ extension FactoryVariation {
             func factory<\(genericTypes)>(\(params)) -> \(returnType) \(constraints){
                 return updatedFactory { \(factoryInputs) in try factory(\(factoryVars)) }.updated {
                     $0.products = [tagged(NewInstance.self, with: tag)]
-                    $0.dependencies = .undefined
+                    $0.dependencies = []
                     $0.arguments = [\(argDescriptorTypes)]
                 }
             }

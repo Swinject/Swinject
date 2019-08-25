@@ -19,10 +19,9 @@ extension SwinjectContainer.Builder {
 
     private func makeContainerOrThrow() throws -> SwinjectContainer {
         try checkDuplicitModules()
-        return try SwinjectContainer(
-            bindings: collectBindings(),
-            translators: tree.translators
-        )
+        let bindings = try collectBindings()
+        try checkDependencies(for: bindings)
+        return SwinjectContainer(bindings: bindings, translators: tree.translators)
     }
 }
 
@@ -34,6 +33,18 @@ extension SwinjectContainer.Builder {
 
     private func collectModules(from tree: SwinjectTree) -> [Swinject.Module] {
         return tree.modules.map { $0.module } + tree.modules.flatMap { collectModules(from: $0.module.tree) }
+    }
+}
+
+extension SwinjectContainer.Builder {
+    func checkDependencies(for bindings: [BindingKey: AnyBinding]) throws {
+        try bindings.values.flatMap { $0.dependencies }.forEach {
+            if case let .instance(type, arguments) = $0 {
+                if !bindings.keys.contains(where: { $0.type == type && $0.arguments == arguments }) {
+                    throw MissingDependency()
+                }
+            }
+        }
     }
 }
 

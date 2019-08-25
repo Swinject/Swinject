@@ -72,6 +72,7 @@ public class ServiceEntry<Service> {
 
 extension ServiceEntry: AnyBinding {
     public var overrides: Bool { return false }
+    public var dependencies: [BindingDependency] { return [] }
 
     public func makeInstance(resolver: Resolver, arguments: Arguments) throws -> Any {
         let context = try resolver.context(as: key.contextType)
