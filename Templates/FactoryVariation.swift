@@ -5,7 +5,6 @@
 struct FactoryVariation {
     let args: Int
     let hasResolver: Bool
-    let isMatchable: Bool
 }
 
 extension FactoryVariation {
@@ -48,10 +47,6 @@ extension FactoryVariation {
         return join((1 ..< args + 1).map { "Arg\($0): Hashable" })
     }
 
-    var constraints: String {
-        return isMatchable && args > 0 ? "where \(hashableArgTypes) " : ""
-    }
-
     var argVarsOrNil: String? {
         switch args {
         case 0: return nil
@@ -79,23 +74,20 @@ extension FactoryVariation {
 
     static let allCases = (0 ... maxArgs)
         .flatMap { t in [false, true].map { (t, $0) } }
-        .flatMap { t in [false, true].map { (t.0, t.1, $0) } }
         .map(FactoryVariation.init)
 
     static let sortedCases = allCases.sorted { [
         $0.args < $1.args,
-        !$0.isMatchable && $1.isMatchable && $0.args == $1.args,
     ].contains(true) }
 
     static let publicCases = sortedCases
-        .filter { !($0.args == 0 && !$0.isMatchable) }
         .filter { !($0.args > 0 && !$0.hasResolver) }
 }
 
 extension FactoryVariation {
     func render() -> String {
         return """
-            func factory<\(genericTypes)>(\(params)) -> \(returnType) \(constraints){
+            func factory<\(genericTypes)>(\(params)) -> \(returnType) {
                 return updatedFactory { \(factoryInputs) in try factory(\(factoryVars)) }.updated {
                     $0.products = [tagged(NewInstance.self, with: tag)]
                     $0.dependencies = []
