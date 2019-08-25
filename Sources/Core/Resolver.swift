@@ -3,6 +3,7 @@
 //
 
 public protocol Resolver {
+    // TODO: Can we absstract the input, and remove `InstanceRequest` from core?
     func resolve<Type>(_ request: InstanceRequest<Type>) throws -> Type
     func on<Context>(_ context: Context) -> Resolver
     func context(as contextType: Any.Type) throws -> Any // TODO: Ideally this should be internal

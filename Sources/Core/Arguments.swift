@@ -3,7 +3,7 @@
 //
 
 public struct Arguments {
-    struct Descriptor {
+    public struct Descriptor {
         let types: [Any.Type]
     }
 
@@ -44,18 +44,18 @@ extension Arguments: Hashable {
 }
 
 extension Arguments.Descriptor: Hashable {
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         types.map { ObjectIdentifier($0) }.hash(into: &hasher)
     }
 
-    static func == (lhs: Arguments.Descriptor, rhs: Arguments.Descriptor) -> Bool {
+    public static func == (lhs: Arguments.Descriptor, rhs: Arguments.Descriptor) -> Bool {
         return lhs.types.count == rhs.types.count
             && zip(lhs.types, rhs.types).map { $0.0 == $0.1 }.allSatisfy { $0 == true }
     }
 }
 
 extension Arguments.Descriptor: ExpressibleByArrayLiteral {
-    init(arrayLiteral types: Any.Type ...) {
+    public init(arrayLiteral types: Any.Type ...) {
         self.types = types
     }
 }

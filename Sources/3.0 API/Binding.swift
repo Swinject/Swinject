@@ -11,9 +11,9 @@ public struct BindingProperties {
 
 enum BindingDependencies {
     case undefined
-    case requests([ValueRequest])
+    case list([PartialDependency])
 
-    static let none = BindingDependencies.requests([])
+    static let none = BindingDependencies.list([])
 }
 
 public struct Binding<Instance, Context> {
