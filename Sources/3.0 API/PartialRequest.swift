@@ -6,6 +6,12 @@ public protocol AnyPartialRequest {
     var asDependency: BindingDependency { get }
 }
 
+extension AnyPartialRequest {
+    var asArgumentDependency: Any.Type? {
+        if case let .argument(type) = asDependency { return type } else { return nil }
+    }
+}
+
 public protocol PartialRequest: AnyPartialRequest {
     associatedtype Result
     func fulfill(with resolver: Resolver, and arguments: Arguments) throws -> Result

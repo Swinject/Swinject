@@ -4,7 +4,7 @@
 
 public struct Arguments {
     public struct Descriptor {
-        let types: [Any.Type]
+        var types: [Any.Type]
     }
 
     let values: [Any]

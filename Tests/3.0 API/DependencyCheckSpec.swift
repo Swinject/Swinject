@@ -9,7 +9,7 @@ import Swinject
 // swiftformat:disable spaceAroundOperators
 class DependencyCheckSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     let john = Human()
-    describe("checked binding") {
+    describe("checked factory") {
         it("can declaratively specify binding's factory") {
             let swinject = Swinject {
                 register().constant("mimi")
@@ -54,6 +54,50 @@ class DependencyCheckSpec: QuickSpec { override func spec() { #if swift(>=5.1)
             expect(pet?.owner) === john
         }
     }
+    describe("checked property injection") {
+        it("can specify property injection in binding declaration") {
+            let swinject = Swinject {
+                register().constant("john")
+                register().constant(42, tag: "age")
+                register()
+                    .resultOf(Human.init^)
+                    .injectedBy(
+                        \.name <- instance(),
+                        \.age <- instance(tagged: "age")
+                    )
+            }
+            let human = try? instance(of: Human.self).from(swinject)
+            expect(human?.name) == "john"
+            expect(human?.age) == 42
+        }
+        it("can use arguments for property injection") {
+            let swinject = Swinject {
+                register()
+                    .resultOf(Human.init^)
+                    .injectedBy(
+                        \.name <- argument(0),
+                        \.age <- argument(1)
+                    )
+            }
+            let human = try? instance(of: Human.self, arg: "john", 42).from(swinject)
+            expect(human?.name) == "john"
+            expect(human?.age) == 42
+        }
+        it("can use context for property injection") {
+            let swinject = Swinject {
+                register().constant(42)
+                register(inContextOf: String.self)
+                    .resultOf(Human.init^)
+                    .injectedBy(
+                        \.name <- context(),
+                        \.age <- instance()
+                    )
+            }
+            let human = try? instance(of: Human.self).from(swinject.on("john"))
+            expect(human?.name) == "john"
+            expect(human?.age) == 42
+        }
+    }
     describe("dependency check") {
         it("fails if checked binding has missing dependency") {
             expect {
@@ -77,6 +121,13 @@ class DependencyCheckSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                     register().factory { $1 == "john" ? john : Human() }
                     register().constant("mimi")
                     register().resultOf(Pet.init^)
+                }
+            }.to(throwAssertion())
+        }
+        it("fails if checked binding has missing property injection dependency") {
+            expect {
+                _ = Swinject {
+                    register().resultOf(Human.init^).injectedBy(\.name <- instance())
                 }
             }.to(throwAssertion())
         }

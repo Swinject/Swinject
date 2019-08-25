@@ -14,7 +14,7 @@ public struct Binding<Instance, Context> {
     public var dependencies: [BindingDependency]
     var factory: (ContextedResolver<Context>, Arguments) throws -> Instance
     var properties: BindingProperties
-    let scope: AnyScope?
+    var scope: AnyScope?
     var arguments: Arguments.Descriptor
 }
 
