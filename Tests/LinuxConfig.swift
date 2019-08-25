@@ -27,6 +27,7 @@ let allSpecs: [QuickSpec.Type] = [
     RetrievalSpec.self,
     PropertyWrappersSpec.self,
     DependencyCheckSpec.self,
+    InteroperabilitySpec.self,
     // Unit Specs
     StandardScopeRegistrySpec.self,
     SwinjectTreeBuilderSpec.self,

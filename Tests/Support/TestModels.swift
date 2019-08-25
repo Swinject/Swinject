@@ -40,3 +40,13 @@ class Door: Closable {
         whenClosed()
     }
 }
+
+class Session {
+    let registry = StandardScopeRegistry()
+}
+
+struct SessionScope: Scope {
+    func registry(for session: Session) -> ScopeRegistry {
+        return session.registry
+    }
+}

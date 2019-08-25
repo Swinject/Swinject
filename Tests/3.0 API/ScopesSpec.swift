@@ -93,13 +93,3 @@ class ScopesSpec: QuickSpec { override func spec() { #if swift(>=5.1)
     }
     #endif
 } }
-
-class Session {
-    let registry = StandardScopeRegistry()
-}
-
-struct SessionScope: Scope {
-    func registry(for session: Session) -> ScopeRegistry {
-        return session.registry
-    }
-}
