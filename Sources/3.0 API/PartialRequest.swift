@@ -32,7 +32,7 @@ public func argument<Type>(_ index: Int, as _: Type.Type = Type.self) -> Argumen
 }
 
 extension InstanceRequest: PartialRequest {
-    public var asDependency: BindingDependency { return .instance(type, arguments.descriptor) }
+    public var asDependency: BindingDependency { return .instance(descriptor) }
 
     public func fulfill(with resolver: Resolver, and _: Arguments) throws -> Type {
         return try resolver.resolve(self)

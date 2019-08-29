@@ -20,8 +20,19 @@ func request<Type>(
     return InstanceRequest(type: tagged(type, with: tag), arguments: arg)
 }
 
+public struct InstanceRequestDescriptor {
+    let type: TypeDescriptor
+    let arguments: Arguments.Descriptor
+}
+
 extension AnyInstanceRequest {
-    func key(forContextType contextType: Any.Type) -> BindingKey {
-        return BindingKey(type: type, contextType: contextType, arguments: arguments.descriptor)
+    var descriptor: InstanceRequestDescriptor {
+        return .init(type: type, arguments: arguments.descriptor)
+    }
+}
+
+extension InstanceRequestDescriptor {
+    func key(on contextType: Any.Type) -> BindingKey {
+        return BindingKey(type: type, contextType: contextType, arguments: arguments)
     }
 }

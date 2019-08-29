@@ -131,6 +131,37 @@ class DependencyCheckSpec: QuickSpec { override func spec() { #if swift(>=5.1)
                 }
             }.to(throwAssertion())
         }
+        it("does not fail if checked binding has optional dependency") {
+            struct Checked {
+                let optional: Int?
+            }
+            expect {
+                _ = Swinject {
+                    register().resultOf(Checked.init^instance())
+                }
+            }.notTo(throwAssertion())
+        }
+        it("does not fail if checked binding has custom resolvable dependency") {
+            struct Checked {
+                let lazy: Lazy<Int>
+            }
+            expect {
+                _ = Swinject {
+                    register().constant(42)
+                    register().resultOf(Checked.init^instance())
+                }
+            }.notTo(throwAssertion())
+        }
+        it("fails if checked binding has custom resolvable with missing dependency") {
+            struct Checked {
+                let lazy: Lazy<Int>
+            }
+            expect {
+                _ = Swinject {
+                    register().resultOf(Checked.init^instance())
+                }
+            }.to(throwAssertion())
+        }
     }
     #endif
 } }

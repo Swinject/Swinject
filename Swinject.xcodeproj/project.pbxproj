@@ -158,6 +158,10 @@
 		751F545653B0F1E30341C312 /* OverrideSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C18DDD83715886DF7F1818 /* OverrideSpec.swift */; };
 		75D74C8C25EDACF5A7A75A5C /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620155728133F451B31C0AD /* Swinject.swift */; };
 		778D9AB6470D4280254AC140 /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CAC1761180366DE75A4A6 /* TestModels.swift */; };
+		77B60C7D2317C42700F6CCE3 /* SwinjectContainer+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B60C7C2317C42700F6CCE3 /* SwinjectContainer+Builder.swift */; };
+		77B60C7E2317C42700F6CCE3 /* SwinjectContainer+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B60C7C2317C42700F6CCE3 /* SwinjectContainer+Builder.swift */; };
+		77B60C7F2317C42700F6CCE3 /* SwinjectContainer+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B60C7C2317C42700F6CCE3 /* SwinjectContainer+Builder.swift */; };
+		77B60C802317C42700F6CCE3 /* SwinjectContainer+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B60C7C2317C42700F6CCE3 /* SwinjectContainer+Builder.swift */; };
 		77BF219EAB4FC8475943CECC /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D434EB4C13CF9D9FA6D80CB /* Swinject.framework */; };
 		77F957F9231298E400FD392A /* FunctionCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F957F8231298E400FD392A /* FunctionCall.swift */; };
 		77F957FA231298E400FD392A /* FunctionCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F957F8231298E400FD392A /* FunctionCall.swift */; };
@@ -536,6 +540,7 @@
 		74118B5030E790B24C0F44AF /* ContainerSpec.CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.CustomStringConvertible.swift; sourceTree = "<group>"; };
 		74DE57FB3E8228904E6FE0D7 /* Swinject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swinject.h; sourceTree = "<group>"; };
 		75BE3AE3E30DFE42A919D825 /* ModulesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesSpec.swift; sourceTree = "<group>"; };
+		77B60C7C2317C42700F6CCE3 /* SwinjectContainer+Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwinjectContainer+Builder.swift"; sourceTree = "<group>"; };
 		77F957F8231298E400FD392A /* FunctionCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionCall.swift; sourceTree = "<group>"; };
 		77F957FD2312A4C600FD392A /* FunctionCallVariations.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = FunctionCallVariations.swifttemplate; sourceTree = "<group>"; };
 		77F957FF2312ACFF00FD392A /* DependencyCheckSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyCheckSpec.swift; sourceTree = "<group>"; };
@@ -893,6 +898,7 @@
 				98A8DD30D81D1A4223A5EBC9 /* ScopeRegistryKey.swift */,
 				9620155728133F451B31C0AD /* Swinject.swift */,
 				8C4916168E81D76536892122 /* SwinjectContainer.swift */,
+				77B60C7C2317C42700F6CCE3 /* SwinjectContainer+Builder.swift */,
 				A3586A4987B7C7C8122D674E /* SwinjectError.swift */,
 				C1E726A651C3AFE92C19608B /* SwinjectModule.swift */,
 				47018AC89CBE8254E17C4639 /* SwinjectTree.swift */,
@@ -1462,6 +1468,7 @@
 				8016512839FE61EC3127E489 /* Resolver.swift in Sources */,
 				77F957FA231298E400FD392A /* FunctionCall.swift in Sources */,
 				06D09D88E514CCA11D101AFB /* Retrieval.swift in Sources */,
+				77B60C7E2317C42700F6CCE3 /* SwinjectContainer+Builder.swift in Sources */,
 				68C95FCB0D345CA3BA24D320 /* Scope.swift in Sources */,
 				BB571B9A78FC53231A18E18C /* ScopeRegistry.swift in Sources */,
 				593B93BA2EE3FE4418A1C579 /* ScopeRegistryKey.swift in Sources */,
@@ -1692,6 +1699,7 @@
 				5D7E26A00B055803A50CD9C2 /* Resolver.swift in Sources */,
 				77F957FB231298E400FD392A /* FunctionCall.swift in Sources */,
 				875D809B53B3A118AAF1348C /* Retrieval.swift in Sources */,
+				77B60C7F2317C42700F6CCE3 /* SwinjectContainer+Builder.swift in Sources */,
 				B84167AC8C6BEB57C4D0695A /* Scope.swift in Sources */,
 				E7D1045D25FAB592401DCAF0 /* ScopeRegistry.swift in Sources */,
 				4347EE17D0C0ED574C899D85 /* ScopeRegistryKey.swift in Sources */,
@@ -1740,6 +1748,7 @@
 				97C2EA47D7623AFD723AFE93 /* Resolver.swift in Sources */,
 				77F957FC231298E400FD392A /* FunctionCall.swift in Sources */,
 				6405B24BE522A98AEB275E7D /* Retrieval.swift in Sources */,
+				77B60C802317C42700F6CCE3 /* SwinjectContainer+Builder.swift in Sources */,
 				2C352AAD1AC7D82A4A059046 /* Scope.swift in Sources */,
 				02556F149C9AAEF5CE353AC1 /* ScopeRegistry.swift in Sources */,
 				06F4CAB352B4F623FF7BD885 /* ScopeRegistryKey.swift in Sources */,
@@ -1788,6 +1797,7 @@
 				BE94EF7BCF976A703F961389 /* Resolver.swift in Sources */,
 				77F957F9231298E400FD392A /* FunctionCall.swift in Sources */,
 				6D10D2E438AA642300483BF1 /* Retrieval.swift in Sources */,
+				77B60C7D2317C42700F6CCE3 /* SwinjectContainer+Builder.swift in Sources */,
 				96EA0A5DF33F025EBE0B67D2 /* Scope.swift in Sources */,
 				D861595482464ED95CF81922 /* ScopeRegistry.swift in Sources */,
 				920DE2CAB9895D10FAE48FBA /* ScopeRegistryKey.swift in Sources */,

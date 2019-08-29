@@ -20,9 +20,9 @@ extension Swinject: Resolver {
     public func resolve<Type>(_ request: InstanceRequest<Type>) throws -> Type {
         let binding: AnyBinding
         do {
-            binding = try findBinding(for: request)
+            binding = try container.findBinding(for: request.descriptor, on: contextType)
         } catch let error as NoBinding {
-            if let custom = resolve(request, asCustom: Type.self) { return custom }
+            if let custom = customResolve(request) { return custom }
             throw error
         }
         return try tracking(request).makeInstance(from: binding, with: request.arguments)
@@ -33,7 +33,7 @@ extension Swinject: Resolver {
     }
 
     public func context(as resultType: Any.Type) throws -> Any {
-        return try allTranslators
+        return try container.allTranslators(on: contextType)
             .filter { $0.sourceType == contextType && $0.targetType == resultType }
             .compactMap { try $0.translate(anyContext) }
             .first ?? { throw NoContextTranslator() }()
@@ -41,9 +41,9 @@ extension Swinject: Resolver {
 }
 
 extension Swinject {
-    private func resolve<Type>(_ request: InstanceRequest<Type>, asCustom _: Type.Type) -> Type? {
+    private func customResolve<Type>(_ request: InstanceRequest<Type>) -> Type? {
         guard let custom = Type.self as? CustomResolvable.Type else { return nil }
-        if let request = custom.requiredRequest(for: request), !hasBinding(for: request) { return nil }
+        guard container.hasBinding(for: request.descriptor, on: contextType) else { return nil }
         // TODO: We should reset tracking only for "delayed" custom resolutions
         return custom.init(resolver: with(stack: []), request: request) as? Type
     }
@@ -52,29 +52,6 @@ extension Swinject {
         guard properties.detectsCircularDependencies else { return self }
         guard !stack.contains(where: { request.matches($0) }) else { throw CircularDependency() }
         return with(stack: stack + [request])
-    }
-
-    private func translatableKeys(for request: AnyInstanceRequest) -> [BindingKey] {
-        return allTranslators.map { request.key(forContextType: $0.targetType) }
-    }
-
-    private var allTranslators: [AnyContextTranslator] {
-        return container.translators.filter { $0.sourceType == contextType } + defaultTranslators
-    }
-
-    private var defaultTranslators: [AnyContextTranslator] {
-        return [IdentityTranslator(for: contextType), ToAnyTranslator(for: contextType)]
-    }
-
-    private func hasBinding(for request: AnyInstanceRequest) -> Bool {
-        return (try? findBinding(for: request)) != nil
-    }
-
-    private func findBinding(for request: AnyInstanceRequest) throws -> AnyBinding {
-        let bindings = translatableKeys(for: request).compactMap { container.bindings[$0] }
-        if bindings.isEmpty { throw NoBinding() }
-        if bindings.count > 1 { throw MultipleBindings() }
-        return bindings[0]
     }
 
     private func makeInstance<Type>(from binding: AnyBinding, with arguments: Arguments) throws -> Type {

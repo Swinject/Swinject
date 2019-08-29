@@ -5,103 +5,51 @@
 struct SwinjectContainer {
     let bindings: [BindingKey: AnyBinding]
     let translators: [AnyContextTranslator]
-
-    struct Builder {
-        let tree: SwinjectTree
-        let properties: Swinject.Properties
-    }
 }
 
-extension SwinjectContainer.Builder {
-    func makeContainer() -> SwinjectContainer {
-        do { return try makeContainerOrThrow() } catch { fatalError("\(error)") }
-    }
-
-    private func makeContainerOrThrow() throws -> SwinjectContainer {
-        try checkDuplicitModules()
-        let bindings = try collectBindings()
-        try checkDependencies(for: bindings)
-        return SwinjectContainer(bindings: bindings, translators: tree.translators)
-    }
-}
-
-extension SwinjectContainer.Builder {
-    private func checkDuplicitModules() throws {
-        let names = collectModules(from: tree).map { $0.name }
-        if names.containsDuplicates { throw DuplicateModules() }
-    }
-
-    private func collectModules(from tree: SwinjectTree) -> [Swinject.Module] {
-        return tree.modules.map { $0.module } + tree.modules.flatMap { collectModules(from: $0.module.tree) }
-    }
-}
-
-extension SwinjectContainer.Builder {
-    func checkDependencies(for bindings: [BindingKey: AnyBinding]) throws {
-        try bindings.values.flatMap { $0.dependencies }.forEach {
-            if case let .instance(type, arguments) = $0 {
-                if !bindings.keys.contains(where: { $0.type == type && $0.arguments == arguments }) {
-                    throw MissingDependency()
-                }
-            }
-        }
-    }
-}
-
-extension SwinjectContainer.Builder {
-    private struct BindingEntry {
-        let binding: AnyBinding
-        let key: BindingKey
-        let overrides: Bool
-        let canOverride: Bool
-        let canOverrideSilently: Bool
-    }
-
-    private func collectBindings() throws -> [BindingKey: AnyBinding] {
-        return try collectBindingEntries(from: tree, canOverrideSilently: properties.allowsSilentOverride)
-            .reduce(into: [BindingKey: AnyBinding]()) { dict, entry in
-                try checkOverrideRules(for: entry, beingAddedTo: dict)
-                dict[entry.key] = entry.binding
+extension SwinjectContainer {
+    func checkDependencies() throws {
+        try bindings.values
+            .flatMap { $0.dependencies }
+            .compactMap { $0.asInstanceRequest }
+            .forEach {
+                if !hasBinding(for: $0, on: Any.self) { throw MissingDependency() }
             }
     }
+}
 
-    private func checkOverrideRules(for entry: BindingEntry, beingAddedTo dict: [BindingKey: AnyBinding]) throws {
-        if !entry.canOverride, entry.overrides {
-            throw OverrideNotAllowed()
-        }
-        if dict[entry.key] == nil, entry.overrides {
-            throw NothingToOverride()
-        }
-        if dict[entry.key] != nil, !entry.overrides, !entry.canOverrideSilently {
-            throw SilentOverrideNotAllowed()
+extension SwinjectContainer {
+    func hasBinding(for request: InstanceRequestDescriptor, on contextType: Any.Type) -> Bool {
+        if let custom = request.type.type as? CustomResolvable.Type {
+            return custom.requiredRequest(for: request).map { hasBinding(for: $0, on: contextType) } ?? true
+        } else {
+            return (try? findBinding(for: request, on: contextType)) != nil
         }
     }
 
-    private func collectBindingEntries(
-        from tree: SwinjectTree,
-        canOverride: Bool? = nil,
-        canOverrideSilently: Bool
-    ) -> [BindingEntry] {
-        return tree.bindings
-            .flatMap { binding in binding.keys.map { key in
-                BindingEntry(
-                    binding: binding,
-                    key: key,
-                    overrides: binding.overrides,
-                    canOverride: canOverride ?? true,
-                    canOverrideSilently: canOverrideSilently
-                )
-            } }
-            + tree.modules.flatMap { collectBindingEntries(
-                from: $0.module.tree,
-                canOverride: canOverride ?? $0.canOverride,
-                canOverrideSilently: $0.module.allowsSilentOverride
-            ) }
+    func findBinding(for request: InstanceRequestDescriptor, on contextType: Any.Type) throws -> AnyBinding {
+        let bindings = translatableKeys(for: request, on: contextType).compactMap { self.bindings[$0] }
+        if bindings.isEmpty { throw NoBinding() }
+        if bindings.count > 1 { throw MultipleBindings() }
+        return bindings[0]
+    }
+
+    func allTranslators(on contextType: Any.Type) -> [AnyContextTranslator] {
+        return translators.filter { $0.sourceType == contextType } + defaultTranslators(on: contextType)
+    }
+
+    private func defaultTranslators(on contextType: Any.Type) -> [AnyContextTranslator] {
+        return [IdentityTranslator(for: contextType)]
+            + (contextType == Any.self ? [] : [ToAnyTranslator(for: contextType)])
+    }
+
+    private func translatableKeys(for request: InstanceRequestDescriptor, on contextType: Any.Type) -> [BindingKey] {
+        return allTranslators(on: contextType).map { request.key(on: $0.targetType) }
     }
 }
 
-private extension Array where Element: Hashable {
-    var containsDuplicates: Bool {
-        return count != Set(self).count
+private extension BindingDependency {
+    var asInstanceRequest: InstanceRequestDescriptor? {
+        if case let .instance(descriptor) = self { return descriptor } else { return nil }
     }
 }

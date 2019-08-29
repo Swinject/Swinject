@@ -33,7 +33,7 @@ extension BindingKey {
 }
 
 public enum BindingDependency {
-    case instance(TypeDescriptor, Arguments.Descriptor)
+    case instance(InstanceRequestDescriptor)
     case argument(Any.Type)
     case context(Any.Type)
 }
