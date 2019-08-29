@@ -11,8 +11,8 @@ class PropertyWrappersSpec: QuickSpec { override func spec() { #if swift(>=5.1)
         @propertyWrapper struct Wrapped<Value>: PropertyWrapper {
             var wrappedValue: Value
 
-            public init(wrappedValue: @autoclosure () -> Value) {
-                self.wrappedValue = wrappedValue()
+            public init(wrappedValue: Value) {
+                self.wrappedValue = wrappedValue
             }
         }
         it("can inject wrapped provider of a bound type") {

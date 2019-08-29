@@ -44,8 +44,10 @@ extension Swinject {
     private func customResolve<Type>(_ request: InstanceRequest<Type>) -> Type? {
         guard let custom = Type.self as? CustomResolvable.Type else { return nil }
         guard container.hasBinding(for: request.descriptor, on: contextType) else { return nil }
-        // TODO: We should reset tracking only for "delayed" custom resolutions
-        return custom.init(resolver: with(stack: []), request: request) as? Type
+        return custom.init(
+            resolver: custom.delaysResolution ? with(stack: []) : self,
+            request: request
+        ) as? Type
     }
 
     private func tracking(_ request: AnyInstanceRequest) throws -> Swinject {

@@ -6,7 +6,7 @@
 /// `Lazy<Type>` does not need to be explicitly registered into the `Container` - resolution will work
 /// as long as there is a registration for the `Type`.
 #if swift(>=5.1)
-    @propertyWrapper public enum Lazy<Value>: PropertyWrapper {
+    @propertyWrapper public enum Lazy<Value> {
         case uninitialized(() -> Value)
         case initialized(Value)
 
@@ -16,7 +16,7 @@
     }
 
 #else
-    public enum Lazy<Value>: PropertyWrapper {
+    public enum Lazy<Value> {
         case uninitialized(() -> Value)
         case initialized(Value)
     }
@@ -40,8 +40,10 @@ public extension Lazy {
             self = .initialized(newValue)
         }
     }
+}
 
-    init(wrappedValue: @autoclosure @escaping () -> Value) {
+extension Lazy: DelayedPropertyWrapper {
+    public init(wrappedValue: @autoclosure @escaping () -> Value) {
         self = .uninitialized(wrappedValue)
     }
 }
@@ -50,7 +52,7 @@ public extension Lazy {
 /// `Provider<Type>` does not need to be explicitly registered into the `Container` - resolution will work
 /// as long as there is a registration for the `Type`.
 #if swift(>=5.1)
-    @propertyWrapper public struct Provider<Type>: PropertyWrapper {
+    @propertyWrapper public struct Provider<Type> {
         private let provider: () -> Type
 
         public var wrappedValue: Type {
@@ -59,7 +61,7 @@ public extension Lazy {
     }
 
 #else
-    public struct Provider<Type>: PropertyWrapper {
+    public struct Provider<Type> {
         private let provider: () -> Type
     }
 #endif
@@ -72,8 +74,8 @@ public extension Provider {
     }
 }
 
-extension Provider {
-    init(wrappedValue: @autoclosure @escaping () -> Type) {
+extension Provider: DelayedPropertyWrapper {
+    public init(wrappedValue: @autoclosure @escaping () -> Type) {
         provider = wrappedValue
     }
 

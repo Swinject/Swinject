@@ -6,8 +6,8 @@
     @propertyWrapper public struct Weak<Value>: PropertyWrapper where Value: AnyObject {
         public weak var wrappedValue: Value?
 
-        public init(wrappedValue: @autoclosure () -> Value?) {
-            self.wrappedValue = wrappedValue()
+        public init(wrappedValue: Value?) {
+            self.wrappedValue = wrappedValue
         }
     }
 
@@ -15,8 +15,8 @@
     public struct Weak<Value>: PropertyWrapper where Value: AnyObject {
         public weak var wrappedValue: Value?
 
-        public init(wrappedValue: @autoclosure () -> Value?) {
-            self.wrappedValue = wrappedValue()
+        public init(wrappedValue: Value?) {
+            self.wrappedValue = wrappedValue
         }
     }
 #endif
