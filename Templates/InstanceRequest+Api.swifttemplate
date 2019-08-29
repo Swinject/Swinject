@@ -1,0 +1,4 @@
+<%- include("SwiftCode") %>
+// sourcery:inline:InstanceRequestApi
+<%= InstanceRequestVariation.publicCases.map { $0.render() }.joined(separator: "\n\n") %>
+// sourcery:end

@@ -18,23 +18,61 @@ targets:
         - SwinjectTests-${platform}
     sources:
       - path: Sources
-        excludes: ["*.erb"]
+        excludes: ["**/*.erb"]
+      - path: Templates
+        buildPhase: none
+    dependencies:
+      - target: Templates
+        link: false
+    preBuildScripts:
+      - script: >
+          if which sourcery >/dev/null; then
+            sourcery
+          else
+            echo "warning: Sourcery not installed, download from https://github.com/krzysztofzablocki/Sourcery"
+          fi
+        name: Sourcery
     postCompileScripts:
       - script: >
+          if which swiftformat >/dev/null; then
+            swiftformat .
+          else
+            echo "warning: SwiftLint not installed, download from https://github.com/nicklockwood/SwiftFormat"
+          fi
+        name: SwiftFormat
+      - script: >
           if which swiftlint >/dev/null; then
+            swiftlint autocorrect
             swiftlint
           else
             echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
           fi
-        name: Swiftlint
+        name: SwiftLint
   SwinjectTests:
     type: bundle.unit-test
     platform: [macOS, iOS, tvOS, watchOS]
     platformSuffix: -${platform}
-    scheme: {}
     sources:
-      - Tests/SwinjectTests
+      - path: Tests
+        excludes: [LinuxMain.swift]
     dependencies:
       - target: Swinject-${platform}
       - carthage: Quick
       - carthage: Nimble
+  Templates:
+    type: framework
+    platform: macOS
+    sources: Templates
+    postCompileScripts:
+      - script: >
+          OUTPUT="Templates/SwiftCode.swifttemplate"
+
+          echo "<%" > $OUTPUT
+          
+          for FILE in $(find Templates -name "*.swift"); do
+            cat $FILE >> $OUTPUT
+          done
+          
+          echo "%>" >> $OUTPUT
+        name: Generate SwiftCode.swifttemplate
+

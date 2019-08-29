@@ -26,7 +26,8 @@ let package = Package(
                 "Quick",
                 "Nimble",
                 "Swinject",
-            ]
+            ],
+            path: "Tests"
         ),
     ]
 )

@@ -1,0 +1,31 @@
+<% let maxParams = 20 %>
+// sourcery:inline:FunctionCallVariations
+<%_ for n in 0 ... maxParams {
+    if n == 1 { continue }
+    let inputTypes = (0 ..< n).map { "I\($0+1)" }.joined(separator: ", ")
+    let genericParams = n == 0 ? "Result" : "Result, \(inputTypes)"
+    let requests = (0 ..< n).map { _ in "instance()" }.joined(separator: ", ")
+-%>
+public postfix func ^ <<%= genericParams %>>(function: @escaping (<%= inputTypes %>) throws -> Result) -> FunctionCall<Result> {
+    return function^(<%= requests %>)
+}
+
+<%_ } -%>
+<%_ for n in 0 ... maxParams {
+    let requestTypes = (0 ..< n).map { "R\($0+1)" }.joined(separator: ", ")
+    let genericParams = n == 0 ? "Result" : "Result, \(requestTypes)"
+    let inputTypes = (0 ..< n).map { "R\($0+1).Result" }.joined(separator: ", ")
+    let constraints = (0 ..< n).map { "R\($0+1): PartialRequest" }.joined(separator: ", ")
+    let whereClause = n == 0 ? "" : " where \(constraints)"
+    let requestVars = n == 1 ? "inputs" : (0 ..< n).map { "inputs.\($0)" }.joined(separator: ", ")
+    let inputVars = n == 1 ? "inputs.fulfill(with: $0, and: $1)" : (0 ..< n).map { "inputs.\($0).fulfill(with: $0, and: $1)" }.joined(separator: ", ")
+    let executionInputs = n == 0 ? " _, _ in" : ""
+    let inputsParam = n == 0 ? "_" : "inputs"
+-%>
+public func ^ <<%= genericParams %>>(function: @escaping (<%= inputTypes %>) throws -> Result, <%= inputsParam %>: (<%= requestTypes %>)) -> FunctionCall<Result><%= whereClause %> {
+    return FunctionCall(inputs: [<%= requestVars %>]) {<%= executionInputs %>
+        try function(<%= inputVars %>)
+    }
+}<%= n < maxParams ? "\n" : "" %>
+<%_ } -%>
+// sourcery:end
