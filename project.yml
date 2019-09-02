@@ -1,5 +1,6 @@
 name: Swinject
 options:
+  bundleIdPrefix: com.el-eleven
   usesTabs: false
   indentWidth: 4
   tabWidth: 4
