@@ -14,6 +14,9 @@ targets:
     type: framework
     platform: [macOS, iOS, tvOS, watchOS]
     platformSuffix: -${platform}
+    settings:
+      base:
+        APPLICATION_EXTENSION_API_ONLY: 'YES'
     scheme:
       testTargets:
         - SwinjectTests-${platform}
