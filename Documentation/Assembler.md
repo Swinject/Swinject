@@ -61,7 +61,9 @@ protocol LogHandler {
 
 class Logger {
 
-    class var sharedInstance: Logger!
+    static let sharedInstance = Logger()
+    
+    private init() {}
 
     var logHandlers = [LogHandler]()
 
