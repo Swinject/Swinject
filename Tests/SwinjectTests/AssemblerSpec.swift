@@ -325,5 +325,15 @@ class AssemblerSpec: QuickSpec {
                 expect(spy.entries).to(haveCount(1))
             }
         }
+
+        describe("Synchronized Resolver") {
+            it("returns synchrozed resolver") {
+                let assembler = Assembler([
+                    AnimalAssembly(),
+                ])
+                let resolver = assembler.synchronizedResolver
+                expect(resolver).to(beAKindOf(SynchronizedResolver.self))
+            }
+        }
     }
 }
