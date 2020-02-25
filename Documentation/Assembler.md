@@ -132,6 +132,12 @@ Now you can resolve any components from either assembly:
 let fooManager = assembler.resolver.resolve(FooManagerProtocol.self)!
 ```
 
+For [thread safety](ThreadSafety.md), you may use `synchronizedResolver`:
+
+```swift
+let fooManager = assembler.synchronizedResolver.resolve(FooManagerProtocol.self)!
+```
+
 You can also lazy load assemblies:
 
 ```swift
