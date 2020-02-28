@@ -288,4 +288,4 @@ and highly inspired by:
 
 ## License
 
-MIT license. See the [LICENSE file](LICENSE.txt) for details.
+MIT license. See the [LICENSE file](LICENSE) for details.
