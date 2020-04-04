@@ -17,6 +17,7 @@ targets:
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: 'YES'
+        BUILD_LIBRARY_FOR_DISTRIBUTION: 'YES'
     scheme:
       testTargets:
         - SwinjectTests-${platform}
