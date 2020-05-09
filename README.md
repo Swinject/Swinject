@@ -105,6 +105,25 @@ pod 'Swinject'
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
 
+### Swift Package Manager
+
+in `Package.swift` add the following:
+
+```swift
+dependencies: [
+    // Dependencies declare other packages that this package depends on.
+    // .package(url: /* package url */, from: "1.0.0"),
+    .package(url: "https://github.com/Swinject/Swinject.git", from: "2.7.1")
+],
+targets: [
+    .target(
+        name: "MyProject",
+        dependencies: [..., "Swinject"]
+    )
+    ...
+]
+```
+
 ## Documentation
 
 - [Technical documents](./Documentation) including patterns of dependency injection and examples.
