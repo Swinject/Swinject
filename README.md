@@ -52,7 +52,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 
 ## Installation
 
-Swinject is available through [Carthage](https://github.com/Carthage/Carthage) or [CocoaPods](https://cocoapods.org).
+Swinject is available through [Carthage](https://github.com/Carthage/Carthage), [CocoaPods](https://cocoapods.org), or [Swift Package Manager](https://swift.org/package-manager/).
 
 ### Carthage
 
