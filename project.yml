@@ -7,7 +7,7 @@ options:
   deploymentTarget:
     macOS: '10.10'
     tvOS: '9.0'
-    iOS: '8.0'
+    iOS: '9.0'
     watchOS: '2.0'
 targets:
   Swinject:
@@ -16,6 +16,7 @@ targets:
     platformSuffix: -${platform}
     settings:
       base:
+        EXCLUDED_ARCHS[sdk=iphonesimulator*]: 'arm64'
         APPLICATION_EXTENSION_API_ONLY: 'YES'
     scheme:
       testTargets:
