@@ -7,36 +7,41 @@ git:
   submodules: false
 matrix:
   include:
-    - env: JOB="LINUX_SPM" SWIFT_VERSION="5.0"
+    - env: JOB="LINUX_SPM" SWIFT_VERSION="5.2.2"
       os: linux
       language: generic
       sudo: required
-      dist: trusty
+      dist: bionic
       before_install:
-        - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
+        - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
       script:
         - mv .Package.Test.swift Package.swift
         - swift build
         - swift test
     - env: JOB="POD_LINT"
-      osx_image: xcode10.2
+      osx_image: xcode12
       before_install:
       script:
         - pod lib lint
-    - env: JOB="XCODE" DEST="OS=10.0,name=iPhone 6" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
-      osx_image: xcode10.2
+    - env: JOB="XCODE" DEST="OS=14.0,name=iPhone 8" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
+      osx_image: xcode12
     - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-macOS" SDK="macosx" ACTION="test" PLATFORM="OSX"
-      osx_image: xcode10.2
-    - env: JOB="XCODE" DEST="OS=10.0,name=Apple TV 1080p" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test" PLATFORM="tvOS"
-      osx_image: xcode10.2
-    - env: JOB="XCODE" DEST="OS=2.2,name=Apple Watch - 42mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build" PLATFORM="watchOS"
-      osx_image: xcode10.2
+      osx_image: xcode12
+    - env: JOB="XCODE" DEST="OS=14.0,name=Apple TV 4K" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test" PLATFORM="tvOS"
+      osx_image: xcode12
+    - env: JOB="XCODE" DEST="OS=7.0,name=Apple Watch Series 6 - 44mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build" PLATFORM="watchOS"
+      osx_image: xcode12
 
 before_install:
-  - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.33.0/Carthage.pkg
+  - curl -L -O https://github.com/Carthage/Carthage/releases/download/0.36.0/Carthage.pkg
   - sudo installer -pkg Carthage.pkg -target /
   - rm Carthage.pkg
-  - carthage bootstrap --verbose --platform $PLATFORM
+  - xcconfig=$(mktemp /tmp/static.xcconfig.XXXXXX)
+  - trap 'rm -f "$xcconfig"' INT TERM HUP EXIT
+  - echo 'EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64__XCODE_1200 = arm64 arm64e armv7 armv7s armv6 armv8' >> $xcconfig
+  - echo 'EXCLUDED_ARCHS = $(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT)__XCODE_$(XCODE_VERSION_MAJOR))' >> $xcconfig
+  - export XCODE_XCCONFIG_FILE="$xcconfig"
+  - carthage bootstrap --platform $PLATFORM --new-resolver
 script:
   - set -o pipefail
   - xcodebuild "$ACTION" -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DEST" -configuration Release ENABLE_TESTABILITY=YES | xcpretty

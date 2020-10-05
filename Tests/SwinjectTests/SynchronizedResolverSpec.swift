@@ -78,7 +78,7 @@ class SynchronizedResolverSpec: QuickSpec {
                 let queue = DispatchQueue(
                     label: "SwinjectTests.SynchronizedContainerSpec.Queue", attributes: .concurrent
                 )
-                waitUntil(timeout: 2.0) { done in
+                waitUntil(timeout: .seconds(2)) { done in
                     queue.async {
                         _ = threadSafeResolver.resolve(ParentProtocol.self)
                         done()
@@ -122,7 +122,7 @@ private func onMultipleThreads(action: @escaping () -> Void) {
 }
 
 private func onMultipleThreads(actions: [() -> Void]) {
-    waitUntil(timeout: 2.0) { done in
+    waitUntil(timeout: .seconds(2)) { done in
         let queue = DispatchQueue(
             label: "SwinjectTests.SynchronizedContainerSpec.Queue",
             attributes: .concurrent
