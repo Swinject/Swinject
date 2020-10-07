@@ -89,7 +89,11 @@ class ContainerSpec: QuickSpec {
                         owner.favoriteFood = $0.resolve(Food.self)
                         return owner
                     }
-                    expect { _ = parent.resolve(PetOwner.self) }.notTo(throwAssertion())
+
+                    let expectation: Expectation<Void> = expect {
+                        _ = parent.resolve(PetOwner.self)
+                    }
+                    expectation.notTo(throwAssertion())
                 }
             #endif
         }

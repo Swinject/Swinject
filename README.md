@@ -52,7 +52,7 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 
 ## Installation
 
-Swinject is available through [Carthage](https://github.com/Carthage/Carthage) or [CocoaPods](https://cocoapods.org).
+Swinject is available through [Carthage](https://github.com/Carthage/Carthage), [CocoaPods](https://cocoapods.org), or [Swift Package Manager](https://swift.org/package-manager/).
 
 ### Carthage
 
@@ -104,6 +104,25 @@ pod 'Swinject'
 ```
 
 Then run `pod install` command. For details of the installation and usage of CocoaPods, visit [its official website](https://cocoapods.org).
+
+### Swift Package Manager
+
+in `Package.swift` add the following:
+
+```swift
+dependencies: [
+    // Dependencies declare other packages that this package depends on.
+    // .package(url: /* package url */, from: "1.0.0"),
+    .package(url: "https://github.com/Swinject/Swinject.git", from: "2.7.1")
+],
+targets: [
+    .target(
+        name: "MyProject",
+        dependencies: [..., "Swinject"]
+    )
+    ...
+]
+```
 
 ## Documentation
 
@@ -288,4 +307,4 @@ and highly inspired by:
 
 ## License
 
-MIT license. See the [LICENSE file](LICENSE.txt) for details.
+MIT license. See the [LICENSE file](LICENSE) for details.

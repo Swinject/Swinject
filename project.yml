@@ -7,8 +7,17 @@ options:
   deploymentTarget:
     macOS: '10.10'
     tvOS: '9.0'
-    iOS: '8.0'
+    iOS: '9.0'
     watchOS: '2.0'
+settingGroups:
+      macOS:
+        EXCLUDED_ARCHS: ''
+      iOS:
+        EXCLUDED_ARCHS[sdk=iphonesimulator*]: 'arm64'
+      tvOS:
+        EXCLUDED_ARCHS[sdk=appletvsimulator*]: 'arm64'
+      watchOS:
+        EXCLUDED_ARCHS: ''
 targets:
   Swinject:
     type: framework
@@ -17,6 +26,8 @@ targets:
     settings:
       base:
         APPLICATION_EXTENSION_API_ONLY: 'YES'
+      groups:
+        - ${platform}
     scheme:
       testTargets:
         - SwinjectTests-${platform}
