@@ -12,6 +12,13 @@ public final class Assembler {
         return container
     }
 
+    /// expose the container's synchornized resolver.
+    ///
+    /// - seealso: `Container.synchronize`
+    public var synchronizedResolver: Resolver {
+        return container.synchronize()
+    }
+
     /// Will create an empty `Assembler`
     ///
     /// - parameter container: the baseline container
