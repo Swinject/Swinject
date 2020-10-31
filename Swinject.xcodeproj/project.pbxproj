@@ -39,6 +39,14 @@
 		1BA2596EFB6E7BF4D46E3C9D /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF07245CC462D98868097A3 /* BehaviorFakes.swift */; };
 		1BD861CA392B1E63D249906B /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7196841DBEB28245AF90D79E /* ContainerSpec.swift */; };
 		1C1C0CB3F19349057B4FBDE1 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC59458E04C20587D870946 /* BasicAssembly.swift */; };
+		1D08D92B23A9D53200EF05C1 /* DependencyInjectionPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08D92A23A9D53200EF05C1 /* DependencyInjectionPropertyWrapper.swift */; };
+		1D08D92C23A9D5C700EF05C1 /* DependencyInjectionPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08D92A23A9D53200EF05C1 /* DependencyInjectionPropertyWrapper.swift */; };
+		1D08D92D23A9D5C700EF05C1 /* DependencyInjectionPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08D92A23A9D53200EF05C1 /* DependencyInjectionPropertyWrapper.swift */; };
+		1D08D92E23A9D5C800EF05C1 /* DependencyInjectionPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08D92A23A9D53200EF05C1 /* DependencyInjectionPropertyWrapper.swift */; };
+		1D08D93123A9D61E00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08D92F23A9D5EC00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift */; };
+		1D08D93223A9D61F00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08D92F23A9D5EC00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift */; };
+		1D08D93323A9D61F00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08D92F23A9D5EC00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift */; };
+		1D08D93423A9D62000EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08D92F23A9D5EC00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift */; };
 		1DB36B1F8919879607F67F35 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F57E5E5BE1DC65C3DDAF6 /* Container.Arguments.swift */; };
 		229E0EAD0D8413D4CA67094C /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA24DF3EBEAA57BFC8D8631 /* ContainerSpec.DebugHelper.swift */; };
 		235DD35BC7B8CE15BA46A677 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF07245CC462D98868097A3 /* BehaviorFakes.swift */; };
@@ -330,6 +338,8 @@
 		172E48E07BA72BCBFB305E93 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		1979933FD5852C28F6D8784A /* SynchronizedResolver.Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedResolver.Arguments.swift; sourceTree = "<group>"; };
 		1C58FC14EEA170B0DC079DE4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
+		1D08D92A23A9D53200EF05C1 /* DependencyInjectionPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectionPropertyWrapper.swift; sourceTree = "<group>"; };
+		1D08D92F23A9D5EC00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectionPropertyWrapperSpec.swift; sourceTree = "<group>"; };
 		22762C9585A1DA3894306060 /* SynchronizedResolverSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedResolverSpec.swift; sourceTree = "<group>"; };
 		2380F40FC2B9229F36B13679 /* LoadAwareAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAwareAssembly.swift; sourceTree = "<group>"; };
 		273FB7A6277E0841E1570990 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
@@ -458,6 +468,7 @@
 				DE86AA2A0C4B722DD40FDEAE /* ServiceKeySpec.swift */,
 				22762C9585A1DA3894306060 /* SynchronizedResolverSpec.swift */,
 				9BFC0320217B5AECBAB994D1 /* WeakStorageSpec.swift */,
+				1D08D92F23A9D5EC00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift */,
 			);
 			name = SwinjectTests;
 			path = Tests/SwinjectTests;
@@ -575,6 +586,7 @@
 				1979933FD5852C28F6D8784A /* SynchronizedResolver.Arguments.swift */,
 				710204D1A678B791BB0FC60E /* SynchronizedResolver.swift */,
 				39924B830576F62A4B528A37 /* UnavailableItems.swift */,
+				1D08D92A23A9D53200EF05C1 /* DependencyInjectionPropertyWrapper.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -921,6 +933,7 @@
 				23A8D7543ED9973F04C5BC93 /* FunctionType.swift in Sources */,
 				706A459CAE24E0D5054CEC30 /* GraphIdentifier.swift in Sources */,
 				B55E915211F19C91C622E068 /* InstanceStorage.swift in Sources */,
+				1D08D92C23A9D5C700EF05C1 /* DependencyInjectionPropertyWrapper.swift in Sources */,
 				BB78B5DA95DCE3A942C18910 /* InstanceWrapper.swift in Sources */,
 				055969F9EA3C1AD43B11E006 /* ObjectScope.Standard.swift in Sources */,
 				62A1539A3B07EE3E1B72CF95 /* ObjectScope.swift in Sources */,
@@ -957,6 +970,7 @@
 				1276420B3D3ED5ACFC2C5B4F /* EmploymentAssembly.swift in Sources */,
 				0266A3114C82246F18B52860 /* Food.swift in Sources */,
 				5E22405979EC888E46F0CF8D /* LazySpec.swift in Sources */,
+				1D08D93123A9D61E00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift in Sources */,
 				471EEA7C90D1AEA45CAC0236 /* LoadAwareAssembly.swift in Sources */,
 				2A87CB8C62E83CCF6B71A037 /* Person.swift in Sources */,
 				EC467FE255CC2AA8A09E4BD8 /* ProviderSpec.swift in Sources */,
@@ -988,6 +1002,7 @@
 				75A776D4072BCF74F298D818 /* EmploymentAssembly.swift in Sources */,
 				44676A0D0399F323A31E0451 /* Food.swift in Sources */,
 				019AF80A06CA3271456549BE /* LazySpec.swift in Sources */,
+				1D08D93223A9D61F00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift in Sources */,
 				4D35CD2C4FD5788F087A4D51 /* LoadAwareAssembly.swift in Sources */,
 				B3F7F3FB03EB048B16B05620 /* Person.swift in Sources */,
 				F220E041952440BA129C8986 /* ProviderSpec.swift in Sources */,
@@ -1019,6 +1034,7 @@
 				3A41F4B375C1CE29A75F6AE9 /* EmploymentAssembly.swift in Sources */,
 				115515373F266C35E8DBE724 /* Food.swift in Sources */,
 				62BE8825EF3E272428AC3CB5 /* LazySpec.swift in Sources */,
+				1D08D93423A9D62000EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift in Sources */,
 				BA36EC78ECA2701853CD3E12 /* LoadAwareAssembly.swift in Sources */,
 				ED19CAF7B39978B3CDF2013E /* Person.swift in Sources */,
 				B98E15D0ACC22F36BF085BF3 /* ProviderSpec.swift in Sources */,
@@ -1050,6 +1066,7 @@
 				1613AE7671758A85F760C5DF /* EmploymentAssembly.swift in Sources */,
 				4736BF9B29704061B29BFACD /* Food.swift in Sources */,
 				B02AEA6ED72703B0F2FFE7C5 /* LazySpec.swift in Sources */,
+				1D08D93323A9D61F00EF05C1 /* DependencyInjectionPropertyWrapperSpec.swift in Sources */,
 				D210E7349E119368A741DB2F /* LoadAwareAssembly.swift in Sources */,
 				FCC32CC413C08CF94D7F661E /* Person.swift in Sources */,
 				F1CEA509C37E514147409837 /* ProviderSpec.swift in Sources */,
@@ -1075,6 +1092,7 @@
 				C34362994B2581F04EB818A2 /* FunctionType.swift in Sources */,
 				59AB5E84FD9B11B7D1CA2401 /* GraphIdentifier.swift in Sources */,
 				FF222640214C9F4DA56130C4 /* InstanceStorage.swift in Sources */,
+				1D08D92D23A9D5C700EF05C1 /* DependencyInjectionPropertyWrapper.swift in Sources */,
 				7000D01DCB05BF57BC89BCF8 /* InstanceWrapper.swift in Sources */,
 				FEAF6DE7BBDD922B61E0ED20 /* ObjectScope.Standard.swift in Sources */,
 				B9566410214991FBA727BB37 /* ObjectScope.swift in Sources */,
@@ -1105,6 +1123,7 @@
 				F98A1B2A226EE26A13C67F34 /* FunctionType.swift in Sources */,
 				CC64B74A022612990F57D51D /* GraphIdentifier.swift in Sources */,
 				D6B0E0FA93AD8D47AA07AE03 /* InstanceStorage.swift in Sources */,
+				1D08D92E23A9D5C800EF05C1 /* DependencyInjectionPropertyWrapper.swift in Sources */,
 				6A352D6A2C12D7BDABC38645 /* InstanceWrapper.swift in Sources */,
 				BDCBFD62903A1C0F8B35797C /* ObjectScope.Standard.swift in Sources */,
 				130DDD2347169F885F420989 /* ObjectScope.swift in Sources */,
@@ -1135,6 +1154,7 @@
 				8586EE67C32C467F3716DFFA /* FunctionType.swift in Sources */,
 				0C56E93B497BBA17B0E408F4 /* GraphIdentifier.swift in Sources */,
 				AB05847EAB8D85A8679B5EC5 /* InstanceStorage.swift in Sources */,
+				1D08D92B23A9D53200EF05C1 /* DependencyInjectionPropertyWrapper.swift in Sources */,
 				61357D47A1C4870FAA34377C /* InstanceWrapper.swift in Sources */,
 				FA89EFC16AEAC2EC333CEA81 /* ObjectScope.Standard.swift in Sources */,
 				40DCC9D2F3ABC2B36C9DC8AE /* ObjectScope.swift in Sources */,
