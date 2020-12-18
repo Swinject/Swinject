@@ -1,0 +1,60 @@
+//
+//  Resolver.TypeIdentifier.swift
+//  Swinject-iOS
+//
+//  Created by Benjamin Lavialle on 01/12/2020.
+//  Copyright © 2018 Swinject Contributors. All rights reserved.
+//
+
+//
+// NOTICE:
+//
+// Resolver.TypeIdentifier.swift is generated from Resolver.TypeIdentifier.erb by ERB.
+// Do NOT modify Resolver.TypeIdentifier.swift directly.
+// Instead, modify Resolver.TypeIdentifier.erb and run `script/gencode` at the project root directory to generate the code.
+//
+
+<% arg_count = 9 %>
+extension Resolver {
+
+    /// Retrieves the instance with the specified service type and registration name.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
+    ///   - identifier:  The registration identifier.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no service with the identifier is found.
+    @discardableResult
+    public func resolve<Service: Identifiable>(
+        _ serviceType: Service.Type,
+        identifier: Service.Identifier? = nil
+    ) -> Service? {
+        resolve(serviceType, name: identifier?.rawValue)
+    }
+
+<% (1..arg_count).each do |i| %>
+<%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+<%   arg_param = i == 1 ? "argument: Arg1" : "arguments arg1: Arg1, " + (2..i).map{ |n| "_ arg#{n}: Arg#{n}" }.join(", ") %>
+<%   arg_param_call = i == 1 ? "argument" : (1..i).map{ |n| "arg#{n}" }.join(", ") %>
+<%   arg_param_name = i == 1 ? "argument" : "arguments" %>
+<%   arg_param_description = i == 1 ? "#{i} argument" : "list of #{i} arguments" %>
+    /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
+    ///   - identifier:  The registration identifier.
+    ///   - <%= arg_param_name %>:   <%= arg_param_description.capitalize %> to pass to the factory closure.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type,
+    ///            <%= arg_param_description %> and identifier is found.
+    public func resolve<Service: Identifiable, <%= arg_types %>>(
+        _ serviceType: Service.Type,
+        identifier: Service.Identifier? = nil,
+        <%= arg_param %>
+
+    ) -> Service? {
+        resolve(serviceType, name: identifier?.rawValue, <%= arg_param_name %>: <%= arg_param_call %>)
+    }
+
+<% end %>
+}

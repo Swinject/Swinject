@@ -1,6 +1,6 @@
 #!/bin/sh
 
-files="Sources/Container.Arguments Sources/SynchronizedResolver.Arguments Sources/Resolver Sources/ServiceEntry.TypeForwarding"
+files="Sources/Container.Arguments Sources/SynchronizedResolver.Arguments Sources/Resolver Sources/ServiceEntry.TypeForwarding Sources/Resolver.TypeIdentifier Sources/Resolver.DedicatedIdentifier Sources/Container.TypeIdentifier Sources/Container.DedicatedIdentifier"
 
 for file in $files; do
   echo "Generating code to $file.swift"

@@ -1,0 +1,63 @@
+//
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
+//
+
+//
+// NOTICE:
+//
+// Resolver.TypeIdentifier.swift is generated from Resolver.TypeIdentifier.erb by ERB.
+// Do NOT modify Resolver.TypeIdentifier.swift directly.
+// Instead, modify Resolver.TypeIdentifier.erb and run `script/gencode` at the project root directory to generate the code.
+//
+
+<% arg_count = 9 %>
+extension Container {
+
+    /// Adds a registration for the specified service with the factory closure to specify how the service is
+    /// resolved with dependencies.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to register.
+    ///   - identifier:  A registration identifier, which is used to differentiate from other registrations
+    ///                  that have the same service and factory types.
+    ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
+    ///                  It is invoked when the `Container` needs to instantiate the instance.
+    ///                  It takes a `Resolver` to inject dependencies to the instance,
+    ///                  and returns the instance of the component type for the service.
+    ///
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
+    public func register<Service: Identifiable>(
+        _ serviceType: Service.Type,
+        identifier: Service.Identifier? = nil,
+        factory: @escaping (Resolver) -> Service
+    ) -> ServiceEntry<Service> {
+        return register(serviceType, name: identifier?.rawValue, factory: factory)
+    }
+
+<% (1..arg_count).each do |i| %>
+<%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+<%   arg_description = i == 1 ? "#{i} argument" : "#{i} arguments" %>
+    /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to register.
+    ///   - identifier:  A registration identifier, which is used to differentiate from other registrations
+    ///                  that have the same service and factory types.
+    ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
+    ///                  It is invoked when the `Container` needs to instantiate the instance.
+    ///                  It takes a `Resolver` instance and <%= arg_description %> to inject dependencies to the instance,
+    ///                  and returns the instance of the component type for the service.
+    ///
+    /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
+    @discardableResult
+    public func register<Service: Identifiable, <%= arg_types %>>(
+        _ serviceType: Service.Type,
+        identifier: Service.Identifier? = nil,
+        factory: @escaping (Resolver, <%= arg_types %>) -> Service
+    ) -> ServiceEntry<Service> {
+        return register(serviceType, name: identifier?.rawValue, factory: factory)
+    }
+
+<% end %>
+}
