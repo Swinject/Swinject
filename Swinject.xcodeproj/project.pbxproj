@@ -160,6 +160,10 @@
 		8731612D258CAAA600D9901C /* Cat.Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731612B258CAAA600D9901C /* Cat.Identifier.swift */; };
 		8731612E258CAAA600D9901C /* Cat.Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731612B258CAAA600D9901C /* Cat.Identifier.swift */; };
 		8731612F258CAAA600D9901C /* Cat.Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731612B258CAAA600D9901C /* Cat.Identifier.swift */; };
+		87316135258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87316134258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift */; };
+		87316136258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87316134258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift */; };
+		87316137258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87316134258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift */; };
+		87316138258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87316134258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift */; };
 		87820F3A258B97E000DC6D6F /* TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87820F39258B97E000DC6D6F /* TypeIdentifier.swift */; };
 		87820F3B258B97E000DC6D6F /* TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87820F39258B97E000DC6D6F /* TypeIdentifier.swift */; };
 		87820F3C258B97E000DC6D6F /* TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87820F39258B97E000DC6D6F /* TypeIdentifier.swift */; };
@@ -402,6 +406,7 @@
 		873160F8258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.TypeIdentifier.swift; sourceTree = "<group>"; };
 		87316101258CA97700D9901C /* AnimalIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalIdentifier.swift; sourceTree = "<group>"; };
 		8731612B258CAAA600D9901C /* Cat.Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.Identifier.swift; sourceTree = "<group>"; };
+		87316134258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerSpec.TypeIdentifier.swift; sourceTree = "<group>"; };
 		87820F39258B97E000DC6D6F /* TypeIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeIdentifier.swift; sourceTree = "<group>"; };
 		87820F42258B985500DC6D6F /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		87820F4B258B989A00DC6D6F /* DedicatedIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DedicatedIdentifier.swift; sourceTree = "<group>"; };
@@ -486,6 +491,7 @@
 				FFBC1F44A2B361CB169F7B66 /* Animal.swift */,
 				87316101258CA97700D9901C /* AnimalIdentifier.swift */,
 				1525F92CDAA706A848343E2B /* AssemblerSpec.swift */,
+				87316134258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift */,
 				FCC59458E04C20587D870946 /* BasicAssembly.swift */,
 				BEF07245CC462D98868097A3 /* BehaviorFakes.swift */,
 				8731612B258CAAA600D9901C /* Cat.Identifier.swift */,
@@ -1032,6 +1038,7 @@
 				F022381D6B69750931480F6D /* ServiceEntrySpec.swift in Sources */,
 				24D51AE9E7475581C19E12AD /* ServiceKeySpec.swift in Sources */,
 				C814B6BC8221EF2C84E58B56 /* SynchronizedResolverSpec.swift in Sources */,
+				87316135258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift in Sources */,
 				59D1C096E0FAB6094D6D2E68 /* WeakStorageSpec.swift in Sources */,
 				873160F9258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */,
 			);
@@ -1066,6 +1073,7 @@
 				353E676B57D140FCF2B930AA /* ServiceEntrySpec.swift in Sources */,
 				593926C57DA312B31AEBACB5 /* ServiceKeySpec.swift in Sources */,
 				3180DAAFE61B960BC08BAF29 /* SynchronizedResolverSpec.swift in Sources */,
+				87316136258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift in Sources */,
 				06AC1B35227A2D5E8DC66531 /* WeakStorageSpec.swift in Sources */,
 				873160FA258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */,
 			);
@@ -1100,6 +1108,7 @@
 				B776AE100F31CAAF5A0C9BF1 /* ServiceEntrySpec.swift in Sources */,
 				0D3457202BD8D4737A415594 /* ServiceKeySpec.swift in Sources */,
 				10E24A29F44F24CDB18B4D94 /* SynchronizedResolverSpec.swift in Sources */,
+				87316138258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift in Sources */,
 				16DB7B41DA383C7A52B8131F /* WeakStorageSpec.swift in Sources */,
 				873160FC258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */,
 			);
@@ -1134,6 +1143,7 @@
 				4652D9934D8361274EBF00D1 /* ServiceEntrySpec.swift in Sources */,
 				935EB3978CD45BFA301F459B /* ServiceKeySpec.swift in Sources */,
 				ED832F8CF534CA8F91ADB594 /* SynchronizedResolverSpec.swift in Sources */,
+				87316137258CAF7F00D9901C /* AssemblerSpec.TypeIdentifier.swift in Sources */,
 				48C79F21528614C83BE6A283 /* WeakStorageSpec.swift in Sources */,
 				873160FB258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */,
 			);

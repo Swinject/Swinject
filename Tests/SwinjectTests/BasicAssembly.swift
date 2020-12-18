@@ -38,3 +38,25 @@ class ContainerSpyAssembly: Assembly {
         }
     }
 }
+
+
+class AnimalTypeIdentifiedAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(Animal.self, identifier: AnimalIdentifier.myCat) { _ in
+            Cat(name: "Whiskers")
+        }
+        container.register(Animal.self, identifier: AnimalIdentifier.myOtherCat) { _ in
+            Cat(name: "Sylvester")
+        }
+    }
+}
+class CatTypeIdentifiedAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(Cat.self, identifier: .firstCat) { _ in
+            Cat(name: "Whiskers")
+        }
+        container.register(Cat.self, identifier: .secondCat) { _ in
+            Cat(name: "Sylvester")
+        }
+    }
+}
