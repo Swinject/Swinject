@@ -148,6 +148,18 @@
 		873160B7258BB5C200D9901C /* Resolver.DedicatedIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873160AD258BB5C200D9901C /* Resolver.DedicatedIdentifier.swift */; };
 		873160B8258BB5C200D9901C /* Resolver.DedicatedIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873160AD258BB5C200D9901C /* Resolver.DedicatedIdentifier.swift */; };
 		873160B9258BB5C200D9901C /* Resolver.DedicatedIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873160AD258BB5C200D9901C /* Resolver.DedicatedIdentifier.swift */; };
+		873160F9258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873160F8258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift */; };
+		873160FA258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873160F8258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift */; };
+		873160FB258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873160F8258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift */; };
+		873160FC258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873160F8258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift */; };
+		87316102258CA97700D9901C /* AnimalIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87316101258CA97700D9901C /* AnimalIdentifier.swift */; };
+		87316103258CA97700D9901C /* AnimalIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87316101258CA97700D9901C /* AnimalIdentifier.swift */; };
+		87316104258CA97700D9901C /* AnimalIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87316101258CA97700D9901C /* AnimalIdentifier.swift */; };
+		87316105258CA97700D9901C /* AnimalIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87316101258CA97700D9901C /* AnimalIdentifier.swift */; };
+		8731612C258CAAA600D9901C /* Cat.Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731612B258CAAA600D9901C /* Cat.Identifier.swift */; };
+		8731612D258CAAA600D9901C /* Cat.Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731612B258CAAA600D9901C /* Cat.Identifier.swift */; };
+		8731612E258CAAA600D9901C /* Cat.Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731612B258CAAA600D9901C /* Cat.Identifier.swift */; };
+		8731612F258CAAA600D9901C /* Cat.Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731612B258CAAA600D9901C /* Cat.Identifier.swift */; };
 		87820F3A258B97E000DC6D6F /* TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87820F39258B97E000DC6D6F /* TypeIdentifier.swift */; };
 		87820F3B258B97E000DC6D6F /* TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87820F39258B97E000DC6D6F /* TypeIdentifier.swift */; };
 		87820F3C258B97E000DC6D6F /* TypeIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87820F39258B97E000DC6D6F /* TypeIdentifier.swift */; };
@@ -387,6 +399,9 @@
 		873160AB258BB5C100D9901C /* Container.DedicatedIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.DedicatedIdentifier.swift; sourceTree = "<group>"; };
 		873160AC258BB5C200D9901C /* Container.TypeIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.TypeIdentifier.swift; sourceTree = "<group>"; };
 		873160AD258BB5C200D9901C /* Resolver.DedicatedIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.DedicatedIdentifier.swift; sourceTree = "<group>"; };
+		873160F8258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.TypeIdentifier.swift; sourceTree = "<group>"; };
+		87316101258CA97700D9901C /* AnimalIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalIdentifier.swift; sourceTree = "<group>"; };
+		8731612B258CAAA600D9901C /* Cat.Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.Identifier.swift; sourceTree = "<group>"; };
 		87820F39258B97E000DC6D6F /* TypeIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeIdentifier.swift; sourceTree = "<group>"; };
 		87820F42258B985500DC6D6F /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		87820F4B258B989A00DC6D6F /* DedicatedIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DedicatedIdentifier.swift; sourceTree = "<group>"; };
@@ -469,9 +484,11 @@
 			children = (
 				A982F3108666D12EA0810D52 /* .swiftlint.yml */,
 				FFBC1F44A2B361CB169F7B66 /* Animal.swift */,
+				87316101258CA97700D9901C /* AnimalIdentifier.swift */,
 				1525F92CDAA706A848343E2B /* AssemblerSpec.swift */,
 				FCC59458E04C20587D870946 /* BasicAssembly.swift */,
 				BEF07245CC462D98868097A3 /* BehaviorFakes.swift */,
+				8731612B258CAAA600D9901C /* Cat.Identifier.swift */,
 				47328731EED63322AD76FB3A /* Circularity.swift */,
 				2C662DAE2FD2FCCA8585DB89 /* ContainerSpec.Arguments.swift */,
 				0A55238408D01CA3199A54A5 /* ContainerSpec.Behavior.swift */,
@@ -482,6 +499,7 @@
 				1524909CA7B5BFA7E2BEE347 /* ContainerSpec.GraphCaching.swift */,
 				7196841DBEB28245AF90D79E /* ContainerSpec.swift */,
 				A8817F361F89EB6F454B8F89 /* ContainerSpec.TypeForwarding.swift */,
+				873160F8258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift */,
 				077047532310E42432E94D83 /* EmploymentAssembly.swift */,
 				1271722CF77709A1173E7863 /* Food.swift */,
 				AEAC51C6D09DEBE863D5A06E /* Info.plist */,
@@ -990,11 +1008,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				12BDC39E183E9F24A676930B /* Animal.swift in Sources */,
+				87316102258CA97700D9901C /* AnimalIdentifier.swift in Sources */,
 				8B77C609B760B0B1198D515D /* AssemblerSpec.swift in Sources */,
 				1C1C0CB3F19349057B4FBDE1 /* BasicAssembly.swift in Sources */,
 				235DD35BC7B8CE15BA46A677 /* BehaviorFakes.swift in Sources */,
 				F355D8940486AF9DE89DD22E /* Circularity.swift in Sources */,
 				A197085CE442365D732EE6FE /* ContainerSpec.Arguments.swift in Sources */,
+				8731612C258CAAA600D9901C /* Cat.Identifier.swift in Sources */,
 				DCF03B6DB8F99A474F2B575C /* ContainerSpec.Behavior.swift in Sources */,
 				030256DFF226FE93C75833F5 /* ContainerSpec.Circularity.swift in Sources */,
 				88D3BB9CECA9F373FF882AFB /* ContainerSpec.CustomScope.swift in Sources */,
@@ -1013,6 +1033,7 @@
 				24D51AE9E7475581C19E12AD /* ServiceKeySpec.swift in Sources */,
 				C814B6BC8221EF2C84E58B56 /* SynchronizedResolverSpec.swift in Sources */,
 				59D1C096E0FAB6094D6D2E68 /* WeakStorageSpec.swift in Sources */,
+				873160F9258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,11 +1042,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B78D64DC2B0332D562F39A82 /* Animal.swift in Sources */,
+				87316103258CA97700D9901C /* AnimalIdentifier.swift in Sources */,
 				6942CC4FFCA9DFCEE448A9CB /* AssemblerSpec.swift in Sources */,
 				9ECC88CB09E13FD179A1ED8E /* BasicAssembly.swift in Sources */,
 				FF9DCB0AB20B0DBBE79451BB /* BehaviorFakes.swift in Sources */,
 				F82A2357F3C86D24E1E1D712 /* Circularity.swift in Sources */,
 				64410D34965C716D21782147 /* ContainerSpec.Arguments.swift in Sources */,
+				8731612D258CAAA600D9901C /* Cat.Identifier.swift in Sources */,
 				D20B08D89E67C0BA45302266 /* ContainerSpec.Behavior.swift in Sources */,
 				E63B478AC633428999D7E53E /* ContainerSpec.Circularity.swift in Sources */,
 				0A8E435254D99275EDED84AC /* ContainerSpec.CustomScope.swift in Sources */,
@@ -1044,6 +1067,7 @@
 				593926C57DA312B31AEBACB5 /* ServiceKeySpec.swift in Sources */,
 				3180DAAFE61B960BC08BAF29 /* SynchronizedResolverSpec.swift in Sources */,
 				06AC1B35227A2D5E8DC66531 /* WeakStorageSpec.swift in Sources */,
+				873160FA258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1052,11 +1076,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA4990BFDE1BA41947B9C140 /* Animal.swift in Sources */,
+				87316105258CA97700D9901C /* AnimalIdentifier.swift in Sources */,
 				D8A69AA5E6AB9E9287BCDA0B /* AssemblerSpec.swift in Sources */,
 				6443FB8C5B3DD95740287398 /* BasicAssembly.swift in Sources */,
 				0CAD0368F908D3D285C6A9A9 /* BehaviorFakes.swift in Sources */,
 				69A27AA36C90A4D4A5FDDEFC /* Circularity.swift in Sources */,
 				8AF61540088BF00CEF29247A /* ContainerSpec.Arguments.swift in Sources */,
+				8731612F258CAAA600D9901C /* Cat.Identifier.swift in Sources */,
 				E6CFED8809163B7DBA6A0262 /* ContainerSpec.Behavior.swift in Sources */,
 				84E22DD92E4F02B70F3A17C5 /* ContainerSpec.Circularity.swift in Sources */,
 				2B54062B225800A92EBDCDFB /* ContainerSpec.CustomScope.swift in Sources */,
@@ -1075,6 +1101,7 @@
 				0D3457202BD8D4737A415594 /* ServiceKeySpec.swift in Sources */,
 				10E24A29F44F24CDB18B4D94 /* SynchronizedResolverSpec.swift in Sources */,
 				16DB7B41DA383C7A52B8131F /* WeakStorageSpec.swift in Sources */,
+				873160FC258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1083,11 +1110,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				270E79D1962E06A934455167 /* Animal.swift in Sources */,
+				87316104258CA97700D9901C /* AnimalIdentifier.swift in Sources */,
 				F181F802205438BC3E09AD5D /* AssemblerSpec.swift in Sources */,
 				5D17DB72B4986D174D69135B /* BasicAssembly.swift in Sources */,
 				1BA2596EFB6E7BF4D46E3C9D /* BehaviorFakes.swift in Sources */,
 				0E5336910C7B0A00E588940E /* Circularity.swift in Sources */,
 				DD34A07C633466922592B6C3 /* ContainerSpec.Arguments.swift in Sources */,
+				8731612E258CAAA600D9901C /* Cat.Identifier.swift in Sources */,
 				681AEC6C1C827E74E7BC53CA /* ContainerSpec.Behavior.swift in Sources */,
 				634554033DFFE58AD4C85F08 /* ContainerSpec.Circularity.swift in Sources */,
 				DB3F4166348694D7D287D341 /* ContainerSpec.CustomScope.swift in Sources */,
@@ -1106,6 +1135,7 @@
 				935EB3978CD45BFA301F459B /* ServiceKeySpec.swift in Sources */,
 				ED832F8CF534CA8F91ADB594 /* SynchronizedResolverSpec.swift in Sources */,
 				48C79F21528614C83BE6A283 /* WeakStorageSpec.swift in Sources */,
+				873160FB258CA83900D9901C /* ContainerSpec.TypeIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
