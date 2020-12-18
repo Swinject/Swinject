@@ -203,6 +203,7 @@ extension Container {
     ) -> ServiceEntry<Service> {
         return _register(serviceType, factory: factory, name: name)
     }
+
 }
 
 // MARK: - Resolver with Arguments
@@ -504,4 +505,5 @@ extension Container {
         typealias FactoryType = ((Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9)) -> Any
         return _resolve(name: name) { (factory: FactoryType) in factory((self, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)) }
     }
+
 }
