@@ -1,9 +1,5 @@
 //
-//  ServiceEntry.TypeForwarding.swift
-//  Swinject-iOS
-//
-//  Created by Jakub Vaňo on 16/02/2018.
-//  Copyright © 2018 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 //
@@ -15,7 +11,6 @@
 //
 
 <% type_count = 9 %>
-
 extension ServiceEntry {
     /// Adds another type which should be resolved using this ServiceEntry - i.e. using the same object scope,
     /// arguments and `initCompleted` closures
@@ -39,9 +34,9 @@ extension ServiceEntry {
     ///     - types: List of <%= i %> types resolution of which should be forwarded
     @discardableResult
     public func implements<<%= types %>>(<%= params %>) -> ServiceEntry<Service> {
-        return self<% (1..i).each do |k| %>.implements(type<%= k %>)<% end %>
-        
+        return implements(type<%= 1 %>)<% (2..i).each do |k| %>.implements(type<%= k %>)<% end %>
+
     }
-    
+
 <% end %>
 }
