@@ -7,6 +7,10 @@ included:
   - Tests
 excluded:
   - Sources/Container.Arguments.swift
+  - Sources/Container.DedicatedIdentifier.swift
+  - Sources/Container.TypeIdentifier.swift
   - Sources/SynchronizedResolver.Arguments.swift
   - Sources/Resolver.swift
+  - Sources/Resolver.DedicatedIdentifier.swift
+  - Sources/Resolver.TypeIdentifier.swift
   - Sources/ServiceEntry.TypeForwarding.swift
