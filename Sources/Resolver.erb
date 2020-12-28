@@ -1,21 +1,16 @@
 //
-//  Resolver.swift
-//  Swinject
-//
-//  Created by Yoichi Tagaya on 8/18/15.
-//  Copyright (c) 2015 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 //
 // NOTICE:
 //
 // Resolver.swift is generated from Resolver.erb by ERB.
-// Do NOT modify Container.Arguments.swift directly.
+// Do NOT modify Resolver.swift directly.
 // Instead, modify Resolver.erb and run `script/gencode` at the project root directory to generate the code.
 //
 
 <% arg_count = 9 %>
-
 public protocol Resolver {
     /// Retrieves the instance with the specified service type.
     ///
@@ -48,7 +43,9 @@ public protocol Resolver {
     ///            and <%= arg_param_description %> is found.
     func resolve<Service, <%= arg_types %>>(
         _ serviceType: Service.Type,
-        <%= arg_param %>) -> Service?
+        <%= arg_param %>
+
+    ) -> Service?
 
     /// Retrieves the instance with the specified service type, <%= arg_param_description %> to the factory closure and registration name.
     ///
@@ -62,8 +59,9 @@ public protocol Resolver {
     func resolve<Service, <%= arg_types %>>(
         _ serviceType: Service.Type,
         name: String?,
-        <%= arg_param %>) -> Service?
+        <%= arg_param %>
+
+    ) -> Service?
 
 <% end %>
-
 }

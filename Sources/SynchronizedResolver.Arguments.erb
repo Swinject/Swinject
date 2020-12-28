@@ -1,9 +1,5 @@
 //
-//  SynchronizedResolver.Arguments.swift
-//  Swinject
-//
-//  Created by Yoichi Tagaya on 11/23/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 //
@@ -15,8 +11,8 @@
 //
 
 <% arg_count = 9 %>
-
 // MARK: - Resolver with Arguments
+
 extension SynchronizedResolver {
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
@@ -25,20 +21,22 @@ extension SynchronizedResolver {
 <%   arg_param_call = i == 1 ? "argument" : (1..i).map{ |n| "arg#{n}" }.join(", ") %>
     internal func resolve<Service, <%= arg_types %>>(
         _ serviceType: Service.Type,
-        <%= arg_param_def %>) -> Service?
-    {
+        <%= arg_param_def %>
+
+    ) -> Service? {
         return container.lock.sync {
-            return self.container.resolve(serviceType, <%= arg_param_name %>: <%= arg_param_call %>)
+            self.container.resolve(serviceType, <%= arg_param_name %>: <%= arg_param_call %>)
         }
     }
 
     internal func resolve<Service, <%= arg_types %>>(
         _ serviceType: Service.Type,
         name: String?,
-        <%= arg_param_def %>) -> Service?
-    {
+        <%= arg_param_def %>
+
+    ) -> Service? {
         return container.lock.sync {
-            return self.container.resolve(serviceType, name: name, <%= arg_param_name %>: <%= arg_param_call %>)
+            self.container.resolve(serviceType, name: name, <%= arg_param_name %>: <%= arg_param_call %>)
         }
     }
 

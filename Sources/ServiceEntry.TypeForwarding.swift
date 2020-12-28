@@ -102,4 +102,5 @@ extension ServiceEntry {
     public func implements<T1, T2, T3, T4, T5, T6, T7, T8, T9>(_ type1: T1.Type, _ type2: T2.Type, _ type3: T3.Type, _ type4: T4.Type, _ type5: T5.Type, _ type6: T6.Type, _ type7: T7.Type, _ type8: T8.Type, _ type9: T9.Type) -> ServiceEntry<Service> {
         return implements(type1).implements(type2).implements(type3).implements(type4).implements(type5).implements(type6).implements(type7).implements(type8).implements(type9)
     }
+
 }

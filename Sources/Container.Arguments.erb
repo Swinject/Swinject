@@ -1,9 +1,5 @@
 //
-//  Container.Arguments.swift
-//  Swinject
-//
-//  Created by Yoichi Tagaya on 8/18/15.
-//  Copyright © 2015 Swinject Contributors. All rights reserved.
+//  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
 //
@@ -15,10 +11,10 @@
 //
 
 <% arg_count = 9 %>
-
 import Foundation
 
 // MARK: - Registeration with Arguments
+
 extension Container {
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
@@ -39,8 +35,8 @@ extension Container {
     public func register<Service, <%= arg_types %>>(
         _ serviceType: Service.Type,
         name: String? = nil,
-        factory: @escaping (Resolver, <%= arg_types %>) -> Service) -> ServiceEntry<Service>
-    {
+        factory: @escaping (Resolver, <%= arg_types %>) -> Service
+    ) -> ServiceEntry<Service> {
         return _register(serviceType, factory: factory, name: name)
     }
 
@@ -48,6 +44,7 @@ extension Container {
 }
 
 // MARK: - Resolver with Arguments
+
 extension Container {
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
@@ -66,8 +63,9 @@ extension Container {
     ///            and <%= arg_param_description %> is found in the `Container`.
     public func resolve<Service, <%= arg_types %>>(
         _ serviceType: Service.Type,
-        <%= arg_param_def %>) -> Service?
-    {
+        <%= arg_param_def %>
+
+    ) -> Service? {
         return resolve(serviceType, name: nil, <%= arg_param_name %>: <%= arg_param_call %>)
     }
 
@@ -81,10 +79,11 @@ extension Container {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            <%= arg_param_description %> and name is found in the `Container`.
     public func resolve<Service, <%= arg_types %>>(
-        _ serviceType: Service.Type,
+        _: Service.Type,
         name: String?,
-        <%= arg_param_def %>) -> Service?
-    {
+        <%= arg_param_def %>
+
+    ) -> Service? {
         typealias FactoryType = ((Resolver, <%= arg_types %>)) -> Any
         return _resolve(name: name) { (factory: FactoryType) in factory((self, <%= arg_param_call %>)) }
     }

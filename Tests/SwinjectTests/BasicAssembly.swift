@@ -38,3 +38,45 @@ class ContainerSpyAssembly: Assembly {
         }
     }
 }
+
+class AnimalTypeIdentifiedAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(Animal.self, identifier: AnimalIdentifier.myCat) { _ in
+            Cat(name: "Whiskers")
+        }
+        container.register(Animal.self, identifier: AnimalIdentifier.myOtherCat) { _ in
+            Cat(name: "Sylvester")
+        }
+    }
+}
+class CatTypeIdentifiedAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(Cat.self, identifier: .firstCat) { _ in
+            Cat(name: "Whiskers")
+        }
+        container.register(Cat.self, identifier: .secondCat) { _ in
+            Cat(name: "Sylvester")
+        }
+    }
+}
+
+class AnimalDefaultValueTypeIdentifiedAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(identifier: AnimalIdentifier.myCat) { _ in
+            Cat(name: "Whiskers")
+        }
+        container.register(identifier: AnimalIdentifier.myOtherCat) { _ in
+            Cat(name: "Sylvester")
+        }
+    }
+}
+class CatDefaultValueTypeIdentifiedAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(identifier: .firstCat) { _ in
+            Cat(name: "Whiskers")
+        }
+        container.register(identifier: .secondCat) { _ in
+            Cat(name: "Sylvester")
+        }
+    }
+}
