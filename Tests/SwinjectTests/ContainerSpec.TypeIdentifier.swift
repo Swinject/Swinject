@@ -6,6 +6,7 @@ import Nimble
 import Quick
 @testable import Swinject
 
+// swiftlint:disable line_length
 class ContainerSpec_TypeIdentifier: QuickSpec {
     override func spec() {
         var container: Container!

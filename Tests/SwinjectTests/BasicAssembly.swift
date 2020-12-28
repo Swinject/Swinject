@@ -39,7 +39,6 @@ class ContainerSpyAssembly: Assembly {
     }
 }
 
-
 class AnimalTypeIdentifiedAssembly: Assembly {
     func assemble(container: Container) {
         container.register(Animal.self, identifier: AnimalIdentifier.myCat) { _ in
