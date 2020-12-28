@@ -22,7 +22,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no service with the identifier is found.
     @discardableResult
     public func resolve<ServiceIdentifier: DedicatedIdentifier>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil
     ) -> ServiceIdentifier.IdentifiedType? {
         resolve(serviceType, name: identifier?.rawValue)
@@ -38,7 +38,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            1 argument and identifier is found.
     public func resolve<ServiceIdentifier: DedicatedIdentifier, Arg1>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         argument: Arg1
     ) -> ServiceIdentifier.IdentifiedType? {
@@ -55,7 +55,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            list of 2 arguments and identifier is found.
     public func resolve<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         arguments arg1: Arg1, _ arg2: Arg2
     ) -> ServiceIdentifier.IdentifiedType? {
@@ -72,7 +72,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            list of 3 arguments and identifier is found.
     public func resolve<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3
     ) -> ServiceIdentifier.IdentifiedType? {
@@ -89,7 +89,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            list of 4 arguments and identifier is found.
     public func resolve<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4
     ) -> ServiceIdentifier.IdentifiedType? {
@@ -106,7 +106,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            list of 5 arguments and identifier is found.
     public func resolve<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4, Arg5>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5
     ) -> ServiceIdentifier.IdentifiedType? {
@@ -123,7 +123,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            list of 6 arguments and identifier is found.
     public func resolve<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6
     ) -> ServiceIdentifier.IdentifiedType? {
@@ -140,7 +140,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            list of 7 arguments and identifier is found.
     public func resolve<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7
     ) -> ServiceIdentifier.IdentifiedType? {
@@ -157,7 +157,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            list of 8 arguments and identifier is found.
     public func resolve<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8
     ) -> ServiceIdentifier.IdentifiedType? {
@@ -174,7 +174,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            list of 9 arguments and identifier is found.
     public func resolve<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         arguments arg1: Arg1, _ arg2: Arg2, _ arg3: Arg3, _ arg4: Arg4, _ arg5: Arg5, _ arg6: Arg6, _ arg7: Arg7, _ arg8: Arg8, _ arg9: Arg9
     ) -> ServiceIdentifier.IdentifiedType? {

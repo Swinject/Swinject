@@ -28,7 +28,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {
@@ -52,7 +52,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier, <%= arg_types %>>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver, <%= arg_types %>) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {

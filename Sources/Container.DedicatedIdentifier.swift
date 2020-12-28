@@ -27,7 +27,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {
@@ -48,7 +48,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier, Arg1>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver, Arg1) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {
@@ -69,7 +69,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {
@@ -90,7 +90,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {
@@ -111,7 +111,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {
@@ -132,7 +132,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4, Arg5>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {
@@ -153,7 +153,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {
@@ -174,7 +174,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {
@@ -195,7 +195,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {
@@ -216,7 +216,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<ServiceIdentifier: DedicatedIdentifier, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> ServiceIdentifier.IdentifiedType
     ) -> ServiceEntry<ServiceIdentifier.IdentifiedType> {

@@ -60,3 +60,24 @@ class CatTypeIdentifiedAssembly: Assembly {
         }
     }
 }
+
+class AnimalDefaultValueTypeIdentifiedAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(identifier: AnimalIdentifier.myCat) { _ in
+            Cat(name: "Whiskers")
+        }
+        container.register(identifier: AnimalIdentifier.myOtherCat) { _ in
+            Cat(name: "Sylvester")
+        }
+    }
+}
+class CatDefaultValueTypeIdentifiedAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(identifier: .firstCat) { _ in
+            Cat(name: "Whiskers")
+        }
+        container.register(identifier: .secondCat) { _ in
+            Cat(name: "Sylvester")
+        }
+    }
+}

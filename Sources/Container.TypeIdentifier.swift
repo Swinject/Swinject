@@ -27,7 +27,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service: Identifiable>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         identifier: Service.Identifier? = nil,
         factory: @escaping (Resolver) -> Service
     ) -> ServiceEntry<Service> {
@@ -48,7 +48,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service: Identifiable, Arg1>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         identifier: Service.Identifier? = nil,
         factory: @escaping (Resolver, Arg1) -> Service
     ) -> ServiceEntry<Service> {
@@ -69,7 +69,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service: Identifiable, Arg1, Arg2>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         identifier: Service.Identifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2) -> Service
     ) -> ServiceEntry<Service> {
@@ -90,7 +90,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service: Identifiable, Arg1, Arg2, Arg3>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         identifier: Service.Identifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3) -> Service
     ) -> ServiceEntry<Service> {
@@ -111,7 +111,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service: Identifiable, Arg1, Arg2, Arg3, Arg4>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         identifier: Service.Identifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4) -> Service
     ) -> ServiceEntry<Service> {
@@ -132,7 +132,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service: Identifiable, Arg1, Arg2, Arg3, Arg4, Arg5>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         identifier: Service.Identifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service
     ) -> ServiceEntry<Service> {
@@ -153,7 +153,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service: Identifiable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         identifier: Service.Identifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service
     ) -> ServiceEntry<Service> {
@@ -174,7 +174,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service: Identifiable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         identifier: Service.Identifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service
     ) -> ServiceEntry<Service> {
@@ -195,7 +195,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service: Identifiable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         identifier: Service.Identifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service
     ) -> ServiceEntry<Service> {
@@ -216,7 +216,7 @@ extension Container {
     /// - Returns: A registered `ServiceEntry` to configure more settings with method chaining.
     @discardableResult
     public func register<Service: Identifiable, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
-        _ serviceType: Service.Type,
+        _ serviceType: Service.Type = Service.self,
         identifier: Service.Identifier? = nil,
         factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service
     ) -> ServiceEntry<Service> {

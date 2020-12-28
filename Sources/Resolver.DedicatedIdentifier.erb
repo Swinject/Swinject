@@ -23,7 +23,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no service with the identifier is found.
     @discardableResult
     public func resolve<ServiceIdentifier: DedicatedIdentifier>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil
     ) -> ServiceIdentifier.IdentifiedType? {
         resolve(serviceType, name: identifier?.rawValue)
@@ -45,7 +45,7 @@ extension Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type,
     ///            <%= arg_param_description %> and identifier is found.
     public func resolve<ServiceIdentifier: DedicatedIdentifier, <%= arg_types %>>(
-        _ serviceType: ServiceIdentifier.IdentifiedType.Type,
+        _ serviceType: ServiceIdentifier.IdentifiedType.Type = ServiceIdentifier.IdentifiedType.self,
         identifier: ServiceIdentifier? = nil,
         <%= arg_param %>
 
