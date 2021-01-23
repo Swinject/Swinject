@@ -227,6 +227,10 @@
 		FED7D8B8C74876D03B5D09DE /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944B981A9157833AC3397B4A /* Assembler.swift */; };
 		FF222640214C9F4DA56130C4 /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7688D6F1E3466891D0582E /* InstanceStorage.swift */; };
 		FF9DCB0AB20B0DBBE79451BB /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF07245CC462D98868097A3 /* BehaviorFakes.swift */; };
+		FFEB22D425BC935500EC89A1 /* NestedAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB22D325BC935500EC89A1 /* NestedAssemblers.swift */; };
+		FFEB22D525BC935500EC89A1 /* NestedAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB22D325BC935500EC89A1 /* NestedAssemblers.swift */; };
+		FFEB22D625BC935500EC89A1 /* NestedAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB22D325BC935500EC89A1 /* NestedAssemblers.swift */; };
+		FFEB22D725BC935500EC89A1 /* NestedAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB22D325BC935500EC89A1 /* NestedAssemblers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -383,6 +387,7 @@
 		F388AD8E55D8C6F1E31D0522 /* FunctionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionType.swift; sourceTree = "<group>"; };
 		FCC59458E04C20587D870946 /* BasicAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAssembly.swift; sourceTree = "<group>"; };
 		FFBC1F44A2B361CB169F7B66 /* Animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
+		FFEB22D325BC935500EC89A1 /* NestedAssemblers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedAssemblers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,6 +441,7 @@
 				FFBC1F44A2B361CB169F7B66 /* Animal.swift */,
 				1525F92CDAA706A848343E2B /* AssemblerSpec.swift */,
 				FCC59458E04C20587D870946 /* BasicAssembly.swift */,
+				FFEB22D325BC935500EC89A1 /* NestedAssemblers.swift */,
 				BEF07245CC462D98868097A3 /* BehaviorFakes.swift */,
 				47328731EED63322AD76FB3A /* Circularity.swift */,
 				2C662DAE2FD2FCCA8585DB89 /* ContainerSpec.Arguments.swift */,
@@ -768,8 +774,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 0102B3F56FB5455C665EC043 /* Build configuration list for PBXProject "Swinject" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -953,6 +957,7 @@
 				229E0EAD0D8413D4CA67094C /* ContainerSpec.DebugHelper.swift in Sources */,
 				B3A1A6E559CC128BF501EC1D /* ContainerSpec.GraphCaching.swift in Sources */,
 				2A207632400E46F722193C7E /* ContainerSpec.TypeForwarding.swift in Sources */,
+				FFEB22D425BC935500EC89A1 /* NestedAssemblers.swift in Sources */,
 				A9E5D5915FE433CD1DCD0022 /* ContainerSpec.swift in Sources */,
 				1276420B3D3ED5ACFC2C5B4F /* EmploymentAssembly.swift in Sources */,
 				0266A3114C82246F18B52860 /* Food.swift in Sources */,
@@ -984,6 +989,7 @@
 				499ADF9E7F4ADEEB5465FFB6 /* ContainerSpec.DebugHelper.swift in Sources */,
 				50FC209AE23CD1E502149C5C /* ContainerSpec.GraphCaching.swift in Sources */,
 				2AED444F7141B101091A1464 /* ContainerSpec.TypeForwarding.swift in Sources */,
+				FFEB22D525BC935500EC89A1 /* NestedAssemblers.swift in Sources */,
 				07C2E78624A40118D0316CB6 /* ContainerSpec.swift in Sources */,
 				75A776D4072BCF74F298D818 /* EmploymentAssembly.swift in Sources */,
 				44676A0D0399F323A31E0451 /* Food.swift in Sources */,
@@ -1015,6 +1021,7 @@
 				82A930EA09492BAFE7D4D2DF /* ContainerSpec.DebugHelper.swift in Sources */,
 				FD72CBB5F6A75CE6C785058E /* ContainerSpec.GraphCaching.swift in Sources */,
 				BB35F3F717A09AD398FCC67A /* ContainerSpec.TypeForwarding.swift in Sources */,
+				FFEB22D725BC935500EC89A1 /* NestedAssemblers.swift in Sources */,
 				1BD861CA392B1E63D249906B /* ContainerSpec.swift in Sources */,
 				3A41F4B375C1CE29A75F6AE9 /* EmploymentAssembly.swift in Sources */,
 				115515373F266C35E8DBE724 /* Food.swift in Sources */,
@@ -1046,6 +1053,7 @@
 				4CC5158454FA6586C84AB160 /* ContainerSpec.DebugHelper.swift in Sources */,
 				2DF02DA2EB1C70640DCC315D /* ContainerSpec.GraphCaching.swift in Sources */,
 				4077A7732A2412CBB9E8A759 /* ContainerSpec.TypeForwarding.swift in Sources */,
+				FFEB22D625BC935500EC89A1 /* NestedAssemblers.swift in Sources */,
 				41084A2F24BB4222CCFFAD27 /* ContainerSpec.swift in Sources */,
 				1613AE7671758A85F760C5DF /* EmploymentAssembly.swift in Sources */,
 				4736BF9B29704061B29BFACD /* Food.swift in Sources */,

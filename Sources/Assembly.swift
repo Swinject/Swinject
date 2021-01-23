@@ -18,10 +18,22 @@ public protocol Assembly {
     /// - parameter resolver: the resolver that can resolve instances from the built container
     ///
     func loaded(resolver: Resolver)
+
+    /// Provides a hook to allow `Assembler` to traverse down an Assembly tree. Child `Assembly` instances
+    /// are automatically assembled and any `loaded(...)` hooks are called in depth-first order
+    ///
+    /// - parameter container: the container provided by the `Assembler`
+    ///
+    var children: [Assembly] { get }
 }
 
 public extension Assembly {
     func loaded(resolver _: Resolver) {
         // no-op
+    }
+
+    var children: [Assembly] {
+        // no-op (empty children)
+        []
     }
 }
