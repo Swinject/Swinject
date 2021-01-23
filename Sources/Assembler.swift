@@ -113,12 +113,25 @@ public final class Assembler {
     private func run(assemblies: [Assembly]) {
         // build the container from each assembly
         for assembly in assemblies {
-            assembly.assemble(container: container)
+            assemble(assembly)
         }
-
         // inform all of the assemblies that the container is loaded
         for assembly in assemblies {
-            assembly.loaded(resolver: resolver)
+            loaded(assembly)
         }
+    }
+
+    private func assemble(_ assembly: Assembly) {
+        for child in assembly.children {
+            assemble(child)
+        }
+        assembly.assemble(container: container)
+    }
+
+    private func loaded(_ assembly: Assembly) {
+        for child in assembly.children {
+            loaded(child)
+        }
+        assembly.loaded(resolver: resolver)
     }
 }

@@ -325,5 +325,34 @@ class AssemblerSpec: QuickSpec {
                 expect(spy.entries).to(haveCount(1))
             }
         }
+
+        describe("Nested Assemblers") {
+            it("assembles and calls loaded depth-first") {
+                let container = Container()
+
+                let assemble = NestedAssembly.ArrayType()
+                let loaded = NestedAssembly.ArrayType()
+
+                container.register(
+                    NestedAssembly.ArrayType.self,
+                    name: NestedAssembly.Constants.assemble
+                ) { _ in assemble }
+                    .inObjectScope(.container)
+                container.register(
+                    NestedAssembly.ArrayType.self,
+                    name: NestedAssembly.Constants.loaded
+                ) { _ in loaded }
+                    .inObjectScope(.container)
+
+                let d = NestedAssembly(name: "d", children: [])
+                let c = NestedAssembly(name: "c", children: [d])
+                let b = NestedAssembly(name: "b", children: [])
+                let a = NestedAssembly(name: "a", children: [b, c])
+
+                _ = Assembler([a], container: container)
+                expect(assemble).to(equal(["b", "d", "c", "a"]))
+                expect(loaded).to(equal(["b", "d", "c", "a"]))
+            }
+        }
     }
 }
