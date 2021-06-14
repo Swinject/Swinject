@@ -14,8 +14,8 @@ internal protocol ServiceEntryProtocol: AnyObject {
     var serviceType: Any.Type { get }
 }
 
-/// The `ServiceEntry<Service>` class represents an entry of a registered service type.
-/// As a returned instance from a `register` method of a `Container`, some configurations can be added.
+/// Represents an entry of a registered service type.
+/// As a returned instance from ``Container/register(_:name:factory:)-8gy9r``, some configurations can be added.
 public final class ServiceEntry<Service>: ServiceEntryProtocol {
     fileprivate var initCompletedActions: [(Resolver, Service) -> Void] = []
     internal let serviceType: Any.Type
@@ -56,7 +56,7 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
 
     /// Specifies the object scope to resolve the service.
     ///
-    /// - Parameter scope: The `ObjectScopeProtocol` value.
+    /// - Parameter scope: The ``ObjectScopeProtocol`` value.
     ///
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
@@ -66,10 +66,10 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
     }
 
     /// Specifies the object scope to resolve the service.
-    /// Performs the same functionality as `inObjectScope(_: ObjectScopeProtocol) -> Self`,
+    /// Performs the same functionality as ``inObjectScope(_:)-2xeke``,
     /// but provides more convenient usage syntax.
     ///
-    /// - Parameter scope: The `ObjectScope` value.
+    /// - Parameter scope: The ``ObjectScope`` value.
     ///
     /// - Returns: `self` to add another configuration fluently.
     @discardableResult
