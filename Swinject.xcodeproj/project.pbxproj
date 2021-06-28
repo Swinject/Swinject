@@ -59,7 +59,6 @@
 		3180DAAFE61B960BC08BAF29 /* SynchronizedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22762C9585A1DA3894306060 /* SynchronizedResolverSpec.swift */; };
 		31FF42AD5DFDB5FD7FAB5530 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710204D1A678B791BB0FC60E /* SynchronizedResolver.swift */; };
 		328DED07602120E3EE252D57 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823617F3B8A9192F56B13331 /* Quick.framework */; };
-		353E676B57D140FCF2B930AA /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D794CFA41AB11452E4FC6B48 /* ServiceEntrySpec.swift */; };
 		35C9BCE88B6D6567760D7389 /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76238B6105E2E443A94CE595 /* ServiceEntry.swift */; };
 		363C4230CAC4547E7A676249 /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F839BCDE52371FE49454B9 /* Container.Logging.swift */; };
 		3957BFF436703E5C0434D41E /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2ED5B0128132DCD709777F /* ServiceKey.swift */; };
@@ -72,7 +71,6 @@
 		40FCA2AB08F4EA23096075AB /* Container.Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F839BCDE52371FE49454B9 /* Container.Logging.swift */; };
 		41084A2F24BB4222CCFFAD27 /* ContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7196841DBEB28245AF90D79E /* ContainerSpec.swift */; };
 		44676A0D0399F323A31E0451 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1271722CF77709A1173E7863 /* Food.swift */; };
-		4652D9934D8361274EBF00D1 /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D794CFA41AB11452E4FC6B48 /* ServiceEntrySpec.swift */; };
 		46B1E26C8AC0CF5FABB466F9 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A982F3108666D12EA0810D52 /* .swiftlint.yml */; };
 		471EEA7C90D1AEA45CAC0236 /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380F40FC2B9229F36B13679 /* LoadAwareAssembly.swift */; };
 		4736BF9B29704061B29BFACD /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1271722CF77709A1173E7863 /* Food.swift */; };
@@ -144,6 +142,10 @@
 		935EB3978CD45BFA301F459B /* ServiceKeySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE86AA2A0C4B722DD40FDEAE /* ServiceKeySpec.swift */; };
 		95070453A9934F08F9E02E6C /* UnavailableItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39924B830576F62A4B528A37 /* UnavailableItems.swift */; };
 		96BA7CCC6AEC192CAD3054E1 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC379E27E9804FC6C0BA0842 /* Resolver.swift */; };
+		9898E0D72689A330008A3B31 /* ServiceEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E0D62689A330008A3B31 /* ServiceEntryTests.swift */; };
+		9898E0D82689A330008A3B31 /* ServiceEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E0D62689A330008A3B31 /* ServiceEntryTests.swift */; };
+		9898E0D92689A330008A3B31 /* ServiceEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E0D62689A330008A3B31 /* ServiceEntryTests.swift */; };
+		9898E0DA2689A330008A3B31 /* ServiceEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E0D62689A330008A3B31 /* ServiceEntryTests.swift */; };
 		99C5D861B16FAFAD3F9E28C5 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30EDBFDB23A7FB3DA7758DD0 /* Nimble.framework */; };
 		9CD3F07823D2E64DD636E00A /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC379E27E9804FC6C0BA0842 /* Resolver.swift */; };
 		9CEB151A9DB8675B5AB48432 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710204D1A678B791BB0FC60E /* SynchronizedResolver.swift */; };
@@ -165,7 +167,6 @@
 		B3A1A6E559CC128BF501EC1D /* ContainerSpec.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524909CA7B5BFA7E2BEE347 /* ContainerSpec.GraphCaching.swift */; };
 		B3F7F3FB03EB048B16B05620 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B00D2ED19209D0C6210169 /* Person.swift */; };
 		B55E915211F19C91C622E068 /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7688D6F1E3466891D0582E /* InstanceStorage.swift */; };
-		B776AE100F31CAAF5A0C9BF1 /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D794CFA41AB11452E4FC6B48 /* ServiceEntrySpec.swift */; };
 		B78D64DC2B0332D562F39A82 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBC1F44A2B361CB169F7B66 /* Animal.swift */; };
 		B9566410214991FBA727BB37 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957AFDACC07687608E5E5F7E /* ObjectScope.swift */; };
 		B98E15D0ACC22F36BF085BF3 /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3AB0ED5AFE7A82E85EC5C /* ProviderSpec.swift */; };
@@ -210,7 +211,6 @@
 		ED832F8CF534CA8F91ADB594 /* SynchronizedResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22762C9585A1DA3894306060 /* SynchronizedResolverSpec.swift */; };
 		EE0D3637D2524AC1CD21780D /* Swinject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DE57FB3E8228904E6FE0D7 /* Swinject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE4786524E79B10DB36FDB11 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC379E27E9804FC6C0BA0842 /* Resolver.swift */; };
-		F022381D6B69750931480F6D /* ServiceEntrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D794CFA41AB11452E4FC6B48 /* ServiceEntrySpec.swift */; };
 		F181F802205438BC3E09AD5D /* AssemblerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1525F92CDAA706A848343E2B /* AssemblerSpec.swift */; };
 		F1CEA509C37E514147409837 /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3AB0ED5AFE7A82E85EC5C /* ProviderSpec.swift */; };
 		F220E041952440BA129C8986 /* ProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3AB0ED5AFE7A82E85EC5C /* ProviderSpec.swift */; };
@@ -359,6 +359,7 @@
 		8B9785AAE94A5447FA307242 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		944B981A9157833AC3397B4A /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		957AFDACC07687608E5E5F7E /* ObjectScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectScope.swift; sourceTree = "<group>"; };
+		9898E0D62689A330008A3B31 /* ServiceEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntryTests.swift; sourceTree = "<group>"; };
 		9B058F48AF289C3AC307C2F7 /* GraphIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphIdentifier.swift; sourceTree = "<group>"; };
 		9BFC0320217B5AECBAB994D1 /* WeakStorageSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakStorageSpec.swift; sourceTree = "<group>"; };
 		A20C1319AF31EC7F8E6945FE /* SwinjectTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -374,7 +375,6 @@
 		C38F57E5E5BE1DC65C3DDAF6 /* Container.Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.Arguments.swift; sourceTree = "<group>"; };
 		C765B92B00C0AC8625BB4AC9 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		C8D8BA4B04A5F517AF663DCE /* Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behavior.swift; sourceTree = "<group>"; };
-		D794CFA41AB11452E4FC6B48 /* ServiceEntrySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntrySpec.swift; sourceTree = "<group>"; };
 		D7B00D2ED19209D0C6210169 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		DE752946EBDAC1CB5823A39E /* DebugHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHelper.swift; sourceTree = "<group>"; };
 		DE86AA2A0C4B722DD40FDEAE /* ServiceKeySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceKeySpec.swift; sourceTree = "<group>"; };
@@ -454,7 +454,7 @@
 				2380F40FC2B9229F36B13679 /* LoadAwareAssembly.swift */,
 				D7B00D2ED19209D0C6210169 /* Person.swift */,
 				0AF3AB0ED5AFE7A82E85EC5C /* ProviderSpec.swift */,
-				D794CFA41AB11452E4FC6B48 /* ServiceEntrySpec.swift */,
+				9898E0D62689A330008A3B31 /* ServiceEntryTests.swift */,
 				DE86AA2A0C4B722DD40FDEAE /* ServiceKeySpec.swift */,
 				22762C9585A1DA3894306060 /* SynchronizedResolverSpec.swift */,
 				9BFC0320217B5AECBAB994D1 /* WeakStorageSpec.swift */,
@@ -768,8 +768,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 0102B3F56FB5455C665EC043 /* Build configuration list for PBXProject "Swinject" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -958,9 +956,9 @@
 				0266A3114C82246F18B52860 /* Food.swift in Sources */,
 				5E22405979EC888E46F0CF8D /* LazySpec.swift in Sources */,
 				471EEA7C90D1AEA45CAC0236 /* LoadAwareAssembly.swift in Sources */,
+				9898E0D72689A330008A3B31 /* ServiceEntryTests.swift in Sources */,
 				2A87CB8C62E83CCF6B71A037 /* Person.swift in Sources */,
 				EC467FE255CC2AA8A09E4BD8 /* ProviderSpec.swift in Sources */,
-				F022381D6B69750931480F6D /* ServiceEntrySpec.swift in Sources */,
 				24D51AE9E7475581C19E12AD /* ServiceKeySpec.swift in Sources */,
 				C814B6BC8221EF2C84E58B56 /* SynchronizedResolverSpec.swift in Sources */,
 				59D1C096E0FAB6094D6D2E68 /* WeakStorageSpec.swift in Sources */,
@@ -989,9 +987,9 @@
 				44676A0D0399F323A31E0451 /* Food.swift in Sources */,
 				019AF80A06CA3271456549BE /* LazySpec.swift in Sources */,
 				4D35CD2C4FD5788F087A4D51 /* LoadAwareAssembly.swift in Sources */,
+				9898E0D82689A330008A3B31 /* ServiceEntryTests.swift in Sources */,
 				B3F7F3FB03EB048B16B05620 /* Person.swift in Sources */,
 				F220E041952440BA129C8986 /* ProviderSpec.swift in Sources */,
-				353E676B57D140FCF2B930AA /* ServiceEntrySpec.swift in Sources */,
 				593926C57DA312B31AEBACB5 /* ServiceKeySpec.swift in Sources */,
 				3180DAAFE61B960BC08BAF29 /* SynchronizedResolverSpec.swift in Sources */,
 				06AC1B35227A2D5E8DC66531 /* WeakStorageSpec.swift in Sources */,
@@ -1020,9 +1018,9 @@
 				115515373F266C35E8DBE724 /* Food.swift in Sources */,
 				62BE8825EF3E272428AC3CB5 /* LazySpec.swift in Sources */,
 				BA36EC78ECA2701853CD3E12 /* LoadAwareAssembly.swift in Sources */,
+				9898E0DA2689A330008A3B31 /* ServiceEntryTests.swift in Sources */,
 				ED19CAF7B39978B3CDF2013E /* Person.swift in Sources */,
 				B98E15D0ACC22F36BF085BF3 /* ProviderSpec.swift in Sources */,
-				B776AE100F31CAAF5A0C9BF1 /* ServiceEntrySpec.swift in Sources */,
 				0D3457202BD8D4737A415594 /* ServiceKeySpec.swift in Sources */,
 				10E24A29F44F24CDB18B4D94 /* SynchronizedResolverSpec.swift in Sources */,
 				16DB7B41DA383C7A52B8131F /* WeakStorageSpec.swift in Sources */,
@@ -1051,9 +1049,9 @@
 				4736BF9B29704061B29BFACD /* Food.swift in Sources */,
 				B02AEA6ED72703B0F2FFE7C5 /* LazySpec.swift in Sources */,
 				D210E7349E119368A741DB2F /* LoadAwareAssembly.swift in Sources */,
+				9898E0D92689A330008A3B31 /* ServiceEntryTests.swift in Sources */,
 				FCC32CC413C08CF94D7F661E /* Person.swift in Sources */,
 				F1CEA509C37E514147409837 /* ProviderSpec.swift in Sources */,
-				4652D9934D8361274EBF00D1 /* ServiceEntrySpec.swift in Sources */,
 				935EB3978CD45BFA301F459B /* ServiceKeySpec.swift in Sources */,
 				ED832F8CF534CA8F91ADB594 /* SynchronizedResolverSpec.swift in Sources */,
 				48C79F21528614C83BE6A283 /* WeakStorageSpec.swift in Sources */,
