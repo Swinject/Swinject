@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0126F47EDE97A611D184682F /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE752946EBDAC1CB5823A39E /* DebugHelper.swift */; };
-		019AF80A06CA3271456549BE /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AFD602B38E9D09A67B587 /* LazySpec.swift */; };
 		0266A3114C82246F18B52860 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1271722CF77709A1173E7863 /* Food.swift */; };
 		030256DFF226FE93C75833F5 /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D425BCEDCFC8C7CAC6CF85D /* ContainerSpec.Circularity.swift */; };
 		055969F9EA3C1AD43B11E006 /* ObjectScope.Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79864FE285C06A91E006806 /* ObjectScope.Standard.swift */; };
@@ -90,11 +89,9 @@
 		5BAC0A607F822D6205DA6178 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F57E5E5BE1DC65C3DDAF6 /* Container.Arguments.swift */; };
 		5BB768EFEB4BA7D1D05B4DCC /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC379E27E9804FC6C0BA0842 /* Resolver.swift */; };
 		5D17DB72B4986D174D69135B /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC59458E04C20587D870946 /* BasicAssembly.swift */; };
-		5E22405979EC888E46F0CF8D /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AFD602B38E9D09A67B587 /* LazySpec.swift */; };
 		602201FE3E6CC64F594DEBA1 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944B981A9157833AC3397B4A /* Assembler.swift */; };
 		61357D47A1C4870FAA34377C /* InstanceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7101AB0DE88A5340F7EAAC04 /* InstanceWrapper.swift */; };
 		62A1539A3B07EE3E1B72CF95 /* ObjectScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957AFDACC07687608E5E5F7E /* ObjectScope.swift */; };
-		62BE8825EF3E272428AC3CB5 /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AFD602B38E9D09A67B587 /* LazySpec.swift */; };
 		634554033DFFE58AD4C85F08 /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D425BCEDCFC8C7CAC6CF85D /* ContainerSpec.Circularity.swift */; };
 		64410D34965C716D21782147 /* ContainerSpec.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C662DAE2FD2FCCA8585DB89 /* ContainerSpec.Arguments.swift */; };
 		6443FB8C5B3DD95740287398 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC59458E04C20587D870946 /* BasicAssembly.swift */; };
@@ -152,6 +149,10 @@
 		9898E10C2689C132008A3B31 /* ProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E10A2689C132008A3B31 /* ProviderTests.swift */; };
 		9898E10D2689C132008A3B31 /* ProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E10A2689C132008A3B31 /* ProviderTests.swift */; };
 		9898E10E2689C132008A3B31 /* ProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E10A2689C132008A3B31 /* ProviderTests.swift */; };
+		9898E1182689C80B008A3B31 /* LazyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E1172689C80B008A3B31 /* LazyTests.swift */; };
+		9898E1192689C80B008A3B31 /* LazyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E1172689C80B008A3B31 /* LazyTests.swift */; };
+		9898E11A2689C80B008A3B31 /* LazyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E1172689C80B008A3B31 /* LazyTests.swift */; };
+		9898E11B2689C80B008A3B31 /* LazyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E1172689C80B008A3B31 /* LazyTests.swift */; };
 		99C5D861B16FAFAD3F9E28C5 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30EDBFDB23A7FB3DA7758DD0 /* Nimble.framework */; };
 		9CD3F07823D2E64DD636E00A /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC379E27E9804FC6C0BA0842 /* Resolver.swift */; };
 		9CEB151A9DB8675B5AB48432 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710204D1A678B791BB0FC60E /* SynchronizedResolver.swift */; };
@@ -168,7 +169,6 @@
 		ADF0B21969FE77CEFBB2AAAC /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 823617F3B8A9192F56B13331 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE93BDC3AA7962AFD574B32B /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C58FC14EEA170B0DC079DE4 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AEE58DEFB1764391B49E4EA0 /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2ED5B0128132DCD709777F /* ServiceKey.swift */; };
-		B02AEA6ED72703B0F2FFE7C5 /* LazySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AFD602B38E9D09A67B587 /* LazySpec.swift */; };
 		B06306286CC5EA66C88F24D1 /* Swinject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 38BCCF3F950869BD1891F7A8 /* Swinject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B3A1A6E559CC128BF501EC1D /* ContainerSpec.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524909CA7B5BFA7E2BEE347 /* ContainerSpec.GraphCaching.swift */; };
 		B3F7F3FB03EB048B16B05620 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B00D2ED19209D0C6210169 /* Person.swift */; };
@@ -333,7 +333,6 @@
 		273FB7A6277E0841E1570990 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
 		2C662DAE2FD2FCCA8585DB89 /* ContainerSpec.Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.Arguments.swift; sourceTree = "<group>"; };
 		30EDBFDB23A7FB3DA7758DD0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
-		330AFD602B38E9D09A67B587 /* LazySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazySpec.swift; sourceTree = "<group>"; };
 		34AFFAC41BA9D02A38BDB7A3 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
 		38BCCF3F950869BD1891F7A8 /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39924B830576F62A4B528A37 /* UnavailableItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableItems.swift; sourceTree = "<group>"; };
@@ -362,6 +361,7 @@
 		9898E0F02689AC6D008A3B31 /* SynchronizedResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedResolverTests.swift; sourceTree = "<group>"; };
 		9898E0FD2689BD8B008A3B31 /* WeakStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakStorageTests.swift; sourceTree = "<group>"; };
 		9898E10A2689C132008A3B31 /* ProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderTests.swift; sourceTree = "<group>"; };
+		9898E1172689C80B008A3B31 /* LazyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyTests.swift; sourceTree = "<group>"; };
 		9B058F48AF289C3AC307C2F7 /* GraphIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphIdentifier.swift; sourceTree = "<group>"; };
 		A20C1319AF31EC7F8E6945FE /* SwinjectTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79864FE285C06A91E006806 /* ObjectScope.Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectScope.Standard.swift; sourceTree = "<group>"; };
@@ -450,7 +450,7 @@
 				077047532310E42432E94D83 /* EmploymentAssembly.swift */,
 				1271722CF77709A1173E7863 /* Food.swift */,
 				AEAC51C6D09DEBE863D5A06E /* Info.plist */,
-				330AFD602B38E9D09A67B587 /* LazySpec.swift */,
+				9898E1172689C80B008A3B31 /* LazyTests.swift */,
 				2380F40FC2B9229F36B13679 /* LoadAwareAssembly.swift */,
 				D7B00D2ED19209D0C6210169 /* Person.swift */,
 				9898E10A2689C132008A3B31 /* ProviderTests.swift */,
@@ -950,13 +950,13 @@
 				88D3BB9CECA9F373FF882AFB /* ContainerSpec.CustomScope.swift in Sources */,
 				87FB12D90646AFA5AC739B15 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				229E0EAD0D8413D4CA67094C /* ContainerSpec.DebugHelper.swift in Sources */,
+				9898E1182689C80B008A3B31 /* LazyTests.swift in Sources */,
 				9898E10B2689C132008A3B31 /* ProviderTests.swift in Sources */,
 				B3A1A6E559CC128BF501EC1D /* ContainerSpec.GraphCaching.swift in Sources */,
 				2A207632400E46F722193C7E /* ContainerSpec.TypeForwarding.swift in Sources */,
 				A9E5D5915FE433CD1DCD0022 /* ContainerSpec.swift in Sources */,
 				1276420B3D3ED5ACFC2C5B4F /* EmploymentAssembly.swift in Sources */,
 				0266A3114C82246F18B52860 /* Food.swift in Sources */,
-				5E22405979EC888E46F0CF8D /* LazySpec.swift in Sources */,
 				471EEA7C90D1AEA45CAC0236 /* LoadAwareAssembly.swift in Sources */,
 				9898E0D72689A330008A3B31 /* ServiceEntryTests.swift in Sources */,
 				2A87CB8C62E83CCF6B71A037 /* Person.swift in Sources */,
@@ -981,13 +981,13 @@
 				0A8E435254D99275EDED84AC /* ContainerSpec.CustomScope.swift in Sources */,
 				191E66F449054D3F002BA79C /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				499ADF9E7F4ADEEB5465FFB6 /* ContainerSpec.DebugHelper.swift in Sources */,
+				9898E1192689C80B008A3B31 /* LazyTests.swift in Sources */,
 				9898E10C2689C132008A3B31 /* ProviderTests.swift in Sources */,
 				50FC209AE23CD1E502149C5C /* ContainerSpec.GraphCaching.swift in Sources */,
 				2AED444F7141B101091A1464 /* ContainerSpec.TypeForwarding.swift in Sources */,
 				07C2E78624A40118D0316CB6 /* ContainerSpec.swift in Sources */,
 				75A776D4072BCF74F298D818 /* EmploymentAssembly.swift in Sources */,
 				44676A0D0399F323A31E0451 /* Food.swift in Sources */,
-				019AF80A06CA3271456549BE /* LazySpec.swift in Sources */,
 				4D35CD2C4FD5788F087A4D51 /* LoadAwareAssembly.swift in Sources */,
 				9898E0D82689A330008A3B31 /* ServiceEntryTests.swift in Sources */,
 				B3F7F3FB03EB048B16B05620 /* Person.swift in Sources */,
@@ -1012,13 +1012,13 @@
 				2B54062B225800A92EBDCDFB /* ContainerSpec.CustomScope.swift in Sources */,
 				D729107F8F4F6D53A59392F0 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				82A930EA09492BAFE7D4D2DF /* ContainerSpec.DebugHelper.swift in Sources */,
+				9898E11B2689C80B008A3B31 /* LazyTests.swift in Sources */,
 				9898E10E2689C132008A3B31 /* ProviderTests.swift in Sources */,
 				FD72CBB5F6A75CE6C785058E /* ContainerSpec.GraphCaching.swift in Sources */,
 				BB35F3F717A09AD398FCC67A /* ContainerSpec.TypeForwarding.swift in Sources */,
 				1BD861CA392B1E63D249906B /* ContainerSpec.swift in Sources */,
 				3A41F4B375C1CE29A75F6AE9 /* EmploymentAssembly.swift in Sources */,
 				115515373F266C35E8DBE724 /* Food.swift in Sources */,
-				62BE8825EF3E272428AC3CB5 /* LazySpec.swift in Sources */,
 				BA36EC78ECA2701853CD3E12 /* LoadAwareAssembly.swift in Sources */,
 				9898E0DA2689A330008A3B31 /* ServiceEntryTests.swift in Sources */,
 				ED19CAF7B39978B3CDF2013E /* Person.swift in Sources */,
@@ -1043,13 +1043,13 @@
 				DB3F4166348694D7D287D341 /* ContainerSpec.CustomScope.swift in Sources */,
 				28BBCB049DC1C8A744E449E6 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
 				4CC5158454FA6586C84AB160 /* ContainerSpec.DebugHelper.swift in Sources */,
+				9898E11A2689C80B008A3B31 /* LazyTests.swift in Sources */,
 				9898E10D2689C132008A3B31 /* ProviderTests.swift in Sources */,
 				2DF02DA2EB1C70640DCC315D /* ContainerSpec.GraphCaching.swift in Sources */,
 				4077A7732A2412CBB9E8A759 /* ContainerSpec.TypeForwarding.swift in Sources */,
 				41084A2F24BB4222CCFFAD27 /* ContainerSpec.swift in Sources */,
 				1613AE7671758A85F760C5DF /* EmploymentAssembly.swift in Sources */,
 				4736BF9B29704061B29BFACD /* Food.swift in Sources */,
-				B02AEA6ED72703B0F2FFE7C5 /* LazySpec.swift in Sources */,
 				D210E7349E119368A741DB2F /* LoadAwareAssembly.swift in Sources */,
 				9898E0D92689A330008A3B31 /* ServiceEntryTests.swift in Sources */,
 				FCC32CC413C08CF94D7F661E /* Person.swift in Sources */,
