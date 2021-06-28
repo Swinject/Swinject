@@ -33,7 +33,6 @@
 		1BA2596EFB6E7BF4D46E3C9D /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF07245CC462D98868097A3 /* BehaviorFakes.swift */; };
 		1C1C0CB3F19349057B4FBDE1 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC59458E04C20587D870946 /* BasicAssembly.swift */; };
 		1DB36B1F8919879607F67F35 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F57E5E5BE1DC65C3DDAF6 /* Container.Arguments.swift */; };
-		229E0EAD0D8413D4CA67094C /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA24DF3EBEAA57BFC8D8631 /* ContainerSpec.DebugHelper.swift */; };
 		235DD35BC7B8CE15BA46A677 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF07245CC462D98868097A3 /* BehaviorFakes.swift */; };
 		23A8D7543ED9973F04C5BC93 /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F388AD8E55D8C6F1E31D0522 /* FunctionType.swift */; };
 		26C4C6118D189E8813ABD5A2 /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C765B92B00C0AC8625BB4AC9 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -61,10 +60,8 @@
 		471EEA7C90D1AEA45CAC0236 /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380F40FC2B9229F36B13679 /* LoadAwareAssembly.swift */; };
 		4736BF9B29704061B29BFACD /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1271722CF77709A1173E7863 /* Food.swift */; };
 		474A4D73269D7BDF0844D704 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944B981A9157833AC3397B4A /* Assembler.swift */; };
-		499ADF9E7F4ADEEB5465FFB6 /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA24DF3EBEAA57BFC8D8631 /* ContainerSpec.DebugHelper.swift */; };
 		4A1AEFDC62BC395924AB2355 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E48E07BA72BCBFB305E93 /* Container.swift */; };
 		4C44517A43BAAFB8E4E99255 /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA8BBC9A1EDE4D17189D634 /* SpinLock.swift */; };
-		4CC5158454FA6586C84AB160 /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA24DF3EBEAA57BFC8D8631 /* ContainerSpec.DebugHelper.swift */; };
 		4D35CD2C4FD5788F087A4D51 /* LoadAwareAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380F40FC2B9229F36B13679 /* LoadAwareAssembly.swift */; };
 		4D631FA98F95F809740D6585 /* UnavailableItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39924B830576F62A4B528A37 /* UnavailableItems.swift */; };
 		4D667425CB08BF894C1A78AA /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8BA4B04A5F517AF663DCE /* Behavior.swift */; };
@@ -109,7 +106,6 @@
 		7E57CE64E1356423F0F89FD3 /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C304EFDAFB81043B2896E5 /* _Resolver.swift */; };
 		808983B2AF095E481615029E /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76238B6105E2E443A94CE595 /* ServiceEntry.swift */; };
 		81AE1BCE31BC99440151A68F /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5922B783F35F436C528594C1 /* Assembly.swift */; };
-		82A930EA09492BAFE7D4D2DF /* ContainerSpec.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA24DF3EBEAA57BFC8D8631 /* ContainerSpec.DebugHelper.swift */; };
 		8329CE24DE7D6FB1A6D88B17 /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE752946EBDAC1CB5823A39E /* DebugHelper.swift */; };
 		84E22DD92E4F02B70F3A17C5 /* ContainerSpec.Circularity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D425BCEDCFC8C7CAC6CF85D /* ContainerSpec.Circularity.swift */; };
 		8586EE67C32C467F3716DFFA /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F388AD8E55D8C6F1E31D0522 /* FunctionType.swift */; };
@@ -159,6 +155,10 @@
 		9898E1512689FC26008A3B31 /* ContainerTests.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E14F2689FC26008A3B31 /* ContainerTests.GraphCaching.swift */; };
 		9898E1522689FC26008A3B31 /* ContainerTests.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E14F2689FC26008A3B31 /* ContainerTests.GraphCaching.swift */; };
 		9898E1532689FC26008A3B31 /* ContainerTests.GraphCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E14F2689FC26008A3B31 /* ContainerTests.GraphCaching.swift */; };
+		9898E1612689FFBE008A3B31 /* ContainerTests.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E1602689FFBE008A3B31 /* ContainerTests.DebugHelper.swift */; };
+		9898E1622689FFBE008A3B31 /* ContainerTests.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E1602689FFBE008A3B31 /* ContainerTests.DebugHelper.swift */; };
+		9898E1632689FFBE008A3B31 /* ContainerTests.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E1602689FFBE008A3B31 /* ContainerTests.DebugHelper.swift */; };
+		9898E1642689FFBE008A3B31 /* ContainerTests.DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898E1602689FFBE008A3B31 /* ContainerTests.DebugHelper.swift */; };
 		99C5D861B16FAFAD3F9E28C5 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30EDBFDB23A7FB3DA7758DD0 /* Nimble.framework */; };
 		9CD3F07823D2E64DD636E00A /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC379E27E9804FC6C0BA0842 /* Resolver.swift */; };
 		9CEB151A9DB8675B5AB48432 /* SynchronizedResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710204D1A678B791BB0FC60E /* SynchronizedResolver.swift */; };
@@ -338,7 +338,6 @@
 		47328731EED63322AD76FB3A /* Circularity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circularity.swift; sourceTree = "<group>"; };
 		54FFC812F14E9976208B644F /* ServiceEntry.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntry.TypeForwarding.swift; sourceTree = "<group>"; };
 		5922B783F35F436C528594C1 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
-		5DA24DF3EBEAA57BFC8D8631 /* ContainerSpec.DebugHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerSpec.DebugHelper.swift; sourceTree = "<group>"; };
 		5F7BC1C4169BB4382C6D3E1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		683A1FB7D7F4E9508D57E936 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = "<group>"; };
 		6D434EB4C13CF9D9FA6D80CB /* Swinject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swinject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,6 +362,7 @@
 		9898E1312689DA5F008A3B31 /* ContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.swift; sourceTree = "<group>"; };
 		9898E13E2689F4BA008A3B31 /* ContainerTests.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.TypeForwarding.swift; sourceTree = "<group>"; };
 		9898E14F2689FC26008A3B31 /* ContainerTests.GraphCaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.GraphCaching.swift; sourceTree = "<group>"; };
+		9898E1602689FFBE008A3B31 /* ContainerTests.DebugHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.DebugHelper.swift; sourceTree = "<group>"; };
 		9B058F48AF289C3AC307C2F7 /* GraphIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphIdentifier.swift; sourceTree = "<group>"; };
 		A20C1319AF31EC7F8E6945FE /* SwinjectTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79864FE285C06A91E006806 /* ObjectScope.Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectScope.Standard.swift; sourceTree = "<group>"; };
@@ -443,7 +443,7 @@
 				0D425BCEDCFC8C7CAC6CF85D /* ContainerSpec.Circularity.swift */,
 				74FE954435F1C361FB14C24B /* ContainerSpec.CustomScope.swift */,
 				EB483EF286681035F8A98F43 /* ContainerSpec.CustomStringConvertible.swift */,
-				5DA24DF3EBEAA57BFC8D8631 /* ContainerSpec.DebugHelper.swift */,
+				9898E1602689FFBE008A3B31 /* ContainerTests.DebugHelper.swift */,
 				9898E14F2689FC26008A3B31 /* ContainerTests.GraphCaching.swift */,
 				9898E13E2689F4BA008A3B31 /* ContainerTests.TypeForwarding.swift */,
 				9898E1312689DA5F008A3B31 /* ContainerTests.swift */,
@@ -944,11 +944,11 @@
 				F355D8940486AF9DE89DD22E /* Circularity.swift in Sources */,
 				A197085CE442365D732EE6FE /* ContainerSpec.Arguments.swift in Sources */,
 				9898E0FE2689BD8B008A3B31 /* WeakStorageTests.swift in Sources */,
+				9898E1612689FFBE008A3B31 /* ContainerTests.DebugHelper.swift in Sources */,
 				DCF03B6DB8F99A474F2B575C /* ContainerSpec.Behavior.swift in Sources */,
 				030256DFF226FE93C75833F5 /* ContainerSpec.Circularity.swift in Sources */,
 				88D3BB9CECA9F373FF882AFB /* ContainerSpec.CustomScope.swift in Sources */,
 				87FB12D90646AFA5AC739B15 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
-				229E0EAD0D8413D4CA67094C /* ContainerSpec.DebugHelper.swift in Sources */,
 				9898E1182689C80B008A3B31 /* LazyTests.swift in Sources */,
 				9898E10B2689C132008A3B31 /* ProviderTests.swift in Sources */,
 				1276420B3D3ED5ACFC2C5B4F /* EmploymentAssembly.swift in Sources */,
@@ -975,11 +975,11 @@
 				F82A2357F3C86D24E1E1D712 /* Circularity.swift in Sources */,
 				64410D34965C716D21782147 /* ContainerSpec.Arguments.swift in Sources */,
 				9898E0FF2689BD8B008A3B31 /* WeakStorageTests.swift in Sources */,
+				9898E1622689FFBE008A3B31 /* ContainerTests.DebugHelper.swift in Sources */,
 				D20B08D89E67C0BA45302266 /* ContainerSpec.Behavior.swift in Sources */,
 				E63B478AC633428999D7E53E /* ContainerSpec.Circularity.swift in Sources */,
 				0A8E435254D99275EDED84AC /* ContainerSpec.CustomScope.swift in Sources */,
 				191E66F449054D3F002BA79C /* ContainerSpec.CustomStringConvertible.swift in Sources */,
-				499ADF9E7F4ADEEB5465FFB6 /* ContainerSpec.DebugHelper.swift in Sources */,
 				9898E1192689C80B008A3B31 /* LazyTests.swift in Sources */,
 				9898E10C2689C132008A3B31 /* ProviderTests.swift in Sources */,
 				75A776D4072BCF74F298D818 /* EmploymentAssembly.swift in Sources */,
@@ -1006,11 +1006,11 @@
 				69A27AA36C90A4D4A5FDDEFC /* Circularity.swift in Sources */,
 				8AF61540088BF00CEF29247A /* ContainerSpec.Arguments.swift in Sources */,
 				9898E1012689BD8B008A3B31 /* WeakStorageTests.swift in Sources */,
+				9898E1642689FFBE008A3B31 /* ContainerTests.DebugHelper.swift in Sources */,
 				E6CFED8809163B7DBA6A0262 /* ContainerSpec.Behavior.swift in Sources */,
 				84E22DD92E4F02B70F3A17C5 /* ContainerSpec.Circularity.swift in Sources */,
 				2B54062B225800A92EBDCDFB /* ContainerSpec.CustomScope.swift in Sources */,
 				D729107F8F4F6D53A59392F0 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
-				82A930EA09492BAFE7D4D2DF /* ContainerSpec.DebugHelper.swift in Sources */,
 				9898E11B2689C80B008A3B31 /* LazyTests.swift in Sources */,
 				9898E10E2689C132008A3B31 /* ProviderTests.swift in Sources */,
 				3A41F4B375C1CE29A75F6AE9 /* EmploymentAssembly.swift in Sources */,
@@ -1037,11 +1037,11 @@
 				0E5336910C7B0A00E588940E /* Circularity.swift in Sources */,
 				DD34A07C633466922592B6C3 /* ContainerSpec.Arguments.swift in Sources */,
 				9898E1002689BD8B008A3B31 /* WeakStorageTests.swift in Sources */,
+				9898E1632689FFBE008A3B31 /* ContainerTests.DebugHelper.swift in Sources */,
 				681AEC6C1C827E74E7BC53CA /* ContainerSpec.Behavior.swift in Sources */,
 				634554033DFFE58AD4C85F08 /* ContainerSpec.Circularity.swift in Sources */,
 				DB3F4166348694D7D287D341 /* ContainerSpec.CustomScope.swift in Sources */,
 				28BBCB049DC1C8A744E449E6 /* ContainerSpec.CustomStringConvertible.swift in Sources */,
-				4CC5158454FA6586C84AB160 /* ContainerSpec.DebugHelper.swift in Sources */,
 				9898E11A2689C80B008A3B31 /* LazyTests.swift in Sources */,
 				9898E10D2689C132008A3B31 /* ProviderTests.swift in Sources */,
 				1613AE7671758A85F760C5DF /* EmploymentAssembly.swift in Sources */,
