@@ -106,7 +106,7 @@ class ServiceKeyTests: XCTestCase {
     }
 
     // MARK: With option
-    
+
     func testServiceKeyEqualsWithTheSameOption() {
         let key1 = ServiceKey(serviceType: Animal.self, argumentsType: Resolver.self, option: Option(option: 1))
         let key2 = ServiceKey(serviceType: Animal.self, argumentsType: Resolver.self, option: Option(option: 1))

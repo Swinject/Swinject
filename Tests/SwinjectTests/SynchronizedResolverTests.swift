@@ -9,7 +9,7 @@ import XCTest
 class SynchronizedResolverTests: XCTestCase {
 
     // MARK: Multiple threads
-    
+
     func testSynchronizedResolverCanResolveCircularDependencies() {
         let container = Container { container in
             container.register(ParentProtocol.self) { _ in Parent() }
