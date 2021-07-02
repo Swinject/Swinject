@@ -51,5 +51,3 @@ targets:
       - Tests/SwinjectTests
     dependencies:
       - target: Swinject-${platform}
-      - carthage: Quick
-      - carthage: Nimble
