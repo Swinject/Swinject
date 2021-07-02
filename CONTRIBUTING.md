@@ -20,8 +20,6 @@ Pull requests are more appreciated to improve Swinject or to fix problems. Any k
 
 ### Getting Started
 
-Framework dependencies of Swinject are managed with [Carthage](https://github.com/Carthage/Carthage/releases). Make sure you have its latest version installed. The latest installer is available at [the Carthage release page](https://github.com/Carthage/Carthage/releases).
-
 To setup a Swinject repository in your local Mac, run `git clone` command in Terminal.
 
 `git clone --recursive git@github.com:Swinject/Swinject.git`
@@ -29,10 +27,6 @@ To setup a Swinject repository in your local Mac, run `git clone` command in Ter
 Move to the Swinject directory.
 
 `cd Swinject`
-
-Then run `carthage` command to build the frameworks that Swinject uses.
-
-`carthage bootstrap`
 
 Now it is ready to open `Swinject.xcodeproj`. Modify the code, run unit tests, and submit your pull request.
 
