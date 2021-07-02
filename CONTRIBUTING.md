@@ -30,6 +30,10 @@ Move to the Swinject directory.
 
 Now it is ready to open `Swinject.xcodeproj`. Modify the code, run unit tests, and submit your pull request.
 
+### Project Generation
+
+If you need to add / change any project settings or files inside the `Sources` folder, remember to also update the `project.yml`, which keeps our project generation in sync with the `Swinject.xcodeproj`. 
+
 ### Code Style
 
 Please have a look at [GitHub Swift Style Guide](https://github.com/github/swift-style-guide), which the existing Swinject code tries to follow. If you have a case that is out of scope of the style guide, please try to match the style of the surrounding code.
