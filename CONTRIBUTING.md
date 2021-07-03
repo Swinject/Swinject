@@ -46,3 +46,9 @@ The installation of SwiftLint to your environment is optional. [Hound CI](https:
 Some Swift source files are generated from ERB files, e.g. `Resolver.swift` is generated from `Resolver.erb`, to easily maintain a set of functions that only differ the number of arguments. The generated source files are located under `GeneratedCode` group in the Xcode project. Do not modify the generated code directly, but instead modify the source ERB code. After modifying the ERB code, run `script/gencode` script to generate the Swift code.
 
 **Thank you for contributing!**
+
+## For Maintainers
+
+### Making a new release version
+
+Our release procedure is described as [Makefile](https://github.com/Swinject/Swinject/blob/master/Makefile). Run `make help` coomand for more info.
