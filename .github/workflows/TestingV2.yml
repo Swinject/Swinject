@@ -1,17 +1,11 @@
+# This is the First Workflow for Testing with Github Actions
+
 name: TestingV2
+
 on:
   workflow_dispatch:
-    inputs:
-        name:
-          description: 'Random Parameter'
-          required: false
-          default: ''
-  pull_request:
-    branches:
-    - github-actions
 jobs:
   test:
-    name: Testing iOS Framework
     runs-on: macOS-latest
     strategy:
       matrix:
