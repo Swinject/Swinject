@@ -2,7 +2,7 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-/// Storage provided by `ObjectScope`. It is used by `Container` to persist resolved instances.
+/// Storage provided by ``ObjectScope``. It is used by ``Container`` to persist resolved instances.
 public protocol InstanceStorage: AnyObject {
     var instance: Any? { get set }
     func graphResolutionCompleted()
