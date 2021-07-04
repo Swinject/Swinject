@@ -28,4 +28,4 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
       - name: Testing iOS app
-        run: exec ./.github/scripts/test_script.sh
+        run: xcodebuild "${{ matrix.ACTION }}" -project "${{ matrix.PROJECT }}" -scheme "${{ matrix.SCHEME }}" -sdk "${{ matrix.SDK }}" -destination "${{ matrix.DEST }}" -configuration Release ENABLE_TESTABILITY=YES | xcpretty
