@@ -1,10 +1,14 @@
 name: Testing
-on: 
+on:
   workflow_dispatch:
-# on:
-#   pull_request:
-#     branches:
-#     - master
+    inputs:
+        name:
+          description: 'Random Parameter'
+          required: false
+          default: ''
+  pull_request:
+    branches:
+    - github-actions
 jobs:
   test:
     name: Testing iOS Framework
@@ -29,9 +33,5 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
-      # - name: Force XCode 12.5.1
-      #   run: sudo xcode-select -switch /Applications/Xcode_12.5.1.app
-      # - name: Testing Swift package
-      #   run: exec ./.github/scripts/test_swift_package.sh
       - name: Testing iOS app
         run: exec ./.github/scripts/test_script.sh
