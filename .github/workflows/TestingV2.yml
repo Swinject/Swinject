@@ -13,7 +13,7 @@ jobs:
        include:
          - platform-version: iOS
            JOB: "XCODE"
-           DEST: "OS=14.0,name=iPhone 8"
+           DEST: "OS=14.4,name=iPhone 8"
            SCHEME: "Swinject-iOS"
            SDK: "iphonesimulator"
            ACTION: "test"
