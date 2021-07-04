@@ -1,4 +1,4 @@
-name: Testing
+name: TestingV2
 on:
   workflow_dispatch:
     inputs:
