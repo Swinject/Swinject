@@ -1,9 +1,10 @@
 # This is the First Workflow for Testing with Github Actions
 
 name: TestingV2
-
 on:
   workflow_dispatch:
+env: 
+  PROJECT: Swinject.xcodeproj
 jobs:
   test:
     runs-on: macOS-latest
@@ -28,4 +29,4 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
       - name: Testing iOS app
-        run: xcodebuild "${{ matrix.ACTION }}" -project "${{ matrix.PROJECT }}" -scheme "${{ matrix.SCHEME }}" -sdk "${{ matrix.SDK }}" -destination "${{ matrix.DEST }}" -configuration Release ENABLE_TESTABILITY=YES | xcpretty
+        run: xcodebuild "${{ matrix.ACTION }}" -project "${{ env.PROJECT }}" -scheme "${{ matrix.SCHEME }}" -sdk "${{ matrix.SDK }}" -destination "${{ matrix.DEST }}" -configuration Release ENABLE_TESTABILITY=YES | xcpretty
