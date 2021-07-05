@@ -48,6 +48,9 @@ targets:
     platform: [macOS, iOS, tvOS, watchOS]
     platformSuffix: -${platform}
     scheme: {}
+    settings:
+      groups:
+        - ${platform}
     sources:
       - Tests/SwinjectTests
     dependencies:
