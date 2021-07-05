@@ -5,7 +5,6 @@
 Swinject
 ========
 
-<!-- [![Travis CI](https://travis-ci.org/Swinject/Swinject.svg?branch=master)](https://travis-ci.org/Swinject/Swinject) -->
 [![Travis CI Com](https://travis-ci.com/Swinject/Swinject.svg?branch=master)](https://travis-ci.com/Swinject/Swinject)
 ![Github Actions](https://github.com/1ucas/Swinject/actions/workflows/Project%20Testing.yml/badge.svg?branch=master)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
