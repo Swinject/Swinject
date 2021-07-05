@@ -11,9 +11,10 @@ on:
       - master
 env:
   ENCODING: LC_CTYPE=en_US.UTF-8
+  DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
 jobs:
   pod-lint:
-    runs-on: macOS-latest
+    runs-on: macos-10.15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
