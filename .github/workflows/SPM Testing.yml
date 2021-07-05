@@ -1,0 +1,24 @@
+# This is the First Workflow for Testing with Github Actions
+
+name: SPM Check
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+env:
+  ENCODING: LC_CTYPE=en_US.UTF-8
+jobs:
+  spm-check:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Package File
+      run: mv .Package.Test.swift Package.swift
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
