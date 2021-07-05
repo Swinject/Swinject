@@ -14,6 +14,6 @@ XCTMain([
     testCase(ContainerTests.DebugHelper.allTests),
     testCase(ContainerTests.CustomScope.allTests),
     testCase(SynchronizedResolverTests.allTests),
-    testCase(erviceKeyTests.allTests),
+    testCase(ServiceKeyTests.allTests),
     testCase(ServiceEntryTests.allTests)
 ])
