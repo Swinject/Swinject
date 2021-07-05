@@ -1,0 +1,49 @@
+# This is the First Workflow for Testing with Github Actions
+
+name: Testing
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+env: 
+  PROJECT: Swinject.xcodeproj
+jobs:
+  test:
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+       include:
+         - platform-version: iOS
+           DEST: "OS=14.4,name=iPhone 8"
+           SCHEME: "Swinject-iOS"
+           SDK: "iphonesimulator"
+           ACTION: "test"
+           PLATFORM: "iOS"
+         - platform-version: macOS
+           DEST: "arch=x86_64"
+           SCHEME: "Swinject-macOS"
+           SDK: "macosx"
+           ACTION: "test"
+           PLATFORM: "OSX"
+         - platform-version: tvOS
+           DEST: "OS=14.3,name=Apple TV 4K"
+           SCHEME: "Swinject-tvOS"
+           SDK: "appletvsimulator"
+           ACTION: "test"
+           PLATFORM: "tvOS"
+         - platform-version: watchOS
+           DEST: "OS=7.2,name=Apple Watch Series 6 - 44mm"
+           SCHEME: "Swinject-watchOS"
+           SDK: "watchsimulator"
+           ACTION: "build"
+           PLATFORM: "watchOS"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Testing Framework for - "${{ matrix.PLATFORM }}"
+        run: xcodebuild "${{ matrix.ACTION }}" -project "${{ env.PROJECT }}" -scheme "${{ matrix.SCHEME }}" -sdk "${{ matrix.SDK }}" -destination "${{ matrix.DEST }}" -configuration Release ENABLE_TESTABILITY=YES | xcpretty
+        shell: bash
