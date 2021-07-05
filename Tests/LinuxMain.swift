@@ -9,11 +9,12 @@ import XCTest
 XCTMain([
     testCase(AssemblerTests.allTests),
     testCase(ContainerTests.allTests),
-    testCase(ContainerTests.Arguments.allTests),
-    testCase(ContainerTests.Circularity.allTests),
-    testCase(ContainerTests.DebugHelper.allTests),
-    testCase(ContainerTests.CustomScope.allTests),
+    testCase(ContainerTests_Arguments.allTests),
+    testCase(ContainerTests_Circularity.allTests),
+    testCase(ContainerTests_DebugHelper.allTests),
+    testCase(ContainerTests_CustomScope.allTests),
     testCase(SynchronizedResolverTests.allTests),
     testCase(ServiceKeyTests.allTests),
     testCase(ServiceEntryTests.allTests)
 ])
+
