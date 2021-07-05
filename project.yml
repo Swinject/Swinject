@@ -27,6 +27,7 @@ targets:
       base:
         APPLICATION_EXTENSION_API_ONLY: 'YES'
         BUILD_LIBRARY_FOR_DISTRIBUTION: 'YES'
+        RUN_DOCUMENTATION_COMPILER: 'YES'
       groups:
         - ${platform}
     scheme:
