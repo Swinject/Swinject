@@ -1,0 +1,18 @@
+# This is the First Workflow for Testing with Github Actions
+
+name: SPM Check
+on:
+  workflow_dispatch:
+env:
+  DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
+jobs:
+  spm-check:
+    runs-on: macos-10.15
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Package File
+      run: mv .Package.Test.swift Package.swift
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
