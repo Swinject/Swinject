@@ -3,12 +3,6 @@
 name: SPM Check
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
 env:
   DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
 jobs:

@@ -3,12 +3,6 @@
 name: Testing
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
 env: 
   PROJECT: Swinject.xcodeproj
   DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
