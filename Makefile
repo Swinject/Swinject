@@ -55,7 +55,7 @@ ifeq ($(shell which gh),)
 	$(error gh command not found. Install gh command and run `gh auth login` beforehand.)
 endif
 ifneq ($(VERSION_TAG),$(shell agvtool what-marketing-version -terse1))
-	$(error The versoin tag $(VERSION_TAG) does not match the version in Info.plist)
+	$(error The version tag $(VERSION_TAG) does not match the version in Info.plist)
 endif
 	gh release create v$(VERSION_TAG) --draft
 	@echo Open https://github.com/Swinject/Swinject/releases/edit/$(VERSION_TAG) to describe the release and publish it.
