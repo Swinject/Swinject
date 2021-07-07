@@ -43,6 +43,7 @@ before_install:
   - echo 'EXCLUDED_ARCHS = $(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT)__XCODE_$(XCODE_VERSION_MAJOR))' >> $xcconfig
   - export XCODE_XCCONFIG_FILE="$xcconfig"
 before_script:
+  - rm -r Swinject.xcodeproj
   - xcodegen generate
 script:
   - set -o pipefail
