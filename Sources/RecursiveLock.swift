@@ -4,7 +4,7 @@
 
 import Foundation
 
-internal final class SpinLock {
+internal final class RecursiveLock {
     private let lock = NSRecursiveLock()
 
     func sync<T>(action: () -> T) -> T {
