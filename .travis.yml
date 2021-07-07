@@ -18,6 +18,7 @@ matrix:
       dist: bionic
       before_install:
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+      before_script:
       script:
         - mv .Package.Test.swift Package.swift
         - swift build
