@@ -26,7 +26,7 @@ public final class Container {
     private let debugHelper: DebugHelper
     private let defaultObjectScope: ObjectScope
     internal var currentObjectGraph: GraphIdentifier?
-    internal let lock: SpinLock // Used by SynchronizedResolver.
+    internal let lock: RecursiveLock // Used by SynchronizedResolver.
     internal var behaviors = [Behavior]()
 
     internal init(
@@ -36,7 +36,7 @@ public final class Container {
     ) {
         self.parent = parent
         self.debugHelper = debugHelper
-        lock = parent.map { $0.lock } ?? SpinLock()
+        lock = parent.map { $0.lock } ?? RecursiveLock()
         self.defaultObjectScope = defaultObjectScope
     }
 
