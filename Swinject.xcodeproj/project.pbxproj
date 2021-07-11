@@ -334,6 +334,7 @@
 		944B981A9157833AC3397B4A /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		957AFDACC07687608E5E5F7E /* ObjectScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectScope.swift; sourceTree = "<group>"; };
 		988A20A0815159E43C26CA46 /* ContainerTests.Behavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.Behavior.swift; sourceTree = "<group>"; };
+		98D60BAA269AD812002FF5CF /* Sample-iOS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Sample-iOS.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9B058F48AF289C3AC307C2F7 /* GraphIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphIdentifier.swift; sourceTree = "<group>"; };
 		A20C1319AF31EC7F8E6945FE /* SwinjectTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28176E7C90C61FB8131FE06 /* ProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderTests.swift; sourceTree = "<group>"; };
@@ -444,12 +445,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		98D60BA9269AD802002FF5CF /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				98D60BAA269AD812002FF5CF /* Sample-iOS.playground */,
+			);
+			name = Playgrounds;
+			sourceTree = "<group>";
+		};
 		A4F7E56739BB9CB479DDDBF6 = {
 			isa = PBXGroup;
 			children = (
 				D026A6699A2A932511D29E14 /* Sources */,
 				1281EF9C9707360B39DD4C11 /* SwinjectTests */,
 				8EB6E58A3F28FAEBBC372598 /* Products */,
+				98D60BA9269AD802002FF5CF /* Playgrounds */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
