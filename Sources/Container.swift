@@ -261,6 +261,9 @@ extension Container: _Resolver {
 // MARK: - Resolver
 
 extension Container: Resolver {
+
+    public var synchronizedResolver: Resolver { synchronize() }
+
     /// Retrieves the instance with the specified service type.
     ///
     /// - Parameter serviceType: The service type to resolve.
