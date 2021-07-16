@@ -42,7 +42,7 @@ UPSTREAM=upstream
 endif
 .PHONY: push-to-upstream
 push-to-upstream:
-	git push $(UPSTREAM) $(shell git branch --show-current)
+	git push $(UPSTREAM) $(shell git rev-parse --abbrev-ref HEAD)
 	git push $(UPSTREAM) $(VERSION_TAG)
 
 #
