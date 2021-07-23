@@ -9,6 +9,8 @@ options:
     tvOS: '9.0'
     iOS: '9.0'
     watchOS: '2.0'
+fileGroups:
+  - Playgrounds/Sample-iOS.playground
 settingGroups:
       macOS:
         EXCLUDED_ARCHS: ''
