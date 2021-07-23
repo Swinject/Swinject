@@ -24,18 +24,18 @@ matrix:
         - swift build
         - swift test
     - env: JOB="POD_LINT"
-      osx_image: xcode12
+      osx_image: xcode12.5
       before_install:
       script:
         - pod lib lint
     - env: JOB="XCODE" DEST="OS=14.0.1,name=iPhone 8" SCHEME="Swinject-iOS" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
       osx_image: xcode12.5
     - env: JOB="XCODE" DEST="arch=x86_64" SCHEME="Swinject-macOS" SDK="macosx" ACTION="test" PLATFORM="OSX"
-      osx_image: xcode12
+      osx_image: xcode12.5
     - env: JOB="XCODE" DEST="OS=14.0,name=Apple TV 4K" SCHEME="Swinject-tvOS" SDK="appletvsimulator" ACTION="test" PLATFORM="tvOS"
-      osx_image: xcode12
+      osx_image: xcode12.5
     - env: JOB="XCODE" DEST="OS=7.0,name=Apple Watch Series 6 - 44mm" SCHEME="Swinject-watchOS" SDK="watchsimulator" ACTION="build" PLATFORM="watchOS"
-      osx_image: xcode12
+      osx_image: xcode12.5
 
 before_install:
   - xcconfig=$(mktemp /tmp/static.xcconfig.XXXXXX)
