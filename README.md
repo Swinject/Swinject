@@ -11,7 +11,7 @@ Swinject
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 [![License](https://img.shields.io/cocoapods/l/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
 [![Platforms](https://img.shields.io/badge/platform-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20Linux-lightgrey.svg)](http://cocoapods.org/pods/Swinject)
-[![Swift Version](https://img.shields.io/badge/Swift-2.2--3.1.x-F16D39.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift Version](https://img.shields.io/badge/Swift-4.2--5.4-F16D39.svg?style=flat)](https://developer.apple.com/swift)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift.
@@ -41,13 +41,9 @@ Dependency injection (DI) is a software design pattern that implements Inversion
 
 ## Requirements
 
-- iOS 8.0+ / Mac OS X 10.10+ / watchOS 2.0+ / tvOS 9.0+
-- Swift 2.2 or 2.3
-  - Xcode 7.0+
-- Swift 3
-  - Xcode 8.0+
-- Swift 3.2, 4.x
-  - Xcode 9.0+
+- iOS 9.0+ / Mac OS X 10.10+ / watchOS 2.0+ / tvOS 9.0+
+- Xcode 10.2+
+- Swift 4.2+
 - Carthage 0.18+ (if you use)
 - CocoaPods 1.1.1+ (if you use)
 
@@ -58,14 +54,6 @@ Swinject is available through [Carthage](https://github.com/Carthage/Carthage), 
 ### Carthage
 
 To install Swinject with Carthage, add the following line to your `Cartfile`.
-
-#### Swift 2.2 or 2.3
-
-```
-github "Swinject/Swinject" ~> 1.1.4
-```
-
-#### Swift 3.x or 4.x
 
 ```
 github "Swinject/Swinject"
@@ -81,21 +69,9 @@ Then run `carthage update --no-use-binaries` command or just `carthage update`. 
 
 To install Swinject with CocoaPods, add the following lines to your `Podfile`.
 
-#### Swift 2.2 or 2.3
-
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
-use_frameworks!
-
-pod 'Swinject', '~> 1.1.4'
-```
-
-#### Swift 3.x
-
-```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0' # or platform :osx, '10.10' if your target is OS X.
+platform :ios, '9.0' # or platform :osx, '10.10' if your target is OS X.
 use_frameworks!
 
 pod 'Swinject'
@@ -114,7 +90,7 @@ in `Package.swift` add the following:
 dependencies: [
     // Dependencies declare other packages that this package depends on.
     // .package(url: /* package url */, from: "1.0.0"),
-    .package(url: "https://github.com/Swinject/Swinject.git", from: "2.7.1")
+    .package(url: "https://github.com/Swinject/Swinject.git", from: "2.8.0")
 ],
 targets: [
     .target(
@@ -202,10 +178,9 @@ class PersonViewController: UIViewController {
 
 ### With SwinjectStoryboard
 
-Import SwinjectStoryboard at the top of your swift source file if you use Swinject v2 in Swift 3.
+Import SwinjectStoryboard at the top of your swift source file.
 
 ```swift
-// Only Swinject v2 in Swift 3.
 import SwinjectStoryboard
 ```
 
@@ -292,7 +267,6 @@ A guide to [submit issues](https://github.com/Swinject/Swinject/issues), to ask 
 
 ## Question?
 
-- [Slack](https://join.slack.com/t/swinject/shared_invite/enQtNjk0NjE0NjMzOTIyLTI5NWJiNDU5NGI1MTUwZDI3MDU2ZTM2YTMwMWRhMjI0ZmFlODk4MDI5OWUwNzY1YjlhOTRjYWM2NjZmOTVhNTU) feel free to discuss anything Swinject related.
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/swinject) we are trying to monitor questions tagged `swinject`
 
 ## Credits
