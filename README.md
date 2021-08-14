@@ -292,7 +292,6 @@ A guide to [submit issues](https://github.com/Swinject/Swinject/issues), to ask 
 
 ## Question?
 
-- [Slack](https://join.slack.com/t/swinject/shared_invite/enQtNjk0NjE0NjMzOTIyLTI5NWJiNDU5NGI1MTUwZDI3MDU2ZTM2YTMwMWRhMjI0ZmFlODk4MDI5OWUwNzY1YjlhOTRjYWM2NjZmOTVhNTU) feel free to discuss anything Swinject related.
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/swinject) we are trying to monitor questions tagged `swinject`
 
 ## Credits
