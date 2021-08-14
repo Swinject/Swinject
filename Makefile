@@ -48,7 +48,7 @@ push-to-upstream:
 #
 # Make a release for Carthage.
 #
-VERSION_TAG=$(shell git describe --abbrev=0)
+VERSION_TAG=$(shell git describe --tags --abbrev=0)
 .PHONY: carthage-release
 carthage-release:
 ifeq ($(shell which gh),)
