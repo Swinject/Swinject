@@ -250,16 +250,18 @@ To run the playground in the project, first build the project, then select `Edit
 
 ## Example Apps
 
-- [SwinjectSimpleExample](https://github.com/Swinject/SwinjectSimpleExample) demonstrates dependency injection and Swinject in a simple weather app that lists current weather information at some locations.
-- [SwinjectMVVMExample](https://github.com/Swinject/SwinjectMVVMExample) demonstrates dependency injection with Swift and reactive programming with [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa) in MVVM architecture.
+Some example apps using Swinject can be found on [GitHub](https://github.com/search?o=desc&q=swinject&s=updated&type=Repositories).
 
 ## Blog Posts
 
-The following blog posts introduce Swinject and the concept of dependency injection.
+The following blog posts introduce the concept of dependency injection and Swinject.
 
-- [Dependency Injection Framework for Swift - Introduction to Swinject](https://yoichitgy.github.io/post/dependency-injection-framework-for-swift-introduction-to-swinject/)
-- [Dependency Injection Framework for Swift - Simple Weather App Example with Swinject Part 1/2](https://yoichitgy.github.io/post/dependency-injection-framework-for-swift-simple-weather-app-example-with-swinject-part-1/)
-- [Dependency Injection Framework for Swift - Simple Weather App Example with Swinject Part 2/2](https://yoichitgy.github.io/post/dependency-injection-framework-for-swift-simple-weather-app-example-with-swinject-part-2/)
+- [Dependency Injection Tutorial for iOS: Getting Started](https://www.raywenderlich.com/14223279-dependency-injection-tutorial-for-ios-getting-started) *by [Irina Galata](https://www.raywenderlich.com/u/galata)*
+- [Swinject Tutorial for iOS: Getting Started](https://www.raywenderlich.com/17-swinject-tutorial-for-ios-getting-started) *by [Gemma Barlow](https://www.raywenderlich.com/u/gemmakbarlow)*
+- [iOS Dependency Injection Using Swinject](https://medium.com/flawless-app-stories/ios-dependency-injection-using-swinject-9c4ceff99e41) *by [Ali Akhtar](https://ali-akhtar.medium.com)*
+- [DI in iOS: Complete guide](https://medium.com/its-tinkoff/di-in-ios-complete-guide-cd76a079d2d) *by [Vitaly Batrakov](https://medium.com/@batrakov.vitaly)*
+
+Thanks the authors!
 
 ## Contribution Guide
 
