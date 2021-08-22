@@ -36,7 +36,7 @@ endif
 #
 # Push the commit and tag for the new version to upstream.
 #
-VERSION_TAG=$(shell git describe --abbrev=0)
+VERSION_TAG=$(shell git describe --tags --abbrev=0)
 ifndef UPSTREAM
 UPSTREAM=upstream
 endif
