@@ -15,9 +15,9 @@ settingGroups:
       macOS:
         EXCLUDED_ARCHS: ''
       iOS:
-        EXCLUDED_ARCHS[sdk=iphonesimulator*]: 'arm64'
+        EXCLUDED_ARCHS[sdk=iphonesimulator*]: ''
       tvOS:
-        EXCLUDED_ARCHS[sdk=appletvsimulator*]: 'arm64'
+        EXCLUDED_ARCHS[sdk=appletvsimulator*]: ''
       watchOS:
         EXCLUDED_ARCHS: ''
 targets:
