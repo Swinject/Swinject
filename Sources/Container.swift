@@ -19,7 +19,7 @@ import Foundation
 ///
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
-public final class Container {
+public final class Container: NSObject {
     internal var services = [ServiceKey: ServiceEntryProtocol]()
     private let parent: Container? // Used by HierarchyObjectScope
     private var resolutionDepth = 0
@@ -334,8 +334,8 @@ extension Container: Resolver {
 
 // MARK: CustomStringConvertible
 
-extension Container: CustomStringConvertible {
-    public var description: String {
+extension Container {
+    public override var description: String {
         return "["
             + services.map { "\n    { \($1.describeWithKey($0)) }" }.sorted().joined(separator: ",")
             + "\n]"
