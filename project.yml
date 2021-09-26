@@ -11,15 +11,6 @@ options:
     watchOS: '2.0'
 fileGroups:
   - Playgrounds/Sample-iOS.playground
-settingGroups:
-      macOS:
-        EXCLUDED_ARCHS: ''
-      iOS:
-        EXCLUDED_ARCHS[sdk=iphonesimulator*]: 'arm64'
-      tvOS:
-        EXCLUDED_ARCHS[sdk=appletvsimulator*]: 'arm64'
-      watchOS:
-        EXCLUDED_ARCHS: ''
 targets:
   Swinject:
     type: framework
@@ -30,8 +21,6 @@ targets:
         APPLICATION_EXTENSION_API_ONLY: 'YES'
         BUILD_LIBRARY_FOR_DISTRIBUTION: 'YES'
         RUN_DOCUMENTATION_COMPILER: 'YES'
-      groups:
-        - ${platform}
     scheme:
       testTargets:
         - SwinjectTests-${platform}
@@ -51,9 +40,6 @@ targets:
     platform: [macOS, iOS, tvOS, watchOS]
     platformSuffix: -${platform}
     scheme: {}
-    settings:
-      groups:
-        - ${platform}
     sources:
       - Tests/SwinjectTests
     dependencies:
