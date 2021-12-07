@@ -1,5 +1,5 @@
 //
-//  SynchronizedResolver.Arguments.swift
+//  SynchronizedContainer.Arguments.swift
 //  Swinject
 //
 //  Created by Yoichi Tagaya on 11/23/15.
@@ -9,15 +9,15 @@
 //
 // NOTICE:
 //
-// SynchronizedResolver.Arguments.swift is generated from SynchronizedResolver.Arguments.erb by ERB.
-// Do NOT modify SynchronizedResolver.Arguments.swift directly.
-// Instead, modify SynchronizedResolver.Arguments.erb and run `script/gencode` at the project root directory to generate the code.
+// SynchronizedContainer.Arguments.swift is generated from SynchronizedContainer.Arguments.erb by ERB.
+// Do NOT modify SynchronizedContainer.Arguments.swift directly.
+// Instead, modify SynchronizedContainer.Arguments.erb and run `script/gencode` at the project root directory to generate the code.
 //
 
 <% arg_count = 9 %>
 
 // MARK: - Resolver with Arguments
-extension SynchronizedResolver {
+extension SynchronizedContainer {
 <% (1..arg_count).each do |i| %>
 <%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
 <%   arg_param_name = i == 1 ? "argument" : "arguments" %>

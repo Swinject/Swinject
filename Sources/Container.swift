@@ -93,41 +93,31 @@ public final class Container {
         resetObjectScope(objectScope as ObjectScopeProtocol)
     }
 
-    /// Adds a registration for the specified service with the factory closure to specify how the service is
-    /// resolved with dependencies.
+    /// Returns a synchronized view of the container for thread safety.
+    /// The returned container is ``Register`` and ``Resolver`` type.
     ///
-    /// - Parameters:
-    ///   - serviceType: The service type to register.
-    ///   - name:        A registration name, which is used to differentiate from other registrations
-    ///                  that have the same service and factory types.
-    ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
-    ///                  It is invoked when the ``Container`` needs to instantiate the instance.
-    ///                  It takes a ``Resolver`` to inject dependencies to the instance,
-    ///                  and returns the instance of the component type for the service.
-    ///
-    /// - Returns: A registered ``ServiceEntry`` to configure more settings with method chaining.
-    @discardableResult
-    public func register<Service>(
-        _ serviceType: Service.Type,
-        name: String? = nil,
-        factory: @escaping (Resolver) -> Service
-    ) -> ServiceEntry<Service> {
-        return _register(serviceType, factory: factory, name: name)
+    /// - Returns: A synchronized container as ``Register`` and ``Resolver``.
+    public func synchronize() -> Register & Resolver {
+        return SynchronizedContainer(container: self)
     }
 
-    /// This method is designed for the use to extend Swinject functionality.
-    /// Do NOT use this method unless you intend to write an extension or plugin to Swinject framework.
+    /// Adds behavior to the container. `Behavior.container(_:didRegisterService:withName:)` will be invoked for
+    /// each service registered to the `container` **after** the behavior has been added.
     ///
     /// - Parameters:
-    ///   - serviceType: The service type to register.
-    ///   - factory:     The closure to specify how the service type is resolved with the dependencies of the type.
-    ///                  It is invoked when the ``Container`` needs to instantiate the instance.
-    ///                  It takes a ``Resolver`` to inject dependencies to the instance,
-    ///                  and returns the instance of the component type for the service.
-    ///   - name:        A registration name.
-    ///   - option:      A service key option for an extension/plugin.
-    ///
-    /// - Returns: A registered ``ServiceEntry`` to configure more settings with method chaining.
+    ///     - behavior: Behavior to be added to the container
+    public func addBehavior(_ behavior: Behavior) {
+        behaviors.append(behavior)
+    }
+
+    internal func restoreObjectGraph(_ identifier: GraphIdentifier) {
+        currentObjectGraph = identifier
+    }
+}
+
+// MARK: - _Register
+
+extension Container: _Register {
     @discardableResult
     // swiftlint:disable:next identifier_name
     public func _register<Service, Arguments>(
@@ -150,27 +140,18 @@ public final class Container {
 
         return entry
     }
+}
 
-    /// Returns a synchronized view of the container for thread safety.
-    /// The returned container is ``Resolver`` type. Call this method after you finish all service registrations
-    /// to the original container.
-    ///
-    /// - Returns: A synchronized container as ``Resolver``.
-    public func synchronize() -> Resolver {
-        return SynchronizedResolver(container: self)
-    }
+// MARK: - Register
 
-    /// Adds behavior to the container. `Behavior.container(_:didRegisterService:withName:)` will be invoked for
-    /// each service registered to the `container` **after** the behavior has been added.
-    ///
-    /// - Parameters:
-    ///     - behavior: Behavior to be added to the container
-    public func addBehavior(_ behavior: Behavior) {
-        behaviors.append(behavior)
-    }
-
-    internal func restoreObjectGraph(_ identifier: GraphIdentifier) {
-        currentObjectGraph = identifier
+extension Container: Register {
+    @discardableResult
+    public func register<Service>(
+        _ serviceType: Service.Type,
+        name: String? = nil,
+        factory: @escaping (Resolver) -> Service
+    ) -> ServiceEntry<Service> {
+        return _register(serviceType, factory: factory, name: name)
     }
 }
 
