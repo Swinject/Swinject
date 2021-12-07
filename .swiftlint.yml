@@ -7,6 +7,6 @@ included:
   - Tests
 excluded:
   - Sources/Container.Arguments.swift
-  - Sources/SynchronizedResolver.Arguments.swift
+  - Sources/SynchronizedContainer.Arguments.swift
   - Sources/Resolver.swift
   - Sources/ServiceEntry.TypeForwarding.swift
