@@ -15,6 +15,91 @@
 //
 
 
+// MARK: - Register with Arguments
+extension SynchronizedContainer {
+    internal func register<Service, Arg1>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1) -> Service) -> ServiceEntry<Service>
+    {
+        return container.lock.sync {
+            return self.container.register(serviceType, name: name, factory: factory)
+        }
+    }
+    internal func register<Service, Arg1, Arg2>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1, Arg2) -> Service) -> ServiceEntry<Service>
+    {
+        return container.lock.sync {
+            return self.container.register(serviceType, name: name, factory: factory)
+        }
+    }
+    internal func register<Service, Arg1, Arg2, Arg3>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3) -> Service) -> ServiceEntry<Service>
+    {
+        return container.lock.sync {
+            return self.container.register(serviceType, name: name, factory: factory)
+        }
+    }
+    internal func register<Service, Arg1, Arg2, Arg3, Arg4>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4) -> Service) -> ServiceEntry<Service>
+    {
+        return container.lock.sync {
+            return self.container.register(serviceType, name: name, factory: factory)
+        }
+    }
+    internal func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5) -> Service) -> ServiceEntry<Service>
+    {
+        return container.lock.sync {
+            return self.container.register(serviceType, name: name, factory: factory)
+        }
+    }
+    internal func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6) -> Service) -> ServiceEntry<Service>
+    {
+        return container.lock.sync {
+            return self.container.register(serviceType, name: name, factory: factory)
+        }
+    }
+    internal func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7) -> Service) -> ServiceEntry<Service>
+    {
+        return container.lock.sync {
+            return self.container.register(serviceType, name: name, factory: factory)
+        }
+    }
+    internal func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8) -> Service) -> ServiceEntry<Service>
+    {
+        return container.lock.sync {
+            return self.container.register(serviceType, name: name, factory: factory)
+        }
+    }
+    internal func register<Service, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9) -> Service) -> ServiceEntry<Service>
+    {
+        return container.lock.sync {
+            return self.container.register(serviceType, name: name, factory: factory)
+        }
+    }
+}
+
 // MARK: - Resolver with Arguments
 extension SynchronizedContainer {
     internal func resolve<Service, Arg1>(

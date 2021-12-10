@@ -15,7 +15,7 @@ public protocol Behavior {
     ///
     /// - Remark: `Type` and `Service` can be different types in the case of type forwarding
     func container<Type, Service>(
-        _ container: Container,
+        _ container: Register,
         didRegisterType type: Type.Type,
         toService entry: ServiceEntry<Service>,
         withName name: String?

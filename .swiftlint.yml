@@ -9,4 +9,5 @@ excluded:
   - Sources/Container.Arguments.swift
   - Sources/SynchronizedContainer.Arguments.swift
   - Sources/Resolver.swift
+  - Sources/Register.swift
   - Sources/ServiceEntry.TypeForwarding.swift

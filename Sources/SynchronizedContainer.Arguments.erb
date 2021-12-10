@@ -16,6 +16,22 @@
 
 <% arg_count = 9 %>
 
+// MARK: - Register with Arguments
+extension SynchronizedContainer {
+<% (1..arg_count).each do |i| %>
+<%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+    internal func register<Service, <%= arg_types %>>(
+        _ serviceType: Service.Type,
+        name: String?,
+        factory: @escaping (Resolver, <%= arg_types %>) -> Service) -> ServiceEntry<Service>
+    {
+        return container.lock.sync {
+            return self.container.register(serviceType, name: name, factory: factory)
+        }
+    }
+<% end %>
+}
+
 // MARK: - Resolver with Arguments
 extension SynchronizedContainer {
 <% (1..arg_count).each do |i| %>

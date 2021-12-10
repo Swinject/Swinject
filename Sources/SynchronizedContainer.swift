@@ -51,6 +51,13 @@ extension SynchronizedContainer: _Register {
 
 extension SynchronizedContainer: Register {
     func register<Service>(_ serviceType: Service.Type,
+                           factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service> {
+        return container.lock.sync {
+            self.container.register(serviceType, factory: factory)
+        }
+    }
+    
+    func register<Service>(_ serviceType: Service.Type,
                            name: String?,
                            factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service> {
         return container.lock.sync {
