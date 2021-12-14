@@ -200,7 +200,7 @@ public extension Register {
     func register<Service>(
         _ serviceType: Service.Type,
         factory: @escaping (Resolver) -> Service) -> ServiceEntry<Service> {
-        register(serviceType, factory: factory)
+        register(serviceType, name: nil, factory: factory)
     }
     
     @discardableResult
