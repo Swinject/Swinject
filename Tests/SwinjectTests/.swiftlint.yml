@@ -1,4 +1,4 @@
-exclued:
+excluded:
   - SwinjectTests
 disabled_rules:
   - force_cast
