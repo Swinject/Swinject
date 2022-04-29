@@ -88,6 +88,20 @@ class SynchronizedResolverTests: XCTestCase {
             }
         }
     }
+
+    // MARK: Synchronized register
+
+    func testSynchronizedResolverWithSynchronizedRegister() {
+        let container = Container()
+        let threadSafeContainer = container.synchronize()
+
+        // swiftlint:disable opening_brace
+        onMultipleThreads(actions: [
+            { threadSafeContainer.register(ChildProtocol.self) { _ in Child() } },
+            { _ = threadSafeContainer.resolve(ChildProtocol.self) }
+        ])
+        // swiftlint:enable opening_brace
+    }
 }
 
 private final class Counter {
