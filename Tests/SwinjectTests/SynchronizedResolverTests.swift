@@ -88,6 +88,47 @@ class SynchronizedResolverTests: XCTestCase {
             }
         }
     }
+
+    // MARK: Wrapped type
+
+    func testSynchronizedResolverSynchronizesProviderTypes() {
+        var graphs = Set<GraphIdentifier>()
+        let container = Container()
+        container.register(Animal.self) {
+            graphs.insert(($0 as! Container).currentObjectGraph!)
+            return Dog()
+        }
+
+        let synchronized = container.synchronize()
+
+        onMultipleThreads {
+            let lazy = synchronized.resolve(Provider<Animal>.self)
+            _ = lazy?.instance
+        }
+
+        XCTAssertEqual(graphs.count, totalThreads)
+    }
+
+    func testSynchronizedResolverSynchronizesLazyTypes() {
+        // Lazy types might share graph identifiers and persistent entities.
+        let container = Container()
+        container.register(Dog.self) { _ in
+            return Dog()
+        }
+
+        let synchronized = container.synchronize()
+
+        let queue = DispatchQueue(
+            label: "SwinjectTests.SynchronizedContainerSpec.Queue", attributes: .concurrent
+        )
+        waitUntil(timeout: .seconds(2)) { done in
+            queue.async {
+                let lazy = synchronized.resolve(Lazy<Dog>.self)
+                _ = lazy?.instance
+                done()
+            }
+        }
+    }
 }
 
 private final class Counter {
