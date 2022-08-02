@@ -310,8 +310,9 @@ extension Container: Resolver {
         entry: ServiceEntryProtocol,
         invoker: @escaping (Factory) -> Any
     ) -> Service? {
-        let resolution: () -> Service? = { [weak self] in
-            guard let self = self else { return nil }
+        // No need to use weak self since the resolution will be executed before
+        // this function exits.
+        let resolution: () -> Service? = { [self] in
             self.incrementResolutionDepth()
             defer { self.decrementResolutionDepth() }
 
