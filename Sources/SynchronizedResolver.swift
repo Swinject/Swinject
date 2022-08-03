@@ -24,6 +24,9 @@ extension SynchronizedResolver: _Resolver {
 }
 
 extension SynchronizedResolver: Resolver {
+    
+    var synchronizedResolver: Resolver { self }
+
     internal func resolve<Service>(_ serviceType: Service.Type) -> Service? {
         return container.lock.sync {
             self.container.resolve(serviceType)
