@@ -20,5 +20,7 @@ let package = Package(
     targets: [
         .target(name: "Swinject",
                 path: "Sources"),
+        .testTarget(name: "SwinjectTests",
+                    dependencies: ["Swinject"]),
     ]
 )
