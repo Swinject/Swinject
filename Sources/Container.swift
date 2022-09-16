@@ -155,8 +155,10 @@ public final class Container {
     }
 
     /// Returns a synchronized view of the container for thread safety.
-    /// The returned container is ``Resolver`` type. Call this method after you finish all service registrations
-    /// to the original container.
+    /// The returned container is ``Resolver`` type and is not the original container. Continuing to add more
+    /// registrations after calling `synchronize()` will result in different graph scope.
+    ///
+    /// It is recommended to call this method after you finish all service registrations to the original container.
     ///
     /// - Returns: A synchronized container as ``Resolver``.
     public func synchronize() -> Resolver {
