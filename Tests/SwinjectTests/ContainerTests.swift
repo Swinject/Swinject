@@ -407,4 +407,20 @@ class ContainerTests: XCTestCase {
         let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
         XCTAssert(serviceEntry.objectScope === ObjectScope.weak)
     }
+
+    // MARK: Has Registration
+
+    func testContainerHasRegistration() {
+        let container = Container {
+            $0.register(Animal.self) { _ in Cat() }
+            $0.register(Food.self, name: "Sushi") { _ in Sushi() }
+        }
+
+        XCTAssertTrue(container.hasAnyRegistration(of: Animal.self))
+        XCTAssertFalse(container.hasAnyRegistration(of: PetOwner.self))
+
+        XCTAssertTrue(container.hasAnyRegistration(of: Food.self, name: "Sushi"))
+        XCTAssertFalse(container.hasAnyRegistration(of: Food.self, name: "Pizza"))
+        XCTAssertFalse(container.hasAnyRegistration(of: Food.self))
+    }
 }

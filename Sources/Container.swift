@@ -177,6 +177,23 @@ public final class Container {
         behaviors.append(behavior)
     }
 
+    /// Check if a `Service` of a given type and name has already been registered.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to compare.
+    ///   - name:        A registration name, which is used to differentiate from other registrations
+    ///                  that have the same service and factory types.
+    ///
+    /// - Returns: A  `Bool`  which represents whether or not the `Service` has been registered.
+    public func hasAnyRegistration<Service>(
+        of serviceType: Service.Type,
+        name: String? = nil
+    ) -> Bool {
+        getRegistrations().contains { key, _ in
+            key.serviceType == serviceType && key.name == name
+        }
+    }
+
     /// Restores the object graph to match the given identifier.
     /// Not synchronized, use lock to edit safely.
     internal func restoreObjectGraph(_ identifier: GraphIdentifier) {
