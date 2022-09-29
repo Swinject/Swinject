@@ -234,7 +234,11 @@ extension Container: _Resolver {
         )
 
         if let entry = getEntry(for: key) {
-            let factory = { [weak self] in self?.resolve(entry: entry, invoker: invoker) as Any? }
+            let factory = { [weak self] in
+                self?.lock.sync { // provide thread-safety
+                    self?.resolve(entry: entry, invoker: invoker) as Any?
+                }
+            }
             return wrapper.init(inContainer: self, withInstanceFactory: factory) as? Wrapper
         } else {
             return wrapper.init(inContainer: self, withInstanceFactory: nil) as? Wrapper
