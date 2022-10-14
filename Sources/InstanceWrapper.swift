@@ -4,7 +4,7 @@
 
 protocol InstanceWrapper {
     static var wrappedType: Any.Type { get }
-    init?(inContainer container: Container, withInstanceFactory factory: (() -> Any?)?)
+    init?(inContainer container: Container, withInstanceFactory factory: ((GraphIdentifier?) -> Any?)?)
 }
 
 /// Wrapper to enable delayed dependency instantiation.
@@ -13,11 +13,11 @@ protocol InstanceWrapper {
 public final class Lazy<Service>: InstanceWrapper {
     static var wrappedType: Any.Type { return Service.self }
 
-    private let factory: () -> Any?
+    private let factory: (GraphIdentifier?) -> Any?
     private let graphIdentifier: GraphIdentifier?
     private weak var container: Container?
 
-    init?(inContainer container: Container, withInstanceFactory factory: (() -> Any?)?) {
+    init?(inContainer container: Container, withInstanceFactory factory: ((GraphIdentifier?) -> Any?)?) {
         guard let factory = factory else { return nil }
         self.factory = factory
         graphIdentifier = container.currentObjectGraph
@@ -38,13 +38,7 @@ public final class Lazy<Service>: InstanceWrapper {
     }
 
     private func makeInstance() -> Service? {
-        guard let container = container else {
-            return nil
-        }
-        if let graphIdentifier = graphIdentifier {
-            container.restoreObjectGraph(graphIdentifier)
-        }
-        return factory() as? Service
+        return factory(graphIdentifier) as? Service
     }
 }
 
@@ -54,9 +48,9 @@ public final class Lazy<Service>: InstanceWrapper {
 public final class Provider<Service>: InstanceWrapper {
     static var wrappedType: Any.Type { return Service.self }
 
-    private let factory: () -> Any?
+    private let factory: (GraphIdentifier?) -> Any?
 
-    init?(inContainer _: Container, withInstanceFactory factory: (() -> Any?)?) {
+    init?(inContainer _: Container, withInstanceFactory factory: ((GraphIdentifier?) -> Any?)?) {
         guard let factory = factory else { return nil }
         self.factory = factory
     }
@@ -64,14 +58,14 @@ public final class Provider<Service>: InstanceWrapper {
     /// Getter for the wrapped object.
     /// New instance will be resolved from the ``Container`` every time it is accessed.
     public var instance: Service {
-        return factory() as! Service
+        return factory(.none) as! Service
     }
 }
 
 extension Optional: InstanceWrapper {
     static var wrappedType: Any.Type { return Wrapped.self }
 
-    init?(inContainer _: Container, withInstanceFactory factory: (() -> Any?)?) {
-        self = factory?() as? Wrapped
+    init?(inContainer _: Container, withInstanceFactory factory: ((GraphIdentifier?) -> Any?)?) {
+        self = factory?(.none) as? Wrapped
     }
 }
