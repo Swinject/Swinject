@@ -14,7 +14,7 @@ public final class Lazy<Service>: InstanceWrapper {
     static var wrappedType: Any.Type { return Service.self }
 
     private let factory: (GraphIdentifier?) -> Any?
-    private var graphIdentifier: GraphIdentifier?
+    private let graphIdentifier: GraphIdentifier?
     private weak var container: Container?
 
     init?(inContainer container: Container, withInstanceFactory factory: ((GraphIdentifier?) -> Any?)?) {
