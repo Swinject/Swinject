@@ -130,6 +130,7 @@ class SynchronizedResolverTests: XCTestCase {
         }
     }
 
+    #if os(iOS) || os(macOS)
     func testSynchronizedResolverSafelyDereferencesLazyTypes() {
         var graphs = Set<GraphIdentifier>()
         let container = Container()
@@ -155,6 +156,7 @@ class SynchronizedResolverTests: XCTestCase {
             }
         }
     }
+    #endif
 }
 
 private final class Counter {
