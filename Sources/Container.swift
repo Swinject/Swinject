@@ -227,9 +227,9 @@ extension Container: _Resolver {
         if let entry = getEntry(for: key) {
             let factory = { [weak self] (graphIdentifier: GraphIdentifier?) in
                 let action = { [weak self] in
-//                    if let graphIdentifier = graphIdentifier {
-//                        self?.restoreObjectGraph(graphIdentifier)
-//                    }
+                    if let graphIdentifier = graphIdentifier {
+                        self?.restoreObjectGraph(graphIdentifier)
+                    }
                     return self?.resolve(entry: entry, invoker: invoker) as Any?
                 }
                 if self?.synchronized ?? true {

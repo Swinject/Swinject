@@ -98,12 +98,11 @@ class SynchronizedResolverTests: XCTestCase {
             graphs.insert(($0 as! Container).currentObjectGraph!)
             return Dog()
         }
-        .inObjectScope(.container)
 
         let synchronized = container.synchronize()
 
         onMultipleThreads {
-            let lazy = synchronized.resolve(Lazy<Animal>.self)
+            let lazy = synchronized.resolve(Provider<Animal>.self)
             _ = lazy?.instance
         }
 
