@@ -14,13 +14,13 @@ public final class Lazy<Service>: InstanceWrapper {
     static var wrappedType: Any.Type { return Service.self }
 
     private let factory: (GraphIdentifier?) -> Any?
-    private let graphIdentifier: GraphIdentifier?
+//    private var graphIdentifier: GraphIdentifier?
     private weak var container: Container?
 
     init?(inContainer container: Container, withInstanceFactory factory: ((GraphIdentifier?) -> Any?)?) {
         guard let factory = factory else { return nil }
         self.factory = factory
-        graphIdentifier = container.currentObjectGraph
+//        self.graphIdentifier = container.currentObjectGraph
         self.container = container
     }
 
@@ -38,7 +38,7 @@ public final class Lazy<Service>: InstanceWrapper {
     }
 
     private func makeInstance() -> Service? {
-        return factory(graphIdentifier) as? Service
+        return factory(nil) as? Service
     }
 }
 

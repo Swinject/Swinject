@@ -18,7 +18,7 @@ extension InstanceStorage {
 
 /// Persists storage during the resolution of the object graph
 public final class GraphStorage: InstanceStorage {
-    private var instances = [GraphIdentifier: Weak<Any>]()
+    private var instances = [GraphIdentifier: Weak]()
     public var instance: Any?
 
     public init() {}
@@ -35,7 +35,7 @@ public final class GraphStorage: InstanceStorage {
         self.instance = instance
 
         if instances[graph] == nil { instances[graph] = Weak() }
-        instances[graph]?.value = instance
+        instances[graph]?.value = instance as? AnyObject
     }
 }
 
@@ -59,11 +59,11 @@ public final class TransientStorage: InstanceStorage {
 /// Does not persist value types.
 /// Persists reference types as long as there are strong references to given instance.
 public final class WeakStorage: InstanceStorage {
-    private var _instance = Weak<Any>()
+    private var _instance = Weak()
 
     public var instance: Any? {
         get { return _instance.value }
-        set { _instance.value = newValue }
+        set { _instance.value = newValue as? AnyObject }
     }
 
     public init() {}
@@ -106,25 +106,6 @@ public final class CompositeStorage: InstanceStorage {
     }
 }
 
-private class Weak<Wrapped> {
-    private weak var object: AnyObject?
-
-    #if os(Linux)
-        var value: Wrapped? {
-            get {
-                guard let object = object else { return nil }
-                return object as? Wrapped
-            }
-            set { object = newValue.flatMap { $0 as? AnyObject } }
-        }
-
-    #else
-        var value: Wrapped? {
-            get {
-                guard let object = object else { return nil }
-                return object as? Wrapped
-            }
-            set { object = newValue as AnyObject? }
-        }
-    #endif
+private class Weak {
+    weak var value: AnyObject?
 }
