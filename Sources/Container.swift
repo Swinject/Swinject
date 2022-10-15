@@ -225,8 +225,8 @@ extension Container: _Resolver {
         )
 
         if let entry = getEntry(for: key) {
-            let factory = { [weak self] (graphIdentifier: GraphIdentifier?) in
-                let action = { [weak self] in
+            let factory = { [weak self] (graphIdentifier: GraphIdentifier?) -> Any? in
+                let action = { [weak self] () -> Any? in
                     if let graphIdentifier = graphIdentifier {
                         self?.restoreObjectGraph(graphIdentifier)
                     }
