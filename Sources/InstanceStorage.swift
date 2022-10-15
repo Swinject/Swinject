@@ -35,7 +35,7 @@ public final class GraphStorage: InstanceStorage {
         self.instance = instance
 
         if instances[graph] == nil { instances[graph] = Weak() }
-        instances[graph]?.value = instance as? AnyObject
+        instances[graph]?.value = instance as AnyObject?
     }
 }
 
@@ -63,7 +63,7 @@ public final class WeakStorage: InstanceStorage {
 
     public var instance: Any? {
         get { return _instance.value }
-        set { _instance.value = newValue as? AnyObject }
+        set { _instance.value = newValue as AnyObject? }
     }
 
     public init() {}
