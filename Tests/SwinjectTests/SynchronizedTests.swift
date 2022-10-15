@@ -147,6 +147,9 @@ class SynchronizedResolverTests: XCTestCase {
                 // Lazy will be strongly referenced and then DE-referenced
                 // which triggers a strong retain cycle on the GraphIdentifier
                 // which may be simultaneously deallocated on a separate thread
+                //
+                // But, since the build with this test uses struct type for
+                // the GraphIdentifier, this test will succeed. 🎉
                 let lazy = synchronized.resolve(Lazy<Animal>.self)
                 _ = lazy?.instance
             }
