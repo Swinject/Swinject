@@ -177,6 +177,8 @@ public final class Container {
         behaviors.append(behavior)
     }
 
+    /// Restores the object graph to match the given identifier.
+    /// Not synchronized, use lock to edit safely.
     internal func restoreObjectGraph(_ identifier: GraphIdentifier) {
         currentObjectGraph = identifier
     }
