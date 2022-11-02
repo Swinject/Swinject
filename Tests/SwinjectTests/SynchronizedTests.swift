@@ -129,6 +129,32 @@ class SynchronizedResolverTests: XCTestCase {
             }
         }
     }
+
+    func testSynchronizedResolverSafelyDereferencesLazyTypes() {
+        var graphs = Set<GraphIdentifier>()
+        let container = Container()
+        container.register(Animal.self) {
+            graphs.insert(($0 as! Container).currentObjectGraph!)
+            return Dog()
+        }
+        .inObjectScope(.container)
+
+        let synchronized = container.synchronize()
+
+        // fast but roughly sufficient to trigger ARC-related crash
+        for _ in 0..<200 {
+            onMultipleThreads {
+                // Lazy will be strongly referenced and then DE-referenced
+                // which triggers a strong retain cycle on the GraphIdentifier
+                // which may be simultaneously deallocated on a separate thread
+                //
+                // But, since the build with this test uses struct type for
+                // the GraphIdentifier, this test will succeed. 🎉
+                let lazy = synchronized.resolve(Lazy<Animal>.self)
+                _ = lazy?.instance
+            }
+        }
+    }
 }
 
 private final class Counter {
