@@ -5,6 +5,8 @@
 // no universal UUID impl on Linux
 
 #if os(iOS) || os(macOS) || os(tvOS) || os(watchOS)
+import Foundation
+
 /// Unique identifier of an object graph during a resolution process.
 public struct GraphIdentifier: Identifiable {
     public let id = UUID()
