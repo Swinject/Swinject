@@ -56,6 +56,17 @@ xcodebuild archive \
 SKIP_INSTALL=NO \
 BUILD_LIBRARY_FOR_DISTRIBUTION=YES
 
+xcodebuild archive \
+-project Swinject.xcodeproj \
+-scheme Swinject-iOS \
+-configuration Release \
+-destination 'generic/platform=macOS,variant=Mac Catalyst' \
+-archivePath "$PWD/archives/Swinject-macCatalyst" \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+APPLICATION_EXTENSION_API_ONLY=YES \
+SUPPORTS_MACCATALYST=YES
+
 xcodebuild -create-xcframework \
 -framework "Archives/Swinject-iOS.xcarchive/Products/Library/Frameworks/Swinject.framework" \
 -debug-symbols "$PWD/archives/Swinject-iOS.xcarchive/dSYMs/Swinject.framework.dSYM" \
@@ -71,4 +82,6 @@ xcodebuild -create-xcframework \
 -debug-symbols "$PWD/archives/Swinject-tvOS-Simulator.xcarchive/dSYMs/Swinject.framework.dSYM" \
 -framework "Archives/Swinject-macOS.xcarchive/Products/Library/Frameworks/Swinject.framework" \
 -debug-symbols "$PWD/archives/Swinject-macOS.xcarchive/dSYMs/Swinject.framework.dSYM" \
+-framework "$PWD/archives/Swinject-macCatalyst.xcarchive/Products/Library/Frameworks/Swinject.framework" \
+-debug-symbols "$PWD/archives/Swinject-macCatalyst.xcarchive/dSYMs/Swinject.framework.dSYM" \
 -output Swinject.xcframework
