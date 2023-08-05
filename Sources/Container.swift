@@ -77,9 +77,11 @@ public final class Container {
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScopeProtocol) {
-        services.values
-            .filter { $0.objectScope === objectScope }
-            .forEach { $0.storage.instance = nil }
+        services.values.forEach { entry in
+            if entry.objectScope === objectScope {
+                entry.storage.instance = nil
+            }
+        }
 
         parent?.resetObjectScope(objectScope)
     }
