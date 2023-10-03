@@ -5,10 +5,10 @@ options:
   indentWidth: 4
   tabWidth: 4
   deploymentTarget:
-    macOS: '10.10'
-    tvOS: '9.0'
-    iOS: '9.0'
-    watchOS: '2.0'
+    macOS: '10.13'
+    tvOS: '11.0'
+    iOS: '11.0'
+    watchOS: '4.0'
 fileGroups:
   - Playgrounds/Sample-iOS.playground
 targets:
