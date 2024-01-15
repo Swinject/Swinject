@@ -6,15 +6,16 @@ options:
   tabWidth: 4
   deploymentTarget:
     macOS: '10.13'
-    tvOS: '11.0'
-    iOS: '11.0'
+    tvOS: '12.0'
+    iOS: '12.0'
     watchOS: '4.0'
+    visionOS: '1.0'
 fileGroups:
   - Playgrounds/Sample-iOS.playground
 targets:
   Swinject:
     type: framework
-    platform: [macOS, iOS, tvOS, watchOS]
+    platform: [macOS, iOS, tvOS, watchOS, visionOS]
     platformSuffix: -${platform}
     settings:
       base:
@@ -37,7 +38,7 @@ targets:
         name: Swiftlint
   SwinjectTests:
     type: bundle.unit-test
-    platform: [macOS, iOS, tvOS, watchOS]
+    platform: [macOS, iOS, tvOS, watchOS, visionOS]
     platformSuffix: -${platform}
     scheme: {}
     sources:
