@@ -67,6 +67,34 @@ class SynchronizedResolverTests: XCTestCase {
 
         XCTAssert(graphs.count == totalThreads)
     }
+    
+    func testSynchronizedResolverSynchronousReadsWrites() {
+        let iterationCount = 3_000
+        let container = Container()
+        let registerExpectation = expectation(description: "register")
+        let resolveExpectations = (0..<iterationCount).map { expectation(description: String(describing: $0)) }
+        let resolutionLock = NSLock()
+
+        DispatchQueue.global(qos: .background).async {
+            for index in 0..<iterationCount {
+                container.register(Animal.self, factory: { _ in
+                    Cat(name: "\(index)")
+                })
+            }
+            registerExpectation.fulfill()
+        }
+        
+        DispatchQueue.global(qos: .background).async {
+            DispatchQueue.concurrentPerform(iterations: iterationCount) { (index) in
+                _ = container.synchronize().resolve(Animal.self)
+                resolutionLock.lock()
+                resolveExpectations[index].fulfill()
+                resolutionLock.unlock()
+            }
+        }
+        
+        wait(for: [registerExpectation] + resolveExpectations, timeout: 3)
+    }
 
     // MARK: Nested resolve
 

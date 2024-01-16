@@ -20,7 +20,7 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
-    internal var services = [ServiceKey: ServiceEntryProtocol]()
+    internal var services = ThreadSafeDictionary<ServiceKey, ServiceEntryProtocol>()
     private let parent: Container? // Used by HierarchyObjectScope
     private var resolutionDepth = 0
     private let debugHelper: DebugHelper
@@ -77,9 +77,13 @@ public final class Container {
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScopeProtocol) {
-        services.values
-            .filter { $0.objectScope === objectScope }
-            .forEach { $0.storage.instance = nil }
+        services.forEachWrite({ (_: ServiceKey, value: ServiceEntryProtocol) in
+            guard value.objectScope === objectScope else {
+                return
+            }
+            
+            value.storage.instance = nil
+        })
 
         parent?.resetObjectScope(objectScope)
     }
@@ -265,7 +269,7 @@ extension Container: _Resolver {
 
     fileprivate func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
         var registrations = parent?.getRegistrations() ?? [:]
-        services.forEach { key, value in registrations[key] = value }
+        services.forEachRead { key, value in registrations[key] = value }
         return registrations
     }
 
@@ -292,7 +296,9 @@ extension Container: _Resolver {
     }
 
     fileprivate func graphResolutionCompleted() {
-        services.values.forEach { $0.storage.graphResolutionCompleted() }
+        services.forEachWrite { (_, value) in
+            value.storage.graphResolutionCompleted()
+        }
         currentObjectGraph = nil
     }
 }

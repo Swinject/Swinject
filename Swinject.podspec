@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Swinject"
-  s.version          = "2.8.3"
+  s.version          = "2.8.4"
   s.summary          = "Dependency injection framework for Swift"
   s.description      = "Swinject is a dependency injection framework for Swift, to manage the dependencies of types in your system."
 
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.source_files     = 'Sources/**/*.swift'
 
   s.ios.deployment_target     = '11.0'
-  s.osx.deployment_target     = '10.10'
-  s.watchos.deployment_target = '2.0'
-  s.tvos.deployment_target    = '9.0'
+  s.osx.deployment_target     = '10.13'
+  s.watchos.deployment_target = '4.0'
+  s.tvos.deployment_target    = '11.0'
 end
