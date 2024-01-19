@@ -25,7 +25,7 @@ public final class ServiceEntry<Service>: ServiceEntryProtocol {
     internal weak var container: Container?
 
     internal var objectScope: ObjectScopeProtocol = ObjectScope.graph
-    internal lazy var storage: InstanceStorage = { [unowned self] in
+    internal lazy var storage: InstanceStorage = {
         self.objectScope.makeStorage()
     }()
 
