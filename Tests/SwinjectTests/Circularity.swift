@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Swinject
 
 // MARK: Circular dependency of two objects
 
@@ -69,3 +70,35 @@ internal class DDependingOnBC: D {
 internal class CDependingOnWeakB: C {
     weak var b: B?
 }
+
+internal protocol LazyParentProtocol {
+    var child1: LazyChildProtocol { get }
+    var child2: LazyChildProtocol { get }
+}
+internal protocol LazyChildProtocol: AnyObject {
+    var lazy: Lazy<LazilyResolvedProtocol> { get }
+}
+internal protocol LazySingletonProtocol {
+    var lazy: Lazy<LazilyResolvedProtocol> { get }
+}
+internal protocol LazilyResolvedProtocol: AnyObject { }
+
+internal class LazyParent: LazyParentProtocol {
+    let child1: LazyChildProtocol
+    let child2: LazyChildProtocol
+
+    init(child1: LazyChildProtocol, child2: LazyChildProtocol) {
+        self.child1 = child1
+        self.child2 = child2
+    }
+}
+
+internal class LazyChild: LazyChildProtocol, LazySingletonProtocol {
+    let lazy: Lazy<LazilyResolvedProtocol>
+
+    init(lazy: Lazy<LazilyResolvedProtocol>) {
+        self.lazy = lazy
+    }
+}
+
+internal class LazilyResolved: LazilyResolvedProtocol { }

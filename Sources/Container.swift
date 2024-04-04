@@ -250,6 +250,8 @@ extension Container: _Resolver {
         if let entry = getEntry(for: key) {
             let factory = { [weak self] (graphIdentifier: GraphIdentifier?) -> Any? in
                 let action = { [weak self] () -> Any? in
+                    let originGraph = self?.currentObjectGraph
+                    defer { originGraph.map { self?.restoreObjectGraph($0) } }
                     if let graphIdentifier = graphIdentifier {
                         self?.restoreObjectGraph(graphIdentifier)
                     }
