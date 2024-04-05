@@ -183,6 +183,41 @@ class SynchronizedResolverTests: XCTestCase {
             }
         }
     }
+
+    func testGraphIdentifierRestoredAfterLazyResolve() {
+        let container = Container()
+        container.register(LazilyResolvedProtocol.self) { _ in
+            LazilyResolved()
+        }
+        container.register(LazySingletonProtocol.self) {
+            let lazy = $0.resolve(Lazy<LazilyResolvedProtocol>.self)!
+            return LazyChild(lazy: lazy)
+        }
+        .inObjectScope(.container)
+        container.register(LazyChildProtocol.self) {
+            let lazy = $0.resolve(Lazy<LazilyResolvedProtocol>.self)!
+            return LazyChild(lazy: lazy)
+        }
+        container.register(LazyParentProtocol.self) {
+            let child1 = $0.resolve(LazyChildProtocol.self)!
+            let singleton = $0.resolve(LazySingletonProtocol.self)!
+            // Previously, accessing instance here would permanently
+            // hijack the graph identifier to the 'recalled' state.
+            _ = singleton.lazy.instance
+            let child2 = $0.resolve(LazyChildProtocol.self)!
+            return LazyParent(child1: child1, child2: child2)
+        }
+
+        // Resolve, but don't access lazy value yet.
+        _ = container.resolve(LazySingletonProtocol.self)!
+
+        // First lazy value access in LazyParent resolve, this 
+        // could've happened in its init or wherever.
+        let parent = container.resolve(LazyParentProtocol.self)!
+
+        XCTAssertIdentical(parent.child1, parent.child2)
+        XCTAssertIdentical(parent.child1.lazy.instance, parent.child2.lazy.instance)
+    }
 }
 
 private final class Counter {
