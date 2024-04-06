@@ -5,7 +5,6 @@
 Swinject
 ========
 
-[![Travis CI Com](https://travis-ci.com/Swinject/Swinject.svg?branch=master)](https://travis-ci.com/Swinject/Swinject)
 ![Github Actions](https://github.com/1ucas/Swinject/actions/workflows/Project%20Testing.yml/badge.svg?branch=master)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/Swinject.svg?style=flat)](http://cocoapods.org/pods/Swinject)
@@ -17,6 +16,8 @@ Swinject
 Swinject is a lightweight [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) framework for Swift.
 
 Dependency injection (DI) is a software design pattern that implements Inversion of Control (IoC) for resolving dependencies. In the pattern, Swinject helps your app split into loosely-coupled components, which can be developed, tested and maintained more easily. Swinject is powered by the Swift generic type system and first class functions to define dependencies of your app simply and fluently.
+
+Swinject is maintained by the [Faire Wholesale Inc.](https://github.com/Faire?view_as=public) mobile platform team.
 
 ## Features
 
