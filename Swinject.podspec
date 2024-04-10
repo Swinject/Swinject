@@ -8,6 +8,7 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = 'Swinject Contributors'
   s.source           = { :git => "https://github.com/Swinject/Swinject.git", :tag => s.version.to_s }
+  s.resource_bundles = { 'Swinject' => ['PrivacyInfo.xcprivacy'] }
 
   s.swift_version    = '5.0'
   s.source_files     = 'Sources/**/*.swift'
