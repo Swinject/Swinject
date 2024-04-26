@@ -81,6 +81,10 @@
 		4D667425CB08BF894C1A78AA /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8BA4B04A5F517AF663DCE /* Behavior.swift */; };
 		5010597DD8C25E6684C8087E /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5922B783F35F436C528594C1 /* Assembly.swift */; };
 		513BDFB32DCE5B048672C33D /* ServiceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76238B6105E2E443A94CE595 /* ServiceEntry.swift */; };
+		516EB7F82BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EB7F72BDC124100FF78D2 /* ContainerTests.Speed.swift */; };
+		516EB7F92BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EB7F72BDC124100FF78D2 /* ContainerTests.Speed.swift */; };
+		516EB7FA2BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EB7F72BDC124100FF78D2 /* ContainerTests.Speed.swift */; };
+		516EB7FB2BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EB7F72BDC124100FF78D2 /* ContainerTests.Speed.swift */; };
 		51F2541C2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */; };
 		51F2541D2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */; };
 		51F2541E2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */; };
@@ -312,6 +316,7 @@
 		47328731EED63322AD76FB3A /* Circularity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circularity.swift; sourceTree = "<group>"; };
 		4744C3ABBA9A8A585C726883 /* ContainerTests.DebugHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.DebugHelper.swift; sourceTree = "<group>"; };
 		515B0F492BC9AF5D00C4E24F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		516EB7F72BDC124100FF78D2 /* ContainerTests.Speed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.Speed.swift; sourceTree = "<group>"; };
 		51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
 		51F2541B2BC5A2EF003E3BCD /* ThreadSafeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadSafeDictionary.swift; sourceTree = "<group>"; };
 		54FFC812F14E9976208B644F /* ServiceEntry.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntry.TypeForwarding.swift; sourceTree = "<group>"; };
@@ -415,6 +420,7 @@
 				5FCE820EE05C206E34CEF068 /* ContainerTests.CustomStringConvertible.swift */,
 				4744C3ABBA9A8A585C726883 /* ContainerTests.DebugHelper.swift */,
 				46A04FC6931B56743E4B7D63 /* ContainerTests.GraphCaching.swift */,
+				516EB7F72BDC124100FF78D2 /* ContainerTests.Speed.swift */,
 				19726C4D2E8898E5C05A5E38 /* ContainerTests.swift */,
 				BBDE1F7FCBF0C61DE0BA3ED2 /* ContainerTests.TypeForwarding.swift */,
 				077047532310E42432E94D83 /* EmploymentAssembly.swift */,
@@ -854,6 +860,7 @@
 				1C1C0CB3F19349057B4FBDE1 /* BasicAssembly.swift in Sources */,
 				235DD35BC7B8CE15BA46A677 /* BehaviorFakes.swift in Sources */,
 				F355D8940486AF9DE89DD22E /* Circularity.swift in Sources */,
+				516EB7F82BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */,
 				374D3B4A2A2163726B4E55BC /* ContainerTests.Arguments.swift in Sources */,
 				C578E997A0076FB320475132 /* ContainerTests.Behavior.swift in Sources */,
 				4C06628453523BB76531404F /* ContainerTests.Circularity.swift in Sources */,
@@ -886,6 +893,7 @@
 				9ECC88CB09E13FD179A1ED8E /* BasicAssembly.swift in Sources */,
 				FF9DCB0AB20B0DBBE79451BB /* BehaviorFakes.swift in Sources */,
 				F82A2357F3C86D24E1E1D712 /* Circularity.swift in Sources */,
+				516EB7F92BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */,
 				96E113959C6AF4C512C95B0F /* ContainerTests.Arguments.swift in Sources */,
 				31C021202AAC21C893F790A9 /* ContainerTests.Behavior.swift in Sources */,
 				DAB7F0C574E1C33C92C455A5 /* ContainerTests.Circularity.swift in Sources */,
@@ -918,6 +926,7 @@
 				6443FB8C5B3DD95740287398 /* BasicAssembly.swift in Sources */,
 				0CAD0368F908D3D285C6A9A9 /* BehaviorFakes.swift in Sources */,
 				69A27AA36C90A4D4A5FDDEFC /* Circularity.swift in Sources */,
+				516EB7FB2BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */,
 				56F7004F323632D46B60D750 /* ContainerTests.Arguments.swift in Sources */,
 				BCDBFF75F368C980B6DA4BFE /* ContainerTests.Behavior.swift in Sources */,
 				88D3B360E738AE936A4C3FC1 /* ContainerTests.Circularity.swift in Sources */,
@@ -950,6 +959,7 @@
 				5D17DB72B4986D174D69135B /* BasicAssembly.swift in Sources */,
 				1BA2596EFB6E7BF4D46E3C9D /* BehaviorFakes.swift in Sources */,
 				0E5336910C7B0A00E588940E /* Circularity.swift in Sources */,
+				516EB7FA2BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */,
 				A87B2787A32FAA3254700F90 /* ContainerTests.Arguments.swift in Sources */,
 				12984E4749F7C882055D380F /* ContainerTests.Behavior.swift in Sources */,
 				0CC89E82308CF2FFF0CCC267 /* ContainerTests.Circularity.swift in Sources */,

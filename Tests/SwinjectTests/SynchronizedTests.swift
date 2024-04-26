@@ -70,7 +70,7 @@ class SynchronizedResolverTests: XCTestCase {
     
     func testSynchronizedResolverSynchronousReadsWrites() {
         let iterationCount = 3_000
-        let container = Container()
+        let container = Container().synchronize() as! Container
         let registerExpectation = expectation(description: "register")
         let resolveExpectations = (0..<iterationCount).map { expectation(description: String(describing: $0)) }
         let resolutionLock = NSLock()
@@ -86,7 +86,7 @@ class SynchronizedResolverTests: XCTestCase {
         
         DispatchQueue.global(qos: .background).async {
             DispatchQueue.concurrentPerform(iterations: iterationCount) { (index) in
-                _ = container.synchronize().resolve(Animal.self)
+                _ = container.resolve(Animal.self)
                 resolutionLock.lock()
                 resolveExpectations[index].fulfill()
                 resolutionLock.unlock()
