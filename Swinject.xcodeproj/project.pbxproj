@@ -452,7 +452,6 @@
 		A4F7E56739BB9CB479DDDBF6 = {
 			isa = PBXGroup;
 			children = (
-				515B0F492BC9AF5D00C4E24F /* PrivacyInfo.xcprivacy */,
 				02D4026405E0F79F34991C49 /* Playgrounds */,
 				D026A6699A2A932511D29E14 /* Sources */,
 				1281EF9C9707360B39DD4C11 /* SwinjectTests */,
@@ -466,6 +465,7 @@
 		D026A6699A2A932511D29E14 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				515B0F492BC9AF5D00C4E24F /* PrivacyInfo.xcprivacy */,
 				51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */,
 				51F2541B2BC5A2EF003E3BCD /* ThreadSafeDictionary.swift */,
 				15C304EFDAFB81043B2896E5 /* _Resolver.swift */,
