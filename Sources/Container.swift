@@ -20,7 +20,7 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
-    internal var services = ThreadSafeDictionary<ServiceKey, ServiceEntryProtocol>()
+    internal var services = [ServiceKey: ServiceEntryProtocol]()
     private let parent: Container? // Used by HierarchyObjectScope
     private var resolutionDepth = 0
     private let debugHelper: DebugHelper
@@ -66,7 +66,7 @@ public final class Container {
 
     /// Removes all registrations in the container.
     public func removeAll() {
-        services.removeAll()
+        syncIfEnabled { services.removeAll() }
     }
 
     /// Discards instances for services registered in the given `ObjectsScopeProtocol`.
@@ -77,15 +77,12 @@ public final class Container {
     /// - Parameters:
     ///     - objectScope: All instances registered in given `ObjectsScopeProtocol` will be discarded.
     public func resetObjectScope(_ objectScope: ObjectScopeProtocol) {
-        services.forEachWrite({ (_: ServiceKey, value: ServiceEntryProtocol) in
-            guard value.objectScope === objectScope else {
-                return
-            }
-            
-            value.storage.instance = nil
-        })
-
-        parent?.resetObjectScope(objectScope)
+        syncIfEnabled {
+            services.values
+                .filter { $0.objectScope === objectScope }
+                .forEach { $0.storage.instance = nil }
+            parent?.resetObjectScope(objectScope)
+        }
     }
 
     /// Discards instances for services registered in the given `ObjectsScope`. It performs the same operation
@@ -143,19 +140,21 @@ public final class Container {
         name: String? = nil,
         option: ServiceKeyOption? = nil
     ) -> ServiceEntry<Service> {
-        let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
-        let entry = ServiceEntry(
-            serviceType: serviceType,
-            argumentsType: Arguments.self,
-            factory: factory,
-            objectScope: defaultObjectScope
-        )
-        entry.container = self
-        services[key] = entry
+        syncIfEnabled {
+            let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
+            let entry = ServiceEntry(
+                serviceType: serviceType,
+                argumentsType: Arguments.self,
+                factory: factory,
+                objectScope: defaultObjectScope
+            )
+            entry.container = self
+            services[key] = entry
 
-        behaviors.forEach { $0.container(self, didRegisterType: serviceType, toService: entry, withName: name) }
+            behaviors.forEach { $0.container(self, didRegisterType: serviceType, toService: entry, withName: name) }
 
-        return entry
+            return entry
+        }
     }
 
     /// Returns a synchronized view of the container for thread safety.
@@ -178,7 +177,9 @@ public final class Container {
     /// - Parameters:
     ///     - behavior: Behavior to be added to the container
     public func addBehavior(_ behavior: Behavior) {
-        behaviors.append(behavior)
+        syncIfEnabled {
+            behaviors.append(behavior)
+        }
     }
 
     /// Check if a `Service` of a given type and name has already been registered.
@@ -193,8 +194,10 @@ public final class Container {
         of serviceType: Service.Type,
         name: String? = nil
     ) -> Bool {
-        getRegistrations().contains { key, _ in
-            key.serviceType == serviceType && key.name == name
+        syncIfEnabled {
+            getRegistrations().contains { key, _ in
+                key.serviceType == serviceType && key.name == name
+            }
         }
     }
 
@@ -214,26 +217,30 @@ extension Container: _Resolver {
         option: ServiceKeyOption? = nil,
         invoker: @escaping ((Arguments) -> Any) -> Any
     ) -> Service? {
-        var resolvedInstance: Service?
-        let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
+        // No need to use weak self since the resolution will be executed before
+        // this function exits.
+        syncIfEnabled {
+            var resolvedInstance: Service?
+            let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
 
-        if let entry = getEntry(for: key) {
-            resolvedInstance = resolve(entry: entry, invoker: invoker)
+            if let entry = getEntry(for: key) {
+                resolvedInstance = resolve(entry: entry, invoker: invoker)
+            }
+
+            if resolvedInstance == nil {
+                resolvedInstance = resolveAsWrapper(name: name, option: option, invoker: invoker)
+            }
+
+            if resolvedInstance == nil {
+                debugHelper.resolutionFailed(
+                    serviceType: Service.self,
+                    key: key,
+                    availableRegistrations: getRegistrations()
+                )
+            }
+
+            return resolvedInstance
         }
-
-        if resolvedInstance == nil {
-            resolvedInstance = resolveAsWrapper(name: name, option: option, invoker: invoker)
-        }
-
-        if resolvedInstance == nil {
-            debugHelper.resolutionFailed(
-                serviceType: Service.self,
-                key: key,
-                availableRegistrations: getRegistrations()
-            )
-        }
-
-        return resolvedInstance
     }
 
     fileprivate func resolveAsWrapper<Wrapper, Arguments>(
@@ -249,18 +256,14 @@ extension Container: _Resolver {
 
         if let entry = getEntry(for: key) {
             let factory = { [weak self] (graphIdentifier: GraphIdentifier?) -> Any? in
-                let action = { [weak self] () -> Any? in
-                    let originGraph = self?.currentObjectGraph
-                    defer { originGraph.map { self?.restoreObjectGraph($0) } }
+                self?.syncIfEnabled { [weak self] () -> Any? in
+                    guard let self else { return nil }
+                    let originGraph = self.currentObjectGraph
+                    defer { originGraph.map { self.restoreObjectGraph($0) } }
                     if let graphIdentifier = graphIdentifier {
-                        self?.restoreObjectGraph(graphIdentifier)
+                        self.restoreObjectGraph(graphIdentifier)
                     }
-                    return self?.resolve(entry: entry, invoker: invoker) as Any?
-                }
-                if self?.synchronized ?? true {
-                    return self?.lock.sync(action: action)
-                } else {
-                    return action()
+                    return self.resolve(entry: entry, invoker: invoker) as Any?
                 }
             }
             return wrapper.init(inContainer: self, withInstanceFactory: factory) as? Wrapper
@@ -271,7 +274,7 @@ extension Container: _Resolver {
 
     fileprivate func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
         var registrations = parent?.getRegistrations() ?? [:]
-        services.forEachRead { key, value in registrations[key] = value }
+        services.forEach { key, value in registrations[key] = value }
         return registrations
     }
 
@@ -298,9 +301,7 @@ extension Container: _Resolver {
     }
 
     fileprivate func graphResolutionCompleted() {
-        services.forEachWrite { (_, value) in
-            value.storage.graphResolutionCompleted()
-        }
+        services.values.forEach { $0.storage.graphResolutionCompleted() }
         currentObjectGraph = nil
     }
 }
@@ -342,41 +343,30 @@ extension Container: Resolver {
         entry: ServiceEntryProtocol,
         invoker: @escaping (Factory) -> Any
     ) -> Service? {
-        // No need to use weak self since the resolution will be executed before
-        // this function exits.
-        let resolution: () -> Service? = { [self] in
-            self.incrementResolutionDepth()
-            defer { self.decrementResolutionDepth() }
+        self.incrementResolutionDepth()
+        defer { self.decrementResolutionDepth() }
 
-            guard let currentObjectGraph = self.currentObjectGraph else {
-                fatalError("If accessing container from multiple threads, make sure to use a synchronized resolver.")
-            }
-
-            if let persistedInstance = self.persistedInstance(Service.self, from: entry, in: currentObjectGraph) {
-                return persistedInstance
-            }
-
-            let resolvedInstance = invoker(entry.factory as! Factory)
-            if let persistedInstance = self.persistedInstance(Service.self, from: entry, in: currentObjectGraph) {
-                // An instance for the key might be added by the factory invocation.
-                return persistedInstance
-            }
-            entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
-
-            if let completed = entry.initCompleted as? (Resolver, Any) -> Void,
-                let resolvedInstance = resolvedInstance as? Service {
-                completed(self, resolvedInstance)
-            }
-
-            return resolvedInstance as? Service
+        guard let currentObjectGraph = self.currentObjectGraph else {
+            fatalError("If accessing container from multiple threads, make sure to use a synchronized resolver.")
         }
-        if synchronized {
-            return lock.sync {
-                return resolution()
-            }
-        } else {
-            return resolution()
+
+        if let persistedInstance = self.persistedInstance(Service.self, from: entry, in: currentObjectGraph) {
+            return persistedInstance
         }
+
+        let resolvedInstance = invoker(entry.factory as! Factory)
+        if let persistedInstance = self.persistedInstance(Service.self, from: entry, in: currentObjectGraph) {
+            // An instance for the key might be added by the factory invocation.
+            return persistedInstance
+        }
+        entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
+
+        if let completed = entry.initCompleted as? (Resolver, Any) -> Void,
+           let resolvedInstance = resolvedInstance as? Service {
+            completed(self, resolvedInstance)
+        }
+
+        return resolvedInstance as? Service
     }
 
     private func persistedInstance<Service>(
@@ -387,6 +377,12 @@ extension Container: Resolver {
         } else {
             return nil
         }
+    }
+
+    @inline(__always)
+    @discardableResult
+    internal func syncIfEnabled<T>(_ action: () throws -> T) rethrows -> T {
+        try synchronized ? lock.sync(action) : action()
     }
 }
 
