@@ -27,6 +27,7 @@ public final class Container {
     private let defaultObjectScope: ObjectScope
     private let synchronized: Bool
     internal var currentObjectGraph: GraphIdentifier?
+    internal var graphInstancesInFlight = [ServiceEntryProtocol]()
     internal let lock: RecursiveLock // Used by SynchronizedResolver.
     internal var behaviors = [Behavior]()
 
@@ -195,9 +196,9 @@ public final class Container {
         name: String? = nil
     ) -> Bool {
         syncIfEnabled {
-            getRegistrations().contains { key, _ in
+            services.contains { key, _ in
                 key.serviceType == serviceType && key.name == name
-            }
+            } || parent?.hasAnyRegistration(of: serviceType, name: name) == true
         }
     }
 
@@ -301,7 +302,8 @@ extension Container: _Resolver {
     }
 
     fileprivate func graphResolutionCompleted() {
-        services.values.forEach { $0.storage.graphResolutionCompleted() }
+        graphInstancesInFlight.forEach { $0.storage.graphResolutionCompleted() }
+        graphInstancesInFlight.removeAll(keepingCapacity: true)
         currentObjectGraph = nil
     }
 }
@@ -360,6 +362,7 @@ extension Container: Resolver {
             return persistedInstance
         }
         entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
+        graphInstancesInFlight.append(entry)
 
         if let completed = entry.initCompleted as? (Resolver, Any) -> Void,
            let resolvedInstance = resolvedInstance as? Service {
