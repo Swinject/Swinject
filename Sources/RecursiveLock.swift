@@ -15,10 +15,10 @@ import Foundation
 /// - https://serhiybutz.medium.com/swift-mutex-benchmark-b21ee293d9ad
 ///
 /// Class-type paired with pointer-use guarantees address stability.
-public final class RecursiveLock {
+internal final class RecursiveLock {
     // MARK: Lifecycle
 
-    public init() {
+    internal init() {
         mutex = .allocate(capacity: 1)
         mutex.initialize(to: pthread_mutex_t())
 
