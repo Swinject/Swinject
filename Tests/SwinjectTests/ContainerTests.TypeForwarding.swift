@@ -140,7 +140,15 @@ class ContainerTests_TypeForwarding: XCTestCase {
 
     func testContainerResolvesOptionalToNilWhenWrappedTypeIsNotRegistered() {
         let optionalDog = container.resolve(Dog?.self)
-        XCTAssertNotNil(optionalDog)
+        // The type of `optionalDog` is `Dog??` i.e. `Optional<Optional<Dog>>`
+        switch optionalDog {
+        case .some(.none):
+            // Test pass
+            break
+        default:
+            // Any other value is incorrect
+            XCTFail()
+        }
     }
 
     func testContainerResolvesOptionalWithName() {
@@ -152,8 +160,15 @@ class ContainerTests_TypeForwarding: XCTestCase {
     func testContainerResolvesOptionalToNilWithWrongName() {
         container.register(Dog.self, name: "Hachi") { _ in Dog() }
         let optionalDog = container.resolve(Dog?.self, name: "Mimi")
-        XCTAssertNil(optionalDog ?? nil)
-        XCTAssertNotNil(optionalDog)
+        // The type of `optionalDog` is `Dog??` i.e. `Optional<Optional<Dog>>`
+        switch optionalDog {
+        case .some(.none):
+            // Test pass
+            break
+        default:
+            // Any other value is incorrect
+            XCTFail()
+        }
     }
 
     func testContainerResolvesOptionalWithArguments() {
