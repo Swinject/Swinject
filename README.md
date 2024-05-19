@@ -281,7 +281,7 @@ The DI container features of Swinject are inspired by:
 
 and highly inspired by:
 
-- [Funq](http://funq.codeplex.com) - [Daniel Cazzulino](http://www.codeplex.com/site/users/view/dcazzulino) and [the project team](http://funq.codeplex.com/team/view).
+- [Funq](https://github.com/kzu/funq) - [Daniel Cazzulino](https://github.com/kzu).
 
 ## License
 
