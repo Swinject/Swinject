@@ -31,17 +31,30 @@ public final class Container {
     internal let lock: RecursiveLock // Used by SynchronizedResolver.
     internal var behaviors = [Behavior]()
 
+    internal let resolverHierarchyAccess: ResolverHierarchyAccess
+    public enum ResolverHierarchyAccess {
+        /// When a registration from a parent container resolves a service,
+        /// allow it to access registrations in this container.
+        case receiver
+        /// When a registration from a parent container resolves a service,
+        /// do not allow it to access registrations from this container.
+        /// It will only access the container that owns the registration.
+        case owningContainer
+    }
+
     internal init(
         parent: Container? = nil,
         debugHelper: DebugHelper,
         defaultObjectScope: ObjectScope = .graph,
-        synchronized: Bool = false
+        synchronized: Bool = false,
+        resolverHierarchyAccess: ResolverHierarchyAccess
     ) {
         self.parent = parent
         self.debugHelper = debugHelper
         lock = parent.map { $0.lock } ?? RecursiveLock()
         self.defaultObjectScope = defaultObjectScope
         self.synchronized = synchronized
+        self.resolverHierarchyAccess = resolverHierarchyAccess
     }
 
     /// Instantiates a ``Container``
@@ -58,9 +71,10 @@ public final class Container {
         parent: Container? = nil,
         defaultObjectScope: ObjectScope = .graph,
         behaviors: [Behavior] = [],
-        registeringClosure: (Container) -> Void = { _ in }
+        registeringClosure: (Container) -> Void = { _ in },
+        resolverHierarchyAccess: ResolverHierarchyAccess = .receiver
     ) {
-        self.init(parent: parent, debugHelper: LoggingDebugHelper(), defaultObjectScope: defaultObjectScope)
+        self.init(parent: parent, debugHelper: LoggingDebugHelper(), defaultObjectScope: defaultObjectScope, resolverHierarchyAccess: resolverHierarchyAccess)
         behaviors.forEach(addBehavior)
         registeringClosure(self)
     }
@@ -169,7 +183,8 @@ public final class Container {
         return Container(parent: self,
                          debugHelper: debugHelper,
                          defaultObjectScope: defaultObjectScope,
-                         synchronized: true)
+                         synchronized: true,
+                         resolverHierarchyAccess: self.resolverHierarchyAccess)
     }
 
     /// Adds behavior to the container. `Behavior.container(_:didRegisterService:withName:)` will be invoked for
@@ -216,7 +231,7 @@ extension Container: _Resolver {
     public func _resolve<Service, Arguments>(
         name: String?,
         option: ServiceKeyOption? = nil,
-        invoker: @escaping ((Arguments) -> Any) -> Any
+        invoker: @escaping (Resolver, (Arguments) -> Any) -> Any
     ) -> Service? {
         // No need to use weak self since the resolution will be executed before
         // this function exits.
@@ -224,8 +239,8 @@ extension Container: _Resolver {
             var resolvedInstance: Service?
             let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
 
-            if let entry = getEntry(for: key) {
-                resolvedInstance = resolve(entry: entry, invoker: invoker)
+            if let (entry, resolver) = getEntry(for: key) {
+                resolvedInstance = resolve(entry: entry, invoker: invoker, resolver: resolver)
             }
 
             if resolvedInstance == nil {
@@ -247,7 +262,7 @@ extension Container: _Resolver {
     fileprivate func resolveAsWrapper<Wrapper, Arguments>(
         name: String?,
         option: ServiceKeyOption?,
-        invoker: @escaping ((Arguments) -> Any) -> Any
+        invoker: @escaping (Resolver, (Arguments) -> Any) -> Any
     ) -> Wrapper? {
         guard let wrapper = Wrapper.self as? InstanceWrapper.Type else { return nil }
 
@@ -255,7 +270,7 @@ extension Container: _Resolver {
             serviceType: wrapper.wrappedType, argumentsType: Arguments.self, name: name, option: option
         )
 
-        if let entry = getEntry(for: key) {
+        if let (entry, resolver) = getEntry(for: key) {
             let factory = { [weak self] (graphIdentifier: GraphIdentifier?) -> Any? in
                 self?.syncIfEnabled { [weak self] () -> Any? in
                     guard let self else { return nil }
@@ -264,7 +279,7 @@ extension Container: _Resolver {
                     if let graphIdentifier = graphIdentifier {
                         self.restoreObjectGraph(graphIdentifier)
                     }
-                    return self.resolve(entry: entry, invoker: invoker) as Any?
+                    return self.resolve(entry: entry, invoker: invoker, resolver: resolver) as Any?
                 }
             }
             return wrapper.init(inContainer: self, withInstanceFactory: factory) as? Wrapper
@@ -330,20 +345,37 @@ extension Container: Resolver {
     /// - Returns: The resolved service type instance, or nil if no registration for the service type and name
     ///            is found in the ``Container``.
     public func resolve<Service>(_: Service.Type, name: String?) -> Service? {
-        return _resolve(name: name) { (factory: (Resolver) -> Any) in factory(self) }
+        return _resolve(
+            name: name,
+            invoker: { (resolver: Resolver, factory: (Resolver) -> Any) in
+                factory(resolver)
+            }
+        )
     }
 
-    fileprivate func getEntry(for key: ServiceKey) -> ServiceEntryProtocol? {
+    /// Retrieve the service entry for a given service key.
+    ///
+    /// - Returns: An optional tuple of the service entry and the source resolver.
+    fileprivate func getEntry(for key: ServiceKey) -> (ServiceEntryProtocol, Resolver)? {
         if let entry = services[key] {
-            return entry
+            return (entry, self)
+        } else if let parentResult = parent?.getEntry(for: key) {
+            switch resolverHierarchyAccess {
+            case .receiver:
+                // Always uses the receiving container regardless of where the entry comes from
+                return (parentResult.0, self)
+            case .owningContainer:
+                return parentResult
+            }
         } else {
-            return parent?.getEntry(for: key)
+            return nil
         }
     }
 
     fileprivate func resolve<Service, Factory>(
         entry: ServiceEntryProtocol,
-        invoker: @escaping (Factory) -> Any
+        invoker: @escaping (Resolver, Factory) -> Any,
+        resolver: Resolver
     ) -> Service? {
         self.incrementResolutionDepth()
         defer { self.decrementResolutionDepth() }
@@ -356,7 +388,7 @@ extension Container: Resolver {
             return persistedInstance
         }
 
-        let resolvedInstance = invoker(entry.factory as! Factory)
+        let resolvedInstance = invoker(resolver, entry.factory as! Factory)
         if let persistedInstance = self.persistedInstance(Service.self, from: entry, in: currentObjectGraph) {
             // An instance for the key might be added by the factory invocation.
             return persistedInstance

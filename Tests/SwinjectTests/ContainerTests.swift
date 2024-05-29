@@ -90,6 +90,69 @@ class ContainerTests: XCTestCase {
         XCTAssertNil(weakCat)
     }
 
+    func testShadowedRegistration_receiverHierarchyAccess() {
+        let parent = Container()
+        let child = Container(parent: parent, resolverHierarchyAccess: .receiver)
+
+        parent.register(Animal.self, factory: { _ in Dog()})
+        child.register(Animal.self, factory: { _ in Cat()})
+
+        parent.register(Animal.self, name: "Spot", factory: { resolver in
+            resolver.resolve(Animal.self)!
+        })
+
+        XCTAssert(child.resolve(Animal.self, name: "Spot") is Cat)
+        XCTAssert(parent.resolve(Animal.self, name: "Spot") is Dog)
+    }
+
+    func testShadowedRegistration_receiverHierarchyAccess_inObjectScopeContainer() {
+        let parent = Container()
+        let child = Container(parent: parent, resolverHierarchyAccess: .receiver)
+
+        parent.register(Animal.self, factory: { _ in Dog()})
+        child.register(Animal.self, factory: { _ in Cat()})
+
+        parent.register(Animal.self, name: "Spot", factory: { resolver in
+            resolver.resolve(Animal.self)!
+        })
+        .inObjectScope(.container)
+
+        XCTAssert(child.resolve(Animal.self, name: "Spot") is Cat)
+        // The instance provided by the child leaks into the parent
+        XCTAssert(parent.resolve(Animal.self, name: "Spot") is Cat)
+    }
+
+    func testShadowedRegistration_owningContainerHierarchyAccess() {
+        let parent = Container()
+        let child = Container(parent: parent, resolverHierarchyAccess: .owningContainer)
+
+        parent.register(Animal.self, factory: { _ in Dog()})
+        child.register(Animal.self, factory: { _ in Cat()})
+
+        parent.register(Animal.self, name: "Spot", factory: { resolver in
+            resolver.resolve(Animal.self)!
+        })
+
+        XCTAssert(child.resolve(Animal.self, name: "Spot") is Dog)
+        XCTAssert(parent.resolve(Animal.self, name: "Spot") is Dog)
+    }
+
+    func testShadowedRegistration_owningContainerHierarchyAccess_inObjectScopeContainer() {
+        let parent = Container()
+        let child = Container(parent: parent, resolverHierarchyAccess: .owningContainer)
+
+        parent.register(Animal.self, factory: { _ in Dog()})
+        child.register(Animal.self, factory: { _ in Cat()})
+
+        parent.register(Animal.self, name: "Spot", factory: { resolver in
+            resolver.resolve(Animal.self)!
+        })
+        .inObjectScope(.container)
+
+        XCTAssert(child.resolve(Animal.self, name: "Spot") is Dog)
+        XCTAssert(parent.resolve(Animal.self, name: "Spot") is Dog)
+    }
+
     #if !SWIFT_PACKAGE
     func testContainerDoesNotTerminateGraphPrematurely() {
         let parent = Container()
@@ -402,7 +465,7 @@ class ContainerTests: XCTestCase {
     // MARK: Default object scope
 
     func testContainerRegistersServiceWithGivenObjectScope() {
-        let container = Container(parent: nil, debugHelper: LoggingDebugHelper(), defaultObjectScope: .weak)
+        let container = Container(parent: nil, debugHelper: LoggingDebugHelper(), defaultObjectScope: .weak, resolverHierarchyAccess: .receiver)
 
         let serviceEntry = container.register(Animal.self) { _ in Siamese(name: "Siam") }
         XCTAssert(serviceEntry.objectScope === ObjectScope.weak)
