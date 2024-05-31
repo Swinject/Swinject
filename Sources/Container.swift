@@ -239,7 +239,7 @@ extension Container: _Resolver {
             let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
 
             if key == Self.graphIdentifierKey {
-                return currentObjectGraph as! Service?
+                return currentObjectGraph as? Service
             }
 
             if let entry = getEntry(for: key) {
