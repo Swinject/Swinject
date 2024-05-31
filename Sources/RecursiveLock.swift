@@ -4,7 +4,7 @@
 
 import Foundation
 
-#if os(iOS) || os(macOS) || os(tvOS) || os(watchOS)
+#if os(iOS) || os(macOS) || os(tvOS) || os(watchOS) || os(visionOS)
 /// `os_unfair_lock_recursive` is, for some reason, a private-API.
 ///
 /// `RecursiveLock` is a fair, recursive lock where acquisition order is guaranteed and recursion is permitted.
