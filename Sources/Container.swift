@@ -39,7 +39,7 @@ public final class Container {
     ) {
         self.parent = parent
         self.debugHelper = debugHelper
-        lock = parent.map { $0.lock } ?? RecursiveLock()
+        lock = parent.map(\.lock) ?? RecursiveLock()
         self.defaultObjectScope = defaultObjectScope
         self.synchronized = synchronized
     }
@@ -201,6 +201,20 @@ public final class Container {
             } || parent?.hasAnyRegistration(of: serviceType, name: name) == true
         }
     }
+    
+    /// Applies a given GraphIdentifier across resolves in the provided closure.
+    /// - Parameters:
+    ///   - identifier: Graph scope to use
+    ///   - closure: Actions to execute within the Container
+    /// - Returns: Any value you return (Void otherwise) within the function call.
+    public func withObjectGraph<T>(_ identifier: GraphIdentifier, closure: (Container) throws -> T) rethrows -> T {
+        try syncIfEnabled {
+            let graphIdentifier = currentObjectGraph
+            defer { self.currentObjectGraph = graphIdentifier }
+            self.currentObjectGraph = identifier
+            return try closure(self)
+        }
+    }
 
     /// Restores the object graph to match the given identifier.
     /// Not synchronized, use lock to edit safely.
@@ -223,6 +237,10 @@ extension Container: _Resolver {
         syncIfEnabled {
             var resolvedInstance: Service?
             let key = ServiceKey(serviceType: Service.self, argumentsType: Arguments.self, name: name, option: option)
+
+            if key == Self.graphIdentifierKey {
+                return currentObjectGraph as! Service?
+            }
 
             if let entry = getEntry(for: key) {
                 resolvedInstance = resolve(entry: entry, invoker: invoker)
@@ -397,4 +415,10 @@ extension Container: CustomStringConvertible {
             + services.map { "\n    { \($1.describeWithKey($0)) }" }.sorted().joined(separator: ",")
             + "\n]"
     }
+}
+
+// MARK: Constants
+
+private extension Container {
+    static let graphIdentifierKey = ServiceKey(serviceType: GraphIdentifier.self, argumentsType: Resolver.self)
 }
