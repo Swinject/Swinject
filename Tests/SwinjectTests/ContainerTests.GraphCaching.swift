@@ -116,6 +116,36 @@ class ContainerTests_GraphCaching: XCTestCase {
 
         XCTAssert(dog1 === dog2)
     }
+
+    func testContainerGraphScopeResolvesToNil() {
+        let graphScope = container.resolve(GraphIdentifier.self)
+        XCTAssertNil(graphScope)
+    }
+
+    func testContainerResolvesGraphScopeIfAvailable() {
+        var graph: GraphIdentifier?
+        container.register(Dog.self) {
+            graph = ($0 as? Container)?.resolve(GraphIdentifier.self)
+            return Dog()
+        }
+        let _ = container.resolve(Dog.self)!
+        XCTAssertNotNil(graph)
+    }
+
+    func testContainerManualScopeSetResolvesGraph() {
+        var graph: GraphIdentifier!
+        container.register(Dog.self) {
+            graph = ($0 as? Container)?.resolve(GraphIdentifier.self)
+            return Dog()
+        }.inObjectScope(.graph)
+
+        let dog1 = container.resolve(Dog.self)!
+        var dog2: Dog!
+        container.withObjectGraph(graph) {
+            dog2 = $0.resolve(Dog.self)!
+        }
+        XCTAssert(dog1 === dog2)
+    }
 }
 
 private class StorageSpy: InstanceStorage {
