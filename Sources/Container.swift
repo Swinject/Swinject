@@ -210,8 +210,12 @@ public final class Container {
     public func withObjectGraph<T>(_ identifier: GraphIdentifier, closure: (Container) throws -> T) rethrows -> T {
         try syncIfEnabled {
             let graphIdentifier = currentObjectGraph
-            defer { self.currentObjectGraph = graphIdentifier }
+            defer { 
+                self.currentObjectGraph = graphIdentifier
+                decrementResolutionDepth()
+            }
             self.currentObjectGraph = identifier
+            incrementResolutionDepth()
             return try closure(self)
         }
     }
