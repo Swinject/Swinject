@@ -141,10 +141,13 @@ class ContainerTests_GraphCaching: XCTestCase {
 
         let dog1 = container.resolve(Dog.self)!
         var dog2: Dog!
+        var dog3: Dog!
         container.withObjectGraph(graph) {
             dog2 = $0.resolve(Dog.self)!
+            dog3 = $0.resolve(Dog.self)!
         }
         XCTAssert(dog1 === dog2)
+        XCTAssert(dog2 === dog3)
     }
 }
 
