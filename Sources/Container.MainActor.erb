@@ -1,0 +1,82 @@
+//
+//  Copyright © 2024 Swinject Contributors. All rights reserved.
+//
+
+//
+// NOTICE:
+//
+// Container.MainActor.swift is generated from Container.MainActor.erb by ERB.
+// Do NOT modify Container.MainActor.swift directly.
+// Instead, modify Container.MainActor.erb and run `script/gencode` at the project root directory to generate the code.
+//
+
+<% arg_count = 9 %>
+import Foundation
+
+// MARK: - MainActor registration
+@available(iOS 13.0, macOS 10.15, *)
+extension Container {
+
+    /// Adds a registration for the specified service with the factory closure to specify how the service is
+    /// resolved with dependencies which must be resolved on the main actor.
+    ///
+    /// - Parameters:
+    ///   - serviceType:        The service type to register.
+    ///   - name:               A registration name, which is used to differentiate from other registrations
+    ///                         that have the same service and factory types.
+    ///   - mainActorFactory:   The @MainActor closure to specify how the service type is resolved with the dependencies of the type.
+    ///                         It is invoked when the ``Container`` needs to instantiate the instance.
+    ///                         It takes a ``Resolver`` to inject dependencies to the instance,
+    ///                         and returns the instance of the component type for the service.
+    ///
+    /// - Returns: A registered ``ServiceEntry`` to configure more settings with method chaining.
+    @discardableResult
+    public func register<Service>(
+        _ serviceType: Service.Type,
+        name: String? = nil,
+        mainActorFactory: @escaping @MainActor (Resolver) -> Service
+    ) -> ServiceEntry<Service> {
+        return register(serviceType, name: name) { r in
+            MainActor.assumeIsolated {
+                return mainActorFactory(r)
+            }
+        }
+    }
+}
+
+// MARK: - MainActor registration with Arguments
+@available(iOS 13.0, macOS 10.15, *)
+extension Container {
+<% (1..arg_count).each do |i| %>
+<%   arg_types = (1..i).map { |n| "Arg#{n}" }.join(", ") %>
+<%   arg_names = (1..i).map { |n| "arg#{n}" }.join(", ") %>
+<%   arg_parameters = (1..i).map { |n| "arg#{n}: Arg#{n}" }.join(", ") %>
+<%   arg_description = i == 1 ? "#{i} argument" : "#{i} arguments" %>
+    /// Adds a registration for the specified service with the factory closure to specify how the service is
+    /// resolved with dependencies which must be resolved on the main actor.
+    ///
+    /// - Parameters:
+    ///   - serviceType:        The service type to register.
+    ///   - name:               A registration name, which is used to differentiate from other registrations
+    ///                         that have the same service and factory types.
+    ///   - mainActorFactory:   The @MainActor closure to specify how the service type is resolved with the dependencies of the type.
+    ///                         It is invoked when the ``Container`` needs to instantiate the instance.
+    ///                         It takes a `Resolver` instance and <%= arg_description %> to inject dependencies to the instance,
+    ///                         and returns the instance of the component type for the service.
+    ///
+    /// - Returns: A registered ``ServiceEntry`` to configure more settings with method chaining.
+    @discardableResult
+    public func register<Service, <%= arg_types %>>(
+        _ serviceType: Service.Type,
+        name: String? = nil,
+        mainActorFactory: @escaping @MainActor (Resolver, <%= arg_types %>) -> Service
+    ) -> ServiceEntry<Service> {
+        return register(serviceType, name: name) { (resolver: Resolver, <%= arg_parameters %>) in
+            MainActor.assumeIsolated {
+                return mainActorFactory(resolver, <%= arg_names %>)
+            }
+        }
+    }
+
+<% end %>
+}
