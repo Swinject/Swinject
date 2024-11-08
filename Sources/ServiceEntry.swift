@@ -18,8 +18,8 @@ internal protocol ServiceEntryProtocol: AnyObject {
 /// As a returned instance from ``Container/register(_:name:factory:)-8gy9r``, some configurations can be added.
 public final class ServiceEntry<Service>: ServiceEntryProtocol {
     fileprivate var initCompletedActions: [(Resolver, Service) -> Void] = []
-    internal let serviceType: Any.Type
-    internal let argumentsType: Any.Type
+    public let serviceType: Any.Type
+    public let argumentsType: Any.Type
 
     internal let factory: FunctionType
     internal weak var container: Container?
