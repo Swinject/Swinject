@@ -97,7 +97,42 @@ public final class Container {
     public func resetObjectScope(_ objectScope: ObjectScope) {
         resetObjectScope(objectScope as ObjectScopeProtocol)
     }
+    /// Discards instances for a given service registered in the given `ObjectsScopeProtocol`.
+    ///
+    /// **Example usage:**
+    ///     container.resetObjectScope(ObjectScope.container, MyService.Type)
+    ///
+    /// - Parameters:
+    ///     - objectScope: instances registered in given `ObjectsScopeProtocol`
+    ///     - serviceType: and with given serviceType  will be discarded.
+    public func resetObjectScope(_ objectScope: ObjectScopeProtocol, serviceType: Any.Type) {
+        syncIfEnabled {
+            let matchingServices = services.keys
+                .filter { $0.serviceType == serviceType }
+                .compactMap { services[$0] }
 
+            if matchingServices.isEmpty { return }
+
+            matchingServices
+                .filter { $0.objectScope === objectScope }
+                .forEach { $0.storage.instance = nil }
+
+            parent?.resetObjectScope(objectScope, serviceType: serviceType)
+        }
+    }
+    /// Discards instances for  a given service registered in the given `ObjectsScope`. It performs the same operation
+    /// as `resetObjectScope(_:ObjectScopeProtocol, serviceType: Any.Type)`,
+    /// but provides more convenient usage syntax.
+    ///
+    /// **Example usage:**
+    ///     container.resetObjectScope(.container, servieType: MyService.self)
+    ///
+    /// - Parameters:
+    ///     - objectScope:  Instances registered in given `ObjectsScope`
+    ///     - serviceType:  and with given serviceType will be discarded.
+    public func resetObjectScope(_ objectScope: ObjectScope, serviceType: Any.Type) {
+        resetObjectScope(objectScope as ObjectScopeProtocol, serviceType: serviceType)
+    }
     /// Adds a registration for the specified service with the factory closure to specify how the service is
     /// resolved with dependencies.
     ///
