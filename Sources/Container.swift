@@ -67,7 +67,7 @@ public final class Container {
 
     /// Removes all registrations in the container.
     public func removeAll() {
-        services.removeAll()
+        syncIfEnabled { services.removeAll() }
     }
 
     /// Discards instances for services registered in the given `ObjectsScopeProtocol`.
