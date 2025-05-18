@@ -1,40 +1,80 @@
 //
-//  Copyright © 2025 Swinject Contributors. All rights reserved.
+//  Copyright © 2023 Swinject Contributors. All rights reserved.
 //
 import Foundation
 
-internal final actor ThreadSafeDictionary<KeyType: Hashable, ValueType> {
+internal final class ThreadSafeDictionary<KeyType: Hashable, ValueType> {
     private var internalDictionary = [KeyType: ValueType]()
+
+    private let lock = ReadWriteLock()
 
     // MARK: - Initializers
 
     public init(dictionary: [KeyType: ValueType]? = nil) {
         if let dictionary = dictionary {
-            self.internalDictionary = dictionary
+            lock.write {
+                self.internalDictionary = dictionary
+            }
         }
     }
 
     // MARK: - Functions
 
     public subscript(key: KeyType) -> ValueType? {
-        get { internalDictionary[key] }
-        set { internalDictionary[key] = newValue }
+        get {
+            return lock.read { self.internalDictionary[key] }
+        }
+
+        set {
+            lock.write {
+                self.internalDictionary[key] = newValue
+            }
+        }
     }
     
-    public subscript(key: KeyType, default defaultValue: @autoclosure () -> ValueType) -> ValueType {
-        get { internalDictionary[key, default: defaultValue()] }
-        set { internalDictionary[key] = newValue }
+    public subscript(key: KeyType, default defaultValue: @autoclosure () -> ValueType) -> ValueType? {
+        get {
+            return lock.read { self.internalDictionary[key, default: defaultValue()] }
+        }
+
+        set {
+            lock.write {
+                self.internalDictionary[key] = newValue
+            }
+        }
     }
 
-    public func forEach(_ block: ((key: KeyType, value: ValueType)) -> Void) {
-        internalDictionary.forEach(block)
+    public func forEachRead(_ block: ((key: KeyType, value: ValueType)) -> Void) {
+        lock.read {
+            self.internalDictionary.forEach(block)
+        }
     }
     
+    public func forEachWrite(_ block: ((key: KeyType, value: ValueType)) -> Void) {
+        lock.write {
+            self.internalDictionary.forEach(block)
+        }
+    }
+
     public func map<T>(_ transform: ((key: KeyType, value: ValueType)) throws -> T) rethrows -> [T] {
-        try internalDictionary.map(transform)
+        try lock.read {
+            try self.internalDictionary.map(transform)
+        }
     }
 
     public func removeAll() {
-        internalDictionary.removeAll()
+        lock.write {
+            self.internalDictionary.removeAll()
+        }
+    }
+
+    public func contains(where predicate: ((key: KeyType, value: ValueType)) -> Bool) -> Bool {
+        lock.read {
+            self.internalDictionary.contains(where: predicate)
+        }
+    }
+
+    public var values: [ValueType] {
+        lock.read { self.internalDictionary.values.map { $0 } }
     }
 }
