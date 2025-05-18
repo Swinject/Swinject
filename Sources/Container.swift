@@ -424,5 +424,8 @@ extension Container: CustomStringConvertible {
 // MARK: Constants
 
 private extension Container {
-    static let graphIdentifierKey = ServiceKey(serviceType: GraphIdentifier.self, argumentsType: Resolver.self)
+    static let graphIdentifierKey: ServiceKey = {
+        let key = ServiceKey(serviceType: GraphIdentifier.self, argumentsType: Resolver.self)
+        return key
+    }()
 }

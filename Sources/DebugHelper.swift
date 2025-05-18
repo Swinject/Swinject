@@ -24,7 +24,7 @@ internal final class LoggingDebugHelper: DebugHelper {
         output += availableRegistrations
             .filter { $0.1 is ServiceEntry<Service> }
             .map { "\t{ " + $0.1.describeWithKey($0.0) + " }" }
-
+      
         Container.log(output.joined(separator: "\n"))
     }
 }

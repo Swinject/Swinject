@@ -6,14 +6,14 @@ import Foundation
 
 // MARK: ServiceKeyOption
 
-public protocol ServiceKeyOption: CustomStringConvertible {
+public protocol ServiceKeyOption: CustomStringConvertible, Sendable {
     func isEqualTo(_ another: ServiceKeyOption) -> Bool
     func hash(into: inout Hasher)
 }
 
 // MARK: - ServiceKey
 
-internal struct ServiceKey {
+internal struct ServiceKey: Sendable {
     internal let serviceType: Any.Type
     internal let argumentsType: Any.Type
     internal let name: String?
