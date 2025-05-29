@@ -19,4 +19,9 @@ extension ObjectScope {
     /// when resolving the type.
     public static let weak = ObjectScope(storageFactory: WeakStorage.init, description: "weak",
                                          parent: ObjectScope.graph)
+
+    /// Instances are cached by their arguments. When resolving with the same arguments,
+    /// the same instance is returned. Different arguments result in different instances.
+    /// Arguments must be ``Hashable`` for this scope to work properly.
+    public static let multiton = ObjectScope(storageFactory: MultitonStorage.init, description: "multiton")
 }

@@ -34,6 +34,28 @@ In `ObjectScope.weak` an instance provided by a container is shared within the c
 
 Above holds for reference types - value types are not shared in this object scope.
 
+### Multiton
+
+In `ObjectScope.multiton`, instances are cached based on the arguments passed during resolution. When you resolve a type with specific arguments, the container checks if an instance with those exact arguments already exists. If it does, the cached instance is returned. If not, a new instance is created and cached for future use with those arguments.
+
+This scope is particularly useful when you want to share instances based on configuration parameters:
+
+```swift
+container.register(Animal.self) { _, name in
+    Cat(name: name)
+}
+.inObjectScope(.multiton)
+
+let cat1 = container.resolve(Animal.self, argument: "Mimi")
+let cat2 = container.resolve(Animal.self, argument: "Mimi")
+let cat3 = container.resolve(Animal.self, argument: "Mew")
+
+// cat1 === cat2 (same instance)
+// cat1 !== cat3 (different instance)
+```
+
+**Important**: Arguments used with multiton scope must be `Hashable` to enable proper caching.
+
 ## Custom Scopes
 
 Custom object scopes can be defined like this:

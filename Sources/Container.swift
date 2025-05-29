@@ -201,7 +201,7 @@ public final class Container {
             } || parent?.hasAnyRegistration(of: serviceType, name: name) == true
         }
     }
-    
+
     /// Applies a given GraphIdentifier across resolves in the provided closure.
     /// - Parameters:
     ///   - identifier: Graph scope to use
@@ -210,7 +210,7 @@ public final class Container {
     public func withObjectGraph<T>(_ identifier: GraphIdentifier, closure: (Container) throws -> T) rethrows -> T {
         try syncIfEnabled {
             let graphIdentifier = currentObjectGraph
-            defer { 
+            defer {
                 self.currentObjectGraph = graphIdentifier
                 decrementResolutionDepth()
             }
@@ -247,7 +247,16 @@ extension Container: _Resolver {
             }
 
             if let entry = getEntry(for: key) {
-                resolvedInstance = resolve(entry: entry, invoker: invoker)
+                // For multiton scope, we need to capture and pass arguments
+                if entry.storage is MultitonStorage && Arguments.self != Resolver.self {
+                    // We need to pass arguments through the resolution process
+                    // Create a special invoker that extracts and passes arguments
+                    if let result = resolveWithArgumentCapture(entry: entry, invoker: invoker) {
+                        resolvedInstance = result as? Service
+                    }
+                } else {
+                    resolvedInstance = resolve(entry: entry, invoker: invoker, arguments: nil)
+                }
             }
 
             if resolvedInstance == nil {
@@ -286,7 +295,44 @@ extension Container: _Resolver {
                     if let graphIdentifier = graphIdentifier {
                         self.restoreObjectGraph(graphIdentifier)
                     }
-                    return self.resolve(entry: entry, invoker: invoker) as Any?
+
+                    // For multiton scope, we need to capture and pass arguments
+                    if entry.storage is MultitonStorage && Arguments.self != Resolver.self {
+                        // Capture arguments from the invoker
+                        var capturedArguments: Any?
+                        let wrappedInvoker: ((Arguments) -> Any) -> Any = { factory in
+                            return invoker { args in
+                                // Extract arguments (skip the resolver part)
+                                // swiftlint:disable large_tuple
+                                if let tuple = args as? (Resolver, Any) {
+                                    capturedArguments = tuple.1
+                                } else if let tuple = args as? (Resolver, Any, Any) {
+                                    capturedArguments = (tuple.1, tuple.2)
+                                } else if let tuple = args as? (Resolver, Any, Any, Any) {
+                                    capturedArguments = (tuple.1, tuple.2, tuple.3)
+                                } else if let tuple = args as? (Resolver, Any, Any, Any, Any) {
+                                    capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4)
+                                } else if let tuple = args as? (Resolver, Any, Any, Any, Any, Any) {
+                                    capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4, tuple.5)
+                                } else if let tuple = args as? (Resolver, Any, Any, Any, Any, Any, Any) {
+                                    capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4, tuple.5, tuple.6)
+                                } else if let tuple = args as? (Resolver, Any, Any, Any, Any, Any, Any, Any) {
+                                    capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4, tuple.5, tuple.6, tuple.7)
+                                } else if let tuple = args as? (Resolver, Any, Any, Any, Any, Any, Any, Any, Any) {
+                                    capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4, tuple.5, tuple.6,
+                                                         tuple.7, tuple.8)
+                                } else if let tuple = args as? (Resolver, Any, Any, Any, Any, Any, Any, Any, Any, Any) {
+                                    capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4, tuple.5, tuple.6,
+                                                         tuple.7, tuple.8, tuple.9)
+                                }
+                                // swiftlint:enable large_tuple
+                                return factory(args)
+                            }
+                        }
+                        return self.resolve(entry: entry, invoker: wrappedInvoker, arguments: capturedArguments) as Any?
+                    } else {
+                        return self.resolve(entry: entry, invoker: invoker, arguments: nil) as Any?
+                    }
                 }
             }
             return wrapper.init(inContainer: self, withInstanceFactory: factory) as? Wrapper
@@ -328,6 +374,76 @@ extension Container: _Resolver {
         graphInstancesInFlight.removeAll(keepingCapacity: true)
         currentObjectGraph = nil
     }
+
+    fileprivate func resolveWithArgumentCapture<Arguments>(
+        entry: ServiceEntryProtocol,
+        invoker: @escaping ((Arguments) -> Any) -> Any
+    ) -> Any? {
+        self.incrementResolutionDepth()
+        defer { self.decrementResolutionDepth() }
+
+        guard let currentObjectGraph = self.currentObjectGraph else {
+            fatalError("If accessing container from multiple threads, make sure to use a synchronized resolver.")
+        }
+
+        // First, try to extract arguments by calling the invoker with a special factory
+        var capturedArguments: Any?
+        var shouldCallRealFactory = true
+
+        // Try to get cached instance first by extracting arguments
+        let argumentExtractionResult = invoker { args in
+            // Extract arguments (skip the resolver part)
+            // swiftlint:disable large_tuple
+            if let tuple = args as? (Resolver, Any) {
+                capturedArguments = tuple.1
+            } else if let tuple = args as? (Resolver, Any, Any) {
+                capturedArguments = (tuple.1, tuple.2)
+            } else if let tuple = args as? (Resolver, Any, Any, Any) {
+                capturedArguments = (tuple.1, tuple.2, tuple.3)
+            } else if let tuple = args as? (Resolver, Any, Any, Any, Any) {
+                capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4)
+            } else if let tuple = args as? (Resolver, Any, Any, Any, Any, Any) {
+                capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4, tuple.5)
+            } else if let tuple = args as? (Resolver, Any, Any, Any, Any, Any, Any) {
+                capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4, tuple.5, tuple.6)
+            } else if let tuple = args as? (Resolver, Any, Any, Any, Any, Any, Any, Any) {
+                capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4, tuple.5, tuple.6, tuple.7)
+            } else if let tuple = args as? (Resolver, Any, Any, Any, Any, Any, Any, Any, Any) {
+                capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4, tuple.5, tuple.6,
+                                     tuple.7, tuple.8)
+            } else if let tuple = args as? (Resolver, Any, Any, Any, Any, Any, Any, Any, Any, Any) {
+                capturedArguments = (tuple.1, tuple.2, tuple.3, tuple.4, tuple.5, tuple.6,
+                                     tuple.7, tuple.8, tuple.9)
+            }
+            // swiftlint:enable large_tuple
+
+            // Check if we have a cached instance
+            if let cached = entry.storage.instance(inGraph: currentObjectGraph, withArguments: capturedArguments) {
+                shouldCallRealFactory = false
+                return cached
+            }
+
+            // No cached instance, need to call the real factory
+            return (entry.factory as! (Arguments) -> Any)(args)
+        }
+
+        if !shouldCallRealFactory {
+            // We found a cached instance
+            return argumentExtractionResult
+        }
+
+        // Store the new instance
+        entry.storage.setInstance(argumentExtractionResult as Any, inGraph: currentObjectGraph,
+                                  withArguments: capturedArguments)
+        graphInstancesInFlight.append(entry)
+
+        if let completed = entry.initCompleted as? (Resolver, Any) -> Void {
+            completed(self, argumentExtractionResult)
+        }
+
+        return argumentExtractionResult
+    }
+
 }
 
 // MARK: - Resolver
@@ -365,7 +481,8 @@ extension Container: Resolver {
 
     fileprivate func resolve<Service, Factory>(
         entry: ServiceEntryProtocol,
-        invoker: @escaping (Factory) -> Any
+        invoker: @escaping (Factory) -> Any,
+        arguments: Any?
     ) -> Service? {
         self.incrementResolutionDepth()
         defer { self.decrementResolutionDepth() }
@@ -374,16 +491,18 @@ extension Container: Resolver {
             fatalError("If accessing container from multiple threads, make sure to use a synchronized resolver.")
         }
 
-        if let persistedInstance = self.persistedInstance(Service.self, from: entry, in: currentObjectGraph) {
+        if let persistedInstance = self.persistedInstance(Service.self, from: entry, in: currentObjectGraph,
+                                                           arguments: arguments) {
             return persistedInstance
         }
 
         let resolvedInstance = invoker(entry.factory as! Factory)
-        if let persistedInstance = self.persistedInstance(Service.self, from: entry, in: currentObjectGraph) {
+        if let persistedInstance = self.persistedInstance(Service.self, from: entry, in: currentObjectGraph,
+                                                           arguments: arguments) {
             // An instance for the key might be added by the factory invocation.
             return persistedInstance
         }
-        entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
+        entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph, withArguments: arguments)
         graphInstancesInFlight.append(entry)
 
         if let completed = entry.initCompleted as? (Resolver, Any) -> Void,
@@ -397,7 +516,14 @@ extension Container: Resolver {
     private func persistedInstance<Service>(
         _: Service.Type, from entry: ServiceEntryProtocol, in graph: GraphIdentifier
     ) -> Service? {
-        if let instance = entry.storage.instance(inGraph: graph), let service = instance as? Service {
+        return persistedInstance(Service.self, from: entry, in: graph, arguments: nil)
+    }
+
+    private func persistedInstance<Service>(
+        _: Service.Type, from entry: ServiceEntryProtocol, in graph: GraphIdentifier, arguments: Any?
+    ) -> Service? {
+        if let instance = entry.storage.instance(inGraph: graph, withArguments: arguments),
+           let service = instance as? Service {
             return service
         } else {
             return nil
