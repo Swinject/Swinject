@@ -5,33 +5,33 @@ on:
   workflow_dispatch:
 env: 
   PROJECT: Swinject.xcodeproj
-  DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer
 jobs:
   test:
-    runs-on: macos-10.15
+    runs-on: macos-15.5
     strategy:
       matrix:
        include:
          - platform-version: iOS
-           DEST: "OS=14.4,name=iPhone 8"
+           DEST: "OS=18.4,name=iPhone 16"
            SCHEME: "Swinject-iOS"
            SDK: "iphonesimulator"
            ACTION: "test"
            PLATFORM: "iOS"
          - platform-version: macOS
-           DEST: "arch=x86_64"
+           DEST: "arch=arm64"
            SCHEME: "Swinject-macOS"
            SDK: "macosx"
            ACTION: "test"
            PLATFORM: "OSX"
          - platform-version: tvOS
-           DEST: "OS=14.3,name=Apple TV 4K"
+           DEST: "OS=18.4,name=Apple TV 4K"
            SCHEME: "Swinject-tvOS"
            SDK: "appletvsimulator"
            ACTION: "test"
            PLATFORM: "tvOS"
          - platform-version: watchOS
-           DEST: "OS=7.2,name=Apple Watch Series 6 - 44mm"
+           DEST: "OS=11.4,name=Apple Watch Series 10 - 46mm"
            SCHEME: "Swinject-watchOS"
            SDK: "watchsimulator"
            ACTION: "build"
