@@ -8,7 +8,7 @@ env:
   DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer
 jobs:
   test:
-    runs-on: macos-15.5
+    runs-on: macos-15
     strategy:
       matrix:
        include:
