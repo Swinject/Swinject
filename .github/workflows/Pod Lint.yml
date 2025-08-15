@@ -15,5 +15,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Linting PodSpec for Cocoapods
-        run: export "${{ env. ENCODING }}" | pod lib lint
+        run: export "${{ env. ENCODING }}" | pod lib lint --verbose
         shell: bash
