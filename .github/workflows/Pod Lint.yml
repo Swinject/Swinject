@@ -10,7 +10,7 @@ env:
   ENCODING: LC_CTYPE=en_US.UTF-8
 jobs:
   pod-lint:
-    runs-on: macos-latest
+    runs-on: macos-15.5
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
