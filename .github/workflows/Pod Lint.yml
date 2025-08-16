@@ -8,6 +8,7 @@ on:
     branches: [ "master" ]
 env:
   ENCODING: LC_CTYPE=en_US.UTF-8
+  DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer
 jobs:
   pod-lint:
     runs-on: macos-15
