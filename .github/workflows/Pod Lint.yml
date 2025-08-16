@@ -6,12 +6,12 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-env:
-  ENCODING: LC_CTYPE=en_US.UTF-8
-  DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
 jobs:
   pod-lint:
     runs-on: macos-15
+    env:
+      ENCODING: LC_CTYPE=en_US.UTF-8
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
