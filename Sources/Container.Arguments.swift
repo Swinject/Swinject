@@ -12,7 +12,7 @@
 
 import Foundation
 
-// MARK: - Registeration with Arguments
+// MARK: - Registration with Arguments
 
 extension Container {
     /// Adds a registration for the specified service with the factory closure to specify how the service is resolved with dependencies.
