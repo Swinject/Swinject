@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Inspect Environment
-        run: echo "DEVELOPER_DIR: ${{ env.DEVELOPER_DIR }}" && xcrun simctl list
+        run: xcrun simctl list
         shell: bash
       - name: Linting PodSpec for Cocoapods
         run: export "${{ env. ENCODING }}" | pod lib lint --platforms=ios,macos --verbose
