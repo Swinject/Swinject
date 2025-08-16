@@ -218,6 +218,42 @@ class SynchronizedResolverTests: XCTestCase {
         XCTAssertIdentical(parent.child1, parent.child2)
         XCTAssertIdentical(parent.child1.lazy.instance, parent.child2.lazy.instance)
     }
+
+    func test_guaranteeThreadSafety() {
+        let numberOfQueues = 25
+        var expectations = [XCTestExpectation]()
+        let resolutionDate = Date() + 1
+
+        struct TestModel {
+            let name = "Testing"
+        }
+
+        let container = Container()
+
+        for _ in 0..<numberOfQueues {
+            DispatchQueue.global().async {
+                // Only an example to force the crash.
+                // This doesn't happen with ThreadSafeDictionary since the implementation would always verify
+                // the mutex before accessing the dictionary
+                Thread.sleep(until: resolutionDate)
+                container.register(TestModel.self) { _ in
+                    TestModel()
+                }
+            }
+        }
+
+        for _ in 0..<numberOfQueues {
+            let expectation = expectation(description: "Should have been resolved")
+            expectations.append(expectation)
+            DispatchQueue.global().async { [expectation] in
+                Thread.sleep(until: resolutionDate)
+                _ = container.synchronize().resolve(TestModel.self)
+                expectation.fulfill()
+            }
+        }
+
+        wait(for: expectations, timeout: 10)
+    }
 }
 
 private final class Counter {

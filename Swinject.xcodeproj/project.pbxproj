@@ -10,7 +10,6 @@
 		0126F47EDE97A611D184682F /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE752946EBDAC1CB5823A39E /* DebugHelper.swift */; };
 		026337CCA37580CB223C94AD /* ContainerTests.TypeForwarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDE1F7FCBF0C61DE0BA3ED2 /* ContainerTests.TypeForwarding.swift */; };
 		0266A3114C82246F18B52860 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1271722CF77709A1173E7863 /* Food.swift */; };
-		055969F9EA3C1AD43B11E006 /* ObjectScope.Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79864FE285C06A91E006806 /* ObjectScope.Standard.swift */; };
 		06B6204600E208CA97750825 /* RecursiveLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ECAF79D15CCE41C49F4590 /* RecursiveLock.swift */; };
 		097ACF95FFBE85F427E287AA /* WeakStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185C8B2BAF1CF29EB64159FC /* WeakStorageTests.swift */; };
 		0C56E93B497BBA17B0E408F4 /* GraphIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B058F48AF289C3AC307C2F7 /* GraphIdentifier.swift */; };
@@ -36,6 +35,18 @@
 		1C084C2AF7B98A21D8B1E35B /* ContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19726C4D2E8898E5C05A5E38 /* ContainerTests.swift */; };
 		1C1C0CB3F19349057B4FBDE1 /* BasicAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC59458E04C20587D870946 /* BasicAssembly.swift */; };
 		1DB36B1F8919879607F67F35 /* Container.Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F57E5E5BE1DC65C3DDAF6 /* Container.Arguments.swift */; };
+		1E7F2E582DDA34A20046B399 /* RecursiveLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E562DDA34A20046B399 /* RecursiveLock.swift */; };
+		1E7F2E592DDA34A20046B399 /* ThreadSafeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E572DDA34A20046B399 /* ThreadSafeDictionary.swift */; };
+		1E7F2E5A2DDA34A20046B399 /* RecursiveLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E562DDA34A20046B399 /* RecursiveLock.swift */; };
+		1E7F2E5B2DDA34A20046B399 /* ThreadSafeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E572DDA34A20046B399 /* ThreadSafeDictionary.swift */; };
+		1E7F2E5C2DDA34A20046B399 /* RecursiveLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E562DDA34A20046B399 /* RecursiveLock.swift */; };
+		1E7F2E5D2DDA34A20046B399 /* ThreadSafeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E572DDA34A20046B399 /* ThreadSafeDictionary.swift */; };
+		1E7F2E5E2DDA34A20046B399 /* RecursiveLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E562DDA34A20046B399 /* RecursiveLock.swift */; };
+		1E7F2E5F2DDA34A20046B399 /* ThreadSafeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E572DDA34A20046B399 /* ThreadSafeDictionary.swift */; };
+		1E7F2E612DDA351D0046B399 /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E602DDA351D0046B399 /* ReadWriteLock.swift */; };
+		1E7F2E622DDA351D0046B399 /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E602DDA351D0046B399 /* ReadWriteLock.swift */; };
+		1E7F2E632DDA351D0046B399 /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E602DDA351D0046B399 /* ReadWriteLock.swift */; };
+		1E7F2E642DDA351D0046B399 /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7F2E602DDA351D0046B399 /* ReadWriteLock.swift */; };
 		22873F55E9E82B96A53045C3 /* ContainerTests.CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCE820EE05C206E34CEF068 /* ContainerTests.CustomStringConvertible.swift */; };
 		235DD35BC7B8CE15BA46A677 /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF07245CC462D98868097A3 /* BehaviorFakes.swift */; };
 		23A8D7543ED9973F04C5BC93 /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F388AD8E55D8C6F1E31D0522 /* FunctionType.swift */; };
@@ -85,10 +96,6 @@
 		516EB7F92BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EB7F72BDC124100FF78D2 /* ContainerTests.Speed.swift */; };
 		516EB7FA2BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EB7F72BDC124100FF78D2 /* ContainerTests.Speed.swift */; };
 		516EB7FB2BDC124100FF78D2 /* ContainerTests.Speed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516EB7F72BDC124100FF78D2 /* ContainerTests.Speed.swift */; };
-		51F2541C2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */; };
-		51F2541D2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */; };
-		51F2541E2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */; };
-		51F2541F2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */; };
 		51F254202BC5A2EF003E3BCD /* ThreadSafeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2541B2BC5A2EF003E3BCD /* ThreadSafeDictionary.swift */; };
 		51F254212BC5A2EF003E3BCD /* ThreadSafeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2541B2BC5A2EF003E3BCD /* ThreadSafeDictionary.swift */; };
 		51F254222BC5A2EF003E3BCD /* ThreadSafeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2541B2BC5A2EF003E3BCD /* ThreadSafeDictionary.swift */; };
@@ -172,7 +179,6 @@
 		BAB510EEEBDD444BA65E0003 /* LazyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7287A8057A58B72EBC5C8CB9 /* LazyTests.swift */; };
 		BB78B5DA95DCE3A942C18910 /* InstanceWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7101AB0DE88A5340F7EAAC04 /* InstanceWrapper.swift */; };
 		BCDBFF75F368C980B6DA4BFE /* ContainerTests.Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988A20A0815159E43C26CA46 /* ContainerTests.Behavior.swift */; };
-		BDCBFD62903A1C0F8B35797C /* ObjectScope.Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79864FE285C06A91E006806 /* ObjectScope.Standard.swift */; };
 		BE3889327CE4A24631B91350 /* AssemblerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EB588ED052D3BAF38AFBBE /* AssemblerTests.swift */; };
 		BE3A8FAC5AC745EDCCD5A5FB /* Swinject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6D54F152C11C966ECFC55ECB /* Swinject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF6475BEA46F81B30A6FA19E /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E48E07BA72BCBFB305E93 /* Container.swift */; };
@@ -207,11 +213,9 @@
 		F945C7963B1566A1C3DAC3FA /* SynchronizedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E0A3F26E3718902E420D8E /* SynchronizedTests.swift */; };
 		F98A1B2A226EE26A13C67F34 /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F388AD8E55D8C6F1E31D0522 /* FunctionType.swift */; };
 		FA6DD52FA4D4BB157A43CBEE /* _Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C304EFDAFB81043B2896E5 /* _Resolver.swift */; };
-		FA89EFC16AEAC2EC333CEA81 /* ObjectScope.Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79864FE285C06A91E006806 /* ObjectScope.Standard.swift */; };
 		FCC32CC413C08CF94D7F661E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B00D2ED19209D0C6210169 /* Person.swift */; };
 		FCF3A63712ECD9E5BE371DC7 /* SynchronizedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E0A3F26E3718902E420D8E /* SynchronizedTests.swift */; };
 		FE07C0CCCD45639FBF85A456 /* Behavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8BA4B04A5F517AF663DCE /* Behavior.swift */; };
-		FEAF6DE7BBDD922B61E0ED20 /* ObjectScope.Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79864FE285C06A91E006806 /* ObjectScope.Standard.swift */; };
 		FED7D8B8C74876D03B5D09DE /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944B981A9157833AC3397B4A /* Assembler.swift */; };
 		FF222640214C9F4DA56130C4 /* InstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7688D6F1E3466891D0582E /* InstanceStorage.swift */; };
 		FF9DCB0AB20B0DBBE79451BB /* BehaviorFakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF07245CC462D98868097A3 /* BehaviorFakes.swift */; };
@@ -306,6 +310,9 @@
 		185C8B2BAF1CF29EB64159FC /* WeakStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakStorageTests.swift; sourceTree = "<group>"; };
 		19726C4D2E8898E5C05A5E38 /* ContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.swift; sourceTree = "<group>"; };
 		1C7608AD07FC553DAC2911FB /* ContainerTests.CustomScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.CustomScope.swift; sourceTree = "<group>"; };
+		1E7F2E562DDA34A20046B399 /* RecursiveLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveLock.swift; sourceTree = "<group>"; };
+		1E7F2E572DDA34A20046B399 /* ThreadSafeDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafeDictionary.swift; sourceTree = "<group>"; };
+		1E7F2E602DDA351D0046B399 /* ReadWriteLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
 		2380F40FC2B9229F36B13679 /* LoadAwareAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAwareAssembly.swift; sourceTree = "<group>"; };
 		28B6980B5294739C0656769C /* ServiceEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntryTests.swift; sourceTree = "<group>"; };
 		29EB588ED052D3BAF38AFBBE /* AssemblerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerTests.swift; sourceTree = "<group>"; };
@@ -317,7 +324,6 @@
 		4744C3ABBA9A8A585C726883 /* ContainerTests.DebugHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.DebugHelper.swift; sourceTree = "<group>"; };
 		515B0F492BC9AF5D00C4E24F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		516EB7F72BDC124100FF78D2 /* ContainerTests.Speed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTests.Speed.swift; sourceTree = "<group>"; };
-		51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
 		51F2541B2BC5A2EF003E3BCD /* ThreadSafeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadSafeDictionary.swift; sourceTree = "<group>"; };
 		54FFC812F14E9976208B644F /* ServiceEntry.TypeForwarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEntry.TypeForwarding.swift; sourceTree = "<group>"; };
 		5922B783F35F436C528594C1 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
@@ -339,7 +345,6 @@
 		9B058F48AF289C3AC307C2F7 /* GraphIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphIdentifier.swift; sourceTree = "<group>"; };
 		A20C1319AF31EC7F8E6945FE /* SwinjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28176E7C90C61FB8131FE06 /* ProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderTests.swift; sourceTree = "<group>"; };
-		A79864FE285C06A91E006806 /* ObjectScope.Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectScope.Standard.swift; sourceTree = "<group>"; };
 		A982F3108666D12EA0810D52 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AEAC51C6D09DEBE863D5A06E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B0F839BCDE52371FE49454B9 /* Container.Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.Logging.swift; sourceTree = "<group>"; };
@@ -472,7 +477,6 @@
 			isa = PBXGroup;
 			children = (
 				515B0F492BC9AF5D00C4E24F /* PrivacyInfo.xcprivacy */,
-				51F2541A2BC5A2EF003E3BCD /* ReadWriteLock.swift */,
 				51F2541B2BC5A2EF003E3BCD /* ThreadSafeDictionary.swift */,
 				15C304EFDAFB81043B2896E5 /* _Resolver.swift */,
 				944B981A9157833AC3397B4A /* Assembler.swift */,
@@ -483,12 +487,14 @@
 				172E48E07BA72BCBFB305E93 /* Container.swift */,
 				7605BDEF71547D0B17D7195A /* Container.TypeForwarding.swift */,
 				DE752946EBDAC1CB5823A39E /* DebugHelper.swift */,
+				1E7F2E562DDA34A20046B399 /* RecursiveLock.swift */,
+				1E7F2E572DDA34A20046B399 /* ThreadSafeDictionary.swift */,
+				1E7F2E602DDA351D0046B399 /* ReadWriteLock.swift */,
 				F388AD8E55D8C6F1E31D0522 /* FunctionType.swift */,
 				9B058F48AF289C3AC307C2F7 /* GraphIdentifier.swift */,
 				5F7BC1C4169BB4382C6D3E1F /* Info.plist */,
 				3B7688D6F1E3466891D0582E /* InstanceStorage.swift */,
 				7101AB0DE88A5340F7EAAC04 /* InstanceWrapper.swift */,
-				A79864FE285C06A91E006806 /* ObjectScope.Standard.swift */,
 				957AFDACC07687608E5E5F7E /* ObjectScope.swift */,
 				97ECAF79D15CCE41C49F4590 /* RecursiveLock.swift */,
 				EC379E27E9804FC6C0BA0842 /* Resolver.swift */,
@@ -826,9 +832,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				602201FE3E6CC64F594DEBA1 /* Assembler.swift in Sources */,
+				1E7F2E5A2DDA34A20046B399 /* RecursiveLock.swift in Sources */,
+				1E7F2E5B2DDA34A20046B399 /* ThreadSafeDictionary.swift in Sources */,
 				A5D9F0A6D8FC89662658FBF3 /* Assembly.swift in Sources */,
 				FE07C0CCCD45639FBF85A456 /* Behavior.swift in Sources */,
 				9FF7BABC0BA21A89A755E37C /* Container.Arguments.swift in Sources */,
+				1E7F2E632DDA351D0046B399 /* ReadWriteLock.swift in Sources */,
 				363C4230CAC4547E7A676249 /* Container.Logging.swift in Sources */,
 				1B36EE582AD6251A33C956F2 /* Container.TypeForwarding.swift in Sources */,
 				4A1AEFDC62BC395924AB2355 /* Container.swift in Sources */,
@@ -837,11 +846,9 @@
 				706A459CAE24E0D5054CEC30 /* GraphIdentifier.swift in Sources */,
 				B55E915211F19C91C622E068 /* InstanceStorage.swift in Sources */,
 				BB78B5DA95DCE3A942C18910 /* InstanceWrapper.swift in Sources */,
-				055969F9EA3C1AD43B11E006 /* ObjectScope.Standard.swift in Sources */,
 				62A1539A3B07EE3E1B72CF95 /* ObjectScope.swift in Sources */,
 				06B6204600E208CA97750825 /* RecursiveLock.swift in Sources */,
 				5BB768EFEB4BA7D1D05B4DCC /* Resolver.swift in Sources */,
-				51F2541D2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */,
 				3D86E87634E427DCE7A8CF81 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				513BDFB32DCE5B048672C33D /* ServiceEntry.swift in Sources */,
 				51F254212BC5A2EF003E3BCD /* ThreadSafeDictionary.swift in Sources */,
@@ -988,9 +995,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				474A4D73269D7BDF0844D704 /* Assembler.swift in Sources */,
+				1E7F2E582DDA34A20046B399 /* RecursiveLock.swift in Sources */,
+				1E7F2E592DDA34A20046B399 /* ThreadSafeDictionary.swift in Sources */,
 				81AE1BCE31BC99440151A68F /* Assembly.swift in Sources */,
 				2C838FEC75D618B575750A17 /* Behavior.swift in Sources */,
 				1DB36B1F8919879607F67F35 /* Container.Arguments.swift in Sources */,
+				1E7F2E642DDA351D0046B399 /* ReadWriteLock.swift in Sources */,
 				9D78DAAC0307D9422C501D33 /* Container.Logging.swift in Sources */,
 				5488A7839EF00BAC43CE2CEE /* Container.TypeForwarding.swift in Sources */,
 				D56BD23EC91E28CE6C6D6E78 /* Container.swift in Sources */,
@@ -999,11 +1009,9 @@
 				59AB5E84FD9B11B7D1CA2401 /* GraphIdentifier.swift in Sources */,
 				FF222640214C9F4DA56130C4 /* InstanceStorage.swift in Sources */,
 				7000D01DCB05BF57BC89BCF8 /* InstanceWrapper.swift in Sources */,
-				FEAF6DE7BBDD922B61E0ED20 /* ObjectScope.Standard.swift in Sources */,
 				B9566410214991FBA727BB37 /* ObjectScope.swift in Sources */,
 				C7A673429D2B735BAC18F58E /* RecursiveLock.swift in Sources */,
 				EE4786524E79B10DB36FDB11 /* Resolver.swift in Sources */,
-				51F2541E2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */,
 				54A3ED20B6A9506B9D514098 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				1A2759577A52C96E28BB44F0 /* ServiceEntry.swift in Sources */,
 				51F254222BC5A2EF003E3BCD /* ThreadSafeDictionary.swift in Sources */,
@@ -1018,9 +1026,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F8BF2FFD2D666C4EE71E796 /* Assembler.swift in Sources */,
+				1E7F2E5E2DDA34A20046B399 /* RecursiveLock.swift in Sources */,
+				1E7F2E5F2DDA34A20046B399 /* ThreadSafeDictionary.swift in Sources */,
 				695E6FF61B8CD35434685835 /* Assembly.swift in Sources */,
 				4D667425CB08BF894C1A78AA /* Behavior.swift in Sources */,
 				5BAC0A607F822D6205DA6178 /* Container.Arguments.swift in Sources */,
+				1E7F2E622DDA351D0046B399 /* ReadWriteLock.swift in Sources */,
 				40FCA2AB08F4EA23096075AB /* Container.Logging.swift in Sources */,
 				1AF1BB032596F2ADF9021F90 /* Container.TypeForwarding.swift in Sources */,
 				52E4C2C279904E90D5F37204 /* Container.swift in Sources */,
@@ -1029,11 +1040,9 @@
 				CC64B74A022612990F57D51D /* GraphIdentifier.swift in Sources */,
 				D6B0E0FA93AD8D47AA07AE03 /* InstanceStorage.swift in Sources */,
 				6A352D6A2C12D7BDABC38645 /* InstanceWrapper.swift in Sources */,
-				BDCBFD62903A1C0F8B35797C /* ObjectScope.Standard.swift in Sources */,
 				130DDD2347169F885F420989 /* ObjectScope.swift in Sources */,
 				48B5EC6BADDE7B88260ADE44 /* RecursiveLock.swift in Sources */,
 				9CD3F07823D2E64DD636E00A /* Resolver.swift in Sources */,
-				51F2541F2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */,
 				1845CF466289264A5BBC0CCE /* ServiceEntry.TypeForwarding.swift in Sources */,
 				35C9BCE88B6D6567760D7389 /* ServiceEntry.swift in Sources */,
 				51F254232BC5A2EF003E3BCD /* ThreadSafeDictionary.swift in Sources */,
@@ -1048,9 +1057,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FED7D8B8C74876D03B5D09DE /* Assembler.swift in Sources */,
+				1E7F2E5C2DDA34A20046B399 /* RecursiveLock.swift in Sources */,
+				1E7F2E5D2DDA34A20046B399 /* ThreadSafeDictionary.swift in Sources */,
 				5010597DD8C25E6684C8087E /* Assembly.swift in Sources */,
 				C60108843AA83DF2B408EE87 /* Behavior.swift in Sources */,
 				AD91C0A080A7CE74369407E7 /* Container.Arguments.swift in Sources */,
+				1E7F2E612DDA351D0046B399 /* ReadWriteLock.swift in Sources */,
 				77E67A2C566A1DFD5407BBA4 /* Container.Logging.swift in Sources */,
 				0F6B596CC2F819EF9CF5FE75 /* Container.TypeForwarding.swift in Sources */,
 				BF6475BEA46F81B30A6FA19E /* Container.swift in Sources */,
@@ -1059,11 +1071,9 @@
 				0C56E93B497BBA17B0E408F4 /* GraphIdentifier.swift in Sources */,
 				AB05847EAB8D85A8679B5EC5 /* InstanceStorage.swift in Sources */,
 				61357D47A1C4870FAA34377C /* InstanceWrapper.swift in Sources */,
-				FA89EFC16AEAC2EC333CEA81 /* ObjectScope.Standard.swift in Sources */,
 				40DCC9D2F3ABC2B36C9DC8AE /* ObjectScope.swift in Sources */,
 				8B9E356593059568E55F9B06 /* RecursiveLock.swift in Sources */,
 				96BA7CCC6AEC192CAD3054E1 /* Resolver.swift in Sources */,
-				51F2541C2BC5A2EF003E3BCD /* ReadWriteLock.swift in Sources */,
 				1120EBEC146D1EDDCC29AB17 /* ServiceEntry.TypeForwarding.swift in Sources */,
 				808983B2AF095E481615029E /* ServiceEntry.swift in Sources */,
 				51F254202BC5A2EF003E3BCD /* ThreadSafeDictionary.swift in Sources */,
@@ -1199,6 +1209,7 @@
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1227,6 +1238,7 @@
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1270,6 +1282,7 @@
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1327,6 +1340,7 @@
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1412,6 +1426,7 @@
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1458,6 +1473,7 @@
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1538,6 +1554,7 @@
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1565,6 +1582,7 @@
 				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

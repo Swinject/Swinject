@@ -20,7 +20,7 @@ import Foundation
 /// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
-    internal var services = [ServiceKey: ServiceEntryProtocol]()
+    internal var services = ThreadSafeDictionary<ServiceKey, ServiceEntryProtocol>()
     private let parent: Container? // Used by HierarchyObjectScope
     private var resolutionDepth = 0
     private let debugHelper: DebugHelper
@@ -297,7 +297,7 @@ extension Container: _Resolver {
 
     fileprivate func getRegistrations() -> [ServiceKey: ServiceEntryProtocol] {
         var registrations = parent?.getRegistrations() ?? [:]
-        services.forEach { key, value in registrations[key] = value }
+        services.forEachRead { key, value in registrations[key] = value }
         return registrations
     }
 
@@ -424,5 +424,8 @@ extension Container: CustomStringConvertible {
 // MARK: Constants
 
 private extension Container {
-    static let graphIdentifierKey = ServiceKey(serviceType: GraphIdentifier.self, argumentsType: Resolver.self)
+    static let graphIdentifierKey: ServiceKey = {
+        let key = ServiceKey(serviceType: GraphIdentifier.self, argumentsType: Resolver.self)
+        return key
+    }()
 }

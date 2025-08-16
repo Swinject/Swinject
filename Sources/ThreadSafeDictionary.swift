@@ -67,4 +67,14 @@ internal final class ThreadSafeDictionary<KeyType: Hashable, ValueType> {
             self.internalDictionary.removeAll()
         }
     }
+
+    public func contains(where predicate: ((key: KeyType, value: ValueType)) -> Bool) -> Bool {
+        lock.read {
+            self.internalDictionary.contains(where: predicate)
+        }
+    }
+
+    public var values: [ValueType] {
+        lock.read { self.internalDictionary.values.map { $0 } }
+    }
 }

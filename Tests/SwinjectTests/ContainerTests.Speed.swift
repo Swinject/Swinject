@@ -9,8 +9,8 @@ import XCTest
 /// this test, but good to run before/after changes to see changes.
 @available(iOS 13.0, *)
 class ContainerSpeedTests: XCTestCase {
-    var container: Container!
 
+    var container: Container!
     override func setUpWithError() throws {
         container = Container()
 
