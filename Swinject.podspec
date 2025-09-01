@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Swinject"
-  s.version          = "2.9.1"
+  s.version          = "2.10.0"
   s.summary          = "Dependency injection framework for Swift"
   s.description      = "Swinject is a dependency injection framework for Swift, to manage the dependencies of types in your system."
 
