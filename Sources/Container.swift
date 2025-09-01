@@ -429,6 +429,40 @@ extension Container: Resolver {
         return resolvedInstance as? Service
     }
 
+    /// Retrieves the instance with the specified service type and arguments to the factory closure.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
+    ///   - argument:    Arguments to pass to the factory closure.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type
+    ///            and arguments is found in the ``Container``.
+    public func resolve<Service, each Arg>(
+        _ serviceType: Service.Type,
+        argument: repeat each Arg
+    ) -> Service? {
+        return resolve(serviceType, name: nil, argument: repeat each argument)
+    }
+
+    /// Retrieves the instance with the specified service type, arguments to the factory closure and registration name.
+    ///
+    /// - Parameters:
+    ///   - serviceType: The service type to resolve.
+    ///   - name:        The registration name.
+    ///   - argument:    Arguments to pass to the factory closure.
+    ///
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type,
+    ///            arguments and name is found in the ``Container``.
+    public func resolve<Service, each Arg>(
+        _ serviceType: Service.Type,
+        name: String?,
+        argument: repeat each Arg
+    ) -> Service? {
+        typealias FactoryType = ((Resolver, repeat each Arg)) -> Any
+        return _resolve(name: name) { (factory: FactoryType) in factory((self, repeat each argument)) }
+    }
+
+
     private func persistedInstance<Service>(
         _: Service.Type, from entry: ServiceEntryProtocol, in graph: GraphIdentifier
     ) -> Service? {
