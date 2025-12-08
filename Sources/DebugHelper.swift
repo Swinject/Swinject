@@ -1,6 +1,7 @@
 //
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
+import Foundation
 
 internal protocol DebugHelper {
     func resolutionFailed<Service>(
@@ -25,7 +26,9 @@ internal final class LoggingDebugHelper: DebugHelper {
             .filter { $0.1 is ServiceEntry<Service> }
             .map { "\t{ " + $0.1.describeWithKey($0.0) + " }" }
 
-        Container.log(output.joined(separator: "\n"))
+        DispatchQueue.main.async {
+            Container.log(output.joined(separator: "\n"))
+        }
     }
 }
 
