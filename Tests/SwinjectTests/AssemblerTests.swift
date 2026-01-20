@@ -322,4 +322,175 @@ class AssemblerTests: XCTestCase {
 
         XCTAssertEqual(spy.entries.count, 1)
     }
+
+    // MARK: Smart Assembly Test Objects
+
+    private final class BaseAssembly: SmartAssembly {
+        required init() {}
+        func assemble(container: Container) {
+            container.register(String.self) { _ in "Base" }
+        }
+    }
+
+    private final class DependentAssembly: SmartAssembly {
+        static var requiredAssemblies: [Assembly.Type] { [BaseAssembly.self] }
+        required init() {}
+        func assemble(container: Container) {
+            container.register(Int.self) { resolver in
+                resolver.resolve(String.self) == "Base" ? 42 : 0
+            }
+        }
+    }
+
+    private final class CircularA: SmartAssembly {
+        static var requiredAssemblies: [Assembly.Type] { [CircularB.self] }
+        required init() {}
+        func assemble(container: Container) {}
+    }
+
+    private final class CircularB: SmartAssembly {
+        static var requiredAssemblies: [SmartAssembly.Type] { [CircularA.self] }
+        required init() {}
+        func assemble(container: Container) {}
+    }
+
+    private final class ClassicOnlyAssembly: Assembly {
+        func assemble(container: Container) {
+            container.register(Bool.self) { _ in true }
+        }
+    }
+
+    private final class MultiLevelA: SmartAssembly {
+        static var requiredAssemblies: [Assembly.Type] { [MultiLevelB.self] }
+        required init() {}
+        func assemble(container: Container) {
+            container.register(String.self) { _ in "A" }
+        }
+    }
+
+    private final class MultiLevelB: SmartAssembly {
+        static var requiredAssemblies: [Assembly.Type] { [MultiLevelC.self] }
+        required init() {}
+        func assemble(container: Container) {
+            container.register(Int.self) { _ in 99 }
+        }
+    }
+
+    private final class MultiLevelC: SmartAssembly {
+        required init() {}
+        func assemble(container: Container) {
+            container.register(Double.self) { _ in 3.14 }
+        }
+    }
+
+    private final class DependsOnClassic: SmartAssembly {
+        static var requiredAssemblies: [Assembly.Type] { [ClassicOnlyAssembly.self] }
+        required init() {}
+        func assemble(container: Container) {
+            container.register(String.self) { _ in "Dependent" }
+        }
+    }
+
+    // MARK: - Assembler with SmartAssembly Tests
+
+    func testSmartModeAutomaticallyInitializesMissingAssemblies() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+        assembler.apply(assembly: DependentAssembly())
+
+        XCTAssertEqual(assembler.resolver.resolve(Int.self), 42)
+    }
+
+    func testSmartModeDoesNotAffectClassicAssemblies() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+        assembler.apply(assemblies: [
+            ClassicOnlyAssembly(),
+            DependentAssembly()
+        ])
+
+        XCTAssertEqual(assembler.resolver.resolve(Int.self), 42)
+        XCTAssertEqual(assembler.resolver.resolve(Bool.self), true)
+    }
+
+    func testClassicModeIgnoresSmartAssemblyDependencies() {
+        let assembler = Assembler(mode: .classic)
+        assembler.apply(assembly: DependentAssembly())
+
+        XCTAssertEqual(assembler.resolver.resolve(Int.self), 0)
+    }
+
+    func testSmartModeDetectsCircularDependencies() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+        assembler.apply(assembly: CircularA())
+
+        XCTAssertNil(assembler.resolver.resolve(String.self))
+    }
+
+    func testSmartModeAutoInitializesMissingAssemblies() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+        assembler.apply(assembly: DependentAssembly())
+        XCTAssertEqual(assembler.resolver.resolve(Int.self), 42)
+    }
+
+    func testSmartModeWithMixedClassicAssemblies() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+        assembler.apply(assemblies: [ClassicOnlyAssembly(), DependentAssembly()])
+        XCTAssertEqual(assembler.resolver.resolve(Int.self), 42)
+        XCTAssertEqual(assembler.resolver.resolve(Bool.self), true)
+    }
+
+    func testSmartModeDoesNotAutoInitializeMissingAssemblies() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: false))
+        assembler.apply(assembly: DependentAssembly())
+
+        XCTAssertNil(assembler.resolver.resolve(String.self))
+        XCTAssertEqual(assembler.resolver.resolve(Int.self), 0)
+    }
+
+    func testSmartModeMultiLevelDependencies() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+        assembler.apply(assembly: MultiLevelA())
+        XCTAssertEqual(assembler.resolver.resolve(String.self), "A")
+        XCTAssertEqual(assembler.resolver.resolve(Int.self), 99)
+        XCTAssertEqual(assembler.resolver.resolve(Double.self), 3.14)
+    }
+
+    func testSmartAssemblyDependsOnClassicAssembly() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+        assembler.apply(assembly: DependsOnClassic())
+
+        XCTAssertNil(assembler.resolver.resolve(Bool.self))
+        XCTAssertEqual(assembler.resolver.resolve(String.self), "Dependent")
+    }
+
+    func testLazyApplicationSmartMode() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+        XCTAssertNil(assembler.resolver.resolve(Int.self))
+        assembler.apply(assembly: DependentAssembly())
+        XCTAssertEqual(assembler.resolver.resolve(Int.self), 42)
+
+        assembler.apply(assemblies: [ClassicOnlyAssembly()])
+        XCTAssertEqual(assembler.resolver.resolve(Bool.self), true)
+    }
+
+    func testChildAssemblerSmartMode() {
+        let parent = Assembler(mode: .classic)
+        let child = Assembler(parentAssembler: parent, mode: .smart(initializeMissingAssemblies: true))
+        child.apply(assembly: DependentAssembly())
+
+        XCTAssertEqual(child.resolver.resolve(Int.self), 42)
+        XCTAssertNil(parent.resolver.resolve(Int.self)) // Parent does not get child registrations
+    }
+
+    func testRepeatedApplicationDoesNotDuplicate() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+        assembler.apply(assembly: DependentAssembly())
+        assembler.apply(assembly: DependentAssembly()) // re-apply same assembly
+
+        XCTAssertEqual(assembler.resolver.resolve(Int.self), 42)
+    }
+
+    func testNoAssembliesApplied() {
+        let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+        XCTAssertNil(assembler.resolver.resolve(Int.self))
+    }
 }

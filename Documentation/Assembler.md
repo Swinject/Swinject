@@ -112,6 +112,65 @@ class LoggerAssembly: Assembly {
 }
 ```
 
+## SmartAssembly
+
+A `SmartAssembly` is a special type of `Assembly` that **declares explicit dependencies** on other assemblies.  
+
+Unlike a regular `Assembly`, which relies on the user to manually provide all required assemblies to an `Assembler`, a `SmartAssembly` allows the assembler to **automatically manage dependencies**, making your assembly graphs safer and more maintainable.
+
+### Key Features
+
+- **Explicit dependencies:** Declare other assemblies your assembly requires.
+- **Automatic instantiation:** Missing SmartAssemblies can be auto-created in Smart Mode.
+- **Validation:** The assembler can detect missing required assemblies and circular dependencies.
+- **Compatibility:** SmartAssemblies can depend on classic assemblies, but classic assemblies are **not auto-initialized**.
+
+### Declaration
+
+To define a SmartAssembly, implement the `SmartAssembly` protocol:
+
+```swift
+final class NetworkingAssembly: SmartAssembly {
+    // List required assemblies
+    static var requiredAssemblies: [SmartAssembly.Type] {
+        [CoreAssembly.self]
+    }
+
+    // Default initializer required for auto-instantiation
+    required init() {}
+
+    func assemble(container: Container) {
+        // register networking services
+    }
+}
+```
+
+- The `requiredAssemblies` array specifies dependencies.
+- Dependencies are resolved recursively by the assembler.
+- The order in the array **does not affect assembly order**; the assembler automatically applies dependencies first.
+
+### Behavior in Smart Mode
+
+- **Auto-initialization:** Assemblies in `requiredAssemblies` are automatically created if missing and `initializeMissingAssemblies` is true.
+- **Validation errors:** If `initializeMissingAssemblies` is false and required assemblies are missing, the assembler throws a `missingRequiredAssemblies` error.
+- **Circular dependency detection:** If assemblies depend on each other in a cycle, a `circularDependency` error is thrown.
+
+### Example Usage
+
+```swift
+let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+assembler.apply(assembly: NetworkingAssembly()) 
+```
+
+- If `CoreAssembly` is missing, it will be automatically applied.
+- If any circular dependencies exist, assembly will fail.
+
+### Notes
+
+- SmartAssemblies **must have a default initializer** (`init()`) for automatic instantiation.
+- Classic assemblies can be dependencies but are **never auto-initialized**; they must be applied manually.
+- SmartAssemblies enable building **dependency-aware assembly graphs** with less manual management and safer runtime behavior.
+
 ## Assembler
 
 The `Assembler` is responsible for managing the `Assembly` instances and the `Container`. Using
@@ -153,6 +212,83 @@ let assembler = Assembler([
   // or lazy load them
 assembler.applyPropertyLoader(
     JsonPropertyLoader(bundle: .mainBundle(), name: "properties"))
+```
+
+### Smart Mode (Dependency-Aware Assemblies)
+
+The `Assembler` now supports **Smart Mode**, which provides dependency-aware assembly behavior.
+
+- Assemblies conforming to `SmartAssembly` can declare required dependencies via `requiredAssemblies`.
+- In Smart Mode, missing SmartAssemblies can be automatically instantiated.
+- Classic assemblies are **not auto-initialized** and must be applied manually.
+- Circular dependencies are detected and prevent assembly.
+
+#### Auto-Initialization of Missing SmartAssemblies
+
+```swift
+let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+assembler.apply(assembly: DependentAssembly()) // Automatically applies BaseAssembly
+let result = assembler.resolver.resolve(Int.self) // 42
+```
+
+- `initializeMissingAssemblies = true` → missing SmartAssemblies are automatically instantiated.
+- `initializeMissingAssemblies = false` → missing SmartAssemblies throw an error:
+
+```swift
+let assembler = Assembler(mode: .smart(initializeMissingAssemblies: false))
+assembler.apply(assembly: DependentAssembly()) // Throws if BaseAssembly is missing
+```
+
+#### Circular Dependency Detection
+
+```swift
+assembler.apply(assembly: CircularA()) // Throws circularDependency error if CircularB requires CircularA
+```
+
+#### SmartAssemblies Depending on Classic Assemblies
+
+- SmartAssemblies **can depend on classic assemblies**, but the assembler will **not auto-initialize classic assemblies**.
+- You must manually apply classic assemblies before or after:
+
+```swift
+assembler.apply(assembly: ClassicOnlyAssembly())   // Apply classic assembly
+assembler.apply(assembly: DependsOnClassic())     // SmartAssembly depending on classic
+```
+
+#### Multi-Level Dependencies
+
+- SmartAssemblies can depend on other SmartAssemblies recursively.
+- Missing assemblies are resolved **before dependent assemblies** are applied:
+
+```swift
+assembler.apply(assembly: MultiLevelA())
+assembler.resolver.resolve(String.self)  // "A"
+assembler.resolver.resolve(Int.self)     // 99
+assembler.resolver.resolve(Double.self)  // 3.14
+```
+
+#### Lazy Loading with Smart Mode
+
+- Smart assemblies can be applied lazily using `apply(assembly:)` or `apply(assemblies:)`.
+- Dependencies are resolved at the time of application.
+
+```swift
+let assembler = Assembler(mode: .smart(initializeMissingAssemblies: true))
+assembler.apply(assembly: DependentAssembly())
+assembler.apply(assemblies: [ClassicOnlyAssembly()])
+```
+
+#### Child Assemblers in Smart Mode
+
+- Child assemblers can use Smart Mode independently of the parent.
+- Registrations in a child **do not propagate to the parent**.
+
+```swift
+let parent = Assembler(mode: .classic)
+let child = Assembler(parentAssembler: parent, mode: .smart(initializeMissingAssemblies: true))
+child.apply(assembly: DependentAssembly())
+child.resolver.resolve(Int.self)   // 42
+parent.resolver.resolve(Int.self)  // nil
 ```
 
 ## IMPORTANT:
