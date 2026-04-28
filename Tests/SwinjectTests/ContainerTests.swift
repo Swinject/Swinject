@@ -423,4 +423,19 @@ class ContainerTests: XCTestCase {
         XCTAssertFalse(container.hasAnyRegistration(of: Food.self, name: "Pizza"))
         XCTAssertFalse(container.hasAnyRegistration(of: Food.self))
     }
+    
+    // MARK: Custom Max Resolution Depth
+
+    func testContainerUsesCustomMaxResolutionDepth() {
+        let customLimit = 500
+        let container = Container(maxResolutionDepth: customLimit)
+        
+        XCTAssertEqual(container.maxResolutionDepth, customLimit)
+    }
+    
+    func testContainerDefaultsToStandardMaxResolutionDepth() {
+        let container = Container()
+        
+        XCTAssertEqual(container.maxResolutionDepth, 200)
+    }
 }
