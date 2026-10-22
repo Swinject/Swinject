@@ -16,7 +16,11 @@
 
 <% arg_count = 9 %>
 
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
 
 // MARK: - Registration with Arguments
 extension Container {
