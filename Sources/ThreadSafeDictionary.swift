@@ -1,7 +1,11 @@
 //
 //  Copyright © 2023 Swinject Contributors. All rights reserved.
 //
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
 
 internal final class ThreadSafeDictionary<KeyType: Hashable, ValueType> {
     private var internalDictionary = [KeyType: ValueType]()

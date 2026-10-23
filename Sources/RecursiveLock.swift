@@ -2,9 +2,16 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
-import Foundation
+#if canImport(Darwin)
+import Darwin
+#elseif canImport(Glibc)
+import Glibc
+#elseif canImport(Musl)
+import Musl
+#elseif canImport(Android)
+import Android
+#endif
 
-#if os(iOS) || os(macOS) || os(tvOS) || os(watchOS) || os(visionOS)
 /// `os_unfair_lock_recursive` is, for some reason, a private-API.
 ///
 /// `RecursiveLock` is a fair, recursive lock where acquisition order is guaranteed and recursion is permitted.
@@ -25,8 +32,10 @@ internal final class RecursiveLock {
         let attr = UnsafeMutablePointer<pthread_mutexattr_t>.allocate(capacity: 1)
         attr.initialize(to: pthread_mutexattr_t())
         pthread_mutexattr_init(attr)
-        pthread_mutexattr_settype(attr, PTHREAD_MUTEX_RECURSIVE)
+        pthread_mutexattr_settype(attr, Int32(PTHREAD_MUTEX_RECURSIVE))
+        #if canImport(Darwin)
         pthread_mutexattr_setpolicy_np(attr, PTHREAD_MUTEX_POLICY_FIRSTFIT_NP)
+        #endif
 
         defer {
             pthread_mutexattr_destroy(attr)
@@ -75,19 +84,6 @@ internal final class RecursiveLock {
 
     private let mutex: UnsafeMutablePointer<pthread_mutex_t>
 }
-#else
-internal final class RecursiveLock {
-    private let recursiveLock = NSRecursiveLock()
-
-    func lock() {
-        recursiveLock.lock()
-    }
-
-    func unlock() {
-        recursiveLock.unlock()
-    }
-}
-#endif
 
 extension RecursiveLock {
     /// Guarantee exclusive thread access to certain logic.

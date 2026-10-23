@@ -2,7 +2,15 @@
 //  Copyright © 2023 Swinject Contributors. All rights reserved.
 //
 
-import Foundation
+#if canImport(Darwin)
+import Darwin
+#elseif canImport(Glibc)
+import Glibc
+#elseif canImport(Musl)
+import Musl
+#elseif canImport(Android)
+import Android
+#endif
 
 internal final class ReadWriteLock {
     private var lock: pthread_rwlock_t = pthread_rwlock_t()
