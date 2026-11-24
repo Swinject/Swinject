@@ -34,18 +34,21 @@ public final class Container {
     internal var graphInstancesInFlight = [ServiceEntryProtocol]()
     internal let lock: RecursiveLock // Used by SynchronizedResolver.
     internal var behaviors = [Behavior]()
+    internal let maxResolutionDepth: Int
 
     internal init(
         parent: Container? = nil,
         debugHelper: DebugHelper,
         defaultObjectScope: ObjectScope = .graph,
-        synchronized: Bool = false
+        synchronized: Bool = false,
+        maxResolutionDepth: Int = 200
     ) {
         self.parent = parent
         self.debugHelper = debugHelper
         lock = parent.map(\.lock) ?? RecursiveLock()
         self.defaultObjectScope = defaultObjectScope
         self.synchronized = synchronized
+        self.maxResolutionDepth = maxResolutionDepth
     }
 
     /// Instantiates a ``Container``
@@ -55,6 +58,7 @@ public final class Container {
     ///     - defaultObjectScope: Default object scope (graph if no scope is injected)
     ///     - behaviors: List of behaviors to be added to the container
     ///     - registeringClosure: The closure registering services to the new container instance.
+    ///     - maxResolutionDepth: The maximum depth of the resolution graph to detect infinite circular dependencies. Default is 200.
     ///
     /// - Remark: Compile time may be long if you pass a long closure to this initializer.
     ///           Use `init()` or `init(parent:)` instead.
@@ -62,9 +66,10 @@ public final class Container {
         parent: Container? = nil,
         defaultObjectScope: ObjectScope = .graph,
         behaviors: [Behavior] = [],
+        maxResolutionDepth: Int = 200,
         registeringClosure: (Container) -> Void = { _ in }
     ) {
-        self.init(parent: parent, debugHelper: LoggingDebugHelper(), defaultObjectScope: defaultObjectScope)
+        self.init(parent: parent, debugHelper: LoggingDebugHelper(), defaultObjectScope: defaultObjectScope, maxResolutionDepth: maxResolutionDepth)
         behaviors.forEach(addBehavior)
         registeringClosure(self)
     }
@@ -339,8 +344,6 @@ extension Container: _Resolver {
         services.forEachRead { key, value in registrations[key] = value }
         return registrations
     }
-
-    fileprivate var maxResolutionDepth: Int { return 200 }
 
     fileprivate func incrementResolutionDepth() {
         parent?.incrementResolutionDepth()
