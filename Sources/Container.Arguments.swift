@@ -10,7 +10,11 @@
 // Instead, modify Container.Arguments.erb and run `script/gencode` at the project root directory to generate the code.
 //
 
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
 
 // MARK: - Registration with Arguments
 

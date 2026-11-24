@@ -2,7 +2,11 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
 
 // MARK: ServiceKeyOption
 

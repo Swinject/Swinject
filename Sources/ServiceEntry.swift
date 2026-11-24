@@ -2,7 +2,11 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
 
 // A generic-type-free protocol to be the type of values in a strongly-typed collection.
 internal protocol ServiceEntryProtocol: AnyObject {

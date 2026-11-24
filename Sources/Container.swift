@@ -2,7 +2,11 @@
 //  Copyright © 2019 Swinject Contributors. All rights reserved.
 //
 
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
 
 /// The ``Container`` class represents a dependency injection container, which stores registrations of services
 /// and retrieves registered services with dependencies injected.
