@@ -109,22 +109,11 @@ public final class CompositeStorage: InstanceStorage {
 private class Weak<Wrapped> {
     private weak var object: AnyObject?
 
-    #if os(Linux)
-        var value: Wrapped? {
-            get {
-                guard let object = object else { return nil }
-                return object as? Wrapped
-            }
-            set { object = newValue.flatMap { $0 as? AnyObject } }
+    var value: Wrapped? {
+        get {
+            guard let object = object else { return nil }
+            return object as? Wrapped
         }
-
-    #else
-        var value: Wrapped? {
-            get {
-                guard let object = object else { return nil }
-                return object as? Wrapped
-            }
-            set { object = newValue as AnyObject? }
-        }
-    #endif
+        set { object = newValue as AnyObject? }
+    }
 }
