@@ -163,6 +163,7 @@ extension ContainerTests_GraphCaching {
         ("testContainerRestoresInstancesFromPreviousGraphsIfAvailable", testContainerRestoresInstancesFromPreviousGraphsIfAvailable),
         ("testContainerUsesCurrentGraphIdentifierWhenManipulatingInstances", testContainerUsesCurrentGraphIdentifierWhenManipulatingInstances),
         ("testContainerUsesRestoredIdentifierDuringGraphResolution", testContainerUsesRestoredIdentifierDuringGraphResolution),
+        ("testGraphStoragePruningOnResolutionCompletion", testGraphStoragePruningOnResolutionCompletion),
         ("testIdentifierIsDifferentForSeparateGraphResolutions", testIdentifierIsDifferentForSeparateGraphResolutions),
         ("testIdentifierIsNotNilDuringGraphResolution", testIdentifierIsNotNilDuringGraphResolution),
         ("testIdentifierIsSameDuringGraphResolution", testIdentifierIsSameDuringGraphResolution),

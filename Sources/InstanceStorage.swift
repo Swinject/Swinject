@@ -25,10 +25,15 @@ public final class GraphStorage: InstanceStorage {
 
     public func graphResolutionCompleted() {
         instance = nil
+        instances = instances.filter { $0.value.value != nil }
     }
 
     public func instance(inGraph graph: GraphIdentifier) -> Any? {
-        return instances[graph]?.value
+        guard let value = instances[graph]?.value else {
+            instances.removeValue(forKey: graph)
+            return nil
+        }
+        return value
     }
 
     public func setInstance(_ instance: Any?, inGraph graph: GraphIdentifier) {
