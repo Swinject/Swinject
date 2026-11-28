@@ -5,9 +5,9 @@ import PackageDescription
 let package = Package(
     name: "Swinject",
     platforms: [
-        .macOS(.v10_13),
+        .macOS(.v12),
         .iOS(.v15),
-        .tvOS(.v12),
+        .tvOS(.v15),
         .watchOS(.v9),
         .visionOS(.v1)
     ],
