@@ -149,6 +149,28 @@ class ContainerTests_GraphCaching: XCTestCase {
         XCTAssert(dog1 === dog2)
         XCTAssert(dog2 === dog3)
     }
+
+    func testGraphStoragePruningOnResolutionCompletion() {
+        let storage = GraphStorage()
+        let graph1 = GraphIdentifier()
+        let graph2 = GraphIdentifier()
+
+        var object1: Dog? = Dog()
+        let object2 = Dog()
+
+        storage.setInstance(object1, inGraph: graph1)
+        storage.setInstance(object2, inGraph: graph2)
+
+        XCTAssertNotNil(storage.instance(inGraph: graph1))
+        XCTAssertNotNil(storage.instance(inGraph: graph2))
+
+        object1 = nil
+
+        storage.graphResolutionCompleted()
+
+        XCTAssertNil(storage.instance(inGraph: graph1))
+        XCTAssertNotNil(storage.instance(inGraph: graph2))
+    }
 }
 
 private class StorageSpy: InstanceStorage {
